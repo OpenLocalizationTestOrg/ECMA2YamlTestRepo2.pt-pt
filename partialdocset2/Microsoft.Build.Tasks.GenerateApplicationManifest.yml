@@ -1,0 +1,966 @@
+### YamlMime:ManagedReference
+items:
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest
+  id: GenerateApplicationManifest
+  children:
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.#ctor
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.ClrVersion
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.ConfigFile
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.Dependencies
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.ErrorReportUrl
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.FileAssociations
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.Files
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.GetObjectType
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.HostInBrowser
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.IconFile
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.IsolatedComReferences
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.ManifestType
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestLoaded(Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest)
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestResolved(Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest)
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.OSVersion
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.Product
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.Publisher
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.RequiresMinimumFramework35SP1
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.SuiteName
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkProfile
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkSubset
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.TrustInfoFile
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust
+  - Microsoft.Build.Tasks.GenerateApplicationManifest.ValidateInputs
+  langs:
+  - csharp
+  name: GenerateApplicationManifest
+  nameWithType: GenerateApplicationManifest
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest
+  type: Class
+  summary: "Implementa o `GenerateApplicationManifest` tarefas. Utilize o `GenerateApplicationManifest` elemento no ficheiro de projeto para criar e executar esta tarefa. Para informações de utilização e o parâmetro, consulte [GenerateApplicationManifest tarefa](~/add/includes/ajax-current-ext-md.md)."
+  remarks: "`EntryPoint` is an optional <xref:Microsoft.Build.Framework.ITaskItem>`[]` parameter that indicates the entry point for the generated manifest assembly. For a [!INCLUDE[ndptecclick](~/add/includes/ndptecclick-md.md)] deployment manifest, this input specifies the [!INCLUDE[ndptecclick](~/add/includes/ndptecclick-md.md)] application manifest.  \n  \n In [!INCLUDE[vsprvslong](~/add/includes/ajax-current-ext-md.md)], the [GenerateApplicationManifest Task](../Topic/GenerateApplicationManifest%20Task.md) requires an `EntryPoint` when an application manifest is generated. (Assembly or native manifests do not require an `EntryPoint`.) This requirement is enforced by the build error \"MSB3185: EntryPoint not specified for manifest.\"  \n  \n In [!INCLUDE[vs_orcas_long](~/add/includes/vs-orcas-long-md.md)], [!INCLUDE[vstecmsbuild](~/add/includes/vstecmsbuild-md.md)] does not issue this error when the `EntryPoint` task parameter is not specified. Instead, the \\<customHostSpecified> tag is inserted as a child of the \\<entryPoint> tag, for example, as follows.  \n  \n```  \n<entryPoint xmlns=\"urn:schemas-   \n  microsoft-com:asm.v2\">  \n    <co.v1:customHostSpecified />  \n</entryPoint>  \n```  \n  \n You can add DLL dependencies to the application manifest by using the following steps:  \n  \n1.  Resolve the references in the assembly by using a call to <xref:Microsoft.Build.Tasks.ResolveAssemblyReference>.  \n  \n2.  Pass the output of the previous task and the assembly itself to <xref:Microsoft.Build.Tasks.ResolveManifestFiles>.  \n  \n3.  Pass the dependencies by using the `Dependencies` parameter to GenerateApplicationManifest."
+  syntax:
+    content: 'public sealed class GenerateApplicationManifest : Microsoft.Build.Tasks.GenerateManifestBase'
+  inheritance:
+  - System.Object
+  - Microsoft.Build.Utilities.Task
+  - Microsoft.Build.Tasks.GenerateManifestBase
+  implements: []
+  inheritedMembers:
+  - Microsoft.Build.Tasks.GenerateManifestBase.AddAssemblyFromItem(Microsoft.Build.Framework.ITaskItem)
+  - Microsoft.Build.Tasks.GenerateManifestBase.AddAssemblyNameFromItem(Microsoft.Build.Framework.ITaskItem,Microsoft.Build.Tasks.Deployment.ManifestUtilities.AssemblyReferenceType)
+  - Microsoft.Build.Tasks.GenerateManifestBase.AddEntryPointFromItem(Microsoft.Build.Framework.ITaskItem,Microsoft.Build.Tasks.Deployment.ManifestUtilities.AssemblyReferenceType)
+  - Microsoft.Build.Tasks.GenerateManifestBase.AddFileFromItem(Microsoft.Build.Framework.ITaskItem)
+  - Microsoft.Build.Tasks.GenerateManifestBase.AssemblyName
+  - Microsoft.Build.Tasks.GenerateManifestBase.AssemblyVersion
+  - Microsoft.Build.Tasks.GenerateManifestBase.Description
+  - Microsoft.Build.Tasks.GenerateManifestBase.EntryPoint
+  - Microsoft.Build.Tasks.GenerateManifestBase.Execute
+  - Microsoft.Build.Tasks.GenerateManifestBase.FindFileFromItem(Microsoft.Build.Framework.ITaskItem)
+  - Microsoft.Build.Tasks.GenerateManifestBase.InputManifest
+  - Microsoft.Build.Tasks.GenerateManifestBase.MaxTargetPath
+  - Microsoft.Build.Tasks.GenerateManifestBase.OutputManifest
+  - Microsoft.Build.Tasks.GenerateManifestBase.Platform
+  - Microsoft.Build.Tasks.GenerateManifestBase.TargetCulture
+  - Microsoft.Build.Tasks.GenerateManifestBase.TargetFrameworkMoniker
+  - Microsoft.Build.Tasks.GenerateManifestBase.TargetFrameworkVersion
+  - Microsoft.Build.Tasks.GenerateManifestBase.ValidateOutput
+  - Microsoft.Build.Utilities.Task.BuildEngine
+  - Microsoft.Build.Utilities.Task.BuildEngine2
+  - Microsoft.Build.Utilities.Task.BuildEngine3
+  - Microsoft.Build.Utilities.Task.BuildEngine4
+  - Microsoft.Build.Utilities.Task.HelpKeywordPrefix
+  - Microsoft.Build.Utilities.Task.HostObject
+  - Microsoft.Build.Utilities.Task.Log
+  - Microsoft.Build.Utilities.Task.TaskResources
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.#ctor
+  id: '#ctor'
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: GenerateApplicationManifest()
+  nameWithType: GenerateApplicationManifest.GenerateApplicationManifest()
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.GenerateApplicationManifest()
+  type: Constructor
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Inicializa uma nova instância do <xref href=&quot;Microsoft.Build.Tasks.GenerateApplicationManifest&quot;> </xref> classe."
+  syntax:
+    content: public GenerateApplicationManifest ();
+    parameters: []
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.#ctor*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ClrVersion
+  id: ClrVersion
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: ClrVersion
+  nameWithType: GenerateApplicationManifest.ClrVersion
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.ClrVersion
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define a versão mínima do comuns Language Runtime (CLR) necessária para a aplicação."
+  remarks: "Por predefinição, o valor é a versão CLR em utilização pelo sistema compilação. Se a tarefa está a gerar um manifesto nativo, esta propriedade é ignorada."
+  syntax:
+    content: public string ClrVersion { get; set; }
+    return:
+      type: System.String
+      description: "A versão mínima do CLR necessária para a aplicação."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.ClrVersion*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ConfigFile
+  id: ConfigFile
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: ConfigFile
+  nameWithType: GenerateApplicationManifest.ConfigFile
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.ConfigFile
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define o item de tarefa que contém o ficheiro de configuração de aplicação."
+  remarks: "Se a tarefa está a gerar um manifesto nativo, esta propriedade é ignorada."
+  syntax:
+    content: public Microsoft.Build.Framework.ITaskItem ConfigFile { get; set; }
+    return:
+      type: Microsoft.Build.Framework.ITaskItem
+      description: "O item de tarefa que contém o ficheiro de configuração de aplicação."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.ConfigFile*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.Dependencies
+  id: Dependencies
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: Dependencies
+  nameWithType: GenerateApplicationManifest.Dependencies
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.Dependencies
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define uma lista de itens que define o conjunto de assemblagens dependentes para o manifesto gerado."
+  remarks: "Cada item poderá ser descritas com mais detalhe por item de metadados para indicar o estado de implementação adicional e o tipo de dependence."
+  syntax:
+    content: public Microsoft.Build.Framework.ITaskItem[] Dependencies { get; set; }
+    return:
+      type: Microsoft.Build.Framework.ITaskItem[]
+      description: "Uma lista de itens de nomes de assemblagem dependente."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.Dependencies*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ErrorReportUrl
+  id: ErrorReportUrl
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: ErrorReportUrl
+  nameWithType: GenerateApplicationManifest.ErrorReportUrl
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.ErrorReportUrl
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define o URL da página Web que é apresentado nas caixas de diálogo durante ClickOnce instalações."
+  remarks: "Especifica uma página Web a ser apresentado nas caixas de diálogo que são apresentadas durante ClickOnce instalações."
+  syntax:
+    content: public string ErrorReportUrl { get; set; }
+    return:
+      type: System.String
+      description: "Um valor de cadeia que representa o URL de uma página Web."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.ErrorReportUrl*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.FileAssociations
+  id: FileAssociations
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: FileAssociations
+  nameWithType: GenerateApplicationManifest.FileAssociations
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.FileAssociations
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define uma lista de um ou mais tipo de ficheiro que estão associados o manifesto de implementação ClickOnce. As associações de ficheiros apenas válido apenas quando [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] visa 3.5 ou posterior."
+  remarks: "File types can be custom. The following is an example of a [\\<fileAssociation> Element (ClickOnce Application)](../Topic/%3CfileAssociation%3E%20Element%20\\(ClickOnce%20Application\\).md):  \n  \n```  \n<FileAssociation Include=\".nyt\">  \n    <ProgId>NewYorkTimes.Document</ProgId>  \n    <DefaultIcon>nyt.ico</DefaultIcon>  \n    <Description>New York Times Reader document</Description>  \n</FileAssociation>  \n```"
+  syntax:
+    content: public Microsoft.Build.Framework.ITaskItem[] FileAssociations { get; set; }
+    return:
+      type: Microsoft.Build.Framework.ITaskItem[]
+      description: "Uma lista dos tipos de ficheiros que estão associados o manifesto gerado."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.FileAssociations*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.Files
+  id: Files
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: Files
+  nameWithType: GenerateApplicationManifest.Files
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.Files
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define os caminhos completos de ficheiros a incluir no manifesto."
+  syntax:
+    content: public Microsoft.Build.Framework.ITaskItem[] Files { get; set; }
+    return:
+      type: Microsoft.Build.Framework.ITaskItem[]
+      description: "Caminhos de ficheiros que estão incluídos no manifesto."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.Files*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.GetObjectType
+  id: GetObjectType
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: GetObjectType()
+  nameWithType: GenerateApplicationManifest.GetObjectType()
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.GetObjectType()
+  type: Method
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  syntax:
+    content: protected override Type GetObjectType ();
+    parameters: []
+    return:
+      type: System.Type
+      description: "A adicionar."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.GetObjectType*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.HostInBrowser
+  id: HostInBrowser
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: HostInBrowser
+  nameWithType: GenerateApplicationManifest.HostInBrowser
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.HostInBrowser
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define se a aplicação é alojada num browser (como são aplicações de Browser do WPF Web)."
+  remarks: "Para tipos de projeto diferente de aplicações do WPF Web Browser, definir HostInBrowser como `false` (o valor predefinido).       Quando implementa uma aplicação de Browser do WPF Web, tem de definir a propriedade HostInBrowser `true`. Isto faz com que o `<hostInBrowser>` etiqueta para ser adicionada para o manifesto de aplicação gerados, ativar ClickOnce implementar projetos para aplicações alojado no browser, que contêm .xbap ficheiros.       Também tem de disponibilizar a aplicação online só definindo <xref:Microsoft.Build.Tasks.GenerateDeploymentManifest.Install%2A>para `false`.</xref:Microsoft.Build.Tasks.GenerateDeploymentManifest.Install%2A> Se esta condição não for cumprida, irá receber [MSBuild erro MSB3116](~/add/includes/ajax-current-ext-md.md)."
+  syntax:
+    content: public bool HostInBrowser { get; set; }
+    return:
+      type: System.Boolean
+      description: "Um valor booleano que indica se a aplicação que está a ser implementada será alojada num browser (<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>), ou não (<xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>). <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>apenas se aplica a aplicações do WPF Web Browser."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.HostInBrowser*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.IconFile
+  id: IconFile
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: IconFile
+  nameWithType: GenerateApplicationManifest.IconFile
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.IconFile
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define o ficheiro de ícone da aplicação."
+  remarks: "O ícone da aplicação é expresso no manifesto de aplicação gerados e é utilizado no **iniciar** menu e, no **desinstalar ou alterar um programa** caixa de diálogo. Se esta entrada não for especificada, é utilizado um ícone predefinido. Se a tarefa está a gerar um manifesto nativo, esta propriedade é ignorada."
+  syntax:
+    content: public Microsoft.Build.Framework.ITaskItem IconFile { get; set; }
+    return:
+      type: Microsoft.Build.Framework.ITaskItem
+      description: "O ficheiro de ícone a utilizar para a aplicação."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.IconFile*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.IsolatedComReferences
+  id: IsolatedComReferences
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: IsolatedComReferences
+  nameWithType: GenerateApplicationManifest.IsolatedComReferences
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.IsolatedComReferences
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define componentes COM isolar no manifesto gerado."
+  remarks: "Esta propriedade permite-lhe isolar componentes COM para a implementação de &quot;Registo livre COM&quot;. Funciona através da geração automática de um manifesto que tem definições de registo COM padrão. Os componentes COM tem de estar registados no computador de compilação."
+  syntax:
+    content: public Microsoft.Build.Framework.ITaskItem[] IsolatedComReferences { get; set; }
+    return:
+      type: Microsoft.Build.Framework.ITaskItem[]
+      description: "Os componentes COM a isolar no manifesto gerado."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.IsolatedComReferences*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ManifestType
+  id: ManifestType
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: ManifestType
+  nameWithType: GenerateApplicationManifest.ManifestType
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.ManifestType
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define o tipo de manifesto para gerar."
+  remarks: "Esta propriedade pode ter os seguintes valores:- `Native`       -    `ClickOnce` se esta propriedade não for especificada, a tarefa está predefinida como `ClickOnce`."
+  syntax:
+    content: public string ManifestType { get; set; }
+    return:
+      type: System.String
+      description: "O tipo de manifesto para gerar."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.ManifestType*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestLoaded(Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest)
+  id: OnManifestLoaded(Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest)
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: OnManifestLoaded(Manifest)
+  nameWithType: GenerateApplicationManifest.OnManifestLoaded(Manifest)
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestLoaded(Manifest)
+  type: Method
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  syntax:
+    content: protected override bool OnManifestLoaded (Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest manifest);
+    parameters:
+    - id: manifest
+      type: Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest
+      description: "A adicionar."
+    return:
+      type: System.Boolean
+      description: "A adicionar."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestLoaded*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestResolved(Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest)
+  id: OnManifestResolved(Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest)
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: OnManifestResolved(Manifest)
+  nameWithType: GenerateApplicationManifest.OnManifestResolved(Manifest)
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestResolved(Manifest)
+  type: Method
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  syntax:
+    content: protected override bool OnManifestResolved (Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest manifest);
+    parameters:
+    - id: manifest
+      type: Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest
+      description: "A adicionar."
+    return:
+      type: System.Boolean
+      description: "A adicionar."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestResolved*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.OSVersion
+  id: OSVersion
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: OSVersion
+  nameWithType: GenerateApplicationManifest.OSVersion
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.OSVersion
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define a versão do sistema operativo (OS) que é o mínimo requerido pela aplicação."
+  remarks: "Por exemplo, o valor &quot;5.1.2600.0&quot; indica que o sistema operativo for o Windows XP. Se esta propriedade não for especificada, é utilizado o valor &quot;4.10.0.0&quot;. Isto indica que o Windows 98 segundo Edition, que é o mínimo suportado sistema operativo para o [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)].       Se a tarefa está a gerar um manifesto nativo, esta entrada é ignorada."
+  syntax:
+    content: public string OSVersion { get; set; }
+    return:
+      type: System.String
+      description: "A versão do SO que é o mínimo requerido pela aplicação."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.OSVersion*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.Product
+  id: Product
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: Product
+  nameWithType: GenerateApplicationManifest.Product
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.Product
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Especifica o `ProductName` propriedade no ficheiro de projeto."
+  remarks: "Esta propriedade corresponde de `ProductName` propriedade no ficheiro de projeto. O valor predefinido é `null`. Se `ProductName` é nulo e <xref:Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust%2A>é `true`, o valor de RegisteredOrganization no registo é escrito para o manifesto da aplicação.</xref:Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust%2A> Se RegisteredOrganization também for nulo, é utilizado o nome da assemblagem."
+  syntax:
+    content: public string Product { get; set; }
+    return:
+      type: System.String
+      description: "Um valor de cadeia que corresponde à `ProductName` propriedade no ficheiro de projeto."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.Product*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.Publisher
+  id: Publisher
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: Publisher
+  nameWithType: GenerateApplicationManifest.Publisher
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.Publisher
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Especifica o `PublisherName` propriedade no ficheiro de projeto."
+  remarks: "Esta propriedade corresponde de `PublisherName` propriedade no ficheiro de projeto. O valor predefinido é `null`. Se `PublisherName` é nulo e <xref:Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust%2A>é `true`, o nome da assemblagem é escrito para o manifesto da aplicação.</xref:Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust%2A>"
+  syntax:
+    content: public string Publisher { get; set; }
+    return:
+      type: System.String
+      description: "Um valor de cadeia que corresponde à `PublisherName` propriedade no ficheiro de projeto."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.Publisher*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.RequiresMinimumFramework35SP1
+  id: RequiresMinimumFramework35SP1
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: RequiresMinimumFramework35SP1
+  nameWithType: GenerateApplicationManifest.RequiresMinimumFramework35SP1
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.RequiresMinimumFramework35SP1
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define se a aplicação requer o .NET Framework 3.5 SP1."
+  syntax:
+    content: public bool RequiresMinimumFramework35SP1 { get; set; }
+    return:
+      type: System.Boolean
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a aplicação requer o .NET Framework 3.5 SP1; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref> caso contrário."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.RequiresMinimumFramework35SP1*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.SuiteName
+  id: SuiteName
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: SuiteName
+  nameWithType: GenerateApplicationManifest.SuiteName
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.SuiteName
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define o nome da pasta do **iniciar** menu onde a aplicação está localizada após a implementação de ClickOnce."
+  syntax:
+    content: public string SuiteName { get; set; }
+    return:
+      type: System.String
+      description: "Uma cadeia que representa o nome de um **iniciar** pasta do menu."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.SuiteName*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl
+  id: SupportUrl
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: SupportUrl
+  nameWithType: GenerateApplicationManifest.SupportUrl
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Especifica o `SupportUrl` propriedade no ficheiro de projeto."
+  remarks: "Esta propriedade corresponde de `SupportUrl` propriedade no ficheiro de projeto. O valor predefinido é **nulo**. Se `SupportUrl` é nulo e <xref:Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust%2A>é `true`, é escrita o manifesto da aplicação de uma cadeia vazia.</xref:Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust%2A>"
+  syntax:
+    content: public string SupportUrl { get; set; }
+    return:
+      type: System.String
+      description: "Um valor de cadeia que corresponde à `SupportUrl` propriedade no ficheiro de projeto."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkProfile
+  id: TargetFrameworkProfile
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: TargetFrameworkProfile
+  nameWithType: GenerateApplicationManifest.TargetFrameworkProfile
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkProfile
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define o perfil de estrutura de destino."
+  syntax:
+    content: public string TargetFrameworkProfile { get; set; }
+    return:
+      type: System.String
+      description: "Devolve o perfil de estrutura de destino."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkProfile*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkSubset
+  id: TargetFrameworkSubset
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: TargetFrameworkSubset
+  nameWithType: GenerateApplicationManifest.TargetFrameworkSubset
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkSubset
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define o nome do [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] subconjunto de destino."
+  syntax:
+    content: public string TargetFrameworkSubset { get; set; }
+    return:
+      type: System.String
+      description: "O nome do [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] subconjunto."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkSubset*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.TrustInfoFile
+  id: TrustInfoFile
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: TrustInfoFile
+  nameWithType: GenerateApplicationManifest.TrustInfoFile
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.TrustInfoFile
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Obtém ou define um documento XML que especifica a segurança da aplicação."
+  remarks: "O elemento raiz no documento XML tem de ser um nó de trustInfo no espaço de nomes asm.v2. Se a tarefa está a gerar um manifesto nativo, esta propriedade é ignorada."
+  syntax:
+    content: public Microsoft.Build.Framework.ITaskItem TrustInfoFile { get; set; }
+    return:
+      type: Microsoft.Build.Framework.ITaskItem
+      description: "O documento XML que especifica a segurança da aplicação."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.TrustInfoFile*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust
+  id: UseApplicationTrust
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: UseApplicationTrust
+  nameWithType: GenerateApplicationManifest.UseApplicationTrust
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust
+  type: Property
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  summary: "Especifica se o <> </> *>, <> </> *>, e <xref:Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl*>propriedades são escritas para o manifesto da aplicação.</xref:Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl*>"
+  remarks: "O <xref:Microsoft.Build.Tasks.GenerateApplicationManifest.Product%2A>, <xref:Microsoft.Build.Tasks.GenerateApplicationManifest.Publisher%2A>, e <xref:Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl%2A>Propriedades predefinida para `null`.</xref:Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl%2A> </xref:Microsoft.Build.Tasks.GenerateApplicationManifest.Publisher%2A> </xref:Microsoft.Build.Tasks.GenerateApplicationManifest.Product%2A> Estas propriedades são utilizadas apenas se for UseApplicationTrust `true`; se Sim, os valores destas propriedades são escritos com as etiquetas correspondentes no manifesto da aplicação.       Se for UseApplicationTrust `false` (o valor predefinido), estas propriedades são ignoradas."
+  syntax:
+    content: public bool UseApplicationTrust { get; set; }
+    return:
+      type: System.Boolean
+      description: "Um valor booleano que indica se o <> </> *>, <> </> *>, e <xref:Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl*>propriedades são escritas para o manifesto da aplicação (<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>).</xref:Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl*> Se o valor for <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>, estas propriedades são ignoradas."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust*
+  exceptions: []
+  platform:
+  - net462
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ValidateInputs
+  id: ValidateInputs
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  langs:
+  - csharp
+  name: ValidateInputs()
+  nameWithType: GenerateApplicationManifest.ValidateInputs()
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.ValidateInputs()
+  type: Method
+  assemblies:
+  - Microsoft.Build.Tasks.v4.0
+  namespace: Microsoft.Build.Tasks
+  syntax:
+    content: protected override bool ValidateInputs ();
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "A adicionar."
+  overload: Microsoft.Build.Tasks.GenerateApplicationManifest.ValidateInputs*
+  exceptions: []
+  platform:
+  - net462
+references:
+- uid: Microsoft.Build.Tasks.GenerateManifestBase
+  isExternal: false
+  name: Microsoft.Build.Tasks.GenerateManifestBase
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.#ctor
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: GenerateApplicationManifest()
+  nameWithType: GenerateApplicationManifest.GenerateApplicationManifest()
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.GenerateApplicationManifest()
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ClrVersion
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: ClrVersion
+  nameWithType: GenerateApplicationManifest.ClrVersion
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.ClrVersion
+- uid: System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ConfigFile
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: ConfigFile
+  nameWithType: GenerateApplicationManifest.ConfigFile
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.ConfigFile
+- uid: Microsoft.Build.Framework.ITaskItem
+  parent: Microsoft.Build.Framework
+  isExternal: false
+  name: ITaskItem
+  nameWithType: ITaskItem
+  fullName: Microsoft.Build.Framework.ITaskItem
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.Dependencies
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: Dependencies
+  nameWithType: GenerateApplicationManifest.Dependencies
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.Dependencies
+- uid: Microsoft.Build.Framework.ITaskItem[]
+  parent: Microsoft.Build.Framework
+  isExternal: false
+  name: ITaskItem
+  nameWithType: ITaskItem
+  fullName: Microsoft.Build.Framework.ITaskItem[]
+  spec.csharp:
+  - uid: Microsoft.Build.Framework.ITaskItem
+    name: ITaskItem
+    nameWithType: ITaskItem
+    fullName: ITaskItem[]
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ErrorReportUrl
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: ErrorReportUrl
+  nameWithType: GenerateApplicationManifest.ErrorReportUrl
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.ErrorReportUrl
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.FileAssociations
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: FileAssociations
+  nameWithType: GenerateApplicationManifest.FileAssociations
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.FileAssociations
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.Files
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: Files
+  nameWithType: GenerateApplicationManifest.Files
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.Files
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.GetObjectType
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: GetObjectType()
+  nameWithType: GenerateApplicationManifest.GetObjectType()
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.GetObjectType()
+- uid: System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.HostInBrowser
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: HostInBrowser
+  nameWithType: GenerateApplicationManifest.HostInBrowser
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.HostInBrowser
+- uid: System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.IconFile
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: IconFile
+  nameWithType: GenerateApplicationManifest.IconFile
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.IconFile
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.IsolatedComReferences
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: IsolatedComReferences
+  nameWithType: GenerateApplicationManifest.IsolatedComReferences
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.IsolatedComReferences
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ManifestType
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: ManifestType
+  nameWithType: GenerateApplicationManifest.ManifestType
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.ManifestType
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestLoaded(Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest)
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: OnManifestLoaded(Manifest)
+  nameWithType: GenerateApplicationManifest.OnManifestLoaded(Manifest)
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestLoaded(Manifest)
+- uid: Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest
+  parent: Microsoft.Build.Tasks.Deployment.ManifestUtilities
+  isExternal: false
+  name: Manifest
+  nameWithType: Manifest
+  fullName: Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestResolved(Microsoft.Build.Tasks.Deployment.ManifestUtilities.Manifest)
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: OnManifestResolved(Manifest)
+  nameWithType: GenerateApplicationManifest.OnManifestResolved(Manifest)
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestResolved(Manifest)
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.OSVersion
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: OSVersion
+  nameWithType: GenerateApplicationManifest.OSVersion
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.OSVersion
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.Product
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: Product
+  nameWithType: GenerateApplicationManifest.Product
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.Product
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.Publisher
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: Publisher
+  nameWithType: GenerateApplicationManifest.Publisher
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.Publisher
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.RequiresMinimumFramework35SP1
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: RequiresMinimumFramework35SP1
+  nameWithType: GenerateApplicationManifest.RequiresMinimumFramework35SP1
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.RequiresMinimumFramework35SP1
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.SuiteName
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: SuiteName
+  nameWithType: GenerateApplicationManifest.SuiteName
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.SuiteName
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: SupportUrl
+  nameWithType: GenerateApplicationManifest.SupportUrl
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkProfile
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: TargetFrameworkProfile
+  nameWithType: GenerateApplicationManifest.TargetFrameworkProfile
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkProfile
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkSubset
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: TargetFrameworkSubset
+  nameWithType: GenerateApplicationManifest.TargetFrameworkSubset
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkSubset
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.TrustInfoFile
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: TrustInfoFile
+  nameWithType: GenerateApplicationManifest.TrustInfoFile
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.TrustInfoFile
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: UseApplicationTrust
+  nameWithType: GenerateApplicationManifest.UseApplicationTrust
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ValidateInputs
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: ValidateInputs()
+  nameWithType: GenerateApplicationManifest.ValidateInputs()
+  fullName: Microsoft.Build.Tasks.GenerateApplicationManifest.ValidateInputs()
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.#ctor*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: GenerateApplicationManifest
+  nameWithType: GenerateApplicationManifest.GenerateApplicationManifest
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ClrVersion*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: ClrVersion
+  nameWithType: GenerateApplicationManifest.ClrVersion
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ConfigFile*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: ConfigFile
+  nameWithType: GenerateApplicationManifest.ConfigFile
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.Dependencies*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: Dependencies
+  nameWithType: GenerateApplicationManifest.Dependencies
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ErrorReportUrl*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: ErrorReportUrl
+  nameWithType: GenerateApplicationManifest.ErrorReportUrl
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.FileAssociations*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: FileAssociations
+  nameWithType: GenerateApplicationManifest.FileAssociations
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.Files*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: Files
+  nameWithType: GenerateApplicationManifest.Files
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.GetObjectType*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: GetObjectType
+  nameWithType: GenerateApplicationManifest.GetObjectType
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.HostInBrowser*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: HostInBrowser
+  nameWithType: GenerateApplicationManifest.HostInBrowser
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.IconFile*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: IconFile
+  nameWithType: GenerateApplicationManifest.IconFile
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.IsolatedComReferences*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: IsolatedComReferences
+  nameWithType: GenerateApplicationManifest.IsolatedComReferences
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ManifestType*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: ManifestType
+  nameWithType: GenerateApplicationManifest.ManifestType
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestLoaded*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: OnManifestLoaded
+  nameWithType: GenerateApplicationManifest.OnManifestLoaded
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.OnManifestResolved*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: OnManifestResolved
+  nameWithType: GenerateApplicationManifest.OnManifestResolved
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.OSVersion*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: OSVersion
+  nameWithType: GenerateApplicationManifest.OSVersion
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.Product*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: Product
+  nameWithType: GenerateApplicationManifest.Product
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.Publisher*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: Publisher
+  nameWithType: GenerateApplicationManifest.Publisher
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.RequiresMinimumFramework35SP1*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: RequiresMinimumFramework35SP1
+  nameWithType: GenerateApplicationManifest.RequiresMinimumFramework35SP1
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.SuiteName*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: SuiteName
+  nameWithType: GenerateApplicationManifest.SuiteName
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.SupportUrl*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: SupportUrl
+  nameWithType: GenerateApplicationManifest.SupportUrl
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkProfile*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: TargetFrameworkProfile
+  nameWithType: GenerateApplicationManifest.TargetFrameworkProfile
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.TargetFrameworkSubset*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: TargetFrameworkSubset
+  nameWithType: GenerateApplicationManifest.TargetFrameworkSubset
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.TrustInfoFile*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: TrustInfoFile
+  nameWithType: GenerateApplicationManifest.TrustInfoFile
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.UseApplicationTrust*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: UseApplicationTrust
+  nameWithType: GenerateApplicationManifest.UseApplicationTrust
+- uid: Microsoft.Build.Tasks.GenerateApplicationManifest.ValidateInputs*
+  parent: Microsoft.Build.Tasks.GenerateApplicationManifest
+  isExternal: false
+  name: ValidateInputs
+  nameWithType: GenerateApplicationManifest.ValidateInputs
