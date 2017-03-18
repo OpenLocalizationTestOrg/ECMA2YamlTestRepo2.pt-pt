@@ -14,7 +14,7 @@ items:
   nameWithType: IssuerNameRegistry
   fullName: System.IdentityModel.Tokens.IssuerNameRegistry
   type: Class
-  summary: "The abstract base class for an issuer name registry. An issuer name registry is used to associate a mnemonic name to the cryptographic material that is needed to verify the signatures of tokens produced by the corresponding issuer. The issuer name registry maintains a list of issuers that are trusted by a relying party (RP) application."
+  summary: "A classe base abstrata de um registo de nome de emissor. Um registo de nome de emissor é utilizado para associar um nome de mnemónica para o material de criptografia que é necessária para verificar as assinaturas de tokens produzidos pelo emissor correspondente. O registo de nome de emissor mantém uma lista dos emissores que são considerados fidedignos por uma aplicação de terceiros (RP) entidade confiadora."
   remarks: "The issuer name registry is used to associate a mnemonic name to the cryptographic material needed to verify signatures of tokens produced by the corresponding issuer. This name is then used to set the <xref:System.Security.Claims.Claim.Issuer%2A> or the <xref:System.Security.Claims.Claim.OriginalIssuer%2A> property of a claim. The methods exposed by the IssuerNameRegistry class are called from the pipeline by the security token handler that is processing the token. Tokens signed by material that is not mapped by an issuer name registry are discarded as untrusted. The name returned by the issuer name registry should be unique within the context of an RP application.  \n  \n In code, you can specify the issuer name registry to use by setting the <xref:System.IdentityModel.Tokens.SecurityTokenHandlerConfiguration.IssuerNameRegistry%2A?displayProperty=fullName> property. In a configuration file, the issuer name registry can be specified by specifying the [\\&lt;issuerNameRegistry\\&gt;](../Topic/%3CissuerNameRegistry%3E.md) element under the [\\&lt;securityTokenHandlerConfiguration\\&gt;](../Topic/%3CsecurityTokenHandlerConfiguration%3E.md) element.  \n  \n Windows Identity Foundation (WIF) provides an implementation of the IssuerNameRegistry class out of the box: the <xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry> class. When you use this implementation you can specify the list of trusted issuers in the configuration file of the RP application under the [\\&lt;trustedIssuers\\&gt;](../Topic/%3CtrustedIssuers%3E.md) element, which is a child element of the `<issuerNameRegistry>` element when the <xref:System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry>.class is referenced in that element’s `type` attribute. Under the `<trustedIssuers>` element, each issuer name is mapped to the X.509 certificate that should be used to verify its signature.  \n  \n To create a custom issuer name registry, you must override the <xref:System.IdentityModel.Tokens.IssuerNameRegistry.GetIssuerName%28System.IdentityModel.Tokens.SecurityToken%29?displayProperty=fullName> method. This method returns the issuer name for the specified security token. You can optionally override the <xref:System.IdentityModel.Tokens.IssuerNameRegistry.GetIssuerName%28System.IdentityModel.Tokens.SecurityToken%2CSystem.String%29?displayProperty=fullName> method to provide a hinting mechanism when retrieving issuer names and the <xref:System.IdentityModel.Tokens.IssuerNameRegistry.GetWindowsIssuerName%2A> method if you want to provide an issuer name for Windows tokens that is different from <xref:System.Security.Claims.ClaimsIdentity.DefaultIssuer>. Override the <xref:System.IdentityModel.Tokens.IssuerNameRegistry.LoadCustomConfiguration%2A> method to enable your issuer name registry to be initialized from a configuration file."
   example:
   - "The following code shows an implementation of the IssuerNameRegistry class that only accepts issuers that use certificates with subject “CN=localhost”.  \n  \n> [!WARNING]\n>  The following code is for illustrative purposes only. Validating certificates based on subject name is not a good practice. This code should not be used as is in production.  \n  \n [!code-cs[WifIssuerNameRegistry#1](~/add/codesnippet/csharp/claimsawaremvcapp/trustedissuernameregistry.cs#1)]  \n  \n The following shows the XML necessary to configure an application with the trusted issuer name registry.  \n  \n```xml  \n<system.identityModel>  \n  <identityConfiguration>  \n    <issuerNameRegistry type=\"System.IdentityModel.Samples.TrustedIssuerNameRegistry, MyApp\" />  \n  </identityConfiguration>  \n</system.identityModel>  \n```"
@@ -39,7 +39,7 @@ items:
   assemblies:
   - System.IdentityModel
   namespace: System.IdentityModel.Tokens
-  summary: "Initializes a new instance of the <xref href=&quot;System.IdentityModel.Tokens.IssuerNameRegistry&quot;></xref> class."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.IdentityModel.Tokens.IssuerNameRegistry&quot;> </xref> classe."
   syntax:
     content: protected IssuerNameRegistry ();
     parameters: []
@@ -59,8 +59,8 @@ items:
   assemblies:
   - System.IdentityModel
   namespace: System.IdentityModel.Tokens
-  summary: "When overridden in a derived class, returns the name of the issuer of the specified security token."
-  remarks: "Implementations should return a non-null and non-empty string to identify a recognized issuer, or a null string to identify an unrecognized issuer.       Called from the processing pipeline by the security token handler that is processing the token. The method should return a unique name for the issuer within the context of the RP application."
+  summary: "Quando substituí-lo de uma classe derivada, devolve o nome do emissor do token de segurança especificados."
+  remarks: "As implementações devem devolver uma cadeia não nulo e não vazio para identificar um emissor reconhecido ou uma cadeia nula para identificar um emissor não reconhecido.       Chamada a partir do pipeline de processamento pelo processador de token de segurança está a processar o token. O método deverá devolver um nome exclusivo para o emissor dentro do contexto da aplicação RP."
   example:
   - "The following code shows the GetIssuerName method for an issuer name registry. The full sample is in the <xref:System.IdentityModel.Tokens.IssuerNameRegistry> class overview topic.  \n  \n> [!WARNING]\n>  The following code is for illustrative purposes only. Validating certificates based on subject name is not a good practice. This code should not be used as is in production.  \n  \n [!code-cs[WifIssuerNameRegistry#2](~/add/codesnippet/csharp/claimsawaremvcapp/trustedissuernameregistry.cs#2)]"
   syntax:
@@ -68,10 +68,10 @@ items:
     parameters:
     - id: securityToken
       type: System.IdentityModel.Tokens.SecurityToken
-      description: "The security token for which to return the issuer name."
+      description: "O token de segurança para o qual a devolver o nome do emissor."
     return:
       type: System.String
-      description: "The issuer name."
+      description: "O nome do emissor."
   overload: System.IdentityModel.Tokens.IssuerNameRegistry.GetIssuerName*
   exceptions: []
   platform:
@@ -88,20 +88,20 @@ items:
   assemblies:
   - System.IdentityModel
   namespace: System.IdentityModel.Tokens
-  summary: "When overridden in a derived class, returns the name of the issuer of the specified security token. The specified issuer name may be considered in determining the issuer name to return."
-  remarks: "The default implementation ignores the `requestedIssuerName` parameter and simply calls the <xref:System.IdentityModel.Tokens.IssuerNameRegistry.GetIssuerName%28System.IdentityModel.Tokens.SecurityToken%29?displayProperty=fullName> method.       Called from the processing pipeline by the security token handler that is processing the token. The method should return a unique name for the issuer within the context of the RP application."
+  summary: "Quando substituí-lo de uma classe derivada, devolve o nome do emissor do token de segurança especificados. O nome de emissor especificado pode ser considerado determinar o nome do emissor para devolver."
+  remarks: "A implementação predefinida ignora a `requestedIssuerName` parâmetro e chamadas simplesmente o <xref:System.IdentityModel.Tokens.IssuerNameRegistry.GetIssuerName%28System.IdentityModel.Tokens.SecurityToken%29?displayProperty=fullName>método.</xref:System.IdentityModel.Tokens.IssuerNameRegistry.GetIssuerName%28System.IdentityModel.Tokens.SecurityToken%29?displayProperty=fullName>       Chamada a partir do pipeline de processamento pelo processador de token de segurança está a processar o token. O método deverá devolver um nome exclusivo para o emissor dentro do contexto da aplicação RP."
   syntax:
     content: public virtual string GetIssuerName (System.IdentityModel.Tokens.SecurityToken securityToken, string requestedIssuerName);
     parameters:
     - id: securityToken
       type: System.IdentityModel.Tokens.SecurityToken
-      description: "The security token for which to return the issuer name."
+      description: "O token de segurança para o qual a devolver o nome do emissor."
     - id: requestedIssuerName
       type: System.String
-      description: "An issuer name to consider in the request."
+      description: "Um nome de emissor a ter em consideração no pedido."
     return:
       type: System.String
-      description: "The issuer name."
+      description: "O nome do emissor."
   overload: System.IdentityModel.Tokens.IssuerNameRegistry.GetIssuerName*
   exceptions: []
   platform:
@@ -118,14 +118,14 @@ items:
   assemblies:
   - System.IdentityModel
   namespace: System.IdentityModel.Tokens
-  summary: "Returns the default issuer name to be used for Windows claims."
-  remarks: "The default implementation returns <xref:System.Security.Claims.ClaimsIdentity.DefaultIssuer>.       Called from the processing pipeline by the security token handler that is processing the token. The method should return a unique name for the issuer within the context of the RP application."
+  summary: "Devolve o nome de emissor predefinido a ser utilizada para afirmações do Windows."
+  remarks: "A implementação predefinida devolve <xref:System.Security.Claims.ClaimsIdentity.DefaultIssuer>.</xref:System.Security.Claims.ClaimsIdentity.DefaultIssuer>       Chamada a partir do pipeline de processamento pelo processador de token de segurança está a processar o token. O método deverá devolver um nome exclusivo para o emissor dentro do contexto da aplicação RP."
   syntax:
     content: public virtual string GetWindowsIssuerName ();
     parameters: []
     return:
       type: System.String
-      description: "The default issuer name for Windows claims."
+      description: "O nome do emissor predefinido para afirmações do Windows."
   overload: System.IdentityModel.Tokens.IssuerNameRegistry.GetWindowsIssuerName*
   exceptions: []
   platform:
@@ -142,14 +142,14 @@ items:
   assemblies:
   - System.IdentityModel
   namespace: System.IdentityModel.Tokens
-  summary: "When overridden in a derived class, loads custom configuration from XML."
+  summary: "Quando substituí-lo de uma classe derivada, carrega a configuração personalizada a partir de XML."
   remarks: "The LoadCustomConfiguration method is called by the configuration infrastructure. When this method is called, the `nodelist` will contain the top-level child elements of the [\\&lt;issuerNameRegistry\\&gt;](../Topic/%3CissuerNameRegistry%3E.md) element from the configuration file. Each of these may, in turn, contain attributes or child elements depending on the configuration schema you define for your derived class.  \n  \n The default implementation throws a <xref:System.NotImplementedException>. Override this method in your derived class to enable initialization of your issuer name registry from a configuration file."
   syntax:
     content: public virtual void LoadCustomConfiguration (System.Xml.XmlNodeList nodelist);
     parameters:
     - id: nodelist
       type: System.Xml.XmlNodeList
-      description: "The configuration XML elements. Each node in the list is of type <xref href=&quot;System.Xml.XmlElement&quot;></xref>."
+      description: "Os elementos XML de configuração. Cada nó na lista é do tipo <xref href=&quot;System.Xml.XmlElement&quot;> </xref>."
   overload: System.IdentityModel.Tokens.IssuerNameRegistry.LoadCustomConfiguration*
   exceptions: []
   platform:
