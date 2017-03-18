@@ -28,8 +28,8 @@ items:
   nameWithType: CompositeActivity
   fullName: System.Workflow.ComponentModel.CompositeActivity
   type: Class
-  summary: "Derivative of <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;></xref> that is the base class for all activities that contain other activities. A CompositeActivity is responsible for managing the execution of its child activities."
-  remarks: "> [!NOTE] >  [!INCLUDE[DeprecatedContent](~/add/includes/ajax-current-ext-md.md)]       A CompositeActivity manages the execution of its child activities using <xref:System.Workflow.ComponentModel.ActivityExecutionContext> class methods and events defined on the <xref:System.Workflow.ComponentModel.Activity> class.  For example, a child activity is scheduled for execution using the <xref:System.Workflow.ComponentModel.ActivityExecutionContext.ExecuteActivity%2A> of <xref:System.Workflow.ComponentModel.ActivityExecutionContext>. A CompositeActivity activity can be notified when a child activity completes its execution by subscribing to the <xref:System.Workflow.ComponentModel.Activity.Closed> event defined on <xref:System.Workflow.ComponentModel.Activity>.       The workflow runtime enforces certain constraints on CompositeActivity execution, the most fundamental of which is that a CompositeActivity activity cannot move to the <xref:System.Workflow.ComponentModel.Activity.Closed> state if any child activities are still in a <xref:System.Workflow.ComponentModel.Activity.Executing>, <xref:System.Workflow.ComponentModel.Activity.Canceling>, <xref:System.Workflow.ComponentModel.Activity.Compensating>, or <xref:System.Workflow.ComponentModel.Activity.Faulting>, state."
+  summary: "Derivativo de <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;> </xref> que é a classe base para todas as atividades que contenham outras atividades. CompositeActivity é responsável por gerir a execução do respetivas atividades subordinadas."
+  remarks: "> [!NOTE] >  [!INCLUDE[DeprecatedContent](~/add/includes/ajax-current-ext-md.md)]CompositeActivity gere a execução do respetivas atividades subordinadas utilizando <xref:System.Workflow.ComponentModel.ActivityExecutionContext>métodos de classe e eventos definidos na <xref:System.Workflow.ComponentModel.Activity>classe.</xref:System.Workflow.ComponentModel.Activity> </xref:System.Workflow.ComponentModel.ActivityExecutionContext>  Por exemplo, uma atividade subordinada está agendada para execução a utilizar <xref:System.Workflow.ComponentModel.ActivityExecutionContext.ExecuteActivity%2A>de <xref:System.Workflow.ComponentModel.ActivityExecutionContext>.</xref:System.Workflow.ComponentModel.ActivityExecutionContext> </xref:System.Workflow.ComponentModel.ActivityExecutionContext.ExecuteActivity%2A> Uma atividade CompositeActivity pode ser notificada quando uma atividade subordinada concluir a respetiva execução ao subscrever o <xref:System.Workflow.ComponentModel.Activity.Closed>evento definido no <xref:System.Workflow.ComponentModel.Activity>.</xref:System.Workflow.ComponentModel.Activity> </xref:System.Workflow.ComponentModel.Activity.Closed>       O tempo de execução do fluxo de trabalho impõe determinadas restrições CompositeActivity após a execução, mais fundamentais que é que uma atividade CompositeActivity não é possível mover para o <xref:System.Workflow.ComponentModel.Activity.Closed>indicar se quaisquer atividades subordinadas são ainda num <xref:System.Workflow.ComponentModel.Activity.Executing>, <xref:System.Workflow.ComponentModel.Activity.Canceling>, <xref:System.Workflow.ComponentModel.Activity.Compensating>, ou <xref:System.Workflow.ComponentModel.Activity.Faulting>, estado.</xref:System.Workflow.ComponentModel.Activity.Faulting> </xref:System.Workflow.ComponentModel.Activity.Compensating> </xref:System.Workflow.ComponentModel.Activity.Canceling> </xref:System.Workflow.ComponentModel.Activity.Executing> </xref:System.Workflow.ComponentModel.Activity.Closed>"
   example:
   - "This example shows a basic `CompositeActivity` that executes its first child activity for execution. When the child activity moves to the Closed state, the composite activity is notified and then completes its execution.  \n  \n```c#  \npublic class HasOneChildActivity : CompositeActivity  \n{  \n    protected override ActivityExecutionStatus Execute(ActivityExecutionContext executionContext)  \n    {  \n        Activity child = this.EnabledActivities[0];  \n        child.Closed += this.ChildClosed;  \n        executionContext.ExecuteActivity(child);  \n  \n        return ActivityExecutionStatus.Executing;  \n    }  \n  \n    void ChildClosed(object sender, ActivityExecutionStatusChangedEventArgs e)  \n    {  \n        e.Activity.Closed -= this.ChildClosed;  \n        ActivityExecutionContext executionContext = sender as ActivityExecutionContext;  \n  \n        executionContext.CloseActivity();  \n    }  \n}  \n```"
   syntax:
@@ -129,7 +129,7 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Initializes a new instance of the <xref href=&quot;System.Workflow.ComponentModel.CompositeActivity&quot;></xref> class."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Workflow.ComponentModel.CompositeActivity&quot;> </xref> classe."
   syntax:
     content: public CompositeActivity ();
     parameters: []
@@ -149,13 +149,13 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Initializes a new instance of the <xref href=&quot;System.Workflow.ComponentModel.CompositeActivity&quot;></xref> class from an <xref:System.Object> which implements the <xref:System.Collections.IEnumerable> interface with type <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;></xref>."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Workflow.ComponentModel.CompositeActivity&quot;> </xref> classe a partir de um <xref:System.Object>que implementa o <xref:System.Collections.IEnumerable>interface com o tipo <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;> </xref>.</xref:System.Collections.IEnumerable> </xref:System.Object>"
   syntax:
     content: public CompositeActivity (System.Collections.Generic.IEnumerable<System.Workflow.ComponentModel.Activity> children);
     parameters:
     - id: children
       type: System.Collections.Generic.IEnumerable{System.Workflow.ComponentModel.Activity}
-      description: "The <xref:System.Object> implementing the <xref:System.Collections.IEnumerable> interface with type <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;></xref>."
+      description: "O <xref:System.Object>Implementar o <xref:System.Collections.IEnumerable>interface com o tipo <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;> </xref>.</xref:System.Collections.IEnumerable> </xref:System.Object>"
   overload: System.Workflow.ComponentModel.CompositeActivity.#ctor*
   exceptions: []
   platform:
@@ -172,18 +172,18 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Initializes a new instance of the <xref href=&quot;System.Workflow.ComponentModel.CompositeActivity&quot;></xref> class, along with the name for that activity."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Workflow.ComponentModel.CompositeActivity&quot;> </xref> classe, juntamente com o nome dessa atividade."
   syntax:
     content: public CompositeActivity (string name);
     parameters:
     - id: name
       type: System.String
-      description: "The name for the instance."
+      description: "O nome para a instância."
   overload: System.Workflow.ComponentModel.CompositeActivity.#ctor*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>name</code> is a null reference (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;></xref> in Visual Basic)."
+    description: "<code>name</code>é uma referência nula (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;> </xref> no Visual Basic)."
   platform:
   - net462
 - uid: System.Workflow.ComponentModel.CompositeActivity.Activities
@@ -198,15 +198,15 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Gets the object representing the collection, <xref href=&quot;System.Workflow.ComponentModel.ActivityCollection&quot;></xref>, of all child activities."
-  remarks: "Represents the collection of child activities managed by the composite activity. This collection can be updated."
+  summary: "Obtém o objeto que representa a coleção, <xref href=&quot;System.Workflow.ComponentModel.ActivityCollection&quot;> </xref>, de todas as atividades subordinadas."
+  remarks: "Representa a coleção de atividades subordinadas geridos da atividade composta. Esta coleção pode ser atualizada."
   example:
   - "The following code shows how to create activities and add them as children to a composite activity and includes setting the <xref:System.Workflow.ComponentModel.CompositeActivity.CanModifyActivities%2A> permissive for this type.  \n  \n This code example is part of the Throw SDK sample and is from the ThrowWorkFlow.cs file. For more information, see [Throw Sample](http://msdn.microsoft.com/en-us/aa5b9546-ec95-4e43-8337-20e26f8d71cc).  \n  \n [!code-cs[WF_Samples#179](~/add/codesnippet/csharp/wf_snippets/snippets11.cs#179)]\n [!code-vb[WF_Samples#179](~/add/codesnippet/visualbasic/wf_snippets/snippets11.vb#179)]"
   syntax:
     content: public System.Workflow.ComponentModel.ActivityCollection Activities { get; }
     return:
       type: System.Workflow.ComponentModel.ActivityCollection
-      description: "<xref href=&quot;System.Workflow.ComponentModel.ActivityCollection&quot;></xref> of all child activities."
+      description: "<xref href=&quot;System.Workflow.ComponentModel.ActivityCollection&quot;></xref>de todas as atividades subordinadas."
   overload: System.Workflow.ComponentModel.CompositeActivity.Activities*
   exceptions: []
   platform:
@@ -223,18 +223,18 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Applies the <xref href=&quot;System.Workflow.ComponentModel.WorkflowChanges&quot;></xref> manifest in the parameter to this instance."
+  summary: "Aplica-se a <xref href=&quot;System.Workflow.ComponentModel.WorkflowChanges&quot;> </xref> manifesto no parâmetro para esta instância."
   syntax:
     content: protected void ApplyWorkflowChanges (System.Workflow.ComponentModel.WorkflowChanges workflowChanges);
     parameters:
     - id: workflowChanges
       type: System.Workflow.ComponentModel.WorkflowChanges
-      description: "The <xref href=&quot;System.Workflow.ComponentModel.WorkflowChanges&quot;></xref> to apply."
+      description: "O <xref href=&quot;System.Workflow.ComponentModel.WorkflowChanges&quot;> </xref> a aplicar."
   overload: System.Workflow.ComponentModel.CompositeActivity.ApplyWorkflowChanges*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>workflowChanges</code> is a null reference (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;></xref> in Visual Basic)."
+    description: "<code>workflowChanges</code>é uma referência nula (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;> </xref> no Visual Basic)."
   platform:
   - net462
 - uid: System.Workflow.ComponentModel.CompositeActivity.CanModifyActivities
@@ -249,7 +249,7 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Gets or sets a value which controls whether the individual activities within <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*> can be modified."
+  summary: "Obtém ou define um valor que controla se as atividades individuais em <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>pode ser modificado.</xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>"
   remarks: ''
   example:
   - "The following code shows how to create activities and add them as children to a composite activity and includes setting the CanModifyActivities permissive for this type.  \n  \n This code example is part of the Throw SDK sample and is from the ThrowWorkFlow.cs file. For more information, see [Throw Sample](http://msdn.microsoft.com/en-us/aa5b9546-ec95-4e43-8337-20e26f8d71cc).  \n  \n [!code-cs[WF_Samples#179](~/add/codesnippet/csharp/wf_snippets/snippets11.cs#179)]\n [!code-vb[WF_Samples#179](~/add/codesnippet/visualbasic/wf_snippets/snippets11.vb#179)]"
@@ -257,7 +257,7 @@ items:
     content: protected bool CanModifyActivities { get; set; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the individual activities within <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*> can be modified; otherwise <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se as atividades individuais em <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>pode ser modificada; caso contrário <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>.</xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>"
   overload: System.Workflow.ComponentModel.CompositeActivity.CanModifyActivities*
   exceptions: []
   platform:
@@ -274,14 +274,14 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Calls <xref:System.Workflow.ComponentModel.DependencyObject.Dispose*> on this instance, and optionally calls <xref:System.Workflow.ComponentModel.DependencyObject.Dispose*> on all child activities of this instance."
-  remarks: "Throughout an activity&quot;s lifetime, several .NET objects may be created or disposed. Every time a workflow instance is unloaded from memory, the .NET objects corresponding to the activities in the workflow tree are disposed (the <xref:System.Workflow.ComponentModel.DependencyObject.Dispose%2A> method is called on each activity). When the workflow instance is loaded back into memory, a new .NET object is created for each activity with the state from the corresponding unload."
+  summary: "Chamadas <> </> *> nesta instância e, opcionalmente chamadas <> </> *> em todas as atividades subordinadas desta instância."
+  remarks: "Ao longo da duração de uma atividade, vários objetos .NET podem ser criados ou eliminados. Sempre que uma instância de fluxo de trabalho seja descarregada da memória, o .NET objetos correspondente para as atividades na árvore de fluxo de trabalho são eliminados depois (o <xref:System.Workflow.ComponentModel.DependencyObject.Dispose%2A>método é chamado para cada atividade).</xref:System.Workflow.ComponentModel.DependencyObject.Dispose%2A> Quando a instância de fluxo de trabalho é carregada para a memória, é criado um novo objeto de .NET para cada atividade com o estado a partir de descarregamento correspondente."
   syntax:
     content: protected override void Dispose (bool disposing);
     parameters:
     - id: disposing
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> to release both managed and unmanaged resources used by this instance and all child activities of this instance; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref> to release only the unmanaged resources of this instance."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Para libertar recursos geridos e utilizados por esta instância e todas as atividades subordinadas desta instância; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref> para libertar os recursos não geridos desta instância."
   overload: System.Workflow.ComponentModel.CompositeActivity.Dispose*
   exceptions: []
   platform:
@@ -298,12 +298,12 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Gets the read-only collection that represents the subset of <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*> that are enabled."
+  summary: "Obtém a coleção só de leitura que representa o subconjunto de <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>que estão ativados.</xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>"
   syntax:
     content: public System.Collections.ObjectModel.ReadOnlyCollection<System.Workflow.ComponentModel.Activity> EnabledActivities { get; }
     return:
       type: System.Collections.ObjectModel.ReadOnlyCollection{System.Workflow.ComponentModel.Activity}
-      description: "The read-only collection that represents the subset of <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*> that are enabled."
+      description: "A coleção só de leitura que representa o subconjunto de <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>que estão ativados.</xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>"
   overload: System.Workflow.ComponentModel.CompositeActivity.EnabledActivities*
   exceptions: []
   platform:
@@ -320,16 +320,16 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Returns an array that contains all of the currently executing instances of the specified activity."
+  summary: "Devolve uma matriz que contém todas as instâncias atualmente em execução da atividade especificada."
   syntax:
     content: protected System.Workflow.ComponentModel.Activity[] GetDynamicActivities (System.Workflow.ComponentModel.Activity activity);
     parameters:
     - id: activity
       type: System.Workflow.ComponentModel.Activity
-      description: "The specified <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;></xref>."
+      description: "Especificado <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;> </xref>."
     return:
       type: System.Workflow.ComponentModel.Activity[]
-      description: "An array of activity instances that are currently executing."
+      description: "Uma matriz de instâncias de atividade que se encontram atualmente em execução."
   overload: System.Workflow.ComponentModel.CompositeActivity.GetDynamicActivities*
   exceptions: []
   platform:
@@ -346,24 +346,24 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Called when an exception is raised within the context of the execution of this instance."
+  summary: "Chamado quando a uma exceção no contexto de execução desta instância."
   syntax:
     content: protected override System.Workflow.ComponentModel.ActivityExecutionStatus HandleFault (System.Workflow.ComponentModel.ActivityExecutionContext executionContext, Exception exception);
     parameters:
     - id: executionContext
       type: System.Workflow.ComponentModel.ActivityExecutionContext
-      description: "The <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionContext&quot;></xref> for this instance."
+      description: "O <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionContext&quot;> </xref> para esta instância."
     - id: exception
       type: System.Exception
-      description: "The <xref:System.Exception> that caused this fault."
+      description: "O <xref:System.Exception>que causou esta falha.</xref:System.Exception>"
     return:
       type: System.Workflow.ComponentModel.ActivityExecutionStatus
-      description: "The <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionStatus&quot;></xref> that results from an attempt to cancel this instance."
+      description: "O <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionStatus&quot;> </xref> que resulta de uma tentativa para cancelar esta instância."
   overload: System.Workflow.ComponentModel.CompositeActivity.HandleFault*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>exception</code> is a null reference (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;></xref> in Visual Basic)."
+    description: "<code>exception</code>é uma referência nula (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;> </xref> no Visual Basic)."
   platform:
   - net462
 - uid: System.Workflow.ComponentModel.CompositeActivity.Initialize(System.IServiceProvider)
@@ -378,18 +378,18 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Initializes all appropriate child activities of this instance and the specified <xref:System.IServiceProvider>."
+  summary: "Inicializa todas as atividades de subordinados adequada desta instância e o <xref:System.IServiceProvider>.</xref:System.IServiceProvider> especificado"
   syntax:
     content: protected override void Initialize (IServiceProvider provider);
     parameters:
     - id: provider
       type: System.IServiceProvider
-      description: "The specified <xref:System.IServiceProvider>."
+      description: "O <xref:System.IServiceProvider>.</xref:System.IServiceProvider> especificado"
   overload: System.Workflow.ComponentModel.CompositeActivity.Initialize*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>provider</code> is a null reference (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;></xref> in Visual Basic)."
+    description: "<code>provider</code>é uma referência nula (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;> </xref> no Visual Basic)."
   platform:
   - net462
 - uid: System.Workflow.ComponentModel.CompositeActivity.OnActivityChangeAdd(System.Workflow.ComponentModel.ActivityExecutionContext,System.Workflow.ComponentModel.Activity)
@@ -404,21 +404,21 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Calls when an activity is added."
+  summary: "Chamadas quando é adicionada uma atividade."
   syntax:
     content: protected virtual void OnActivityChangeAdd (System.Workflow.ComponentModel.ActivityExecutionContext executionContext, System.Workflow.ComponentModel.Activity addedActivity);
     parameters:
     - id: executionContext
       type: System.Workflow.ComponentModel.ActivityExecutionContext
-      description: "The specified <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionContext&quot;></xref>."
+      description: "Especificado <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionContext&quot;> </xref>."
     - id: addedActivity
       type: System.Workflow.ComponentModel.Activity
-      description: "The specified <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;></xref>."
+      description: "Especificado <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;> </xref>."
   overload: System.Workflow.ComponentModel.CompositeActivity.OnActivityChangeAdd*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>addedActivity</code> is a null reference (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;></xref>)."
+    description: "<code>addedActivity</code>é uma referência nula (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;></xref>)."
   platform:
   - net462
 - uid: System.Workflow.ComponentModel.CompositeActivity.OnActivityChangeRemove(System.Workflow.ComponentModel.ActivityExecutionContext,System.Workflow.ComponentModel.Activity)
@@ -433,17 +433,17 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Called when an activity is removed."
-  remarks: "Current implementation provides no functionality."
+  summary: "Chamado quando uma atividade é removida."
+  remarks: "Implementação atual não disponibiliza nenhuma funcionalidade."
   syntax:
     content: protected virtual void OnActivityChangeRemove (System.Workflow.ComponentModel.ActivityExecutionContext executionContext, System.Workflow.ComponentModel.Activity removedActivity);
     parameters:
     - id: executionContext
       type: System.Workflow.ComponentModel.ActivityExecutionContext
-      description: "The specified <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionContext&quot;></xref>."
+      description: "Especificado <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionContext&quot;> </xref>."
     - id: removedActivity
       type: System.Workflow.ComponentModel.Activity
-      description: "The specified <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;></xref>."
+      description: "Especificado <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;> </xref>."
   overload: System.Workflow.ComponentModel.CompositeActivity.OnActivityChangeRemove*
   exceptions: []
   platform:
@@ -460,13 +460,13 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Called by the workflow runtime engine every time the <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionContext&quot;></xref> for this activity is loaded."
+  summary: "Chamado pelo motor de runtime de fluxo de trabalho sempre o <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionContext&quot;> </xref> para esta atividade é carregada."
   syntax:
     content: protected override void OnActivityExecutionContextLoad (IServiceProvider provider);
     parameters:
     - id: provider
       type: System.IServiceProvider
-      description: "An <xref:System.Object> that implements <xref:System.IServiceProvider> and provides services to this instance."
+      description: "Um <xref:System.Object>que implementa <xref:System.IServiceProvider>e fornece serviços a esta instância.</xref:System.IServiceProvider> </xref:System.Object>"
   overload: System.Workflow.ComponentModel.CompositeActivity.OnActivityExecutionContextLoad*
   exceptions: []
   platform:
@@ -483,13 +483,13 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Called by the workflow runtime engine every time the <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionContext&quot;></xref> for this activity is unloaded."
+  summary: "Chamado pelo motor de runtime de fluxo de trabalho sempre o <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionContext&quot;> </xref> para esta atividade é descarregada."
   syntax:
     content: protected override void OnActivityExecutionContextUnload (IServiceProvider provider);
     parameters:
     - id: provider
       type: System.IServiceProvider
-      description: "An <xref:System.Object> that implements <xref:System.IServiceProvider> and provides services to this instance."
+      description: "Um <xref:System.Object>que implementa <xref:System.IServiceProvider>e fornece serviços a esta instância.</xref:System.IServiceProvider> </xref:System.Object>"
   overload: System.Workflow.ComponentModel.CompositeActivity.OnActivityExecutionContextUnload*
   exceptions: []
   platform:
@@ -506,13 +506,13 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Performs additional processing when the <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*> property changes."
+  summary: "Efetua processamento adicional quando a <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>alterações de propriedade.</xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>"
   syntax:
     content: protected virtual void OnListChanged (System.Workflow.ComponentModel.ActivityCollectionChangeEventArgs e);
     parameters:
     - id: e
       type: System.Workflow.ComponentModel.ActivityCollectionChangeEventArgs
-      description: "The <xref href=&quot;System.Workflow.ComponentModel.ActivityCollectionChangeEventArgs&quot;></xref> broadcast by the event."
+      description: "O <xref href=&quot;System.Workflow.ComponentModel.ActivityCollectionChangeEventArgs&quot;> </xref> difusão pelo evento."
   overload: System.Workflow.ComponentModel.CompositeActivity.OnListChanged*
   exceptions: []
   platform:
@@ -529,13 +529,13 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Event that occurs before a change being made to the underlying <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>."
+  summary: "Evento que ocorre antes de uma alteração a efetuar para <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>.</xref:System.Workflow.ComponentModel.CompositeActivity.Activities*> subjacentes"
   syntax:
     content: protected virtual void OnListChanging (System.Workflow.ComponentModel.ActivityCollectionChangeEventArgs e);
     parameters:
     - id: e
       type: System.Workflow.ComponentModel.ActivityCollectionChangeEventArgs
-      description: "<xref:System.EventArgs> relating to the event."
+      description: "<xref:System.EventArgs>relacionadas com o evento.</xref:System.EventArgs>"
   overload: System.Workflow.ComponentModel.CompositeActivity.OnListChanging*
   exceptions: []
   platform:
@@ -552,14 +552,14 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Called after changes have been made to the collection <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*> of this instance."
-  remarks: "When overridden in a derived class, provides processing for this event."
+  summary: "Chamado depois de tem sido efetuadas alterações à coleção <xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>desta instância.</xref:System.Workflow.ComponentModel.CompositeActivity.Activities*>"
+  remarks: "Quando substituí-lo de uma classe derivada, fornece processamento para este evento."
   syntax:
     content: protected virtual void OnWorkflowChangesCompleted (System.Workflow.ComponentModel.ActivityExecutionContext rootContext);
     parameters:
     - id: rootContext
       type: System.Workflow.ComponentModel.ActivityExecutionContext
-      description: "The <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionContext&quot;></xref> associated with this instance."
+      description: "O <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionContext&quot;> </xref> associados a esta instância."
   overload: System.Workflow.ComponentModel.CompositeActivity.OnWorkflowChangesCompleted*
   exceptions: []
   platform:
@@ -576,14 +576,14 @@ items:
   assemblies:
   - System.Workflow.ComponentModel
   namespace: System.Workflow.ComponentModel
-  summary: "Called by the workflow runtime engine when an activity transitions into the <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionStatus&quot;></xref> state from the <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionStatus&quot;></xref> state."
-  remarks: "This method is used for activity cleanup, such as clearing dependency properties and deleting queues."
+  summary: "Chamado pelo motor de runtime de fluxo de trabalho quando uma atividade passa para o <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionStatus&quot;> </xref> estado do <xref href=&quot;System.Workflow.ComponentModel.ActivityExecutionStatus&quot;> </xref> estado."
+  remarks: "Este método é utilizado para a limpeza de atividade, tal como a limpeza de propriedades de dependência e eliminar filas."
   syntax:
     content: protected override void Uninitialize (IServiceProvider provider);
     parameters:
     - id: provider
       type: System.IServiceProvider
-      description: "An <xref:System.Object> that implements <xref:System.IServiceProvider> and provides services to this instance."
+      description: "Um <xref:System.Object>que implementa <xref:System.IServiceProvider>e fornece serviços a esta instância.</xref:System.IServiceProvider> </xref:System.Object>"
   overload: System.Workflow.ComponentModel.CompositeActivity.Uninitialize*
   exceptions: []
   platform:

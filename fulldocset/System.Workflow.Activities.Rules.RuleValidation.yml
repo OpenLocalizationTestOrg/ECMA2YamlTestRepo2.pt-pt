@@ -16,7 +16,7 @@ items:
   nameWithType: RuleValidation
   fullName: System.Workflow.Activities.Rules.RuleValidation
   type: Class
-  summary: "Validates expression conditions."
+  summary: "Valida as condições de expressão."
   remarks: ''
   example:
   - "The following code creates an invalid condition. It then attempts to validate the condition, and displays any errors that result.  \n  \n```c#  \n// Create an invalid condition (\"abc\" < true).  \nCodeBinaryOperatorExpression invalidCompare = new CodeBinaryOperatorExpression();  \ninvalidCompare.Left = new CodePrimitiveExpression(\"abc\");  \ninvalidCompare.Operator = CodeBinaryOperatorType.LessThan;  \ninvalidCompare.Right = new CodePrimitiveExpression(true);  \nRuleExpressionCondition condition = new RuleExpressionCondition();  \ncondition.Expression = invalidCompare;  \n  \n// Create a validator for this condition.  \n// We are not using \"this\" in the condition, so the type is not used.  \nRuleValidation validation = new RuleValidation(this.GetType(), null);  \n  \n// See whether the condition validates.  \nif (!condition.Validate(validation))  \n{  \n    // There were errors, so display them.  \n    foreach (ValidationError error in validation.Errors)  \n    {  \n        Console.WriteLine(error.ErrorText);  \n    }  \n}  \n  \n```  \n  \n Running this code produces the following error:  \n  \n```  \nRelational operator \"LessThan\" cannot be used on operands of types \"string\" and \"bool\".  \n```"
@@ -40,21 +40,21 @@ items:
   assemblies:
   - System.Workflow.Activities
   namespace: System.Workflow.Activities.Rules
-  summary: "Initializes a new instance of the <xref href=&quot;System.Workflow.Activities.Rules.RuleValidation&quot;></xref> class using the <xref:System.Type> of the <xref href=&quot;System.Workflow.Activities.Rules.Rule&quot;></xref>."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Workflow.Activities.Rules.RuleValidation&quot;> </xref> classe utilizando o <xref:System.Type>do <xref href=&quot;System.Workflow.Activities.Rules.Rule&quot;> </xref>.</xref:System.Type>"
   syntax:
     content: public RuleValidation (Type thisType, System.Workflow.ComponentModel.Compiler.ITypeProvider typeProvider);
     parameters:
     - id: thisType
       type: System.Type
-      description: "The type of the object that this <xref href=&quot;System.Workflow.Activities.Rules.RuleCondition&quot;></xref> or <xref href=&quot;System.Workflow.Activities.Rules.RuleSet&quot;></xref> will be executed against. Normally it is the workflow, but it can be any valid type."
+      description: "O tipo do objeto que este <xref href=&quot;System.Workflow.Activities.Rules.RuleCondition&quot;> </xref> ou <xref href=&quot;System.Workflow.Activities.Rules.RuleSet&quot;> </xref> será executado contra. Normalmente, é o fluxo de trabalho, mas pode ser qualquer tipo válido."
     - id: typeProvider
       type: System.Workflow.ComponentModel.Compiler.ITypeProvider
-      description: "An optional <xref href=&quot;System.Workflow.ComponentModel.Compiler.ITypeProvider&quot;></xref> implementation that is used to determine what <xref:System.Type>s are available in the condition. If one is not specified, only types in the assembly specified by the activity and any assemblies it references are available."
+      description: "Opcional <xref href=&quot;System.Workflow.ComponentModel.Compiler.ITypeProvider&quot;> </xref> implementação que é utilizada para determinar que <xref:System.Type>s estão disponíveis na condição.</xref:System.Type> Se não for especificado, apenas os tipos na assemblagem especificada pela atividade e todas as assemblagens referencia estão disponíveis."
   overload: System.Workflow.Activities.Rules.RuleValidation.#ctor*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>thisType</code> is a null reference (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;></xref> in Visual Basic)."
+    description: "<code>thisType</code>é uma referência nula (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;> </xref> no Visual Basic)."
   platform:
   - net462
 - uid: System.Workflow.Activities.Rules.RuleValidation.#ctor(System.Workflow.ComponentModel.Activity,System.Workflow.ComponentModel.Compiler.ITypeProvider,System.Boolean)
@@ -69,25 +69,25 @@ items:
   assemblies:
   - System.Workflow.Activities
   namespace: System.Workflow.Activities.Rules
-  summary: "Initializes a new instance of the <xref href=&quot;System.Workflow.Activities.Rules.RuleValidation&quot;></xref> class using the specified <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;></xref> and the type provider."
-  remarks: "This constructor is used at design time."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Workflow.Activities.Rules.RuleValidation&quot;> </xref> classe utilizando especificado <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;> </xref> e o fornecedor de tipo."
+  remarks: "Este construtor é utilizado no momento da concepção."
   syntax:
     content: public RuleValidation (System.Workflow.ComponentModel.Activity activity, System.Workflow.ComponentModel.Compiler.ITypeProvider typeProvider, bool checkStaticType);
     parameters:
     - id: activity
       type: System.Workflow.ComponentModel.Activity
-      description: "The <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;></xref> in which context the <xref href=&quot;System.Workflow.Activities.Rules.RuleCondition&quot;></xref> or <xref href=&quot;System.Workflow.Activities.Rules.RuleSet&quot;></xref> is run. In most cases, this will be the workflow object."
+      description: "O <xref href=&quot;System.Workflow.ComponentModel.Activity&quot;> </xref> o contexto de <xref href=&quot;System.Workflow.Activities.Rules.RuleCondition&quot;> </xref> ou <xref href=&quot;System.Workflow.Activities.Rules.RuleSet&quot;> </xref> é executado. Na maioria dos casos, este será o objeto de fluxo de trabalho."
     - id: typeProvider
       type: System.Workflow.ComponentModel.Compiler.ITypeProvider
-      description: "An optional <xref href=&quot;System.Workflow.ComponentModel.Compiler.ITypeProvider&quot;></xref> implementation that is used to determine what <xref:System.Type>s are available in the condition. If one is not specified, only types in the assembly specified by the activity and any assemblies it references are available."
+      description: "Opcional <xref href=&quot;System.Workflow.ComponentModel.Compiler.ITypeProvider&quot;> </xref> implementação que é utilizada para determinar que <xref:System.Type>s estão disponíveis na condição.</xref:System.Type> Se não for especificado, apenas os tipos na assemblagem especificada pela atividade e todas as assemblagens referencia estão disponíveis."
     - id: checkStaticType
       type: System.Boolean
-      description: "If <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>, the types used by any <xref href=&quot;System.Workflow.Activities.Rules.RuleCondition&quot;></xref> or <xref href=&quot;System.Workflow.Activities.Rules.RuleSet&quot;></xref> that are validated with this object must be in the restricted list of types allowed."
+      description: "Se <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;> </xref>, os tipos de utilizados por qualquer <xref href=&quot;System.Workflow.Activities.Rules.RuleCondition&quot;> </xref> ou <xref href=&quot;System.Workflow.Activities.Rules.RuleSet&quot;> </xref> que são validados com este objeto tem de ser na lista de tipos permitidos restrita."
   overload: System.Workflow.Activities.Rules.RuleValidation.#ctor*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>activity</code> is a null reference (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;></xref> in Visual Basic)."
+    description: "<code>activity</code>é uma referência nula (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;> </xref> no Visual Basic)."
   platform:
   - net462
 - uid: System.Workflow.Activities.Rules.RuleValidation.Errors
@@ -102,12 +102,12 @@ items:
   assemblies:
   - System.Workflow.Activities
   namespace: System.Workflow.Activities.Rules
-  summary: "Gets the errors associated with the <xref href=&quot;System.Workflow.Activities.Rules.RuleValidation&quot;></xref>."
+  summary: "Obtém os erros associados a <xref href=&quot;System.Workflow.Activities.Rules.RuleValidation&quot;> </xref>."
   syntax:
     content: public System.Workflow.ComponentModel.Compiler.ValidationErrorCollection Errors { get; }
     return:
       type: System.Workflow.ComponentModel.Compiler.ValidationErrorCollection
-      description: "The <xref href=&quot;System.Workflow.ComponentModel.Compiler.ValidationErrorCollection&quot;></xref> that contains the <xref href=&quot;System.Workflow.ComponentModel.Compiler.ValidationError&quot;></xref> objects created during rule validation."
+      description: "O <xref href=&quot;System.Workflow.ComponentModel.Compiler.ValidationErrorCollection&quot;> </xref> que contém o <xref href=&quot;System.Workflow.ComponentModel.Compiler.ValidationError&quot;> </xref> objetos criados durante a validação da regra."
   overload: System.Workflow.Activities.Rules.RuleValidation.Errors*
   exceptions: []
   platform:
@@ -124,16 +124,16 @@ items:
   assemblies:
   - System.Workflow.Activities
   namespace: System.Workflow.Activities.Rules
-  summary: "Determines the type of the code expression."
+  summary: "Determina o tipo de expressão de código."
   syntax:
     content: public System.Workflow.Activities.Rules.RuleExpressionInfo ExpressionInfo (System.CodeDom.CodeExpression expression);
     parameters:
     - id: expression
       type: System.CodeDom.CodeExpression
-      description: "The <xref href=&quot;System.CodeDom.CodeExpression&quot;></xref> to evaluate."
+      description: "O <xref href=&quot;System.CodeDom.CodeExpression&quot;> </xref> a avaliar."
     return:
       type: System.Workflow.Activities.Rules.RuleExpressionInfo
-      description: "The <xref href=&quot;System.Workflow.Activities.Rules.RuleExpressionInfo&quot;></xref> for the object. This identifies the type of the object."
+      description: "O <xref href=&quot;System.Workflow.Activities.Rules.RuleExpressionInfo&quot;> </xref> para o objeto. Esta identifica o tipo do objeto."
   overload: System.Workflow.Activities.Rules.RuleValidation.ExpressionInfo*
   exceptions: []
   platform:
@@ -150,7 +150,7 @@ items:
   assemblies:
   - System.Workflow.Activities
   namespace: System.Workflow.Activities.Rules
-  summary: "Removes and returns the parent expressions at the top of the <xref href=&quot;System.Collections.Stack&quot;></xref>."
+  summary: "Remove e devolve o principal expressões na parte superior do <xref href=&quot;System.Collections.Stack&quot;> </xref>."
   syntax:
     content: public void PopParentExpression ();
     parameters: []
@@ -170,8 +170,8 @@ items:
   assemblies:
   - System.Workflow.Activities
   namespace: System.Workflow.Activities.Rules
-  summary: "Inserts an object at the top of the <xref href=&quot;System.Collections.Stack&quot;></xref>."
-  remarks: "If the `newParent` is already part of the parent <xref:System.CodeDom.CodeExpression> objects, a new <xref:System.Workflow.ComponentModel.Compiler.ValidationError> is created."
+  summary: "Insere um objeto no topo do <xref href=&quot;System.Collections.Stack&quot;> </xref>."
+  remarks: "Se o `newParent` já faz parte do principal <xref:System.CodeDom.CodeExpression>objetos, um novo <xref:System.Workflow.ComponentModel.Compiler.ValidationError>é criado.</xref:System.Workflow.ComponentModel.Compiler.ValidationError> </xref:System.CodeDom.CodeExpression>"
   syntax:
     content: public bool PushParentExpression (System.CodeDom.CodeExpression newParent);
     parameters:
@@ -180,12 +180,12 @@ items:
       description: "The <xref href=&quot;System.CodeDom.CodeExpression&quot;></xref> to add to the <xref href=&quot;System.Collections.Stack&quot;></xref>."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the <code>newParent</code> was added to the stack; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o <code> newParent </code> foi adicionado à pilha de; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Workflow.Activities.Rules.RuleValidation.PushParentExpression*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>newParent</code> is a null reference (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;></xref> in Visual Basic)."
+    description: "<code>newParent</code>é uma referência nula (<xref uid=&quot;langword_csharp_Nothing&quot; name=&quot;Nothing&quot; href=&quot;&quot;> </xref> no Visual Basic)."
   platform:
   - net462
 - uid: System.Workflow.Activities.Rules.RuleValidation.ThisType
@@ -200,12 +200,12 @@ items:
   assemblies:
   - System.Workflow.Activities
   namespace: System.Workflow.Activities.Rules
-  summary: "Gets the type of object."
+  summary: "Obtém o tipo de objeto."
   syntax:
     content: public Type ThisType { get; }
     return:
       type: System.Type
-      description: "The <xref:System.Type> of the object."
+      description: "O <xref:System.Type>do objeto.</xref:System.Type>"
   overload: System.Workflow.Activities.Rules.RuleValidation.ThisType*
   exceptions: []
   platform:

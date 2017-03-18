@@ -16,8 +16,8 @@ items:
   nameWithType: Binder
   fullName: System.Reflection.Binder
   type: Class
-  summary: "Selects a member from a list of candidates, and performs type conversion from actual argument type to formal argument type."
-  remarks: "Implementations of the Binder class are used by methods such as <xref:System.Type.InvokeMember%2A?displayProperty=fullName>, which selects from a set of possible members to execute, based on a set of parameter types and argument values; <xref:System.Type.GetMethod%2A?displayProperty=fullName>, which selects a method based on parameter types; and so on.       A default implementation of the Binder class is provided by the <xref:System.Type.DefaultBinder%2A?displayProperty=fullName> property."
+  summary: "Seleciona um membro de uma lista de candidatos e efetua o tipo de conversão do tipo de argumento real para o tipo de argumento formal."
+  remarks: "Implementações da classe Binder são utilizadas por métodos como <xref:System.Type.InvokeMember%2A?displayProperty=fullName>, de que seleciona a partir de um conjunto de membros possíveis para executar, com base num conjunto de tipos de parâmetros e valores de argumento; <xref:System.Type.GetMethod%2A?displayProperty=fullName>, que seleciona um método com base nos tipos de parâmetro e assim sucessivamente.</xref:System.Type.GetMethod%2A?displayProperty=fullName> </xref:System.Type.InvokeMember%2A?displayProperty=fullName>       Uma implementação de predefinida da classe de Gestor de enlaces é fornecida pelo <xref:System.Type.DefaultBinder%2A?displayProperty=fullName>propriedade.</xref:System.Type.DefaultBinder%2A?displayProperty=fullName>"
   example:
   - "The following example implements and demonstrates all members of the `Binder` class. The private method `CanConvertFrom` finds compatible types for a given type.  \n  \n [!code-cpp[Binder_1#1](~/add/codesnippet/cpp/t-system.reflection.binder_1.cpp)]\n [!code-vb[Binder_1#1](~/add/codesnippet/visualbasic/t-system.reflection.binder_1.vb)]\n [!code-cs[Binder_1#1](~/add/codesnippet/csharp/t-system.reflection.binder_1.cs)]"
   syntax:
@@ -45,8 +45,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection
-  summary: "Initializes a new instance of the <xref href=&quot;System.Reflection.Binder&quot;></xref> class."
-  remarks: "This constructor is called by the constructors of derived classes, to initialize state in this type."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Reflection.Binder&quot;> </xref> classe."
+  remarks: "Este construtor é designado pelos construtores de classes derivadas, ao inicializar o estado deste tipo."
   syntax:
     content: protected Binder ();
     parameters: []
@@ -66,37 +66,37 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection
-  summary: "Selects a field from the given set of fields, based on the specified criteria."
-  remarks: "If `bindingAttr` does not include <xref:System.Reflection.BindingFlags?displayProperty=fullName>, the default binder implementation provided by <xref:System.Type.DefaultBinder%2A?displayProperty=fullName> simply returns the first element of `match`. No selection is done.       This method controls the binding provided by <xref:System.Type.InvokeMember%2A?displayProperty=fullName>."
+  summary: "Seleciona um campo de conjunto de campos, com base nos critérios especificados indicado."
+  remarks: "Se `bindingAttr` não inclui <xref:System.Reflection.BindingFlags?displayProperty=fullName>, a implementação do Gestor de enlaces de predefinida fornecida pelo <xref:System.Type.DefaultBinder%2A?displayProperty=fullName>simplesmente devolve o primeiro elemento da `match`.</xref:System.Type.DefaultBinder%2A?displayProperty=fullName> </xref:System.Reflection.BindingFlags?displayProperty=fullName> Não foi efectuada nenhuma selecção.       Este método controla o enlace fornecido pelo <xref:System.Type.InvokeMember%2A?displayProperty=fullName>.</xref:System.Type.InvokeMember%2A?displayProperty=fullName>"
   syntax:
     content: public abstract System.Reflection.FieldInfo BindToField (System.Reflection.BindingFlags bindingAttr, System.Reflection.FieldInfo[] match, object value, System.Globalization.CultureInfo culture);
     parameters:
     - id: bindingAttr
       type: System.Reflection.BindingFlags
-      description: "A bitwise combination of <xref href=&quot;System.Reflection.BindingFlags&quot;></xref> values."
+      description: "Uma combinação bit a bit de <xref href=&quot;System.Reflection.BindingFlags&quot;> </xref> valores."
     - id: match
       type: System.Reflection.FieldInfo[]
-      description: "The set of fields that are candidates for matching. For example, when a <xref href=&quot;System.Reflection.Binder&quot;></xref> object is used by &lt;xref:System.Type.InvokeMember%2A?displayProperty=fullName&gt;, this parameter specifies the set of fields that reflection has determined to be possible matches, typically because they have the correct member name. The default implementation provided by &lt;xref:System.Type.DefaultBinder%2A?displayProperty=fullName&gt; changes the order of this array."
+      description: "O conjunto de campos que são candidatos para a correspondência. Por exemplo, quando um <xref href=&quot;System.Reflection.Binder&quot;> </xref> objeto é utilizado pelo &lt;xref:System.Type.InvokeMember%2A?displayProperty=fullName&gt;, este parâmetro especifica o conjunto de campos que reflexão determinou para ser possível corresponde, normalmente porque têm o nome de membro correto. A implementação predefinida fornecida pelo &lt;xref:System.Type.DefaultBinder%2A?displayProperty=fullName&gt; a ordem desta matriz é alterado."
     - id: value
       type: System.Object
-      description: "The field value used to locate a matching field."
+      description: "O valor do campo utilizado para localizar um campo correspondente."
     - id: culture
       type: System.Globalization.CultureInfo
-      description: "An instance of <xref:System.Globalization.CultureInfo> that is used to control the coercion of data types, in binder implementations that coerce types. If `culture` is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>, the <xref:System.Globalization.CultureInfo> for the current thread is used.       Note   For example, if a binder implementation allows coercion of string values to numeric types, this parameter is necessary to convert a <xref uid=&quot;langword_csharp_String&quot; name=&quot;String&quot; href=&quot;&quot;></xref> that represents 1000 to a <xref uid=&quot;langword_csharp_Double&quot; name=&quot;Double&quot; href=&quot;&quot;></xref> value, because 1000 is represented differently by different cultures. The default binder does not do such string coercions."
+      description: "Uma instância de <xref:System.Globalization.CultureInfo>que é utilizada para controlar a adesão dos tipos de dados, em implementações de Gestor de enlaces coerce tipos.</xref:System.Globalization.CultureInfo> Se `culture` é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>, a <xref:System.Globalization.CultureInfo>para o thread actual é utilizado.</xref:System.Globalization.CultureInfo>       Nota. por exemplo, se uma implementação do Gestor de enlaces permite a adesão de valores de cadeia para tipos numéricos, este parâmetro é necessário para converter um <xref uid=&quot;langword_csharp_String&quot; name=&quot;String&quot; href=&quot;&quot;> </xref> que representa a 1000 para um <xref uid=&quot;langword_csharp_Double&quot; name=&quot;Double&quot; href=&quot;&quot;> </xref> valor, porque 1000 é representado de forma diferente pelo culturas diferentes. O Gestor de enlaces de predefinição não coercions essa cadeia."
     return:
       type: System.Reflection.FieldInfo
-      description: "The matching field."
+      description: "O campo correspondente."
   overload: System.Reflection.Binder.BindToField*
   exceptions:
   - type: System.Reflection.AmbiguousMatchException
     commentId: T:System.Reflection.AmbiguousMatchException
-    description: "For the default binder, <code>bindingAttr</code> includes <xref href=&quot;System.Reflection.BindingFlags&quot;></xref>, and <code>match</code> contains multiple fields that are equally good matches for <code>value</code>. For example, <code>value</code> contains a `MyClass` object that implements the `IMyClass` interface, and <code>match</code> contains a field of type `MyClass` and a field of type `IMyClass`."
+    description: "Para o dossier predefinido, <code> bindingAttr </code> inclui <xref href=&quot;System.Reflection.BindingFlags&quot;> </xref>, e <code> match </code> contém vários campos que são igualmente boas correspondências para <code> value </code>. Por exemplo, <code> value </code> contém um `MyClass` objeto que implementa o `IMyClass` interface, e <code> match </code> contém um campo do tipo `MyClass` e um campo do tipo `IMyClass`."
   - type: System.MissingFieldException
     commentId: T:System.MissingFieldException
-    description: "For the default binder, <code>bindingAttr</code> includes <xref href=&quot;System.Reflection.BindingFlags&quot;></xref>, and <code>match</code> contains no fields that can accept <code>value</code>."
+    description: "Para o dossier predefinido, <code> bindingAttr </code> inclui <xref href=&quot;System.Reflection.BindingFlags&quot;> </xref>, e <code> match </code> contém campos não podem aceitar <code> value </code>."
   - type: System.NullReferenceException
     commentId: T:System.NullReferenceException
-    description: "For the default binder, <code>bindingAttr</code> includes <xref href=&quot;System.Reflection.BindingFlags&quot;></xref>, and <code>match</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> or an empty array.       -or-       <code>bindingAttr</code> includes <xref href=&quot;System.Reflection.BindingFlags&quot;></xref>, and <code>value</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "Para o dossier predefinido, <code> bindingAttr </code> inclui <xref href=&quot;System.Reflection.BindingFlags&quot;> </xref>, e <code> match </code> é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> ou uma matriz vazia.       -or-       <code>bindingAttr</code> includes <xref href=&quot;System.Reflection.BindingFlags&quot;></xref>, and <code>value</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Reflection.Binder.BindToMethod(System.Reflection.BindingFlags,System.Reflection.MethodBase[],System.Object[]@,System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[],System.Object@)
@@ -111,46 +111,46 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection
-  summary: "Selects a method to invoke from the given set of methods, based on the supplied arguments."
-  remarks: "The default binder takes into account both parameters that have values and `params` arrays (`ParamArray` arrays in Visual Basic). Thus, it is possible to find a match in cases where `args` and `match` do not contain the same number of elements.       The binder enables a client to map the array of arguments back to its original form if the argument array has been manipulated by BindToMethod. Use this remap capability to get back by-reference arguments when such arguments are present. When you pass arguments by name, the binder reorders the argument array. The `state` parameter keeps track of argument reordering, thus enabling the binder&quot;s <xref:System.Reflection.Binder.ReorderArgumentArray%2A> method to reorder the argument array to its original form.       The BindToMethod method is used by the <xref:System.Type.InvokeMember%2A?displayProperty=fullName> method."
+  summary: "Seleciona um método a invocar do conjunto especificado de métodos, com base nos argumentos fornecidos."
+  remarks: "O Gestor de enlaces de predefinição tem em consideração os dois parâmetros que têm valores e `params` matrizes (`ParamArray` matrizes no Visual Basic). Assim, é possível encontrar uma correspondência nos casos em que `args` e `match` não contêm o mesmo número de elementos.       O Gestor de enlaces permite que um cliente mapear a matriz de argumentos de volta para o respetivo formulário original se a matriz de argumentos tem sido manipulado por BindToMethod. Utilize esta capacidade remapear para voltar a argumentos por referência quando esses argumentos estão presentes. Quando passar os argumentos com nome, o Gestor de enlaces reordena a matriz de argumentos. O `state` parâmetro mantém um registo dos argumento reordenação, permitindo o Gestor de enlaces <xref:System.Reflection.Binder.ReorderArgumentArray%2A>método para reordenar a matriz de argumentos para o respetivo formulário original.</xref:System.Reflection.Binder.ReorderArgumentArray%2A>       O método BindToMethod é utilizado pelo <xref:System.Type.InvokeMember%2A?displayProperty=fullName>método.</xref:System.Type.InvokeMember%2A?displayProperty=fullName>"
   syntax:
     content: public abstract System.Reflection.MethodBase BindToMethod (System.Reflection.BindingFlags bindingAttr, System.Reflection.MethodBase[] match, ref object[] args, System.Reflection.ParameterModifier[] modifiers, System.Globalization.CultureInfo culture, string[] names, out object state);
     parameters:
     - id: bindingAttr
       type: System.Reflection.BindingFlags
-      description: "A bitwise combination of <xref href=&quot;System.Reflection.BindingFlags&quot;></xref> values."
+      description: "Uma combinação bit a bit de <xref href=&quot;System.Reflection.BindingFlags&quot;> </xref> valores."
     - id: match
       type: System.Reflection.MethodBase[]
-      description: "The set of methods that are candidates for matching. For example, when a <xref href=&quot;System.Reflection.Binder&quot;></xref> object is used by &lt;xref:System.Type.InvokeMember%2A?displayProperty=fullName&gt;, this parameter specifies the set of methods that reflection has determined to be possible matches, typically because they have the correct member name. The default implementation provided by &lt;xref:System.Type.DefaultBinder%2A?displayProperty=fullName&gt; changes the order of this array."
+      description: "O conjunto de métodos que são candidatos para a correspondência. Por exemplo, quando um <xref href=&quot;System.Reflection.Binder&quot;> </xref> objeto é utilizado pelo &lt;xref:System.Type.InvokeMember%2A?displayProperty=fullName&gt;, este parâmetro especifica o conjunto de métodos de reflexão determinou para ser possível corresponde, normalmente porque têm o nome de membro correto. A implementação predefinida fornecida pelo &lt;xref:System.Type.DefaultBinder%2A?displayProperty=fullName&gt; a ordem desta matriz é alterado."
     - id: args
       type: System.Object[]
-      description: "The arguments that are passed in. The binder can change the order of the arguments in this array; for example, the default binder changes the order of arguments if the `names` parameter is used to specify an order other than positional order. If a binder implementation coerces argument types, the types and values of the arguments can be changed as well."
+      description: "Os argumentos são transmitidos. O Gestor de enlaces pode alterar a ordem dos argumentos nesta matriz; Por exemplo, o Gestor de enlaces de predefinição altera a ordem dos argumentos se o `names` parâmetro é utilizado para especificar uma ordem diferente posicional ordem. Se uma implementação do Gestor de enlaces coerces tipos de argumento, os tipos e valores dos argumentos podem ser alterados, bem como."
     - id: modifiers
       type: System.Reflection.ParameterModifier[]
-      description: "An array of parameter modifiers that enable binding to work with parameter signatures in which the types have been modified. The default binder implementation does not use this parameter."
+      description: "Uma matriz de modificadores de parâmetro que permitem o enlace trabalhar com assinaturas de parâmetro nos quais os tipos de tem sido modificados. A implementação do Gestor de enlaces de predefinida não utilize este parâmetro."
     - id: culture
       type: System.Globalization.CultureInfo
-      description: "An instance of <xref:System.Globalization.CultureInfo> that is used to control the coercion of data types, in binder implementations that coerce types. If `culture` is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>, the <xref:System.Globalization.CultureInfo> for the current thread is used.       Note   For example, if a binder implementation allows coercion of string values to numeric types, this parameter is necessary to convert a <xref uid=&quot;langword_csharp_String&quot; name=&quot;String&quot; href=&quot;&quot;></xref> that represents 1000 to a <xref uid=&quot;langword_csharp_Double&quot; name=&quot;Double&quot; href=&quot;&quot;></xref> value, because 1000 is represented differently by different cultures. The default binder does not do such string coercions."
+      description: "Uma instância de <xref:System.Globalization.CultureInfo>que é utilizada para controlar a adesão dos tipos de dados, em implementações de Gestor de enlaces coerce tipos.</xref:System.Globalization.CultureInfo> Se `culture` é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>, a <xref:System.Globalization.CultureInfo>para o thread actual é utilizado.</xref:System.Globalization.CultureInfo>       Nota. por exemplo, se uma implementação do Gestor de enlaces permite a adesão de valores de cadeia para tipos numéricos, este parâmetro é necessário para converter um <xref uid=&quot;langword_csharp_String&quot; name=&quot;String&quot; href=&quot;&quot;> </xref> que representa a 1000 para um <xref uid=&quot;langword_csharp_Double&quot; name=&quot;Double&quot; href=&quot;&quot;> </xref> valor, porque 1000 é representado de forma diferente pelo culturas diferentes. O Gestor de enlaces de predefinição não coercions essa cadeia."
     - id: names
       type: System.String[]
-      description: "The parameter names, if parameter names are to be considered when matching, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if arguments are to be treated as purely positional. For example, parameter names must be used if arguments are not supplied in positional order."
+      description: "Os nomes de parâmetro, se os nomes de parâmetros devem ser considerados ao correspondência, ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se os argumentos são deve ser tratado como puramente posicionais. Por exemplo, os nomes de parâmetro tem de ser utilizados se argumentos não são fornecidos por ordem posicional."
     - id: state
       type: System.Object
-      description: "After the method returns, `state` contains a binder-provided object that keeps track of argument reordering. The binder creates this object, and the binder is the sole consumer of this object. If `state` is not <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> when <xref uid=&quot;langword_csharp_BindToMethod&quot; name=&quot;BindToMethod&quot; href=&quot;&quot;></xref> returns, you must pass `state` to the <xref:System.Reflection.Binder.ReorderArgumentArray*> method if you want to restore `args` to its original order, for example, so that you can retrieve the values of <xref uid=&quot;langword_csharp_ref&quot; name=&quot;ref&quot; href=&quot;&quot;></xref> parameters (<xref uid=&quot;langword_csharp_ByRef&quot; name=&quot;ByRef&quot; href=&quot;&quot;></xref> parameters in Visual Basic)."
+      description: "Depois do método devolve, `state` contém um objeto de Gestor de enlaces fornecidos pelo mantém um registo dos reordenação de argumento. O Gestor de enlaces cria este objeto e o Gestor de enlaces é o único consumidor deste objeto. Se `state` não é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> quando <xref uid=&quot;langword_csharp_BindToMethod&quot; name=&quot;BindToMethod&quot; href=&quot;&quot;> </xref> devolve, tem de transmitir `state` para o <xref:System.Reflection.Binder.ReorderArgumentArray*>método se pretender restaurar `args` ao respetivo original de ordem, por exemplo, para que possa obter os valores de <xref uid=&quot;langword_csharp_ref&quot; name=&quot;ref&quot; href=&quot;&quot;> </xref> parâmetros (<xref uid=&quot;langword_csharp_ByRef&quot; name=&quot;ByRef&quot; href=&quot;&quot;> </xref> parâmetros no Visual Basic).</xref:System.Reflection.Binder.ReorderArgumentArray*>"
     return:
       type: System.Reflection.MethodBase
-      description: "The matching method."
+      description: "O método correspondente."
   overload: System.Reflection.Binder.BindToMethod*
   exceptions:
   - type: System.Reflection.AmbiguousMatchException
     commentId: T:System.Reflection.AmbiguousMatchException
-    description: "For the default binder, <code>match</code> contains multiple methods that are equally good matches for <code>args</code>. For example, <code>args</code> contains a `MyClass` object that implements the `IMyClass` interface, and <code>match</code> contains a method that takes `MyClass` and a method that takes `IMyClass`."
+    description: "Para o dossier predefinido, <code> match </code> contém vários métodos que são igualmente boas correspondências para <code> args </code>. Por exemplo, <code> args </code> contém um `MyClass` objeto que implementa o `IMyClass` interface, e <code> match </code> contém um método que utiliza `MyClass` e um método que utiliza `IMyClass`."
   - type: System.MissingMethodException
     commentId: T:System.MissingMethodException
-    description: "For the default binder, <code>match</code> contains no methods that can accept the arguments supplied in <code>args</code>."
+    description: "Para o dossier predefinido, <code> match </code> contém sem métodos que podem aceitar os argumentos fornecidos no <code> args </code>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "For the default binder, <code>match</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> or an empty array."
+    description: "Para o dossier predefinido, <code> match </code> é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> ou uma matriz vazia."
   platform:
   - net462
 - uid: System.Reflection.Binder.ChangeType(System.Object,System.Type,System.Globalization.CultureInfo)
@@ -165,23 +165,23 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection
-  summary: "Changes the type of the given <xref uid=&quot;langword_csharp_Object&quot; name=&quot;Object&quot; href=&quot;&quot;></xref> to the given <xref uid=&quot;langword_csharp_Type&quot; name=&quot;Type&quot; href=&quot;&quot;></xref>."
-  remarks: "Reflection models the accessibility rules of the common type system. For example, if the caller is in the same assembly, the caller does not need special permissions for internal members. Otherwise, the caller needs <xref:System.Security.Permissions.ReflectionPermission>. This is consistent with lookup of members that are protected, private, and so on.       The general principle is that `ChangeType` should perform only widening coercions, which never lose data. An example of a widening coercion is coercing a value that is a 32-bit signed integer to a value that is a 64-bit signed integer. This is distinguished from a narrowing coercion, which may lose data. An example of a narrowing coercion is coercing a 64-bit signed integer to a 32-bit signed integer.       The following table lists the coercions performed by the default `ChangeType`.      |Source type|Target type|   |-----------------|-----------------|   |Any type|Its base type.|   |Any type|The interface it implements.|   |Char|UInt16, UInt32, Int32, UInt64, Int64, Single, Double|   |Byte|Char, UInt16, Int16, UInt32, Int32, UInt64, Int64, Single, Double|   |SByte|Int16, Int32, Int64, Single, Double|   |UInt16|UInt32, Int32, UInt64, Int64, Single, Double|   |Int16|Int32, Int64, Single, Double|   |UInt32|UInt64, Int64, Single, Double|   |Int32|Int64, Single, Double|   |UInt64|Single, Double|   |Int64|Single, Double|   |Single|Double|   |Non-reference|By-reference.|"
+  summary: "Muda o tipo da determinada <xref uid=&quot;langword_csharp_Object&quot; name=&quot;Object&quot; href=&quot;&quot;> </xref> para a determinada <xref uid=&quot;langword_csharp_Type&quot; name=&quot;Type&quot; href=&quot;&quot;> </xref>."
+  remarks: "Reflexão modelos de regras de acessibilidade do sistema de tipo comum. Por exemplo, se o autor da chamada for na mesma assemblagem, o chamador não tem permissões especiais para membros internos. Caso contrário, a função chamadora tem <xref:System.Security.Permissions.ReflectionPermission>.</xref:System.Security.Permissions.ReflectionPermission> Este é consistente com a pesquisa de membros protegidos, privada e outros.       O princípio geral é que `ChangeType` deve executar apenas widening coercions, que nunca perdem dados. Um exemplo de uma adesão para alargar é coercing um valor que é um número inteiro com sinal de 32 bits para um valor que é um número inteiro com sinal de 64 bits. Isto é único a partir de uma adesão para diminuir, que pode perder dados. Um exemplo de uma adesão para diminuir é coercing um número inteiro com sinal de 64 bits para um número inteiro com sinal de 32 bits.       A tabela seguinte lista coercions efetuadas por predefinição `ChangeType`.      | Tipo de origem | Tipo de destino |   |-----------------|-----------------|   | Qualquer tipo | O tipo base. |   | Qualquer tipo | A interface implementa. |   | Char | UInt16 UInt32, Int32, UInt64, Int64, Single, duplo |   | Bytes | Duplo char, UInt16 Int16, UInt32, Int32, UInt64, Int64, único |   | SByte | Int16, Int32, Int64, Single, duplo |   | UInt16 | UInt32, Int32, UInt64, Int64, Single, duplo |   | Int16 | Int32, Int64, Single, duplo |   | UInt32 | UInt64, Int64, Single, duplo |   | Int32 | Int64, único, faça duplo |   | UInt64 | Único, duplo |   | Int64 | Único, duplo |   | Único | Duplo |   | Referência não | Por referência. |"
   syntax:
     content: public abstract object ChangeType (object value, Type type, System.Globalization.CultureInfo culture);
     parameters:
     - id: value
       type: System.Object
-      description: "The object to change into a new <xref uid=&quot;langword_csharp_Type&quot; name=&quot;Type&quot; href=&quot;&quot;></xref>."
+      description: "O objeto a alterar para um novo <xref uid=&quot;langword_csharp_Type&quot; name=&quot;Type&quot; href=&quot;&quot;> </xref>."
     - id: type
       type: System.Type
-      description: "The new <xref uid=&quot;langword_csharp_Type&quot; name=&quot;Type&quot; href=&quot;&quot;></xref> that `value` will become."
+      description: "A nova <xref uid=&quot;langword_csharp_Type&quot; name=&quot;Type&quot; href=&quot;&quot;> </xref> que `value` irá tornar-se."
     - id: culture
       type: System.Globalization.CultureInfo
-      description: "An instance of <xref:System.Globalization.CultureInfo> that is used to control the coercion of data types. If `culture` is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>, the <xref:System.Globalization.CultureInfo> for the current thread is used.       Note   For example, this parameter is necessary to convert a <xref uid=&quot;langword_csharp_String&quot; name=&quot;String&quot; href=&quot;&quot;></xref> that represents 1000 to a <xref uid=&quot;langword_csharp_Double&quot; name=&quot;Double&quot; href=&quot;&quot;></xref> value, because 1000 is represented differently by different cultures."
+      description: "Uma instância de <xref:System.Globalization.CultureInfo>que é utilizada para controlar a adesão dos tipos de dados.</xref:System.Globalization.CultureInfo> Se `culture` é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>, a <xref:System.Globalization.CultureInfo>para o thread actual é utilizado.</xref:System.Globalization.CultureInfo>       Nota. por exemplo, este parâmetro é necessário para converter um <xref uid=&quot;langword_csharp_String&quot; name=&quot;String&quot; href=&quot;&quot;> </xref> que representa a 1000 para um <xref uid=&quot;langword_csharp_Double&quot; name=&quot;Double&quot; href=&quot;&quot;> </xref> valor, porque 1000 é representado de forma diferente pelo culturas diferentes."
     return:
       type: System.Object
-      description: "An object that contains the given value as the new type."
+      description: "Um objeto que contém o valor especificado como o novo tipo."
   overload: System.Reflection.Binder.ChangeType*
   exceptions: []
   platform:
@@ -198,17 +198,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection
-  summary: "Upon returning from <xref:System.Reflection.Binder.BindToMethod*>, restores the <code>args</code> argument to what it was when it came from <xref uid=&quot;langword_csharp_BindToMethod&quot; name=&quot;BindToMethod&quot; href=&quot;&quot;></xref>."
-  remarks: "The common language runtime calls this method if `state` is not `null` after a return from `BindToMethod`."
+  summary: "Após a devolução da <xref:System.Reflection.Binder.BindToMethod*>, restaura o <code> args </code> argumento para o que estava quando provém <xref uid=&quot;langword_csharp_BindToMethod&quot; name=&quot;BindToMethod&quot; href=&quot;&quot;> </xref>.</xref:System.Reflection.Binder.BindToMethod*>"
+  remarks: "O language runtime chama este método se `state` não é `null` após uma devolvida por `BindToMethod`."
   syntax:
     content: public abstract void ReorderArgumentArray (ref object[] args, object state);
     parameters:
     - id: args
       type: System.Object[]
-      description: "The actual arguments that are passed in. Both the types and values of the arguments can be changed."
+      description: "Os argumentos reais que são transmitidos. Os tipos e os valores dos argumentos podem ser alterados."
     - id: state
       type: System.Object
-      description: "A binder-provided object that keeps track of argument reordering."
+      description: "Um objeto de Gestor de enlaces fornecidos pelo que mantém um registo dos reordenação de argumento."
   overload: System.Reflection.Binder.ReorderArgumentArray*
   exceptions: []
   platform:
@@ -225,34 +225,34 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection
-  summary: "Selects a method from the given set of methods, based on the argument type."
-  remarks: "This method should return `null` if no method matches the criteria. This method controls the selection provided by the `GetConstructor` and `GetMethod` methods on `Type`."
+  summary: "Seleciona um método de conjunto de métodos, consoante o tipo de argumento indicado."
+  remarks: "Este método deverá devolver `null` se nenhum método corresponde aos critérios. Este método controla a seleção que forneceu o `GetConstructor` e `GetMethod` métodos em `Type`."
   syntax:
     content: public abstract System.Reflection.MethodBase SelectMethod (System.Reflection.BindingFlags bindingAttr, System.Reflection.MethodBase[] match, Type[] types, System.Reflection.ParameterModifier[] modifiers);
     parameters:
     - id: bindingAttr
       type: System.Reflection.BindingFlags
-      description: "A bitwise combination of <xref href=&quot;System.Reflection.BindingFlags&quot;></xref> values."
+      description: "Uma combinação bit a bit de <xref href=&quot;System.Reflection.BindingFlags&quot;> </xref> valores."
     - id: match
       type: System.Reflection.MethodBase[]
-      description: "The set of methods that are candidates for matching. For example, when a <xref href=&quot;System.Reflection.Binder&quot;></xref> object is used by &lt;xref:System.Type.InvokeMember%2A?displayProperty=fullName&gt;, this parameter specifies the set of methods that reflection has determined to be possible matches, typically because they have the correct member name. The default implementation provided by &lt;xref:System.Type.DefaultBinder%2A?displayProperty=fullName&gt; changes the order of this array."
+      description: "O conjunto de métodos que são candidatos para a correspondência. Por exemplo, quando um <xref href=&quot;System.Reflection.Binder&quot;> </xref> objeto é utilizado pelo &lt;xref:System.Type.InvokeMember%2A?displayProperty=fullName&gt;, este parâmetro especifica o conjunto de métodos de reflexão determinou para ser possível corresponde, normalmente porque têm o nome de membro correto. A implementação predefinida fornecida pelo &lt;xref:System.Type.DefaultBinder%2A?displayProperty=fullName&gt; a ordem desta matriz é alterado."
     - id: types
       type: System.Type[]
-      description: "The parameter types used to locate a matching method."
+      description: "Os tipos de parâmetro utilizados para localizar um método correspondente."
     - id: modifiers
       type: System.Reflection.ParameterModifier[]
-      description: "An array of parameter modifiers that enable binding to work with parameter signatures in which the types have been modified."
+      description: "Uma matriz de modificadores de parâmetro que permitem o enlace trabalhar com assinaturas de parâmetro nos quais os tipos de tem sido modificados."
     return:
       type: System.Reflection.MethodBase
-      description: "The matching method, if found; otherwise, <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "O método de correspondência se encontrado; caso contrário, <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   overload: System.Reflection.Binder.SelectMethod*
   exceptions:
   - type: System.Reflection.AmbiguousMatchException
     commentId: T:System.Reflection.AmbiguousMatchException
-    description: "For the default binder, <code>match</code> contains multiple methods that are equally good matches for the parameter types described by <code>types</code>. For example, the array in <code>types</code> contains a <xref:System.Type> object for `MyClass` and the array in <code>match</code> contains a method that takes a base class of `MyClass` and a method that takes an interface that `MyClass` implements."
+    description: "Para o dossier predefinido, <code> match </code> contém vários métodos que são igualmente boas correspondências para os tipos de parâmetro descritas através de <code> types </code>. Por exemplo, a matriz no <code> types </code> contém um <xref:System.Type>do objeto para `MyClass` e a matriz no <code> match </code> contém um método que utiliza uma classe base da `MyClass` e um método que utiliza uma interface que `MyClass` implementa.</xref:System.Type>"
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "For the default binder, <code>match</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> or an empty array.       -or-       An element of <code>types</code> derives from <xref:System.Type>, but is not of type <xref uid=&quot;langword_csharp_RuntimeType&quot; name=&quot;RuntimeType&quot; href=&quot;&quot;></xref>."
+    description: "Para o dossier predefinido, <code> match </code> é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> ou uma matriz vazia.       - ou - um elemento de <code> types </code> deriva de <xref:System.Type>, mas não é do tipo <xref uid=&quot;langword_csharp_RuntimeType&quot; name=&quot;RuntimeType&quot; href=&quot;&quot;> </xref>.</xref:System.Type>"
   platform:
   - net462
 - uid: System.Reflection.Binder.SelectProperty(System.Reflection.BindingFlags,System.Reflection.PropertyInfo[],System.Type,System.Type[],System.Reflection.ParameterModifier[])
@@ -267,37 +267,37 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection
-  summary: "Selects a property from the given set of properties, based on the specified criteria."
-  remarks: "This method controls the selection provided by the `GetProperty` method on `Type`."
+  summary: "Seleciona uma propriedade de conjunto de propriedades, com base nos critérios especificados indicado."
+  remarks: "Este método controla a seleção que forneceu o `GetProperty` método no `Type`."
   syntax:
     content: public abstract System.Reflection.PropertyInfo SelectProperty (System.Reflection.BindingFlags bindingAttr, System.Reflection.PropertyInfo[] match, Type returnType, Type[] indexes, System.Reflection.ParameterModifier[] modifiers);
     parameters:
     - id: bindingAttr
       type: System.Reflection.BindingFlags
-      description: "A bitwise combination of <xref href=&quot;System.Reflection.BindingFlags&quot;></xref> values."
+      description: "Uma combinação bit a bit de <xref href=&quot;System.Reflection.BindingFlags&quot;> </xref> valores."
     - id: match
       type: System.Reflection.PropertyInfo[]
-      description: "The set of properties that are candidates for matching. For example, when a <xref href=&quot;System.Reflection.Binder&quot;></xref> object is used by &lt;xref:System.Type.InvokeMember%2A?displayProperty=fullName&gt;, this parameter specifies the set of properties that reflection has determined to be possible matches, typically because they have the correct member name. The default implementation provided by &lt;xref:System.Type.DefaultBinder%2A?displayProperty=fullName&gt; changes the order of this array."
+      description: "O conjunto de propriedades que são candidatos para a correspondência. Por exemplo, quando um <xref href=&quot;System.Reflection.Binder&quot;> </xref> objeto é utilizado pelo &lt;xref:System.Type.InvokeMember%2A?displayProperty=fullName&gt;, este parâmetro especifica o conjunto de propriedades reflexão determinou para ser possível corresponde, normalmente porque têm o nome de membro correto. A implementação predefinida fornecida pelo &lt;xref:System.Type.DefaultBinder%2A?displayProperty=fullName&gt; a ordem desta matriz é alterado."
     - id: returnType
       type: System.Type
-      description: "The return value the matching property must have."
+      description: "O valor de retorno a corresponddência da propriedade tem de ter."
     - id: indexes
       type: System.Type[]
-      description: "The index types of the property being searched for. Used for index properties such as the indexer for a class."
+      description: "Os tipos de índice da propriedade que está a ser procurado. Utilizado para propriedades de índice, tais como o indexador para uma classe."
     - id: modifiers
       type: System.Reflection.ParameterModifier[]
-      description: "An array of parameter modifiers that enable binding to work with parameter signatures in which the types have been modified."
+      description: "Uma matriz de modificadores de parâmetro que permitem o enlace trabalhar com assinaturas de parâmetro nos quais os tipos de tem sido modificados."
     return:
       type: System.Reflection.PropertyInfo
-      description: "The matching property."
+      description: "A propriedade correspondente."
   overload: System.Reflection.Binder.SelectProperty*
   exceptions:
   - type: System.Reflection.AmbiguousMatchException
     commentId: T:System.Reflection.AmbiguousMatchException
-    description: "For the default binder, <code>match</code> contains multiple properties that are equally good matches for <code>returnType</code> and <code>indexes</code>."
+    description: "Para o dossier predefinido, <code> match </code> contém várias propriedades que são igualmente boas correspondências para <code> returnType </code> e <code> indexes </code>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "For the default binder, <code>match</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> or an empty array."
+    description: "Para o dossier predefinido, <code> match </code> é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> ou uma matriz vazia."
   platform:
   - net462
 references:
