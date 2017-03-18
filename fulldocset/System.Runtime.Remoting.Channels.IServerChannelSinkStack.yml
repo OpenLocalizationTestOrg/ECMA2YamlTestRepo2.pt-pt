@@ -14,7 +14,7 @@ items:
   nameWithType: IServerChannelSinkStack
   fullName: System.Runtime.Remoting.Channels.IServerChannelSinkStack
   type: Interface
-  summary: "Provides the stack functionality for a stack of server channel sinks."
+  summary: "Fornece que a funcionalidade de pilha para uma pilha de canal de servidor sinks."
   syntax:
     content: >-
       [System.Runtime.InteropServices.ComVisible(true)]
@@ -36,21 +36,21 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Remoting.Channels
-  summary: "Pops the information associated with all the sinks from the sink stack up to and including the specified sink."
+  summary: "Faz aparecer as informações associadas todos os os sinks da pilha de receptores até e incluindo o sink especificado."
   syntax:
     content: public object Pop (System.Runtime.Remoting.Channels.IServerChannelSink sink);
     parameters:
     - id: sink
       type: System.Runtime.Remoting.Channels.IServerChannelSink
-      description: "The sink to remove and return from the sink stack."
+      description: "O sink de remover e devolver a partir da pilha de receptores."
     return:
       type: System.Object
-      description: "Information generated on the request side and associated with the specified sink."
+      description: "Informações geradas no lado do pedido e associou com o sink especificado."
   overload: System.Runtime.Remoting.Channels.IServerChannelSinkStack.Pop*
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The immediate caller does not have infrastructure permission."
+    description: "O chamador imediato não tem permissão de infraestrutura."
   platform:
   - net462
 - uid: System.Runtime.Remoting.Channels.IServerChannelSinkStack.Push(System.Runtime.Remoting.Channels.IServerChannelSink,System.Object)
@@ -65,22 +65,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Remoting.Channels
-  summary: "Pushes the specified sink and information associated with it onto the sink stack."
-  remarks: "The information generated on the request side and specified in the `state` parameter is returned in the `state` parameter of the <xref:System.Runtime.Remoting.Channels.IServerChannelSink.AsyncProcessResponse%2A> method on the corresponding sink."
+  summary: "Envia as informações associadas na pilha de receptores e sink especificado."
+  remarks: "As informações geradas no lado do pedido e especificado no `state` parâmetro é devolvido no `state` parâmetro do <xref:System.Runtime.Remoting.Channels.IServerChannelSink.AsyncProcessResponse%2A>método no sink correspondente.</xref:System.Runtime.Remoting.Channels.IServerChannelSink.AsyncProcessResponse%2A>"
   syntax:
     content: public void Push (System.Runtime.Remoting.Channels.IServerChannelSink sink, object state);
     parameters:
     - id: sink
       type: System.Runtime.Remoting.Channels.IServerChannelSink
-      description: "The sink to push onto the sink stack."
+      description: "O sink de push para a pilha de receptores."
     - id: state
       type: System.Object
-      description: "Information generated on the request side that is needed on the response side."
+      description: "Informações geradas no lado de pedido que é necessário no lado de resposta."
   overload: System.Runtime.Remoting.Channels.IServerChannelSinkStack.Push*
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The immediate caller does not have infrastructure permission."
+    description: "O chamador imediato não tem permissão de infraestrutura."
   platform:
   - net462
 - uid: System.Runtime.Remoting.Channels.IServerChannelSinkStack.ServerCallback(System.IAsyncResult)
@@ -95,14 +95,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Remoting.Channels
-  summary: "Presents a callback delegate to handle a callback after a message has been dispatched asynchronously."
-  remarks: "The dispatched message represents a request method call on a remote object.       The ServerCallback method is intended for use only by the .NET Framework remoting infrastructure."
+  summary: "Apresenta um delegado de chamada de retorno para processar uma chamada de retorno depois tem sido emitir uma mensagem no modo assíncrono."
+  remarks: "A mensagem emitida representa uma chamada de método de pedido num objecto remoto.       O método ServerCallback destina-se a ser utilizado apenas pela infraestrutura de comunicação remota de .NET Framework."
   syntax:
     content: public void ServerCallback (IAsyncResult ar);
     parameters:
     - id: ar
       type: System.IAsyncResult
-      description: "The status and state of an asynchronous operation on a remote object."
+      description: "O estado e estado de uma operação assíncrona num objecto remoto."
   overload: System.Runtime.Remoting.Channels.IServerChannelSinkStack.ServerCallback*
   exceptions: []
   platform:
@@ -119,17 +119,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Remoting.Channels
-  summary: "Stores a message sink and its associated state for later asynchronous processing."
-  remarks: "The Store method is intended for use only by the .NET Framework remoting infrastructure."
+  summary: "Armazena um receptor de mensagem e o respetivo estado associado para o processamento assíncrono mais tarde."
+  remarks: "O método Store destina-se a ser utilizado apenas pela infraestrutura de comunicação remota de .NET Framework."
   syntax:
     content: public void Store (System.Runtime.Remoting.Channels.IServerChannelSink sink, object state);
     parameters:
     - id: sink
       type: System.Runtime.Remoting.Channels.IServerChannelSink
-      description: "A server channel sink."
+      description: "Um receptor de canal do servidor."
     - id: state
       type: System.Object
-      description: "The state associated with `sink`."
+      description: "O Estado associado `sink`."
   overload: System.Runtime.Remoting.Channels.IServerChannelSinkStack.Store*
   exceptions: []
   platform:
@@ -146,17 +146,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Remoting.Channels
-  summary: "Stores a message sink and its associated state, and then dispatches a message asynchronously, using the sink just stored and any other stored sinks."
-  remarks: "The StoreAndDispatch method is intended for use only by the .NET Framework remoting infrastructure.       Also, the method should only be called by a transport sink to complete an asynchronous dispatch."
+  summary: "Armazena um receptor de mensagem e Estado associado e, em seguida, dispatches uma mensagem de forma assíncrona, utilizando o sink apenas armazenadas e quaisquer outros sinks armazenados."
+  remarks: "O método StoreAndDispatch destina-se a ser utilizado apenas pela infraestrutura de comunicação remota de .NET Framework.       Além disso, o método só deve ser chamado por um receptor de transporte para concluir uma distribuição assíncrona."
   syntax:
     content: public void StoreAndDispatch (System.Runtime.Remoting.Channels.IServerChannelSink sink, object state);
     parameters:
     - id: sink
       type: System.Runtime.Remoting.Channels.IServerChannelSink
-      description: "A server channel sink."
+      description: "Um receptor de canal do servidor."
     - id: state
       type: System.Object
-      description: "The state associated with `sink`."
+      description: "O Estado associado `sink`."
   overload: System.Runtime.Remoting.Channels.IServerChannelSinkStack.StoreAndDispatch*
   exceptions: []
   platform:

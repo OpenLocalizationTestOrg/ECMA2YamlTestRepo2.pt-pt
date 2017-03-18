@@ -13,8 +13,8 @@ items:
   nameWithType: ResolveEventArgs
   fullName: System.ResolveEventArgs
   type: Class
-  summary: "Provides data for loader resolution events, such as the <xref href=&quot;System.AppDomain.TypeResolve&quot;></xref>, <xref href=&quot;System.AppDomain.ResourceResolve&quot;></xref>, <xref href=&quot;System.AppDomain.ReflectionOnlyAssemblyResolve&quot;></xref>, and <xref href=&quot;System.AppDomain.AssemblyResolve&quot;></xref> events."
-  remarks: "When the loader cannot resolve an assembly reference and a handler has been provided for the appropriate loader resolution event, the event is raised and the ResolveEventArgs contains information about the item to be resolved.      -   The <xref:System.ResolveEventArgs.Name%2A> property contains the name of the item to be resolved.      -   Beginning with the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)], the <xref:System.ResolveEventArgs.RequestingAssembly%2A> property contains the assembly that requested an assembly that can provide the named item. For more information, see the <xref:System.ResolveEventArgs.RequestingAssembly%2A> property."
+  summary: "Fornece dados de carregador de eventos de resolução, tais como o <xref href=&quot;System.AppDomain.TypeResolve&quot;> </xref>, <xref href=&quot;System.AppDomain.ResourceResolve&quot;> </xref>, <xref href=&quot;System.AppDomain.ReflectionOnlyAssemblyResolve&quot;> </xref>, e <xref href=&quot;System.AppDomain.AssemblyResolve&quot;> </xref> eventos."
+  remarks: "Quando o carregador não é possível resolver uma referência de assemblagem e um processador foi fornecido para o evento de resolução de carregador adequado, o evento é gerado e o ResolveEventArgs contém informações sobre o item a ser resolvido.      -O <xref:System.ResolveEventArgs.Name%2A>propriedade contém o nome do item que seja resolvido.</xref:System.ResolveEventArgs.Name%2A>      -A partir de [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)], a <xref:System.ResolveEventArgs.RequestingAssembly%2A>propriedade contém a assemblagem que pediu uma assemblagem que pode fornecer o item com nome.</xref:System.ResolveEventArgs.RequestingAssembly%2A> Para obter mais informações, consulte o <xref:System.ResolveEventArgs.RequestingAssembly%2A>propriedade.</xref:System.ResolveEventArgs.RequestingAssembly%2A>"
   syntax:
     content: >-
       [System.Runtime.InteropServices.ComVisible(true)]
@@ -38,14 +38,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System
-  summary: "Initializes a new instance of the <xref href=&quot;System.ResolveEventArgs&quot;></xref> class, specifying the name of the item to resolve."
-  remarks: "This constructor is typically called only by the common language runtime."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.ResolveEventArgs&quot;> </xref> classe, especificando o nome do item para resolver."
+  remarks: "Este construtor é normalmente denominado apenas pelo language runtime."
   syntax:
     content: public ResolveEventArgs (string name);
     parameters:
     - id: name
       type: System.String
-      description: "The name of an item to resolve."
+      description: "O nome de um item para resolver."
   overload: System.ResolveEventArgs.#ctor*
   exceptions: []
   platform:
@@ -62,16 +62,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System
-  summary: "Initializes a new instance of the <xref href=&quot;System.ResolveEventArgs&quot;></xref> class, specifying the name of the item to resolve and the assembly whose dependency is being resolved."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.ResolveEventArgs&quot;> </xref> classe, especificando o nome do item de resolver e a assemblagem cuja dependência está a ser resolvida."
   syntax:
     content: public ResolveEventArgs (string name, System.Reflection.Assembly requestingAssembly);
     parameters:
     - id: name
       type: System.String
-      description: "The name of an item to resolve."
+      description: "O nome de um item para resolver."
     - id: requestingAssembly
       type: System.Reflection.Assembly
-      description: "The assembly whose dependency is being resolved."
+      description: "A assemblagem cuja dependência está a ser resolvida."
   overload: System.ResolveEventArgs.#ctor*
   exceptions: []
   platform:
@@ -88,13 +88,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System
-  summary: "Gets the name of the item to resolve."
-  remarks: "For the <xref:System.AppDomain.AssemblyResolve> event, Name is the assembly name before policy is applied."
+  summary: "Obtém o nome do item para resolver."
+  remarks: "Para o <xref:System.AppDomain.AssemblyResolve>evento, nome é o nome de assemblagem antes da política é aplicada.</xref:System.AppDomain.AssemblyResolve>"
   syntax:
     content: public string Name { get; }
     return:
       type: System.String
-      description: "The name of the item to resolve."
+      description: "O nome do item para resolver."
   overload: System.ResolveEventArgs.Name*
   exceptions: []
   platform:
@@ -111,13 +111,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System
-  summary: "Gets the assembly whose dependency is being resolved."
-  remarks: "The assembly that is returned by this property is an assembly that was unable to resolve the item specified by the <xref:System.ResolveEventArgs.Name%2A> property, because the item did not exist in that assembly, in any of its loaded dependencies, or in any dependencies the loader could find through probing.       For example, suppose the current assembly uses the <xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=fullName> method to load assembly A from a directory outside the probing path, in order to use class CA. Suppose further that class CA uses class CB, in assembly B, and that assembly A has a compile-time reference to assembly B, also located outside the probing path. When the current assembly attempts to instantiate CA, the loader attempts to resolve the reference to assembly B. However, because assembly A was loaded by using the <xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=fullName> method, the loader cannot resolve the dependency. If there is a handler for the <xref:System.AppDomain.AssemblyResolve?displayProperty=fullName> event, the event is raised, and the RequestingAssembly property of the resulting <xref:System.ResolveEventArgs> object contains assembly A, because assembly A is the assembly that is missing a dependency.       The semantics of the RequestingAssembly property vary, depending on how the requesting assembly was loaded:      -   Load context: The value of the property might be `null`. The load context is load-order independent, and the identity of the requesting assembly is not necessarily meaningful. A non-null example occurs when the <xref:System.Type.GetType%2A?displayProperty=fullName> method is called and the specified type is not known to the requesting assembly or any of its dependencies.      -   Load-from context: The property can be used as a probing hint, but the event handler should not get more than one request for a given assembly name.      -   No context (that is, the requesting assembly was loaded by using the <xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=fullName> method, or as a byte stream, or in mixed mode): The handler can use the RequestingAssembly property to load different implementations of the same assembly based on the identity of the requesting assembly."
+  summary: "Obtém a assemblagem cuja dependência está a ser resolvida."
+  remarks: "A assemblagem que é devolvida por esta propriedade é uma assemblagem que não foi possível resolver o item especificado pelo <xref:System.ResolveEventArgs.Name%2A>propriedade, porque o item não existe nessa assemblagem em qualquer uma das respetivas dependências carregadas ou em quaisquer dependências o carregador encontradas através da pesquisa.</xref:System.ResolveEventArgs.Name%2A>       Por exemplo, suponha que as utilizações de assemblagem atual o <xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=fullName>método para carregar a assemblagem A partir de um diretório fora o caminho de pesquisa, para poder utilizar a classe de AC.</xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=fullName> Suponhamos mais dessa classe AC utiliza CB de classe, na assemblagem B e de que a assemblagem A tem uma referência de tempo de compilação à assemblagem B, também localizado fora do caminho de pesquisa. Quando a assemblagem atual tenta instanciar AC, o carregador tenta resolver a referência à assemblagem B. No entanto, porque foi carregada a assemblagem A utilizando o <xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=fullName>método, o carregador não é possível resolver a dependência.</xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=fullName> Se não houver um processador para o <xref:System.AppDomain.AssemblyResolve?displayProperty=fullName>evento, o evento é gerado e a propriedade RequestingAssembly resultante <xref:System.ResolveEventArgs>objeto contém assemblagem um, porque a assemblagem A assemblagem em falta uma dependência.</xref:System.ResolveEventArgs> </xref:System.AppDomain.AssemblyResolve?displayProperty=fullName>       A semântica da propriedade RequestingAssembly variam, dependendo de como foi carregada a assemblagem requerente:-contexto de carregamento: O valor da propriedade pode ser `null`. O contexto de carregamento é independente de ordem de carga e a identidade da assemblagem não é necessariamente significativa. Um exemplo de não-nulos ocorre quando o <xref:System.Type.GetType%2A?displayProperty=fullName>método for chamado e o tipo especificado não é conhecido para a assemblagem requerente ou qualquer uma das respetivas dependências.</xref:System.Type.GetType%2A?displayProperty=fullName>      -Carga-do contexto: A propriedade pode ser utilizada como uma sugestão de pesquisa, mas o processador de eventos não deve ter mais do que um pedido para um nome de assemblagem em questão.      -Qualquer contexto (ou seja, a requerente assemblagem foi carregada, utilizando o <xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=fullName>método, ou como um fluxo de bytes ou no modo misto): O processador pode utilizar a propriedade de RequestingAssembly carregar diferentes implementações da mesma assemblagem com base na identidade da assemblagem requerente.</xref:System.Reflection.Assembly.LoadFile%2A?displayProperty=fullName>"
   syntax:
     content: public System.Reflection.Assembly RequestingAssembly { get; }
     return:
       type: System.Reflection.Assembly
-      description: "The assembly that requested the item specified by the <xref:System.ResolveEventArgs.Name*> property."
+      description: "A assemblagem que pediu o item especificado pelo <xref:System.ResolveEventArgs.Name*>propriedade.</xref:System.ResolveEventArgs.Name*>"
   overload: System.ResolveEventArgs.RequestingAssembly*
   exceptions: []
   platform:

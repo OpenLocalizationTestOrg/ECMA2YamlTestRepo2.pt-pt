@@ -12,8 +12,8 @@ items:
   nameWithType: IChannel
   fullName: System.Runtime.Remoting.Channels.IChannel
   type: Interface
-  summary: "Provides conduits for messages that cross remoting boundaries."
-  remarks: "Remoting boundaries can be <xref:System.Runtime.Remoting.Contexts.Context>s, <xref:System.AppDomain>s, processes, or computers. An application can cross these boundaries only by using channels. These crossings can be inbound and outbound. A channel can listen on an endpoint for inbound messages, send to an endpoint for outbound messages, or both. This provides an extensibility point in the runtime to plug in a wide range protocols, even though the runtime might not be at the other end of the channel.       Run-time objects can be used to represent a wide and rich set of semantics and entities. The channel provides the extensibility point to convert the messages to and from the specific protocols. If there are runtimes at both ends of the channel, a virtual channel is created between the two ends, in order to connect the client and server sink chains on either side of the boundary.       The client part of the channel is located at the end of a client context sink chain. The server part of the channel is located at the start of the server context sink chain. Messages are delivered to the client channel using the <xref:System.Runtime.Remoting.Messaging.IMessageSink> interface, travel through the channel, and are then received by the server channel. The server channel delivers the message to the first server context sink.       Channels must expose the IChannel interface, which provides informational properties such as the <xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A> and <xref:System.Runtime.Remoting.Channels.IChannel.ChannelPriority%2A> properties. Channels can be registered using the <xref:System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel%2A?displayProperty=fullName> method."
+  summary: "Fornece conduits mensagens entre limites de sistema de interação remota."
+  remarks: "Limites de comunicação remota podem ser <xref:System.Runtime.Remoting.Contexts.Context>s, <xref:System.AppDomain>s processos, computadores ou.</xref:System.AppDomain> </xref:System.Runtime.Remoting.Contexts.Context> Uma aplicação pode cruzada estes limites apenas por através dos canais. Estes crossings podem ser entrada e saída. Um canal pode escutar um ponto final para mensagens de entrada, enviar para um ponto final para mensagens de saída, ou ambos. Esta opção fornece um ponto de extensibilidade no tempo de execução para o plug-in protocolos uma vasta gama, apesar do tempo de execução poderá não estar na outra extremidade do canal.       Objetos de tempo de execução podem ser utilizados para representar um conjunto avançado e grande de semântica e entidades. O canal fornece o ponto de extensibilidade para converter as mensagens de e para os protocolos específicos. Se existirem tempos de execução em ambas as extremidades do canal, é criado um canal virtual entre dois ends, para ligar os cliente e servidor sink as cadeias em ambos os lados do limite.       A parte do cliente do canal está localizada no final de uma cadeia de receptores de contexto de cliente. A parte do servidor do canal está localizada no início da cadeia de receptores de contexto de servidor. As mensagens são entregues para o canal de cliente utilizando o <xref:System.Runtime.Remoting.Messaging.IMessageSink>interface, viajar através do canal e, em seguida, são recebidos pelo canal do servidor.</xref:System.Runtime.Remoting.Messaging.IMessageSink> O canal de servidor fornece a mensagem para o primeiro receptor de contexto de servidor.       Canais devem expor a interface IChannel, que fornece propriedades informativas, como o <xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A>e <xref:System.Runtime.Remoting.Channels.IChannel.ChannelPriority%2A>Propriedades.</xref:System.Runtime.Remoting.Channels.IChannel.ChannelPriority%2A> </xref:System.Runtime.Remoting.Channels.IChannel.ChannelName%2A> Canais podem ser registados com o <xref:System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel%2A?displayProperty=fullName>método.</xref:System.Runtime.Remoting.Channels.ChannelServices.RegisterChannel%2A?displayProperty=fullName>"
   syntax:
     content: >-
       [System.Runtime.InteropServices.ComVisible(true)]
@@ -34,7 +34,7 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Remoting.Channels
-  summary: "Gets the name of the channel."
+  summary: "Obtém o nome do canal."
   remarks: ''
   example:
   - >-
@@ -45,12 +45,12 @@ items:
     content: public string ChannelName { get; }
     return:
       type: System.String
-      description: "The name of the channel."
+      description: "O nome do canal."
   overload: System.Runtime.Remoting.Channels.IChannel.ChannelName*
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The immediate caller does not have infrastructure permission."
+    description: "O chamador imediato não tem permissão de infraestrutura."
   platform:
   - net462
 - uid: System.Runtime.Remoting.Channels.IChannel.ChannelPriority
@@ -65,8 +65,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Remoting.Channels
-  summary: "Gets the priority of the channel."
-  remarks: "Higher numbers indicate higher priority, so a channel with priority of 50 has a higher priority than a channel with priority 25. The cross application domain channel has a priority of 100.       Client channels with higher priority are given the first chance to connect to a remote object specified by a URL or a particular channel data entry from a <xref:System.Runtime.Remoting.ObjRef>.       For server channels, the priority indicates the order in which their channel data will appear in a <xref:System.Runtime.Remoting.ObjRef>, which in turn affects the order in which clients will try to connect to the server object. If the server is listening on an HTTP channel with priority 50 and a TCP channel with priority 25 and the client has registered both an HTTP and TCP channel, then the client will use the HTTP channel to talk to the server."
+  summary: "Obtém a prioridade do canal."
+  remarks: "Números superiores indicam maior prioridade, para que um canal com a prioridade de 50 tenha uma prioridade mais alta do que um canal com prioridade 25. O canal de domínio de aplicação cruzada tem uma prioridade de 100.       Canais de cliente com maior prioridade recebem a primeira oportunidade para ligar a um objeto remoto especificado por um URL ou uma entrada de dados de canal específico da <xref:System.Runtime.Remoting.ObjRef>.</xref:System.Runtime.Remoting.ObjRef>       Para canais de servidor, a prioridade indica a ordem em que os seus dados de canal irão aparecer num <xref:System.Runtime.Remoting.ObjRef>, que por sua vez, afeta a ordem na qual os clientes irão tentar ligar ao objeto de servidor.</xref:System.Runtime.Remoting.ObjRef> Se o servidor está a escutar um canal HTTP com prioridade 50 e um canal TCP com prioridade 25 e o cliente foi registado um HTTP e TCP canal, em seguida, o cliente irá utilizar o canal HTTP para falar com o servidor."
   example:
   - >-
     [!code-cs[HttpServerChannel_Server_Client#5](~/add/codesnippet/csharp/p-system.runtime.remotin_5_1.cs)]
@@ -76,12 +76,12 @@ items:
     content: public int ChannelPriority { get; }
     return:
       type: System.Int32
-      description: "An integer that indicates the priority of the channel."
+      description: "Um número inteiro que indica a prioridade do canal."
   overload: System.Runtime.Remoting.Channels.IChannel.ChannelPriority*
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The immediate caller does not have infrastructure permission."
+    description: "O chamador imediato não tem permissão de infraestrutura."
   platform:
   - net462
 - uid: System.Runtime.Remoting.Channels.IChannel.Parse(System.String,System.String@)
@@ -96,7 +96,7 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Remoting.Channels
-  summary: "Returns the object URI as an out parameter, and the URI of the current channel as the return value."
+  summary: "Devolve o objeto URI, como um parâmetro out e o URI do canal atual como o valor de retorno."
   remarks: ''
   example:
   - >-
@@ -108,18 +108,18 @@ items:
     parameters:
     - id: url
       type: System.String
-      description: "The URL of the object."
+      description: "O URL do objeto."
     - id: objectURI
       type: System.String
-      description: "When this method returns, contains a <xref:System.String> that holds the object URI. This parameter is passed uninitialized."
+      description: "Quando este método devolve, contém um <xref:System.String>que detém o objeto URI.</xref:System.String> Este parâmetro é transmitido não inicializado."
     return:
       type: System.String
-      description: "The URI of the current channel, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if the URI does not belong to this channel."
+      description: "O URI do canal atual, ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se o URI não pertence a este canal."
   overload: System.Runtime.Remoting.Channels.IChannel.Parse*
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The immediate caller does not have infrastructure permission."
+    description: "O chamador imediato não tem permissão de infraestrutura."
   platform:
   - net462
 references:

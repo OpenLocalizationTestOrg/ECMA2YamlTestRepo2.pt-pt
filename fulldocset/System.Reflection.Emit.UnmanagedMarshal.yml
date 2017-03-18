@@ -18,8 +18,8 @@ items:
   nameWithType: UnmanagedMarshal
   fullName: System.Reflection.Emit.UnmanagedMarshal
   type: Class
-  summary: "Represents the class that describes how to marshal a field from managed to unmanaged code. This class cannot be inherited."
-  remarks: "The code example shows the workaround for this obsolete type.       Marshaling is the process of packaging and unpackaging parameters so remote procedure calls can occur. During marshaling, a field might undergo a format conversion when the format of the managed type is different from the format of the corresponding unmanaged type. For example, you might want to marshal a `String` type as an unmanaged BSTR. Some format conversions are handled automatically by the runtime. To override the default behavior, you must use the `UnmanagedMarshal` class to define the format conversion."
+  summary: "Representa a classe que descreve a forma de empacotar referências de um campo de código gerido para. Esta classe não pode ser herdada."
+  remarks: "O exemplo de código mostra a solução para este tipo de obsoleto.       Empacotamento de referências é o processo de parâmetros de empacotamento e unpackaging para que chamadas de procedimento remoto podem ocorrer. Durante o marshaling, um campo pode sofrer uma conversão de formato quando o formato do tipo gerido é diferente do formato de tipo não gerido correspondente. Por exemplo, pode querer empacotar referências de um `String` tipo como um BSTR não gerido. Alguns conversões de formato são processadas automaticamente pelo runtime. Para substituir o comportamento predefinido, tem de utilizar o `UnmanagedMarshal` classe para definir a conversão de formato."
   example:
   - "The following code example shows replacement code for the obsolete UnmanagedMarshal type. The example emits a single-module assembly named `EmitMarshalAs.dll`, containing a type named `Sample`. The type has a method named `Test`, with one parameter of type <xref:System.String>. The code example applies the <xref:System.Runtime.InteropServices.MarshalAsAttribute> with <xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName> to the parameter.  \n  \n You can use the [Ildasm.exe (IL Disassembler)](~/add/includes/ajax-current-ext-md.md) to examine the emitted assembly and observe that the parameter is marked `marshal(bstr)`.  \n  \n [!code-cs[UnmanagedMarshalObsolete#1](~/add/codesnippet/csharp/t-system.reflection.emit_1.cs)]\n [!code-cpp[UnmanagedMarshalObsolete#1](~/add/codesnippet/cpp/t-system.reflection.emit_1.cpp)]\n [!code-vb[UnmanagedMarshalObsolete#1](~/add/codesnippet/visualbasic/t-system.reflection.emit_1.vb)]"
   syntax:
@@ -47,17 +47,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection.Emit
-  summary: "Gets an unmanaged base type. This property is read-only."
+  summary: "Obtém um tipo base não gerido. Esta propriedade é só de leitura."
   syntax:
     content: public System.Runtime.InteropServices.UnmanagedType BaseType { get; }
     return:
       type: System.Runtime.InteropServices.UnmanagedType
-      description: "An <xref uid=&quot;langword_csharp_UnmanagedType&quot; name=&quot;UnmanagedType&quot; href=&quot;&quot;></xref> object."
+      description: "Um <xref uid=&quot;langword_csharp_UnmanagedType&quot; name=&quot;UnmanagedType&quot; href=&quot;&quot;> </xref> objeto."
   overload: System.Reflection.Emit.UnmanagedMarshal.BaseType*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The unmanaged type is not an <xref uid=&quot;langword_csharp_LPArray&quot; name=&quot;LPArray&quot; href=&quot;&quot;></xref> or a <xref uid=&quot;langword_csharp_SafeArray&quot; name=&quot;SafeArray&quot; href=&quot;&quot;></xref>."
+    description: "O tipo não gerido não é um <xref uid=&quot;langword_csharp_LPArray&quot; name=&quot;LPArray&quot; href=&quot;&quot;> </xref> ou um <xref uid=&quot;langword_csharp_SafeArray&quot; name=&quot;SafeArray&quot; href=&quot;&quot;> </xref>."
   platform:
   - net462
 - uid: System.Reflection.Emit.UnmanagedMarshal.DefineByValArray(System.Int32)
@@ -72,22 +72,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection.Emit
-  summary: "Specifies a fixed-length array (ByValArray) to marshal to unmanaged code."
-  remarks: "The `DefineByValArray` method is not a simple native marshal.       Only unmanaged marshal constructs can be made using these static constructors.       Marshaling an array is a more complex process than marshaling an integer parameter. Array members are copied in a specific order so that the other side can reconstruct the array exactly."
+  summary: "Especifica uma matriz de comprimento fixo (ByValArray) para empacotar referências de código não gerido."
+  remarks: "O `DefineByValArray` método não é um empacotamento de referências nativo simple.       Construções de empacotamento de referências não gerido só podem ser efetuadas utilizando estes construtores estáticos.       Uma matriz de empacotamento de referências é um processo mais complexo que um parâmetro de número inteiro de empacotamento de referências. Os membros de matriz são copiados por uma ordem específica para que o outro lado pode reconstrua a matriz de exatamente."
   syntax:
     content: public static System.Reflection.Emit.UnmanagedMarshal DefineByValArray (int elemCount);
     parameters:
     - id: elemCount
       type: System.Int32
-      description: "The number of elements in the fixed-length array."
+      description: "O número de elementos na matriz de comprimento fixo."
     return:
       type: System.Reflection.Emit.UnmanagedMarshal
-      description: "An <xref href=&quot;System.Reflection.Emit.UnmanagedMarshal&quot;></xref> object."
+      description: "Um <xref href=&quot;System.Reflection.Emit.UnmanagedMarshal&quot;> </xref> objeto."
   overload: System.Reflection.Emit.UnmanagedMarshal.DefineByValArray*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The argument is not a simple native type."
+    description: "O argumento não é um tipo nativo simples."
   platform:
   - net462
 - uid: System.Reflection.Emit.UnmanagedMarshal.DefineByValTStr(System.Int32)
@@ -102,22 +102,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection.Emit
-  summary: "Specifies a string in a fixed array buffer (ByValTStr) to marshal to unmanaged code."
-  remarks: "The `DefineByValStr` method is not a simple native marshal.       Only unmanaged marshal constructs can be made using these static constructors.       Marshaling an array is a more complex process than marshaling an integer parameter. Array members are copied in a specific order so that the other side can reconstruct the array exactly."
+  summary: "Especifica uma matriz fixa de memória intermédia (ByValTStr) para empacotar referências de código gerido para uma cadeia."
+  remarks: "O `DefineByValStr` método não é um empacotamento de referências nativo simple.       Construções de empacotamento de referências não gerido só podem ser efetuadas utilizando estes construtores estáticos.       Uma matriz de empacotamento de referências é um processo mais complexo que um parâmetro de número inteiro de empacotamento de referências. Os membros de matriz são copiados por uma ordem específica para que o outro lado pode reconstrua a matriz de exatamente."
   syntax:
     content: public static System.Reflection.Emit.UnmanagedMarshal DefineByValTStr (int elemCount);
     parameters:
     - id: elemCount
       type: System.Int32
-      description: "The number of elements in the fixed array buffer."
+      description: "O número de elementos na memória intermédia de matriz fixo."
     return:
       type: System.Reflection.Emit.UnmanagedMarshal
-      description: "An <xref href=&quot;System.Reflection.Emit.UnmanagedMarshal&quot;></xref> object."
+      description: "Um <xref href=&quot;System.Reflection.Emit.UnmanagedMarshal&quot;> </xref> objeto."
   overload: System.Reflection.Emit.UnmanagedMarshal.DefineByValTStr*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The argument is not a simple native type."
+    description: "O argumento não é um tipo nativo simples."
   platform:
   - net462
 - uid: System.Reflection.Emit.UnmanagedMarshal.DefineLPArray(System.Runtime.InteropServices.UnmanagedType)
@@ -132,22 +132,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection.Emit
-  summary: "Specifies an <xref uid=&quot;langword_csharp_LPArray&quot; name=&quot;LPArray&quot; href=&quot;&quot;></xref> to marshal to unmanaged code. The length of an <xref uid=&quot;langword_csharp_LPArray&quot; name=&quot;LPArray&quot; href=&quot;&quot;></xref> is determined at runtime by the size of the actual marshaled array."
-  remarks: "The `DefineLPArray` method is not a simple native marshal.       Only unmanaged marshal constructs can be made using these static constructors.       Marshaling an array is a more complex process than marshaling an integer parameter. Array members are copied in a specific order so that the other side can reconstruct the array exactly."
+  summary: "Especifica um <xref uid=&quot;langword_csharp_LPArray&quot; name=&quot;LPArray&quot; href=&quot;&quot;> </xref> empacotar referências para código não gerido. O comprimento de um <xref uid=&quot;langword_csharp_LPArray&quot; name=&quot;LPArray&quot; href=&quot;&quot;> </xref> é determinado em runtime pelo tamanho da matriz com referências empacotadas real."
+  remarks: "O `DefineLPArray` método não é um empacotamento de referências nativo simple.       Construções de empacotamento de referências não gerido só podem ser efetuadas utilizando estes construtores estáticos.       Uma matriz de empacotamento de referências é um processo mais complexo que um parâmetro de número inteiro de empacotamento de referências. Os membros de matriz são copiados por uma ordem específica para que o outro lado pode reconstrua a matriz de exatamente."
   syntax:
     content: public static System.Reflection.Emit.UnmanagedMarshal DefineLPArray (System.Runtime.InteropServices.UnmanagedType elemType);
     parameters:
     - id: elemType
       type: System.Runtime.InteropServices.UnmanagedType
-      description: "The unmanaged type to which to marshal the array."
+      description: "O tipo não gerido para o qual pretende empacotar referências de matriz."
     return:
       type: System.Reflection.Emit.UnmanagedMarshal
-      description: "An <xref href=&quot;System.Reflection.Emit.UnmanagedMarshal&quot;></xref> object."
+      description: "Um <xref href=&quot;System.Reflection.Emit.UnmanagedMarshal&quot;> </xref> objeto."
   overload: System.Reflection.Emit.UnmanagedMarshal.DefineLPArray*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The argument is not a simple native type."
+    description: "O argumento não é um tipo nativo simples."
   platform:
   - net462
 - uid: System.Reflection.Emit.UnmanagedMarshal.DefineSafeArray(System.Runtime.InteropServices.UnmanagedType)
@@ -162,22 +162,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection.Emit
-  summary: "Specifies a <xref uid=&quot;langword_csharp_SafeArray&quot; name=&quot;SafeArray&quot; href=&quot;&quot;></xref> to marshal to unmanaged code."
-  remarks: "The `DefineSafeArray` method is not a simple native marshal.       Only unmanaged marshal constructs can be made using these static constructors.       Marshaling an array is a more complex process than marshaling an integer parameter. Array members are copied in a specific order so that the other side can reconstruct the array exactly."
+  summary: "Especifica um <xref uid=&quot;langword_csharp_SafeArray&quot; name=&quot;SafeArray&quot; href=&quot;&quot;> </xref> empacotar referências para código não gerido."
+  remarks: "O `DefineSafeArray` método não é um empacotamento de referências nativo simple.       Construções de empacotamento de referências não gerido só podem ser efetuadas utilizando estes construtores estáticos.       Uma matriz de empacotamento de referências é um processo mais complexo que um parâmetro de número inteiro de empacotamento de referências. Os membros de matriz são copiados por uma ordem específica para que o outro lado pode reconstrua a matriz de exatamente."
   syntax:
     content: public static System.Reflection.Emit.UnmanagedMarshal DefineSafeArray (System.Runtime.InteropServices.UnmanagedType elemType);
     parameters:
     - id: elemType
       type: System.Runtime.InteropServices.UnmanagedType
-      description: "The base type or the <xref uid=&quot;langword_csharp_UnmanagedType&quot; name=&quot;UnmanagedType&quot; href=&quot;&quot;></xref> of each element of the array."
+      description: "O tipo base ou a <xref uid=&quot;langword_csharp_UnmanagedType&quot; name=&quot;UnmanagedType&quot; href=&quot;&quot;> </xref> de cada elemento da matriz."
     return:
       type: System.Reflection.Emit.UnmanagedMarshal
-      description: "An <xref href=&quot;System.Reflection.Emit.UnmanagedMarshal&quot;></xref> object."
+      description: "Um <xref href=&quot;System.Reflection.Emit.UnmanagedMarshal&quot;> </xref> objeto."
   overload: System.Reflection.Emit.UnmanagedMarshal.DefineSafeArray*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The argument is not a simple native type."
+    description: "O argumento não é um tipo nativo simples."
   platform:
   - net462
 - uid: System.Reflection.Emit.UnmanagedMarshal.DefineUnmanagedMarshal(System.Runtime.InteropServices.UnmanagedType)
@@ -192,22 +192,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection.Emit
-  summary: "Specifies a given type that is to be marshaled to unmanaged code."
-  remarks: "The <xref:System.Runtime.InteropServices.UnmanagedType> passed to this method must be a simple native type. None of the following values may be used: <xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName>, <xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName>, <xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName>, <xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName>, or <xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName>.       Only unmanaged marshal constructs can be made using this method."
+  summary: "Especifica um determinado tipo, que é possível empacotar as referências ao código não gerido."
+  remarks: "O <xref:System.Runtime.InteropServices.UnmanagedType>transmitido a este método tem de ser um tipo nativo simples.</xref:System.Runtime.InteropServices.UnmanagedType> Pode ser utilizado, nenhum dos seguintes valores: <xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName>, <xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName>, <xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName>, <xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName>, ou <xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName>.</xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName> </xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName> </xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName> </xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName> </xref:System.Runtime.InteropServices.UnmanagedType?displayProperty=fullName>       Construções de empacotamento de referências não gerido só podem ser efetuadas através deste método."
   syntax:
     content: public static System.Reflection.Emit.UnmanagedMarshal DefineUnmanagedMarshal (System.Runtime.InteropServices.UnmanagedType unmanagedType);
     parameters:
     - id: unmanagedType
       type: System.Runtime.InteropServices.UnmanagedType
-      description: "The unmanaged type to which the type is to be marshaled."
+      description: "O tipo não gerido para o qual o tipo é possível empacotar as referências."
     return:
       type: System.Reflection.Emit.UnmanagedMarshal
-      description: "An <xref href=&quot;System.Reflection.Emit.UnmanagedMarshal&quot;></xref> object."
+      description: "Um <xref href=&quot;System.Reflection.Emit.UnmanagedMarshal&quot;> </xref> objeto."
   overload: System.Reflection.Emit.UnmanagedMarshal.DefineUnmanagedMarshal*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The argument is not a simple native type."
+    description: "O argumento não é um tipo nativo simples."
   platform:
   - net462
 - uid: System.Reflection.Emit.UnmanagedMarshal.ElementCount
@@ -222,18 +222,18 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection.Emit
-  summary: "Gets a number element. This property is read-only."
-  remarks: "There is an `ElementCount` only if there is a `NativeTypeFixedArray`."
+  summary: "Obtém um elemento número. Esta propriedade é só de leitura."
+  remarks: "Não existe um `ElementCount` apenas se existir um `NativeTypeFixedArray`."
   syntax:
     content: public int ElementCount { get; }
     return:
       type: System.Int32
-      description: "An integer indicating the element count."
+      description: "Um número inteiro que indica que a contagem de elemento."
   overload: System.Reflection.Emit.UnmanagedMarshal.ElementCount*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The argument is not an unmanaged element count."
+    description: "O argumento não é uma contagem de elemento não gerido."
   platform:
   - net462
 - uid: System.Reflection.Emit.UnmanagedMarshal.GetUnmanagedType
@@ -248,13 +248,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection.Emit
-  summary: "Indicates an unmanaged type. This property is read-only."
-  remarks: "The `GetUnmanagedType` property is an accessor function for the native type."
+  summary: "Indica um tipo não gerido. Esta propriedade é só de leitura."
+  remarks: "O `GetUnmanagedType` propriedade é uma função de acessor para o tipo nativo."
   syntax:
     content: public System.Runtime.InteropServices.UnmanagedType GetUnmanagedType { get; }
     return:
       type: System.Runtime.InteropServices.UnmanagedType
-      description: "An <xref:System.Runtime.InteropServices.UnmanagedType> object."
+      description: "Um <xref:System.Runtime.InteropServices.UnmanagedType>objeto.</xref:System.Runtime.InteropServices.UnmanagedType>"
   overload: System.Reflection.Emit.UnmanagedMarshal.GetUnmanagedType*
   exceptions: []
   platform:
@@ -271,18 +271,18 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Reflection.Emit
-  summary: "Gets a GUID. This property is read-only."
-  remarks: "This property always returns Guid.Empty. This property might be removed in a future release."
+  summary: "Obtém um GUID. Esta propriedade é só de leitura."
+  remarks: "Esta propriedade devolve sempre GUID. Empty. Esta propriedade pode ser removida numa versão futura."
   syntax:
     content: public Guid IIDGuid { get; }
     return:
       type: System.Guid
-      description: "A <xref:System.Guid> object."
+      description: "A <xref:System.Guid>objeto.</xref:System.Guid>"
   overload: System.Reflection.Emit.UnmanagedMarshal.IIDGuid*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The argument is not a custom marshaler."
+    description: "O argumento não é um empacotador de referências personalizado."
   platform:
   - net462
 references:
