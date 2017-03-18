@@ -19,8 +19,8 @@ items:
   nameWithType: UdpSingleSourceMulticastClient
   fullName: System.Net.Sockets.UdpSingleSourceMulticastClient
   type: Class
-  summary: "A client receiver for multicast traffic from a single source, also known as Source Specific Multicast (SSM)."
-  remarks: "The multicast group address and sender source address must be known.       In addition to receiving multicast data from a specific sender, the UdpSingleSourceMulticastClient client can also send unicast data back to the sender.       To receive multicast from multiple sources, or when the sources aren&quot;t known in advance, use the UdpSingleSourceMulticastClient class instead."
+  summary: "Um recetor de cliente para o tráfego multicast de uma única origem, também conhecido como origem específica Multicast (SSM)."
+  remarks: "O endereço de multicast de grupo e o endereço de origem do remetente tem de ser conhecidas.       Para além de receção de dados de multicast de um remetente específico, o cliente UdpSingleSourceMulticastClient também pode enviar dados unicast novamente para o remetente.       Para receber multicast de várias origens, ou quando as origens não são conhecidas com antecedência, em vez disso, utilize a classe de UdpSingleSourceMulticastClient."
   syntax:
     content: >-
       [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -47,34 +47,34 @@ items:
   assemblies:
   - System.Net
   namespace: System.Net.Sockets
-  summary: "Creates a new <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;></xref> UDP client that can subscribe to a group address and receive datagrams from a single source."
-  remarks: "The UdpSingleSourceMulticastClient constructor associates a UDP multicast socket with a group address and port, but does not bind or otherwise use the socket.       The `groupAddress` parameter may be either an IPv6 or IPv4 multicast address. However, the address family of the `sourceAddress` and `groupAddress` parameters must the same.       The `localPort` parameter must not specify a port less than 1,024."
+  summary: "Cria uma nova <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;> </xref> cliente UDP que pode subscrever para um endereço de grupo e receber os datagramas de uma única origem."
+  remarks: "O construtor de UdpSingleSourceMulticastClient associa um socket multicast UDP com um endereço de grupo e a porta, mas não vincular ou caso contrário, utilize o socket.       O `groupAddress` parâmetro pode ser um IPv6 ou IPv4 multicast endereço. No entanto, a família de endereços do `sourceAddress` e `groupAddress` parâmetros têm o mesmo.       O `localPort` parâmetro não tem de especificar uma porta inferior a 1.024."
   syntax:
     content: public UdpSingleSourceMulticastClient (System.Net.IPAddress sourceAddress, System.Net.IPAddress groupAddress, int localPort);
     parameters:
     - id: sourceAddress
       type: System.Net.IPAddress
-      description: "The sender source address for this receiver to subscribe to."
+      description: "O endereço de origem do remetente para este recetor subscrever."
     - id: groupAddress
       type: System.Net.IPAddress
-      description: "The multicast group address for this receiver to subscribe to."
+      description: "O endereço de multicast de grupo para este recetor subscrever."
     - id: localPort
       type: System.Int32
-      description: "The local port for this receiver to bind to."
+      description: "A porta local para este recetor à qual vincular."
   overload: System.Net.Sockets.UdpSingleSourceMulticastClient.#ctor*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "<code>sourceAddress</code> and <code>groupAddress</code> must be the same address family."
+    description: "<code>sourceAddress</code>e <code>groupAddress</code> tem de ser a mesma família de endereços."
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>sourceAddress</code> is a null reference (Nothing in Visual Basic).       -or-       <code>groupAddress</code> is a null reference (Nothing in Visual Basic)."
+    description: "<code>sourceAddress</code>é uma referência nulo (Nothing em Visual Basic).       - ou - <code>groupAddress</code> é uma referência nulo (Nothing em Visual Basic)."
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "<code>localPort</code> is less than 0       -or-       <code>localPort</code> is greater than 65,535."
+    description: "<code>localPort</code>é inferior a 0 - ou - <code>localPort</code> é maior que 65535."
   - type: System.Net.Sockets.SocketException
     commentId: T:System.Net.Sockets.SocketException
-    description: "<code>localPort</code> is less than 1024"
+    description: "<code>localPort</code>é inferior a 1024"
   platform:
   - net462
 - uid: System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup(System.AsyncCallback,System.Object)
@@ -89,31 +89,31 @@ items:
   assemblies:
   - System.Net
   namespace: System.Net.Sockets
-  summary: "Binds the socket and begins a join operation to the multicast group to allow datagrams to be received from a single source address."
-  remarks: "The BeginJoinGroup method binds a UDP multicast socket to a local port and joins a multicast group to allow datagrams to be received from a single source address. The multicast group address, single source address, and local port to bind to are specified in the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A> constructor.       The method specified in the `callback` parameter is invoked when the operation to join the multicast group has completed.       If required by the runtime, the  BeginJoinGroup method also performs a policy check to verify that the client is allowed to access the multicast group. If the client is not allowed access, a <xref:System.Net.Sockets.SocketException> is thrown with <xref:System.Net.Sockets.SocketError>."
+  summary: "Vincula o socket e começa a uma operação de associação ao grupo de multicast para permitir que os datagramas ser recebida de um endereço de origem única."
+  remarks: "O método BeginJoinGroup está vinculado a um socket multicast UDP para uma porta local e associa um grupo de multicast para permitir que os datagramas ser recebida de um endereço de origem única. O endereço multicast grupo, o endereço de origem única e a porta local para vincular ao estão especificados no <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>construtor.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>       O método especificado no `callback` parâmetro é invocado quando a conclusão da operação para aderir ao grupo de multicast.       Se for necessário pelo runtime, o método BeginJoinGroup também executa uma verificação de política para verificar que o cliente está autorizado a aceder ao grupo de multicast. Se o cliente não é permitido o acesso, uma <xref:System.Net.Sockets.SocketException>é emitida com <xref:System.Net.Sockets.SocketError>.</xref:System.Net.Sockets.SocketError> </xref:System.Net.Sockets.SocketException>"
   syntax:
     content: public IAsyncResult BeginJoinGroup (AsyncCallback callback, object state);
     parameters:
     - id: callback
       type: System.AsyncCallback
-      description: "A callback method to invoke when the operation completes."
+      description: "Um método de chamada de retorno para invocar quando a operação for concluída."
     - id: state
       type: System.Object
-      description: "Optional state information to pass to the `callback` method for this operation."
+      description: "Informações de estado opcional para passar para o `callback` método para esta operação."
     return:
       type: System.IAsyncResult
-      description: "Returns <xref:System.IAsyncResult>.       An <xref:System.IAsyncResult> that references this operation."
+      description: "Devolve <xref:System.IAsyncResult>.</xref:System.IAsyncResult>       Um <xref:System.IAsyncResult>que referencia esta operação.</xref:System.IAsyncResult>"
   overload: System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The multicast group has already been joined or a join operation is currently in progress."
+    description: "O grupo de multicast já foi associado ou uma operação de associação está atualmente em curso."
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
-    description: "The <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;></xref> has been disposed."
+    description: "O <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;> </xref> foi eliminado."
   - type: System.Net.Sockets.SocketException
     commentId: T:System.Net.Sockets.SocketException
-    description: "An error occurred when attempting to access the socket. See the Remarks section for more information."
+    description: "Ocorreu um erro ao tentar aceder à socket. Consulte a secção observações para obter mais informações."
   platform:
   - net462
 - uid: System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)
@@ -128,46 +128,46 @@ items:
   assemblies:
   - System.Net
   namespace: System.Net.Sockets
-  summary: "Begins the operation of receiving a packet from the joined multicast group and invokes the specified callback when a packet has arrived on the group from a specified sender."
-  remarks: "The BeginReceiveFromSource method begins an operation of receiving a UDP packet from the joined multicast group from a single sender. The local port, multicast group, and sender source address are specified in the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A> constructor. The multicast client must also have completed a join to the multicast group.       The method specified in the `callback` parameter is invoked when a packet has received.       It is possible to have a socket failure if a receive operation fails synchronously, although this is uncommon with UDP. If a socket failure occurs, a <xref:System.Net.Sockets.SocketException> is thrown. The error received is specified as a member of the <xref:System.Net.Sockets.SocketError> enumeration."
+  summary: "Começa a operação de receção de um pacote do associados a um grupo de multicast e invoca a chamada de retorno especificada quando chegou no grupo de um pacote de um remetente especificado."
+  remarks: "O método BeginReceiveFromSource é iniciada uma operação de receção de um pacote UDP do multicast associado a um grupo de um remetente único. A porta local, o grupo de multicast e o endereço do remetente origem estão especificados no <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A>construtor.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A> O cliente de multicast tem também de ter concluído uma associação ao grupo de multicast.       O método especificado no `callback` parâmetro é invocado quando recebeu um pacote.       É possível ter uma falha de socket se uma operação de receção falhar de forma síncrona, apesar de este ser invulgar com UDP. Se ocorrer uma falha de socket, um <xref:System.Net.Sockets.SocketException>é emitida.</xref:System.Net.Sockets.SocketException> Erro recebido é especificado como um membro do <xref:System.Net.Sockets.SocketError>enumeração.</xref:System.Net.Sockets.SocketError>"
   syntax:
     content: public IAsyncResult BeginReceiveFromSource (byte[] buffer, int offset, int count, AsyncCallback callback, object state);
     parameters:
     - id: buffer
       type: System.Byte[]
-      description: "The buffer to store the received data."
+      description: "A memória intermédia para armazenar os dados recebidos."
     - id: offset
       type: System.Int32
-      description: "The offset, in bytes, from the beginning of the `buffer` where the data should be stored."
+      description: "O deslocamento, em bytes, do início do `buffer` onde os dados devem ser armazenados."
     - id: count
       type: System.Int32
-      description: "The maximum number of bytes to receive and store in the `buffer`."
+      description: "O número máximo de bytes para receber e armazenar no `buffer`."
     - id: callback
       type: System.AsyncCallback
-      description: "The callback method to invoke when the operation completes."
+      description: "O método de chamada de retorno para invocar quando concluir a operação."
     - id: state
       type: System.Object
-      description: "Optional state information to pass to the `callback` method for this operation."
+      description: "Informações de estado opcional para passar para o `callback` método para esta operação."
     return:
       type: System.IAsyncResult
-      description: "Returns <xref:System.IAsyncResult>.       An <xref:System.IAsyncResult> that references this operation."
+      description: "Devolve <xref:System.IAsyncResult>.</xref:System.IAsyncResult>       Um <xref:System.IAsyncResult>que referencia esta operação.</xref:System.IAsyncResult>"
   overload: System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>buffer</code> is a null reference (Nothing in Visual Basic)."
+    description: "<code>buffer</code>é uma referência nulo (Nothing em Visual Basic)."
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "<code>offset</code> is less than 0       -or-       <code>offset</code> is greater than the length of the <code>buffer</code>.       -or-       <code>count</code> is less than 0       -or-       <code>offset</code> plus the count is greater than the length of the <code>buffer</code>."
+    description: "<code>offset</code>é inferior a 0 - ou - <code>offset</code> é superior ao comprimento do <code>buffer</code>.       - ou - <code>count</code> é inferior a 0 - ou - <code>offset</code> plus a contagem é superior ao comprimento do <code>buffer</code>."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The multicast group has not yet been joined."
+    description: "O grupo de multicast ainda não foi associado."
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
-    description: "The <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;></xref> has been disposed."
+    description: "O <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;> </xref> foi eliminado."
   - type: System.Net.Sockets.SocketException
     commentId: T:System.Net.Sockets.SocketException
-    description: "An error occurred when attempting to access the socket for receiving. See the Remarks section for more information."
+    description: "Ocorreu um erro ao tentar aceder ao socket de receção. Consulte a secção observações para obter mais informações."
   platform:
   - net462
 - uid: System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource(System.Byte[],System.Int32,System.Int32,System.Int32,System.AsyncCallback,System.Object)
@@ -182,49 +182,49 @@ items:
   assemblies:
   - System.Net
   namespace: System.Net.Sockets
-  summary: "Begins the operation of sending a unicast packet to the source previously specified."
-  remarks: "The BeginSendToSource method begins an operation of sending a UDP packet to the source previously specified.       Some protocols use this information to pass along flow control, quality of service statistics, or recovery messages.       The method specified in the `callback` parameter is invoked when a packet has been sent.       The client must have completed a join to the multicast group.       If the destination port specified in the `remotePort` parameter is less than 1,024, a <xref:System.Net.Sockets.SocketException> is thrown with <xref:System.Net.Sockets.SocketError>.       It is possible to have a socket failure if a send operation fails synchronously, although this is uncommon with UDP. If a socket failure occurs, a <xref:System.Net.Sockets.SocketException> is thrown. The error received is specified as a member of the <xref:System.Net.Sockets.SocketError> enumeration."
+  summary: "Começa a operação de envio de um pacote unicast para a origem especificada anteriormente."
+  remarks: "O método BeginSendToSource é iniciada uma operação de envio de um pacote UDP para a origem especificada anteriormente.       Alguns protocolos utilizam estas informações para transmitir ao longo do controlo de fluxo, qualidade de estatísticas de serviço ou mensagens de recuperação.       O método especificado no `callback` parâmetro é invocado quando existe um pacote foi enviado.       O cliente tem de ter concluído uma associação ao grupo de multicast.       Se a porta de destino especificado no `remotePort` parâmetro é inferior a 1.024, uma <xref:System.Net.Sockets.SocketException>é emitida com <xref:System.Net.Sockets.SocketError>.</xref:System.Net.Sockets.SocketError> </xref:System.Net.Sockets.SocketException>       É possível ter uma falha de socket se uma operação de envio falhar de forma síncrona, apesar de este ser invulgar com UDP. Se ocorrer uma falha de socket, um <xref:System.Net.Sockets.SocketException>é emitida.</xref:System.Net.Sockets.SocketException> Erro recebido é especificado como um membro do <xref:System.Net.Sockets.SocketError>enumeração.</xref:System.Net.Sockets.SocketError>"
   syntax:
     content: public IAsyncResult BeginSendToSource (byte[] buffer, int offset, int count, int remotePort, AsyncCallback callback, object state);
     parameters:
     - id: buffer
       type: System.Byte[]
-      description: "The buffer that contains the data to send."
+      description: "A memória intermédia que contém os dados para enviar."
     - id: offset
       type: System.Int32
-      description: "The offset, in bytes, from the beginning of the `buffer` to read the data to be sent."
+      description: "O deslocamento, em bytes, do início do `buffer` para ler os dados a serem enviados."
     - id: count
       type: System.Int32
-      description: "The number of bytes to send from the `buffer`."
+      description: "O número de bytes para enviar a partir de `buffer`."
     - id: remotePort
       type: System.Int32
-      description: "The remote port to which the packet is to be sent. The remote address is specified by the &lt;xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A&gt; constructor."
+      description: "A porta remota ao qual o pacote está a ser enviados. O endereço remoto é especificado pelo &lt;xref:System.Net.Sockets.UdpSingleSourceMulticastClient.%23ctor%2A&gt; construtor."
     - id: callback
       type: System.AsyncCallback
-      description: "The callback method to invoke when the operation completes."
+      description: "O método de chamada de retorno para invocar quando concluir a operação."
     - id: state
       type: System.Object
-      description: "Optional state information to pass to the `callback` method for this operation."
+      description: "Informações de estado opcional para passar para o `callback` método para esta operação."
     return:
       type: System.IAsyncResult
-      description: "Returns <xref:System.IAsyncResult>.       An <xref:System.IAsyncResult> that references this operation."
+      description: "Devolve <xref:System.IAsyncResult>.</xref:System.IAsyncResult>       Um <xref:System.IAsyncResult>que referencia esta operação.</xref:System.IAsyncResult>"
   overload: System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>buffer</code> is a null reference (Nothing in Visual Basic)."
+    description: "<code>buffer</code>é uma referência nulo (Nothing em Visual Basic)."
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "<code>offset</code> is less than 0       -or-       <code>offset</code> is greater than the length of the <code>buffer</code>.       -or-       <code>count</code> is less than 0       -or-       <code>offset</code> plus the count is greater than the length of the <code>buffer</code>.       -or-       <code>remotePort</code> is less than 0 or greater than 65,535."
+    description: "<code>offset</code>é inferior a 0 - ou - <code>offset</code> é superior ao comprimento do <code>buffer</code>.       - ou - <code>count</code> é inferior a 0 - ou - <code>offset</code> plus a contagem é superior ao comprimento do <code>buffer</code>.       - ou - <code>remotePort</code> é inferior a 0 ou maior que 65535."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The multicast group has not yet been joined."
+    description: "O grupo de multicast ainda não foi associado."
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
-    description: "The <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;></xref> has been disposed."
+    description: "O <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;> </xref> foi eliminado."
   - type: System.Net.Sockets.SocketException
     commentId: T:System.Net.Sockets.SocketException
-    description: "An error occurred when attempting to access the socket. See the Remarks section for more information."
+    description: "Ocorreu um erro ao tentar aceder à socket. Consulte a secção observações para obter mais informações."
   platform:
   - net462
 - uid: System.Net.Sockets.UdpSingleSourceMulticastClient.Dispose
@@ -239,8 +239,8 @@ items:
   assemblies:
   - System.Net
   namespace: System.Net.Sockets
-  summary: "Leaves the multicast group and releases all resources used by the current instance of the <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;></xref> class and the underlying the <xref:System.Net.Sockets.Socket>."
-  remarks: "Call Dispose when you are finished using the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>. The Dispose method leaves the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient> in an unusable state. After calling Dispose, you must release all references to the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient> so the garbage collector can reclaim the memory that the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient> was occupying.       Always call Dispose before you release your last reference to the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>. Otherwise, the resources it is using will not be freed until the garbage collector calls the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient> object&quot;s <xref:System.Object.Finalize%2A> method."
+  summary: "Deixa o grupo de multicast e disponibiliza todos os recursos utilizados pela instância atual do <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;> </xref> classe e <xref:System.Net.Sockets.Socket>.</xref:System.Net.Sockets.Socket> subjacentes"
+  remarks: "É possível chamar Dispose quando tiver terminado de utilizando <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient> O método de Dispose deixa o <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>num Estado não utilizável.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient> Depois de chamar Dispose, tem de libertar todas as referências para o <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>para que o recoletor de lixo pode reclame a memória que a <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>foi occupying.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient> </xref:System.Net.Sockets.UdpSingleSourceMulticastClient>       Chamar sempre Dispose antes de libertar a última referência <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient> Caso contrário, os recursos que está a utilizar não irão ser libertados até que as chamadas de recoletor de lixo a <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>do objeto <xref:System.Object.Finalize%2A>método.</xref:System.Object.Finalize%2A> </xref:System.Net.Sockets.UdpSingleSourceMulticastClient>"
   syntax:
     content: public void Dispose ();
     parameters: []
@@ -260,25 +260,25 @@ items:
   assemblies:
   - System.Net
   namespace: System.Net.Sockets
-  summary: "Completes the asynchronous join group operation to a multicast group."
-  remarks: "The EndJoinGroup method completes an asynchronous bind to a socket and join operation to a multicast group.       If required by the runtime, the  EndJoinGroup method also performs a policy check to verify that the client is allowed to access the multicast group. If the client is not allowed access, a <xref:System.Net.Sockets.SocketException> is thrown with <xref:System.Net.Sockets.SocketError>.       If there is a socket failure while performing the join group operation, a <xref:System.Net.Sockets.SocketException> is thrown. The error received is specified as a member of the <xref:System.Net.Sockets.SocketError> enumeration."
+  summary: "Concluir a operação do grupo de associação assíncrona a um grupo de multicast."
+  remarks: "O método EndJoinGroup conclui um enlace assíncrono para uma operação de socket e aderir a um grupo de multicast.       Se for necessário pelo runtime, o método EndJoinGroup também executa uma verificação de política para verificar que o cliente está autorizado a aceder ao grupo de multicast. Se o cliente não é permitido o acesso, uma <xref:System.Net.Sockets.SocketException>é emitida com <xref:System.Net.Sockets.SocketError>.</xref:System.Net.Sockets.SocketError> </xref:System.Net.Sockets.SocketException>       Se ocorrer uma falha de socket ao efetuar a operação de associação de grupo, um <xref:System.Net.Sockets.SocketException>é emitida.</xref:System.Net.Sockets.SocketException> Erro recebido é especificado como um membro do <xref:System.Net.Sockets.SocketError>enumeração.</xref:System.Net.Sockets.SocketError>"
   syntax:
     content: public void EndJoinGroup (IAsyncResult result);
     parameters:
     - id: result
       type: System.IAsyncResult
-      description: "The result of the asynchronous join operation."
+      description: "O resultado da operação assíncrona de associação."
   overload: System.Net.Sockets.UdpSingleSourceMulticastClient.EndJoinGroup*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>result</code> is a null reference (Nothing in Visual Basic)."
+    description: "<code>result</code>é uma referência nulo (Nothing em Visual Basic)."
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
-    description: "The <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;></xref> has been disposed."
+    description: "O <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;> </xref> foi eliminado."
   - type: System.Net.Sockets.SocketException
     commentId: T:System.Net.Sockets.SocketException
-    description: "An error occurred when attempting to access the socket. See the Remarks section for more information."
+    description: "Ocorreu um erro ao tentar aceder à socket. Consulte a secção observações para obter mais informações."
   platform:
   - net462
 - uid: System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource(System.IAsyncResult,System.Int32@)
@@ -293,34 +293,34 @@ items:
   assemblies:
   - System.Net
   namespace: System.Net.Sockets
-  summary: "Completes the asynchronous operation of receiving a packet from the joined multicast group and provides the information received."
-  remarks: "The EndReceiveFromSource method completes an asynchronous operation to receive a packet from a single source in a multicast group.       If there is a socket failure while performing the receive operation, a <xref:System.Net.Sockets.SocketException> is thrown. The error received is specified as a member of the <xref:System.Net.Sockets.SocketError> enumeration."
+  summary: "Concluir a operação assíncrona de receção de um pacote do associados a um grupo de multicast e fornece as informações que recebeu."
+  remarks: "O método EndReceiveFromSource concluir uma operação assíncrona para receber um pacote de uma única origem de um grupo de multicast.       Se ocorrer uma falha de socket ao efetuar a operação de receção, um <xref:System.Net.Sockets.SocketException>é emitida.</xref:System.Net.Sockets.SocketException> Erro recebido é especificado como um membro do <xref:System.Net.Sockets.SocketError>enumeração.</xref:System.Net.Sockets.SocketError>"
   syntax:
     content: public int EndReceiveFromSource (IAsyncResult result, out int sourcePort);
     parameters:
     - id: result
       type: System.IAsyncResult
-      description: "The result of the asynchronous receive operation."
+      description: "O resultado a assíncronas a operação de receção."
     - id: sourcePort
       type: System.Int32
-      description: "The source endpoint where the packet was received from."
+      description: "O ponto final de origem em que foi recebeu o pacote."
     return:
       type: System.Int32
-      description: "Returns <xref:System.Int32>.       The length, in bytes, of the message stored in the <code>buffer</code> parameter passed to the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource*> method."
+      description: "Devolve <xref:System.Int32>.</xref:System.Int32>       O comprimento, em bytes, da mensagem armazenado no <code> buffer </code> parâmetro transmitido para o <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource*>método.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource*>"
   overload: System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>result</code> is a null reference (Nothing in Visual Basic)."
+    description: "<code>result</code>é uma referência nulo (Nothing em Visual Basic)."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The multicast group has not yet been joined."
+    description: "O grupo de multicast ainda não foi associado."
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
-    description: "The <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;></xref> has been disposed."
+    description: "O <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;> </xref> foi eliminado."
   - type: System.Net.Sockets.SocketException
     commentId: T:System.Net.Sockets.SocketException
-    description: "An error occurred when attempting to access the socket. See the Remarks section for more information."
+    description: "Ocorreu um erro ao tentar aceder à socket. Consulte a secção observações para obter mais informações."
   platform:
   - net462
 - uid: System.Net.Sockets.UdpSingleSourceMulticastClient.EndSendToSource(System.IAsyncResult)
@@ -335,28 +335,28 @@ items:
   assemblies:
   - System.Net
   namespace: System.Net.Sockets
-  summary: "Completes the operation of sending a unicast packet to a single source."
-  remarks: "The EndSendToSource method completes an asynchronous operation to send a packet to single source previously specified.       If there is a socket failure while performing the receive operation, a <xref:System.Net.Sockets.SocketException> is thrown. The error received is specified as a member of the <xref:System.Net.Sockets.SocketError> enumeration."
+  summary: "Concluir a operação de envio de um pacote unicast para uma única origem."
+  remarks: "O método EndSendToSource conclui uma operação assíncrona para enviar um pacote para uma única origem anteriormente especificada.       Se ocorrer uma falha de socket ao efetuar a operação de receção, um <xref:System.Net.Sockets.SocketException>é emitida.</xref:System.Net.Sockets.SocketException> Erro recebido é especificado como um membro do <xref:System.Net.Sockets.SocketError>enumeração.</xref:System.Net.Sockets.SocketError>"
   syntax:
     content: public void EndSendToSource (IAsyncResult result);
     parameters:
     - id: result
       type: System.IAsyncResult
-      description: "The result of the asynchronous send operation."
+      description: "O resultado da operação de envio assíncrono."
   overload: System.Net.Sockets.UdpSingleSourceMulticastClient.EndSendToSource*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>result</code> is a null reference (Nothing in Visual Basic)."
+    description: "<code>result</code>é uma referência nulo (Nothing em Visual Basic)."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The multicast group has not yet been joined."
+    description: "O grupo de multicast ainda não foi associado."
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
-    description: "The <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;></xref> has been disposed."
+    description: "O <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;> </xref> foi eliminado."
   - type: System.Net.Sockets.SocketException
     commentId: T:System.Net.Sockets.SocketException
-    description: "An error occurred when attempting to access the socket. See the Remarks section for more information."
+    description: "Ocorreu um erro ao tentar aceder à socket. Consulte a secção observações para obter mais informações."
   platform:
   - net462
 - uid: System.Net.Sockets.UdpSingleSourceMulticastClient.ReceiveBufferSize
@@ -371,24 +371,24 @@ items:
   assemblies:
   - System.Net
   namespace: System.Net.Sockets
-  summary: "Gets or sets the size, in bytes, of the receive buffer of the <xref:System.Net.Sockets.Socket> used for multicast receive operations on this <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;></xref> instance."
-  remarks: "The `ReceiveBufferSize` property gets or sets the size, in bytes, of the receive buffer of the underlying <xref:System.Net.Sockets.Socket> used for multicast receive operations on this <xref:System.Net.Sockets.UdpSingleSourceMulticastClient> instance. Specifically, the `ReceiveBufferSize` property controls the size of the buffer used by the stack when a packet arrives, but the application has not yet called the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A> method. If this buffer gets filled up and packets keep coming before the application calls the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A> and <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource%2A> methods, old packets will get dropped. The application will never be able to receive the old packets, and will instead receive newer packets when it calls the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A> method.       The default size of the receive buffer on Windows is 8,192."
+  summary: "Obtém ou define o tamanho, em bytes, da memória intermédia de receção do <xref:System.Net.Sockets.Socket>utilizada para operações de receção multicast neste <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;> </xref> instância.</xref:System.Net.Sockets.Socket>"
+  remarks: "O `ReceiveBufferSize` propriedade obtém ou define o tamanho, em bytes, da memória intermédia de receção de subjacentes <xref:System.Net.Sockets.Socket>utilizada para operações de receção multicast neste <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>instância.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient> </xref:System.Net.Sockets.Socket> Especificamente, o `ReceiveBufferSize` propriedade controla o tamanho da memória intermédia utilizada pela pilha de quando é recebido um pacote, mas a aplicação ainda não chamado o <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>método.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A> Se esta memória intermédia obtém preenchida cópias de segurança e pacotes mantém futuras antes das chamadas de aplicação a <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>e <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource%2A>métodos, os pacotes antigos irão obter removidos.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource%2A> </xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A> A aplicação nunca será capaz de receber os pacotes antigos e, em vez disso, irá receber pacotes mais recentes quando chama o <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>método.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource%2A>       O tamanho predefinido de memória intermédia de receção no Windows é 8.192."
   syntax:
     content: public int ReceiveBufferSize { get; set; }
     return:
       type: System.Int32
-      description: "Returns <xref:System.Int32>.       The size, in bytes, of the receive buffer."
+      description: "Devolve <xref:System.Int32>.</xref:System.Int32>       O tamanho, em bytes, da memória intermédia de receção."
   overload: System.Net.Sockets.UdpSingleSourceMulticastClient.ReceiveBufferSize*
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "The buffer size specified is less than 0."
+    description: "O tamanho de memória intermédia especificado é inferior a 0."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The multicast group has not yet been joined."
+    description: "O grupo de multicast ainda não foi associado."
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
-    description: "The <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;></xref> has been disposed."
+    description: "O <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;> </xref> foi eliminado."
   platform:
   - net462
 - uid: System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize
@@ -403,24 +403,24 @@ items:
   assemblies:
   - System.Net
   namespace: System.Net.Sockets
-  summary: "Gets or sets the size, in bytes, of the send buffer of the <xref:System.Net.Sockets.Socket> used for multicast send operations on this <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;></xref> instance."
-  remarks: "The SendBufferSize property gets or sets the size, in bytes, of the send buffer of the underlying <xref:System.Net.Sockets.Socket> used for multicast send operations on this <xref:System.Net.Sockets.UdpSingleSourceMulticastClient> instance.       On Mac OS X, the SendBufferSize property controls how many bytes can be in the network stack&quot;s waiting-to-be-sent buffer before additional calls to the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A> method start failing. Applications on Mac OS X may need to be concerned with this property if they are sending a large number of UDP packets in a short timeframe.       On Windows, calls to the <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A> method will take longer to call the callback depending on the value of the SendBufferSize property if the send buffer is full. The SendBufferSize property only controls whether the user&quot;s buffer stays locked in physical memory until the send completes.       The default size of the send buffer on Windows is 8,192."
+  summary: "Obtém ou define o tamanho, em bytes, da memória intermédia de envio do <xref:System.Net.Sockets.Socket>utilizada para operações de envio multicast neste <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;> </xref> instância.</xref:System.Net.Sockets.Socket>"
+  remarks: "A propriedade SendBufferSize obtém ou define o tamanho, em bytes, da memória intermédia de envio de subjacentes <xref:System.Net.Sockets.Socket>utilizada para operações de envio multicast neste <xref:System.Net.Sockets.UdpSingleSourceMulticastClient>instância.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient> </xref:System.Net.Sockets.Socket>       No Mac OS X, a propriedade SendBufferSize controla o número de bytes podem ser espera-para--enviados da memória intermédia a pilha de rede antes chamadas adicionais para o <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>método começam a falhar.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A> As aplicações no Mac OS X poderão ter de ser preocupado com esta propriedade se de que estão a enviar um grande número de pacotes UDP num curto período de tempo.       No Windows, as chamadas para o <xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A>método irá demorar mais tempo para chamar a chamada de retorno dependendo do valor da propriedade SendBufferSize se a memória intermédia de envio estiver cheia.</xref:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource%2A> A propriedade SendBufferSize controla apenas se da memória intermédia permanece o utilizador bloqueado na memória física até concluir o envio.       O tamanho predefinido da memória intermédia send no Windows é 8.192."
   syntax:
     content: public int SendBufferSize { get; set; }
     return:
       type: System.Int32
-      description: "Returns <xref:System.Int32>.       The size, in bytes, of the send buffer."
+      description: "Devolve <xref:System.Int32>.</xref:System.Int32>       O tamanho, em bytes, da memória intermédia de envio."
   overload: System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize*
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "The buffer size specified is less than 0."
+    description: "O tamanho de memória intermédia especificado é inferior a 0."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The multicast group has not yet been joined."
+    description: "O grupo de multicast ainda não foi associado."
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
-    description: "The <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;></xref> has been disposed."
+    description: "O <xref href=&quot;System.Net.Sockets.UdpSingleSourceMulticastClient&quot;> </xref> foi eliminado."
   platform:
   - net462
 references:
