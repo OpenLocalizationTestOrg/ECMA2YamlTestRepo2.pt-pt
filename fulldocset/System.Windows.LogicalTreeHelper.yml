@@ -15,8 +15,8 @@ items:
   nameWithType: LogicalTreeHelper
   fullName: System.Windows.LogicalTreeHelper
   type: Class
-  summary: "Provides static helper methods for querying objects in the logical tree."
-  remarks: "The LogicalTreeHelper class provides methods that you can use to return child collections of objects, or specific objects from within subnodes of the logical tree. However, most of the object tree operations that you typically perform are also exposed by similar methods or properties on <xref:System.Windows.FrameworkElement> or <xref:System.Windows.FrameworkContentElement>. For example, try the following:      -   Instead of calling the static <xref:System.Windows.LogicalTreeHelper.GetChildren%2A> method, which returns an enumerator for the logical child objects, use the dedicated collection exposed in the content model for that object. Nearly all objects that support a content model expose some property that contains the collection of child objects, and provides collection interface support directly on that collection.      -   Instead of calling the static <xref:System.Windows.LogicalTreeHelper.FindLogicalNode%2A> method to obtain a child object by specifying its name, call the <xref:System.Windows.FrameworkElement.FindName%2A?displayProperty=fullName> or <xref:System.Windows.FrameworkContentElement.FindName%2A?displayProperty=fullName> method on specific objects.       LogicalTreeHelper is most useful for analysis scenarios where you are traveling up or down the logical tree recursively through multiple levels, and want to use a consistent approach for examining the various parent or child objects. In this case, you might be accessing a mixture of content models, and using the more content-model specific APIs would be too complex."
+  summary: "Fornece métodos estáticos ajuda para consultar os objetos na árvore lógica."
+  remarks: "A classe de LogicalTreeHelper fornece métodos que pode utilizar para devolver coleções subordinadas de objetos ou objetos específicos a partir de subnodes da árvore lógica. No entanto, a maioria das operações de árvore de objetos que são geralmente efetuadas também é exposta pelo semelhante métodos ou propriedades ou <xref:System.Windows.FrameworkElement> <xref:System.Windows.FrameworkContentElement>.</xref:System.Windows.FrameworkContentElement> </xref:System.Windows.FrameworkElement> Por exemplo, experimente o seguinte: - em vez de contactar a estática <xref:System.Windows.LogicalTreeHelper.GetChildren%2A>método, que devolve um enumerador para o subordinado lógico objetos, utilizar a coleção dedicada exposta no modelo de conteúdo para esse objeto.</xref:System.Windows.LogicalTreeHelper.GetChildren%2A> Praticamente todos os objetos que suportem um modelo de conteúdo expõem algumas propriedade que contém a coleção de objetos subordinados e fornece suporte de interface de coleção diretamente essa coleção.      -Em vez de chamar a estática <xref:System.Windows.LogicalTreeHelper.FindLogicalNode%2A>método para obter um objeto subordinado especificando o respetivo nome, a chamada de <xref:System.Windows.FrameworkElement.FindName%2A?displayProperty=fullName>ou <xref:System.Windows.FrameworkContentElement.FindName%2A?displayProperty=fullName>método em objetos específicos.</xref:System.Windows.FrameworkContentElement.FindName%2A?displayProperty=fullName> </xref:System.Windows.FrameworkElement.FindName%2A?displayProperty=fullName> </xref:System.Windows.LogicalTreeHelper.FindLogicalNode%2A>       LogicalTreeHelper é mais útil para cenários de análise onde estiverem em deslocação ou reduzir verticalmente o recursivamente árvore lógica através de vários níveis e pretende utilizar uma abordagem consistente para examinar os vários objetos principais ou subordinados. Neste caso, poderá aceder a uma mistura de modelos de conteúdo e utilizando o modelo de conteúdo mais APIs específicas poderia ser demasiado complexas."
   syntax:
     content: public static class LogicalTreeHelper
   inheritance:
@@ -37,14 +37,14 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows
-  summary: "Attempts to bring the requested UI element into view and raises the <xref href=&quot;System.Windows.FrameworkElement.RequestBringIntoView&quot;></xref> event on the target in order to report the results."
-  remarks: "It is typically more convenient to call the instance methods <xref:System.Windows.FrameworkElement.BringIntoView%2A?displayProperty=fullName> or <xref:System.Windows.FrameworkContentElement.BringIntoView%2A?displayProperty=fullName> rather than this static utility method. The behavior of the instance methods is equivalent to the behavior of the static method.       Even if the `current` UI element provided was a <xref:System.Windows.FrameworkContentElement>, the resulting event is still the same <xref:System.Windows.FrameworkElement.RequestBringIntoView?displayProperty=fullName> event, with the originating <xref:System.Windows.FrameworkContentElement> identifiable by checking the event data of the event."
+  summary: "Tenta integrar o elemento de IU pedido na vista e gera o <xref href=&quot;System.Windows.FrameworkElement.RequestBringIntoView&quot;> </xref> eventos no destino para os resultados de relatório."
+  remarks: "É normalmente mais conveniente chamar os métodos de instância <xref:System.Windows.FrameworkElement.BringIntoView%2A?displayProperty=fullName>ou <xref:System.Windows.FrameworkContentElement.BringIntoView%2A?displayProperty=fullName>em vez deste método estático utilitário.</xref:System.Windows.FrameworkContentElement.BringIntoView%2A?displayProperty=fullName> </xref:System.Windows.FrameworkElement.BringIntoView%2A?displayProperty=fullName> O comportamento dos métodos de instância é equivalente ao comportamento do método estático.       Mesmo que o `current` elemento de IU fornecido era um <xref:System.Windows.FrameworkContentElement>, o evento resultante ainda for o mesmo <xref:System.Windows.FrameworkElement.RequestBringIntoView?displayProperty=fullName>eventos, com o tipo de origem <xref:System.Windows.FrameworkContentElement>identificação ao verificar os dados de eventos do evento.</xref:System.Windows.FrameworkContentElement> </xref:System.Windows.FrameworkElement.RequestBringIntoView?displayProperty=fullName> </xref:System.Windows.FrameworkContentElement>"
   syntax:
     content: public static void BringIntoView (System.Windows.DependencyObject current);
     parameters:
     - id: current
       type: System.Windows.DependencyObject
-      description: "The UI element to bring into view."
+      description: "O elemento de IU para assegurar a vista."
   overload: System.Windows.LogicalTreeHelper.BringIntoView*
   exceptions: []
   platform:
@@ -61,20 +61,20 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows
-  summary: "Attempts to find and return an object that has the specified name. The search starts from the specified object and continues into subnodes of the logical tree."
-  remarks: "The methods <xref:System.Windows.FrameworkContentElement.FindName%2A?displayProperty=fullName> and <xref:System.Windows.FrameworkElement.FindName%2A?displayProperty=fullName> are superficially similar to FindLogicalNode, but operate by different logic:      -   The search direction for FindLogicalNode is toward child objects (down the tree); the search direction for the `FindName` methods is towards parent objects (up the tree).      -   The `FindName` methods are governed by the concept of a XAML namescope. Using `FindName` you are guaranteed that only one object of that name exists, because XAML namescopes enforce uniqueness. In contrast, FindLogicalNode ignores XAML namescope and might cross XAML namescope boundaries during the search. As such, there is no guarantee of uniqueness of the `elementName` name once boundaries are crossed. For more information about XAML namescopes, see [WPF XAML Namescopes](~/add/includes/ajax-current-ext-md.md)."
+  summary: "Tenta encontrar e devolver um objeto com o nome especificado. A pesquisa começa a partir do objeto especificado e continua em subnodes da árvore lógica."
+  remarks: "Os métodos <xref:System.Windows.FrameworkContentElement.FindName%2A?displayProperty=fullName>e <xref:System.Windows.FrameworkElement.FindName%2A?displayProperty=fullName>são semelhantes superficially FindLogicalNode, mas operar pela lógica diferentes:-a direção de pesquisa para FindLogicalNode é para objetos subordinados (abaixo na árvore); a direção de pesquisa para o `FindName` métodos é para os objetos principais (cima na árvore).</xref:System.Windows.FrameworkElement.FindName%2A?displayProperty=fullName> </xref:System.Windows.FrameworkContentElement.FindName%2A?displayProperty=fullName>      -O `FindName` métodos são regidos pelo conceito de uma namescope XAML. Utilizar `FindName` são garantido que apenas um objeto com esse nome existe, porque o XAML namescopes impor exclusividade. Em contrapartida, FindLogicalNode ignora XAML namescope e poderá cruzada limites de namescope XAML durante a pesquisa. Como tal, não há nenhuma garantia de exclusividade do `elementName` nome quando são ultrapassados limites. Para mais informações sobre XAML namescopes, consulte [WPF XAML Namescopes](~/add/includes/ajax-current-ext-md.md)."
   syntax:
     content: public static System.Windows.DependencyObject FindLogicalNode (System.Windows.DependencyObject logicalTreeNode, string elementName);
     parameters:
     - id: logicalTreeNode
       type: System.Windows.DependencyObject
-      description: "The object to start searching from. This object must be either a <xref href=&quot;System.Windows.FrameworkElement&quot;></xref> or a <xref href=&quot;System.Windows.FrameworkContentElement&quot;></xref>."
+      description: "O objeto para iniciar a pesquisa do. Este objecto deve ser um <xref href=&quot;System.Windows.FrameworkElement&quot;> </xref> ou um <xref href=&quot;System.Windows.FrameworkContentElement&quot;> </xref>."
     - id: elementName
       type: System.String
-      description: "The name of the object to find."
+      description: "O nome do objeto localizar."
     return:
       type: System.Windows.DependencyObject
-      description: "The object with the matching name, if one is found; returns <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if no matching name was found in the logical tree."
+      description: "O objeto com o nome correspondente, caso encontre algum; Devolve <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> não se foi encontrado nenhum nome correspondente na árvore lógica."
   overload: System.Windows.LogicalTreeHelper.FindLogicalNode*
   exceptions: []
   platform:
@@ -91,17 +91,17 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows
-  summary: "Returns the collection of immediate child objects of the specified object, by processing the logical tree."
-  remarks: "Use this signature and helper method primarily when you are unsure whether `current` is a <xref:System.Windows.FrameworkElement> or <xref:System.Windows.FrameworkContentElement> and are also unsure whether that object&quot;s class supports its own content model collection. If you can determine the type of the object you are querying, check the specific content property that you know exists on that type. For example, if you know that the object you are querying is an <xref:System.Windows.Controls.ItemsControl>, check the <xref:System.Windows.Controls.ItemsControl.Items%2A> property to get a strongly typed collection, which has collection interface support and is probably more useful than an enumerator."
+  summary: "Devolve a coleção de objetos de subordinados imediatos do objeto especificado, ao processar a árvore lógica."
+  remarks: "Utilize este método de assinatura e do programa auxiliar principalmente quando não souber se `current` é um <xref:System.Windows.FrameworkElement>ou <xref:System.Windows.FrameworkContentElement>e são também não souber se de classe esse objeto suporta a sua própria coleção de modelo de conteúdo.</xref:System.Windows.FrameworkContentElement> </xref:System.Windows.FrameworkElement> Se pode determinar o tipo de objeto que estiver a consultar, verifique a propriedade de conteúdo específica que sabe que existe desse tipo. Por exemplo, se souber que o objeto estiver a consultar é um <xref:System.Windows.Controls.ItemsControl>, verifique o <xref:System.Windows.Controls.ItemsControl.Items%2A>propriedade para obter uma coleção com tipo seguro, que tem suporte de interface de coleção e é provavelmente mais útil de um enumerador.</xref:System.Windows.Controls.ItemsControl.Items%2A> </xref:System.Windows.Controls.ItemsControl>"
   syntax:
     content: public static System.Collections.IEnumerable GetChildren (System.Windows.DependencyObject current);
     parameters:
     - id: current
       type: System.Windows.DependencyObject
-      description: "The object from which to start processing the logical tree. This is expected to be either a <xref href=&quot;System.Windows.FrameworkElement&quot;></xref> or <xref href=&quot;System.Windows.FrameworkContentElement&quot;></xref>."
+      description: "O objeto a partir do qual pretende iniciar a árvore lógica de processamento. Espera-se que seja um <xref href=&quot;System.Windows.FrameworkElement&quot;> </xref> ou <xref href=&quot;System.Windows.FrameworkContentElement&quot;> </xref>."
     return:
       type: System.Collections.IEnumerable
-      description: "The enumerable collection of immediate child objects from the logical tree of the specified object."
+      description: "A coleção enumeráveis de objetos de subordinados imediatos da árvore lógica do objeto especificado."
   overload: System.Windows.LogicalTreeHelper.GetChildren*
   exceptions: []
   platform:
@@ -118,16 +118,16 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows
-  summary: "Returns the collection of immediate child objects of the specified <xref href=&quot;System.Windows.FrameworkContentElement&quot;></xref> by processing the logical tree."
+  summary: "Devolve a coleção de objetos subordinados imediatos especificado <xref href=&quot;System.Windows.FrameworkContentElement&quot;> </xref> ao processar a árvore lógica."
   syntax:
     content: public static System.Collections.IEnumerable GetChildren (System.Windows.FrameworkContentElement current);
     parameters:
     - id: current
       type: System.Windows.FrameworkContentElement
-      description: "The object from which to start processing the logical tree."
+      description: "O objeto a partir do qual pretende iniciar a árvore lógica de processamento."
     return:
       type: System.Collections.IEnumerable
-      description: "The enumerable collection of immediate child objects starting from <code>current</code> in the logical tree."
+      description: "A coleção enumeráveis de objetos subordinados imediatos começando <code> current </code> na árvore lógica."
   overload: System.Windows.LogicalTreeHelper.GetChildren*
   exceptions: []
   platform:
@@ -144,16 +144,16 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows
-  summary: "Returns the collection of immediate child objects of the specified <xref href=&quot;System.Windows.FrameworkElement&quot;></xref> by processing the logical tree."
+  summary: "Devolve a coleção de objetos subordinados imediatos especificado <xref href=&quot;System.Windows.FrameworkElement&quot;> </xref> ao processar a árvore lógica."
   syntax:
     content: public static System.Collections.IEnumerable GetChildren (System.Windows.FrameworkElement current);
     parameters:
     - id: current
       type: System.Windows.FrameworkElement
-      description: "The object from which to start processing the logical tree."
+      description: "O objeto a partir do qual pretende iniciar a árvore lógica de processamento."
     return:
       type: System.Collections.IEnumerable
-      description: "The enumerable collection of immediate child objects starting from <code>current</code> in the logical tree."
+      description: "A coleção enumeráveis de objetos subordinados imediatos começando <code> current </code> na árvore lógica."
   overload: System.Windows.LogicalTreeHelper.GetChildren*
   exceptions: []
   platform:
@@ -170,17 +170,17 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows
-  summary: "Returns the parent object of the specified object by processing the logical tree."
-  remarks: "This method is merely a wrapper that gets the appropriate type version (<xref:System.Windows.FrameworkElement> or <xref:System.Windows.FrameworkContentElement>) of the <xref:System.Windows.FrameworkElement.Parent%2A?displayProperty=fullName> or <xref:System.Windows.FrameworkContentElement.Parent%2A?displayProperty=fullName> property; so unless you are unable to determine the `current` type, you might want to check the respective instance properties instead."
+  summary: "Devolve o objeto principal do objeto especificado ao processar a árvore lógica."
+  remarks: "Este método é simplesmente um wrapper que obtém a versão do tipo adequado (<xref:System.Windows.FrameworkElement> ou <xref:System.Windows.FrameworkContentElement>) da <xref:System.Windows.FrameworkElement.Parent%2A?displayProperty=fullName>ou <xref:System.Windows.FrameworkContentElement.Parent%2A?displayProperty=fullName>propriedade; por isso, a menos que não é possível determinar o `current` tipo, poderá querer Verifique as propriedades da respetiva instância em vez disso.</xref:System.Windows.FrameworkContentElement.Parent%2A?displayProperty=fullName> </xref:System.Windows.FrameworkElement.Parent%2A?displayProperty=fullName> </xref:System.Windows.FrameworkContentElement> </xref:System.Windows.FrameworkElement>"
   syntax:
     content: public static System.Windows.DependencyObject GetParent (System.Windows.DependencyObject current);
     parameters:
     - id: current
       type: System.Windows.DependencyObject
-      description: "The object to find the parent object for. This is expected to be either a <xref href=&quot;System.Windows.FrameworkElement&quot;></xref> or a <xref href=&quot;System.Windows.FrameworkContentElement&quot;></xref>."
+      description: "O objeto localizar o objeto principal. Espera-se que seja um <xref href=&quot;System.Windows.FrameworkElement&quot;> </xref> ou um <xref href=&quot;System.Windows.FrameworkContentElement&quot;> </xref>."
     return:
       type: System.Windows.DependencyObject
-      description: "The requested parent object."
+      description: "O objecto do pedido principal."
   overload: System.Windows.LogicalTreeHelper.GetParent*
   exceptions: []
   platform:
