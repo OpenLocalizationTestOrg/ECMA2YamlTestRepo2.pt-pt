@@ -13,8 +13,8 @@ items:
   nameWithType: WebProcessInformation
   fullName: System.Web.Management.WebProcessInformation
   type: Class
-  summary: "Provides information about the worker process that hosts ASP.NET."
-  remarks: "ASP.NET health monitoring allows production and operations staff to manage deployed Web applications. The <xref:System.Web.Management> namespace contains the health-event types responsible for packaging application health-status data, and the provider types responsible for processing this data. It also contains supporting types that help during the management of health events.       Instances of the WebProcessInformation class contain information that is obtained using any of the types derived from the <xref:System.Web.Management.WebManagementEvent> type.       Your application needs the appropriate permissions to access protected information provided by this type.       The following example is an excerpt of the configuration file you could use to enable ASP.NET to log error events that contain process information.      ```   <healthMonitoring      enabled=&quot;true&quot; heartBeatInterval=&quot;0&quot;>          <rules>        <add           name=&quot;All Errors Default&quot;          eventName=&quot;All Errors&quot;          provider=&quot;EventLogProvider&quot;          profile=&quot;Default&quot;          minInterval=&quot;00:01:00&quot; />       </rules>      </healthMonitoring>   ```      > [!NOTE] >  In most cases you will be able to use the ASP.NET health-monitoring types as implemented, and you will control the health-monitoring system by specifying values in the `healthMonitoring` configuration section. You can also derive from the health-monitoring types to create your own custom events and providers. For an example of creating a custom event class, see the Example section."
+  summary: "Fornece informações sobre o processo de trabalho que aloja ASP.NET."
+  remarks: "Monitorização de estado de funcionamento do ASP.NET permite que os funcionários de operações e de produção gerir aplicações implementadas do Web. O <xref:System.Web.Management>espaço de nomes contém os tipos de eventos de estado de funcionamento responsáveis pelo empacotamento dados de estado de funcionamento da aplicação e o fornecedor de tipos responsável por processar estes dados.</xref:System.Web.Management> Também contém tipos de suporte que ajudam a durante a gestão de eventos de estado de funcionamento.       As instâncias da classe WebProcessInformation contêm informações que são obtidas utilizando qualquer um dos tipos derivados de <xref:System.Web.Management.WebManagementEvent>tipo.</xref:System.Web.Management.WebManagementEvent>       A aplicação tem as permissões adequadas para aceder a informações protegidas fornecidas por este tipo.       O exemplo seguinte é um excerpt do ficheiro de configuração, que pode utilizar para ativar o ASP.NET para eventos de erro de registo que contêm informações de processo.      ```   <healthMonitoring      enabled=&quot;true&quot; heartBeatInterval=&quot;0&quot;>          <rules>        <add           name=&quot;All Errors Default&quot;          eventName=&quot;All Errors&quot;          provider=&quot;EventLogProvider&quot;          profile=&quot;Default&quot;          minInterval=&quot;00:01:00&quot; />       </rules>      </healthMonitoring>   ```      > [!NOTE]> Na maioria dos casos poderá utilizar os tipos de monitorização de estado de funcionamento do ASP.NET, conforme implementado e vai controlar o sistema de monitorização de estado de funcionamento, especificando valores de `healthMonitoring` secção de configuração. Também pode derivar de tipos de monitorização de estado de funcionamento para criar os seus próprios fornecedores e eventos personalizados. Para obter um exemplo de criação de uma classe de evento personalizado, consulte a secção de exemplo."
   example:
   - "The following example has two parts. The first is an excerpt of a configuration file that enables ASP.NET to use a custom event that uses the WebProcessInformation type.  \n  \n The second shows how to implement the custom event.  \n  \n Ensure that your custom event is raised at the proper time, that is, when the equivalent system health event it replaces would be raised.  \n  \n```  \n<healthMonitoring   \n  enabled=\"true\" heartBeatInterval=\"0\">  \n  \n    <eventMappings>  \n      <add    \n        name=\"SampleProcessInformation\"   \n        type=\"SamplesAspNet.SampleWebProcessInformation, webprocessinformation, Version=1.0.1585.27289, Culture=neutral, PublicKeyToken=3648e5c763a8239f, processorArchitecture=MSIL\"/>  \n    </eventMappings>  \n  \n    <rules>  \n      <add   \n        name=\"Custom Process Information\"  \n        eventName=\"SampleProcessInformation\"   \n        provider=\"EventLogProvider\"  \n        profile=\"Default\"/>  \n    </rules>  \n  \n</healthMonitoring>  \n  \n```  \n  \n The following example shows how to implement a custom event that uses the WebProcessInformation type.  \n  \n [!code-cs[System.Web.Management.WebProcessInformation#1](~/add/codesnippet/csharp/t-system.web.management._13_1.cs)]\n [!code-vb[System.Web.Management.WebProcessInformation#1](~/add/codesnippet/visualbasic/t-system.web.management._13_1.vb)]"
   syntax:
@@ -37,15 +37,15 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Gets the account name for the worker process."
-  remarks: "Your application needs the appropriate permissions to access the information provided by this property."
+  summary: "Obtém o nome da conta para o processo de trabalho."
+  remarks: "A aplicação tem as permissões adequadas para aceder às informações fornecidas por esta propriedade."
   example:
   - "The following example shows how to obtain the process account name.  \n  \n [!code-cs[System.Web.Management.WebProcessInformation#4](~/add/codesnippet/csharp/p-system.web.management._38_1.cs)]\n [!code-vb[System.Web.Management.WebProcessInformation#4](~/add/codesnippet/visualbasic/p-system.web.management._38_1.vb)]"
   syntax:
     content: public string AccountName { get; }
     return:
       type: System.String
-      description: "The worker process account name."
+      description: "O nome de conta de processo de trabalho."
   overload: System.Web.Management.WebProcessInformation.AccountName*
   exceptions: []
   platform:
@@ -62,8 +62,8 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Formats the application information."
-  remarks: "The FormatToString method provides a uniform format for event information, which is useful if the event data must be logged and later presented to the user. The method is called internally when the provider invokes one of the <xref:System.Web.Management.WebBaseEvent.ToString%2A> methods."
+  summary: "Formata a informação da aplicação."
+  remarks: "O método FormatToString fornece um formato uniform para informações sobre eventos, que é útil se os dados do evento tem de ter sessão iniciados e mais tarde apresentados ao utilizador. O método é denominado internamente quando o fornecedor invoca um do <xref:System.Web.Management.WebBaseEvent.ToString%2A>métodos.</xref:System.Web.Management.WebBaseEvent.ToString%2A>"
   example:
   - "The following example shows how to format custom information.  \n  \n [!code-cs[System.Web.Management.WebProcessInformation#7](~/add/codesnippet/csharp/f15874b7-315f-41fa-b773-_1.cs)]\n [!code-vb[System.Web.Management.WebProcessInformation#7](~/add/codesnippet/visualbasic/f15874b7-315f-41fa-b773-_1.vb)]"
   syntax:
@@ -71,7 +71,7 @@ items:
     parameters:
     - id: formatter
       type: System.Web.Management.WebEventFormatter
-      description: "The <xref href=&quot;System.Web.Management.WebEventFormatter&quot;></xref> that contains the tab and indentation settings used to format the Web health event information."
+      description: "O <xref href=&quot;System.Web.Management.WebEventFormatter&quot;> </xref> que contém as definições de tabulações e avanço utilizadas para formatar as informações de evento de estado de funcionamento do Web."
   overload: System.Web.Management.WebProcessInformation.FormatToString*
   exceptions: []
   platform:
@@ -88,15 +88,15 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Gets the process identifier."
-  remarks: "This is the identifier of the worker process that hosts ASP.NET."
+  summary: "Obtém o identificador de processo."
+  remarks: "Este é o identificador do processo de trabalho que aloja o ASP.NET."
   example:
   - "The following example shows how to obtain the process identifier.  \n  \n [!code-cs[System.Web.Management.WebProcessInformation#5](~/add/codesnippet/csharp/p-system.web.management._19_1.cs)]\n [!code-vb[System.Web.Management.WebProcessInformation#5](~/add/codesnippet/visualbasic/p-system.web.management._19_1.vb)]"
   syntax:
     content: public int ProcessID { get; }
     return:
       type: System.Int32
-      description: "The process identifier."
+      description: "O identificador de processo."
   overload: System.Web.Management.WebProcessInformation.ProcessID*
   exceptions: []
   platform:
@@ -113,15 +113,15 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Gets the name of the process."
-  remarks: "This is the name of the worker process that hosts ASP.NET."
+  summary: "Obtém o nome do processo."
+  remarks: "Este é o nome do processo de trabalho que aloja o ASP.NET."
   example:
   - "The following example shows how to obtain the process name.  \n  \n [!code-cs[System.Web.Management.WebProcessInformation#6](~/add/codesnippet/csharp/p-system.web.management._6_1.cs)]\n [!code-vb[System.Web.Management.WebProcessInformation#6](~/add/codesnippet/visualbasic/p-system.web.management._6_1.vb)]"
   syntax:
     content: public string ProcessName { get; }
     return:
       type: System.String
-      description: "The name of the process."
+      description: "O nome do processo."
   overload: System.Web.Management.WebProcessInformation.ProcessName*
   exceptions: []
   platform:
