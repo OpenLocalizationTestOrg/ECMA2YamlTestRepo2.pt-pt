@@ -15,8 +15,8 @@ items:
   nameWithType: WebRequestInformation
   fullName: System.Web.Management.WebRequestInformation
   type: Class
-  summary: "Provides information about the current Web request."
-  remarks: "ASP.NET health monitoring allows production and operations staff to manage deployed Web applications. The <xref:System.Web.Management> namespace contains the health-event types responsible for packaging application health-status data and the provider types responsible for processing this data. It also contains supporting types that help during the management of health events.       Instances of the WebRequestInformation class contain information that is obtained using the <xref:System.Web.Management.WebRequestEvent>, <xref:System.Web.Management.WebAuditEvent>, <xref:System.Web.Management.WebErrorEvent>, or <xref:System.Web.Management.WebRequestErrorEvent> types.       Your application needs the appropriate permissions to access protected information provided by this type.      > [!NOTE] >  In most cases you will be able to use the ASP.NET health-monitoring types as implemented, and you will control the health-monitoring system by specifying values in the `healthMonitoring` configuration section. You can also derive from the health-monitoring types to create your own custom events and providers. For an example of creating a custom event class, see the example provided in this topic."
+  summary: "Fornece informações sobre o pedido Web atual."
+  remarks: "Monitorização de estado de funcionamento do ASP.NET permite que os funcionários de operações e de produção gerir aplicações implementadas do Web. O <xref:System.Web.Management>espaço de nomes contém os tipos de eventos de estado de funcionamento responsáveis por empacotamento dados de estado de funcionamento da aplicação e os tipos de fornecedor responsáveis por processar estes dados.</xref:System.Web.Management> Também contém tipos de suporte que ajudam a durante a gestão de eventos de estado de funcionamento.       As instâncias da classe WebRequestInformation contêm informações que são obtidas utilizando o <xref:System.Web.Management.WebRequestEvent>, <xref:System.Web.Management.WebAuditEvent>, <xref:System.Web.Management.WebErrorEvent>, ou <xref:System.Web.Management.WebRequestErrorEvent>tipos.</xref:System.Web.Management.WebRequestErrorEvent> </xref:System.Web.Management.WebErrorEvent> </xref:System.Web.Management.WebAuditEvent> </xref:System.Web.Management.WebRequestEvent>       A aplicação tem as permissões adequadas para aceder a informações protegidas fornecidas por este tipo.      > [!NOTE] > Na maioria dos casos poderá utilizar os tipos de monitorização de estado de funcionamento do ASP.NET, conforme implementado e vai controlar o sistema de monitorização de estado de funcionamento, especificando valores de `healthMonitoring` secção de configuração. Também pode derivar de tipos de monitorização de estado de funcionamento para criar os seus próprios fornecedores e eventos personalizados. Para obter um exemplo de criação de uma classe de evento personalizado, consulte o exemplo fornecido neste tópico."
   example:
   - "The following code example shows how to implement a custom event that uses the WebRequestInformation type.  \n  \n Also shown is an excerpt of the configuration file that enables ASP.NET to use this custom event.  \n  \n Ensure that your custom event is raised at the proper time, that is, when the equivalent system health event it replaces would be raised.  \n  \n```  \n<healthMonitoring  \n  heartBeatInterval=\"0\" enabled=\"true\">  \n  \n  <profiles>  \n    <add name=\"Custom\"   \n      minInstances=\"1\"   \n      maxLimit=\"Infinite\"   \n      minInterval=\"00:00:00\" />  \n  </profiles>  \n  \n  <eventMappings>  \n  \n    <add   \n      name=\"SampleWebRequestInformation\"   \n      type=\"SamplesAspNet.SampleWebRequestInformation,webrequestinformation,Version=1.0.1782.28745, Culture=neutral, PublicKeyToken=79955d9b8521c250,processorArchitecture=MSIL\" />  \n  \n  </eventMappings>  \n  \n  <rules>  \n  \n    <add name=\"Custom Web Request Info Event\"   \n      eventName=\"SampleWebRequestInformation\"   \n      provider=\"EventLogProvider\"  \n      profile=\"Custom\" />  \n  \n  </rules>  \n  \n</healthMonitoring>  \n```  \n  \n [!code-cs[System.Web.Management.WebRequestInformation#1](~/add/codesnippet/csharp/t-system.web.management._11_1.cs)]\n [!code-vb[System.Web.Management.WebRequestInformation#1](~/add/codesnippet/visualbasic/t-system.web.management._11_1.vb)]"
   syntax:
@@ -39,8 +39,8 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Formats the Web-request information."
-  remarks: "The FormatToString method provides a uniform format for event information, which is useful if the event data must be logged and later presented to the user. It is called internally when the provider invokes one of the <xref:System.Web.Management.WebBaseEvent.ToString%2A> methods."
+  summary: "Formata as informações de pedido Web."
+  remarks: "O método FormatToString fornece um formato uniform para informações sobre eventos, que é útil se os dados do evento tem de ter sessão iniciados e mais tarde apresentados ao utilizador. É denominado internamente quando o fornecedor invoca um do <xref:System.Web.Management.WebBaseEvent.ToString%2A>métodos.</xref:System.Web.Management.WebBaseEvent.ToString%2A>"
   example:
   - "The following code example shows how to format custom information.  \n  \n [!code-cs[System.Web.Management.WebRequestInformation#9](~/add/codesnippet/csharp/ca29f60b-9b94-4c78-a2ae-_1.cs)]\n [!code-vb[System.Web.Management.WebRequestInformation#9](~/add/codesnippet/visualbasic/ca29f60b-9b94-4c78-a2ae-_1.vb)]"
   syntax:
@@ -48,7 +48,7 @@ items:
     parameters:
     - id: formatter
       type: System.Web.Management.WebEventFormatter
-      description: "The <xref href=&quot;System.Web.Management.WebEventFormatter&quot;></xref> that contains the tab and indentation settings used to format the Web health event information."
+      description: "O <xref href=&quot;System.Web.Management.WebEventFormatter&quot;> </xref> que contém as definições de tabulações e avanço utilizadas para formatar as informações de evento de estado de funcionamento do Web."
   overload: System.Web.Management.WebRequestInformation.FormatToString*
   exceptions: []
   platform:
@@ -65,15 +65,15 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Gets the instance of the managed-code principal associated with the Web request."
-  remarks: "The principal refers to the authenticated entity that issued the Web request."
+  summary: "Obtém a instância do principal de código gerido associado ao pedido Web."
+  remarks: "O principal refere-se à entidade autenticada que emitiu o pedido Web."
   example:
   - "The following code example shows how to use the principal associated with the Web request.  \n  \n [!code-cs[System.Web.Management.WebRequestInformation#8](~/add/codesnippet/csharp/p-system.web.management._39_1.cs)]\n [!code-vb[System.Web.Management.WebRequestInformation#8](~/add/codesnippet/visualbasic/p-system.web.management._39_1.vb)]"
   syntax:
     content: public System.Security.Principal.IPrincipal Principal { get; }
     return:
       type: System.Security.Principal.IPrincipal
-      description: "The <xref:System.Security.Principal.IPrincipal> instance that is associated with the request event."
+      description: "O <xref:System.Security.Principal.IPrincipal>instância que está associada o eventos de pedido.</xref:System.Security.Principal.IPrincipal>"
   overload: System.Web.Management.WebRequestInformation.Principal*
   exceptions: []
   platform:
@@ -90,7 +90,7 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Gets the physical path of the Web request."
+  summary: "Obtém o caminho físico do pedido Web."
   remarks: ''
   example:
   - "The following code example shows how to get the Web-request path.  \n  \n [!code-cs[System.Web.Management.WebRequestInformation#5](~/add/codesnippet/csharp/p-system.web.management._0_1.cs)]\n [!code-vb[System.Web.Management.WebRequestInformation#5](~/add/codesnippet/visualbasic/p-system.web.management._0_1.vb)]"
@@ -98,7 +98,7 @@ items:
     content: public string RequestPath { get; }
     return:
       type: System.String
-      description: "The physical path of the request."
+      description: "O caminho físico do pedido."
   overload: System.Web.Management.WebRequestInformation.RequestPath*
   exceptions: []
   platform:
@@ -115,13 +115,13 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Gets the logical path of the request."
-  remarks: "The following code example shows how to get the Web-request logical path.       [!code-cs[System.Web.Management.WebRequestInformation#6](~/add/codesnippet/csharp/p-system.web.management._10_1.cs)]  [!code-vb[System.Web.Management.WebRequestInformation#6](~/add/codesnippet/visualbasic/p-system.web.management._10_1.vb)]"
+  summary: "Obtém o caminho lógico do pedido."
+  remarks: "Exemplo de código seguinte mostra como obter o caminho lógico pedido Web.       [!code-cs[System.Web.Management.WebRequestInformation#6](~/add/codesnippet/csharp/p-system.web.management._10_1.cs)][!code-vb[System.Web.Management.WebRequestInformation#6  ](~/add/codesnippet/visualbasic/p-system.web.management._10_1.vb)]"
   syntax:
     content: public string RequestUrl { get; }
     return:
       type: System.String
-      description: "The logical path of the request."
+      description: "O caminho lógico do pedido."
   overload: System.Web.Management.WebRequestInformation.RequestUrl*
   exceptions: []
   platform:
@@ -138,13 +138,13 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Gets a string that represents the Windows logon name of the user on whose behalf the code is being run."
-  remarks: "The value of this property is determined by the current <xref:System.Security.Principal.WindowsIdentity> object&quot;s <xref:System.Security.Principal.WindowsIdentity.Name%2A> property."
+  summary: "Obtém uma cadeia que representa o nome de início de sessão do Windows do utilizador em cujo nome está a ser executado o código."
+  remarks: "O valor desta propriedade é determinado pelo atual <xref:System.Security.Principal.WindowsIdentity>do objeto <xref:System.Security.Principal.WindowsIdentity.Name%2A>propriedade.</xref:System.Security.Principal.WindowsIdentity.Name%2A> </xref:System.Security.Principal.WindowsIdentity>"
   syntax:
     content: public string ThreadAccountName { get; }
     return:
       type: System.String
-      description: "The Windows logon name of the user on whose behalf the code is being run."
+      description: "O nome de início de sessão do Windows do utilizador em cujo nome está a ser executado o código."
   overload: System.Web.Management.WebRequestInformation.ThreadAccountName*
   exceptions: []
   platform:
@@ -161,13 +161,13 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Gets the user host address."
-  remarks: "The following code example shows how to get the user host address.       [!code-cs[System.Web.Management.WebRequestInformation#7](~/add/codesnippet/csharp/p-system.web.management._4_1.cs)]  [!code-vb[System.Web.Management.WebRequestInformation#7](~/add/codesnippet/visualbasic/p-system.web.management._4_1.vb)]"
+  summary: "Obtém o endereço de anfitrião do utilizador."
+  remarks: "Exemplo de código seguinte mostra como obter o endereço de anfitrião do utilizador.       [!code-cs[System.Web.Management.WebRequestInformation#7](~/add/codesnippet/csharp/p-system.web.management._4_1.cs)][!code-vb[System.Web.Management.WebRequestInformation#7  ](~/add/codesnippet/visualbasic/p-system.web.management._4_1.vb)]"
   syntax:
     content: public string UserHostAddress { get; }
     return:
       type: System.String
-      description: "The user host address."
+      description: "O endereço do anfitrião do utilizador."
   overload: System.Web.Management.WebRequestInformation.UserHostAddress*
   exceptions: []
   platform:

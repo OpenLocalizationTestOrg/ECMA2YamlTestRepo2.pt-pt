@@ -10,8 +10,8 @@ items:
   nameWithType: IDispatchOperationSelector
   fullName: System.ServiceModel.Dispatcher.IDispatchOperationSelector
   type: Interface
-  summary: "Defines the contract that associates incoming messages with a local operation to customize service execution behavior."
-  remarks: "Implement and insert a custom operation selector to customize the selection of the operation to which an incoming message is dispatched in a service application. Assign the IDispatchOperationSelector object to the <xref:System.ServiceModel.Dispatcher.DispatchRuntime.OperationSelector%2A> property to insert the custom selector."
+  summary: "Define o contrato que associa a receber mensagens uma operação para personalizar o comportamento de execução do serviço local."
+  remarks: "Implementar e inserir um Seletor de operações personalizado para personalizar a seleção da operação para o qual uma mensagem a receber é distribuída numa aplicação de serviço. Atribuir o objeto IDispatchOperationSelector o <xref:System.ServiceModel.Dispatcher.DispatchRuntime.OperationSelector%2A>propriedade para o seletor personalizado de inserção.</xref:System.ServiceModel.Dispatcher.DispatchRuntime.OperationSelector%2A>"
   example:
   - "```c#  \n  \npublic class QueryStringDispatcherBehavior : IDispatchOperationSelector  \n{  \n//Define the mapping from the Actions of the message to the operations.  \nNameValueCollection actionMap; { … }  \n  \n//Implement the SelectOperation method.  \npublic string SelectOperation( ref Message message )  \n        {  \n            Uri uri = new Uri(message.Headers.Action);  \n            string query = uri.Query;  \n  \n            string methodName = actionMap[message.Headers.Action.ToString()];  \n  \n            return methodName;  \n        }  \n}  \n```"
   syntax:
@@ -31,16 +31,16 @@ items:
   assemblies:
   - System.ServiceModel
   namespace: System.ServiceModel.Dispatcher
-  summary: "Associates a local operation with the incoming method."
+  summary: "Associa uma operação do local com o método de entrada."
   syntax:
     content: public string SelectOperation (ref System.ServiceModel.Channels.Message message);
     parameters:
     - id: message
       type: System.ServiceModel.Channels.Message
-      description: "The incoming <xref:System.ServiceModel.Channels.Message> to be associated with an operation."
+      description: "A entrada <xref:System.ServiceModel.Channels.Message>estar associado uma operação.</xref:System.ServiceModel.Channels.Message>"
     return:
       type: System.String
-      description: "The name of the operation to be associated with the <code>message</code>."
+      description: "O nome da operação para ser associado a <code> message </code>."
   overload: System.ServiceModel.Dispatcher.IDispatchOperationSelector.SelectOperation*
   exceptions: []
   platform:
