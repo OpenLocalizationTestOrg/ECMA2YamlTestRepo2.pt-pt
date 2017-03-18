@@ -14,8 +14,8 @@ items:
   nameWithType: WebThreadInformation
   fullName: System.Web.Management.WebThreadInformation
   type: Class
-  summary: "Provides information about the state of a thread in an ASP.NET process."
-  remarks: "ASP.NET health monitoring allows production and operations staff to manage deployed Web applications. The <xref:System.Web.Management> namespace contains the health-event types responsible for packaging application health-status data and the provider types responsible for processing this data. It also contains supporting types that help during the management of health events.       Instances of the WebThreadInformation class contain information that is obtained using either the <xref:System.Web.Management.WebErrorEvent> type or the <xref:System.Web.Management.WebRequestErrorEvent> type.       Your application needs the appropriate permissions to access protected information provided by this type.      > [!NOTE] >  In most cases you will be able to use the ASP.NET health-monitoring types as implemented, and you will control the health-monitoring system by specifying values in the `healthMonitoring` configuration section. You can also derive from the health-monitoring types to create your own custom events and providers. For an example of creating a custom event class, see the example provided in this topic."
+  summary: "Fornece informações sobre o estado de um thread um processo do ASP.NET."
+  remarks: "Monitorização de estado de funcionamento do ASP.NET permite que os funcionários de operações e de produção gerir aplicações implementadas do Web. O <xref:System.Web.Management>espaço de nomes contém os tipos de eventos de estado de funcionamento responsáveis por empacotamento dados de estado de funcionamento da aplicação e os tipos de fornecedor responsáveis por processar estes dados.</xref:System.Web.Management> Também contém tipos de suporte que ajudam a durante a gestão de eventos de estado de funcionamento.       As instâncias da classe WebThreadInformation contêm informações que são obtidas utilizando o <xref:System.Web.Management.WebErrorEvent>tipo ou o <xref:System.Web.Management.WebRequestErrorEvent>tipo.</xref:System.Web.Management.WebRequestErrorEvent> </xref:System.Web.Management.WebErrorEvent>       A aplicação tem as permissões adequadas para aceder a informações protegidas fornecidas por este tipo.      > [!NOTE] > Na maioria dos casos poderá utilizar os tipos de monitorização de estado de funcionamento do ASP.NET, conforme implementado e vai controlar o sistema de monitorização de estado de funcionamento, especificando valores de `healthMonitoring` secção de configuração. Também pode derivar de tipos de monitorização de estado de funcionamento para criar os seus próprios fornecedores e eventos personalizados. Para obter um exemplo de criação de uma classe de evento personalizado, consulte o exemplo fornecido neste tópico."
   example:
   - "The following code example has two parts. The first is an excerpt of a configuration file that enables ASP.NET to use a custom event that uses the WebThreadInformation type. The second shows how to implement the custom event that uses the WebThreadInformation type.  \n  \n Ensure that your custom event is raised at the proper time, that is, when the equivalent system health event it replaces would be raised.  \n  \n```  \n<healthMonitoring  \n    heartBeatInterval=\"0\" enabled=\"true\">  \n  \n  <profiles>  \n    <add name=\"Custom\"   \n      minInstances=\"1\"   \n      maxLimit=\"Infinite\"   \n      minInterval=\"00:00:00\" />  \n  </profiles>  \n  \n  <eventMappings>  \n  \n    <add   \n      name=\"SampleWebThreadInformation\"   \ntype=\"SamplesAspNet.SampleWebThreadInformation,webthreadinformation, Version=1.0.1782.29648, Culture=neutral, PublicKeyToken=b3283a2de7dd3f27, processorArchitecture=MSIL\" />  \n  \n  </eventMappings>  \n  \n  <rules>  \n  \n    <add name=\"Custom Web Thread Info Event\"   \n      eventName=\"SampleWebThreadInformation\"   \n      provider=\"EventLogProvider\"  \n      profile=\"Custom\" />  \n  \n  </rules>  \n  \n</healthMonitoring>  \n```  \n  \n [!code-cs[System.Web.Management.WebThreadInformation#1](~/add/codesnippet/csharp/t-system.web.management._17_1.cs)]\n [!code-vb[System.Web.Management.WebThreadInformation#1](~/add/codesnippet/visualbasic/t-system.web.management._17_1.vb)]"
   syntax:
@@ -38,8 +38,8 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Formats thread-related information."
-  remarks: "The FormatToString method provides a uniform format for event information, which is useful if the event data must be logged and later presented to the user. It is called internally when the provider invokes one of the <xref:System.Web.Management.WebBaseEvent.ToString%2A> methods."
+  summary: "Formata informações relacionadas com o thread."
+  remarks: "O método FormatToString fornece um formato uniform para informações sobre eventos, que é útil se os dados do evento tem de ter sessão iniciados e mais tarde apresentados ao utilizador. É denominado internamente quando o fornecedor invoca um do <xref:System.Web.Management.WebBaseEvent.ToString%2A>métodos.</xref:System.Web.Management.WebBaseEvent.ToString%2A>"
   example:
   - "The following code example shows how to format custom information.  \n  \n [!code-cs[System.Web.Management.WebThreadInformation#8](~/add/codesnippet/csharp/3f4138bf-4e4f-4608-8d65-_1.cs)]\n [!code-vb[System.Web.Management.WebThreadInformation#8](~/add/codesnippet/visualbasic/3f4138bf-4e4f-4608-8d65-_1.vb)]"
   syntax:
@@ -47,7 +47,7 @@ items:
     parameters:
     - id: formatter
       type: System.Web.Management.WebEventFormatter
-      description: "The <xref href=&quot;System.Web.Management.WebEventFormatter&quot;></xref> that contains the tab and indentation settings used to format the Web health event information."
+      description: "O <xref href=&quot;System.Web.Management.WebEventFormatter&quot;> </xref> que contém as definições de tabulações e avanço utilizadas para formatar as informações de evento de estado de funcionamento do Web."
   overload: System.Web.Management.WebThreadInformation.FormatToString*
   exceptions: []
   platform:
@@ -64,7 +64,7 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Gets the current thread-impersonation mode."
+  summary: "Obtém o modo de representação do thread atual."
   remarks: ''
   example:
   - "The following code example shows how to get the thread-impersonation mode.  \n  \n [!code-cs[System.Web.Management.WebThreadInformation#4](~/add/codesnippet/csharp/p-system.web.management._11_1.cs)]\n [!code-vb[System.Web.Management.WebThreadInformation#4](~/add/codesnippet/visualbasic/p-system.web.management._11_1.vb)]"
@@ -72,7 +72,7 @@ items:
     content: public bool IsImpersonating { get; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the thread is executing in impersonation mode; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o thread está a executar no modo de representação; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Web.Management.WebThreadInformation.IsImpersonating*
   exceptions: []
   platform:
@@ -89,7 +89,7 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Gets the current thread-managed stack trace."
+  summary: "Obtém o rastreio de pilha gerido pelo thread atual."
   remarks: ''
   example:
   - "The following code example shows how to get the thread stack trace.  \n  \n [!code-cs[System.Web.Management.WebThreadInformation#5](~/add/codesnippet/csharp/p-system.web.management._22_1.cs)]\n [!code-vb[System.Web.Management.WebThreadInformation#5](~/add/codesnippet/visualbasic/p-system.web.management._22_1.vb)]"
@@ -97,7 +97,7 @@ items:
     content: public string StackTrace { get; }
     return:
       type: System.String
-      description: "The thread-managed stack trace."
+      description: "O rastreio da pilha gerido de thread."
   overload: System.Web.Management.WebThreadInformation.StackTrace*
   exceptions: []
   platform:
@@ -114,15 +114,15 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Gets the thread account name."
-  remarks: "The account returned by this property might be arbitrary if the thread is executing in impersonation mode."
+  summary: "Obtém o nome de conta do thread."
+  remarks: "A conta devolvida por esta propriedade pode ser arbitrária se o thread está a executar no modo de representação."
   example:
   - "The following code example shows how to get the thread account name.  \n  \n [!code-cs[System.Web.Management.WebThreadInformation#6](~/add/codesnippet/csharp/p-system.web.management._9_1.cs)]\n [!code-vb[System.Web.Management.WebThreadInformation#6](~/add/codesnippet/visualbasic/p-system.web.management._9_1.vb)]"
   syntax:
     content: public string ThreadAccountName { get; }
     return:
       type: System.String
-      description: "The thread account name."
+      description: "O nome de conta do thread."
   overload: System.Web.Management.WebThreadInformation.ThreadAccountName*
   exceptions: []
   platform:
@@ -139,15 +139,15 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Gets the current thread identifier."
-  remarks: "Even if managed threads might not have direct mapping to the OS threads, for debugging purposes, it is always useful to isolate a specific thread where problems might exist."
+  summary: "Obtém o identificador de thread atual."
+  remarks: "Mesmo se threads geridos poderão não ter mapeamento direto para os threads de SO, para fins, de depuração sempre é útil para isolar um thread específico, onde poderão existir problemas."
   example:
   - "The following code example shows how to get the thread identifier.  \n  \n [!code-cs[System.Web.Management.WebThreadInformation#7](~/add/codesnippet/csharp/p-system.web.management._54_1.cs)]\n [!code-vb[System.Web.Management.WebThreadInformation#7](~/add/codesnippet/visualbasic/p-system.web.management._54_1.vb)]"
   syntax:
     content: public int ThreadID { get; }
     return:
       type: System.Int32
-      description: "The current thread identifier."
+      description: "O identificador de thread atual."
   overload: System.Web.Management.WebThreadInformation.ThreadID*
   exceptions: []
   platform:

@@ -15,8 +15,8 @@ items:
   nameWithType: MobileCapabilities
   fullName: System.Web.Mobile.MobileCapabilities
   type: Class
-  summary: "Provides a single source for accessing capability information about a client device and for performing queries against device capabilities. For information about how to develop ASP.NET mobile applications, see the [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) Web site."
-  remarks: "The MobileCapabilities class extends the <xref:System.Web.HttpBrowserCapabilities> class. The MobileCapabilities class offers a large number of read-only properties that provide type-safe access to the Browser object&quot;s capabilities dictionary.       You can use the Browser property of the <xref:System.Web.HttpRequest> object to point to an instance of a MobileCapabilities object, which can then be used to read the capabilities of the requesting browser and device."
+  summary: "Fornece uma única origem para aceder a informações de capacidade sobre um dispositivo cliente e para executar consultas contra as capacidades do dispositivo. Para obter informações sobre como desenvolver aplicações móveis do ASP.NET, consulte o [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) do Web site."
+  remarks: "A classe de MobileCapabilities expande a <xref:System.Web.HttpBrowserCapabilities>classe.</xref:System.Web.HttpBrowserCapabilities> A classe de MobileCapabilities oferece um grande número de propriedades só de leitura que fornecem acesso seguro para tipo de dicionário de capacidades do objeto de Browser.       Pode utilizar a propriedade de Browser do <xref:System.Web.HttpRequest>objeto para apontar para uma instância de um objeto de MobileCapabilities, em seguida, pode ser utilizado para ler as capacidades do browser requerente e do dispositivo.</xref:System.Web.HttpRequest>"
   example:
   - "During the page load, the MobileCapabilities object obtains the capabilities through the <xref:System.Web.Configuration.HttpCapabilitiesBase.Browser%2A> property as previously discussed. The <xref:System.Web.Configuration.HttpCapabilitiesBase.PreferredRenderingMime%2A> and the <xref:System.Web.Configuration.HttpCapabilitiesBase.ScreenCharactersWidth%2A> properties of the MobileCapabilities object report back to the browser by setting properties on the <xref:System.Web.HttpResponse> object and also by programmatically setting the `Text` property of certain controls on the page.  \n  \n```c#  \n<%@ Page Inherits=\"System.Web.UI.MobileControls.MobilePage\"   \n    Language=\"c#\" %>  \n<script language=\"c#\" runat=\"server\">  \npublic void Page_Load(Object sender, EventArgs e)  \n{  \n    System.Web.Mobile.MobileCapabilities currentCapabilities;  \n    MobileCapabilities currentCapabilities =   \n        (MobileCapabilities)Request.Browser;  \n    // Programatically find the mobile capabilities without using   \n    // DeviceSpecific Filters.  \n    if(currentCapabilities.PreferredRenderingMIME==\"text/html\")  \n    {  \n        Label2.Text = \"You are using an html supported device.\";  \n    }  \n    else if(currentCapabilities.PreferredRenderingMIME ==   \n        \"text/vnd.wap.wml\")  \n    {  \n        Label2.Text = \"You are using a wml supported device.\";  \n    }  \n    Label1.Text = \"Screen Width (chars): \" +   \n        currentCapabilities.ScreenCharactersWidth;  \n }  \n </script>  \n <Mobile:Form runat=\"server\" id=frmTemplate >  \n      <mobile:label ID=\"Label1\" runat=\"server\" />  \n      <mobile:label ID=\"Label2\" runat=\"server\" />  \n </Mobile:Form>  \n```"
   syntax:
@@ -168,7 +168,7 @@ items:
   assemblies:
   - System.Web.Mobile
   namespace: System.Web.Mobile
-  summary: "Creates an instance of the <xref href=&quot;System.Web.Mobile.MobileCapabilities&quot;></xref> class. This API is obsolete. For information about how to develop ASP.NET mobile applications, see the [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) Web site."
+  summary: "Cria uma instância do <xref href=&quot;System.Web.Mobile.MobileCapabilities&quot;> </xref> classe. Esta API está obsoleta. Para obter informações sobre como desenvolver aplicações móveis do ASP.NET, consulte o [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) do Web site."
   syntax:
     content: public MobileCapabilities ();
     parameters: []
@@ -188,28 +188,28 @@ items:
   assemblies:
   - System.Web.Mobile
   namespace: System.Web.Mobile
-  summary: "Provides a uniform way to evaluate device capabilities. This method is used internally by ASP.NET to implement various device-selection criteria expressed in the syntax of the controls. For example, this method is used to choose among [&lt;Choice&gt; Element (.NET Framework Developer&quot;s Guide)](http://msdn.microsoft.com/en-us/c81bee77-bb45-4211-be0f-e13a040b3c2d) elements in a DeviceSpecific/Choice construct. This API is obsolete. For information about how to develop ASP.NET mobile applications, see the [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) Web site."
-  remarks: "Applications can use the HasCapability method programmatically when they gather device-specific information. If the `capabilityName` parameter specifies a device evaluation method, the `optionalArgument` parameter is passed to this method. If the `capabilityName` parameter specifies a property name or item in the capabilities dictionary, the HasCapability method checks whether the property or item is equal to the `optionalArgument` parameter."
+  summary: "Fornece uma forma uniforme a avaliar as capacidades do dispositivo. Este método é utilizado internamente pelo ASP.NET para implementar vários critérios de seleção de dispositivo expressados na sintaxe dos controlos. Por exemplo, este método é utilizado para escolher entre [ &lt;escolha&gt; elemento (Guia do programador do .NET Framework)](http://msdn.microsoft.com/en-us/c81bee77-bb45-4211-be0f-e13a040b3c2d) construir elementos DeviceSpecific/opção. Esta API está obsoleta. Para obter informações sobre como desenvolver aplicações móveis do ASP.NET, consulte o [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) do Web site."
+  remarks: "As aplicações podem utilizar o método HasCapability programaticamente quando a recolha de informações específicas do dispositivo. Se o `capabilityName` parâmetro especifica um método de avaliação do dispositivo, o `optionalArgument` parâmetro é transmitido a este método. Se o `capabilityName` parâmetro especifica um nome de propriedade ou um item no dicionário de capacidades, o método HasCapability verifica se a propriedade ou o item é igual do `optionalArgument` parâmetro."
   syntax:
     content: public bool HasCapability (string delegateName, string optionalParameter);
     parameters:
     - id: delegateName
       type: System.String
-      description: "The device evaluation method, property name, or item in the capabilities collection."
+      description: "O método de avaliação do dispositivo, o nome de propriedade ou o item na coleção de capacidades."
     - id: optionalParameter
       type: System.String
-      description: "The optional argument."
+      description: "O argumento opcional."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the device has the specified capability; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o dispositivo tem a capacidade especificada; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Web.Mobile.MobileCapabilities.HasCapability*
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "A <code>capabilityName</code> parameter is not found as a device-filter name specified in the configuration file, as a <xref href=&quot;System.Web.Mobile.MobileCapabilities&quot;></xref> property, or as an item in the <xref href=&quot;System.Web.Mobile.MobileCapabilities&quot;></xref> Item collection."
+    description: "A <code> capabilityName </code> parâmetro não for encontrado como um nome de filtro do dispositivo especificado no ficheiro de configuração, como um <xref href=&quot;System.Web.Mobile.MobileCapabilities&quot;> </xref> propriedade, ou como um item no <xref href=&quot;System.Web.Mobile.MobileCapabilities&quot;> </xref> do Item de coleção."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "<code>delegateName</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> or empty."
+    description: "<code>delegateName</code>é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> ou estar vazio."
   platform:
   - net462
 - uid: System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeChtml10
@@ -224,13 +224,13 @@ items:
   assemblies:
   - System.Web.Mobile
   namespace: System.Web.Mobile
-  summary: "Returns the source identifier to use for compact HTML 1.0. This field is read-only. This API is obsolete. For information about how to develop ASP.NET mobile applications, see the [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) Web site."
-  remarks: "Used by an adapter to assign the rendering type for the device."
+  summary: "Devolve o identificador de origem a utilizar para compact HTML 1.0. Este campo é só de leitura. Esta API está obsoleta. Para obter informações sobre como desenvolver aplicações móveis do ASP.NET, consulte o [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) do Web site."
+  remarks: "Utilizado por um adaptador de atribuir o tipo de composição para o dispositivo."
   syntax:
     content: public static readonly string PreferredRenderingTypeChtml10;
     return:
       type: System.String
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -246,13 +246,13 @@ items:
   assemblies:
   - System.Web.Mobile
   namespace: System.Web.Mobile
-  summary: "Returns the source identifier to use for HTML 3.2. This field is read-only. This API is obsolete. For information about how to develop ASP.NET mobile applications, see the [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) Web site."
-  remarks: "Used by the adapter to assign the rendering type for the device."
+  summary: "Devolve o identificador de origem a utilizar para HTML 3.2. Este campo é só de leitura. Esta API está obsoleta. Para obter informações sobre como desenvolver aplicações móveis do ASP.NET, consulte o [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) do Web site."
+  remarks: "Utilizado pelo adaptador de atribuir o tipo de composição para o dispositivo."
   syntax:
     content: public static readonly string PreferredRenderingTypeHtml32;
     return:
       type: System.String
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -268,13 +268,13 @@ items:
   assemblies:
   - System.Web.Mobile
   namespace: System.Web.Mobile
-  summary: "Returns the source identifier to use for WML 1.1. This field is read-only. This API is obsolete. For information about how to develop ASP.NET mobile applications, see the [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) Web site."
-  remarks: "Used by the adapter to assign the rendering type for the device."
+  summary: "Devolve o identificador de origem a utilizar para WML 1.1. Este campo é só de leitura. Esta API está obsoleta. Para obter informações sobre como desenvolver aplicações móveis do ASP.NET, consulte o [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) do Web site."
+  remarks: "Utilizado pelo adaptador de atribuir o tipo de composição para o dispositivo."
   syntax:
     content: public static readonly string PreferredRenderingTypeWml11;
     return:
       type: System.String
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -290,13 +290,13 @@ items:
   assemblies:
   - System.Web.Mobile
   namespace: System.Web.Mobile
-  summary: "Returns the source identifier to use for WML 1.2. This field is read-only. This API is obsolete. For information about how to develop ASP.NET mobile applications, see the [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) Web site."
-  remarks: "Used by the adapter to assign the rendering type for the device."
+  summary: "Devolve o identificador de origem a utilizar para WML 1.2. Este campo é só de leitura. Esta API está obsoleta. Para obter informações sobre como desenvolver aplicações móveis do ASP.NET, consulte o [www.asp.net/mobile](http://go.microsoft.com/fwlink/?LinkID=182900) do Web site."
+  remarks: "Utilizado pelo adaptador de atribuir o tipo de composição para o dispositivo."
   syntax:
     content: public static readonly string PreferredRenderingTypeWml12;
     return:
       type: System.String
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462

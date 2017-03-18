@@ -12,8 +12,8 @@ items:
   nameWithType: WebApplicationLifetimeEvent
   fullName: System.Web.Management.WebApplicationLifetimeEvent
   type: Class
-  summary: "Represents a significant event in the lifetime of an application."
-  remarks: "ASP.NET health monitoring allows production and operations staff to manage deployed Web applications. The <xref:System.Web.Management> namespace contains the health-event types responsible for packaging application health-status data and the provider types responsible for processing this data. It also contains supporting types that help during the management of health events.       Application lifetime events include events such as application startup and shutdown events. If an application is terminated, you can determine why by viewing the related event message field.       When a WebApplicationLifetimeEvent instance occurs, ASP.NET health monitoring updates the Application Lifetime Events performance counter. You can log these events by adding the WebApplicationLifetimeEvent object to the `rules` subsection of the `healthMonitoring` section of the configuration file, as shown in the following example.      ```   <rules>     <add name=&quot;Application Events&quot;       eventName=&quot;Application Lifetime Events&quot;       provider=&quot;EventLogProvider&quot;       profile=&quot;Default&quot;       minInterval=&quot;00:01:00&quot; />   </rules>      ```       The Application Lifetime Events performance counter contains the sum total of all ASP.NET lifetime events. To view this performance counter in System Monitor (PerfMon), in the **Add Counters** window select **ASP.NET** from the **Performance object** drop-down list. Select the **Application Lifetime Events** performance counter, and click the **Add** button. For more information, see &quot;Using the System Monitor (PerfMon) with ASP.NET Applications&quot; on [MSDN](http://go.microsoft.com/fwlink/?linkid=37118). If you allow events to be logged by the standard <xref:System.Web.Management.EventLogWebEventProvider>, you can view them in Event Viewer by selecting the **Application** log. For more information, see [Event Viewer](http://go.microsoft.com/fwlink/?linkid=24845&clcid=0x409) in the Windows Server 2003 documentation on TechNet.      > [!CAUTION] >  Because the WebApplicationLifetimeEvent object is a high-volume event, logging it is resource-intensive and might slow down your system. It can also cause other events to be overwritten in the case of the <xref:System.Web.Management.EventLogWebEventProvider> class due to the high volume of events and the way the event logging works.      > [!NOTE] >  In most cases you will be able to use the ASP.NET health-monitoring types as implemented, and you will control the health-monitoring system by specifying values in the `healthMonitoring` configuration section. You can also derive from the health-monitoring types to create your own custom events and providers. For an example of deriving from the WebApplicationLifetimeEvent class, see the example provided in this topic."
+  summary: "Representa um evento significativo a duração de uma aplicação."
+  remarks: "Monitorização de estado de funcionamento do ASP.NET permite que os funcionários de operações e de produção gerir aplicações implementadas do Web. O <xref:System.Web.Management>espaço de nomes contém os tipos de eventos de estado de funcionamento responsáveis por empacotamento dados de estado de funcionamento da aplicação e os tipos de fornecedor responsáveis por processar estes dados.</xref:System.Web.Management> Também contém tipos de suporte que ajudam a durante a gestão de eventos de estado de funcionamento.       Eventos de duração de aplicações incluem eventos, tais como o arranque de aplicação e eventos de encerramento. Se uma aplicação foi terminada, pode determinar o motivo visualizando o campo de mensagens de eventos relacionados.       Quando ocorre uma instância de WebApplicationLifetimeEvent, a monitorização de estado de funcionamento do ASP.NET atualiza o contador de desempenho de eventos de duração da aplicação. Pode registar estes eventos, adicionando o objeto WebApplicationLifetimeEvent o `rules` subsecção do `healthMonitoring` secção do ficheiro de configuração, conforme mostrado no exemplo seguinte.      ```   <rules>     <add name=&quot;Application Events&quot;       eventName=&quot;Application Lifetime Events&quot;       provider=&quot;EventLogProvider&quot;       profile=&quot;Default&quot;       minInterval=&quot;00:01:00&quot; />   </rules>      ```O contador de desempenho de eventos de duração da aplicação contém o total da soma de todos os eventos de duração do ASP.NET. Para ver este contador de desempenho no Monitor do sistema (PerfMon), no **adicionar contadores** janela selecionar **ASP.NET** do **objeto de desempenho** na lista pendente. Selecione o **eventos da aplicação duração** contador de desempenho e clique em de **adicionar** botão. Para obter mais informações, consulte &quot;Utilizar o Monitor de sistema (PerfMon) com aplicações do ASP.NET&quot; no [MSDN](http://go.microsoft.com/fwlink/?linkid=37118). Se permitir eventos registado por padrão <xref:System.Web.Management.EventLogWebEventProvider>, pode visualizá-los no Visualizador de eventos, selecionando o **aplicação** registo</xref:System.Web.Management.EventLogWebEventProvider> Para obter mais informações, consulte [Visualizador de eventos](http://go.microsoft.com/fwlink/?linkid=24845&clcid=0x409) na documentação do Windows Server 2003, no TechNet.      > [!CAUTION] > Porque o objeto de WebApplicationLifetimeEvent é um evento de volume elevado, registo, é intensivas em recursos e pode atrasar o sistema. Também pode causar outros eventos ser substituídas na case do <xref:System.Web.Management.EventLogWebEventProvider>classe devido a um volume elevado de eventos e a forma como o registo funciona de eventos.</xref:System.Web.Management.EventLogWebEventProvider>      > [!NOTE] > Na maioria dos casos poderá utilizar os tipos de monitorização de estado de funcionamento do ASP.NET, conforme implementado e vai controlar o sistema de monitorização de estado de funcionamento, especificando valores de `healthMonitoring` secção de configuração. Também pode derivar de tipos de monitorização de estado de funcionamento para criar os seus próprios fornecedores e eventos personalizados. Para obter um exemplo de derivar da classe de WebApplicationLifetimeEvent, consulte o exemplo fornecido neste tópico."
   example:
   - "The following code example shows how to derive from the WebApplicationLifetimeEvent class to create a custom event.  \n  \n [!code-vb[System.Web.Management.WebApplicationLifetimeEvent#1](~/add/codesnippet/visualbasic/t-system.web.management._24_1.vb)]\n [!code-cs[System.Web.Management.WebApplicationLifetimeEvent#1](~/add/codesnippet/csharp/t-system.web.management._24_1.cs)]  \n  \n The following configuration-file excerpt shows how to configure the `healthMonitoring` section of a configuration file to add the `SampleWebApplicationLifetimeEvent` code defined above to the ASP.NET health-monitoring system. To add the event to the system, you must define the event by adding a new entry to the `eventMappings` section and map the event to a provider by adding a new entry to the `rules` section.  \n  \n```  \n<healthMonitoring  \n  enabled=\"true\"  \n  heartBeatInterval=\"0\">  \n  \n    <eventMappings>  \n       <clear />  \n       <!-- Configure the application lifetime event -->  \n       <!-- object to handle the Web application events. -->  \n       <add name=\"SampleApplicationLifetimeEvents\"  \n         type=\"System.Web.Management.SampleWebApplicationLifetimeEvent,  \n         System.Web,Version=2.0.3600.0,  \n         Culture=neutral,PublicKeyToken=b03f5f7f11d50a3a\" />  \n     </eventMappings>  \n  \n    <rules>  \n      <clear/>  \n       // Configure the connection between the   \n       // application lifetime event object   \n       // and the provider that must process it.  \n       <add name=\"Custom Application Events\"  \n         eventName=\"SampleApplicationLifetimeEvents\"  \n         provider=\"EventLogProvider\"  \n         profile=\"Default\"  \n         minInterval=\"00:01:00\" />  \n    </rules>  \n  \n</healthMonitoring>  \n```"
   syntax:
@@ -54,8 +54,8 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Initializes the <xref href=&quot;System.Web.Management.WebApplicationLifetimeEvent&quot;></xref> class using the supplied parameters."
-  remarks: "This constructor is used internally by the ASP.NET health-monitoring system. You will never use it to create an instance of the <xref:System.Web.Management.WebApplicationLifetimeEvent> class, but you can call this constructor when implementing your own event type that inherits from this class.      > [!NOTE] >  The WebApplicationLifetimeEvent constructor is not intended to be used directly from your code. It is called by ASP.NET. You can call the WebApplicationLifetimeEvent constructor when deriving from the <xref:System.Web.Management.WebApplicationLifetimeEvent> class."
+  summary: "Inicializa a <xref href=&quot;System.Web.Management.WebApplicationLifetimeEvent&quot;> </xref> classe utilizando os parâmetros fornecidos."
+  remarks: "Este construtor é utilizado internamente pelo sistema de monitorização de estado de funcionamento ASP.NET. Nunca irá utilizá-la para criar uma instância de <xref:System.Web.Management.WebApplicationLifetimeEvent>classe, mas pode chamar este construtor quando implementar o seu próprio tipo de evento que herda esta classe.</xref:System.Web.Management.WebApplicationLifetimeEvent>      > [!NOTE] > WebApplicationLifetimeEvent o construtor não se destina a ser utilizado diretamente a partir do seu código. É denominado pelo ASP.NET. Pode invocar o construtor de WebApplicationLifetimeEvent quando efetuar a derivação da <xref:System.Web.Management.WebApplicationLifetimeEvent>classe.</xref:System.Web.Management.WebApplicationLifetimeEvent>"
   example:
   - "The following code example shows how to use the WebApplicationLifetimeEvent in an ASP.NET custom health event. This code example is mainly intended to show the correct syntax to use.  \n  \n [!code-vb[System.Web.Management.WebApplicationLifetimeEvent#2](~/add/codesnippet/visualbasic/f6897152-ffc5-4ce1-a4ea-_1.vb)]\n [!code-cs[System.Web.Management.WebApplicationLifetimeEvent#2](~/add/codesnippet/csharp/f6897152-ffc5-4ce1-a4ea-_1.cs)]"
   syntax:
@@ -63,13 +63,13 @@ items:
     parameters:
     - id: message
       type: System.String
-      description: "The message associated with the event."
+      description: "A mensagem associada ao evento."
     - id: eventSource
       type: System.Object
-      description: "The object that is the source of the event."
+      description: "O objeto que é a origem do evento."
     - id: eventCode
       type: System.Int32
-      description: "The code associated with the event. When you implement a custom event, the event code must be greater than <xref href=&quot;System.Web.Management.WebEventCodes.WebExtendedBase&quot;></xref>."
+      description: "O código associado ao evento. Quando implementar um evento personalizado, o código de evento tem de ser maior que <xref href=&quot;System.Web.Management.WebEventCodes.WebExtendedBase&quot;> </xref>."
   overload: System.Web.Management.WebApplicationLifetimeEvent.#ctor*
   exceptions: []
   platform:
@@ -86,8 +86,8 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Initializes the <xref href=&quot;System.Web.Management.WebApplicationLifetimeEvent&quot;></xref> class using the supplied parameters."
-  remarks: "This constructor is used internally by the ASP.NET health-monitoring system. You will never use it to create an instance of the <xref:System.Web.Management.WebApplicationLifetimeEvent> class, but you can call this constructor when implementing your own event type that inherits from this class.      > [!NOTE] >  The WebApplicationLifetimeEvent constructor is not intended to be used directly from your code. It is called by ASP.NET. You can call the WebApplicationLifetimeEvent constructor when deriving from the <xref:System.Web.Management.WebApplicationLifetimeEvent> class."
+  summary: "Inicializa a <xref href=&quot;System.Web.Management.WebApplicationLifetimeEvent&quot;> </xref> classe utilizando os parâmetros fornecidos."
+  remarks: "Este construtor é utilizado internamente pelo sistema de monitorização de estado de funcionamento ASP.NET. Nunca irá utilizá-la para criar uma instância de <xref:System.Web.Management.WebApplicationLifetimeEvent>classe, mas pode chamar este construtor quando implementar o seu próprio tipo de evento que herda esta classe.</xref:System.Web.Management.WebApplicationLifetimeEvent>      > [!NOTE] > WebApplicationLifetimeEvent o construtor não se destina a ser utilizado diretamente a partir do seu código. É denominado pelo ASP.NET. Pode invocar o construtor de WebApplicationLifetimeEvent quando efetuar a derivação da <xref:System.Web.Management.WebApplicationLifetimeEvent>classe.</xref:System.Web.Management.WebApplicationLifetimeEvent>"
   example:
   - "The following code example shows how to use the WebApplicationLifetimeEvent in an ASP.NET custom health event. This code example is mainly intended to show the correct syntax to use.  \n  \n [!code-vb[System.Web.Management.WebApplicationLifetimeEvent#3](~/add/codesnippet/visualbasic/d658829b-c5f1-4bb1-9080-_1.vb)]\n [!code-cs[System.Web.Management.WebApplicationLifetimeEvent#3](~/add/codesnippet/csharp/d658829b-c5f1-4bb1-9080-_1.cs)]"
   syntax:
@@ -95,16 +95,16 @@ items:
     parameters:
     - id: message
       type: System.String
-      description: "The message associated with the event."
+      description: "A mensagem associada ao evento."
     - id: eventSource
       type: System.Object
-      description: "The object that is the source of the event."
+      description: "O objeto que é a origem do evento."
     - id: eventCode
       type: System.Int32
-      description: "The code associated with the event. When you implement a custom event, the event code must be greater than <xref href=&quot;System.Web.Management.WebEventCodes.WebExtendedBase&quot;></xref>."
+      description: "O código associado ao evento. Quando implementar um evento personalizado, o código de evento tem de ser maior que <xref href=&quot;System.Web.Management.WebEventCodes.WebExtendedBase&quot;> </xref>."
     - id: eventDetailCode
       type: System.Int32
-      description: "The <xref href=&quot;System.Web.Management.WebEventCodes&quot;></xref> value that specifies the detailed identifier for the event."
+      description: "O <xref href=&quot;System.Web.Management.WebEventCodes&quot;> </xref> valor que especifica o identificador de detalhado para o evento."
   overload: System.Web.Management.WebApplicationLifetimeEvent.#ctor*
   exceptions: []
   platform:
@@ -121,7 +121,7 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Management
-  summary: "Used internally to increment performance counters."
+  summary: "Utilizada internamente para aumentar os contadores de desempenho."
   syntax:
     content: protected override void IncrementPerfCounters ();
     parameters: []

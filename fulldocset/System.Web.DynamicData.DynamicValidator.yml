@@ -17,8 +17,8 @@ items:
   nameWithType: DynamicValidator
   fullName: System.Web.DynamicData.DynamicValidator
   type: Class
-  summary: "Enforces and catches exceptions that are thrown in a data model and displays the error."
-  remarks: "The DynamicValidator control can be used with data fields or data entities. It catches exceptions that are thrown in LINQ-to-SQL classes or entity in extensibility methods in the data model. The DynamicValidator control is associated with the controls that accept user input. For example, a DynamicValidator control that is associated with a text box that accepts user input for a UnitsInStock field in a Products table catches and displays the exception that is thrown if the input is greater or less than the allowable units in the data model.       By default, ASP.NET Dynamic Data does not display all exceptions from the data model in the page, because some database exceptions might contain confidential information. Dynamic Data displays <xref:System.Web.DynamicData.DynamicValidator.ValidationException%2A> values only. If you want your application to display other exceptions, you can create a DynamicValidator control, provide the exceptions that you want to display, and attach the exceptions to the DynamicValidator control. The exceptions that are thrown in the data model will be displayed in all pages in the application."
+  summary: "Impõe e intercete exceções forem emitidas no modelo de dados e é apresentado o erro."
+  remarks: "O controlo de DynamicValidator pode ser utilizado com campos de dados ou entidades de dados. Que intercete exceções forem emitidas no classes LINQ para SQL Server ou uma entidade em métodos de extensibilidade no modelo de dados. O controlo de DynamicValidator está associado com os controlos que aceitam intervenção do utilizador. Por exemplo, um controlo de DynamicValidator que está associado uma caixa de texto que aceita entrada de utilizador de um campo UnitsInStock numa tabela produtos intercete e apresenta a exceção é emitida se a entrada é maior ou menor do que as unidades permitidas no modelo de dados.       Por predefinição, dados dinâmicos do ASP.NET não apresenta todas as exceções do modelo de dados na página, porque algumas exceções de base de dados poderão conter informações confidenciais. Apresenta dados dinâmicos <xref:System.Web.DynamicData.DynamicValidator.ValidationException%2A>apenas valores.</xref:System.Web.DynamicData.DynamicValidator.ValidationException%2A> Se pretender que a aplicação para apresentar as outras exceções, pode criar um controlo DynamicValidator, forneça as exceções que pretende apresentar e anexar as exceções para o controlo de DynamicValidator. As exceções forem emitidas no modelo de dados serão apresentadas em todas as páginas da aplicação."
   example:
   - "The following example shows how to create a DynamicValidator control class that displays other exceptions in all pages.  \n  \n [Visual Basic]  \n  \n```  \n''' <summary>   \n''' Display other exceptions in all pages.   \n''' </summary>   \nPublic Class MyDynamicValidator   \n    Inherits DynamicValidator   \n  \n    Protected Overloads Overrides Sub ValidateException(ByVal exception As Exception)   \n        ' If it's not an exception that DynamicValidator displays find   \n        ' the innermost exception.   \n        If Not (TypeOf exception Is IDynamicValidatorException) AndAlso _  \n                Not (TypeOf exception Is ValidationException) Then   \n            While exception.InnerException IsNot Nothing   \n                exception = exception.InnerException   \n            End While   \n  \n            ' Wrap it in a ValidationException so that the base code   \n            ' does not ignore it.   \n            If ExceptionShouldBeDisplayedInPage(exception) Then   \n                exception = New ValidationException(Nothing, exception)   \n            End If   \n        End If   \n  \n        ' Call the base class for the exception that is modified.  \n        MyBase.ValidateException(exception)   \n    End Sub   \n  \n    Private Function ExceptionShouldBeDisplayedInPage(ByVal e As Exception) _  \n            As Boolean   \n        ' Add code to find the exception and   \n        ' decide whether it should be shown in the page.  \n  \n        Return True   \n    End Function   \nEnd Class  \n```  \n  \n [C#]  \n  \n```  \n/// <summary>  \n/// Display other exceptions in all pages.   \n/// </summary>  \npublic class MyDynamicValidator : DynamicValidator {  \n  \n    protected override void ValidateException(Exception exception) {  \n        // If it's not an exception that DynamicValidator displays find   \n        // the innermost exception.  \n        if (!(exception is IDynamicValidatorException) && !(exception   \n              is ValidationException)) {  \n            while (exception.InnerException != null) {  \n                exception = exception.InnerException;  \n            }  \n  \n            // Wrap it in a ValidationException so that the base code   \n            // does not ignore it.  \n            if (ExceptionShouldBeDisplayedInPage(exception)) {  \n                exception = new ValidationException(null, exception);  \n            }  \n        }  \n  \n        // Call the base class on the exception that is modified.  \n        base.ValidateException(exception);  \n    }  \n  \n    private bool ExceptionShouldBeDisplayedInPage(Exception e) {  \n        // Add your code to find the exception and  \n        // decides whether it should be shown in the page.  \n  \n           return true;  \n    }  \n}  \n```  \n  \n The following example shows how to use tag remapping in the web.config file to display the exception in all the Web pages.  \n  \n```  \n<pages>  \n  <tagMapping>  \n    <add tagType=\"System.Web.DynamicData.DynamicValidator\"   \n        mappedTagType=\"MyDynamicValidator\"/>  \n  </tagMapping>  \n</pages>  \n```"
   syntax:
@@ -209,7 +209,7 @@ items:
   assemblies:
   - System.Web.DynamicData
   namespace: System.Web.DynamicData
-  summary: "Initializes a new instance of the <xref href=&quot;System.Web.DynamicData.DynamicValidator&quot;></xref> class."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Web.DynamicData.DynamicValidator&quot;> </xref> classe."
   syntax:
     content: public DynamicValidator ();
     parameters: []
@@ -229,12 +229,12 @@ items:
   assemblies:
   - System.Web.DynamicData
   namespace: System.Web.DynamicData
-  summary: "Gets or sets the column to validate."
+  summary: "Obtém ou define a coluna para validar."
   syntax:
     content: public System.Web.DynamicData.MetaColumn Column { get; set; }
     return:
       type: System.Web.DynamicData.MetaColumn
-      description: "The column to validate, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if a data entity is validated."
+      description: "A coluna para validar, ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se a uma entidade de dados é validada."
   overload: System.Web.DynamicData.DynamicValidator.Column*
   exceptions: []
   platform:
@@ -251,12 +251,12 @@ items:
   assemblies:
   - System.Web.DynamicData
   namespace: System.Web.DynamicData
-  summary: "Gets the name of the column to validate."
+  summary: "Obtém o nome da coluna a validar."
   syntax:
     content: public string ColumnName { get; }
     return:
       type: System.String
-      description: "The name of the column to validate, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if a data entity is validated."
+      description: "O nome da coluna para validar, ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se a uma entidade de dados é validada."
   overload: System.Web.DynamicData.DynamicValidator.ColumnName*
   exceptions: []
   platform:
@@ -273,14 +273,14 @@ items:
   assemblies:
   - System.Web.DynamicData
   namespace: System.Web.DynamicData
-  summary: "Indicates whether the properties of the specified <xref href=&quot;System.Web.DynamicData.DynamicValidator&quot;></xref> control are valid."
-  remarks: "This method is overridden from the base class. The call to the base class fails if the control you try to validate does not have a validation property. For example if the control is a <xref:System.Web.UI.WebControls.GridView>, the base class will fail."
+  summary: "Indica se as propriedades de especificado <xref href=&quot;System.Web.DynamicData.DynamicValidator&quot;> </xref> controlo são válidos."
+  remarks: "Este método é substituído da classe base. A chamada para a classe base falha se tentar validar o controlo não tem uma propriedade de validação. Por exemplo, se o controlo é um <xref:System.Web.UI.WebControls.GridView>, a classe base irá falhar.</xref:System.Web.UI.WebControls.GridView>"
   syntax:
     content: protected override bool ControlPropertiesValid ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>, if the properties of the specified validation control are valid; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>, se as propriedades do controlo de validação especificada são válidas. caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Web.DynamicData.DynamicValidator.ControlPropertiesValid*
   exceptions: []
   platform:
@@ -297,13 +297,13 @@ items:
   assemblies:
   - System.Web.DynamicData
   namespace: System.Web.DynamicData
-  summary: "Determines whether the value in the input control to validate is valid."
+  summary: "Determina se o valor no controlo de entrada para validar é válido."
   syntax:
     content: protected override bool EvaluateIsValid ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the validation control that is evaluated is valid; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o controlo de validação que é avaliado é válido. caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Web.DynamicData.DynamicValidator.EvaluateIsValid*
   exceptions: []
   platform:
@@ -320,13 +320,13 @@ items:
   assemblies:
   - System.Web.DynamicData
   namespace: System.Web.DynamicData
-  summary: "Raises the <xref uid=&quot;langword_csharp_Init&quot; name=&quot;Init&quot; href=&quot;&quot;></xref> event to initialize the <xref href=&quot;System.Web.DynamicData.DynamicValidator&quot;></xref> control."
+  summary: "Gera o <xref uid=&quot;langword_csharp_Init&quot; name=&quot;Init&quot; href=&quot;&quot;> </xref> eventos ao inicializar o <xref href=&quot;System.Web.DynamicData.DynamicValidator&quot;> </xref> controlo."
   syntax:
     content: protected override void OnInit (EventArgs e);
     parameters:
     - id: e
       type: System.EventArgs
-      description: "The event data."
+      description: "Os dados de eventos."
   overload: System.Web.DynamicData.DynamicValidator.OnInit*
   exceptions: []
   platform:
@@ -343,14 +343,14 @@ items:
   assemblies:
   - System.Web.DynamicData
   namespace: System.Web.DynamicData
-  summary: "Sets up a validation exception if an exception occurs in the data model."
-  remarks: "This method is called when an exception is thrown. A column-specific validator fails when a validation exception contains an associated inner exception, but a global validator fail when a non-validation exception occurs.      > [!NOTE] >  Only use this method if the exception is a <xref:System.Web.DynamicData.DynamicValidator.ValidationException%2A>. If the exception is caused by a database error, using this method can display a sensitive database error"
+  summary: "Configura uma exceção de validação, se ocorrer uma excepção no modelo de dados."
+  remarks: "Este método é denominado quando é emitida uma exceção. Falha de uma validação específicos de coluna quando uma exceção de validação contém uma exceção interna associada, mas a validação do global falhar quando ocorre uma exceção de não validação.      > [!NOTE] > Só utilize este método se a exceção é <xref:System.Web.DynamicData.DynamicValidator.ValidationException%2A>.</xref:System.Web.DynamicData.DynamicValidator.ValidationException%2A> Se a exceção é causada por um erro de base de dados, ao utilizar este método pode apresentar um erro de base de dados confidenciais"
   syntax:
     content: protected virtual void ValidateException (Exception exception);
     parameters:
     - id: exception
       type: System.Exception
-      description: "The exception that is thrown."
+      description: "A exceção é emitida."
   overload: System.Web.DynamicData.DynamicValidator.ValidateException*
   exceptions: []
   platform:
@@ -367,13 +367,13 @@ items:
   assemblies:
   - System.Web.DynamicData
   namespace: System.Web.DynamicData
-  summary: "Gets or sets validation exception that occurs during validation."
-  remarks: "This property represents the validation exception that is thrown if an error occurs when a value is edited or when a new value is inserted into the data model."
+  summary: "Obtém ou define a exceção de validação que ocorre durante a validação."
+  remarks: "Esta propriedade representa a exceção de validação que é acionada se ocorrer um erro quando um valor é editado ou quando um novo valor é inserido no modelo de dados."
   syntax:
     content: protected virtual Exception ValidationException { get; set; }
     return:
       type: System.Exception
-      description: "The validation exception that is thrown."
+      description: "A exceção de validação que é acionada."
   overload: System.Web.DynamicData.DynamicValidator.ValidationException*
   exceptions: []
   platform:
