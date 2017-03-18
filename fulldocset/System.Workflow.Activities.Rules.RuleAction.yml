@@ -14,8 +14,8 @@ items:
   nameWithType: RuleAction
   fullName: System.Workflow.Activities.Rules.RuleAction
   type: Class
-  summary: "Represents an abstract class that defines an action to be executed if the associated <xref:System.Workflow.Activities.Rules.Rule.Condition*> evaluates to <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>, for <xref:System.Workflow.Activities.Rules.Rule.ThenActions*>, or <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>, for <xref:System.Workflow.Activities.Rules.Rule.ElseActions*>. This class must be inherited."
-  remarks: "<xref:System.Workflow.Activities.Rules.RuleStatementAction> objects (which can be used as both <xref:System.Workflow.Activities.Rules.Rule.ThenActions%2A> and <xref:System.Workflow.Activities.Rules.Rule.ElseActions%2A>) typically set a variable value on one of the properties of the activity, call a method of the activity, or call static methods on types in referenced assemblies.       RuleAction is the base type that <xref:System.Workflow.Activities.Rules.RuleStatementAction>, <xref:System.Workflow.Activities.Rules.RuleHaltAction>, and <xref:System.Workflow.Activities.Rules.RuleUpdateAction> classes derive from. The uses of these classes is as follows:      -   A <xref:System.Workflow.Activities.Rules.RuleStatementAction> modifies a property or calls a method.      -   A <xref:System.Workflow.Activities.Rules.RuleHaltAction> causes the <xref:System.Workflow.Activities.Rules.RuleSet> to stop executing and returns control to the calling method.      -   A <xref:System.Workflow.Activities.Rules.RuleUpdateAction> explicitly indicates that a rule is updating a variable. This causes the re-evaluation of any affected rules."
+  summary: "Representa uma classe abstracta que define uma ação para ser executada se associada <> </> *> avalia como <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;> </xref>, para <> </> *>, ou <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>, para <xref:System.Workflow.Activities.Rules.Rule.ElseActions*>.</xref:System.Workflow.Activities.Rules.Rule.ElseActions*> Esta classe tem de ser herdada."
+  remarks: "<xref:System.Workflow.Activities.Rules.RuleStatementAction>objetos (que podem ser utilizados como ambos <xref:System.Workflow.Activities.Rules.Rule.ThenActions%2A>e <xref:System.Workflow.Activities.Rules.Rule.ElseActions%2A>), normalmente, defina um valor de variável numa das propriedades da atividade, chamar um método da atividade ou chamar os métodos estáticos em tipos em assemblagens referenciadas.</xref:System.Workflow.Activities.Rules.Rule.ElseActions%2A> </xref:System.Workflow.Activities.Rules.Rule.ThenActions%2A></xref:System.Workflow.Activities.Rules.RuleStatementAction>       RuleAction é o tipo base que <xref:System.Workflow.Activities.Rules.RuleStatementAction>, <xref:System.Workflow.Activities.Rules.RuleHaltAction>, e <xref:System.Workflow.Activities.Rules.RuleUpdateAction>classes derivam.</xref:System.Workflow.Activities.Rules.RuleUpdateAction> </xref:System.Workflow.Activities.Rules.RuleHaltAction> </xref:System.Workflow.Activities.Rules.RuleStatementAction> Utiliza uma destas classes é o seguinte: - um <xref:System.Workflow.Activities.Rules.RuleStatementAction>modifica uma propriedade ou chama um método.</xref:System.Workflow.Activities.Rules.RuleStatementAction>      -A <xref:System.Workflow.Activities.Rules.RuleHaltAction>faz com que o <xref:System.Workflow.Activities.Rules.RuleSet>para parar a execução e devolve controlo para o método de chamada.</xref:System.Workflow.Activities.Rules.RuleSet> </xref:System.Workflow.Activities.Rules.RuleHaltAction>      -A <xref:System.Workflow.Activities.Rules.RuleUpdateAction>explicitamente indica que uma regra está a atualizar uma variável.</xref:System.Workflow.Activities.Rules.RuleUpdateAction> Isto faz com que a reavaliação de quaisquer regras afetadas."
   example:
   - "The following code creates an action that can be used in rule sets. The action is named `Log`, and takes a single parameter, which must evaluate to a string. This action outputs the string to the Console.  \n  \n To use this code, add it to a Class Library project and reference the library from your workflow project.  \n  \n```c#  \nusing System;  \nusing System.CodeDom;  \nusing System.Collections.Generic;  \nusing System.Text;  \nusing System.Workflow.Activities.Rules;  \nusing System.Workflow.ComponentModel.Compiler;  \n  \nnamespace LogRuleAction  \n{  \n    public class Log : RuleAction  \n    {  \n        CodeExpression message;  \n  \n        public CodeExpression Message  \n        {  \n            get { return message; }  \n            set { message = value; }  \n        }  \n  \n        public Log()  \n        {  \n            // constructor required for deserialization  \n        }  \n  \n        public Log(CodeExpression expression)  \n        {  \n            // constructor required by parser  \n            message = expression;  \n        }  \n  \n        public override bool Validate(RuleValidation validator)  \n        {  \n            ValidationError error;  \n            if (message == null)  \n            {  \n                error = new ValidationError(\"Message cannot be null\", 123);  \n                validator.Errors.Add(error);  \n                return false;  \n            }  \n            else  \n            {  \n                RuleExpressionInfo result = RuleExpressionWalker.Validate(validator, message, false);  \n                if ((result == null) || (result.ExpressionType != typeof(string)))  \n                {  \n                    error = new ValidationError(\"Message must return string result\", 123);  \n                    validator.Errors.Add(error);  \n                    return false;  \n                }  \n            }  \n            return (validator.Errors.Count == 0);  \n        }  \n  \n        public override RuleAction Clone()  \n        {  \n            Log result = new Log();  \n            result.Message = RuleExpressionWalker.Clone(message);  \n            return result;  \n        }  \n  \n        public override void Execute(RuleExecution context)  \n        {  \n            RuleExpressionResult result = RuleExpressionWalker.Evaluate(context, message);  \n            if (result != null)  \n                Console.WriteLine(result.Value);  \n        }  \n  \n        public override ICollection<string> GetSideEffects(RuleValidation validation)  \n        {  \n            RuleAnalysis analysis = new RuleAnalysis(validation, true);  \n            if (message != null)  \n                RuleExpressionWalker.AnalyzeUsage(analysis, message, true, false, null);  \n            return analysis.GetSymbols();  \n        }  \n  \n        public override string ToString()  \n        {  \n            // what should be displayed by the parser  \n            StringBuilder result = new StringBuilder(\"Log(\");  \n            RuleExpressionWalker.Decompile(result, message, null);  \n            result.Append(\")\");  \n            return result.ToString();  \n        }  \n    }  \n}  \n```"
   syntax:
@@ -38,7 +38,7 @@ items:
   assemblies:
   - System.Workflow.Activities
   namespace: System.Workflow.Activities.Rules
-  summary: "When implemented in a derived class, initializes a new instance of the <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;></xref> class."
+  summary: "Quando implementada numa classe derivada, inicializa uma nova instância do <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;> </xref> classe."
   syntax:
     content: protected RuleAction ();
     parameters: []
@@ -58,13 +58,13 @@ items:
   assemblies:
   - System.Workflow.Activities
   namespace: System.Workflow.Activities.Rules
-  summary: "Creates a deep copy of the current <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;></xref>."
+  summary: "Cria uma cópia profunda da atual <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;> </xref>."
   syntax:
     content: public abstract System.Workflow.Activities.Rules.RuleAction Clone ();
     parameters: []
     return:
       type: System.Workflow.Activities.Rules.RuleAction
-      description: "A <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;></xref> that is identical to this instance."
+      description: "A <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;> </xref> que é idêntica a esta instância."
   overload: System.Workflow.Activities.Rules.RuleAction.Clone*
   exceptions: []
   platform:
@@ -81,13 +81,13 @@ items:
   assemblies:
   - System.Workflow.Activities
   namespace: System.Workflow.Activities.Rules
-  summary: "Executes the <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;></xref> using the specified <xref href=&quot;System.Workflow.Activities.Rules.RuleExecution&quot;></xref> instance."
+  summary: "Executa o <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;> </xref> utilizando especificado <xref href=&quot;System.Workflow.Activities.Rules.RuleExecution&quot;> </xref> instância."
   syntax:
     content: public abstract void Execute (System.Workflow.Activities.Rules.RuleExecution context);
     parameters:
     - id: context
       type: System.Workflow.Activities.Rules.RuleExecution
-      description: "The runtime state that the <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;></xref> is executing in."
+      description: "O tempo de execução de estado que o <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;> </xref> está a executar."
   overload: System.Workflow.Activities.Rules.RuleAction.Execute*
   exceptions: []
   platform:
@@ -104,16 +104,16 @@ items:
   assemblies:
   - System.Workflow.Activities
   namespace: System.Workflow.Activities.Rules
-  summary: "Returns the fields and properties updated by a <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;></xref>."
+  summary: "Devolve os campos e propriedades atualizadas por um <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;> </xref>."
   syntax:
     content: public abstract System.Collections.Generic.ICollection<string> GetSideEffects (System.Workflow.Activities.Rules.RuleValidation validation);
     parameters:
     - id: validation
       type: System.Workflow.Activities.Rules.RuleValidation
-      description: "The <xref href=&quot;System.Workflow.Activities.Rules.RuleValidation&quot;></xref> that was used previously in a call to <xref:System.Workflow.Activities.Rules.RuleAction.Validate*>."
+      description: "O <xref href=&quot;System.Workflow.Activities.Rules.RuleValidation&quot;> </xref> que foi utilizado anteriormente numa chamada para <xref:System.Workflow.Activities.Rules.RuleAction.Validate*>.</xref:System.Workflow.Activities.Rules.RuleAction.Validate*>"
     return:
       type: System.Collections.Generic.ICollection{System.String}
-      description: "A collection of strings that represent the names of fields and properties that are changed by a <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;></xref>."
+      description: "Uma coleção de cadeias que representam os nomes dos campos e propriedades que são alteradas a um <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;> </xref>."
   overload: System.Workflow.Activities.Rules.RuleAction.GetSideEffects*
   exceptions: []
   platform:
@@ -130,17 +130,17 @@ items:
   assemblies:
   - System.Workflow.Activities
   namespace: System.Workflow.Activities.Rules
-  summary: "Verifies that the <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;></xref> is configured correctly and has no errors."
-  remarks: "If the <xref:System.Workflow.Activities.Rules.RuleAction> contains errors (the `Validate` method returns `false`), then <xref:System.Workflow.Activities.Rules.RuleValidation.Errors%2A?displayProperty=fullName> will contain the list of errors encountered."
+  summary: "Verifica se o <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;> </xref> está configurado corretamente e não tem erros."
+  remarks: "Se o <xref:System.Workflow.Activities.Rules.RuleAction>contém erros (o `Validate` método devolve `false`), em seguida, <xref:System.Workflow.Activities.Rules.RuleValidation.Errors%2A?displayProperty=fullName>irá conter a lista de erros encontrados.</xref:System.Workflow.Activities.Rules.RuleValidation.Errors%2A?displayProperty=fullName> </xref:System.Workflow.Activities.Rules.RuleAction>"
   syntax:
     content: public abstract bool Validate (System.Workflow.Activities.Rules.RuleValidation validator);
     parameters:
     - id: validator
       type: System.Workflow.Activities.Rules.RuleValidation
-      description: "The <xref href=&quot;System.Workflow.Activities.Rules.RuleValidation&quot;></xref> to manage the validation process."
+      description: "O <xref href=&quot;System.Workflow.Activities.Rules.RuleValidation&quot;> </xref> para gerir o processo de validação."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> to show that the <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;></xref> validated correctly and has no errors; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>para mostrar que o <xref href=&quot;System.Workflow.Activities.Rules.RuleAction&quot;> </xref> validado corretamente e não tem erros; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Workflow.Activities.Rules.RuleAction.Validate*
   exceptions: []
   platform:
