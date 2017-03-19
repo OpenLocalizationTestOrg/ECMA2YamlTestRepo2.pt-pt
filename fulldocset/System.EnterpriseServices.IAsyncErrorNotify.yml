@@ -10,8 +10,8 @@ items:
   nameWithType: IAsyncErrorNotify
   fullName: System.EnterpriseServices.IAsyncErrorNotify
   type: Interface
-  summary: "Implements error trapping on the asynchronous batch work that is submitted by the <xref href=&quot;System.EnterpriseServices.Activity&quot;></xref> object."
-  remarks: "IAsyncErrorNotify is used to implement error trapping on the asynchronous batch work that is submitted by the <xref:System.EnterpriseServices.Activity> object. Implement this interface on the object that is passed in the call to <xref:System.EnterpriseServices.Activity.AsynchronousCall%2A> on the <xref:System.EnterpriseServices.Activity> object. <xref:System.EnterpriseServices.Activity.AsynchronousCall%2A> determines if an error occurred in batch work that is running asynchronously. This interface enables you to be informed of errors that occur in asynchronous batch work, and the process will terminate (failfast) on any unrecoverable error.       For information about failfast, see the &quot;Fault Isolation and Failfast Policy&quot; topic in the Platform SDK in MSDN."
+  summary: "Trapping de erro implementa no trabalho batch assíncrona submetido pelo <xref href=&quot;System.EnterpriseServices.Activity&quot;> </xref> objeto."
+  remarks: "IAsyncErrorNotify é utilizado para implementar o trapping de erro no trabalho batch assíncrona submetido pelo <xref:System.EnterpriseServices.Activity>objeto.</xref:System.EnterpriseServices.Activity> Implemente esta interface no objeto que é transmitido na chamada para <xref:System.EnterpriseServices.Activity.AsynchronousCall%2A>no <xref:System.EnterpriseServices.Activity>objeto.</xref:System.EnterpriseServices.Activity> </xref:System.EnterpriseServices.Activity.AsynchronousCall%2A> <xref:System.EnterpriseServices.Activity.AsynchronousCall%2A>Determina se Ocorreu um erro no trabalho do batch que está a ser executado no modo assíncrono.</xref:System.EnterpriseServices.Activity.AsynchronousCall%2A> Esta interface permite-lhe ser informado dos erros ocorridos no trabalho do batch assíncronas e o processo irá terminar (failfast) em qualquer erro irrecuperável.       Para obter informações sobre failfast, consulte o tópico de &quot;Falhas e Failfast política de isolamento&quot; no SDK plataforma no MSDN."
   syntax:
     content: >-
       [System.Runtime.InteropServices.Guid("FE6777FB-A674-4177-8F32-6D707E113484")]
@@ -34,14 +34,14 @@ items:
   assemblies:
   - System.EnterpriseServices
   namespace: System.EnterpriseServices
-  summary: "Handles errors for asynchronous batch work."
-  remarks: "This method should be implemented to gracefully handle errors that occur when batch work is running asynchronously. Because the process terminates (failfast) on any unrecoverable error, without this method there is no way of knowing when errors occur in asynchronous batch work. The process also terminates when this method returns an error as its return value. The batch work itself is implemented in <xref:System.EnterpriseServices.IServiceCall.OnCall%2A>, and it is run asynchronously by calling <xref:System.EnterpriseServices.Activity.AsynchronousCall%2A>.       This method supports the standard return values `E_FAIL`, `E_INVALIDARG`, and `E_OUTOFMEMORY`, as well as `S_OK`, which indicates the method call returned successfully."
+  summary: "Processa a erros de trabalho do batch assíncrona."
+  remarks: "Este método deve ser implementado para lidar graciosamente com erros que ocorrem quando o trabalho do batch é executado no modo assíncrono. Porque o processo termina (failfast) em qualquer erro irrecuperável, sem este método não há nenhuma forma de saber quando ocorrerem erros no trabalho do batch assíncrona. O processo também termina quando este método devolve um erro como respectivo valor de retorno. O trabalho do batch em si é implementado no <xref:System.EnterpriseServices.IServiceCall.OnCall%2A>, e é executado de forma assíncrona chamando <xref:System.EnterpriseServices.Activity.AsynchronousCall%2A>.</xref:System.EnterpriseServices.Activity.AsynchronousCall%2A> </xref:System.EnterpriseServices.IServiceCall.OnCall%2A>       Este método suporta os valores de retorno padrão `E_FAIL`, `E_INVALIDARG`, e `E_OUTOFMEMORY`, bem como `S_OK`, que indica a chamada de método devolvido com êxito."
   syntax:
     content: public void OnError (int hresult);
     parameters:
     - id: hresult
       type: System.Int32
-      description: "The HRESULT of the error that occurred while the batch work was running asynchronously."
+      description: "O HRESULT o erro ocorreu ao executa o trabalho do batch no modo assíncrono."
   overload: System.EnterpriseServices.IAsyncErrorNotify.OnError*
   exceptions: []
   platform:

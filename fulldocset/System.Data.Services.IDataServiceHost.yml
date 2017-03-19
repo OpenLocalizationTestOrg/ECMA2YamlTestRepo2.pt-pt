@@ -29,8 +29,8 @@ items:
   nameWithType: IDataServiceHost
   fullName: System.Data.Services.IDataServiceHost
   type: Interface
-  summary: "Interface that specifies interactions between [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] and its hosting environment."
-  remarks: "Each component that hosts [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)], such as Windows Communication Foundation (WCF) must implement this interface. IDataServiceHost is the contract between [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] and its hosting environment. This abstraction allows the [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] runtime to be agnostic to any particular hosting environment. The interface provides [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] with access to inbound HTTP requests. A new object implementing this interface is instantiated for each HTTP request and is then used to inspect properties of the HTTP request and configure the HTTP response."
+  summary: "Interface que especifica as interações entre [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] e o respetivo ambiente de alojamento."
+  remarks: "Cada componente que aloja [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)], tais como o Windows Communication Foundation (WCF) tem de implementar esta interface. IDataServiceHost é o contrato entre [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] e o respetivo ambiente de alojamento. Esta abstração permite que o [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] runtime ser agnóstico relativamente à qualquer ambiente de alojamento particular. Fornece a interface [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] com acesso a pedidos de HTTP de entrada. Um novo objeto implementar esta interface é instanciado para cada pedido HTTP e, em seguida, é utilizado para inspecionar as propriedades do pedido HTTP e configurar a resposta HTTP."
   syntax:
     content: public interface IDataServiceHost
   implements: []
@@ -48,13 +48,13 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets an absolute URI that is the URI as sent by the client."
-  remarks: "The AbsoluteRequestUri property always returns the absolute URI from the client HTTP request. This enables consistent access to the request URI, even in cases where the host revises the URI."
+  summary: "Obtém um URI absoluto que é o URI que enviadas pelo cliente."
+  remarks: "A propriedade AbsoluteRequestUri sempre devolve o URI absoluto do cliente pedido de HTTP. Isto permite um acesso consistente URI, mesmo nos casos em que o anfitrião revê o URI do pedido."
   syntax:
     content: public Uri AbsoluteRequestUri { get; }
     return:
       type: System.Uri
-      description: "A string that is the absolute URI of the request."
+      description: "Uma cadeia que é o URI absoluto do pedido."
   overload: System.Data.Services.IDataServiceHost.AbsoluteRequestUri*
   exceptions: []
   platform:
@@ -71,13 +71,13 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets an absolute URI that is the root URI of the data service."
-  remarks: "The AbsoluteServiceUri property always returns the absolute root URI of the service request. This enables consistent access to the root data service URI, even in cases where the host revises the URI."
+  summary: "Obtém um URI absoluto que é a raiz URI do serviço de dados."
+  remarks: "A propriedade AbsoluteServiceUri sempre devolve a raiz absoluta URI do pedido de serviço. Isto permite o acesso consistente para o serviço de dados de raiz URI, mesmo nos casos em que o anfitrião revê o URI."
   syntax:
     content: public Uri AbsoluteServiceUri { get; }
     return:
       type: System.Uri
-      description: "A string that is the absolute root URI of the data service."
+      description: "Uma cadeia que é a raiz absoluta URI do serviço de dados."
   overload: System.Data.Services.IDataServiceHost.AbsoluteServiceUri*
   exceptions: []
   platform:
@@ -94,17 +94,17 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets a data item identified by the identity key contained by the parameter of the method."
-  remarks: "The query string portion of an [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] URI is made up of key/value pairs, with the key and value separated by the ‘=’ character. `GetQueryStringItem` returns a data item for an identity key specified by the parameter of the method."
+  summary: "Obtém um item de dados identificado pela chave de identidade contida pelo parâmetro do método."
+  remarks: "A parte de cadeia de consulta de um [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] URI é constituído por pares chave/valor, com a chave e valor separado por carateres &quot;=&quot;. `GetQueryStringItem`Devolve um item de dados para uma chave de identidade especificado pelo parâmetro do método."
   syntax:
     content: public string GetQueryStringItem (string item);
     parameters:
     - id: item
       type: System.String
-      description: "String value containing identity key of item requested."
+      description: "Valor de cadeia que contém a chave de identidade do item de pedido."
     return:
       type: System.String
-      description: "The data item requested by the query serialized as a string."
+      description: "O item de dados solicitado pela consulta serializada como uma cadeia."
   overload: System.Data.Services.IDataServiceHost.GetQueryStringItem*
   exceptions: []
   platform:
@@ -121,13 +121,13 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Handles a data service exception using information in  the <code>args</code> parameter."
+  summary: "Gere uma exceção do serviço de dados utilizando informações a <code> args </code> parâmetro."
   syntax:
     content: public void ProcessException (System.Data.Services.HandleExceptionArgs args);
     parameters:
     - id: args
       type: System.Data.Services.HandleExceptionArgs
-      description: "<xref href=&quot;System.Data.Services.HandleExceptionArgs&quot;></xref> that contains information on the exception object."
+      description: "<xref href=&quot;System.Data.Services.HandleExceptionArgs&quot;></xref>que contém informações sobre o objeto de exceção."
   overload: System.Data.Services.IDataServiceHost.ProcessException*
   exceptions: []
   platform:
@@ -144,13 +144,13 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "The transport protocol specified by the request accept header."
-  remarks: "Protocols currently supported by [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] include JSON and AtomPub."
+  summary: "O protocolo de transporte especificado por pedido de aceitar o cabeçalho."
+  remarks: "Protocolos atualmente suportados pelo [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] incluem JSON e AtomPub."
   syntax:
     content: public string RequestAccept { get; }
     return:
       type: System.String
-      description: "String that indicates the transport protocol required by the request."
+      description: "Cadeia que indica o protocolo de transporte de que o pedido."
   overload: System.Data.Services.IDataServiceHost.RequestAccept*
   exceptions: []
   platform:
@@ -167,13 +167,13 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets a string representing the value of the `Accept-Charset` HTTP header."
-  remarks: "Returns null if no `Accept-Charset` header is present on the request."
+  summary: "Obtém uma cadeia representando o valor da `Accept-Charset` cabeçalho de HTTP."
+  remarks: "Devolve um valor nulo se não `Accept-Charset` cabeçalho está presente no pedido."
   syntax:
     content: public string RequestAcceptCharSet { get; }
     return:
       type: System.String
-      description: "String representing the value of the `Accept-Charset` HTTP header."
+      description: "Cadeia que representa o valor da `Accept-Charset` cabeçalho de HTTP."
   overload: System.Data.Services.IDataServiceHost.RequestAcceptCharSet*
   exceptions: []
   platform:
@@ -190,13 +190,13 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets the transport protocol specified by the content type header."
-  remarks: "Protocols currently supported by [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] include JSON and AtomPub."
+  summary: "Obtém o protocolo de transporte especificado pelo cabeçalho de tipo de conteúdo."
+  remarks: "Protocolos atualmente suportados pelo [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] incluem JSON e AtomPub."
   syntax:
     content: public string RequestContentType { get; }
     return:
       type: System.String
-      description: "String value that indicates content type."
+      description: "Valor de cadeia que indica o tipo de conteúdo."
   overload: System.Data.Services.IDataServiceHost.RequestContentType*
   exceptions: []
   platform:
@@ -213,13 +213,13 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets the request method of GET, PUT, POST, or DELETE."
-  remarks: "For more information about the properties supported by <xref:System.Data.Services.IDataServiceHost> and their use, see [WCF Data Services Client Library](~/add/includes/ajax-current-ext-md.md)."
+  summary: "Obtém o método de pedido de GET, PUT, POST ou DELETE."
+  remarks: "Para obter mais informações sobre as propriedades suportadas por <xref:System.Data.Services.IDataServiceHost>e a sua utilização, consulte [biblioteca de cliente de serviços de dados WCF](~/add/includes/ajax-current-ext-md.md).</xref:System.Data.Services.IDataServiceHost>"
   syntax:
     content: public string RequestHttpMethod { get; }
     return:
       type: System.String
-      description: "String value that indicates request method."
+      description: "Cadeia de valor que indica o método de pedido."
   overload: System.Data.Services.IDataServiceHost.RequestHttpMethod*
   exceptions: []
   platform:
@@ -236,12 +236,12 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets the value for the If-Match header on the current request."
+  summary: "Obtém o valor para o cabeçalho If-Match, o pedido atual."
   syntax:
     content: public string RequestIfMatch { get; }
     return:
       type: System.String
-      description: "String value for the If-Match header on the current request."
+      description: "Cadeia de valor para o cabeçalho If-Match, o pedido atual."
   overload: System.Data.Services.IDataServiceHost.RequestIfMatch*
   exceptions: []
   platform:
@@ -258,12 +258,12 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets the value for the If-None-Match header on the current request."
+  summary: "Obtém o valor para o cabeçalho If-None-Match, o pedido atual."
   syntax:
     content: public string RequestIfNoneMatch { get; }
     return:
       type: System.String
-      description: "String value for the If-None-Match header on the current request."
+      description: "Cadeia de valor para o cabeçalho If-None-Match, o pedido atual."
   overload: System.Data.Services.IDataServiceHost.RequestIfNoneMatch*
   exceptions: []
   platform:
@@ -280,12 +280,12 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets the value that identifies the highest version that the request client is able to process."
+  summary: "Obtém o valor que identifica a versão mais recente que o cliente do pedido é capaz de processar."
   syntax:
     content: public string RequestMaxVersion { get; }
     return:
       type: System.String
-      description: "A string that contains the highest version that the request client is able to process, possibly null."
+      description: "Uma cadeia que contém a versão mais recente que o cliente do pedido é capaz de processar, possivelmente nulo."
   overload: System.Data.Services.IDataServiceHost.RequestMaxVersion*
   exceptions: []
   platform:
@@ -302,12 +302,12 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets the stream that contains the HTTP request body."
+  summary: "Obtém o fluxo que contém o corpo do pedido HTTP."
   syntax:
     content: public System.IO.Stream RequestStream { get; }
     return:
       type: System.IO.Stream
-      description: "<xref:System.IO.Stream> object that contains the request body."
+      description: "<xref:System.IO.Stream>objeto que contém o corpo do pedido.</xref:System.IO.Stream>"
   overload: System.Data.Services.IDataServiceHost.RequestStream*
   exceptions: []
   platform:
@@ -324,13 +324,13 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets the value that identifies the version of the request that the client submitted, possibly null."
-  remarks: "If this value is null, the version is assumed to be 1.0."
+  summary: "Obtém o valor que identifica a versão do pedido que o cliente submetido, possivelmente nulo."
+  remarks: "Se este valor é nulo, a versão é assumida ser 1.0."
   syntax:
     content: public string RequestVersion { get; }
     return:
       type: System.String
-      description: "A string that identifies the version of the request that the client submitted, possibly null."
+      description: "Uma cadeia que identifica a versão do pedido que o cliente submetido, possivelmente nulo."
   overload: System.Data.Services.IDataServiceHost.RequestVersion*
   exceptions: []
   platform:
@@ -347,12 +347,12 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets a string value that represents cache control information."
+  summary: "Obtém um valor de cadeia que representa as informações de controlo de cache."
   syntax:
     content: public string ResponseCacheControl { get; set; }
     return:
       type: System.String
-      description: "A string value that represents cache control information."
+      description: "Um valor de cadeia que representa as informações de controlo de cache."
   overload: System.Data.Services.IDataServiceHost.ResponseCacheControl*
   exceptions: []
   platform:
@@ -369,7 +369,7 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets the transport protocol of the response."
+  summary: "Obtém o protocolo de transporte de resposta."
   remarks: ''
   example:
   - For more information about the properties supported by <xref:System.Data.Services.IDataServiceHost> and their use, see [WCF Data Services Client Library](~/add/includes/ajax-current-ext-md.md).
@@ -377,7 +377,7 @@ items:
     content: public string ResponseContentType { get; set; }
     return:
       type: System.String
-      description: "String value containing the content type."
+      description: "Valor de cadeia que contém o tipo de conteúdo."
   overload: System.Data.Services.IDataServiceHost.ResponseContentType*
   exceptions: []
   platform:
@@ -394,12 +394,12 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets an eTag value that represents the state of data in response."
+  summary: "Obtém um valor eTag que representa o estado de dados da resposta."
   syntax:
     content: public string ResponseETag { get; set; }
     return:
       type: System.String
-      description: "A string value that represents the eTag state value."
+      description: "Um valor de cadeia que representa o valor de estado eTag."
   overload: System.Data.Services.IDataServiceHost.ResponseETag*
   exceptions: []
   platform:
@@ -416,15 +416,15 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets or sets the service location."
-  remarks: "This property never returns null or `string.Empty`."
+  summary: "Obtém ou define a localização de serviço."
+  remarks: "Esta propriedade nunca devolve um valor nula ou `string.Empty`."
   example:
   - "The following URI contains the location of the service in the substring `http://myhost/myservice.svc`.  \n  \n```  \nhttp://myhost/myservice.svc/Customers, the response location would be http://myhost/myservice.svc  \n  \n```"
   syntax:
     content: public string ResponseLocation { get; set; }
     return:
       type: System.String
-      description: "String that contains the service location."
+      description: "Cadeia que contém a localização de serviço."
   overload: System.Data.Services.IDataServiceHost.ResponseLocation*
   exceptions: []
   platform:
@@ -441,12 +441,12 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets or sets the response code that indicates results of query."
+  summary: "Obtém ou define o código de resposta que indica o resultado da consulta."
   syntax:
     content: public int ResponseStatusCode { get; set; }
     return:
       type: System.Int32
-      description: "Integer value that contains the response code."
+      description: "Valor de número inteiro que contém o código de resposta."
   overload: System.Data.Services.IDataServiceHost.ResponseStatusCode*
   exceptions: []
   platform:
@@ -463,13 +463,13 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets the response stream to which the HTTP response body will be written."
-  remarks: "If a null stream is returned or an exception occurs when writing to the stream, [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] aborts the request."
+  summary: "Obtém a sequência de resposta para o qual o corpo da resposta HTTP será escrito."
+  remarks: "Se uma sequência nula é devolvida ou ocorre uma exceção ao escrever no fluxo [!INCLUDE[ssAstoria](~/add/includes/ssastoria-md.md)] interrompe o pedido."
   syntax:
     content: public System.IO.Stream ResponseStream { get; }
     return:
       type: System.IO.Stream
-      description: "<xref:System.IO.Stream> object to which the response body will be written."
+      description: "<xref:System.IO.Stream>objecto ao qual o corpo da resposta será escrito.</xref:System.IO.Stream>"
   overload: System.Data.Services.IDataServiceHost.ResponseStream*
   exceptions: []
   platform:
@@ -486,12 +486,12 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets the version used by the host in the response."
+  summary: "Obtém a versão utilizada pelo anfitrião na resposta."
   syntax:
     content: public string ResponseVersion { get; set; }
     return:
       type: System.String
-      description: "A string value that contains the host version."
+      description: "Um valor de cadeia que contém a versão de anfitrião."
   overload: System.Data.Services.IDataServiceHost.ResponseVersion*
   exceptions: []
   platform:
