@@ -29,8 +29,8 @@ items:
   nameWithType: ISymbolWriter
   fullName: System.Diagnostics.SymbolStore.ISymbolWriter
   type: Interface
-  summary: "Represents a symbol writer for managed code."
-  remarks: "The ISymbolWriter interface provides methods that define documents, sequence points, lexical scopes, and variables.      > [!NOTE] >  This interface is the managed counterpart of the `ISymUnmanagedWriter` interface, which is one of the unmanaged symbol store interfaces that provides an alternative way to read and write debug symbol information."
+  summary: "Representa um escritor de símbolo para código gerido."
+  remarks: "A interface ISymbolWriter fornece métodos que definem a documentos, pontos de sequência, lexical âmbitos e variáveis.      > [!NOTE] > Esta interface é o homólogo gerido do `ISymUnmanagedWriter` interface, o que é uma das interfaces de arquivo de símbolo de não gerido que fornece uma maneira de ler e escrever as informações de símbolo de depuração."
   syntax:
     content: >-
       [System.Runtime.InteropServices.ComVisible(true)]
@@ -51,8 +51,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Closes <xref href=&quot;System.Diagnostics.SymbolStore.ISymbolWriter&quot;></xref> and commits the symbols to the symbol store."
-  remarks: "After this call, <xref:System.Diagnostics.SymbolStore.ISymbolWriter> becomes invalid for further updates."
+  summary: "Fecha <xref href=&quot;System.Diagnostics.SymbolStore.ISymbolWriter&quot;> </xref> e consolida os símbolos para o arquivo de símbolo."
+  remarks: "Após esta chamada <xref:System.Diagnostics.SymbolStore.ISymbolWriter>fica inválido para obter atualizações.</xref:System.Diagnostics.SymbolStore.ISymbolWriter>"
   syntax:
     content: public void Close ();
     parameters: []
@@ -72,8 +72,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Closes the current method."
-  remarks: "After a method is closed, you cannot define a symbol from within it."
+  summary: "Fecha o método atual."
+  remarks: "Depois de um método estiver fechado, não é possível definir um símbolo de dentro da mesma."
   syntax:
     content: public void CloseMethod ();
     parameters: []
@@ -93,7 +93,7 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Closes the most recent namespace."
+  summary: "Fecha o espaço de nomes mais recente."
   syntax:
     content: public void CloseNamespace ();
     parameters: []
@@ -113,14 +113,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Closes the current lexical scope."
-  remarks: "After a scope is closed, you cannot define a variable from within it."
+  summary: "Fecha o âmbito lexical atual."
+  remarks: "Depois de um âmbito estiver fechado, não é possível definir uma variável de dentro da mesma."
   syntax:
     content: public void CloseScope (int endOffset);
     parameters:
     - id: endOffset
       type: System.Int32
-      description: "The points past the last instruction in the scope."
+      description: "Os pontos de decorridos desde a última instrução no âmbito."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.CloseScope*
   exceptions: []
   platform:
@@ -137,25 +137,25 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Defines a source document."
+  summary: "Define um documento de origem."
   syntax:
     content: public System.Diagnostics.SymbolStore.ISymbolDocumentWriter DefineDocument (string url, Guid language, Guid languageVendor, Guid documentType);
     parameters:
     - id: url
       type: System.String
-      description: "The URL that identifies the document."
+      description: "O URL que identifica o documento."
     - id: language
       type: System.Guid
-      description: "The document language. This parameter can be <xref:System.Guid>."
+      description: "O idioma do documento. Este parâmetro pode ser <xref:System.Guid>.</xref:System.Guid>"
     - id: languageVendor
       type: System.Guid
-      description: "The identity of the vendor for the document language. This parameter can be <xref:System.Guid>."
+      description: "A identidade do fornecedor para o idioma do documento. Este parâmetro pode ser <xref:System.Guid>.</xref:System.Guid>"
     - id: documentType
       type: System.Guid
-      description: "The type of the document. This parameter can be <xref:System.Guid>."
+      description: "O tipo do documento. Este parâmetro pode ser <xref:System.Guid>.</xref:System.Guid>"
     return:
       type: System.Diagnostics.SymbolStore.ISymbolDocumentWriter
-      description: "The object that represents the document."
+      description: "O objecto que representa o documento."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.DefineDocument*
   exceptions: []
   platform:
@@ -172,35 +172,35 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Defines a field in a type or a global field."
-  remarks: "The DefineField method defines a single variable that is not within a method by using specified fields in classes, bit fields, and so on."
+  summary: "Define um campo num tipo ou um campo global."
+  remarks: "O método DefineField define uma única variável que não pertence a um método através da utilização de campos especificados em classes, os campos de bits e assim sucessivamente."
   syntax:
     content: public void DefineField (System.Diagnostics.SymbolStore.SymbolToken parent, string name, System.Reflection.FieldAttributes attributes, byte[] signature, System.Diagnostics.SymbolStore.SymAddressKind addrKind, int addr1, int addr2, int addr3);
     parameters:
     - id: parent
       type: System.Diagnostics.SymbolStore.SymbolToken
-      description: "The metadata type or method token."
+      description: "O tipo de metadados ou o método de token."
     - id: name
       type: System.String
-      description: "The field name."
+      description: "O nome do campo."
     - id: attributes
       type: System.Reflection.FieldAttributes
-      description: "A bitwise combination of the field attributes."
+      description: "Uma combinação bit a bit dos atributos de campo."
     - id: signature
       type: System.Byte[]
-      description: "The field signature."
+      description: "A assinatura de campo."
     - id: addrKind
       type: System.Diagnostics.SymbolStore.SymAddressKind
-      description: "The address types for `addr1` and `addr2`."
+      description: "O endereço de tipos para `addr1` e `addr2`."
     - id: addr1
       type: System.Int32
-      description: "The first address for the field specification."
+      description: "O primeiro endereço para a especificação de campo."
     - id: addr2
       type: System.Int32
-      description: "The second address for the field specification."
+      description: "O segundo endereço para a especificação de campo."
     - id: addr3
       type: System.Int32
-      description: "The third address for the field specification."
+      description: "O terceiro endereço para a especificação de campo."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.DefineField*
   exceptions: []
   platform:
@@ -217,31 +217,31 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Defines a single global variable."
+  summary: "Define uma única variável global."
   syntax:
     content: public void DefineGlobalVariable (string name, System.Reflection.FieldAttributes attributes, byte[] signature, System.Diagnostics.SymbolStore.SymAddressKind addrKind, int addr1, int addr2, int addr3);
     parameters:
     - id: name
       type: System.String
-      description: "The global variable name."
+      description: "O nome de variável global."
     - id: attributes
       type: System.Reflection.FieldAttributes
-      description: "A bitwise combination of the global variable attributes."
+      description: "Uma combinação bit a bit dos atributos de variável global."
     - id: signature
       type: System.Byte[]
-      description: "The global variable signature."
+      description: "A assinatura de variável global."
     - id: addrKind
       type: System.Diagnostics.SymbolStore.SymAddressKind
-      description: "The address types for `addr1`, `addr2`, and `addr3`."
+      description: "O endereço de tipos para `addr1`, `addr2`, e `addr3`."
     - id: addr1
       type: System.Int32
-      description: "The first address for the global variable specification."
+      description: "O primeiro endereço para a especificação de variável global."
     - id: addr2
       type: System.Int32
-      description: "The second address for the global variable specification."
+      description: "O segundo endereço para a especificação de variável global."
     - id: addr3
       type: System.Int32
-      description: "The third address for the global variable specification."
+      description: "O terceiro endereço para a especificação de variável global."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.DefineGlobalVariable*
   exceptions: []
   platform:
@@ -258,38 +258,38 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Defines a single variable in the current lexical scope."
-  remarks: "The `startOffset` and `endOffset` parameters are optional. If their value is zero, they are ignored and the variable is defined throughout the entire scope. If their value is nonzero, the variable falls within the offsets of the current scope.       You can call DefineLocalVariable multiple times for a variable of the same name that occurs multiple times in different offset ranges throughout a scope. (In this case, start and end offsets must not overlap.)"
+  summary: "Define uma única variável no âmbito lexical atual."
+  remarks: "O `startOffset` e `endOffset` parâmetros são opcionais. Se o respetivo valor é zero, são ignoradas e a variável é definida em todo o âmbito de todo. Se o respetivo valor é diferente de zero, a variável se encontrem dentro os desvios de âmbito atual.       Pode chamar DefineLocalVariable várias vezes para uma variável com o mesmo nome que ocorre várias vezes em intervalos de deslocamento diferentes ao longo de um âmbito. (Neste caso, os desvios de início e de fim não pode sobrepor.)"
   syntax:
     content: public void DefineLocalVariable (string name, System.Reflection.FieldAttributes attributes, byte[] signature, System.Diagnostics.SymbolStore.SymAddressKind addrKind, int addr1, int addr2, int addr3, int startOffset, int endOffset);
     parameters:
     - id: name
       type: System.String
-      description: "The local variable name."
+      description: "O nome da variável local."
     - id: attributes
       type: System.Reflection.FieldAttributes
-      description: "A bitwise combination of the local variable attributes."
+      description: "Uma combinação bit a bit dos atributos variável locais."
     - id: signature
       type: System.Byte[]
-      description: "The local variable signature."
+      description: "A assinatura de variável local."
     - id: addrKind
       type: System.Diagnostics.SymbolStore.SymAddressKind
-      description: "The address types for `addr1`, `addr2`, and `addr3`."
+      description: "O endereço de tipos para `addr1`, `addr2`, e `addr3`."
     - id: addr1
       type: System.Int32
-      description: "The first address for the local variable specification."
+      description: "O primeiro endereço para a especificação de variável local."
     - id: addr2
       type: System.Int32
-      description: "The second address for the local variable specification."
+      description: "O segundo endereço para a especificação de variável local."
     - id: addr3
       type: System.Int32
-      description: "The third address for the local variable specification."
+      description: "O terceiro endereço para a especificação de variável local."
     - id: startOffset
       type: System.Int32
-      description: "The start offset for the variable. If this parameter is zero, it is ignored and the variable is defined throughout the entire scope. If the parameter is nonzero, the variable falls within the offsets of the current scope."
+      description: "O desvio de início para a variável. Se este parâmetro for zero, é ignorada e a variável é definida em todo o âmbito de todo. Se o parâmetro é diferente de zero, a variável se encontrem dentro os desvios de âmbito atual."
     - id: endOffset
       type: System.Int32
-      description: "The end offset for the variable. If this parameter is zero, it is ignored and the variable is defined throughout the entire scope. If the parameter is nonzero, the variable falls within the offsets of the current scope."
+      description: "O desvio de fim da variável. Se este parâmetro for zero, é ignorada e a variável é definida em todo o âmbito de todo. Se o parâmetro é diferente de zero, a variável se encontrem dentro os desvios de âmbito atual."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.DefineLocalVariable*
   exceptions: []
   platform:
@@ -306,32 +306,32 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Defines a single parameter in the current method. The type of each parameter is taken from its position within the signature of the method."
-  remarks: "If parameters are defined in the metadata for a given method, you do not have to define them again with calls to this method. Symbol readers need to check for these in the normal metadata first, and then use the symbol store."
+  summary: "Define um único parâmetro do método atual. O tipo de cada parâmetro é obtido a partir da respetiva posição dentro de assinatura do método."
+  remarks: "Se os parâmetros são definidos nos metadados para um determinado método, não dispõe de defini-las novamente com as chamadas para este método. Leitores de símbolo tem de verificar estes nos metadados normal primeiro e, em seguida, utilizar o arquivo de símbolo."
   syntax:
     content: public void DefineParameter (string name, System.Reflection.ParameterAttributes attributes, int sequence, System.Diagnostics.SymbolStore.SymAddressKind addrKind, int addr1, int addr2, int addr3);
     parameters:
     - id: name
       type: System.String
-      description: "The parameter name."
+      description: "O nome do parâmetro."
     - id: attributes
       type: System.Reflection.ParameterAttributes
-      description: "A bitwise combination of the parameter attributes."
+      description: "Uma combinação bit a bit dos atributos de parâmetro."
     - id: sequence
       type: System.Int32
-      description: "The parameter signature."
+      description: "A assinatura de parâmetro."
     - id: addrKind
       type: System.Diagnostics.SymbolStore.SymAddressKind
-      description: "The address types for `addr1`, `addr2`, and `addr3`."
+      description: "O endereço de tipos para `addr1`, `addr2`, e `addr3`."
     - id: addr1
       type: System.Int32
-      description: "The first address for the parameter specification."
+      description: "O primeiro endereço para a especificação do parâmetro."
     - id: addr2
       type: System.Int32
-      description: "The second address for the parameter specification."
+      description: "O segundo endereço para a especificação do parâmetro."
     - id: addr3
       type: System.Int32
-      description: "The third address for the parameter specification."
+      description: "O terceiro endereço para a especificação do parâmetro."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.DefineParameter*
   exceptions: []
   platform:
@@ -348,29 +348,29 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Defines a group of sequence points within the current method."
-  remarks: "Each line and each column defines the start of a statement within a method. The arrays should be sorted in increasing order of offsets. The offset is always the offset from the start of the method, in bytes."
+  summary: "Define um grupo de pontos da sequência o método atual."
+  remarks: "Cada linha e cada coluna define o início de uma instrução num método. As matrizes de devem ser ordenadas por ordem de desvios ascendente. O desvio é sempre o deslocamento desde o início do método, em bytes."
   syntax:
     content: public void DefineSequencePoints (System.Diagnostics.SymbolStore.ISymbolDocumentWriter document, int[] offsets, int[] lines, int[] columns, int[] endLines, int[] endColumns);
     parameters:
     - id: document
       type: System.Diagnostics.SymbolStore.ISymbolDocumentWriter
-      description: "The document object for which the sequence points are being defined."
+      description: "O objeto de documento para o qual estão a ser definidos os pontos de sequência."
     - id: offsets
       type: System.Int32[]
-      description: "The sequence point offsets measured from the beginning of methods."
+      description: "Os desvios de ponto de sequência é medido desde o início dos métodos."
     - id: lines
       type: System.Int32[]
-      description: "The document lines for the sequence points."
+      description: "As linhas de documentos para os pontos de sequência."
     - id: columns
       type: System.Int32[]
-      description: "The document positions for the sequence points."
+      description: "As posições de documentos para os pontos de sequência."
     - id: endLines
       type: System.Int32[]
-      description: "The document end lines for the sequence points."
+      description: "As linhas de fim do documento para os pontos de sequência."
     - id: endColumns
       type: System.Int32[]
-      description: "The document end positions for the sequence points."
+      description: "As posições de fim do documento para os pontos de sequência."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.DefineSequencePoints*
   exceptions: []
   platform:
@@ -387,20 +387,20 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Sets the metadata emitter interface to associate with a writer."
-  remarks: "Initialize also sets the output file name where the debugging symbols are written. This method can be called only once and must be called before any other writer methods."
+  summary: "Define a interface de emitter metadados para associar um escritor."
+  remarks: "Inicializar também define o nome de ficheiro de saída onde os símbolos de depuração são escritos. Este método pode ser chamado uma vez e tem de ser chamado antes de quaisquer outros métodos de escritor."
   syntax:
     content: public void Initialize (IntPtr emitter, string filename, bool fFullBuild);
     parameters:
     - id: emitter
       type: System.IntPtr
-      description: "The metadata emitter interface."
+      description: "A interface de emitter de metadados."
     - id: filename
       type: System.String
-      description: "The file name for which the debugging symbols are written. Some writers require a file name, and others do not. If a file name is specified for a writer that does not use file names, this parameter is ignored."
+      description: "O nome de ficheiro para o qual os símbolos de depuração são escritos. Alguns escritores necessitam de um nome de ficheiro e outros não. Se não for especificado um nome de ficheiro para um escritor que utilize nomes de ficheiro, este parâmetro é ignorado."
     - id: fFullBuild
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> indicates that this is a full rebuild; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref> indicates that this is an incremental compilation."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Indica a que se trata de uma reconstrução completa; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref> indica que se trata de uma compilação incremental."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.Initialize*
   exceptions: []
   platform:
@@ -417,14 +417,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Opens a method to place symbol information into."
-  remarks: "The specified method becomes the current method for calls to define sequence points, parameters, and lexical scopes. There is an implicit lexical scope around the entire method. Reopening a method that has been previously closed erases any previously defined symbols for the method."
+  summary: "Abre-se um método para colocar as informações de símbolo em."
+  remarks: "O método especificado torna-se o método atual para chamadas definir a sequência pontos, parâmetros e lexical âmbitos. Não há um âmbito lexical implícito à volta o método completo. Voltar a abrir um método que foi anteriormente fechado apague qualquer símbolos definidos anteriormente para o método."
   syntax:
     content: public void OpenMethod (System.Diagnostics.SymbolStore.SymbolToken method);
     parameters:
     - id: method
       type: System.Diagnostics.SymbolStore.SymbolToken
-      description: "The metadata token for the method to be opened."
+      description: "O token de metadados para o método de ser aberta."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.OpenMethod*
   exceptions: []
   platform:
@@ -441,14 +441,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Opens a new namespace."
-  remarks: "Call this method before defining methods or variables that exist within a namespace. Namespaces can be nested."
+  summary: "É aberto um novo espaço de nomes."
+  remarks: "Chame este método antes de definir métodos ou variáveis que existe num espaço de nomes. Espaços de nomes podem ser aninhados."
   syntax:
     content: public void OpenNamespace (string name);
     parameters:
     - id: name
       type: System.String
-      description: "The name of the new namespace."
+      description: "O nome do novo espaço de nomes."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.OpenNamespace*
   exceptions: []
   platform:
@@ -465,17 +465,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Opens a new lexical scope in the current method."
-  remarks: "This scope becomes the new current scope and is pushed onto a stack of scopes. Scopes must form a hierarchy. Siblings are not allowed to overlap.       Scope identifiers are valid only in the current method."
+  summary: "É aberto um novo âmbito lexical no método atual."
+  remarks: "Este âmbito torna-se o novo âmbito atual e é feito por uma pilha de âmbitos. Âmbitos tem formam uma hierarquia. Colaterais não são permitidas sobrepor.       Os identificadores de âmbito são válidos apenas no método atual."
   syntax:
     content: public int OpenScope (int startOffset);
     parameters:
     - id: startOffset
       type: System.Int32
-      description: "The offset, in bytes, from the beginning of the method to the first instruction in the lexical scope."
+      description: "O desvio em bytes, a partir do início do método para a primeira instrução no âmbito lexical."
     return:
       type: System.Int32
-      description: "An opaque scope identifier that can be used with <xref:System.Diagnostics.SymbolStore.ISymbolWriter.SetScopeRange*> to define the start and end offsets of a scope at a later time. In this case, the offsets passed to OpenScope and <xref:System.Diagnostics.SymbolStore.ISymbolWriter.CloseScope*> are ignored. A scope identifier is valid only in the current method."
+      description: "Um identificador de âmbito opaco que pode ser utilizado com <> </> *> para definir os desvios de início e de fim de um âmbito numa altura posterior. Neste caso, os desvios transmitido a OpenScope e <> </> *> são ignorados. Um identificador de âmbito só é válido no método atual."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.OpenScope*
   exceptions: []
   platform:
@@ -492,28 +492,28 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Specifies the true start and end of a method within a source file. Use SetMethodSourceRange to specify the extent of a method, independent of the sequence points that exist within the method."
+  summary: "Especifica o verdadeiro início e fim de um método dentro de um ficheiro de origem. Utilize SetMethodSourceRange para especificar o grau de um método, independentemente dos pontos de sequência que existem dentro do método."
   syntax:
     content: public void SetMethodSourceRange (System.Diagnostics.SymbolStore.ISymbolDocumentWriter startDoc, int startLine, int startColumn, System.Diagnostics.SymbolStore.ISymbolDocumentWriter endDoc, int endLine, int endColumn);
     parameters:
     - id: startDoc
       type: System.Diagnostics.SymbolStore.ISymbolDocumentWriter
-      description: "The document that contains the starting position."
+      description: "O documento que contém a posição inicial."
     - id: startLine
       type: System.Int32
-      description: "The starting line number."
+      description: "O número de linha inicial."
     - id: startColumn
       type: System.Int32
-      description: "The starting column."
+      description: "A coluna de partida."
     - id: endDoc
       type: System.Diagnostics.SymbolStore.ISymbolDocumentWriter
-      description: "The document that contains the ending position."
+      description: "O documento que contém a posição final."
     - id: endLine
       type: System.Int32
-      description: "The ending line number."
+      description: "O número de linha final."
     - id: endColumn
       type: System.Int32
-      description: "The ending column number."
+      description: "O número de coluna final."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.SetMethodSourceRange*
   exceptions: []
   platform:
@@ -530,19 +530,19 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Defines the offset range for the specified lexical scope."
+  summary: "Define o intervalo de desfasamento para o âmbito lexical especificado."
   syntax:
     content: public void SetScopeRange (int scopeID, int startOffset, int endOffset);
     parameters:
     - id: scopeID
       type: System.Int32
-      description: "The identifier of the lexical scope."
+      description: "O identificador do âmbito lexical."
     - id: startOffset
       type: System.Int32
-      description: "The byte offset of the beginning of the lexical scope."
+      description: "O deslocamento de byte do início de âmbito lexical."
     - id: endOffset
       type: System.Int32
-      description: "The byte offset of the end of the lexical scope."
+      description: "O deslocamento de byte do final do âmbito lexical."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.SetScopeRange*
   exceptions: []
   platform:
@@ -559,20 +559,20 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Defines an attribute when given the attribute name and the attribute value."
-  remarks: "The SetSymAttribute method is only associated with symbolic information and is not a metadata custom attribute."
+  summary: "Define um atributo quando o nome de atributo e o valor do atributo."
+  remarks: "O método SetSymAttribute só está associado à informações simbólicas e não é um atributo personalizado de metadados."
   syntax:
     content: public void SetSymAttribute (System.Diagnostics.SymbolStore.SymbolToken parent, string name, byte[] data);
     parameters:
     - id: parent
       type: System.Diagnostics.SymbolStore.SymbolToken
-      description: "The metadata token for which the attribute is being defined."
+      description: "O token de metadados para as quais o atributo é definido."
     - id: name
       type: System.String
-      description: "The attribute name."
+      description: "O nome de atributo."
     - id: data
       type: System.Byte[]
-      description: "The attribute value."
+      description: "O valor do atributo."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.SetSymAttribute*
   exceptions: []
   platform:
@@ -589,14 +589,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Sets the underlying <xref uid=&quot;langword_csharp_ISymUnmanagedWriter&quot; name=&quot;ISymUnmanagedWriter&quot; href=&quot;&quot;></xref> (the corresponding unmanaged interface) that a managed <xref href=&quot;System.Diagnostics.SymbolStore.ISymbolWriter&quot;></xref> uses to emit symbols."
-  remarks: "The underlying `ISymUnmanagedWriter` (the corresponding unmanaged interface) represents a symbol writer for managed code. The interface provides methods for defining documents, sequence points, lexical scopes, and variables."
+  summary: "Define o subjacente <xref uid=&quot;langword_csharp_ISymUnmanagedWriter&quot; name=&quot;ISymUnmanagedWriter&quot; href=&quot;&quot;> </xref> (correspondente não gerido interface) que um gerido <xref href=&quot;System.Diagnostics.SymbolStore.ISymbolWriter&quot;> </xref> utiliza para emitir símbolos."
+  remarks: "Subjacentes `ISymUnmanagedWriter` (a interface não gerida correspondente) representa um escritor de símbolo para código gerido. A interface fornece métodos para definir a documentos, pontos de sequência, lexical âmbitos e variáveis."
   syntax:
     content: public void SetUnderlyingWriter (IntPtr underlyingWriter);
     parameters:
     - id: underlyingWriter
       type: System.IntPtr
-      description: "A pointer to code that represents the underlying writer."
+      description: "Um apontador para código que representa o escritor subjacente."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.SetUnderlyingWriter*
   exceptions: []
   platform:
@@ -613,14 +613,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Identifies the user-defined method as the entry point for the current module."
-  remarks: "This is normally your main method, rather than compiler-generated stubs before the main method."
+  summary: "Identifica o método definido pelo utilizador como o ponto de entrada para o módulo atual."
+  remarks: "Isto é normalmente o método principal, em vez dos stubs gerado pelo compilador antes o método principal."
   syntax:
     content: public void SetUserEntryPoint (System.Diagnostics.SymbolStore.SymbolToken entryMethod);
     parameters:
     - id: entryMethod
       type: System.Diagnostics.SymbolStore.SymbolToken
-      description: "The metadata token for the method that is the user entry point."
+      description: "O token de metadados para o método que é a entrada de utilizador do ponto."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.SetUserEntryPoint*
   exceptions: []
   platform:
@@ -637,14 +637,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Diagnostics.SymbolStore
-  summary: "Specifies that the given, fully qualified namespace name is used within the open lexical scope."
-  remarks: "Closing the current scope prevents this scope from using the namespace. The namespace remains in use in all scopes that inherit from the current open scope."
+  summary: "Especifica que o nome de espaço de nomes especificado, completamente qualificado é utilizado no âmbito lexical aberto."
+  remarks: "Fechar o âmbito atual impede que este âmbito de utilizar o espaço de nomes. O espaço de nomes continuará a ser utilizada em todos os âmbitos que herdam o âmbito de abrir atual."
   syntax:
     content: public void UsingNamespace (string fullName);
     parameters:
     - id: fullName
       type: System.String
-      description: "The fully qualified name of the namespace."
+      description: "O nome completamente qualificado do espaço de nomes."
   overload: System.Diagnostics.SymbolStore.ISymbolWriter.UsingNamespace*
   exceptions: []
   platform:
