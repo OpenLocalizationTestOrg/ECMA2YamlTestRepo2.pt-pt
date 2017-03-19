@@ -11,8 +11,8 @@ items:
   nameWithType: ICallContextInitializer
   fullName: System.ServiceModel.Dispatcher.ICallContextInitializer
   type: Interface
-  summary: "Defines the methods that enable the initialization and recycling of thread-local storage with the thread that invokes user code."
-  remarks: "Implement the ICallContextInitializer interface and add it to the <xref:System.ServiceModel.Dispatcher.DispatchOperation.CallContextInitializers%2A?displayProperty=fullName> property to initialize and clean up thread-local storage for the thread that invokes user code. Typical usage is to set some value, such as impersonation or changing the <xref:System.Globalization.CultureInfo?displayProperty=fullName>. If you wanted to establish some custom context, this is the extension point to initialize the static context property, which is then available for developers in the course of the operation."
+  summary: "Define os métodos que permitem a inicialização e a Reciclagem de armazenamento de thread local com o thread que invoca o código de utilizador."
+  remarks: "Implementa a interface ICallContextInitializer e adicioná-la para o <xref:System.ServiceModel.Dispatcher.DispatchOperation.CallContextInitializers%2A?displayProperty=fullName>propriedade inicializar e limpar o thread local armazenamento para o thread que invoca o código de utilizador.</xref:System.ServiceModel.Dispatcher.DispatchOperation.CallContextInitializers%2A?displayProperty=fullName> Utilização normal consiste em definir um valor, tais como a representação ou alterar <xref:System.Globalization.CultureInfo?displayProperty=fullName>.</xref:System.Globalization.CultureInfo?displayProperty=fullName> Se pretendesse estabelecer algum contexto personalizado, este é o ponto de extensão para inicializar a propriedade de contexto estático, o que, em seguida, está disponível para programadores durante a operação."
   syntax:
     content: public interface ICallContextInitializer
   implements: []
@@ -30,14 +30,14 @@ items:
   assemblies:
   - System.ServiceModel
   namespace: System.ServiceModel.Dispatcher
-  summary: "Implement to participate in cleaning up the thread that invoked the operation."
-  remarks: "Use this method to perform any necessary cleaning up of the operation thread."
+  summary: "Implemente para participar no thread de invocar a operação de limpeza."
+  remarks: "Utilize este método para efetuar quaisquer necessário a limpeza do thread de operação."
   syntax:
     content: public void AfterInvoke (object correlationState);
     parameters:
     - id: correlationState
       type: System.Object
-      description: "The correlation object returned from the <xref:System.ServiceModel.Dispatcher.ICallContextInitializer.BeforeInvoke*> method."
+      description: "O objeto de correlação devolvido pelo <xref:System.ServiceModel.Dispatcher.ICallContextInitializer.BeforeInvoke*>método.</xref:System.ServiceModel.Dispatcher.ICallContextInitializer.BeforeInvoke*>"
   overload: System.ServiceModel.Dispatcher.ICallContextInitializer.AfterInvoke*
   exceptions: []
   platform:
@@ -54,23 +54,23 @@ items:
   assemblies:
   - System.ServiceModel
   namespace: System.ServiceModel.Dispatcher
-  summary: "Implement to participate in the initialization of the operation thread."
-  remarks: "Implement the BeforeInvoke method to initialize and clean up thread-local storage for the thread that invokes user code. Typical usage is to set some value, such as impersonation or changing the <xref:System.Globalization.CultureInfo?displayProperty=fullName>. If you wanted to establish some custom context, this is the extension point to initialize the static context property, which is then available for developers in the course of the operation."
+  summary: "Implemente para participar na inicialização do thread de operação."
+  remarks: "Implementa o método BeforeInvoke inicializar e armazenamento local de thread para o thread de limpeza que invoca o código de utilizador. Utilização normal consiste em definir um valor, tais como a representação ou alterar <xref:System.Globalization.CultureInfo?displayProperty=fullName>.</xref:System.Globalization.CultureInfo?displayProperty=fullName> Se pretendesse estabelecer algum contexto personalizado, este é o ponto de extensão para inicializar a propriedade de contexto estático, o que, em seguida, está disponível para programadores durante a operação."
   syntax:
     content: public object BeforeInvoke (System.ServiceModel.InstanceContext instanceContext, System.ServiceModel.IClientChannel channel, System.ServiceModel.Channels.Message message);
     parameters:
     - id: instanceContext
       type: System.ServiceModel.InstanceContext
-      description: "The service instance for the operation."
+      description: "A instância de serviço para a operação."
     - id: channel
       type: System.ServiceModel.IClientChannel
-      description: "The client channel."
+      description: "O canal de cliente."
     - id: message
       type: System.ServiceModel.Channels.Message
-      description: "The incoming message."
+      description: "A mensagem a receber."
     return:
       type: System.Object
-      description: "A correlation object passed back as the parameter of the <xref:System.ServiceModel.Dispatcher.ICallContextInitializer.AfterInvoke*> method."
+      description: "Foi transmitido um objeto uma correlação novamente como o parâmetro de <xref:System.ServiceModel.Dispatcher.ICallContextInitializer.AfterInvoke*>método.</xref:System.ServiceModel.Dispatcher.ICallContextInitializer.AfterInvoke*>"
   overload: System.ServiceModel.Dispatcher.ICallContextInitializer.BeforeInvoke*
   exceptions: []
   platform:

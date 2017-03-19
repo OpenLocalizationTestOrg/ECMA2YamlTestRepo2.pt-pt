@@ -22,8 +22,8 @@ items:
   nameWithType: XamlReader
   fullName: System.Windows.Markup.XamlReader
   type: Class
-  summary: "Reads XAML input and creates an object graph, using the WPF default XAML reader and an associated XAML object writer."
-  remarks: "The synchronous <xref:System.Windows.Markup.XamlReader.Load%2A> methods are static, but the asynchronous <xref:System.Windows.Markup.XamlReader.LoadAsync%2A> methods are not static and require an instance of the XamlReader class to use.       The output of the `Load` methods is a single object, which represents the root object of a created object tree or object graph. Object graphs that are created by XamlReader are typically added to the existing object tree of a WPF application at run time. Otherwise the new object graph is considered disconnected for purposes of the WPF application model. This means that it does not render, and cannot be accessed using any of the object tree techniques as applied to the WPF application&quot;s main object tree (for example, the APIs <xref:System.Windows.FrameworkElement.FindName%2A>, <xref:System.Windows.LogicalTreeHelper>, <xref:System.Windows.Media.VisualTreeHelper>). For more information on object tree concepts, see [Trees in WPF](~/add/includes/ajax-current-ext-md.md).       XamlReader supports the following primary scenarios:      -   **Cloning/object factory**: Without additional mechanisms, a reference type generally cannot be included in more than one position in a WPF object tree. (Examples of additional mechanisms that offer support for sharing or re-use in WPF include objects that are based on <xref:System.Windows.Freezable>, or support for commonly shareable objects such as <xref:System.Windows.Media.Brush> that are referenced as an item from a <xref:System.Windows.ResourceDictionary>.) One way to clone an object that is already in the object tree is to serialize the object using <xref:System.Windows.Markup.XamlWriter.Save%2A?displayProperty=fullName>. You then use the serialized string as input for a call to <xref:System.Windows.Markup.XamlReader.Load%2A>, with a stream or <xref:System.Xml.XmlReader> as an intermediary.      -   **Constructing objects based on just-in-time information**: There are often other ways to have late-binding or user-supplied input change the state of existing objects. For example you could use the same value to set more than one property, or use data binding. But if you have a scenario where even the type of object to create is only determinable at run time or with user interaction, then creating such an object by building up a string for <xref:System.Windows.Markup.XamlReader.Load%2A> input is often a useful technique.      -   **Using existing resource techniques**: The <xref:System.IO.Stream> type is used frequently in other frameworks or technologies for transferring data or objects across application boundaries or for similar situations. You can then use the <xref:System.IO.Stream> techniques to store or obtain XAML-formatted data that you eventually use to create an object as part of your application.      -   **Fixed documents:** Your application might load local or downloaded XPS documents for inclusion in a WPF application object tree and UI.      > [!NOTE] >  This documentation sometimes describes an object graph, as opposed to an object tree. A strict parent-child relationship does not always exist in the run time object relationships of a run time WPF application, so an object graph is a more widely applicable terminology. However, because WPF also includes two different tree conceptualization APIs (<xref:System.Windows.LogicalTreeHelper>, <xref:System.Windows.Media.VisualTreeHelper>) the tree metaphor still applies adequately to most real-world cases in WPF. From the XAML language perspective however, the object graph is often the best way to think about how objects are created out of XAML, because the XAML language itself does not necessarily specify helper class methodologies that bring the relationships more into a tree structure again.      ## Code Access Security, Loose XAML, and XamlReader    XAML is a markup language that directly represents object instantiation and execution. Therefore, elements created in XAML have the same ability to interact with system resources (network access, file system IO, for example) as the equivalent generated code does.       [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] supports the [!INCLUDE[TLA2#tla_net](~/add/includes/tla2sharptla-net-md.md)] security framework [!INCLUDE[TLA#tla_cas](~/add/includes/tlasharptla-cas-md.md)]. This means that [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] content running in the internet zone has reduced execution permissions. &quot;Loose XAML&quot; (pages of noncompiled XAML interpreted at load time by a XAML viewer) and [!INCLUDE[TLA#tla_xbap](~/add/includes/tlasharptla-xbap-md.md)] are usually run in this internet zone and use the same permission set.  However, XAML loaded in to a fully trusted application has the same access to the system resources as the hosting application does. For more information, see [WPF Partial Trust Security](~/add/includes/ajax-current-ext-md.md).       The implications of these statements for XamlReader is that your application design must make trust decisions about the XAML you decide to load. If you are loading XAML that is not trusted, consider implementing your own sandboxing technique for how you load the resulting object graph.       XamlReader can also be called by partial trust code. In this case, Internet security zone is applied for code access security. If anything in the loaded XAML is invalid under Internet security zone, a XAML parse exception is thrown. Under XBAP and other cases that are partial trust at the platform level, where XamlReader is part of the execution, you get the same exception behavior as with explicit partial trust calls.      ## WPF XAML, XAML Readers/Writers, and XAML Language Versioning    [!INCLUDE[xaml2009](~/add/includes/xaml2009-md.md)] includes language features such as  and . You can use signatures of `Load` or `Parse` to load XAML that uses these features. However, those language features are not supported for XAML that needs to be markup compiled (such as XAML for the **Page** build action in a WPF application, or any XAML that involves the markup compile task in the build actions).       WPF types and the WPF technology in general support concepts that rely on access to WPF internals. For instance, how WPF implements dependency properties relies on internal techniques for efficient type-member lookup. Access to these internals is enabled by the XAML reading and writing APIs provided in <xref:System.Windows.Markup.XamlWriter> and XamlReader from the <xref:System.Windows.Markup> namespace and PresentationFramework assembly. However, the lower-level XAML readers and XAML writers from the System.Xaml assembly (classes based on <xref:System.Xaml.XamlReader?displayProperty=fullName>, <xref:System.Xaml.XamlWriter?displayProperty=fullName>) do not have access to the WPF internals. There is no dependency from System.Xaml to any WPF-specific assembly. Without access to the WPF internals, System.Xaml readers and writers cannot correctly load or save all WPF types, or types based on WPF types. In particular, the System.Xaml readers and writers do not understand concepts such as the WPF dependency property backing property store, or all the specifics of how WPF uses styles, resource dictionaries and templates. Therefore you have a choice to make:      -   If you are loading WPF types, and/or you are using XAML in BAML form in any way, use the PresentationFramework XAML readers and XAML writers.      -   If you are not relying on any WPF types or the BAML form of XAML, and are not using another specific technology&quot;s XAML reader or XAML writer implementation for reasons that are specific to that framework, use the System.Xaml XAML readers and XAML writers.      ## System.Xaml Backing Implementation in .NET 4    XamlReader is the callable API surface for the WPF framework-level XAML parser. The same underlying XAML parser also performs the run-time XAML loading and parsing for WPF applications that target [!INCLUDE[net_v30_short](~/add/includes/net-v30-short-md.md)] and [!INCLUDE[net_v35_short](~/add/includes/net-v35-short-md.md)].       If you are targeting [!INCLUDE[net_v40_short](~/add/includes/net-v40-short-md.md)], the external API is the same, but parts of the implementation are built on the [!INCLUDE[net_v40_short](~/add/includes/net-v40-short-md.md)] general XAML implementation in the System.Xaml assembly, which improves many of the technical and reporting aspects of parsing XAML. Targeting [!INCLUDE[net_v40_short](~/add/includes/net-v40-short-md.md)] necessarily entails including System.Xaml as a reference, and details of implementation such as the exceptions reported may come from System.Xaml defined types.      <a name=&quot;xamlTextUsage_XamlReader&quot;></a>    ## XAML Text Usage"
+  summary: "Lê a entrada XAML e cria um gráfico de objeto, utilizando o leitor XAML do WPF predefinido e um escritor de objeto XAML associado."
+  remarks: "O síncrona <xref:System.Windows.Markup.XamlReader.Load%2A>métodos são estáticos, mas o assíncrona <xref:System.Windows.Markup.XamlReader.LoadAsync%2A>métodos não são estáticos e requerem uma instância da classe XamlReader a utilizar.</xref:System.Windows.Markup.XamlReader.LoadAsync%2A> </xref:System.Windows.Markup.XamlReader.Load%2A>       O resultado a `Load` métodos é um único objeto, que representa o objeto de raiz de uma árvore de objetos criados ou um gráfico de objeto. Gráficos de objetos que são criados pelas XamlReader normalmente são adicionados à árvore de objetos existentes de uma aplicação WPF em tempo de execução. Caso contrário, o gráfico de objeto novo é considerado desligado para fins de modelo de aplicação WPF. Isto significa que não compor: e não podem ser acedidos através de qualquer um das técnicas de árvore de objetos como aplicado à árvore de objeto principal da aplicação WPF (por exemplo, as APIs <xref:System.Windows.FrameworkElement.FindName%2A>, <xref:System.Windows.LogicalTreeHelper>, <xref:System.Windows.Media.VisualTreeHelper>).</xref:System.Windows.Media.VisualTreeHelper> </xref:System.Windows.LogicalTreeHelper> </xref:System.Windows.FrameworkElement.FindName%2A> Para obter mais informações sobre conceitos de árvore do objeto, consulte [árvores no WPF](~/add/includes/ajax-current-ext-md.md).       XamlReader suporta os seguintes cenários de principais:- **fábrica de clonagem/objeto**: sem mecanismos adicionais, um tipo de referência não pode ser geralmente incluído em mais do que uma posição numa árvore de objeto WPF. (Mecanismos adicionais que oferecem suporte para a partilha ou reutilize no WPF exemplos de objetos que se baseiam em <xref:System.Windows.Freezable>, ou fornece suporte para objetos normalmente partilhável como <xref:System.Windows.Media.Brush>que são referenciadas como um item a partir de um <xref:System.Windows.ResourceDictionary>.)</xref:System.Windows.ResourceDictionary> </xref:System.Windows.Media.Brush> </xref:System.Windows.Freezable> Uma forma de um objeto que já se encontra na árvore de objetos do clone é para serializar o objeto com <xref:System.Windows.Markup.XamlWriter.Save%2A?displayProperty=fullName>.</xref:System.Windows.Markup.XamlWriter.Save%2A?displayProperty=fullName> Em seguida, utilizar a cadeia serializada como entrada para uma chamada para <xref:System.Windows.Markup.XamlReader.Load%2A>, com uma transmissão em fluxo ou <xref:System.Xml.XmlReader>como um intermediário.</xref:System.Xml.XmlReader> </xref:System.Windows.Markup.XamlReader.Load%2A>      - **Construir os objetos com base nas informações de just-in-time**: existem outras formas de ter entrada de enlace dinâmico ou fornecido pelo utilizador alterar o estado de objetos existentes. Por exemplo foi possível utilizar o mesmo valor para definir mais do que uma propriedade ou utilizar o enlace de dados. Mas se tiver um cenário onde mesmo o tipo de objeto para criar só é determinable em tempo de execução ou interação do utilizador, em seguida, criar desse objecto através da criação de uma cadeia para <xref:System.Windows.Markup.XamlReader.Load%2A>entrada, muitas vezes, é uma técnica útil.</xref:System.Windows.Markup.XamlReader.Load%2A>      - **Utilizando técnicas de recursos existente**: O <xref:System.IO.Stream>tipo é utilizado frequentemente no outras estruturas ou tecnologias para transferência de dados ou objetos nos limites da aplicação ou para situações semelhantes.</xref:System.IO.Stream> Em seguida, pode utilizar o <xref:System.IO.Stream>técnicas para armazenar ou obter dados formatado em XAML que acaba por utilizar para criar um objeto como parte da sua aplicação.</xref:System.IO.Stream>      - **Fixo documentos:** a aplicação pode carregar locais ou transferidos documentos XPS para inclusão numa árvore de objetos de aplicações do WPF e IU.      > [!NOTE] > Nesta documentação, por vezes, descreve um gráfico de objeto, por oposição a uma árvore de objetos. Uma relação principal-subordinado strict não de existir sempre as relações de objeto de tempo de execução de uma aplicação do WPF de tempo de execução, pelo que um gráfico de objeto é uma terminologia mais amplamente aplicável. No entanto, porque o WPF também inclui dois conceptualization de árvore diferente APIs (<xref:System.Windows.LogicalTreeHelper>, <xref:System.Windows.Media.VisualTreeHelper>) metaphor a árvore ainda se aplica adequado para a maioria dos casos do mundo real no WPF.</xref:System.Windows.Media.VisualTreeHelper> </xref:System.Windows.LogicalTreeHelper> Da perspetiva de idioma XAML no entanto, o gráfico de objeto é, muitas vezes, a melhor forma de pensar sobre como os objetos são criados fora do XAML, porque o idioma XAML propriamente dito não necessariamente especificar metodologias de classe de programa auxiliar que colocar as relações mais numa estrutura de árvore novamente.      ## Segurança de acesso de código, soltas XAML e XamlReader XAML é uma linguagem de markup que representa diretamente a instanciação do objeto e a execução. Por conseguinte, os elementos criados em XAML de ter a mesma capacidade de interagir com recursos do sistema (rede acesso, / s do sistema de ficheiros, por exemplo) como equivalentes gerado does de código.       [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)]suporta o [!INCLUDE[TLA2#tla_net](~/add/includes/tla2sharptla-net-md.md)] framework de segurança [!INCLUDE[TLA#tla_cas](~/add/includes/tlasharptla-cas-md.md)]. Isto significa que [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] conteúdo em execução na zona da internet tem reduzido permissões de execução. &quot;Perder XAML&quot; (páginas de noncompiled XAML interpreta em tempo de carregamento de um visualizador XAML) e [!INCLUDE[TLA#tla_xbap](~/add/includes/tlasharptla-xbap-md.md)] são normalmente executados nesta zona de internet e utilizar o mesmo conjunto de permissões.  No entanto, XAML carregada na aplicação totalmente fidedigna tem o mesmo acesso para os recursos do sistema, como a aplicação de alojamento. Para obter mais informações, consulte [segurança de fidedignidade parcial WPF](~/add/includes/ajax-current-ext-md.md).       As implicações destas instruções para XamlReader é que a estrutura da aplicação têm tomar decisões da confiança sobre o XAML que opte por carregar. Se estiver a carregar o XAML que não é fidedigno, pondere implementar a seus próprios técnica sandboxing para como carregar o gráfico de objeto resultante.       Também pode ser chamado XamlReader por código de fidedignidade parcial. Neste caso, a zona de segurança da Internet é aplicada para segurança de acesso de código. Se nada no XAML carregado é inválido na zona de segurança da Internet, é emitida uma exceção de análise XAML. Em XBAP e outros cenários que são fidedignidade parcial ao nível da plataforma, onde XamlReader faz parte da execução, receberá o mesmo comportamento de exceção de com as chamadas de fidedignidade parcial explícita.      ## WPF XAML, XAML leitores/escritores e controlo de versões de idiomas de XAML [!INCLUDE[xaml2009](~/add/includes/xaml2009-md.md)] inclui funcionalidades de idioma, tais como e. Pode utilizar assinaturas de `Load` ou `Parse` carregar XAML que utiliza estas funcionalidades. No entanto, essas funcionalidades do idioma não são suportadas para XAML que tem de ser compilada através de marcação (tais como o XAML para o **página** compilar a ação de uma aplicação WPF ou qualquer XAML que envolve a tarefa de compilação de marcação nas ações de compilação).       Tipos WPF e a tecnologia WPF suportam em geral conceitos que dependem de acesso para WPF características. Por exemplo, como o WPF implementa propriedades de dependência depende de técnicas internas para a pesquisa de membro de tipo eficiente. Acesso a estas características está ativado por XAML leitura e escrita APIs fornecidas <xref:System.Windows.Markup.XamlWriter>e XamlReader do <xref:System.Windows.Markup>espaço de nomes e assemblagem PresentationFramework.</xref:System.Windows.Markup> </xref:System.Windows.Markup.XamlWriter> No entanto, os leitores XAML de nível inferior e escritores XAML da assemblagem System.Xaml (classes com base no <xref:System.Xaml.XamlReader?displayProperty=fullName>, <xref:System.Xaml.XamlWriter?displayProperty=fullName>) não têm acesso para os aspetos internos WPF.</xref:System.Xaml.XamlWriter?displayProperty=fullName> </xref:System.Xaml.XamlReader?displayProperty=fullName> Não há nenhum dependência do System.Xaml para qualquer assemblagem WPF específicos. Sem acesso para os aspetos internos WPF, leitores de System.Xaml e escritores corretamente não é possível carregar ou guardar WPF todos os tipos ou tipos com base nos tipos WPF. Em particular, os leitores de System.Xaml e escritores não compreende o conceitos, tais como a propriedade de dependência do WPF fazer uma cópia de arquivo de propriedades nem todas as especificações como WPF utiliza estilos, dicionários de recursos e os modelos. Por conseguinte, tem uma opção para que: - Se estiver a carregar os tipos WPF e/ou estiver a utilizar o XAML no formulário BAML de qualquer forma, utilize os leitores de PresentationFramework XAML e escritores XAML.      -Se são não depender de quaisquer tipos WPF ou o formato BAML XAML e não estiver a utilizar do outra específica tecnologia leitor XAML ou implementação de escritor XAML por motivos que são específicos para essa framework, utilize os leitores de System.Xaml XAML e escritores XAML.      ## System.Xaml fazer uma cópia de implementação em .NET 4 XamlReader é a superfície de API possível chamar EndRead para o parser XAML de nível de framework WPF. O analisador XAML subjacente mesmo também efetua o XAML de tempo de execução, carregar e analisar para as aplicações do WPF que o destino [!INCLUDE[net_v30_short](~/add/includes/net-v30-short-md.md)] e [!INCLUDE[net_v35_short](~/add/includes/net-v35-short-md.md)].       Se estiver a segmentar [!INCLUDE[net_v40_short](~/add/includes/net-v40-short-md.md)], a API externa é o mesmo, mas as partes da implementação são criadas no [!INCLUDE[net_v40_short](~/add/includes/net-v40-short-md.md)] implementação geral de XAML na assemblagem System.Xaml, que melhora muitos dos aspetos técnicos e relatórios de análise XAML. Filtragem [!INCLUDE[net_v40_short](~/add/includes/net-v40-short-md.md)] necessariamente envolve incluindo System.Xaml como uma referência e detalhes de implementação, tais como as exceções comunicadas podem ter System.Xaml definido tipos.      <a name=&quot;xamlTextUsage_XamlReader&quot;></a># # Utilização de texto XAML"
   example:
   - "The following example converts a <xref:System.Windows.Controls.Button> into a string using the <xref:System.Windows.Markup.XamlWriter> class.  The string is then loaded back into a <xref:System.Windows.Controls.Button> using the static <xref:System.Windows.Markup.XamlReader.Load%2A> method on the XamlReader class.  \n  \n [!code-cs[xamlreaderwritersnippets#XamlReaderLoadXmlReader](~/add/codesnippet/csharp/XamlReaderWriterSnippets/Window1.xaml.cs#xamlreaderloadxmlreader)]\n [!code-vb[xamlreaderwritersnippets#XamlReaderLoadXmlReader](~/add/codesnippet/visualbasic/xamlreaderwritersnippets/window1.xaml.vb#xamlreaderloadxmlreader)]"
   syntax:
@@ -46,7 +46,7 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Initializes a new instance of the <xref href=&quot;System.Windows.Markup.XamlReader&quot;></xref> class."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Windows.Markup.XamlReader&quot;> </xref> classe."
   syntax:
     content: public XamlReader ();
     parameters: []
@@ -66,8 +66,8 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Aborts the current asynchronous load operation, if there is an asynchronous load operation pending."
-  remarks: "CancelAsync is an asynchronous operation; therefore, some loading may occur before the operation is aborted."
+  summary: "Interrompe a operação assíncrona carga atual, se existir uma operação de carregamento assíncrono pendente."
+  remarks: "CancelAsync é uma operação assíncrona; Por conseguinte, algumas carregamento pode ocorrer antes da operação foi abortada."
   syntax:
     content: public void CancelAsync ();
     parameters: []
@@ -87,13 +87,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Returns a <xref href=&quot;System.Xaml.XamlSchemaContext&quot;></xref> object that represents the WPF schema context settings for a <xref href=&quot;System.Windows.Markup.XamlReader&quot;></xref>."
+  summary: "Devolve um <xref href=&quot;System.Xaml.XamlSchemaContext&quot;> </xref> objeto que representa as definições de contexto do esquema WPF para um <xref href=&quot;System.Windows.Markup.XamlReader&quot;> </xref>."
   syntax:
     content: public static System.Xaml.XamlSchemaContext GetWpfSchemaContext ();
     parameters: []
     return:
       type: System.Xaml.XamlSchemaContext
-      description: "A <xref href=&quot;System.Xaml.XamlSchemaContext&quot;></xref> object that represents the WPF schema context settings for a <xref href=&quot;System.Windows.Markup.XamlReader&quot;></xref>."
+      description: "A <xref href=&quot;System.Xaml.XamlSchemaContext&quot;> </xref> objeto que representa as definições de contexto do esquema WPF para um <xref href=&quot;System.Windows.Markup.XamlReader&quot;> </xref>."
   overload: System.Windows.Markup.XamlReader.GetWpfSchemaContext*
   exceptions: []
   platform:
@@ -110,7 +110,7 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Reads the XAML input in the specified <xref:System.IO.Stream> and returns an <xref:System.Object> that is the root of the corresponding object tree."
+  summary: "Lê a entrada XAML especificado no <xref:System.IO.Stream>e devolve um <xref:System.Object>que é a raiz da árvore de objetos correspondente.</xref:System.Object> </xref:System.IO.Stream>"
   remarks: ''
   example:
   - "The following example saves a <xref:System.Windows.Controls.Button> into a <xref:System.IO.MemoryStream> using the <xref:System.Windows.Markup.XamlWriter> class. The stream is then loaded back into a <xref:System.Windows.Controls.Button> using the static <xref:System.Windows.Markup.XamlReader.Load%2A> method on the <xref:System.Windows.Markup.XamlReader> class.  \n  \n [!code-cs[XamlReaderWriterSnippets#XamlReaderLoadXmlReader](~/add/codesnippet/csharp/XamlReaderWriterSnippets/Window1.xaml.cs#xamlreaderloadxmlreader)]\n [!code-vb[XamlReaderWriterSnippets#XamlReaderLoadXmlReader](~/add/codesnippet/visualbasic/xamlreaderwritersnippets/window1.xaml.vb#xamlreaderloadxmlreader)]"
@@ -119,15 +119,15 @@ items:
     parameters:
     - id: stream
       type: System.IO.Stream
-      description: "The XAML to load, in stream form."
+      description: "O XAML para carregar, no formato de fluxo."
     return:
       type: System.Object
-      description: "The object at the root of the created object tree."
+      description: "O objeto na raiz da árvore de objetos criados."
   overload: System.Windows.Markup.XamlReader.Load*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>stream</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>stream</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Windows.Markup.XamlReader.Load(System.Xaml.XamlReader)
@@ -142,22 +142,22 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Reads the XAML input through a provided <xref href=&quot;System.Xaml.XamlReader&quot;></xref> and returns an object that is the root of the corresponding object tree."
-  remarks: "The input <xref:System.Xaml.XamlReader> can be <xref:System.Windows.Baml2006.Baml2006Reader>. This is how you can load BAML at run time, or for localization tool purposes."
+  summary: "Lê a entrada XAML através de um fornecido <xref href=&quot;System.Xaml.XamlReader&quot;> </xref> e devolve um objeto que é a raiz da árvore de objetos correspondente."
+  remarks: "A entrada <xref:System.Xaml.XamlReader>pode ser <xref:System.Windows.Baml2006.Baml2006Reader>.</xref:System.Windows.Baml2006.Baml2006Reader> </xref:System.Xaml.XamlReader> Esta é a forma como pode carregar BAML em tempo de execução, ou para fins de ferramenta de localização."
   syntax:
     content: public static object Load (System.Xaml.XamlReader reader);
     parameters:
     - id: reader
       type: System.Xaml.XamlReader
-      description: "A <xref href=&quot;System.Xaml.XamlReader&quot;></xref> object. This is expected to be initialized with input XAML."
+      description: "A <xref href=&quot;System.Xaml.XamlReader&quot;></xref> object. Isto deve ser inicializada com entrada XAML."
     return:
       type: System.Object
-      description: "The object that is the root of the created object tree."
+      description: "O objeto que é a raiz da árvore de objetos criados."
   overload: System.Windows.Markup.XamlReader.Load*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>reader</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>reader</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Windows.Markup.XamlReader.Load(System.Xml.XmlReader)
@@ -172,7 +172,7 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Reads the XAML input in the specified <xref:System.Xml.XmlReader> and returns an object that is the root of the corresponding object tree."
+  summary: "Lê a entrada XAML especificado no <xref:System.Xml.XmlReader>e devolve um objeto que é a raiz da árvore de objetos correspondente.</xref:System.Xml.XmlReader>"
   remarks: ''
   example:
   - "The following example converts a <xref:System.Windows.Controls.Button> into a string using the <xref:System.Windows.Markup.XamlWriter> class.  The string is then loaded back into a <xref:System.Windows.Controls.Button> using the static <xref:System.Windows.Markup.XamlReader.Load%2A> method on the <xref:System.Windows.Markup.XamlReader> class.  \n  \n [!code-cs[XamlReaderWriterSnippets#XamlReaderLoadXmlReader](~/add/codesnippet/csharp/XamlReaderWriterSnippets/Window1.xaml.cs#xamlreaderloadxmlreader)]\n [!code-vb[XamlReaderWriterSnippets#XamlReaderLoadXmlReader](~/add/codesnippet/visualbasic/xamlreaderwritersnippets/window1.xaml.vb#xamlreaderloadxmlreader)]"
@@ -181,15 +181,15 @@ items:
     parameters:
     - id: reader
       type: System.Xml.XmlReader
-      description: "The <xref:System.Xml.XmlReader> that has already loaded the XAML input to load in XML form."
+      description: "O <xref:System.Xml.XmlReader>que já foi carregado o XAML a carregar no formato XML de entrada.</xref:System.Xml.XmlReader>"
     return:
       type: System.Object
-      description: "The object that is the root of the created object tree."
+      description: "O objeto que é a raiz da árvore de objetos criados."
   overload: System.Windows.Markup.XamlReader.Load*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>reader</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>reader</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Windows.Markup.XamlReader.Load(System.IO.Stream,System.Windows.Markup.ParserContext)
@@ -204,24 +204,24 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Reads the XAML input in the specified <xref:System.IO.Stream> and returns an object that is the root of the corresponding object tree."
+  summary: "Lê a entrada XAML especificado no <xref:System.IO.Stream>e devolve um objeto que é a raiz da árvore de objetos correspondente.</xref:System.IO.Stream>"
   syntax:
     content: public static object Load (System.IO.Stream stream, System.Windows.Markup.ParserContext parserContext);
     parameters:
     - id: stream
       type: System.IO.Stream
-      description: "The stream that contains the XAML input to load."
+      description: "O fluxo que contém o XAML de entrada para carregar."
     - id: parserContext
       type: System.Windows.Markup.ParserContext
-      description: "Context information used by the parser."
+      description: "Informações de contexto utilizadas pelo parser."
     return:
       type: System.Object
-      description: "The object that is the root of the created object tree."
+      description: "O objeto que é a raiz da árvore de objetos criados."
   overload: System.Windows.Markup.XamlReader.Load*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>stream</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       <code>parserContext</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>stream</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       <code>parserContext</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Windows.Markup.XamlReader.LoadAsync(System.IO.Stream)
@@ -236,25 +236,25 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Reads the XAML input in the specified <xref:System.IO.Stream> and returns the root of the corresponding object tree."
-  remarks: "An asynchronous XAML load operation will initially return an object that is purely the root object. Asynchronously, XAML parsing then continues, and any child objects are filled in under the root. This is in contrast to the typical WPF XAML processing behavior and its interaction with WPF concepts of object lifetime. In the typical (non-async) interaction, all properties of an object including all child collections are filled before returning an element and reporting it as loaded. That behavior equates to a bottom-up methodology for creating the tree where the root object is the last object to become available.       You typically would assign the returned object to some location in your WPF application&quot;s object tree, with the knowledge that content might still be filling in and might cause incremental layout updates if the entire content is exposed as part of the UI. For this reason it is typical to isolate or virtualize any asynchronously loaded objects from XAML, and to use application-specific logic or application state to notify when <xref:System.Windows.Markup.XamlReader.LoadCompleted> is handled.       In order for LoadAsync to load XAML input asynchronously, the root element in the XAML input must contain the attribute and value `x:SynchronousMode=&quot;Async&quot;`. The value is treated as case sensitive. If the XAML input root does not contain `x:SynchronousMode=&quot;Async&quot;`, no exception is thrown, and the call is processed as a synchronous load (see <xref:System.Windows.Markup.XamlReader.Load%28System.IO.Stream%29>).       Only one asynchronous load operation per instance of the <xref:System.Windows.Markup.XamlReader> class can be performed at a time.  If more than one asynchronous operation is attempted on the same instance of the <xref:System.Windows.Markup.XamlReader> class an <xref:System.InvalidOperationException> is thrown."
+  summary: "Lê a entrada XAML especificado no <xref:System.IO.Stream>e devolve a raiz da árvore de objetos correspondente.</xref:System.IO.Stream>"
+  remarks: "Uma operação de carregamento XAML assíncrona inicialmente irá devolver um objeto que é puramente o objeto de raiz. No modo assíncrono, continua a XAML, em seguida, análise e os objetos subordinados são preenchidos na raiz de. Este é contrariamente XAML WPF típico de processamento comportamento e a interação com os conceitos WPF da duração do objeto. No interação típico (não-async), todas as propriedades de um objeto, incluindo todas as coleções subordinadas são preenchidas antes de devolver um elemento e relatórios-lo tal como carregado. Esse comportamento equivale a uma metodologia na parte inferior de segurança para a criação da árvore de onde o objeto de raiz é o último objeto fique disponível.       Que normalmente iria atribuir o objeto devolvido para algumas localização na árvore de objetos da sua aplicação WPF, com o conhecimento de que o conteúdo poderá ainda ser preencher e poderá fazer com que as atualizações do esquema incrementais se todo o conteúdo está exposto como parte da IU. Por este motivo, é típico de isolar ou virtualizar os quaisquer objetos no modo assíncrono carregados de XAML e a utilização do Estado de aplicação ou específicos da aplicação lógica para o notificar quando <xref:System.Windows.Markup.XamlReader.LoadCompleted>é processado.</xref:System.Windows.Markup.XamlReader.LoadCompleted>       Para que LoadAsync carregar XAML entrada no modo assíncrono, o elemento de raiz no XAML entrada tem de conter o atributo e o valor `x:SynchronousMode=&quot;Async&quot;`. O valor é tratado como maiúsculas confidenciais. Se a raiz de entrada de XAML não conter `x:SynchronousMode=&quot;Async&quot;`, sem exceção é acionada e a chamada é processada como um carregamento síncronos (consulte <xref:System.Windows.Markup.XamlReader.Load%28System.IO.Stream%29>).</xref:System.Windows.Markup.XamlReader.Load%28System.IO.Stream%29>       Apenas uma operação de carregamento assíncrono por instância do <xref:System.Windows.Markup.XamlReader>classe pode ser efetuada num momento.</xref:System.Windows.Markup.XamlReader>  Se mais do que uma operação assíncrona for tentada a mesma instância do <xref:System.Windows.Markup.XamlReader>classe um <xref:System.InvalidOperationException>é emitida.</xref:System.InvalidOperationException> </xref:System.Windows.Markup.XamlReader>"
   syntax:
     content: public object LoadAsync (System.IO.Stream stream);
     parameters:
     - id: stream
       type: System.IO.Stream
-      description: "The stream containing the XAML input to load."
+      description: "O fluxo que contém o XAML de entrada para carregar."
     return:
       type: System.Object
-      description: "The object that is the root of the created object tree."
+      description: "O objeto que é a raiz da árvore de objetos criados."
   overload: System.Windows.Markup.XamlReader.LoadAsync*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>stream</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>stream</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "Multiple load operations are pending concurrently with the same <xref href=&quot;System.Windows.Markup.XamlReader&quot;></xref>."
+    description: "Várias operações de carga estão pendentes simultaneamente com o mesmo <xref href=&quot;System.Windows.Markup.XamlReader&quot;> </xref>."
   platform:
   - net462
 - uid: System.Windows.Markup.XamlReader.LoadAsync(System.Xml.XmlReader)
@@ -269,25 +269,25 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Reads the XAML input in the specified <xref:System.Xml.XmlReader> and returns the root of the corresponding object tree."
-  remarks: "An asynchronous XAML load operation will initially return an object that is purely the root object. Asynchronously, XAML parsing then continues, and any child objects are filled in under the root. This is in contrast to the typical WPF XAML processing behavior and its interaction with WPF concepts of object lifetime. In the typical (non-async) interaction, all properties of an object including all child collections are filled before returning an element and reporting it as loaded. That behavior equates to a bottom-up methodology for creating the tree where the root object is the last object to become available.       You typically would assign the returned object from LoadAsync to some location in your application&quot;s object tree, with the knowledge that content might still be filling in and might cause incremental layout updates if the entire content is exposed as part of the UI. For this reason it is typical to isolate or virtualize any asynchronously loaded objects from XAML, and to use application-specific logic or application state to notify when <xref:System.Windows.Markup.XamlReader.LoadCompleted> is handled.       In order for LoadAsync to load XAML input asynchronously, the root element in the XAML markup must contain the attribute and value `x:SynchronousMode=&quot;Async&quot;`. The value is treated as case sensitive. If the XAML markup root does not contain `x:SynchronousMode=&quot;Async&quot;`, no exception is thrown, and the call is instead processed as a synchronous load (see <xref:System.Windows.Markup.XamlReader.Load%28System.Xml.XmlReader%29>).       Only one asynchronous load operation per instance of the <xref:System.Windows.Markup.XamlReader> class can be performed at a time.  If more than one asynchronous operation is attempted on the same instance of the <xref:System.Windows.Markup.XamlReader> class an <xref:System.InvalidOperationException> is thrown."
+  summary: "Lê a entrada XAML especificado no <xref:System.Xml.XmlReader>e devolve a raiz da árvore de objetos correspondente.</xref:System.Xml.XmlReader>"
+  remarks: "Uma operação de carregamento XAML assíncrona inicialmente irá devolver um objeto que é puramente o objeto de raiz. No modo assíncrono, continua a XAML, em seguida, análise e os objetos subordinados são preenchidos na raiz de. Este é contrariamente XAML WPF típico de processamento comportamento e a interação com os conceitos WPF da duração do objeto. No interação típico (não-async), todas as propriedades de um objeto, incluindo todas as coleções subordinadas são preenchidas antes de devolver um elemento e relatórios-lo tal como carregado. Esse comportamento equivale a uma metodologia na parte inferior de segurança para a criação da árvore de onde o objeto de raiz é o último objeto fique disponível.       Que normalmente iria atribuir o objeto devolvido do LoadAsync algumas localização na árvore de objetos da sua aplicação, com o conhecimento de que o conteúdo poderá ainda ser preencher e poderá fazer com que as atualizações do esquema incrementais se todo o conteúdo está exposto como parte da IU. Por este motivo, é típico de isolar ou virtualizar os quaisquer objetos no modo assíncrono carregados de XAML e a utilização do Estado de aplicação ou específicos da aplicação lógica para o notificar quando <xref:System.Windows.Markup.XamlReader.LoadCompleted>é processado.</xref:System.Windows.Markup.XamlReader.LoadCompleted>       Para que LoadAsync carregar XAML de entrada no modo assíncrono, o elemento de raiz na marcação de XAML tem de conter o atributo e o valor `x:SynchronousMode=&quot;Async&quot;`. O valor é tratado como maiúsculas confidenciais. Se a raiz de marcação XAML não conter `x:SynchronousMode=&quot;Async&quot;`, sem exceção é acionada e a chamada em vez disso, é processada como um carregamento síncronos (consulte <xref:System.Windows.Markup.XamlReader.Load%28System.Xml.XmlReader%29>).</xref:System.Windows.Markup.XamlReader.Load%28System.Xml.XmlReader%29>       Apenas uma operação de carregamento assíncrono por instância do <xref:System.Windows.Markup.XamlReader>classe pode ser efetuada num momento.</xref:System.Windows.Markup.XamlReader>  Se mais do que uma operação assíncrona for tentada a mesma instância do <xref:System.Windows.Markup.XamlReader>classe um <xref:System.InvalidOperationException>é emitida.</xref:System.InvalidOperationException> </xref:System.Windows.Markup.XamlReader>"
   syntax:
     content: public object LoadAsync (System.Xml.XmlReader reader);
     parameters:
     - id: reader
       type: System.Xml.XmlReader
-      description: "An existing  <xref:System.Xml.XmlReader> that has already loaded/read the XAML input."
+      description: "Existente <xref:System.Xml.XmlReader>que tem já carregados/leitura a entrada XAML.</xref:System.Xml.XmlReader>"
     return:
       type: System.Object
-      description: "The root of the created object tree."
+      description: "A raiz da árvore de objetos criados."
   overload: System.Windows.Markup.XamlReader.LoadAsync*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>reader</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>reader</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "Multiple load operations are performed concurrently with the same <xref href=&quot;System.Windows.Markup.XamlReader&quot;></xref>."
+    description: "Várias operações de carregamento são executadas simultaneamente com o mesmo <xref href=&quot;System.Windows.Markup.XamlReader&quot;> </xref>."
   platform:
   - net462
 - uid: System.Windows.Markup.XamlReader.LoadAsync(System.IO.Stream,System.Windows.Markup.ParserContext)
@@ -302,28 +302,28 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Reads the XAML input in the specified <xref:System.IO.Stream> and returns the root of the corresponding object tree."
-  remarks: "An asynchronous XAML load operation will initially return an object that is purely the root object. Asynchronously, XAML parsing then continues, and any child objects are filled in under the root. This is in contrast to the typical WPF XAML processing behavior and its interaction with WPF concepts of object lifetime. In the typical (non-async) interaction, all properties of an object including all child collections are filled before returning an element and reporting it as loaded. That behavior equates to a bottom-up methodology for creating the tree where the root object is the last object to become available.       You typically would assign the returned object to some location in your application&quot;s object tree, with the knowledge that content might still be filling in and might cause incremental layout updates if the entire content is exposed as part of the UI. For this reason it is typical to isolate or virtualize any asynchronously loaded objects from XAML, and to use application-specific logic or application state to notify when <xref:System.Windows.Markup.XamlReader.LoadCompleted> is handled.       In order for LoadAsync to load markup asynchronously, the root element in the XAML markup must contain the attribute and value `x:SynchronousMode=&quot;Async&quot;`. The value is treated as case sensitive. If the XAML markup root does not contain `x:SynchronousMode=&quot;Async&quot;`, no exception is thrown, and the call is processed as a synchronous load (see <xref:System.Windows.Markup.XamlReader.Load%28System.IO.Stream%2CSystem.Windows.Markup.ParserContext%29>).       Only one asynchronous load operation per instance of the <xref:System.Windows.Markup.XamlReader> class can be performed at a time.  If more than one asynchronous operation is attempted on the same instance of the <xref:System.Windows.Markup.XamlReader> class an <xref:System.InvalidOperationException> is thrown."
+  summary: "Lê a entrada XAML especificado no <xref:System.IO.Stream>e devolve a raiz da árvore de objetos correspondente.</xref:System.IO.Stream>"
+  remarks: "Uma operação de carregamento XAML assíncrona inicialmente irá devolver um objeto que é puramente o objeto de raiz. No modo assíncrono, continua a XAML, em seguida, análise e os objetos subordinados são preenchidos na raiz de. Este é contrariamente XAML WPF típico de processamento comportamento e a interação com os conceitos WPF da duração do objeto. No interação típico (não-async), todas as propriedades de um objeto, incluindo todas as coleções subordinadas são preenchidas antes de devolver um elemento e relatórios-lo tal como carregado. Esse comportamento equivale a uma metodologia na parte inferior de segurança para a criação da árvore de onde o objeto de raiz é o último objeto fique disponível.       Que normalmente iria atribuir o objeto devolvido para algumas localização na árvore de objetos da sua aplicação, com o conhecimento de que o conteúdo poderá ainda ser preencher e poderá fazer com que as atualizações do esquema incrementais se todo o conteúdo está exposto como parte da IU. Por este motivo, é típico de isolar ou virtualizar os quaisquer objetos no modo assíncrono carregados de XAML e a utilização do Estado de aplicação ou específicos da aplicação lógica para o notificar quando <xref:System.Windows.Markup.XamlReader.LoadCompleted>é processado.</xref:System.Windows.Markup.XamlReader.LoadCompleted>       Ordem de LoadAsync carregar markup no modo assíncrono, o elemento de raiz na marcação de XAML tem de conter o atributo e o valor `x:SynchronousMode=&quot;Async&quot;`. O valor é tratado como maiúsculas confidenciais. Se a raiz de marcação XAML não conter `x:SynchronousMode=&quot;Async&quot;`, sem exceção é acionada e a chamada é processada como um carregamento síncronos (consulte <xref:System.Windows.Markup.XamlReader.Load%28System.IO.Stream%2CSystem.Windows.Markup.ParserContext%29>).</xref:System.Windows.Markup.XamlReader.Load%28System.IO.Stream%2CSystem.Windows.Markup.ParserContext%29>       Apenas uma operação de carregamento assíncrono por instância do <xref:System.Windows.Markup.XamlReader>classe pode ser efetuada num momento.</xref:System.Windows.Markup.XamlReader>  Se mais do que uma operação assíncrona for tentada a mesma instância do <xref:System.Windows.Markup.XamlReader>classe um <xref:System.InvalidOperationException>é emitida.</xref:System.InvalidOperationException> </xref:System.Windows.Markup.XamlReader>"
   syntax:
     content: public object LoadAsync (System.IO.Stream stream, System.Windows.Markup.ParserContext parserContext);
     parameters:
     - id: stream
       type: System.IO.Stream
-      description: "A stream containing the XAML input to load."
+      description: "Um fluxo que contém o XAML de entrada para carregar."
     - id: parserContext
       type: System.Windows.Markup.ParserContext
-      description: "Context information used by the parser."
+      description: "Informações de contexto utilizadas pelo parser."
     return:
       type: System.Object
-      description: "The root of the created object tree."
+      description: "A raiz da árvore de objetos criados."
   overload: System.Windows.Markup.XamlReader.LoadAsync*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>stream</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>stream</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "Multiple load operations are performed concurrently with the same <xref href=&quot;System.Windows.Markup.XamlReader&quot;></xref>."
+    description: "Várias operações de carregamento são executadas simultaneamente com o mesmo <xref href=&quot;System.Windows.Markup.XamlReader&quot;> </xref>."
   platform:
   - net462
 - uid: System.Windows.Markup.XamlReader.LoadCompleted
@@ -338,13 +338,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Occurs when an asynchronous load operation completes."
-  remarks: "LoadCompleted is also raised when an asynchronous load operation aborts."
+  summary: "Ocorre quando uma operação assíncrona carga for concluída."
+  remarks: "LoadCompleted também é desencadeado quando uma operação assíncrona carga interrompe."
   syntax:
     content: public event System.ComponentModel.AsyncCompletedEventHandler LoadCompleted;
     return:
       type: System.ComponentModel.AsyncCompletedEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -360,17 +360,17 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Reads the XAML input in the specified text string and returns an object that corresponds to the root of the specified markup."
-  remarks: "The implementation calls <xref:System.Windows.Markup.XamlReader.Load%2A> internally after creating a stream from the string. See <xref:System.Windows.Markup.XamlReader.Load%2A> for additional information such as possible exceptions."
+  summary: "Lê a entrada XAML na cadeia de texto especificado e devolve um objeto que corresponde à raiz da marcação especificada."
+  remarks: "As chamadas de implementação <xref:System.Windows.Markup.XamlReader.Load%2A>internamente depois de criar um fluxo a partir da cadeia.</xref:System.Windows.Markup.XamlReader.Load%2A> Consulte <xref:System.Windows.Markup.XamlReader.Load%2A>para obter informações adicionais, tais como exceções possíveis.</xref:System.Windows.Markup.XamlReader.Load%2A>"
   syntax:
     content: public static object Parse (string xamlText);
     parameters:
     - id: xamlText
       type: System.String
-      description: "The input XAML, as a single text string."
+      description: "A entrada XAML, como uma cadeia de texto único."
     return:
       type: System.Object
-      description: "The root of the created object tree."
+      description: "A raiz da árvore de objetos criados."
   overload: System.Windows.Markup.XamlReader.Parse*
   exceptions: []
   platform:
@@ -387,20 +387,20 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Markup
-  summary: "Reads the XAML markup in the specified text string (using a specified <xref href=&quot;System.Windows.Markup.ParserContext&quot;></xref>) and returns an object that corresponds to the root of the specified markup."
-  remarks: "The implementation calls <xref:System.Windows.Markup.XamlReader.Load%2A> internally after creating a stream from the string. See <xref:System.Windows.Markup.XamlReader.Load%2A> for additional information such as possible exceptions."
+  summary: "Lê a marcação XAML na cadeia de texto especificado (através de uma determinada <xref href=&quot;System.Windows.Markup.ParserContext&quot;> </xref>) e devolve um objeto que corresponde à raiz da marcação especificada."
+  remarks: "As chamadas de implementação <xref:System.Windows.Markup.XamlReader.Load%2A>internamente depois de criar um fluxo a partir da cadeia.</xref:System.Windows.Markup.XamlReader.Load%2A> Consulte <xref:System.Windows.Markup.XamlReader.Load%2A>para obter informações adicionais, tais como exceções possíveis.</xref:System.Windows.Markup.XamlReader.Load%2A>"
   syntax:
     content: public static object Parse (string xamlText, System.Windows.Markup.ParserContext parserContext);
     parameters:
     - id: xamlText
       type: System.String
-      description: "The input XAML, as a single text string."
+      description: "A entrada XAML, como uma cadeia de texto único."
     - id: parserContext
       type: System.Windows.Markup.ParserContext
-      description: "Context information used by the parser."
+      description: "Informações de contexto utilizadas pelo parser."
     return:
       type: System.Object
-      description: "The root of the created object tree."
+      description: "A raiz da árvore de objetos criados."
   overload: System.Windows.Markup.XamlReader.Parse*
   exceptions: []
   platform:

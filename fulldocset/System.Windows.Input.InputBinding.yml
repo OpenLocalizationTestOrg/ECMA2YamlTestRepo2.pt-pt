@@ -23,7 +23,7 @@ items:
   nameWithType: InputBinding
   fullName: System.Windows.Input.InputBinding
   type: Class
-  summary: "Represents a binding between an <xref href=&quot;System.Windows.Input.InputGesture&quot;></xref> and a command. The command is potentially a <xref href=&quot;System.Windows.Input.RoutedCommand&quot;></xref>."
+  summary: "Representa um vínculo entre um <xref href=&quot;System.Windows.Input.InputGesture&quot;> </xref> e um comando. O comando é, potencialmente, um <xref href=&quot;System.Windows.Input.RoutedCommand&quot;> </xref>."
   remarks: "You can specify that user input invokes a command by creating a InputBinding. When the user performs the specified input, the <xref:System.Windows.Input.ICommand> that is set to the <xref:System.Windows.Input.InputBinding.Command%2A> property is executed.  \n  \n You can specify that the InputBinding invokes a command that is defined on an object by creating a binding on the <xref:System.Windows.Input.InputBinding.Command%2A>, <xref:System.Windows.Input.InputBinding.CommandParameter%2A>, and <xref:System.Windows.Input.InputBinding.CommandTarget%2A> properties. This enables you to define a custom command and associate it with user input. For more information, see the second example in the Examples section.  \n  \n An InputBinding can be defined on a specific object or at the class level by registering a <xref:System.Windows.Input.CommandManager.RegisterClassInputBinding%2A> with the <xref:System.Windows.Input.CommandManager>.  \n  \n The InputBinding class itself does not support [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] usage because it does not expose a public default constructor (there is a default constructor, but it is protected). However, derived classes can expose a public constructor and therefore can set properties on the derived class that are inherited from InputBinding with a [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] usage. Two existing InputBinding-derived classes that can be instantiated in [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] and can set properties in [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] are <xref:System.Windows.Input.KeyBinding> and <xref:System.Windows.Input.MouseBinding>. The typical property in [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] programming that is set in [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] and takes one or more InputBinding objects as values is the <xref:System.Windows.UIElement.InputBindings%2A?displayProperty=fullName> property.  \n  \n<a name=\"xamlObjectElementUsage_InputBinding\"></a>   \n## XAML Object Element Usage  \n \\<*inputBindingDerivedClass…/*>  \n  \n<a name=\"xamlValues_InputBinding\"></a>   \n## XAML Values  \n `inputBindingDerivedClass`  \n A derived class of InputBinding that supports object element syntax, such as <xref:System.Windows.Input.KeyBinding> or <xref:System.Windows.Input.MouseBinding>. See Remarks."
   example:
   - "The following example shows how to use a <xref:System.Windows.Input.KeyBinding> to bind a <xref:System.Windows.Input.KeyGesture> to the <xref:System.Windows.Input.ApplicationCommands.Open%2A> command. When the key gesture is performed, the Open command is invoked.  \n  \n [!code-xml[commandingoverviewsnippets#CommandingOverviewXAMLKeyBinding](~/add/codesnippet/xaml/CommandingOverviewSnippets/Window1.xaml#commandingoverviewxamlkeybinding)]  \n  \n The following examples show how to bind a custom command to InputBinding objects. These examples create an application that enables the user to change the background color by performing one of the following actions:  \n  \n-   Clicking a button.  \n  \n-   Pressing CTRL+C.  \n  \n-   Right-clicking a <xref:System.Windows.Controls.StackPanel> (outside the <xref:System.Windows.Controls.ListBox>).  \n  \n The first example creates a class named `SimpleDelegateCommand`. This class accepts a delegate so that the object creating the command can define the action that occurs when the command executes. `SimpleDelegateCommand` also defines properties that specify what key and mouse input invokes the command. `GestureKey` and `GestureModifier` specify the keyboard input; `MouseGesture` specifies the mouse input.  \n  \n [!code-cs[InputCommandBinding#DelegateCommand](~/add/codesnippet/csharp/inputcommandbinding/mainwindow.xaml.cs#delegatecommand)]\n [!code-vb[InputCommandBinding#DelegateCommand](~/add/codesnippet/visualbasic/inputcommandbinding/mainwindow.xaml.vb#delegatecommand)]  \n  \n The following example creates and initializes the `ColorChangeCommand`, which is a `SimpleDelegateCommand`. The example also defines the method that executes when the command is invoked and sets the `GestureKey`, `GestureModifier`, and `MouseGesture` properties. An application would call the `InitializeCommand` method when the program begins, such as in the constructor of a <xref:System.Windows.Window>.  \n  \n [!code-cs[InputCommandBinding#InitializeCommand](~/add/codesnippet/csharp/inputcommandbinding/mainwindow.xaml.cs#initializecommand)]\n [!code-vb[InputCommandBinding#InitializeCommand](~/add/codesnippet/visualbasic/inputcommandbinding/mainwindow.xaml.vb#initializecommand)]  \n  \n Finally, the following example creates the user interface. The example adds a <xref:System.Windows.Input.KeyBinding> and a <xref:System.Windows.Input.MouseBinding> to a <xref:System.Windows.Controls.StackPanel> that contains a <xref:System.Windows.Controls.Button> and a <xref:System.Windows.Controls.ListBox>. When the user selects an item in the <xref:System.Windows.Controls.ListBox>, he or she can change the color of the background to the selected color. In each case, the `CommandParameter` property is bound to the selected item in the <xref:System.Windows.Controls.ListBox>, and the `Command` property is bound to the `ColorChangeCommand`. The <xref:System.Windows.Input.KeyBinding.Key%2A?displayProperty=fullName>, <xref:System.Windows.Input.KeyBinding.Modifiers%2A?displayProperty=fullName>, and <xref:System.Windows.Input.MouseBinding.MouseAction%2A?displayProperty=fullName> properties are bound to the corresponding properties on the `SimpleDelegateCommand` class.  \n  \n [!code-xml[InputCommandBinding#UI](~/add/codesnippet/xaml/inputcommandbinding/mainwindow.xaml#ui)]"
@@ -87,8 +87,8 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Provides base initialization for classes derived from <xref href=&quot;System.Windows.Input.InputBinding&quot;></xref>."
-  remarks: "<xref:System.Windows.Input.InputBinding> is not technically an abstract class, but the default constructor is deliberately protected access. This has the effect of making <xref:System.Windows.Input.InputBinding> an &quot;abstract&quot; class for [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)]. There are existing properties in [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] that have [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] usages that expect objects of type <xref:System.Windows.Input.InputBinding>, but you cannot specify an <xref:System.Windows.Input.InputBinding> instance in [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)]. Instead, you can specify one of the device-specific <xref:System.Windows.Input.InputBinding> derived classes as values, for instance <xref:System.Windows.Input.KeyBinding> or <xref:System.Windows.Input.MouseBinding>."
+  summary: "Fornece a inicialização de base para classes derivam de <xref href=&quot;System.Windows.Input.InputBinding&quot;> </xref>."
+  remarks: "<xref:System.Windows.Input.InputBinding>Não é tecnicamente uma classe abstracta, mas o construtor predefinido é deliberadamente protegidos acesso.</xref:System.Windows.Input.InputBinding> Isto tem o efeito de efetuar <xref:System.Windows.Input.InputBinding>&quot;abstrato&quot; de classe para [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)].</xref:System.Windows.Input.InputBinding> Existem propriedades existentes no [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] que tenham [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] utilizações que esperam objetos do tipo <xref:System.Windows.Input.InputBinding>, mas não é possível especificar um <xref:System.Windows.Input.InputBinding>instância na [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)].</xref:System.Windows.Input.InputBinding> </xref:System.Windows.Input.InputBinding> Em vez disso, pode especificar um o específicos do dispositivo <xref:System.Windows.Input.InputBinding>derivada classes como valores, para a instância <xref:System.Windows.Input.KeyBinding>ou <xref:System.Windows.Input.MouseBinding>.</xref:System.Windows.Input.MouseBinding> </xref:System.Windows.Input.KeyBinding> </xref:System.Windows.Input.InputBinding>"
   syntax:
     content: protected InputBinding ();
     parameters: []
@@ -108,8 +108,8 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Initializes a new instance of the <xref href=&quot;System.Windows.Input.InputBinding&quot;></xref> class with the specified command and input gesture."
-  remarks: "If you are a software developer using existing input binding classes, you generally will not use this constructor, even if you are defining custom commands. Instead, you will either use constructors of derived classes (<xref:System.Windows.Input.KeyBinding> and <xref:System.Windows.Input.MouseBinding>), or you will use this constructor as the base instantiation of a custom class. Although the <xref:System.Windows.Input.InputBinding> class supports different input devices in principle, in practice you must choose which device the input binding will represent. You only can set only one <xref:System.Windows.Input.InputBinding.Gesture%2A> value on the input binding, and gestures are device-specific."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Windows.Input.InputBinding&quot;> </xref> classe com o comando especificado e gesto de entrada."
+  remarks: "Se for um programador de software utilizando a entrada existente enlace classes, geralmente, não utilizará este construtor, mesmo se está a definir comandos personalizados. Em vez disso, irá utilizar construtores de classes derivadas (<xref:System.Windows.Input.KeyBinding> e <xref:System.Windows.Input.MouseBinding>), ou que irá utilizar este construtor como a instanciação de base de uma classe personalizada.</xref:System.Windows.Input.MouseBinding> </xref:System.Windows.Input.KeyBinding> Embora o <xref:System.Windows.Input.InputBinding>classe suporta dispositivos de entrada diferentes no princípio, na prática, tem de escolher qual era o dispositivo irá representar o enlace de entrada.</xref:System.Windows.Input.InputBinding> Só pode definir apenas um <xref:System.Windows.Input.InputBinding.Gesture%2A>valor no enlace de entrada e gestos são específicos do dispositivo.</xref:System.Windows.Input.InputBinding.Gesture%2A>"
   example:
   - "The following example shows how to use this constructor to associate a <xref:System.Windows.Input.KeyGesture> with a <xref:System.Windows.Input.RoutedCommand>.  \n  \n [!code-cs[commandlibrarysnippets#InputBindingAddingComand](~/add/codesnippet/csharp/CommandLibarySnippets/Window1.xaml.cs#inputbindingaddingcomand)]\n [!code-vb[commandlibrarysnippets#InputBindingAddingComand](~/add/codesnippet/visualbasic/commandlibarysnippets/window1.xaml.vb#inputbindingaddingcomand)]"
   syntax:
@@ -117,15 +117,15 @@ items:
     parameters:
     - id: command
       type: System.Windows.Input.ICommand
-      description: "The command to associate with `gesture`."
+      description: "O comando para associar `gesture`."
     - id: gesture
       type: System.Windows.Input.InputGesture
-      description: "The input gesture to associate with `command`."
+      description: "O gesto de entrada para associar `command`."
   overload: System.Windows.Input.InputBinding.#ctor*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>command</code> or <code>gesture</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>command</code>or <code>gesture</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Windows.Input.InputBinding.CloneCore(System.Windows.Freezable)
@@ -140,13 +140,13 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Copies the base (non-animated) values of the properties of the specified object."
+  summary: "Copia os base (não animada) os valores das propriedades do objeto especificado."
   syntax:
     content: protected override void CloneCore (System.Windows.Freezable sourceFreezable);
     parameters:
     - id: sourceFreezable
       type: System.Windows.Freezable
-      description: "The object to clone."
+      description: "O objeto a clonagem."
   overload: System.Windows.Input.InputBinding.CloneCore*
   exceptions: []
   platform:
@@ -163,13 +163,13 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Copies the current values of the properties of the specified object."
+  summary: "Copia os valores atuais das propriedades do objeto especificado."
   syntax:
     content: protected override void CloneCurrentValueCore (System.Windows.Freezable sourceFreezable);
     parameters:
     - id: sourceFreezable
       type: System.Windows.Freezable
-      description: "The object to clone."
+      description: "O objeto a clonagem."
   overload: System.Windows.Input.InputBinding.CloneCurrentValueCore*
   exceptions: []
   platform:
@@ -186,20 +186,20 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Gets or sets the <xref:System.Windows.Input.ICommand> associated with this input binding."
-  remarks: "The <xref:System.Windows.Input.InputBinding> class does not support [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] usage because it does not expose a public default constructor (it has a default constructor, but it is protected). However, derived classes can expose a public constructor and therefore, can use properties that are inherited from <xref:System.Windows.Input.InputBinding>. Two existing <xref:System.Windows.Input.InputBinding> derived classes that can be instantiated in [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] and can set properties with [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] usages are <xref:System.Windows.Input.KeyBinding> and <xref:System.Windows.Input.MouseBinding>.       <xref:System.Windows.Input.ICommand> references a type converter that enables certain preexisting <xref:System.Windows.Input.ICommand> implementations to specify values in the form of a string. This type conversion behavior sets the attribute value form of this property. You can also bind the Command, <xref:System.Windows.Input.InputBinding.CommandParameter%2A>, and <xref:System.Windows.Input.InputBinding.CommandTarget%2A> properties to an <xref:System.Windows.Input.ICommand> that is defined on an object. This enables you to define a custom command and associate it with user input. For more information, see the second example in <xref:System.Windows.Input.InputBinding>.      <a name=&quot;xamlAttributeUsage_Command&quot;></a>    ## XAML Attribute Usage    <`inputBindingDerivedClass` `Command`=&quot;<xref:System.Windows.Input.ICommand>&quot;/>      <a name=&quot;xamlPropertyElementUsage_Command&quot;></a>    ## XAML Property Element Usage      ```   <inputBindingDerivedClass>     <inputBindingDerivedClass.Command>       <iCommandImplementation/>     </inputBindingDerivedClass.Command>   </inputBindingDerivedClass>   ```      <a name=&quot;xamlValues_Command&quot;></a>    ## XAML Values    `inputBindingDerivedClass`    A derived class of <xref:System.Windows.Input.InputBinding> that supports object element syntax, such as <xref:System.Windows.Input.KeyBinding> or <xref:System.Windows.Input.MouseBinding>. See Remarks.       `iCommandImplementation`    An object implementation of <xref:System.Windows.Input.ICommand> that supports object element syntax (has a public default constructor)."
+  summary: "Obtém ou define o <xref:System.Windows.Input.ICommand>associado a este enlace de entrada.</xref:System.Windows.Input.ICommand>"
+  remarks: "O <xref:System.Windows.Input.InputBinding>classe não suporta [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] utilização porque não expõe um construtor público predefinido (tem um construtor predefinido, mas está protegido).</xref:System.Windows.Input.InputBinding> No entanto, as classes derivadas podem expor um construtor público e por isso, podem utilizar propriedades são herdadas do <xref:System.Windows.Input.InputBinding>.</xref:System.Windows.Input.InputBinding> Dois existente <xref:System.Windows.Input.InputBinding>derivada classes que podem ser instanciadas em [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] e pode definir propriedades com [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] utilizações são <xref:System.Windows.Input.KeyBinding>e <xref:System.Windows.Input.MouseBinding>.</xref:System.Windows.Input.MouseBinding> </xref:System.Windows.Input.KeyBinding> </xref:System.Windows.Input.InputBinding>       <xref:System.Windows.Input.ICommand>referencia um conversor de tipos que permite a determinados pré-existentes <xref:System.Windows.Input.ICommand>implementações para especificar valores sob a forma de uma cadeia.</xref:System.Windows.Input.ICommand></xref:System.Windows.Input.ICommand> Este comportamento de conversão do tipo define o formato do valor de atributo desta propriedade. Também é possível vincular o comando, <xref:System.Windows.Input.InputBinding.CommandParameter%2A>, e <xref:System.Windows.Input.InputBinding.CommandTarget%2A>Propriedades para um <xref:System.Windows.Input.ICommand>que está definida num objeto.</xref:System.Windows.Input.ICommand> </xref:System.Windows.Input.InputBinding.CommandTarget%2A> </xref:System.Windows.Input.InputBinding.CommandParameter%2A> Isto permite-lhe definir os comandos personalizados e associá-la a intervenção do utilizador. Para obter mais informações, consulte o segundo exemplo na <xref:System.Windows.Input.InputBinding>.</xref:System.Windows.Input.InputBinding>      <a name=&quot;xamlAttributeUsage_Command&quot;></a># # Utilização do atributo de XAML `inputBindingDerivedClass` `Command`= &quot;<xref:System.Windows.Input.ICommand>&quot; / > <a name=&quot;xamlPropertyElementUsage_Command&quot;> </a> # # utilização de elemento de propriedade XAML ```   <inputBindingDerivedClass>     <inputBindingDerivedClass.Command>       <iCommandImplementation/>     </inputBindingDerivedClass.Command>   </inputBindingDerivedClass>   ``` <a name=&quot;xamlValues_Command&quot;> </a> # # XAML valores `inputBindingDerivedClass` uma classe derivada do <xref:System.Windows.Input.InputBinding>que suporte a sintaxe do elemento de objeto, tais como <xref:System.Windows.Input.KeyBinding>ou <xref:System.Windows.Input.MouseBinding>.</xref:System.Windows.Input.MouseBinding> </xref:System.Windows.Input.KeyBinding> </xref:System.Windows.Input.InputBinding>       </xref:System.Windows.Input.ICommand> Consulte observações.       `iCommandImplementation`Uma implementação de objeto de <xref:System.Windows.Input.ICommand>que suporte a sintaxe do elemento de objeto (tem um construtor público predefinido).</xref:System.Windows.Input.ICommand>"
   example:
   - "The following example shows how to use a <xref:System.Windows.Input.KeyBinding> to bind a <xref:System.Windows.Input.KeyGesture> to the <xref:System.Windows.Input.ApplicationCommands.Open%2A?displayProperty=fullName> command. When the key gesture is performed, the Open command is invoked.  \n  \n [!code-xml[commandingoverviewsnippets#CommandingOverviewXAMLKeyBinding](~/add/codesnippet/xaml/CommandingOverviewSnippets/Window1.xaml#commandingoverviewxamlkeybinding)]  \n  \n [!code-cs[commandingoverviewsnippets#CommandingOverviewKeyBinding](~/add/codesnippet/csharp/CommandingOverviewSnippets/Window1.xaml.cs#commandingoverviewkeybinding)]\n [!code-vb[commandingoverviewsnippets#CommandingOverviewKeyBinding](~/add/codesnippet/visualbasic/commandingoverviewsnippets/window1.xaml.vb#commandingoverviewkeybinding)]"
   syntax:
     content: public System.Windows.Input.ICommand Command { get; set; }
     return:
       type: System.Windows.Input.ICommand
-      description: "The associated command."
+      description: "O comando associado."
   overload: System.Windows.Input.InputBinding.Command*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "The Command value is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "O valor do comando é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   platform:
   - net462
 - uid: System.Windows.Input.InputBinding.CommandParameter
@@ -214,13 +214,13 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Gets or sets the command-specific data for a particular command."
-  remarks: "The CommandParameter property is used to pass specific information to the command when it is executed. The type of the data is defined by the command. Many commands do not expect command parameters; for these commands, any command parameters passed will be ignored.       If the command that an input binding is associated with is a <xref:System.Windows.Input.RoutedCommand>, the CommandParameter of the input binding is passed to the <xref:System.Windows.Input.RoutedCommand> handlers through the <xref:System.Windows.Input.ExecutedRoutedEventArgs> and the <xref:System.Windows.Input.CanExecuteRoutedEventArgs> event data when the command is processed.       The data type and purpose of the command parameter are defined differently for each command and can be `null`. You can bind the <xref:System.Windows.Input.InputBinding.Command%2A>, CommandParameter, and <xref:System.Windows.Input.InputBinding.CommandTarget%2A> properties to an <xref:System.Windows.Input.ICommand> that is defined on an object. This enables you to define a custom command and associate it with user input. For more information, see the second example in <xref:System.Windows.Input.InputBinding>.       The <xref:System.Windows.Input.InputBinding> class does not support [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] usage because it does not expose a public default constructor (it has a default constructor, but it is protected). However, derived classes can expose a public constructor and therefore, can set properties that are inherited from <xref:System.Windows.Input.InputBinding> with [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] usage. Two existing <xref:System.Windows.Input.InputBinding> derived classes that can be instantiated in [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] and can set properties in [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] are <xref:System.Windows.Input.KeyBinding> and <xref:System.Windows.Input.MouseBinding>.      <a name=&quot;xamlAttributeUsage_CommandParameter&quot;></a>    ## XAML Attribute Usage      ```   <inputBindingDerivedClass CommandParameter=&quot;commandParameterString&quot;/>   ```      <a name=&quot;xamlPropertyElementUsage_CommandParameter&quot;></a>    ## XAML Property Element Usage      ```   <inputBindingDerivedClass>     <inputBindingDerivedClass.CommandParameter>       <commandParameterObject/>     </inputBindingDerivedClass.CommandParameter>   </inputBindingDerivedClass>   ```      <a name=&quot;xamlValues_CommandParameter&quot;></a>    ## XAML Values    `inputBindingDerivedClass`    A derived class of <xref:System.Windows.Input.InputBinding> that supports object element syntax, such as <xref:System.Windows.Input.KeyBinding> or <xref:System.Windows.Input.MouseBinding>. See Remarks.       `commandParameterString`    A string that is processed by a particular command. Strings are the common type used for command parameters because they can be easily set in [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)]. For the expected string format and its purpose, see the documentation for the particular command that the input binding is associated with. Many commands do not expect parameters.       `commandParameterObject`    An object that is processed by a particular command. All existing [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] commands use strings. Therefore, this property element syntax is only relevant for custom command scenarios. In order to support this syntax, the `commandParameterObject` object must also support object element syntax (must have a public default constructor)."
+  summary: "Obtém ou define os dados específicos de comando para um comando específico."
+  remarks: "A propriedade CommandParameter é utilizada para transmitir informações específicas para o comando quando é executada. O tipo de dados é definido pelo comando. Vários comandos espera parâmetros de comando para estes comandos, quaisquer parâmetros de comando transmitidos serão ignorados.       Se o comando que se encontra associado um enlace de entrada é um <xref:System.Windows.Input.RoutedCommand>, CommandParameter do enlace de entrada é passado para o <xref:System.Windows.Input.RoutedCommand>processadores através de <xref:System.Windows.Input.ExecutedRoutedEventArgs>e o <xref:System.Windows.Input.CanExecuteRoutedEventArgs>dados de eventos quando o comando é processado.</xref:System.Windows.Input.CanExecuteRoutedEventArgs> </xref:System.Windows.Input.ExecutedRoutedEventArgs> </xref:System.Windows.Input.RoutedCommand> </xref:System.Windows.Input.RoutedCommand>       O tipo de dados e o objetivo do parâmetro do comando são definidos de forma diferente para cada comando e podem ser `null`. É possível vincular o <xref:System.Windows.Input.InputBinding.Command%2A>, CommandParameter, e <xref:System.Windows.Input.InputBinding.CommandTarget%2A>Propriedades para um <xref:System.Windows.Input.ICommand>que está definida num objeto.</xref:System.Windows.Input.ICommand> </xref:System.Windows.Input.InputBinding.CommandTarget%2A> </xref:System.Windows.Input.InputBinding.Command%2A> Isto permite-lhe definir os comandos personalizados e associá-la a intervenção do utilizador. Para obter mais informações, consulte o segundo exemplo na <xref:System.Windows.Input.InputBinding>.</xref:System.Windows.Input.InputBinding>       O <xref:System.Windows.Input.InputBinding>classe não suporta [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] utilização porque não expõe um construtor público predefinido (tem um construtor predefinido, mas está protegido).</xref:System.Windows.Input.InputBinding> No entanto, as classes derivadas pode expor um construtor público e por isso, pode definir propriedades que são herdadas do <xref:System.Windows.Input.InputBinding>com [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] utilização.</xref:System.Windows.Input.InputBinding> Dois existente <xref:System.Windows.Input.InputBinding>derivada classes que podem ser instanciadas em [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] e pode definir propriedades na [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] são <xref:System.Windows.Input.KeyBinding>e <xref:System.Windows.Input.MouseBinding>.</xref:System.Windows.Input.MouseBinding> </xref:System.Windows.Input.KeyBinding> </xref:System.Windows.Input.InputBinding>      <a name=&quot;xamlAttributeUsage_CommandParameter&quot;></a># # Utilização do atributo de XAML ```   <inputBindingDerivedClass CommandParameter=&quot;commandParameterString&quot;/>   ``` <a name=&quot;xamlPropertyElementUsage_CommandParameter&quot;> </a> # # utilização de elemento de propriedade XAML ```   <inputBindingDerivedClass>     <inputBindingDerivedClass.CommandParameter>       <commandParameterObject/>     </inputBindingDerivedClass.CommandParameter>   </inputBindingDerivedClass>   ``` <a name=&quot;xamlValues_CommandParameter&quot;> </a> # # XAML valores `inputBindingDerivedClass` uma classe derivada do <xref:System.Windows.Input.InputBinding>que suporte a sintaxe do elemento de objeto, tais como <xref:System.Windows.Input.KeyBinding>ou <xref:System.Windows.Input.MouseBinding>.</xref:System.Windows.Input.MouseBinding> </xref:System.Windows.Input.KeyBinding> </xref:System.Windows.Input.InputBinding>             Consulte observações.       `commandParameterString`Uma cadeia que é processada por um comando específico. As cadeias são o tipo comum de utilizar para parâmetros de comando porque podem ser facilmente definidas [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)]. Para o formato era esperada uma cadeia e o respetivo objetivo, consulte a documentação para o comando específica que o enlace de entrada é associado. Vários comandos não esperam parâmetros.       `commandParameterObject`Um objeto que é processado por um comando específico. Todos os existente [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] comandos utilizam cadeias. Por conseguinte, esta sintaxe do elemento de propriedade só é relevante para cenários de comando personalizados. Para suportar esta sintaxe, o `commandParameterObject` objeto também tem de suportar sintaxe do elemento de objeto (tem de ter um construtor público predefinido)."
   syntax:
     content: public object CommandParameter { get; set; }
     return:
       type: System.Object
-      description: "The command-specific data. The default is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "Os dados específicos de comando. A predefinição é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   overload: System.Windows.Input.InputBinding.CommandParameter*
   exceptions: []
   platform:
@@ -237,12 +237,12 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Identifies the <xref:System.Windows.Input.InputBinding.CommandParameter*> dependency property."
+  summary: "Identifica o <xref:System.Windows.Input.InputBinding.CommandParameter*>propriedade de dependência.</xref:System.Windows.Input.InputBinding.CommandParameter*>"
   syntax:
     content: public static readonly System.Windows.DependencyProperty CommandParameterProperty;
     return:
       type: System.Windows.DependencyProperty
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -258,12 +258,12 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Identifies the <xref:System.Windows.Input.InputBinding.Command*> dependency property."
+  summary: "Identifica o <xref:System.Windows.Input.InputBinding.Command*>propriedade de dependência.</xref:System.Windows.Input.InputBinding.Command*>"
   syntax:
     content: public static readonly System.Windows.DependencyProperty CommandProperty;
     return:
       type: System.Windows.DependencyProperty
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -279,13 +279,13 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Gets or sets the target element of the command."
-  remarks: "In the [!INCLUDE[TLA#tla_wpf](~/add/includes/tlasharptla-wpf-md.md)] commanding system, the CommandTarget property on an <xref:System.Windows.Input.ICommandSource> object is applicable only when the <xref:System.Windows.Input.ICommand> is a <xref:System.Windows.Input.RoutedCommand>. If the CommandTarget is set on an <xref:System.Windows.Input.ICommandSource> and the corresponding command is not a <xref:System.Windows.Input.RoutedCommand>, the command target is ignored.       When used with a <xref:System.Windows.Input.RoutedCommand>, the command target is the object on which the <xref:System.Windows.Input.CommandManager.Executed> and <xref:System.Windows.Input.CommandManager.CanExecute> events are raised. If the CommandTarget property is not set, the element with keyboard focus is used as the target.       The <xref:System.Windows.Input.InputBinding> class itself does not support [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] usage, because it does not expose a public default constructor (there is a default constructor, but it is protected). However, derived classes can expose a public constructor and therefore can set properties that are inherited from <xref:System.Windows.Input.InputBinding> with a [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] usage. Two existing <xref:System.Windows.Input.InputBinding> derived classes that can be instantiated in [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] and can set properties in [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] are <xref:System.Windows.Input.KeyBinding> and <xref:System.Windows.Input.MouseBinding>.      <a name=&quot;xamlAttributeUsage_CommandTarget&quot;></a>    ## XAML Attribute Usage      ```   <inputBindingDerivedClass CommandTarget=&quot;bindingToTarget&quot;/>   ```      <a name=&quot;xamlValues_CommandTarget&quot;></a>    ## XAML Values    `inputBindingDerivedClass`    A derived class of <xref:System.Windows.Input.InputBinding> that supports object element syntax, such as <xref:System.Windows.Input.KeyBinding> or <xref:System.Windows.Input.MouseBinding>. See Remarks.       `bindingToTarget`    A string that uses a type of binding syntax that can return an object reference to an existing named element. See Remarks."
+  summary: "Obtém ou define o elemento de destino do comando."
+  remarks: "No [!INCLUDE[TLA#tla_wpf](~/add/includes/tlasharptla-wpf-md.md)] commanding sistema, a propriedade CommandTarget num <xref:System.Windows.Input.ICommandSource>objeto é aplicável apenas quando <xref:System.Windows.Input.ICommand>é <xref:System.Windows.Input.RoutedCommand>.</xref:System.Windows.Input.RoutedCommand> </xref:System.Windows.Input.ICommand> </xref:System.Windows.Input.ICommandSource> Se o CommandTarget está definido num <xref:System.Windows.Input.ICommandSource>e o comando correspondente não é um <xref:System.Windows.Input.RoutedCommand>, o destino de comando é ignorado.</xref:System.Windows.Input.RoutedCommand> </xref:System.Windows.Input.ICommandSource>       Quando utilizado com um <xref:System.Windows.Input.RoutedCommand>, o comando de destino é o objeto no qual o <xref:System.Windows.Input.CommandManager.Executed>e <xref:System.Windows.Input.CommandManager.CanExecute>eventos são gerados.</xref:System.Windows.Input.CommandManager.CanExecute> </xref:System.Windows.Input.CommandManager.Executed> </xref:System.Windows.Input.RoutedCommand> Se a propriedade CommandTarget não estiver definida, o elemento com o foco do teclado é utilizado como destino.       O <xref:System.Windows.Input.InputBinding>não suporta a própria classe [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] utilização, porque não expõe um construtor público predefinido (existe um construtor predefinido, mas está protegido).</xref:System.Windows.Input.InputBinding> No entanto, as classes derivadas pode expor um construtor público e, por conseguinte, pode definir propriedades que são herdadas do <xref:System.Windows.Input.InputBinding>com um [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] utilização.</xref:System.Windows.Input.InputBinding> Dois existente <xref:System.Windows.Input.InputBinding>derivada classes que podem ser instanciadas em [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] e pode definir propriedades na [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] são <xref:System.Windows.Input.KeyBinding>e <xref:System.Windows.Input.MouseBinding>.</xref:System.Windows.Input.MouseBinding> </xref:System.Windows.Input.KeyBinding> </xref:System.Windows.Input.InputBinding>      <a name=&quot;xamlAttributeUsage_CommandTarget&quot;></a># # Utilização do atributo de XAML ```   <inputBindingDerivedClass CommandTarget=&quot;bindingToTarget&quot;/>   ``` <a name=&quot;xamlValues_CommandTarget&quot;> </a> # # XAML valores `inputBindingDerivedClass` uma classe derivada do <xref:System.Windows.Input.InputBinding>que suporte a sintaxe do elemento de objeto, tais como <xref:System.Windows.Input.KeyBinding>ou <xref:System.Windows.Input.MouseBinding>.</xref:System.Windows.Input.MouseBinding> </xref:System.Windows.Input.KeyBinding> </xref:System.Windows.Input.InputBinding>       Consulte observações.       `bindingToTarget`Uma cadeia que utiliza um tipo de sintaxe de enlace que pode devolver uma referência de objeto a um existente com o nome de elemento. Consulte observações."
   syntax:
     content: public System.Windows.IInputElement CommandTarget { get; set; }
     return:
       type: System.Windows.IInputElement
-      description: "The target of the command. The default is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "O destino do comando. A predefinição é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   overload: System.Windows.Input.InputBinding.CommandTarget*
   exceptions: []
   platform:
@@ -302,12 +302,12 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Identifies the <xref:System.Windows.Input.InputBinding.CommandTarget*> dependency property."
+  summary: "Identifica o <xref:System.Windows.Input.InputBinding.CommandTarget*>propriedade de dependência.</xref:System.Windows.Input.InputBinding.CommandTarget*>"
   syntax:
     content: public static readonly System.Windows.DependencyProperty CommandTargetProperty;
     return:
       type: System.Windows.DependencyProperty
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -323,13 +323,13 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Creates an instance of an <xref href=&quot;System.Windows.Input.InputBinding&quot;></xref>."
+  summary: "Cria uma instância de um <xref href=&quot;System.Windows.Input.InputBinding&quot;> </xref>."
   syntax:
     content: protected override System.Windows.Freezable CreateInstanceCore ();
     parameters: []
     return:
       type: System.Windows.Freezable
-      description: "The new object."
+      description: "O novo objeto."
   overload: System.Windows.Input.InputBinding.CreateInstanceCore*
   exceptions: []
   platform:
@@ -346,7 +346,7 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Gets or sets the <xref href=&quot;System.Windows.Input.InputGesture&quot;></xref> associated with this input binding."
+  summary: "Obtém ou define o <xref href=&quot;System.Windows.Input.InputGesture&quot;> </xref> associado a este enlace de entrada."
   remarks: "The input gesture is the action that invokes the command. Examples of input gestures in [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] are <xref:System.Windows.Input.KeyGesture> and <xref:System.Windows.Input.MouseGesture>. A <xref:System.Windows.Input.KeyGesture> is a combination of a <xref:System.Windows.Input.Key> and a set of <xref:System.Windows.Input.ModifierKeys>. A <xref:System.Windows.Input.MouseGesture> is a combination of a <xref:System.Windows.Input.MouseAction> and a set of <xref:System.Windows.Input.ModifierKeys>.  \n  \n The <xref:System.Windows.Input.InputBinding> class itself does not support [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] usage, because it does not expose a public default constructor (there is a default constructor, but it is protected). However, derived classes can expose a public constructor and thus can set properties that are inherited from <xref:System.Windows.Input.InputBinding> with a [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] usage. Two existing <xref:System.Windows.Input.InputBinding> derived classes that can be instantiated in [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] and can set properties in [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] are <xref:System.Windows.Input.KeyBinding> and <xref:System.Windows.Input.MouseBinding>.  \n  \n<a name=\"xamlAttributeUsage_gesture\"></a>   \n## XAML Attribute Usage  \n <<xref:System.Windows.Input.KeyBinding> `Gesture`=\"<xref:System.Windows.Input.KeyGesture>\"/>  \n  \n \\- or -  \n  \n <<xref:System.Windows.Input.MouseBinding> `Gesture`=\"<xref:System.Windows.Input.MouseGesture>\"/>  \n  \n \\- or -  \n  \n <`inputBindingDerivedClass` `Gesture`=\"<xref:System.Windows.Input.InputGesture>\"/>  \n  \n<a name=\"xamlPropertyElementUsage_gesture\"></a>   \n## XAML Property Element Usage  \n  \n```  \n<inputBindingDerivedClass>  \n  <inputBindingDerivedClass.Gesture>  \n    <inputGestureImplementation/>  \n  </inputBindingDerivedClass.Gesture>  \n</inputBindingDerivedClass>  \n```  \n  \n<a name=\"xamlValues_gesture\"></a>   \n## XAML Values  \n `inputBindingDerivedClass`  \n A derived class of <xref:System.Windows.Input.InputBinding> that supports object element syntax, such as <xref:System.Windows.Input.KeyBinding> or <xref:System.Windows.Input.MouseBinding>. See Remarks.  \n  \n `inputGestureImplementation`  \n A custom derived class of <xref:System.Windows.Input.InputGesture> that supports object element syntax."
   example:
   - "The following example shows how to use a <xref:System.Windows.Input.KeyBinding> to bind a <xref:System.Windows.Input.KeyGesture> to a <xref:System.Windows.Input.RoutedCommand>. When the <xref:System.Windows.Input.KeyGesture> ALT+L is pressed, the <xref:System.Windows.Input.ApplicationCommands.Close%2A> command is invoked.  \n  \n [!code-xml[commandlibrarysnippets#KeyBindingWithKeyAndModifiersXAML](~/add/codesnippet/xaml/CommandLibarySnippets/Window1.xaml#keybindingwithkeyandmodifiersxaml)]  \n  \n [!code-cs[commandlibrarysnippets#KeyBindingWithKeyAndModifiers](~/add/codesnippet/csharp/CommandLibarySnippets/Window1.xaml.cs#keybindingwithkeyandmodifiers)]\n [!code-vb[commandlibrarysnippets#KeyBindingWithKeyAndModifiers](~/add/codesnippet/visualbasic/commandlibarysnippets/window1.xaml.vb#keybindingwithkeyandmodifiers)]"
@@ -354,7 +354,7 @@ items:
     content: public virtual System.Windows.Input.InputGesture Gesture { get; set; }
     return:
       type: System.Windows.Input.InputGesture
-      description: "The associated gesture. The default is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "O gesto associado. A predefinição é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   overload: System.Windows.Input.InputBinding.Gesture*
   exceptions: []
   platform:
@@ -371,13 +371,13 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Makes the instance a frozen clone of the specified <xref href=&quot;System.Windows.Freezable&quot;></xref> by using base (non-animated) property values."
+  summary: "Faz com que a instância de um clone congelado de especificado <xref href=&quot;System.Windows.Freezable&quot;> </xref> utilizando valores de propriedade base (não animada)."
   syntax:
     content: protected override void GetAsFrozenCore (System.Windows.Freezable sourceFreezable);
     parameters:
     - id: sourceFreezable
       type: System.Windows.Freezable
-      description: "The object to clone."
+      description: "O objeto a clonagem."
   overload: System.Windows.Input.InputBinding.GetAsFrozenCore*
   exceptions: []
   platform:
@@ -394,13 +394,13 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Makes the current instance a frozen clone of the specified <xref href=&quot;System.Windows.Freezable&quot;></xref>. If the object has animated dependency properties, their current animated values are copied."
+  summary: "Faz com que a instância atual um clone congelado de especificado <xref href=&quot;System.Windows.Freezable&quot;> </xref>. Se o objeto tem propriedades de dependência animado, os respetivos valores animados atuais são copiados."
   syntax:
     content: protected override void GetCurrentValueAsFrozenCore (System.Windows.Freezable sourceFreezable);
     parameters:
     - id: sourceFreezable
       type: System.Windows.Freezable
-      description: "The object to clone."
+      description: "O objeto a clonagem."
   overload: System.Windows.Input.InputBinding.GetCurrentValueAsFrozenCore*
   exceptions: []
   platform:
