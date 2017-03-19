@@ -20,8 +20,8 @@ items:
   nameWithType: HostSecurityManager
   fullName: System.Security.HostSecurityManager
   type: Class
-  summary: "Allows the control and customization of security behavior for application domains."
-  remarks: "When you create a new <xref:System.AppDomain>, the common language runtime queries the <xref:System.AppDomainManager> for the presence of a HostSecurityManager, which participates in making security decisions for the <xref:System.AppDomain>.  Host providers should implement a host security manager that inherits from the HostSecurityManager class."
+  summary: "Permite o controlo e personalização do comportamento de segurança para os domínios de aplicação."
+  remarks: "Quando cria um novo <xref:System.AppDomain>o tempo de execução de idioma comum consulta <xref:System.AppDomainManager>quanto à presença de um HostSecurityManager, que participa nas decisões de segurança para <xref:System.AppDomain>.</xref:System.AppDomain> </xref:System.AppDomainManager> </xref:System.AppDomain>  Fornecedores de anfitrião devem implementar um Gestor de segurança do anfitrião que herda da classe de HostSecurityManager."
   example:
   - "The following example shows a very simple implementation of a HostSecurityManager.  \n  \n [!code-cs[System.Security.HostSecurityManager#1](~/add/codesnippet/csharp/t-system.security.hostse_1.cs)]\n [!code-vb[System.Security.HostSecurityManager#1](~/add/codesnippet/visualbasic/t-system.security.hostse_1.vb)]"
   syntax:
@@ -49,7 +49,7 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Initializes a new instance of the <xref href=&quot;System.Security.HostSecurityManager&quot;></xref> class."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Security.HostSecurityManager&quot;> </xref> classe."
   syntax:
     content: public HostSecurityManager ();
     parameters: []
@@ -69,8 +69,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines whether an application should be executed."
-  remarks: "This method can be overridden by a derived class. The base implementation calls the application security manager to determine if the application should be executed.       The base implementation does not use the activator evidence. However, an overridden implementation could use the activator evidence to determine the security evidence for the application domain attempting to activate the application."
+  summary: "Determina se uma aplicação deve ser executada."
+  remarks: "Este método pode ser substituído por uma classe derivada. A implementação base activa o Gestor de segurança da aplicação para determinar se a aplicação deve ser executada.       A implementação base não utiliza provas o ativador. No entanto, uma implementação substituída poderia utilizar a provas de ativador para determinar a provas de segurança para o domínio de aplicação tentar ativar a aplicação."
   example:
   - "The following example shows how to override the DetermineApplicationTrust method for a custom host security manager. This example is part of a larger example provided for the <xref:System.Security.HostSecurityManager> class.  \n  \n [!code-cs[System.Security.HostSecurityManager#3](~/add/codesnippet/csharp/c64c31c7-d035-4489-84b0-_1.cs)]\n [!code-vb[System.Security.HostSecurityManager#3](~/add/codesnippet/visualbasic/c64c31c7-d035-4489-84b0-_1.vb)]"
   syntax:
@@ -78,27 +78,27 @@ items:
     parameters:
     - id: applicationEvidence
       type: System.Security.Policy.Evidence
-      description: "The evidence for the application to be activated."
+      description: "A prova da aplicação para ser ativado."
     - id: activatorEvidence
       type: System.Security.Policy.Evidence
-      description: "Optionally, the evidence for the activating application domain."
+      description: "Opcionalmente, a provas para o domínio a ativação da aplicação."
     - id: context
       type: System.Security.Policy.TrustManagerContext
-      description: "The trust context."
+      description: "O contexto de confiança."
     return:
       type: System.Security.Policy.ApplicationTrust
-      description: "An object that contains trust information about the application."
+      description: "Um objeto que contém informações de confiança acerca da aplicação."
   overload: System.Security.HostSecurityManager.DetermineApplicationTrust*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>applicationEvidence</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>applicationEvidence</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "An <xref href=&quot;System.Runtime.Hosting.ActivationArguments&quot;></xref> object could not be found in the application evidence.       -or-       The <xref:System.Runtime.Hosting.ActivationArguments.ActivationContext*> property in the activation arguments is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "Um <xref href=&quot;System.Runtime.Hosting.ActivationArguments&quot;> </xref> não foi possível encontrar o objeto na prova da aplicação.       - ou - <xref:System.Runtime.Hosting.ActivationArguments.ActivationContext*>é propriedade de argumentos de activação <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>.</xref:System.Runtime.Hosting.ActivationArguments.ActivationContext*>"
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The <xref href=&quot;System.Security.Policy.ApplicationTrust&quot;></xref> grant set does not contain the minimum request set specified by the <xref href=&quot;System.ActivationContext&quot;></xref>."
+    description: "O <xref href=&quot;System.Security.Policy.ApplicationTrust&quot;> </xref> conceder o conjunto não contém o pedido mínimo definido especificado pelo <xref href=&quot;System.ActivationContext&quot;> </xref>."
   platform:
   - net462
 - uid: System.Security.HostSecurityManager.DomainPolicy
@@ -113,18 +113,18 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "When overridden in a derived class, gets the security policy for the current application domain."
-  remarks: "This property can be overridden in a derived class. The base implementation always returns `null`.       This property is called at <xref:System.AppDomain> creation time. It allows a host to supply a policy for the current <xref:System.AppDomain>.  A policy level consists of the following:      -   A set of code groups organized into a single rooted tree.      -   A set of named permission sets that are referenced by the code groups to specify permissions to be granted to code belonging to the code group.      -   A list of fully trusted assemblies.      > [!IMPORTANT] >  See the Notes to Inheritors for the <xref:System.Security.HostSecurityManager> class for critical implementation information."
+  summary: "Quando substituí-lo de uma classe derivada, obtém a política de segurança para o domínio de aplicação atual."
+  remarks: "Esta propriedade pode ser substituída numa classe derivada. Devolve a implementação base sempre `null`.       Esta propriedade é chamada no <xref:System.AppDomain>hora de criação.</xref:System.AppDomain> Permite que um anfitrião fornecer uma política para o atual <xref:System.AppDomain>.</xref:System.AppDomain>  Um nível de política inclui os seguintes:-um conjunto de grupos de código é organizado por uma árvore de Root único.      -Um conjunto de conjuntos de permissões designado que são referenciados por grupos de código para especificar permissões para ser concedido ao código que pertencem ao grupo de código.      -A lista de assemblagens totalmente fidedignas.      > [!IMPORTANT] > Consulte as notas para os herdeiros para o <xref:System.Security.HostSecurityManager>classe para obter informações de implementação crítico.</xref:System.Security.HostSecurityManager>"
   syntax:
     content: public virtual System.Security.Policy.PolicyLevel DomainPolicy { get; }
     return:
       type: System.Security.Policy.PolicyLevel
-      description: "The security policy for the current application domain. The default is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "A política de segurança para o domínio de aplicação atual. A predefinição é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.HostSecurityManager.DomainPolicy*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "This method uses code access security (CAS) policy, which is obsolete in the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. To enable CAS policy for compatibility with earlier versions of the .NET Framework, use the [&lt;legacyCasPolicy&gt; element](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
+    description: "Este método utiliza a política acesso a código (CAS) de segurança, que é obsoleta no [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. Para ativar a política CAS para compatibilidade com versões anteriores do .NET Framework, utilize o [ &lt;legacyCasPolicy&gt; elemento](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
   platform:
   - net462
 - uid: System.Security.HostSecurityManager.Flags
@@ -139,15 +139,15 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Gets the flag representing the security policy components of concern to the host."
-  remarks: "This property can be overridden in a derived class. The base implementation always returns <xref:System.Security.HostSecurityManagerOptions>.       The derived host can change the value of this property when only a subset of the <xref:System.Security.HostSecurityManagerOptions> is of interest.  The possible subsets include none, the refused set, the policy level, and assembly evidence."
+  summary: "Obtém o sinalizador que representa os componentes de política de segurança de preocupação para o anfitrião."
+  remarks: "Esta propriedade pode ser substituída numa classe derivada. A implementação base sempre devolve <xref:System.Security.HostSecurityManagerOptions>.</xref:System.Security.HostSecurityManagerOptions>       O anfitrião derivado pode alterar o valor desta propriedade quando apenas um subconjunto do <xref:System.Security.HostSecurityManagerOptions>é de interesse.</xref:System.Security.HostSecurityManagerOptions>  Os subconjuntos possíveis incluem none, o conjunto negado, o nível de política e prova de assemblagem."
   example:
   - "The following example shows how to override the Flags property for a custom host security manager. This example is part of a larger example provided for the <xref:System.Security.HostSecurityManager> class.  \n  \n [!code-cs[System.Security.HostSecurityManager#2](~/add/codesnippet/csharp/p-system.security.hostse_1.cs)]\n [!code-vb[System.Security.HostSecurityManager#2](~/add/codesnippet/visualbasic/p-system.security.hostse_1.vb)]"
   syntax:
     content: public virtual System.Security.HostSecurityManagerOptions Flags { get; }
     return:
       type: System.Security.HostSecurityManagerOptions
-      description: "One of the enumeration values that specifies security policy components. The default is <xref href=&quot;System.Security.HostSecurityManagerOptions&quot;></xref>."
+      description: "Um dos valores da enumeração que especifica os componentes da política de segurança. A predefinição é <xref href=&quot;System.Security.HostSecurityManagerOptions&quot;> </xref>."
   overload: System.Security.HostSecurityManager.Flags*
   exceptions: []
   platform:
@@ -164,8 +164,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Requests a specific evidence type for the application domain."
-  remarks: "This method can be overridden by a derived class. The base implementation returns `null`.       The common language runtime calls this method when evidence of the specified type is needed for the current <xref:System.AppDomain>. The returned value is used as host-supplied evidence, and is stored in the <xref:System.AppDomain.Evidence%2A> collection of the <xref:System.AppDomain.CurrentDomain%2A> property. You can use the <xref:System.Security.Policy.Evidence.GetAssemblyEvidence%2A?displayProperty=fullName> method to obtain the generated evidence from the collection.       To get a callback to this method, hosts must specify the <xref:System.Security.HostSecurityManagerOptions> flag in the <xref:System.Security.HostSecurityManager.Flags%2A> property.       This method of generating evidence allows hosts to delay evidence generation for an <xref:System.AppDomain> until the evidence is needed. In the .NET Framework version 3.5 and earlier versions, it was necessary to provide <xref:System.AppDomain> evidence at load time by overriding the <xref:System.Security.HostSecurityManager.ProvideAppDomainEvidence%2A> method. We recommend that you use GenerateAppDomainEvidence to provide evidence instead of overriding <xref:System.Security.HostSecurityManager.ProvideAppDomainEvidence%2A>.       The GenerateAppDomainEvidence method is called back into only for types of evidence that the host has specified in the override of the <xref:System.Security.HostSecurityManager.GetHostSuppliedAppDomainEvidenceTypes%2A> method.       A return value of `null` indicates that the host cannot generate evidence of this specific type."
+  summary: "Pedidos de um tipo de prova específico para o domínio de aplicação."
+  remarks: "Este método pode ser substituído por uma classe derivada. Devolve a implementação base `null`.       O language runtime chama este método quando é necessária uma prova do tipo especificado para o atual <xref:System.AppDomain>.</xref:System.AppDomain> O valor devolvido é utilizado como provas fornecido pelo anfitrião e está armazenado no <xref:System.AppDomain.Evidence%2A>coleção do <xref:System.AppDomain.CurrentDomain%2A>propriedade.</xref:System.AppDomain.CurrentDomain%2A> </xref:System.AppDomain.Evidence%2A> Pode utilizar o <xref:System.Security.Policy.Evidence.GetAssemblyEvidence%2A?displayProperty=fullName>método para obter a gerado provas da coleção.</xref:System.Security.Policy.Evidence.GetAssemblyEvidence%2A?displayProperty=fullName>       Para obter uma chamada de retorno para este método, anfitriões tem de especificar o <xref:System.Security.HostSecurityManagerOptions>mostram o <xref:System.Security.HostSecurityManager.Flags%2A>propriedade.</xref:System.Security.HostSecurityManager.Flags%2A> </xref:System.Security.HostSecurityManagerOptions>       Este método de gerar provas permite que os anfitriões atrasar a geração de provas para um <xref:System.AppDomain>até a provas é necessária.</xref:System.AppDomain> Na versão do .NET Framework 3.5 e versões anteriores, era necessário fornecer <xref:System.AppDomain>provas no momento de carga através da substituição de <xref:System.Security.HostSecurityManager.ProvideAppDomainEvidence%2A>método.</xref:System.Security.HostSecurityManager.ProvideAppDomainEvidence%2A> </xref:System.AppDomain> Recomendamos que utilize GenerateAppDomainEvidence para fornecer provas em vez de substituir <xref:System.Security.HostSecurityManager.ProvideAppDomainEvidence%2A>.</xref:System.Security.HostSecurityManager.ProvideAppDomainEvidence%2A>       O método GenerateAppDomainEvidence denomina-se novamente para apenas para tipos de provas de que o anfitrião tem especificada na substituição do <xref:System.Security.HostSecurityManager.GetHostSuppliedAppDomainEvidenceTypes%2A>método.</xref:System.Security.HostSecurityManager.GetHostSuppliedAppDomainEvidenceTypes%2A>       Um valor de retorno da `null` indica que o anfitrião não é possível gerar provas deste tipo específico."
   example:
   - "The following example shows how to override the <xref:System.Security.HostSecurityManager.ProvideAppDomainEvidence%2A> method for a custom host security manager. This example is part of a larger example provided for the <xref:System.Security.HostSecurityManager> class.  \n  \n [!code-cs[System.Security.HostSecurityManager#6](~/add/codesnippet/csharp/m-system.security.hostse_1.cs)]\n [!code-vb[System.Security.HostSecurityManager#6](~/add/codesnippet/visualbasic/m-system.security.hostse_1.vb)]"
   syntax:
@@ -173,10 +173,10 @@ items:
     parameters:
     - id: evidenceType
       type: System.Type
-      description: "The evidence type."
+      description: "O tipo de prova."
     return:
       type: System.Security.Policy.EvidenceBase
-      description: "The requested application domain evidence."
+      description: "A prova de domínio da aplicação pedida."
   overload: System.Security.HostSecurityManager.GenerateAppDomainEvidence*
   exceptions: []
   platform:
@@ -193,20 +193,20 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Requests a specific evidence type for the assembly."
-  remarks: "This method can be overridden by a derived class. The base implementation returns `null`.       The common language runtime calls this method when evidence of the specified type is needed for the current assembly. The returned value is used as host-supplied evidence, and is stored in the <xref:System.Reflection.Assembly.Evidence%2A> property. You can use the <xref:System.Security.Policy.Evidence.GetAssemblyEvidence%2A?displayProperty=fullName> method to obtain the generated evidence from the <xref:System.Reflection.Assembly.Evidence%2A> property.       To get a callback to this method, hosts must specify the <xref:System.Security.HostSecurityManagerOptions> flag in the <xref:System.Security.HostSecurityManager.Flags%2A> property.       This method of generating evidence allows hosts to delay evidence generation for an <xref:System.AppDomain> until the evidence is needed. In the .NET Framework 3.5 and earlier versions, it was necessary to provide <xref:System.AppDomain> evidence at load time by overriding the <xref:System.Security.HostSecurityManager.ProvideAppDomainEvidence%2A> method. We recommend that you use GenerateAssemblyEvidence to provide evidence instead of overriding <xref:System.Security.HostSecurityManager.ProvideAssemblyEvidence%2A>.       The GenerateAssemblyEvidence method is called back into only for types of evidence that the host has specified in the override of the <xref:System.Security.HostSecurityManager.GetHostSuppliedAssemblyEvidenceTypes%2A> method.       A return value of `null` indicates that the host cannot generate evidence of this specific type."
+  summary: "Pedidos de um tipo de prova específico para a assemblagem."
+  remarks: "Este método pode ser substituído por uma classe derivada. Devolve a implementação base `null`.       O language runtime chama este método quando é necessária uma prova do tipo especificado para a assemblagem atual. O valor devolvido é utilizado como provas fornecido pelo anfitrião e está armazenado no <xref:System.Reflection.Assembly.Evidence%2A>propriedade.</xref:System.Reflection.Assembly.Evidence%2A> Pode utilizar o <xref:System.Security.Policy.Evidence.GetAssemblyEvidence%2A?displayProperty=fullName>método para obter a provas gerada do <xref:System.Reflection.Assembly.Evidence%2A>propriedade.</xref:System.Reflection.Assembly.Evidence%2A> </xref:System.Security.Policy.Evidence.GetAssemblyEvidence%2A?displayProperty=fullName>       Para obter uma chamada de retorno para este método, anfitriões tem de especificar o <xref:System.Security.HostSecurityManagerOptions>mostram o <xref:System.Security.HostSecurityManager.Flags%2A>propriedade.</xref:System.Security.HostSecurityManager.Flags%2A> </xref:System.Security.HostSecurityManagerOptions>       Este método de gerar provas permite que os anfitriões atrasar a geração de provas para um <xref:System.AppDomain>até a provas é necessária.</xref:System.AppDomain> No .NET Framework 3.5 e versões anteriores, era necessário fornecer <xref:System.AppDomain>provas no momento de carga através da substituição de <xref:System.Security.HostSecurityManager.ProvideAppDomainEvidence%2A>método.</xref:System.Security.HostSecurityManager.ProvideAppDomainEvidence%2A> </xref:System.AppDomain> Recomendamos que utilize GenerateAssemblyEvidence para fornecer provas em vez de substituir <xref:System.Security.HostSecurityManager.ProvideAssemblyEvidence%2A>.</xref:System.Security.HostSecurityManager.ProvideAssemblyEvidence%2A>       O método GenerateAssemblyEvidence denomina-se novamente para apenas para tipos de provas de que o anfitrião tem especificada na substituição do <xref:System.Security.HostSecurityManager.GetHostSuppliedAssemblyEvidenceTypes%2A>método.</xref:System.Security.HostSecurityManager.GetHostSuppliedAssemblyEvidenceTypes%2A>       Um valor de retorno da `null` indica que o anfitrião não é possível gerar provas deste tipo específico."
   syntax:
     content: public virtual System.Security.Policy.EvidenceBase GenerateAssemblyEvidence (Type evidenceType, System.Reflection.Assembly assembly);
     parameters:
     - id: evidenceType
       type: System.Type
-      description: "The evidence type."
+      description: "O tipo de prova."
     - id: assembly
       type: System.Reflection.Assembly
-      description: "The target assembly."
+      description: "A assemblagem de destino."
     return:
       type: System.Security.Policy.EvidenceBase
-      description: "The requested assembly evidence."
+      description: "A prova de assemblagem pedida."
   overload: System.Security.HostSecurityManager.GenerateAssemblyEvidence*
   exceptions: []
   platform:
@@ -223,14 +223,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines which evidence types the host can supply for the application domain, if requested."
-  remarks: "This method can be overridden by a derived class. The base implementation returns `null`.       The types returned by this method determine whether the <xref:System.Security.HostSecurityManager.GenerateAppDomainEvidence%2A> method is called back into. The presence of a type in this list does not mean that the host must be able to generate this evidence type, but that it may be able to. For that reason, it is best to over-specify rather than under-specify the types in this list."
+  summary: "Determina que tipos de provas anfitrião pode fornecer para o domínio de aplicação, caso pedido."
+  remarks: "Este método pode ser substituído por uma classe derivada. Devolve a implementação base `null`.       Determinam os tipos de devolvido por este método se as <xref:System.Security.HostSecurityManager.GenerateAppDomainEvidence%2A>método é denominado de volta para.</xref:System.Security.HostSecurityManager.GenerateAppDomainEvidence%2A> A presença de um tipo nesta lista não significa que o anfitrião tem de ser capaz de gerar este tipo de prova, mas que poderá ser possível. Por esse motivo, é melhor excessiva especifique, em vez de em-especificar os tipos nesta lista."
   syntax:
     content: public virtual Type[] GetHostSuppliedAppDomainEvidenceTypes ();
     parameters: []
     return:
       type: System.Type[]
-      description: "An array of evidence types."
+      description: "Uma matriz de tipos de prova."
   overload: System.Security.HostSecurityManager.GetHostSuppliedAppDomainEvidenceTypes*
   exceptions: []
   platform:
@@ -247,17 +247,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines which evidence types the host can supply for the assembly, if requested."
-  remarks: "This method can be overridden by a derived class. The base implementation returns `null`.       The types returned by this method determine whether the <xref:System.Security.HostSecurityManager.GenerateAssemblyEvidence%2A> method is called back into. The presence of a type in this list does not mean that the host must be able to generate this evidence type, but that it may be able to. For that reason, it is best to over-specify rather than under-specify the types in this list."
+  summary: "Determina os tipos de provas de anfitrião pode fornecer para a assemblagem, se for pedida."
+  remarks: "Este método pode ser substituído por uma classe derivada. Devolve a implementação base `null`.       Determinam os tipos de devolvido por este método se as <xref:System.Security.HostSecurityManager.GenerateAssemblyEvidence%2A>método é denominado de volta para.</xref:System.Security.HostSecurityManager.GenerateAssemblyEvidence%2A> A presença de um tipo nesta lista não significa que o anfitrião tem de ser capaz de gerar este tipo de prova, mas que poderá ser possível. Por esse motivo, é melhor excessiva especifique, em vez de em-especificar os tipos nesta lista."
   syntax:
     content: public virtual Type[] GetHostSuppliedAssemblyEvidenceTypes (System.Reflection.Assembly assembly);
     parameters:
     - id: assembly
       type: System.Reflection.Assembly
-      description: "The target assembly."
+      description: "A assemblagem de destino."
     return:
       type: System.Type[]
-      description: "An array of evidence types."
+      description: "Uma matriz de tipos de prova."
   overload: System.Security.HostSecurityManager.GetHostSuppliedAssemblyEvidenceTypes*
   exceptions: []
   platform:
@@ -274,17 +274,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Provides the application domain evidence for an assembly being loaded."
-  remarks: "This method can be overridden in a derived class.       This method is called whenever an <xref:System.AppDomain> object is created. The `inputEvidence` parameter is the computed evidence from the common language runtime. The host implementation can choose to extend or reduce the evidence. The return value is the evidence to be used for the application domain.  The base implementation always returns the evidence object passed in as the `inputEvidence` parameter.      > [!IMPORTANT] >  See the Notes to Inheritors for the <xref:System.Security.HostSecurityManager> class for critical implementation information."
+  summary: "Fornece a prova de domínio da aplicação para uma assemblagem que está a ser carregada."
+  remarks: "Este método pode ser substituído numa classe derivada.       Este método é denominado sempre que um <xref:System.AppDomain>objeto é criado.</xref:System.AppDomain> O `inputEvidence` parâmetro é a calculada provas de tempo de execução de idioma comum. A implementação do anfitrião pode optar por expandir ou reduzir a provas. O valor de retorno é provas a ser utilizado para o domínio de aplicação.  A implementação base sempre devolve o objeto de provas transmitido como o `inputEvidence` parâmetro.      > [!IMPORTANT] > Consulte as notas para os herdeiros para o <xref:System.Security.HostSecurityManager>classe para obter informações de implementação crítico.</xref:System.Security.HostSecurityManager>"
   syntax:
     content: public virtual System.Security.Policy.Evidence ProvideAppDomainEvidence (System.Security.Policy.Evidence inputEvidence);
     parameters:
     - id: inputEvidence
       type: System.Security.Policy.Evidence
-      description: "Additional evidence to add to the <xref href=&quot;System.AppDomain&quot;></xref> evidence."
+      description: "Prova adicional para adicionar o <xref href=&quot;System.AppDomain&quot;> </xref> provas."
     return:
       type: System.Security.Policy.Evidence
-      description: "The evidence to be used for the <xref href=&quot;System.AppDomain&quot;></xref>."
+      description: "A prova a ser utilizada para o <xref href=&quot;System.AppDomain&quot;> </xref>."
   overload: System.Security.HostSecurityManager.ProvideAppDomainEvidence*
   exceptions: []
   platform:
@@ -301,8 +301,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Provides the assembly evidence for an assembly being loaded."
-  remarks: "This method can be overridden in a derived class.       This method is called whenever an assembly is loaded, either implicitly or explicitly. The passed in parameters are the assembly being loaded, and the computed evidence from the common language runtime. The host implementation can choose to extend or reduce the evidence. The return value is the evidence to be used for the assembly.  The base implementation always returns the evidence object passed in as the `inputEvidence` parameter.      > [!IMPORTANT] >  See the Notes to Inheritors for the <xref:System.Security.HostSecurityManager> class for critical implementation information."
+  summary: "Fornece a prova de assemblagem para uma assemblagem que está a ser carregada."
+  remarks: "Este método pode ser substituído numa classe derivada.       Este método é denominado sempre que uma assemblagem é carregada, implícita ou explicitamente. Os parâmetros transmitidos são a assemblagem que está a ser carregado e a calculada provas de tempo de execução de idioma comum. A implementação do anfitrião pode optar por expandir ou reduzir a provas. O valor de retorno é provas a ser utilizada para a assemblagem.  A implementação base sempre devolve o objeto de provas transmitido como o `inputEvidence` parâmetro.      > [!IMPORTANT] > Consulte as notas para os herdeiros para o <xref:System.Security.HostSecurityManager>classe para obter informações de implementação crítico.</xref:System.Security.HostSecurityManager>"
   example:
   - "The following example shows how to override the ProvideAssemblyEvidence method for a custom host security manager. This example is part of a larger example provided for the <xref:System.Security.HostSecurityManager> class.  \n  \n [!code-cs[System.Security.HostSecurityManager#5](~/add/codesnippet/csharp/b37483ba-2dfe-4c5d-87e6-_1.cs)]\n [!code-vb[System.Security.HostSecurityManager#5](~/add/codesnippet/visualbasic/b37483ba-2dfe-4c5d-87e6-_1.vb)]"
   syntax:
@@ -310,13 +310,13 @@ items:
     parameters:
     - id: loadedAssembly
       type: System.Reflection.Assembly
-      description: "The loaded assembly."
+      description: "A assemblagem carregada."
     - id: inputEvidence
       type: System.Security.Policy.Evidence
-      description: "Additional evidence to add to the assembly evidence."
+      description: "Prova adicional para adicionar a prova de assemblagem."
     return:
       type: System.Security.Policy.Evidence
-      description: "The evidence to be used for the assembly."
+      description: "Provas a ser utilizada para a assemblagem."
   overload: System.Security.HostSecurityManager.ProvideAssemblyEvidence*
   exceptions: []
   platform:
@@ -333,22 +333,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines what permissions to grant to code based on the specified evidence."
-  remarks: "This method invokes the security policy engine, providing it with the specified evidence. The result is determined by the security policy."
+  summary: "Determina o que permissões para conceder ao código com base na provas especificada."
+  remarks: "Este método invoca o motor de política de segurança, fornecendo-lo com a provas especificada. O resultado é determinado pela política de segurança."
   syntax:
     content: public virtual System.Security.PermissionSet ResolvePolicy (System.Security.Policy.Evidence evidence);
     parameters:
     - id: evidence
       type: System.Security.Policy.Evidence
-      description: "The evidence set used to evaluate policy."
+      description: "A prova definir utilizada para avaliar a política."
     return:
       type: System.Security.PermissionSet
-      description: "The permission set that can be granted by the security system."
+      description: "O conjunto de permissões que pode ser concedido pelo sistema de segurança."
   overload: System.Security.HostSecurityManager.ResolvePolicy*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>evidence</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>evidence</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 references:

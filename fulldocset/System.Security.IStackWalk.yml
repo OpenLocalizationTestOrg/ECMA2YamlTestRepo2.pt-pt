@@ -13,8 +13,8 @@ items:
   nameWithType: IStackWalk
   fullName: System.Security.IStackWalk
   type: Interface
-  summary: "Manages the stack walk that determines whether all callers in the call stack have the required permissions to access a protected resource."
-  remarks: "Partially trusted code always presents a security risk. It can sometimes be manipulated to perform actions on behalf of malicious code that does not have permission to access a resource. In this way, malicious code can achieve higher security access than it should be allowed.       The common language runtime helps protect managed code from these attacks by running a stack walk on all calls. The stack walk requires that all code in the call stack has permission to access a protected resource. Because the code attempting the attack will always be somewhere in the call stack, it will be unable to exceed its own security permissions."
+  summary: "Gere o percurso da pilha que determina se os todos os chamadores na pilha de chamadas têm as permissões necessárias para aceder a um recurso protegido."
+  remarks: "Código parcialmente fidedigno sempre apresenta um risco de segurança. Por vezes, pode ser manipulado para efetuar ações em nome de código malicioso que não tem permissão para aceder a um recurso. Desta forma, o código malicioso pode alcançar mais elevada de segurança de acesso que deve ter permissão.       O language runtime ajuda a proteger código gerido contra estes ataques executando um percurso da pilha em todas as chamadas. O percurso da pilha requer que todo o código na pilha de chamadas tem permissão para aceder a um recurso protegido. Porque o código de tentativa de ataque será sempre algures na pilha de chamadas, será possível exceder os seus próprios permissões de segurança."
   syntax:
     content: >-
       [System.Runtime.InteropServices.ComVisible(true)]
@@ -35,8 +35,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Asserts that the calling code can access the resource identified by the current permission object, even if callers higher in the stack have not been granted permission to access the resource."
-  remarks: "Calling Assert stops the permission check on callers higher in the call stack. Therefore, even if these callers do not have the requisite permissions, they can still access resources. An assertion is effective only if the code that calls Assert passes the security check for the permission that it is asserting.       A call to Assert is effective until the calling code returns to its caller or until a subsequent call to Assert renders the previous assertion ineffective. Also, <xref:System.Security.CodeAccessPermission.RevertAssert%2A> or <xref:System.Security.CodeAccessPermission.RevertAll%2A> removes a pending Assert.       Assert is ignored for a permission not granted because a demand for that permission will not succeed. However, if code lower on the call stack calls <xref:System.Security.IStackWalk.Demand%2A> for that permission, a <xref:System.Security.SecurityException> is thrown when the stack walk reaches the code that tried to call Assert. This happens because the code that called Assert has not been granted the permission, even though it tried to Assert it.      > [!CAUTION] >  Because calling Assert removes the requirement that all code in the call chain must be granted permission to access the specified resource, it can open up security vulnerabilities if used incorrectly or inappropriately. Therefore, it should be used with great caution."
+  summary: "Asserções-se de que o código de chamada pode aceder ao recurso identificado pelo objecto actual da permissão, mesmo se os chamadores superiores na pilha não tenham sido concedidos permissão para aceder ao recurso."
+  remarks: "Chamar asserção interrompe a verificação da permissão nos chamadores superiores na pilha de chamadas. Por conseguinte, mesmo que estes chamadores não tiverem as permissões da, ainda podem aceder a recursos. Uma asserção é eficaz apenas se o código que chama a asserção passar a verificação de segurança para a permissão que é asserting.       Uma chamada para declarar tem efeita até que o código de chamada devolve ao respetivo autor da chamada ou até que uma chamada subsequente para declarar compõe a asserção anterior ineficaz. Além disso, <xref:System.Security.CodeAccessPermission.RevertAssert%2A>ou <xref:System.Security.CodeAccessPermission.RevertAll%2A>Remove uma asserção pendente.</xref:System.Security.CodeAccessPermission.RevertAll%2A> </xref:System.Security.CodeAccessPermission.RevertAssert%2A>       Asserção é ignorada para uma permissão não concedida devido uma pedido para essa permissão não será concluída com êxito. No entanto, se inferior na pilha de chamadas chama <xref:System.Security.IStackWalk.Demand%2A>para essa permissão, uma <xref:System.Security.SecurityException>é acionada quando o percurso da pilha atinge o código que tentou chamar asserção.</xref:System.Security.SecurityException> </xref:System.Security.IStackWalk.Demand%2A> Isto acontece porque o código que chamado asserção não foi concedido permissão, apesar de o tentar Assert-lo.      > [!CAUTION] > Porque chamar asserção remove o requisito de que todo o código na cadeia de chamada tem de ser concedido permissão para aceder ao recurso especificado, pode abrir vulnerabilidades de segurança se utilizado inadequada ou incorretamente. Por conseguinte, deve ser utilizada com cuidado excelente."
   syntax:
     content: public void Assert ();
     parameters: []
@@ -44,7 +44,7 @@ items:
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The calling code does not have <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;></xref>."
+    description: "O código de chamada não tem <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;> </xref>."
   platform:
   - net462
 - uid: System.Security.IStackWalk.Demand
@@ -59,8 +59,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines at run time whether all callers in the call stack have been granted the permission specified by the current permission object."
-  remarks: "This method is typically used by secure libraries to ensure that callers have permission to access a resource. For example, a file class in a secure class library calls Demand for the necessary <xref:System.Security.Permissions.FileIOPermission> before performing a file operation requested by the caller.       The permissions of the code that calls this method are not examined; the check begins from the immediate caller of that code and proceeds up the stack. Demand succeeds only if no <xref:System.Security.SecurityException> is raised."
+  summary: "Determina em tempo de execução se todos os chamadores na pilha de chamadas foi concedidos a permissão especificada pelo objeto atual a permissão."
+  remarks: "Este método é normalmente utilizado pelo bibliotecas seguras para se certificar de que os chamadores tem permissão para aceder a um recurso. Por exemplo, uma classe de ficheiro numa biblioteca segura de classe chama a pedido para o necessário <xref:System.Security.Permissions.FileIOPermission>antes de efetuar uma operação de ficheiro solicitada pelo chamador.</xref:System.Security.Permissions.FileIOPermission>       As permissões de código que chama este método não são examinadas; a verificação começa do chamador imediato desse código e continua a pilha de cópia de segurança. Será efetuada com êxito a pedido apenas se não <xref:System.Security.SecurityException>é gerado.</xref:System.Security.SecurityException>"
   syntax:
     content: public void Demand ();
     parameters: []
@@ -68,7 +68,7 @@ items:
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "A caller higher in the call stack does not have the permission specified by the current permission object.       -or-       A caller in the call stack has called <xref:System.Security.IStackWalk.Deny*> on the current permission object."
+    description: "Um chamador superior na pilha de chamadas não tem a permissão especificada pelo objeto atual a permissão.       - ou - foi chamado um emissor na pilha de chamadas <xref:System.Security.IStackWalk.Deny*>no objeto de permissão atual.</xref:System.Security.IStackWalk.Deny*>"
   platform:
   - net462
 - uid: System.Security.IStackWalk.Deny
@@ -83,8 +83,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Causes every <xref:System.Security.IStackWalk.Demand*> for the current object that passes through the calling code to fail."
-  remarks: "This method prevents callers higher in the call stack from accessing the protected resource through the code that calls this method, even if those callers have been granted permission to access it. The call stack is typically represented as growing down, so that methods higher in the call stack call methods lower in the call stack.       Deny can limit the liability of the programmer or help prevent accidental security vulnerabilities because it helps prevent the method that calls Deny from being used to access the resource protected by the denied permission. If a method calls Deny on a permission, and if a <xref:System.Security.IStackWalk.Demand%2A> for that permission is invoked by a caller lower in the call stack, that security check will fail when it reaches the Deny.       Deny is ignored for a permission not granted because a demand for that permission will not succeed."
+  summary: "Faz com que cada <xref:System.Security.IStackWalk.Demand*>para o objeto atual que atravessa o código de chamada falhe.</xref:System.Security.IStackWalk.Demand*>"
+  remarks: "Este método impede os chamadores superiores na pilha de chamadas de aceder ao recurso protegido através de código que chama este método, mesmo que esses chamadores tem permissão para aceder ao mesmo. A pilha de chamadas é normalmente representada como a crescer para baixo, para que os métodos superiores na pilha de chamadas chamar os métodos inferior na pilha de chamadas.       Negar pode limitar a responsabilidade do programador ou ajudar a evitar vulnerabilidades de segurança acidental porque ajuda a impedir que o método que chama a negação de que está a ser utilizado para aceder o recursos protegidos pela permissão negada. Se um método chama negar uma permissão e um <xref:System.Security.IStackWalk.Demand%2A>para essa permissão é invocada por um emissor inferior na pilha de chamadas, que essa verificação de segurança falhará quando atinge o negar.</xref:System.Security.IStackWalk.Demand%2A>       Negar são ignoradas para uma permissão não concedida devido uma pedido para essa permissão não será concluída com êxito."
   syntax:
     content: public void Deny ();
     parameters: []
@@ -104,8 +104,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Causes every <xref:System.Security.IStackWalk.Demand*> for all objects except the current one that passes through the calling code to fail, even if code higher in the call stack has been granted permission to access other resources."
-  remarks: "PermitOnly is similar to <xref:System.Security.IStackWalk.Deny%2A>, in that both cause stack walks to fail when they would otherwise succeed. The difference is that <xref:System.Security.IStackWalk.Deny%2A> specifies permissions that will cause the stack walk to fail, but PermitOnly specifies the only permissions that do not cause the stack walk to fail. Call this method to ensure that your code can be used to access only the specified resources.       PermitOnly is ignored for a permission not granted because a demand for that permission will not succeed. However, if code lower on the call stack later calls <xref:System.Security.IStackWalk.Demand%2A> for that permission, a <xref:System.Security.SecurityException> is thrown when the stack walk reaches the code that tried to call PermitOnly. This is because the code that called PermitOnly has not been granted the permission, even though it called PermitOnly for that permission. The call stack is typically represented as growing down, so that methods higher in the call stack call methods lower in the call stack."
+  summary: "Faz com que cada <xref:System.Security.IStackWalk.Demand*>para todos os objetos, exceto o atual que atravessa o código de chamada falhe, mesmo se superior na pilha de chamadas de código tem permissão para aceder a outros recursos.</xref:System.Security.IStackWalk.Demand*>"
+  remarks: "PermitOnly é semelhante à <xref:System.Security.IStackWalk.Deny%2A>, em que ambos fazer com que a pilha explica como falha quando que caso contrário, seriam concluída com êxito.</xref:System.Security.IStackWalk.Deny%2A> A diferença é que <xref:System.Security.IStackWalk.Deny%2A>Especifica as permissões que fará com que a pilha guiá-lo a falhar, mas PermitOnly Especifica as permissões de apenas não causam a falhar o percurso da pilha.</xref:System.Security.IStackWalk.Deny%2A> Chame este método para se certificar de que o seu código pode ser utilizado para aceder apenas os recursos especificados.       PermitOnly é ignorada para uma permissão não concedida devido uma pedido para essa permissão não será concluída com êxito. No entanto, se o código inferior na chamada da pilha mais tarde chamadas <xref:System.Security.IStackWalk.Demand%2A>para essa permissão, uma <xref:System.Security.SecurityException>é acionada quando o percurso da pilha atinge o código que tentou chamar PermitOnly.</xref:System.Security.SecurityException> </xref:System.Security.IStackWalk.Demand%2A> Isto acontece porque o código que chamado PermitOnly não foi concedido permissão, apesar de chamou PermitOnly para essa permissão. A pilha de chamadas é normalmente representada como a crescer para baixo, para que os métodos superiores na pilha de chamadas chamar os métodos inferior na pilha de chamadas."
   syntax:
     content: public void PermitOnly ();
     parameters: []

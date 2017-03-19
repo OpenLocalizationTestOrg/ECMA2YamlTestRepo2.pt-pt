@@ -17,8 +17,8 @@ items:
   nameWithType: MuxLogger
   fullName: Microsoft.Build.Utilities.MuxLogger
   type: Class
-  summary: "Represents a multiplexing logger. The purpose of this logger is to register and unregister multiple loggers during the build. Supports the [!INCLUDE[vs_current_short](~/add/includes/ajax-current-ext-md.md)] IDE scenario in which loggers are registered and unregistered for each project system’s build request. One physical build can have multiple logical builds, each with its own set of loggers.       The <xref uid=&quot;langword_csharp_MuxLogger&quot; name=&quot;MuxLogger&quot; href=&quot;&quot;></xref>registers itself with the build manager as a regular central /l style logger. It receives messages from the build manager and routes them to the correct logger, based on the logical build that the message came from."
-  remarks: "The `MuxLogger`generally functions as follows:      -   The `MuxLogger` is registered at the beginning of the build manager’s Begin build.           Any loggers registered before the build manager starts the build get the build-started event at the same time as the `MuxLogger`.           Any loggers registered after the build manager starts the build get a synthesized build-started event. The event cannot be cached because the timestamp of the build-started event is determined when the event is created, and caching the event would give incorrect build times in the loggers registered to the `MuxLogger`.      -   The `MuxLogger` is initialized by the build manager           The `MuxLogger` listens to all events on the event source from the build manager and routes events correctly to the registered loggers.      -   The `MuxLogger` is shutdown when the build is finished in end build. At this time, it unregisters any loggers attached to it.      -   The `MuxLogger` logs the build-finished event when the project-finished event for the first project-started event is seen for each logger.       The `MuxLogger` registers loggers in the following way:      1.  The logger is passed to the `MuxLogger.RegisterLogger` method with a submission ID that is used to route a message to that logger.      2.  The `MuxLogger` registers the logger to the `MuxLogger` event source.      3.  If the build-started event has already been logged, the `MuxLogger` creates a new build-started event and sends it to the logger’s event source.       The `MuxLogger` unregisters loggers in the following way:      1.  When a build submission is completed, the `MuxLogger.UnregisterLogger` method is called with the submission ID for the logger.      2.  The `MuxLogger` looks up the success state of the project-finished event for the submission ID and logs a build-finished event to the logger.      3.  The `MuxLogger`cleans up the event source.           Note that the unregister comes from a thread other than the logging thread and a synchronization issue could occur if unregister is called while events are being logged."
+  summary: "Representa um registo multiplexing. É o objetivo deste registo registar e anular o registo registadores vários durante a compilação. Suporta o [!INCLUDE[vs_current_short](~/add/includes/ajax-current-ext-md.md)] cenário IDE na qual registadores estão registadas e registo anulados com êxito para o pedido de compilação de cada sistema de projeto. Uma compilação física pode ter vários lógica baseiam-se, cada um com o seu próprio conjunto de registadores.       O <xref uid=&quot;langword_csharp_MuxLogger&quot; name=&quot;MuxLogger&quot; href=&quot;&quot;> </xref>efetua o próprio registo com o Gestor de compilação como um registo de estilo /l central regulares. Recebe mensagens do Gestor de compilação e provém de rotas para o registo correto, com base na lógica de compilação que a mensagem."
+  remarks: "O `MuxLogger`geralmente funciona da seguinte forma: - `MuxLogger` está registado no início da compilação de iniciar o Gestor de compilação.           Qualquer registadores registados para o Gestor de compilação é iniciada a compilação obter o evento foi iniciada a compilação no mesmo tempo que o `MuxLogger`.           Qualquer registadores registados depois do Gestor de compilação é iniciada a compilação obter um evento de compilação-started sintetizado. O evento não pode ser colocado em cache porque timestamp do evento foi iniciada a compilação é determinado quando o evento é criado e colocação em cache o evento seria conceder compilação incorreto vezes registadores registados para o `MuxLogger`.      -O `MuxLogger` é inicializado pelo Gestor de compilação do `MuxLogger` escuta para todos os eventos na origem de eventos do Gestor de compilação e encaminha eventos corretamente para os registadores registados.      -O `MuxLogger` for encerrado quando estiver concluída a compilação em compilação do fim. Neste momento,-anula o registo de qualquer registadores anexados ao mesmo.      -O `MuxLogger` regista o evento foi concluída a compilação quando o evento de concluído o projeto de mensagens em fila para o primeiro evento foi iniciado o projeto é utilizado para cada registo.       O `MuxLogger` regista registadores da seguinte forma: 1.  O registo é passado para o `MuxLogger.RegisterLogger` método com um ID de submissão que é utilizado para encaminhar uma mensagem para esse registo.      2.  O `MuxLogger` regista o registo para o `MuxLogger` origem do evento.      3.  Se já foi registado o evento foi iniciada a compilação, o `MuxLogger` cria um novo evento foi iniciada a compilação e envia-a para a origem de evento do registo.       O `MuxLogger` anula o registo registadores da seguinte forma: 1.  Quando uma submissão de compilação for concluída, o `MuxLogger.UnregisterLogger` método é denominado com o ID de submissão para o registo.      2.  O `MuxLogger` procura o estado de êxito do evento concluído o projeto para o ID de submissão e regista um evento de conclusão de compilação para o registo.      3.  O `MuxLogger`limpa a origem do evento.           Tenha em atenção que a anulação do registo é proveniente de um thread diferente do thread de registo e um problema de sincronização pode ocorrer se unregister é chamado enquanto os eventos estão a ser registados."
   syntax:
     content: 'public class MuxLogger : Microsoft.Build.Framework.INodeLogger'
   inheritance:
@@ -40,7 +40,7 @@ items:
   assemblies:
   - Microsoft.Build.Utilities.v4.0
   namespace: Microsoft.Build.Utilities
-  summary: "Creates a new instance of the multiplexing logger."
+  summary: "Cria uma nova instância do registador de multiplexing."
   syntax:
     content: public MuxLogger ();
     parameters: []
@@ -60,13 +60,13 @@ items:
   assemblies:
   - Microsoft.Build.Utilities.v4.0
   namespace: Microsoft.Build.Utilities
-  summary: "Initialize the <xref uid=&quot;langword_csharp_MuxLogger&quot; name=&quot;MuxLogger&quot; href=&quot;&quot;></xref> instance with the specified event source."
+  summary: "Inicializar o <xref uid=&quot;langword_csharp_MuxLogger&quot; name=&quot;MuxLogger&quot; href=&quot;&quot;> </xref> instância com a origem de evento especificado."
   syntax:
     content: public void Initialize (Microsoft.Build.Framework.IEventSource eventSource);
     parameters:
     - id: eventSource
       type: Microsoft.Build.Framework.IEventSource
-      description: "The event source."
+      description: "A origem do evento."
   overload: Microsoft.Build.Utilities.MuxLogger.Initialize*
   exceptions: []
   platform:
@@ -83,16 +83,16 @@ items:
   assemblies:
   - Microsoft.Build.Utilities.v4.0
   namespace: Microsoft.Build.Utilities
-  summary: "Initialize the <xref uid=&quot;langword_csharp_MuxLogger&quot; name=&quot;MuxLogger&quot; href=&quot;&quot;></xref> instance with the specified event source and specified maximum number of nodes."
+  summary: "Inicializar o <xref uid=&quot;langword_csharp_MuxLogger&quot; name=&quot;MuxLogger&quot; href=&quot;&quot;> </xref> instância com a origem de evento especificado e o número máximo de nós especificado."
   syntax:
     content: public void Initialize (Microsoft.Build.Framework.IEventSource eventSource, int maxNodeCount);
     parameters:
     - id: eventSource
       type: Microsoft.Build.Framework.IEventSource
-      description: "The event source."
+      description: "A origem do evento."
     - id: maxNodeCount
       type: System.Int32
-      description: "The maximum number of nodes."
+      description: "O número máximo de nós."
   overload: Microsoft.Build.Utilities.MuxLogger.Initialize*
   exceptions: []
   platform:
@@ -109,12 +109,12 @@ items:
   assemblies:
   - Microsoft.Build.Utilities.v4.0
   namespace: Microsoft.Build.Utilities
-  summary: "Gets and sets the Parameters attribute, required by the <xref uid=&quot;langword_csharp_ILogger&quot; name=&quot;ILogger&quot; href=&quot;&quot;></xref> interface."
+  summary: "Obtém e define o atributo de parâmetros, necessário para o <xref uid=&quot;langword_csharp_ILogger&quot; name=&quot;ILogger&quot; href=&quot;&quot;> </xref> interface."
   syntax:
     content: public string Parameters { get; set; }
     return:
       type: System.String
-      description: "Returns the Parameters attribute."
+      description: "Devolve o atributo de parâmetros."
   overload: Microsoft.Build.Utilities.MuxLogger.Parameters*
   exceptions: []
   platform:
@@ -131,16 +131,16 @@ items:
   assemblies:
   - Microsoft.Build.Utilities.v4.0
   namespace: Microsoft.Build.Utilities
-  summary: "Registers a logger on the <xref uid=&quot;langword_csharp_MuxLogger&quot; name=&quot;MuxLogger&quot; href=&quot;&quot;></xref> and raises a build-started event if the build-started event has already been logged."
+  summary: "Regista um registo no <xref uid=&quot;langword_csharp_MuxLogger&quot; name=&quot;MuxLogger&quot; href=&quot;&quot;> </xref> e gera um evento de compilação-started se já foi registado o evento foi iniciada a compilação."
   syntax:
     content: public void RegisterLogger (int submissionId, Microsoft.Build.Framework.ILogger logger);
     parameters:
     - id: submissionId
       type: System.Int32
-      description: "The submission ID of the logger being registered."
+      description: "O ID de envio do registo a ser registado."
     - id: logger
       type: Microsoft.Build.Framework.ILogger
-      description: "The logger to register."
+      description: "O registo para registar."
   overload: Microsoft.Build.Utilities.MuxLogger.RegisterLogger*
   exceptions: []
   platform:
@@ -157,7 +157,7 @@ items:
   assemblies:
   - Microsoft.Build.Utilities.v4.0
   namespace: Microsoft.Build.Utilities
-  summary: "Shuts down the <xref uid=&quot;langword_csharp_MuxLogger&quot; name=&quot;MuxLogger&quot; href=&quot;&quot;></xref> and clears out any state."
+  summary: "Encerra o <xref uid=&quot;langword_csharp_MuxLogger&quot; name=&quot;MuxLogger&quot; href=&quot;&quot;> </xref> e limpa os qualquer Estado."
   syntax:
     content: public void Shutdown ();
     parameters: []
@@ -177,16 +177,16 @@ items:
   assemblies:
   - Microsoft.Build.Utilities.v4.0
   namespace: Microsoft.Build.Utilities
-  summary: "Removes the specified logger from the MuxLogger."
+  summary: "Remove o registo especificado de MuxLogger."
   syntax:
     content: public bool UnregisterLoggers (int submissionId);
     parameters:
     - id: submissionId
       type: System.Int32
-      description: "The submission ID of the logger to be removed."
+      description: "O ID de submissão do registo a serem removidos."
     return:
       type: System.Boolean
-      description: "Returns <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the method is successful in removing the logger, otherwise, returns <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "Devolve <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;> </xref> se o método for bem sucedido da remoção de registo, caso contrário, devolve <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: Microsoft.Build.Utilities.MuxLogger.UnregisterLoggers*
   exceptions: []
   platform:
@@ -203,12 +203,12 @@ items:
   assemblies:
   - Microsoft.Build.Utilities.v4.0
   namespace: Microsoft.Build.Utilities
-  summary: "Gets and sets the Verbosity attribute, required by the <xref uid=&quot;langword_csharp_ILogger&quot; name=&quot;ILogger&quot; href=&quot;&quot;></xref> interface."
+  summary: "Obtém e define o atributo de verbosidade, necessário para o <xref uid=&quot;langword_csharp_ILogger&quot; name=&quot;ILogger&quot; href=&quot;&quot;> </xref> interface."
   syntax:
     content: public Microsoft.Build.Framework.LoggerVerbosity Verbosity { get; set; }
     return:
       type: Microsoft.Build.Framework.LoggerVerbosity
-      description: "Returns the Verbosity attribute."
+      description: "Devolve o atributo de verbosidade."
   overload: Microsoft.Build.Utilities.MuxLogger.Verbosity*
   exceptions: []
   platform:
