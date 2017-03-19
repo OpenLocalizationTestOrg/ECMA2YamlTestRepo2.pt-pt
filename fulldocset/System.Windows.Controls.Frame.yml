@@ -54,8 +54,8 @@ items:
   nameWithType: Frame
   fullName: System.Windows.Controls.Frame
   type: Class
-  summary: "Frame is a content control that supports navigation."
-  remarks: "Frame is a content control that provides the ability to navigate to and display content. Frame can be hosted within other content, as with other controls and elements.      > [!CAUTION] >  When the Frame control navigates to HTML content, the Frame control internally instantiates the native WebBrowser ActiveX control. WPF enables security features by applying feature controls to the WebBrowser ActiveX control. The feature controls that are applied differ for XBAPs and stand-alone applications. Some applications should apply additional feature controls to prevent malicious content from running. For more information, see the &quot;WebBrowser Control and Feature Controls&quot; section in [Security (WPF)](~/add/includes/ajax-current-ext-md.md) and [WebBrowser Control Overviews and Tutorials](http://go.microsoft.com/fwlink/?LinkId=179388).       Content can be any type of [!INCLUDE[TLA2#tla_winfx](~/add/includes/tla2sharptla-winfx-md.md)] object and [!INCLUDE[TLA#tla_html](~/add/includes/tlasharptla-html-md.md)] files. In general, however, pages are the preferred the way to package content for navigation (see <xref:System.Windows.Controls.Page>).       Content can be navigated to by setting the <xref:System.Windows.Controls.Frame.Source%2A> property with the [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] for the desired content. Additionally, content can be navigated to by using one of the following overloads of the <xref:System.Windows.Controls.Frame.Navigate%2A> method:      -   <xref:System.Windows.Controls.Frame.Navigate%28System.Uri%29>      -   <xref:System.Windows.Controls.Frame.Navigate%28System.Uri%2CSystem.Object%29>       When content is navigated to by [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)], Frame returns an object that contains the content. Alternatively, content can be navigated to by using one of the <xref:System.Windows.Controls.Frame.Navigate%2A> method overloads that accepts an object:      -   <xref:System.Windows.Controls.Frame.Navigate%28System.Object%29>      -   <xref:System.Windows.Controls.Frame.Navigate%28System.Object%2CSystem.Object%29>       The lifetime of a navigation can be tracked through the following events:      -   <xref:System.Windows.Controls.Frame.Navigating>      -   <xref:System.Windows.Controls.Frame.Navigated>      -   <xref:System.Windows.Controls.Frame.NavigationProgress>      -   <xref:System.Windows.Controls.Frame.NavigationFailed>      -   <xref:System.Windows.Controls.Frame.NavigationStopped>      -   <xref:System.Windows.Controls.Frame.LoadCompleted>      -   <xref:System.Windows.Controls.Frame.FragmentNavigation>       Not all events are raised each time that a navigation occurs; the set of events that are raised is determined by the type of navigation that occurs (content or content fragment) and how the navigation completes (canceled, stopped, or failed).       The following figure illustrates the sequence in which these events will fire:       ![Page navigation flow chart](~/add/media/navigationoverviewfigure11.png &quot;Page navigation flow chart&quot;)       During or after a navigation, Frame provides information about the content that is being navigated to, including the [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] of the content being navigated to (<xref:System.Windows.Controls.Frame.Source%2A>), the [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] of the current content (<xref:System.Windows.Controls.Frame.CurrentSource%2A>), and an object that contains the content that was navigated to (<xref:System.Windows.Controls.ContentControl.Content%2A>).       When content is navigated to, Frame records the navigation as an entry in navigation history. An entry is added to back navigation history when either a new navigation occurs, by calling the <xref:System.Windows.Controls.Frame.Navigate%2A> method, or by navigating to an entry in forward navigation history, by calling <xref:System.Windows.Controls.Frame.GoForward%2A>. An entry is added to forward navigation history by navigating to an entry in back navigation history, by calling <xref:System.Windows.Controls.Frame.GoBack%2A>. <xref:System.Windows.Controls.Frame.CanGoBack%2A> and <xref:System.Windows.Controls.Frame.CanGoForward%2A> report whether there are entries in back and forward navigation history, respectively.       The first time that one piece of content is navigated to from another piece of content, Frame automatically displays a navigation [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)] that allows users to navigate back and forward through navigation history. You can configure when the navigation [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)] is shown by setting the <xref:System.Windows.Controls.Frame.NavigationUIVisibility%2A> property.       By default, Frame will use its own navigation history only if a parent navigator (<xref:System.Windows.Navigation.NavigationWindow>, Frame) with its own navigation history cannot be found. This means that navigation history entries for the frame are mingled with navigation history entries for the parent navigator. To specify that a Frame manages its own navigation history, set the <xref:System.Windows.Controls.Frame.JournalOwnership%2A> property to <xref:System.Windows.Navigation.JournalOwnership>.       The most recent entry in back navigation history can be removed by calling <xref:System.Windows.Controls.Frame.RemoveBackEntry%2A>.       Frame does not store an instance of a content object in navigation history. Instead, Frame creates a new instance of the content object each time it is navigated to by using navigation history. This behavior is designed to avoid excessive memory consumption when large numbers and large pieces of content are being navigated to. Consequently, the state of the content is not remembered from one navigation to the next. However, [!INCLUDE[TLA2#tla_wpf](~/add/includes/ajax-current-ext-md.md)] provides several techniques by which you can store a state for a piece of content in navigation history.       Using <xref:System.Windows.Controls.Frame.AddBackEntry%2A>, you can also remember multiple sets of state for a single page instance.      ## Customizing the Frame Control    To apply the same property settings to multiple Frame controls, use the <xref:System.Windows.FrameworkElement.Style%2A> property. You can modify the default <xref:System.Windows.Controls.ControlTemplate> to give the control a unique appearance. For more information about creating a <xref:System.Windows.Controls.ControlTemplate>, see [Customizing the Appearance of an Existing Control by Creating a ControlTemplate](~/add/includes/ajax-current-ext-md.md).  To see the parts and states that are specific to the Frame, see [Frame Styles and Templates](~/add/includes/ajax-current-ext-md.md).       Dependency properties for this control might be set by the control’s default style.  If a property is set by a default style, the property might change from its default value when the control appears in the application. The default style is determined by which desktop theme is used when the application is running.  For more information, see [Default WPF Themes](http://go.microsoft.com/fwlink/?LinkID=158252).      > [!NOTE] >  Setting a visual property will only have an effect if that property is both present in Frame control&quot;s default template and is set by using a . You can find a list of visual properties in the &quot;Changing the Visual Structure of a Control&quot; section in [Customizing the Appearance of an Existing Control by Creating a ControlTemplate](../Topic/Customizing%20the%20Appearance%20of%20an%20Existing%20Control%20by%20Creating%20a%20ControlTemplate.md)."
+  summary: "Frame é um controlo de conteúdo que suporta navegação."
+  remarks: "Frame é um controlo de conteúdo que fornece a capacidade de navegar para e apresentar o conteúdo. Período pode ser alojado dentro de outro conteúdo, tal como acontece com outros controlos e elementos.      > [!CAUTION] > Controlo de moldura o quando navega para conteúdo HTML, o controlo de moldura internamente para instanciar o controlo WebBrowser ActiveX nativo. WPF permite funcionalidades de segurança a aplicar controlos de funcionalidade para o controlo ActiveX do WebBrowser. Os controlos de funcionalidade que são aplicados diferirem para XBAPs e aplicações autónomas. Algumas aplicações devem aplicar controlos de funcionalidades adicionais para impedir a conteúdo malicioso em execução. Para obter mais informações, consulte a secção &quot;Controlo de WebBrowser e controlos de funcionalidade&quot; [segurança (WPF)](~/add/includes/ajax-current-ext-md.md) e [descrições gerais de controlo WebBrowser e tutoriais](http://go.microsoft.com/fwlink/?LinkId=179388).       O conteúdo pode ser qualquer tipo de [!INCLUDE[TLA2#tla_winfx](~/add/includes/tla2sharptla-winfx-md.md)] objeto e [!INCLUDE[TLA#tla_html](~/add/includes/tlasharptla-html-md.md)] ficheiros. Em geral, no entanto, as páginas são o preferencial a forma de conteúdo do pacote para navegação (consulte <xref:System.Windows.Controls.Page>).</xref:System.Windows.Controls.Page>       Conteúdo pode ser direcionado para definindo a <xref:System.Windows.Controls.Frame.Source%2A>propriedade com o [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] para os conteúdos pretendidos.</xref:System.Windows.Controls.Frame.Source%2A> Além disso, conteúdo pode navegar para utilizando uma das seguintes sobrecargas do <xref:System.Windows.Controls.Frame.Navigate%2A>método:- <xref:System.Windows.Controls.Frame.Navigate%28System.Uri%29>- <xref:System.Windows.Controls.Frame.Navigate%28System.Uri%2CSystem.Object%29>quando o conteúdo é direcionado para por [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)], moldura devolve um objeto que contém o conteúdo.</xref:System.Windows.Controls.Frame.Navigate%28System.Uri%2CSystem.Object%29> </xref:System.Windows.Controls.Frame.Navigate%28System.Uri%29> </xref:System.Windows.Controls.Frame.Navigate%2A> Em alternativa, conteúdo pode navegar para utilizando uma das sobrecargas de método <xref:System.Windows.Controls.Frame.Navigate%2A>que aceite um objecto: - <xref:System.Windows.Controls.Frame.Navigate%28System.Object%29>- <xref:System.Windows.Controls.Frame.Navigate%28System.Object%2CSystem.Object%29>a duração de uma navegação pode ser controlado através os seguintes eventos: - <xref:System.Windows.Controls.Frame.Navigating>- <xref:System.Windows.Controls.Frame.Navigated>- <xref:System.Windows.Controls.Frame.NavigationProgress>- <xref:System.Windows.Controls.Frame.NavigationFailed>- <xref:System.Windows.Controls.Frame.NavigationStopped>- <xref:System.Windows.Controls.Frame.LoadCompleted>- <xref:System.Windows.Controls.Frame.FragmentNavigation>não todos os eventos são gerados sempre que ocorre uma navegação; o conjunto de eventos que são gerados é determinado pelo tipo de navegação que ocorre (fragmento de conteúdo ou conteúdo) e como conclui o painel de navegação (cancelada parado ou falha).</xref:System.Windows.Controls.Frame.FragmentNavigation> </xref:System.Windows.Controls.Frame.LoadCompleted> </xref:System.Windows.Controls.Frame.NavigationStopped> </xref:System.Windows.Controls.Frame.NavigationFailed> </xref:System.Windows.Controls.Frame.NavigationProgress> </xref:System.Windows.Controls.Frame.Navigated> </xref:System.Windows.Controls.Frame.Navigating> </xref:System.Windows.Controls.Frame.Navigate%28System.Object%2CSystem.Object%29> </xref:System.Windows.Controls.Frame.Navigate%28System.Object%29> </xref:System.Windows.Controls.Frame.Navigate%2A>       A figura seguinte ilustra a sequência em que estes eventos serão acionados: ![página navegação fluxograma](~/add/media/navigationoverviewfigure11.png &quot;página navegação fluxograma&quot;) durante ou após uma navegação moldura fornece informações sobre o conteúdo que está a ser utilizado, incluindo o [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] do conteúdo que está a ser utilizado (<xref:System.Windows.Controls.Frame.Source%2A>), o [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] do conteúdo atual (<xref:System.Windows.Controls.Frame.CurrentSource%2A>) e um objeto que contém o conteúdo que foi utilizado (<xref:System.Windows.Controls.ContentControl.Content%2A>).</xref:System.Windows.Controls.ContentControl.Content%2A> </xref:System.Windows.Controls.Frame.CurrentSource%2A> </xref:System.Windows.Controls.Frame.Source%2A>       Quando o conteúdo é utilizado, a moldura regista de navegação, como uma entrada no histórico de navegação. Uma entrada é adicionada ao fazer uma cópia de histórico de navegação quando ocorre a uma navegação novo, chamando o <xref:System.Windows.Controls.Frame.Navigate%2A>método, ou ao navegar para uma entrada no histórico de navegação de avanço, chamando <xref:System.Windows.Controls.Frame.GoForward%2A>.</xref:System.Windows.Controls.Frame.GoForward%2A> </xref:System.Windows.Controls.Frame.Navigate%2A> Uma entrada é adicionada ao histórico de navegação de avanço, navegando até uma entrada anterior no histórico de navegação, chamando <xref:System.Windows.Controls.Frame.GoBack%2A>.</xref:System.Windows.Controls.Frame.GoBack%2A> <xref:System.Windows.Controls.Frame.CanGoBack%2A>e <xref:System.Windows.Controls.Frame.CanGoForward%2A>reportar se existem entradas em volta e o histórico de navegação de avanço, respetivamente.</xref:System.Windows.Controls.Frame.CanGoForward%2A></xref:System.Windows.Controls.Frame.CanGoBack%2A>       Na primeira vez que um conjunto de conteúdo é direcionado para de outro conjunto de conteúdo, moldura apresenta automaticamente uma navegação [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)] que permite aos utilizadores navegue para trás e reencaminhá-los através do histórico de navegação. É possível configurar quando a navegação [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)] é apresentado ao definir o <xref:System.Windows.Controls.Frame.NavigationUIVisibility%2A>propriedade.</xref:System.Windows.Controls.Frame.NavigationUIVisibility%2A>       Por predefinição, moldura irá utilizar o suas próprias histórico de navegação, apenas se um navegador de principal (<xref:System.Windows.Navigation.NavigationWindow>, moldura) com o seu próprio navegação não é possível localizar o histórico.</xref:System.Windows.Navigation.NavigationWindow> Isto significa que as entradas do histórico de navegação para o intervalo de são mingled com as entradas do histórico de navegação para o navegador do principal. Para especificar um intervalo gere a sua própria histórico de navegação, defina a <xref:System.Windows.Controls.Frame.JournalOwnership%2A>propriedade <xref:System.Windows.Navigation.JournalOwnership>.</xref:System.Windows.Navigation.JournalOwnership> </xref:System.Windows.Controls.Frame.JournalOwnership%2A>       A entrada mais recente no histórico de navegação de back-pode ser removida ao chamar <xref:System.Windows.Controls.Frame.RemoveBackEntry%2A>.</xref:System.Windows.Controls.Frame.RemoveBackEntry%2A>       Frame não armazena uma instância de um objeto do conteúdo no histórico de navegação. Em vez disso, o período de cria uma nova instância do objeto do conteúdo sempre que é utilizado com o histórico de navegação. Este comportamento é concebido para evitar o consumo de memória excessiva quando grandes quantidades e grande peças de conteúdo estão a ser utilizadas. Por conseguinte, o estado do conteúdo não é memorizado de navegação de um para a seguinte. No entanto, [!INCLUDE[TLA2#tla_wpf](~/add/includes/ajax-current-ext-md.md)] fornece várias técnicas através do qual pode armazenar um Estado de uma peça de conteúdo no histórico de navegação.       Utilizar <xref:System.Windows.Controls.Frame.AddBackEntry%2A>, também pode memorizar vários conjuntos de estado para uma instância de página única.</xref:System.Windows.Controls.Frame.AddBackEntry%2A>      ## Personalizar o período de controlo para aplicar as mesmas definições de propriedade para vários controlos de moldura, utilize o <xref:System.Windows.FrameworkElement.Style%2A>propriedade.</xref:System.Windows.FrameworkElement.Style%2A> Pode modificar a predefinição <xref:System.Windows.Controls.ControlTemplate>para lhe dar controlo um aspeto exclusivo.</xref:System.Windows.Controls.ControlTemplate> Para obter mais informações sobre como criar um <xref:System.Windows.Controls.ControlTemplate>, consulte [personalizar o aspeto de um controlo existente, criando um ControlTemplate](~/add/includes/ajax-current-ext-md.md).</xref:System.Windows.Controls.ControlTemplate>  Para ver as partes e Estados que são específicos da moldura, consulte [moldura estilos e modelos](~/add/includes/ajax-current-ext-md.md).       Propriedades de dependência para este controlo podem ser definidas pelo estilo de predefinido do controlo.  Se uma propriedade é definida por um estilo predefinido, a propriedade poderá alterar o valor predefinido do quando o controlo é apresentado na aplicação. O estilo predefinido é determinado pelo qual tema de ambiente de trabalho é utilizado quando a aplicação está em execução.  Para obter mais informações, consulte [predefinido o WPF temas](http://go.microsoft.com/fwlink/?LinkID=158252).      > [!NOTE] > Definir uma propriedade visual apenas terá um efeito se essa propriedade ambos presentes no modelo de predefinido do controlo de moldura e é definida através da utilização de um. Pode encontrar uma lista de propriedades visuais na secção &quot;Alterar o Visual estrutura de um controlo&quot; [personalizar o aspeto de um controlo existente, criando um ControlTemplate](../Topic/Customizing%20the%20Appearance%20of%20an%20Existing%20Control%20by%20Creating%20a%20ControlTemplate.md)."
   example:
   - "The following example shows how to create a simple Frame control and specify initial source content to load from a [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] using the <xref:System.Windows.Controls.Frame.Source%2A> property.  \n  \n [!code-xml[FrameSnippets#SetFrameSourceXAML1](~/add/codesnippet/xaml/FrameSnippets.XAML/MainWindow.xaml#setframesourcexaml1)]  \n[!code-xml[FrameSnippets#SetFrameSourceXAML2](~/add/codesnippet/xaml/FrameSnippets.XAML/MainWindow.xaml#setframesourcexaml2)]  \n[!code-xml[FrameSnippets#SetFrameSourceXAML3](~/add/codesnippet/xaml/FrameSnippets.XAML/MainWindow.xaml#setframesourcexaml3)]"
   syntax:
@@ -720,7 +720,7 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Initializes a new instance of the <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> class."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> classe."
   syntax:
     content: public Frame ();
     parameters: []
@@ -740,19 +740,19 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Adds an entry to back navigation history that contains a <xref href=&quot;System.Windows.Navigation.CustomContentState&quot;></xref> object."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.AddBackEntry%2A?displayProperty=fullName>."
+  summary: "Adiciona uma entrada para fazer uma cópia do histórico de navegação que contém um <xref href=&quot;System.Windows.Navigation.CustomContentState&quot;> </xref> objeto."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.AddBackEntry%2A?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.AddBackEntry%2A?displayProperty=fullName>"
   syntax:
     content: public void AddBackEntry (System.Windows.Navigation.CustomContentState state);
     parameters:
     - id: state
       type: System.Windows.Navigation.CustomContentState
-      description: "A <xref href=&quot;System.Windows.Navigation.CustomContentState&quot;></xref> object that represents application-defined state that is associated with a specific piece of content."
+      description: "A <xref href=&quot;System.Windows.Navigation.CustomContentState&quot;> </xref> objeto que representa o estado definido pela aplicação que está associado um conjunto específico de conteúdo."
   overload: System.Windows.Controls.Frame.AddBackEntry*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "<code>state</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>, and a <xref href=&quot;System.Windows.Navigation.CustomContentState&quot;></xref> object is not returned from <xref:System.Windows.Navigation.IProvideCustomContentState.GetContentState*>."
+    description: "<code>state</code>é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>e um <xref href=&quot;System.Windows.Navigation.CustomContentState&quot;> </xref> objeto não é devolvido pelo <xref:System.Windows.Navigation.IProvideCustomContentState.GetContentState*>."
   platform:
   - net462
 - uid: System.Windows.Controls.Frame.AddChild(System.Object)
@@ -767,14 +767,14 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Adds a child object."
-  remarks: "This method is overridden because <xref:System.Windows.Controls.Frame> does not allow children. Instead, use the <xref:System.Windows.Controls.ContentControl.Content%2A> property to set content."
+  summary: "Adiciona um objeto subordinado."
+  remarks: "Este método é substituído porque <xref:System.Windows.Controls.Frame>não permite a elementos subordinados.</xref:System.Windows.Controls.Frame> Em alternativa, utilize o <xref:System.Windows.Controls.ContentControl.Content%2A>propriedade para definir o conteúdo.</xref:System.Windows.Controls.ContentControl.Content%2A>"
   syntax:
     content: protected override void AddChild (object value);
     parameters:
     - id: value
       type: System.Object
-      description: "The child object to add."
+      description: "O objeto subordinado para adicionar."
   overload: System.Windows.Controls.Frame.AddChild*
   exceptions: []
   platform:
@@ -791,14 +791,14 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Adds the text content of a node to the object."
-  remarks: "This method is overridden to prevent <xref:System.Windows.Controls.Frame> from adding text."
+  summary: "Adiciona o conteúdo de texto de um nó para o objeto."
+  remarks: "Este método é substituído para evitar <xref:System.Windows.Controls.Frame>do texto a adicionar.</xref:System.Windows.Controls.Frame>"
   syntax:
     content: protected override void AddText (string text);
     parameters:
     - id: text
       type: System.String
-      description: "The text to add to the object."
+      description: "O texto a adicionar ao objeto."
   overload: System.Windows.Controls.Frame.AddText*
   exceptions: []
   platform:
@@ -815,13 +815,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Returns an <xref:System.Collections.IEnumerable> that you use to enumerate the entries in back navigation history for a <xref href=&quot;System.Windows.Controls.Frame&quot;></xref>."
-  remarks: "The entries that are returned by BackStack including whole content, fragment navigations, and custom state.      <a name=&quot;dependencyPropertyInfo_FrameBackStack&quot;></a>    ## Dependency Property Information      |||   |-|-|   |Identifier field|<xref:System.Windows.Controls.Frame.BackStackProperty>|   |Metadata properties set to `true`|None|"
+  summary: "Devolve um <xref:System.Collections.IEnumerable>que usa para enumerar as entradas no histórico de navegação back para uma <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref>.</xref:System.Collections.IEnumerable>"
+  remarks: "As entradas que são devolvidas pelo BackStack incluindo conteúdo todo, fragmento navigations e estado personalizado.      <a name=&quot;dependencyPropertyInfo_FrameBackStack&quot;></a># # Informações de propriedade de dependência |||   |-|-|   | Campo Identificador | <xref:System.Windows.Controls.Frame.BackStackProperty>|   | Definir propriedades de metadados `true`| Nenhum |</xref:System.Windows.Controls.Frame.BackStackProperty>"
   syntax:
     content: public System.Collections.IEnumerable BackStack { get; }
     return:
       type: System.Collections.IEnumerable
-      description: "<xref:System.Collections.IEnumerable> if at least one entry has been added to back navigation history. If there are not entries, or the <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> does not own its own navigation history, BackStack is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "<xref:System.Collections.IEnumerable>Se foi adicionada, pelo menos, uma entrada para fazer uma cópia do histórico de navegação.</xref:System.Collections.IEnumerable> Se não existirem entradas, ou o <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> não detém o seu próprio histórico de navegação, BackStack é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   overload: System.Windows.Controls.Frame.BackStack*
   exceptions: []
   platform:
@@ -838,13 +838,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Identifies the <xref:System.Windows.Controls.Frame.BackStack*> dependency property."
-  remarks: "The identifier for the <xref:System.Windows.Controls.Frame.BackStack%2A> dependency property."
+  summary: "Identifica o <xref:System.Windows.Controls.Frame.BackStack*>propriedade de dependência.</xref:System.Windows.Controls.Frame.BackStack*>"
+  remarks: "O identificador para o <xref:System.Windows.Controls.Frame.BackStack%2A>propriedade de dependência.</xref:System.Windows.Controls.Frame.BackStack%2A>"
   syntax:
     content: public static readonly System.Windows.DependencyProperty BackStackProperty;
     return:
       type: System.Windows.DependencyProperty
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -860,13 +860,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Gets or sets the base [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] for a <xref href=&quot;System.Windows.Controls.Frame&quot;></xref>."
-  remarks: "BaseUri can be set to aid resolution of relative [!INCLUDE[TLA#tla_uri#plural](~/add/includes/tlasharptla-urisharpplural-md.md)] for further navigation.       To get or set the [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] of the <xref:System.Windows.Controls.Frame> control, use the <xref:System.Windows.Controls.Frame.Source%2A> property.       This is protected virtual property and cannot be used directly, although can be used in derived classes."
+  summary: "Obtém ou define a base de [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] para um <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref>."
+  remarks: "É possível definir BaseUri para ajudar a resolução do caminho relativo [!INCLUDE[TLA#tla_uri#plural](~/add/includes/tlasharptla-urisharpplural-md.md)] para navegação adicional.       Para obter ou definir o [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] do <xref:System.Windows.Controls.Frame>controlar, utilize o <xref:System.Windows.Controls.Frame.Source%2A>propriedade.</xref:System.Windows.Controls.Frame.Source%2A> </xref:System.Windows.Controls.Frame>       Esta é a propriedade virtual protegida e não pode ser utilizada diretamente, embora podem ser utilizados em classes derivadas."
   syntax:
     content: protected virtual Uri BaseUri { get; set; }
     return:
       type: System.Uri
-      description: "The base [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] of the <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> control."
+      description: "A base de [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] do <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> controlo."
   overload: System.Windows.Controls.Frame.BaseUri*
   exceptions: []
   platform:
@@ -883,13 +883,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Gets a value that indicates whether there is at least one entry in back navigation history."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.CanGoBack%2A?displayProperty=fullName>.      <a name=&quot;dependencyPropertyInfo_FrameCanGoBack&quot;></a>    ## Dependency Property Information      |||   |-|-|   |Identifier field|<xref:System.Windows.Controls.Frame.CanGoBackProperty>|   |Metadata properties set to `true`|None|"
+  summary: "Obtém um valor que indica se há, pelo menos, uma entrada no histórico de navegação anterior."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.CanGoBack%2A?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.CanGoBack%2A?displayProperty=fullName>      <a name=&quot;dependencyPropertyInfo_FrameCanGoBack&quot;></a># # Informações de propriedade de dependência |||   |-|-|   | Campo Identificador | <xref:System.Windows.Controls.Frame.CanGoBackProperty>|   | Definir propriedades de metadados `true`| Nenhum |</xref:System.Windows.Controls.Frame.CanGoBackProperty>"
   syntax:
     content: public bool CanGoBack { get; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if there is at least one entry in back navigation history; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref> if there are no entries in back navigation history or the <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> does not own its own navigation history."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se não existir, pelo menos, uma entrada no histórico de navegação de back; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref> se não existem entradas no histórico de navegação back ou <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> não detém o seu próprio histórico de navegação."
   overload: System.Windows.Controls.Frame.CanGoBack*
   exceptions: []
   platform:
@@ -906,13 +906,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Identifies the <xref:System.Windows.Controls.Frame.CanGoBack*> dependency property."
-  remarks: "The identifier for the <xref:System.Windows.Controls.Frame.CanGoBack%2A> dependency property."
+  summary: "Identifica o <xref:System.Windows.Controls.Frame.CanGoBack*>propriedade de dependência.</xref:System.Windows.Controls.Frame.CanGoBack*>"
+  remarks: "O identificador para o <xref:System.Windows.Controls.Frame.CanGoBack%2A>propriedade de dependência.</xref:System.Windows.Controls.Frame.CanGoBack%2A>"
   syntax:
     content: public static readonly System.Windows.DependencyProperty CanGoBackProperty;
     return:
       type: System.Windows.DependencyProperty
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -928,13 +928,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Gets a value that indicates whether there is at least one entry in forward navigation history."
-  remarks: "See CanGoForward.      <a name=&quot;dependencyPropertyInfo_FrameCanGoForward&quot;></a>    ## Dependency Property Information      |||   |-|-|   |Identifier field|<xref:System.Windows.Controls.Frame.CanGoForwardProperty>|   |Metadata properties set to `true`|None|"
+  summary: "Obtém um valor que indica se há, pelo menos, uma entrada no histórico de navegação de avanço."
+  remarks: "Consulte CanGoForward.      <a name=&quot;dependencyPropertyInfo_FrameCanGoForward&quot;></a># # Informações de propriedade de dependência |||   |-|-|   | Campo Identificador | <xref:System.Windows.Controls.Frame.CanGoForwardProperty>|   | Definir propriedades de metadados `true`| Nenhum |</xref:System.Windows.Controls.Frame.CanGoForwardProperty>"
   syntax:
     content: public bool CanGoForward { get; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if there is at least one entry in forward navigation history; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref> if there are no entries in forward navigation history or the <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> does not own its own navigation history."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se não existir, pelo menos, uma entrada no histórico de navegação de avanço; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref> se não existem entradas no histórico de navegação de avanço ou <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> não detém o seu próprio histórico de navegação."
   overload: System.Windows.Controls.Frame.CanGoForward*
   exceptions: []
   platform:
@@ -951,13 +951,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Identifies the <xref:System.Windows.Controls.Frame.CanGoForward*> dependency property."
-  remarks: "The identifier for the <xref:System.Windows.Controls.Frame.CanGoForward%2A> dependency property."
+  summary: "Identifica o <xref:System.Windows.Controls.Frame.CanGoForward*>propriedade de dependência.</xref:System.Windows.Controls.Frame.CanGoForward*>"
+  remarks: "O identificador para o <xref:System.Windows.Controls.Frame.CanGoForward%2A>propriedade de dependência.</xref:System.Windows.Controls.Frame.CanGoForward%2A>"
   syntax:
     content: public static readonly System.Windows.DependencyProperty CanGoForwardProperty;
     return:
       type: System.Windows.DependencyProperty
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -973,13 +973,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Occurs after <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> content has been rendered."
-  remarks: "If the <xref:System.Windows.Controls.Frame> has no content, this event is not raised."
+  summary: "Ocorre depois <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> conteúdo tiver sido composto."
+  remarks: "Se o <xref:System.Windows.Controls.Frame>não tem conteúdo, este evento é desencadeado não.</xref:System.Windows.Controls.Frame>"
   syntax:
     content: public event EventHandler ContentRendered;
     return:
       type: System.EventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -995,13 +995,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Gets the [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] of the content that was last navigated to."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.CurrentSource%2A?displayProperty=fullName>."
+  summary: "Obtém o [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] do conteúdo que foi utilizado pela última vez."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.CurrentSource%2A?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.CurrentSource%2A?displayProperty=fullName>"
   syntax:
     content: public Uri CurrentSource { get; }
     return:
       type: System.Uri
-      description: "A <xref:System.Uri> for the content that was last navigated to, if navigated to by using a [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)]; otherwise, <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "A <xref:System.Uri>para o conteúdo que foi utilizado pela última vez, se navegou através da utilização de um [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)]; caso contrário, <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>.</xref:System.Uri>"
   overload: System.Windows.Controls.Frame.CurrentSource*
   exceptions: []
   platform:
@@ -1018,13 +1018,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Gets an <xref:System.Collections.IEnumerable> that you use to enumerate the entries in forward navigation history for a <xref href=&quot;System.Windows.Controls.Frame&quot;></xref>."
-  remarks: "The entries that are returned by ForwardStack including whole content, fragment navigations, and custom state.      <a name=&quot;dependencyPropertyInfo_FrameForwardStack&quot;></a>    ## Dependency Property Information      |||   |-|-|   |Identifier field|<xref:System.Windows.Controls.Frame.ForwardStackProperty>|   |Metadata properties set to `true`|None|"
+  summary: "Obtém um <xref:System.Collections.IEnumerable>que usa para enumerar as entradas no histórico de navegação direta para uma <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref>.</xref:System.Collections.IEnumerable>"
+  remarks: "As entradas que são devolvidas pelo ForwardStack incluindo conteúdo todo, fragmento navigations e estado personalizado.      <a name=&quot;dependencyPropertyInfo_FrameForwardStack&quot;></a># # Informações de propriedade de dependência |||   |-|-|   | Campo Identificador | <xref:System.Windows.Controls.Frame.ForwardStackProperty>|   | Definir propriedades de metadados `true`| Nenhum |</xref:System.Windows.Controls.Frame.ForwardStackProperty>"
   syntax:
     content: public System.Collections.IEnumerable ForwardStack { get; }
     return:
       type: System.Collections.IEnumerable
-      description: "An <xref:System.Collections.IEnumerable> object if at least one entry has been added to forward navigation history, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if there are no entries or the <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> does not own its own navigation history."
+      description: "Um <xref:System.Collections.IEnumerable>objeto se, pelo menos, uma entrada tiver sido adicionada ao histórico de navegação de avanço ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se não existem entradas ou a <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> não detém o seu próprio histórico de navegação.</xref:System.Collections.IEnumerable>"
   overload: System.Windows.Controls.Frame.ForwardStack*
   exceptions: []
   platform:
@@ -1041,13 +1041,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Identifies the <xref:System.Windows.Controls.Frame.ForwardStack*> dependency property."
-  remarks: "The identifier for the <xref:System.Windows.Controls.Frame.ForwardStack%2A> dependency property."
+  summary: "Identifica o <xref:System.Windows.Controls.Frame.ForwardStack*>propriedade de dependência.</xref:System.Windows.Controls.Frame.ForwardStack*>"
+  remarks: "O identificador para o <xref:System.Windows.Controls.Frame.ForwardStack%2A>propriedade de dependência.</xref:System.Windows.Controls.Frame.ForwardStack%2A>"
   syntax:
     content: public static readonly System.Windows.DependencyProperty ForwardStackProperty;
     return:
       type: System.Windows.DependencyProperty
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -1063,13 +1063,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Occurs when navigation to a content fragment begins, which occurs immediately, if the desired fragment is in the current content, or after the source [!INCLUDE[TLA2#tla_titlexaml](~/add/includes/tla2sharptla-titlexaml-md.md)] content has been loaded, if the desired fragment is in different content."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.FragmentNavigation?displayProperty=fullName>."
+  summary: "Ocorre quando navegar para um fragmento de conteúdo, começa a que ocorre imediatamente, se o fragmento pretendido no conteúdo atual ou depois da origem [!INCLUDE[TLA2#tla_titlexaml](~/add/includes/tla2sharptla-titlexaml-md.md)] conteúdo foi carregado, se o fragmento pretendido no conteúdo diferente."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.FragmentNavigation?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.FragmentNavigation?displayProperty=fullName>"
   syntax:
     content: public event System.Windows.Navigation.FragmentNavigationEventHandler FragmentNavigation;
     return:
       type: System.Windows.Navigation.FragmentNavigationEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -1085,8 +1085,8 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Navigates to the most recent item in back navigation history, if a <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> manages its own navigation history."
-  remarks: "If navigation history for a frame is managed by a parent navigator (<xref:System.Windows.Navigation.NavigationWindow>, <xref:System.Windows.Controls.Frame>), the `GoBack` method on that navigator or associated <xref:System.Windows.Navigation.NavigationService> object must be called:      -   GoBack      -   <xref:System.Windows.Navigation.NavigationWindow.GoBack%2A?displayProperty=fullName>      -   <xref:System.Windows.Navigation.NavigationService.GoBack%2A?displayProperty=fullName>"
+  summary: "Navega para o item mais recente novamente no histórico de navegação, se um <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> gere o suas próprias histórico de navegação."
+  remarks: "Se o histórico de navegação para um intervalo for gerido por um navegador de principal (<xref:System.Windows.Navigation.NavigationWindow>, <xref:System.Windows.Controls.Frame>), o `GoBack` método em que navegador ou associado <xref:System.Windows.Navigation.NavigationService>objeto tem de ser chamado: - GoBack - <xref:System.Windows.Navigation.NavigationWindow.GoBack%2A?displayProperty=fullName>- <xref:System.Windows.Navigation.NavigationService.GoBack%2A?displayProperty=fullName></xref:System.Windows.Navigation.NavigationService.GoBack%2A?displayProperty=fullName> </xref:System.Windows.Navigation.NavigationWindow.GoBack%2A?displayProperty=fullName> </xref:System.Windows.Navigation.NavigationService> </xref:System.Windows.Controls.Frame> </xref:System.Windows.Navigation.NavigationWindow>"
   syntax:
     content: public void GoBack ();
     parameters: []
@@ -1094,7 +1094,7 @@ items:
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "GoBack is called when there are no entries in back navigation history."
+    description: "GoBack é chamado quando não existem entradas no histórico de navegação anterior."
   platform:
   - net462
 - uid: System.Windows.Controls.Frame.GoForward
@@ -1109,8 +1109,8 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Navigates to the most recent item in forward navigation history, if a <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> manages its own navigation history."
-  remarks: "If navigation history for a frame is managed by a parent navigator (<xref:System.Windows.Navigation.NavigationWindow>, <xref:System.Windows.Controls.Frame>), the `GoForward` method on that navigator or associated <xref:System.Windows.Navigation.NavigationService> object must be called:      -   GoForward      -   <xref:System.Windows.Navigation.NavigationWindow.GoForward%2A?displayProperty=fullName>      -   <xref:System.Windows.Navigation.NavigationService.GoForward%2A?displayProperty=fullName>"
+  summary: "Navega para o item mais recente no histórico de navegação de avanço, se um <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> gere o suas próprias histórico de navegação."
+  remarks: "Se o histórico de navegação para um intervalo for gerido por um navegador de principal (<xref:System.Windows.Navigation.NavigationWindow>, <xref:System.Windows.Controls.Frame>), o `GoForward` método em que navegador ou associado <xref:System.Windows.Navigation.NavigationService>objeto tem de ser chamado: - GoForward - <xref:System.Windows.Navigation.NavigationWindow.GoForward%2A?displayProperty=fullName>- <xref:System.Windows.Navigation.NavigationService.GoForward%2A?displayProperty=fullName></xref:System.Windows.Navigation.NavigationService.GoForward%2A?displayProperty=fullName> </xref:System.Windows.Navigation.NavigationWindow.GoForward%2A?displayProperty=fullName> </xref:System.Windows.Navigation.NavigationService> </xref:System.Windows.Controls.Frame> </xref:System.Windows.Navigation.NavigationWindow>"
   syntax:
     content: public void GoForward ();
     parameters: []
@@ -1118,7 +1118,7 @@ items:
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "GoForward is called when there are no entries in back navigation history."
+    description: "GoForward é chamado quando não existem entradas no histórico de navegação anterior."
   platform:
   - net462
 - uid: System.Windows.Controls.Frame.JournalOwnership
@@ -1133,15 +1133,15 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Gets or sets whether a <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> is responsible for managing its own navigation history, or yields navigation history management to a parent navigator (<xref href=&quot;System.Windows.Navigation.NavigationWindow&quot;></xref>, <xref href=&quot;System.Windows.Controls.Frame&quot;></xref>)."
-  remarks: "By default, <xref:System.Windows.Controls.Frame> will use its own navigation history only if a parent navigation host (<xref:System.Windows.Navigation.NavigationWindow>, <xref:System.Windows.Controls.Frame>) with its own journal cannot be found (for example, if a <xref:System.Windows.Controls.Frame> is hosted in content that is hosted by a <xref:System.Windows.Window>). To force <xref:System.Windows.Controls.Frame> to manage its own navigation history, set JournalOwnership to <xref:System.Windows.Navigation.JournalOwnership>.      <a name=&quot;dependencyPropertyInfo_FrameJournalOwnership&quot;></a>    ## Dependency Property Information      |||   |-|-|   |Identifier field|<xref:System.Windows.Controls.Frame.JournalOwnershipProperty>|   |Metadata properties set to `true`|None|"
+  summary: "Obtém ou define se um <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> é responsável por gerir a sua própria histórico de navegação ou gera a gestão do histórico de navegação para um navegador de principal (<xref href=&quot;System.Windows.Navigation.NavigationWindow&quot;></xref>, <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref>)."
+  remarks: "Por predefinição, <xref:System.Windows.Controls.Frame>irá utilizar a sua própria histórico de navegação apenas se um anfitrião de navegação do principal (<xref:System.Windows.Navigation.NavigationWindow>, <xref:System.Windows.Controls.Frame>) com um diário próprio não é possível localizar (por exemplo, se um <xref:System.Windows.Controls.Frame>está alojado no conteúdo for alojado por um <xref:System.Windows.Window>).</xref:System.Windows.Window> </xref:System.Windows.Controls.Frame> </xref:System.Windows.Controls.Frame> </xref:System.Windows.Navigation.NavigationWindow> </xref:System.Windows.Controls.Frame> Para forçar <xref:System.Windows.Controls.Frame>para gerir o seu próprio histórico de navegação, defina JournalOwnership para <xref:System.Windows.Navigation.JournalOwnership>.</xref:System.Windows.Navigation.JournalOwnership> </xref:System.Windows.Controls.Frame>      <a name=&quot;dependencyPropertyInfo_FrameJournalOwnership&quot;></a># # Informações de propriedade de dependência |||   |-|-|   | Campo Identificador | <xref:System.Windows.Controls.Frame.JournalOwnershipProperty>|   | Definir propriedades de metadados `true`| Nenhum |</xref:System.Windows.Controls.Frame.JournalOwnershipProperty>"
   example:
   - "The following example illustrates a <xref:System.Windows.Controls.Frame> that is configured to use its own navigation history.  \n  \n [!code-xml[FrameJournalOwnershipSnippetSample#SetJournalOwnershipProperty](~/add/codesnippet/xaml/FrameJournalOwnershipSnippetSample.XAML/HomePage.xaml#setjournalownershipproperty)]"
   syntax:
     content: public System.Windows.Navigation.JournalOwnership JournalOwnership { get; set; }
     return:
       type: System.Windows.Navigation.JournalOwnership
-      description: "A <xref href=&quot;System.Windows.Navigation.JournalOwnership&quot;></xref> value that specifies whether <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> manages its own journal. The default value is <xref href=&quot;System.Windows.Navigation.JournalOwnership&quot;></xref>."
+      description: "A <xref href=&quot;System.Windows.Navigation.JournalOwnership&quot;> </xref> valor que especifica se <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> gere um diário próprio. O valor predefinido é <xref href=&quot;System.Windows.Navigation.JournalOwnership&quot;> </xref>."
   overload: System.Windows.Controls.Frame.JournalOwnership*
   exceptions: []
   platform:
@@ -1158,13 +1158,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Identifies the <xref:System.Windows.Controls.Frame.JournalOwnership*> dependency property."
-  remarks: "The identifier for the <xref:System.Windows.Controls.Frame.JournalOwnership%2A> dependency property."
+  summary: "Identifica o <xref:System.Windows.Controls.Frame.JournalOwnership*>propriedade de dependência.</xref:System.Windows.Controls.Frame.JournalOwnership*>"
+  remarks: "O identificador para o <xref:System.Windows.Controls.Frame.JournalOwnership%2A>propriedade de dependência.</xref:System.Windows.Controls.Frame.JournalOwnership%2A>"
   syntax:
     content: public static readonly System.Windows.DependencyProperty JournalOwnershipProperty;
     return:
       type: System.Windows.DependencyProperty
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -1180,13 +1180,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Occurs when content that was navigated to has been loaded, parsed, and has begun rendering."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.LoadCompleted?displayProperty=fullName>."
+  summary: "Ocorre quando o conteúdo que foi direcionado para foi carregado, analisar e começou a composição."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.LoadCompleted?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.LoadCompleted?displayProperty=fullName>"
   syntax:
     content: public event System.Windows.Navigation.LoadCompletedEventHandler LoadCompleted;
     return:
       type: System.Windows.Navigation.LoadCompletedEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -1202,8 +1202,8 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Navigates asynchronously to content that is contained by an object."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.Navigate%28System.Object%29?displayProperty=fullName>."
+  summary: "Navega no modo assíncrono para conteúdo que está contido por um objeto."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.Navigate%28System.Object%29?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.Navigate%28System.Object%29?displayProperty=fullName>"
   example:
   - "The following example shows how to navigate to content that is contained by an object.  \n  \n [!code-cs[HOWTONavigationSnippets#NavigateToPageObjCODE](~/add/codesnippet/csharp/HOWTONavigationSnippets/MainWindow.xaml.cs#navigatetopageobjcode)]\n [!code-vb[HOWTONavigationSnippets#NavigateToPageObjCODE](~/add/codesnippet/visualbasic/howtonavigationsnippets/mainwindow.xaml.vb#navigatetopageobjcode)]"
   syntax:
@@ -1211,10 +1211,10 @@ items:
     parameters:
     - id: content
       type: System.Object
-      description: "An <xref:System.Object> that contains the content to navigate to."
+      description: "Um <xref:System.Object>que contém o conteúdo para navegar para.</xref:System.Object>"
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if navigation is not canceled; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a navegação não está a ser cancelada; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Windows.Controls.Frame.Navigate*
   exceptions: []
   platform:
@@ -1231,8 +1231,8 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Navigates asynchronously to content that is specified by a [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)]."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.Navigate%28System.Uri%29?displayProperty=fullName>.      > [!NOTE] >  [!INCLUDE[TLA#tla_uri#initcap#plural](~/add/includes/tlasharptla-urisharpinitcapsharpplural-md.md)] can be either relative or absolute. For more information, see [Pack URIs in WPF](~/add/includes/ajax-current-ext-md.md)."
+  summary: "Navega de forma assíncrona para conteúdo que é especificado por uma [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)]."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.Navigate%28System.Uri%29?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.Navigate%28System.Uri%29?displayProperty=fullName>      > [!NOTE]  >   [!INCLUDE[TLA#tla_uri#initcap#plural](~/add/includes/tlasharptla-urisharpinitcapsharpplural-md.md)] pode ser relativo ou absoluto. Para obter mais informações, consulte [URIs de pacote no WPF](~/add/includes/ajax-current-ext-md.md)."
   example:
   - "The following example shows how to use the Navigate method to navigate to a [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)].  \n  \n [!code-cs[HOWTONavigationSnippets#NavigateToPageNavCODE](~/add/codesnippet/csharp/HOWTONavigationSnippets/MainWindow.xaml.cs#navigatetopagenavcode)]\n [!code-vb[HOWTONavigationSnippets#NavigateToPageNavCODE](~/add/codesnippet/visualbasic/howtonavigationsnippets/mainwindow.xaml.vb#navigatetopagenavcode)]"
   syntax:
@@ -1240,10 +1240,10 @@ items:
     parameters:
     - id: source
       type: System.Uri
-      description: "A <xref:System.Uri> object initialized with the [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] for the desired content."
+      description: "A <xref:System.Uri>objecto foi inicializado com o [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] para os conteúdos pretendidos.</xref:System.Uri>"
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if navigation is not canceled; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a navegação não está a ser cancelada; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Windows.Controls.Frame.Navigate*
   exceptions: []
   platform:
@@ -1260,20 +1260,20 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Navigates asynchronously to content that is contained by an object, and passes an object that contains data to be used for processing during navigation."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.Navigate%28System.Object%2CSystem.Object%29?displayProperty=fullName>."
+  summary: "Navega no modo assíncrono para conteúdo que está contido por um objeto e transmite um objecto que contém os dados a ser utilizada para processar durante a navegação."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.Navigate%28System.Object%2CSystem.Object%29?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.Navigate%28System.Object%2CSystem.Object%29?displayProperty=fullName>"
   syntax:
     content: public bool Navigate (object content, object extraData);
     parameters:
     - id: content
       type: System.Object
-      description: "An <xref:System.Object> that contains the content to navigate to."
+      description: "Um <xref:System.Object>que contém o conteúdo para navegar para.</xref:System.Object>"
     - id: extraData
       type: System.Object
-      description: "A <xref:System.Object> that contains data to be used for processing during navigation."
+      description: "A <xref:System.Object>que contém dados para ser utilizada para processar durante a navegação.</xref:System.Object>"
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if navigation is not canceled; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a navegação não está a ser cancelada; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Windows.Controls.Frame.Navigate*
   exceptions: []
   platform:
@@ -1290,20 +1290,20 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Navigates asynchronously to source content located at a [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)], and passes an object that contains data to be used for processing during navigation."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.Navigate%28System.Uri%2CSystem.Object%29?displayProperty=fullName>."
+  summary: "Navega de forma assíncrona para conteúdo de origem localizado num [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)]e transmite um objeto que contém dados para ser utilizada para processar durante a navegação."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.Navigate%28System.Uri%2CSystem.Object%29?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.Navigate%28System.Uri%2CSystem.Object%29?displayProperty=fullName>"
   syntax:
     content: public bool Navigate (Uri source, object extraData);
     parameters:
     - id: source
       type: System.Uri
-      description: "A <xref:System.Uri> object initialized with the [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] for the desired content."
+      description: "A <xref:System.Uri>objecto foi inicializado com o [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] para os conteúdos pretendidos.</xref:System.Uri>"
     - id: extraData
       type: System.Object
-      description: "A <xref:System.Object> that contains data to be used for processing during navigation."
+      description: "A <xref:System.Object>que contém dados para ser utilizada para processar durante a navegação.</xref:System.Object>"
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if navigation is not canceled; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a navegação não está a ser cancelada; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Windows.Controls.Frame.Navigate*
   exceptions: []
   platform:
@@ -1320,13 +1320,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Occurs when the content that is being navigated to has been found, and is available from the <xref:System.Windows.Controls.ContentControl.Content*> property, although it may not have completed loading."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.Navigated?displayProperty=fullName>."
+  summary: "Ocorre quando o conteúdo que está a ser utilizado foi encontrado e está disponível a partir de <xref:System.Windows.Controls.ContentControl.Content*>propriedade, apesar do poderá não ter sido concluída a carregar.</xref:System.Windows.Controls.ContentControl.Content*>"
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.Navigated?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.Navigated?displayProperty=fullName>"
   syntax:
     content: public event System.Windows.Navigation.NavigatedEventHandler Navigated;
     return:
       type: System.Windows.Navigation.NavigatedEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -1342,13 +1342,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Occurs when a new navigation is requested."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.Navigating?displayProperty=fullName>."
+  summary: "Ocorre quando é pedida uma novo navegação."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.Navigating?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.Navigating?displayProperty=fullName>"
   syntax:
     content: public event System.Windows.Navigation.NavigatingCancelEventHandler Navigating;
     return:
       type: System.Windows.Navigation.NavigatingCancelEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -1364,13 +1364,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Occurs when an error is raised while navigating to the requested content."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.NavigationFailed?displayProperty=fullName>."
+  summary: "Ocorre quando é gerado um erro ao navegar para o conteúdo pedido."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.NavigationFailed?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.NavigationFailed?displayProperty=fullName>"
   syntax:
     content: public event System.Windows.Navigation.NavigationFailedEventHandler NavigationFailed;
     return:
       type: System.Windows.Navigation.NavigationFailedEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -1386,13 +1386,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Occurs periodically during a download to provide navigation progress information."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.NavigationProgress?displayProperty=fullName>."
+  summary: "Ocorre periodicamente durante uma transferência para fornecer informações de progresso de navegação."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.NavigationProgress?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.NavigationProgress?displayProperty=fullName>"
   syntax:
     content: public event System.Windows.Navigation.NavigationProgressEventHandler NavigationProgress;
     return:
       type: System.Windows.Navigation.NavigationProgressEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -1408,13 +1408,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Gets the <xref href=&quot;System.Windows.Navigation.NavigationService&quot;></xref> that is used by this <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> to provide navigation services."
-  remarks: "<xref:System.Windows.Controls.Frame> uses <xref:System.Windows.Navigation.NavigationService> to support navigation for hosted content. NavigationService is useful for code that hosts a <xref:System.Windows.Controls.Frame> to get a reference to the <xref:System.Windows.Navigation.NavigationService>. Content that is hosted by a <xref:System.Windows.Controls.Frame>, such as <xref:System.Windows.Controls.Page>, should use <xref:System.Windows.Navigation.NavigationService.GetNavigationService%2A> or <xref:System.Windows.Controls.Page.NavigationService%2A> to get a reference to the <xref:System.Windows.Navigation.NavigationService>.      > [!NOTE] >  NavigationService does not return a reference to the same NavigationService as calling <xref:System.Windows.Navigation.NavigationService.GetNavigationService%2A> and passing <xref:System.Windows.Controls.Frame> does. The former returns the NavigationService that is owned by the <xref:System.Windows.Controls.Frame> while the latter returns the NavigationService for the navigation host that navigated to the content in which the <xref:System.Windows.Controls.Frame> is hosted. The following code demonstrates the differences.       [!code-vb[NSGNSvsFNSSnippets#NSFrameDiffCODE1](~/add/codesnippet/visualbasic/nsgnsvsfnssnippets/window1.xaml.vb#nsframediffcode1)]  [!code-cs[NSGNSvsFNSSnippets#NSFrameDiffCODE1](~/add/codesnippet/csharp/NSGNSvsFNSSnippets/Window1.xaml.cs#nsframediffcode1)]   [!code-vb[NSGNSvsFNSSnippets#NSFrameDiffCODE2](~/add/codesnippet/visualbasic/nsgnsvsfnssnippets/window1.xaml.vb#nsframediffcode2)] [!code-cs[NSGNSvsFNSSnippets#NSFrameDiffCODE2](~/add/codesnippet/csharp/NSGNSvsFNSSnippets/Window1.xaml.cs#nsframediffcode2)]"
+  summary: "Obtém o <xref href=&quot;System.Windows.Navigation.NavigationService&quot;> </xref> que é utilizado por este <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> para fornecer serviços de navegação."
+  remarks: "<xref:System.Windows.Controls.Frame>utiliza <xref:System.Windows.Navigation.NavigationService>para suportar a navegação para conteúdo alojado.</xref:System.Windows.Navigation.NavigationService></xref:System.Windows.Controls.Frame> NavigationService é útil para o código que aloja um <xref:System.Windows.Controls.Frame>para obter uma referência ao <xref:System.Windows.Navigation.NavigationService>.</xref:System.Windows.Navigation.NavigationService> </xref:System.Windows.Controls.Frame> Conteúdo que é alojado por um <xref:System.Windows.Controls.Frame>, tais como <xref:System.Windows.Controls.Page>, deve utilizar <xref:System.Windows.Navigation.NavigationService.GetNavigationService%2A>ou <xref:System.Windows.Controls.Page.NavigationService%2A>para obter uma referência ao <xref:System.Windows.Navigation.NavigationService>.</xref:System.Windows.Navigation.NavigationService> </xref:System.Windows.Controls.Page.NavigationService%2A> </xref:System.Windows.Navigation.NavigationService.GetNavigationService%2A> </xref:System.Windows.Controls.Page> </xref:System.Windows.Controls.Frame>      > [!NOTE] > NavigationService não devolver uma referência para o NavigationService mesmo como chamar <xref:System.Windows.Navigation.NavigationService.GetNavigationService%2A>e passou <xref:System.Windows.Controls.Frame>does.</xref:System.Windows.Controls.Frame> </xref:System.Windows.Navigation.NavigationService.GetNavigationService%2A> O anterior devolve NavigationService que é propriedade o <xref:System.Windows.Controls.Frame>enquanto esta última opção devolve o NavigationService para o anfitrião de navegação navegar para o conteúdo em que o <xref:System.Windows.Controls.Frame>está alojado.</xref:System.Windows.Controls.Frame> </xref:System.Windows.Controls.Frame> O código seguinte mostra as diferenças.       [!code-vb[NSGNSvsFNSSnippets #NSFrameDiffCODE1](~/add/codesnippet/visualbasic/nsgnsvsfnssnippets/window1.xaml.vb#nsframediffcode1)][!code-cs[NSGNSvsFNSSnippets #NSFrameDiffCODE1](~/add/codesnippet/csharp/NSGNSvsFNSSnippets/Window1.xaml.cs#nsframediffcode1)][!code-vb[NSGNSvsFNSSnippets #NSFrameDiffCODE2](~/add/codesnippet/visualbasic/nsgnsvsfnssnippets/window1.xaml.vb#nsframediffcode2) ] [!code-cs [NSGNSvsFNSSnippets #NSFrameDiffCODE2     ](~/add/codesnippet/csharp/NSGNSvsFNSSnippets/Window1.xaml.cs#nsframediffcode2)]"
   syntax:
     content: public System.Windows.Navigation.NavigationService NavigationService { get; }
     return:
       type: System.Windows.Navigation.NavigationService
-      description: "A <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> object that represents the <xref href=&quot;System.Windows.Navigation.NavigationService&quot;></xref> used by this <xref href=&quot;System.Windows.Controls.Frame&quot;></xref>, if one is available. Otherwise, <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> is returned."
+      description: "A <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> objeto que representa o <xref href=&quot;System.Windows.Navigation.NavigationService&quot;> </xref> utilizado por este <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref>, se disponível. Caso contrário, <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> é devolvido."
   overload: System.Windows.Controls.Frame.NavigationService*
   exceptions: []
   platform:
@@ -1431,13 +1431,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Occurs when the &lt;xref:System.Windows.Controls.Frame.StopLoading%2A?displayProperty=fullName&gt; method is called, or when a new navigation is requested while a current navigation is in progress."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.NavigationStopped?displayProperty=fullName>."
+  summary: "Ocorre quando o &lt;xref:System.Windows.Controls.Frame.StopLoading%2A?displayProperty=fullName&gt; método é denominado, ou quando uma nova navegação é pedida enquanto uma navegação atual está em curso."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.NavigationStopped?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.NavigationStopped?displayProperty=fullName>"
   syntax:
     content: public event System.Windows.Navigation.NavigationStoppedEventHandler NavigationStopped;
     return:
       type: System.Windows.Navigation.NavigationStoppedEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -1453,15 +1453,15 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Gets or sets when the <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> can show its navigation [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)]."
-  remarks: "By default, a <xref:System.Windows.Controls.Frame> shows its navigation [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)] automatically when the first entry is added to navigation history. The navigation [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)] subsequently remains visible, with the back or forward navigation buttons becoming appropriately enabled or disabled to reflect the number of entries in back and forward navigation history.       You can ensure that navigation [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)] is always visible by setting:      1.  <xref:System.Windows.Navigation.NavigationUIVisibility> to <xref:System.Windows.Navigation.NavigationUIVisibility>      2.  <xref:System.Windows.Controls.Frame.JournalOwnership%2A> to <xref:System.Windows.Navigation.JournalOwnership>       You set <xref:System.Windows.Navigation.NavigationUIVisibility> to <xref:System.Windows.Navigation.NavigationUIVisibility> if you want to hide the navigation [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)]. This might be the case when navigation [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)] doesn’t make sense with the content you are displaying from a <xref:System.Windows.Controls.Frame>, or because you are providing your own navigation [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)].      <a name=&quot;dependencyPropertyInfo_FrameJournalNavigationUIVisibility&quot;></a>    ## Dependency Property Information      |||   |-|-|   |Identifier field|<xref:System.Windows.Controls.Frame.NavigationUIVisibilityProperty>|   |Metadata properties set to `true`|None|"
+  summary: "Obtém ou define quando o <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> pode mostrar respetivos navegação [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)]."
+  remarks: "Por predefinição, um <xref:System.Windows.Controls.Frame>mostra a navegação [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)] automaticamente quando a entrada primeiro é adicionada ao histórico de navegação.</xref:System.Windows.Controls.Frame> A navegação [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)] subsequentemente permanece visível, com o back ou os botões de navegação de avanço adequadamente a tornar-se ativado ou desativado para refletir o número de entradas no novamente e reencaminhar o histórico de navegação.       Pode certificar-se de que navegação [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)] sempre é visível através da definição: 1.  <xref:System.Windows.Navigation.NavigationUIVisibility>to <xref:System.Windows.Navigation.NavigationUIVisibility>      2.</xref:System.Windows.Navigation.NavigationUIVisibility></xref:System.Windows.Navigation.NavigationUIVisibility>  <xref:System.Windows.Controls.Frame.JournalOwnership%2A>para <xref:System.Windows.Navigation.JournalOwnership>definir <xref:System.Windows.Navigation.NavigationUIVisibility>para <xref:System.Windows.Navigation.NavigationUIVisibility>se pretender ocultar o painel de navegação [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)].</xref:System.Windows.Navigation.NavigationUIVisibility> </xref:System.Windows.Navigation.NavigationUIVisibility> </xref:System.Windows.Navigation.JournalOwnership></xref:System.Windows.Controls.Frame.JournalOwnership%2A> Esta situação pode ser o caso quando navegação [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)] não fazer sentido com o conteúdo apresenta de um <xref:System.Windows.Controls.Frame>, ou porque está a fornecer a suas próprias navegação [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)].</xref:System.Windows.Controls.Frame>      <a name=&quot;dependencyPropertyInfo_FrameJournalNavigationUIVisibility&quot;></a># # Informações de propriedade de dependência |||   |-|-|   | Campo Identificador | <xref:System.Windows.Controls.Frame.NavigationUIVisibilityProperty>|   | Definir propriedades de metadados `true`| Nenhum |</xref:System.Windows.Controls.Frame.NavigationUIVisibilityProperty>"
   example:
   - "The following example demonstrates how to make sure the navigation chrome of a <xref:System.Windows.Controls.Frame> is always visible by setting NavigationUIVisibility to <xref:System.Windows.Navigation.NavigationUIVisibility>.  \n  \n [!code-cs[FrameNavigationUIVisibilitySnippets#SetNavigationUIVisibility](~/add/codesnippet/csharp/FrameNavigationUIVisibilitySnippets.CSharp/Window1.xaml.cs#setnavigationuivisibility)]\n [!code-vb[FrameNavigationUIVisibilitySnippets#SetNavigationUIVisibility](~/add/codesnippet/visualbasic/framenavigationuivisibilitysnippets/window1.xaml.vb#setnavigationuivisibility)]\n [!code-xml[FrameNavigationUIVisibilitySnippets#SetNavigationUIVisibility](~/add/codesnippet/xaml/FrameNavigationUIVisibilitySnippets.XAML/Window1.xaml#setnavigationuivisibility)]"
   syntax:
     content: public System.Windows.Navigation.NavigationUIVisibility NavigationUIVisibility { get; set; }
     return:
       type: System.Windows.Navigation.NavigationUIVisibility
-      description: "A <xref href=&quot;System.Windows.Navigation.NavigationUIVisibility&quot;></xref> value that specifies when the <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> can show its navigation [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)]. The default value is <xref href=&quot;System.Windows.Navigation.NavigationUIVisibility&quot;></xref>."
+      description: "A <xref href=&quot;System.Windows.Navigation.NavigationUIVisibility&quot;> </xref> valor que especifica quando o <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> pode mostrar respetivos navegação [!INCLUDE[TLA2#tla_ui](~/add/includes/ajax-current-ext-md.md)]. O valor predefinido é <xref href=&quot;System.Windows.Navigation.NavigationUIVisibility&quot;> </xref>."
   overload: System.Windows.Controls.Frame.NavigationUIVisibility*
   exceptions: []
   platform:
@@ -1478,13 +1478,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Identifies the <xref:System.Windows.Controls.Frame.NavigationUIVisibility*> dependency property."
-  remarks: "The identifier for the <xref:System.Windows.Controls.Frame.NavigationUIVisibility%2A> dependency property."
+  summary: "Identifica o <xref:System.Windows.Controls.Frame.NavigationUIVisibility*>propriedade de dependência.</xref:System.Windows.Controls.Frame.NavigationUIVisibility*>"
+  remarks: "O identificador para o <xref:System.Windows.Controls.Frame.NavigationUIVisibility%2A>propriedade de dependência.</xref:System.Windows.Controls.Frame.NavigationUIVisibility%2A>"
   syntax:
     content: public static readonly System.Windows.DependencyProperty NavigationUIVisibilityProperty;
     return:
       type: System.Windows.DependencyProperty
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -1500,7 +1500,7 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Called when the template generation for the visual tree is created."
+  summary: "Chamado quando é criada a geração de modelo para a árvore visual."
   syntax:
     content: public override void OnApplyTemplate ();
     parameters: []
@@ -1520,14 +1520,14 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Raises the <xref href=&quot;System.Windows.Controls.Frame.ContentRendered&quot;></xref> event."
-  remarks: "OnContentRendered raises the <xref:System.Windows.Controls.Frame.ContentRendered> event.       A type that derives from <xref:System.Windows.Controls.Frame> may override OnContentRendered. The overridden method must call OnContentRendered on the base class if <xref:System.Windows.Controls.Frame.ContentRendered> needs to be raised."
+  summary: "Gera o <xref href=&quot;System.Windows.Controls.Frame.ContentRendered&quot;> </xref> eventos."
+  remarks: "OnContentRendered gera o <xref:System.Windows.Controls.Frame.ContentRendered>eventos.</xref:System.Windows.Controls.Frame.ContentRendered>       Um tipo que deriva de <xref:System.Windows.Controls.Frame>pode substituir OnContentRendered.</xref:System.Windows.Controls.Frame> O método substituído tem de chamar OnContentRendered na classe base se <xref:System.Windows.Controls.Frame.ContentRendered>tem de ser gerado.</xref:System.Windows.Controls.Frame.ContentRendered>"
   syntax:
     content: protected virtual void OnContentRendered (EventArgs args);
     parameters:
     - id: args
       type: System.EventArgs
-      description: "An <xref:System.EventArgs> that contains the event data."
+      description: "Um <xref:System.EventArgs>que contém os dados do evento.</xref:System.EventArgs>"
   overload: System.Windows.Controls.Frame.OnContentRendered*
   exceptions: []
   platform:
@@ -1544,8 +1544,8 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Creates and returns a <xref href=&quot;System.Windows.Automation.Peers.NavigationWindowAutomationPeer&quot;></xref> object for this <xref href=&quot;System.Windows.Controls.Frame&quot;></xref>."
-  remarks: "This method overrides <xref:System.Windows.ContentElement.OnCreateAutomationPeer%2A?displayProperty=fullName>."
+  summary: "Cria e devolve um <xref href=&quot;System.Windows.Automation.Peers.NavigationWindowAutomationPeer&quot;> </xref> objeto para este <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref>."
+  remarks: "Este método substitui <xref:System.Windows.ContentElement.OnCreateAutomationPeer%2A?displayProperty=fullName>.</xref:System.Windows.ContentElement.OnCreateAutomationPeer%2A?displayProperty=fullName>"
   syntax:
     content: protected override System.Windows.Automation.Peers.AutomationPeer OnCreateAutomationPeer ();
     parameters: []
@@ -1568,8 +1568,8 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Reloads the current content."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.Refresh%2A?displayProperty=fullName>."
+  summary: "Reloads o conteúdo atual."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.Refresh%2A?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.Refresh%2A?displayProperty=fullName>"
   syntax:
     content: public void Refresh ();
     parameters: []
@@ -1589,14 +1589,14 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Removes the most recent journal entry from back history."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.RemoveBackEntry%2A?displayProperty=fullName>."
+  summary: "Remove a entrada de diário de alterações mais recente do histórico anterior."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.RemoveBackEntry%2A?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.RemoveBackEntry%2A?displayProperty=fullName>"
   syntax:
     content: public System.Windows.Navigation.JournalEntry RemoveBackEntry ();
     parameters: []
     return:
       type: System.Windows.Navigation.JournalEntry
-      description: "The most recent <xref href=&quot;System.Windows.Navigation.JournalEntry&quot;></xref> in back navigation history, if there is one."
+      description: "O mais recente <xref href=&quot;System.Windows.Navigation.JournalEntry&quot;> </xref> no histórico de navegação anterior, se existir um."
   overload: System.Windows.Controls.Frame.RemoveBackEntry*
   exceptions: []
   platform:
@@ -1613,18 +1613,18 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Gets or sets whether a <xref href=&quot;System.Windows.Controls.Frame&quot;></xref> isolates external [!INCLUDE[TLA#tla_xaml](~/add/includes/tlasharptla-xaml-md.md)] content within a partial trust security sandbox (with the default <xref uid=&quot;langword_csharp_Internet &quot; name=&quot;Internet &quot; href=&quot;&quot;></xref>permission set)."
-  remarks: "External content is [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] content that is not included with an application as either a resource file or a content file (see [WPF Application Resource, Content, and Data Files](~/add/includes/ajax-current-ext-md.md)).       When SandboxExternalContent is `true`, and the source for the content of the <xref:System.Windows.Controls.Frame> is an external [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] file, the content is loaded into a partial trust security sandbox that is limited to the default `Internet` permission set. The external content is subsequently loaded into a separate process. As a result, the external content becomes isolated and does not have access to application-scope resources, such as resource dictionaries (see <xref:System.Windows.ResourceDictionary>).      > [!NOTE] >  <xref:System.Windows.Controls.Frame> will only contain external content when the <xref:System.Windows.Controls.Frame.Source%2A> property is set to the [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] for an external [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] file. <xref:System.Windows.Controls.Frame> content that is provided using the <xref:System.Windows.Controls.ContentControl.Content%2A> property is considered internal content and, subsequently, is not isolated.      <a name=&quot;dependencyPropertyInfo_FrameSandboxExternalContent&quot;></a>    ## Dependency Property Information      |||   |-|-|   |Identifier field|SandboxExternalContent|   |Metadata properties set to `true`|None|"
+  summary: "Obtém ou define se um <xref href=&quot;System.Windows.Controls.Frame&quot;> </xref> isola externo [!INCLUDE[TLA#tla_xaml](~/add/includes/tlasharptla-xaml-md.md)] conteúdo dentro de uma sandbox de segurança de fidedignidade parcial (com a predefinição <xref uid=&quot;langword_csharp_Internet &quot; name=&quot;Internet &quot; href=&quot;&quot;> </xref>conjunto de permissões)."
+  remarks: "Conteúdo externo é [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] conteúdo que não está incluído com uma aplicação como um ficheiro de recursos ou um ficheiro de conteúdo (consulte [WPF recurso de aplicação, o conteúdo e os ficheiros de dados](~/add/includes/ajax-current-ext-md.md)).       Quando é SandboxExternalContent `true`e a origem para o conteúdo do <xref:System.Windows.Controls.Frame>é um externo [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] ficheiro, o conteúdo é carregado para um sandbox de segurança de fidedignidade parcial está limitado a predefinição `Internet` conjunto de permissões.</xref:System.Windows.Controls.Frame> O conteúdo externo, subsequentemente, é carregado processo separado. Como resultado, o conteúdo externo fica isolado e não tem acesso a recursos de âmbito de aplicação, como dicionários de recursos (consulte <xref:System.Windows.ResourceDictionary>).</xref:System.Windows.ResourceDictionary>      > [!NOTE] > <xref:System.Windows.Controls.Frame>irá conter apenas o conteúdo externo quando o <xref:System.Windows.Controls.Frame.Source%2A>propriedade está definida como o [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] um externas [!INCLUDE[TLA2#tla_xaml](~/add/includes/tla2sharptla-xaml-md.md)] ficheiro.</xref:System.Windows.Controls.Frame.Source%2A> </xref:System.Windows.Controls.Frame> <xref:System.Windows.Controls.Frame>conteúdo que é fornecido com o <xref:System.Windows.Controls.ContentControl.Content%2A>é considerada conteúdo interno de propriedade e, posteriormente, não se encontra isolada.</xref:System.Windows.Controls.ContentControl.Content%2A></xref:System.Windows.Controls.Frame>      <a name=&quot;dependencyPropertyInfo_FrameSandboxExternalContent&quot;></a># # Informações de propriedade de dependência |||   |-|-|   | Campo Identificador | SandboxExternalContent |   | Definir propriedades de metadados `true`| Nenhum |"
   syntax:
     content: public bool SandboxExternalContent { get; set; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if content is isolated within a partial trust security sandbox; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>. The default is <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o conteúdo está isolado dentro de uma sandbox de segurança de fidedignidade parcial; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>. A predefinição é <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Windows.Controls.Frame.SandboxExternalContent*
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "SandboxExternalContent is set when an application is executing in partial trust."
+    description: "SandboxExternalContent é definida quando uma aplicação está a executar em confiança parcial."
   platform:
   - net462
 - uid: System.Windows.Controls.Frame.SandboxExternalContentProperty
@@ -1639,13 +1639,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Identifies the <xref:System.Windows.Controls.Frame.SandboxExternalContent*> dependency property."
-  remarks: "The identifier for the <xref:System.Windows.Controls.Frame.SandboxExternalContent%2A> dependency property."
+  summary: "Identifica o <xref:System.Windows.Controls.Frame.SandboxExternalContent*>propriedade de dependência.</xref:System.Windows.Controls.Frame.SandboxExternalContent*>"
+  remarks: "O identificador para o <xref:System.Windows.Controls.Frame.SandboxExternalContent%2A>propriedade de dependência.</xref:System.Windows.Controls.Frame.SandboxExternalContent%2A>"
   syntax:
     content: public static readonly System.Windows.DependencyProperty SandboxExternalContentProperty;
     return:
       type: System.Windows.DependencyProperty
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -1661,13 +1661,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Allows derived classes to determine the serialization behavior of the <xref:System.Windows.Controls.ContentControl.Content*> property."
+  summary: "Permite que as classes derivadas determinar o comportamento de serialização do <xref:System.Windows.Controls.ContentControl.Content*>propriedade.</xref:System.Windows.Controls.ContentControl.Content*>"
   syntax:
     content: public override bool ShouldSerializeContent ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the content should be serialized; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o conteúdo deve ser serializado; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Windows.Controls.Frame.ShouldSerializeContent*
   exceptions: []
   platform:
@@ -1684,15 +1684,15 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Gets or sets the [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] of the current content, or the [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] of new content that is currently being navigated to."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.Source%2A?displayProperty=fullName>.      > [!NOTE] >  [!INCLUDE[TLA#tla_uri#initcap#plural](~/add/includes/tlasharptla-urisharpinitcapsharpplural-md.md)] can be either relative or absolute. For more information, see [Pack URIs in WPF](~/add/includes/ajax-current-ext-md.md).      <a name=&quot;dependencyPropertyInfo_FrameSource&quot;></a>    ## Dependency Property Information      |||   |-|-|   |Identifier field|<xref:System.Windows.Controls.Frame.SourceProperty>|   |Metadata properties set to `true`|<xref:System.Windows.FrameworkPropertyMetadata.Journal%2A>|"
+  summary: "Obtém ou define o [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] do conteúdo atual, ou o [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] de conteúdo novo que está atualmente a ser utilizado."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.Source%2A?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.Source%2A?displayProperty=fullName>      > [!NOTE]  >   [!INCLUDE[TLA#tla_uri#initcap#plural](~/add/includes/tlasharptla-urisharpinitcapsharpplural-md.md)] pode ser relativo ou absoluto. Para obter mais informações, consulte [URIs de pacote no WPF](~/add/includes/ajax-current-ext-md.md).      <a name=&quot;dependencyPropertyInfo_FrameSource&quot;></a># # Informações de propriedade de dependência |||   |-|-|   | Campo Identificador | <xref:System.Windows.Controls.Frame.SourceProperty>|   | Definir propriedades de metadados `true`|<xref:System.Windows.FrameworkPropertyMetadata.Journal%2A>|</xref:System.Windows.FrameworkPropertyMetadata.Journal%2A> </xref:System.Windows.Controls.Frame.SourceProperty>"
   example:
   - "The following example shows how to navigate to a [!INCLUDE[TLA#tla_uri](~/add/includes/tlasharptla-uri-md.md)] by setting the Source property.  \n  \n [!code-cs[HOWTONavigationSnippets#NavigateToPageSrcCODE](~/add/codesnippet/csharp/HOWTONavigationSnippets/MainWindow.xaml.cs#navigatetopagesrccode)]\n [!code-vb[HOWTONavigationSnippets#NavigateToPageSrcCODE](~/add/codesnippet/visualbasic/howtonavigationsnippets/mainwindow.xaml.vb#navigatetopagesrccode)]"
   syntax:
     content: public Uri Source { get; set; }
     return:
       type: System.Uri
-      description: "A <xref:System.Uri> that contains the [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] for the current content, or the content that is currently being navigated to."
+      description: "A <xref:System.Uri>que contém o [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] para o conteúdo atual ou o conteúdo que está atualmente a ser utilizado.</xref:System.Uri>"
   overload: System.Windows.Controls.Frame.Source*
   exceptions: []
   platform:
@@ -1709,12 +1709,12 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Identifies the <xref:System.Windows.Controls.Frame.Source*> dependency property."
+  summary: "Identifica o <xref:System.Windows.Controls.Frame.Source*>propriedade de dependência.</xref:System.Windows.Controls.Frame.Source*>"
   syntax:
     content: public static readonly System.Windows.DependencyProperty SourceProperty;
     return:
       type: System.Windows.DependencyProperty
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -1730,8 +1730,8 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "Stops further downloading of content for the current navigation request."
-  remarks: "See <xref:System.Windows.Navigation.NavigationService.StopLoading%2A?displayProperty=fullName>."
+  summary: "Interrompe ainda mais a transferir conteúdo para o pedido atual de navegação."
+  remarks: "Consulte <xref:System.Windows.Navigation.NavigationService.StopLoading%2A?displayProperty=fullName>.</xref:System.Windows.Navigation.NavigationService.StopLoading%2A?displayProperty=fullName>"
   syntax:
     content: public void StopLoading ();
     parameters: []
@@ -1752,13 +1752,13 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Controls
-  summary: "For a description of this member, see &lt;xref:System.Windows.Markup.IUriContext.BaseUri%2A?displayProperty=fullName&gt;."
-  remarks: "This member is an explicit interface member implementation. It can be used only when the <xref:System.Windows.Controls.Frame> instance is cast to an <xref:System.Windows.Markup.IUriContext> interface."
+  summary: "Para obter uma descrição deste membro, consulte &lt;xref:System.Windows.Markup.IUriContext.BaseUri%2A?displayProperty=fullName&gt;."
+  remarks: "Este membro é uma implementação de membro de interface explícita. Pode ser utilizado apenas quando o <xref:System.Windows.Controls.Frame>instância é convertida para um <xref:System.Windows.Markup.IUriContext>interface.</xref:System.Windows.Markup.IUriContext> </xref:System.Windows.Controls.Frame>"
   syntax:
     content: Uri System.Windows.Markup.IUriContext.BaseUri { get; set; }
     return:
       type: System.Uri
-      description: "The base [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] of the current context."
+      description: "A base de [!INCLUDE[TLA2#tla_uri](~/add/includes/tla2sharptla-uri-md.md)] do contexto atual."
   overload: System.Windows.Controls.Frame.System#Windows#Markup#IUriContext#BaseUri*
   exceptions: []
   platform:

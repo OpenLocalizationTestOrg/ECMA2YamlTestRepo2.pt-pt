@@ -19,8 +19,8 @@ items:
   nameWithType: HMAC
   fullName: System.Security.Cryptography.HMAC
   type: Class
-  summary: "Represents the abstract class from which all implementations of Hash-based Message Authentication Code (HMAC) must derive."
-  remarks: "A Hash-based Message Authentication Code (HMAC) can be used to determine whether a message sent over an insecure channel has been tampered with, provided that the sender and receiver share a secret key. The sender computes the hash value for the original data and sends both the original data and the HMAC as a single message. The receiver recomputes the hash value on the received message and checks that the computed hash value matches the transmitted hash value.       HMAC can be used with any iterative cryptographic hash function, such as MD5 or SHA-1, in combination with a secret shared key. The cryptographic strength of HMAC depends on the properties of the underlying hash function.       Any change to the data or the hash value results in a mismatch, because knowledge of the secret key is required to change the message and reproduce the correct hash value. Therefore, if the original and computed hash values match, the message is authenticated."
+  summary: "Representa a partir do qual todas as implementações de com base em Hash Message Authentication Code (HMAC) tem de derivar de classe abstracta."
+  remarks: "Uma base em Hash Message Authentication Code (HMAC) pode ser utilizado para determinar se uma mensagem enviada através de um canal inseguras tenha sido adulterada, desde que o remetente e o recetor partilham uma chave secreta. O remetente calcula o valor de hash de dados originais e envia os dados originais e a HMAC como uma única mensagem. O recetor recomputes o valor de hash à mensagem recebida e verifica se o valor de hash calculado corresponde ao valor de hash transmitidos.       HMAC pode ser utilizado com a função de hash criptográfico iterativo, como MD5 ou SHA-1, em combinação com uma chave secreta partilhada. A segurança criptográfica da HMAC depende as propriedades da função de hash subjacente.       Qualquer alteração aos dados ou o valor de hash resulta num erro de correspondência, porque os dados de conhecimento da chave secreta é necessário para alterar a mensagem e reproduzir o valor de hash correto. Por conseguinte, se os valores de hash original e calculada corresponderem, a mensagem é autenticada."
   syntax:
     content: >-
       [System.Runtime.InteropServices.ComVisible(true)]
@@ -63,7 +63,7 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Cryptography
-  summary: "Initializes a new instance of the <xref href=&quot;System.Security.Cryptography.HMAC&quot;></xref> class."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Security.Cryptography.HMAC&quot;> </xref> classe."
   syntax:
     content: protected HMAC ();
     parameters: []
@@ -83,13 +83,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Cryptography
-  summary: "Gets or sets the block size to use in the hash value."
-  remarks: "A Hash-based Message Authentication Code (HMAC) uses a hash function where data is hashed by iterating a basic compression function on blocks of data. BlockSizeValue is the byte size of such a block. Its value is 64 bytes."
+  summary: "Obtém ou define o tamanho do bloco para utilizar no valor de hash."
+  remarks: "Uma base em Hash Message Authentication Code (HMAC) utiliza uma função de hash onde os dados é protegido por hash por iterating uma função de compressão básicas em blocos de dados. BlockSizeValue é o tamanho de bytes de um bloco deste tipo. O valor é 64 bytes."
   syntax:
     content: protected int BlockSizeValue { get; set; }
     return:
       type: System.Int32
-      description: "The block size to use in the hash value."
+      description: "O tamanho do bloco para utilizar no valor de hash."
   overload: System.Security.Cryptography.HMAC.BlockSizeValue*
   exceptions: []
   platform:
@@ -106,14 +106,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Cryptography
-  summary: "Creates an instance of the default implementation of a Hash-based Message Authentication Code (HMAC)."
-  remarks: "By default, this overload uses the SHA-1 implementation of HMAC. If you want to specify a different implementation, use the <xref:System.Security.Cryptography.HMAC.Create%28System.String%29> overload, which lets you specify an algorithm name, instead."
+  summary: "Cria uma instância da implementação predefinida de uma base em Hash Message Authentication Code (HMAC)."
+  remarks: "Por predefinição, esta sobrecarga de utiliza a implementação de SHA-1 de HMAC. Se pretender especificar uma implementação diferente, utilize o <xref:System.Security.Cryptography.HMAC.Create%28System.String%29>sobrecarga, que lhe permite especificar um nome de algoritmo em vez disso.</xref:System.Security.Cryptography.HMAC.Create%28System.String%29>"
   syntax:
     content: public static System.Security.Cryptography.HMAC Create ();
     parameters: []
     return:
       type: System.Security.Cryptography.HMAC
-      description: "A new SHA-1 instance, unless the default settings have been changed by using the [&lt;cryptoClass&gt; element](../Topic/%3CcryptoClass%3E%20Element.md)."
+      description: "Instância de um novo SHA-1, a menos que foram alteradas as definições predefinidas utilizando o [ &lt;cryptoClass&gt; elemento](../Topic/%3CcryptoClass%3E%20Element.md)."
   overload: System.Security.Cryptography.HMAC.Create*
   exceptions: []
   platform:
@@ -130,17 +130,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Cryptography
-  summary: "Creates an instance of the specified implementation of a Hash-based Message Authentication Code (HMAC)."
-  remarks: "HMAC supports a number of hash algorithms, including MD5, SHA-1, SHA-256, and RIPEMD160. For the full list, see the supported values for the `algorithmName` parameter."
+  summary: "Cria uma instância da implementação especificada de uma base em Hash Message Authentication Code (HMAC)."
+  remarks: "HMAC suporta um número de algoritmos de hash, incluindo MD5, SHA-1, SHA-256 e RIPEMD160. Para obter uma lista completa, consulte os valores suportados para o `algorithmName` parâmetro."
   syntax:
     content: public static System.Security.Cryptography.HMAC Create (string algorithmName);
     parameters:
     - id: algorithmName
       type: System.String
-      description: "The HMAC implementation to use. The following table shows the valid values for the `algorithmName` parameter and the algorithms they map to.       <table><thead><tr><th> Parameter value       </th><th> Implements       </th></tr></thead><tbody><tr><td> System.Security.Cryptography.HMAC       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA1&quot;></xref></td></tr><tr><td> System.Security.Cryptography.KeyedHashAlgorithm       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA1&quot;></xref></td></tr><tr><td> HMACMD5       </td><td><xref href=&quot;System.Security.Cryptography.HMACMD5&quot;></xref></td></tr><tr><td> System.Security.Cryptography.HMACMD5       </td><td><xref href=&quot;System.Security.Cryptography.HMACMD5&quot;></xref></td></tr><tr><td> HMACRIPEMD160       </td><td><xref href=&quot;System.Security.Cryptography.HMACRIPEMD160&quot;></xref></td></tr><tr><td> System.Security.Cryptography.HMACRIPEMD160       </td><td><xref href=&quot;System.Security.Cryptography.HMACRIPEMD160&quot;></xref></td></tr><tr><td> HMACSHA1       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA1&quot;></xref></td></tr><tr><td> System.Security.Cryptography.HMACSHA1       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA1&quot;></xref></td></tr><tr><td> HMACSHA256       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA256&quot;></xref></td></tr><tr><td> System.Security.Cryptography.HMACSHA256       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA256&quot;></xref></td></tr><tr><td> HMACSHA384       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA384&quot;></xref></td></tr><tr><td> System.Security.Cryptography.HMACSHA384       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA384&quot;></xref></td></tr><tr><td> HMACSHA512       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA512&quot;></xref></td></tr><tr><td> System.Security.Cryptography.HMACSHA512       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA512&quot;></xref></td></tr><tr><td> MACTripleDES       </td><td><xref href=&quot;System.Security.Cryptography.MACTripleDES&quot;></xref></td></tr><tr><td> System.Security.Cryptography.MACTripleDES       </td><td><xref href=&quot;System.Security.Cryptography.MACTripleDES&quot;></xref></td></tr></tbody></table>"
+      description: "A implementação de HMAC utilizar. A tabela seguinte mostra os valores válidos para o `algorithmName` parâmetro e os algoritmos mapeiam para.       <table><thead><tr><th> Valor do parâmetro       </th><th> Implementa       </th></tr></thead><tbody><tr><td> System.Security.Cryptography.HMAC       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA1&quot;></xref></td></tr><tr><td> System.Security.Cryptography.KeyedHashAlgorithm       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA1&quot;></xref></td></tr><tr><td> HMACMD5       </td><td><xref href=&quot;System.Security.Cryptography.HMACMD5&quot;></xref></td></tr><tr><td> System.Security.Cryptography.HMACMD5       </td><td><xref href=&quot;System.Security.Cryptography.HMACMD5&quot;></xref></td></tr><tr><td> HMACRIPEMD160       </td><td><xref href=&quot;System.Security.Cryptography.HMACRIPEMD160&quot;></xref></td></tr><tr><td> System.Security.Cryptography.HMACRIPEMD160       </td><td><xref href=&quot;System.Security.Cryptography.HMACRIPEMD160&quot;></xref></td></tr><tr><td> HMACSHA1       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA1&quot;></xref></td></tr><tr><td> System.Security.Cryptography.HMACSHA1       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA1&quot;></xref></td></tr><tr><td> HMACSHA256       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA256&quot;></xref></td></tr><tr><td> System.Security.Cryptography.HMACSHA256       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA256&quot;></xref></td></tr><tr><td> HMACSHA384       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA384&quot;></xref></td></tr><tr><td> System.Security.Cryptography.HMACSHA384       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA384&quot;></xref></td></tr><tr><td> HMACSHA512       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA512&quot;></xref></td></tr><tr><td> System.Security.Cryptography.HMACSHA512       </td><td><xref href=&quot;System.Security.Cryptography.HMACSHA512&quot;></xref></td></tr><tr><td> MACTripleDES       </td><td><xref href=&quot;System.Security.Cryptography.MACTripleDES&quot;></xref></td></tr><tr><td> System.Security.Cryptography.MACTripleDES       </td><td><xref href=&quot;System.Security.Cryptography.MACTripleDES&quot;></xref></td></tr></tbody></table>"
     return:
       type: System.Security.Cryptography.HMAC
-      description: "A new instance of the specified HMAC implementation."
+      description: "Uma nova instância da implementação HMAC especificada."
   overload: System.Security.Cryptography.HMAC.Create*
   exceptions: []
   platform:
@@ -157,14 +157,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Cryptography
-  summary: "Releases the unmanaged resources used by the <xref href=&quot;System.Security.Cryptography.HMAC&quot;></xref> class when a key change is legitimate and optionally releases the managed resources."
-  remarks: "This method is called by the public `Dispose()` method and the `Finalize` method. `Dispose()` invokes the protected `Dispose(Boolean)` method with the `disposing` parameter set to `true`. `Finalize` invokes `Dispose` with `disposing` set to `false`.       When the `disposing` parameter is `true`, this method releases all resources held by any managed objects that this <xref:System.Security.Cryptography.HMAC> references. This method invokes the `Dispose()` method of each referenced object."
+  summary: "Liberta os recursos não geridos utilizados pelo <xref href=&quot;System.Security.Cryptography.HMAC&quot;> </xref> quando uma alteração de chaves é legítima e, opcionalmente, liberta os recursos geridos de classe."
+  remarks: "Este método é denominado pelo público `Dispose()` método e o `Finalize` método. `Dispose()`invoca protegida `Dispose(Boolean)` método com o `disposing` parâmetro definido como `true`. `Finalize`invoca `Dispose` com `disposing` definido como `false`.       Quando o `disposing` parâmetro é `true`, este método versões retidos por quaisquer objetos geridos de todos os recursos que este <xref:System.Security.Cryptography.HMAC>referências.</xref:System.Security.Cryptography.HMAC> Este método invoca o `Dispose()` método de cada objeto referenciado."
   syntax:
     content: protected override void Dispose (bool disposing);
     parameters:
     - id: disposing
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> to release both managed and unmanaged resources; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref> to release only unmanaged resources."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Para libertar recursos geridos e; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref> para libertar recursos apenas não geridos."
   overload: System.Security.Cryptography.HMAC.Dispose*
   exceptions: []
   platform:
@@ -181,20 +181,20 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Cryptography
-  summary: "When overridden in a derived class, routes data written to the object into the default <xref href=&quot;System.Security.Cryptography.HMAC&quot;></xref> hash algorithm for computing the hash value."
-  remarks: "This method is not called by application code.       This abstract method performs the hash computation. Every write to the cryptographic stream object passes the data through this method. For each block of data, this method updates the state of the hash object so that a correct hash value is returned at the end of the data stream."
+  summary: "Quando substituí-lo de uma classe derivada, encaminha os dados escritos para o objeto para a predefinição <xref href=&quot;System.Security.Cryptography.HMAC&quot;> </xref> algoritmo de hash para o valor de hash de computação."
+  remarks: "Não é possível chamar este método pelo código da aplicação.       Este método abstract executa o cálculo de hash. Cada escrita para o objeto de fluxo de criptografia transmite os dados através deste método. Para cada bloco de dados, este método atualiza o estado do objeto hash para que é devolvido um valor de hash correto no fim do fluxo de dados."
   syntax:
     content: protected override void HashCore (byte[] rgb, int ib, int cb);
     parameters:
     - id: rgb
       type: System.Byte[]
-      description: "The input data."
+      description: "Os dados de entrada."
     - id: ib
       type: System.Int32
-      description: "The offset into the byte array from which to begin using data."
+      description: "O desvio para a matriz de bytes a partir do qual pretende começar a utilizar dados."
     - id: cb
       type: System.Int32
-      description: "The number of bytes in the array to use as data."
+      description: "O número de bytes na matriz para utilizar como dados."
   overload: System.Security.Cryptography.HMAC.HashCore*
   exceptions: []
   platform:
@@ -211,14 +211,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Cryptography
-  summary: "When overridden in a derived class, finalizes the hash computation after the last data is processed by the cryptographic stream object."
-  remarks: "This method is not called by application code. This method finalizes any partial computation and returns the correct hash value of the data stream."
+  summary: "Quando substituí-lo de uma classe derivada, finalizes o cálculo de hash após os dados do último processamento pelo objeto stream criptográficos."
+  remarks: "Não é possível chamar este método pelo código da aplicação. Este método finalizes qualquer cálculo parcial e devolve o valor de hash correto do fluxo de dados."
   syntax:
     content: protected override byte[] HashFinal ();
     parameters: []
     return:
       type: System.Byte[]
-      description: "The computed hash code in a byte array."
+      description: "O código hash calculado numa matriz de bytes."
   overload: System.Security.Cryptography.HMAC.HashFinal*
   exceptions: []
   platform:
@@ -235,17 +235,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Cryptography
-  summary: "Gets or sets the name of the hash algorithm to use for hashing."
+  summary: "Obtém ou define o nome do algoritmo hash a utilizar para hash."
   syntax:
     content: public string HashName { get; set; }
     return:
       type: System.String
-      description: "The name of the hash algorithm."
+      description: "O nome do algoritmo hash."
   overload: System.Security.Cryptography.HMAC.HashName*
   exceptions:
   - type: System.Security.Cryptography.CryptographicException
     commentId: T:System.Security.Cryptography.CryptographicException
-    description: "The current hash algorithm cannot be changed."
+    description: "Não é possível alterar o algoritmo de hash atual."
   platform:
   - net462
 - uid: System.Security.Cryptography.HMAC.Initialize
@@ -260,8 +260,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Cryptography
-  summary: "Initializes an instance of the default implementation of <xref href=&quot;System.Security.Cryptography.HMAC&quot;></xref>."
-  remarks: "A Hash-based Message Authentication Code (HMAC) can be used to determine whether a message sent over an insecure channel has been tampered with, provided that the sender and receiver share a secret key. The sender computes the hash value for the original data and sends both the original data and the HMAC as a single message. The receiver recomputes the hash value on the received message and checks that the computed hash value matches the transmitted hash value.       HMAC can be used with any iterative cryptographic hash function, such as MD5 or SHA-1, in combination with a secret shared key. The cryptographic strength of HMAC depends on the properties of the underlying hash function.       Any change to the data or the hash value will result in a mismatch, because knowledge of the secret key is required to change the message and reproduce the correct hash value. Therefore, if the original and computed hash values match, the message is authenticated."
+  summary: "Inicializa uma instância da implementação predefinida do <xref href=&quot;System.Security.Cryptography.HMAC&quot;> </xref>."
+  remarks: "Uma base em Hash Message Authentication Code (HMAC) pode ser utilizado para determinar se uma mensagem enviada através de um canal inseguras tenha sido adulterada, desde que o remetente e o recetor partilham uma chave secreta. O remetente calcula o valor de hash de dados originais e envia os dados originais e a HMAC como uma única mensagem. O recetor recomputes o valor de hash à mensagem recebida e verifica se o valor de hash calculado corresponde ao valor de hash transmitidos.       HMAC pode ser utilizado com a função de hash criptográfico iterativo, como MD5 ou SHA-1, em combinação com uma chave secreta partilhada. A segurança criptográfica da HMAC depende as propriedades da função de hash subjacente.       Qualquer alteração aos dados ou o valor de hash resultará num erro de correspondência, porque os dados de conhecimento da chave secreta é necessário para alterar a mensagem e reproduzir o valor de hash correto. Por conseguinte, se os valores de hash original e calculada corresponderem, a mensagem é autenticada."
   syntax:
     content: public override void Initialize ();
     parameters: []
@@ -281,18 +281,18 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Cryptography
-  summary: "Gets or sets the key to use in the hash algorithm."
-  remarks: "This property is the key for the keyed hash algorithm.       A Hash-based Message Authentication Code (HMAC) can be used to determine whether a message sent over an insecure channel has been tampered with, provided that the sender and receiver share a secret key. The sender computes the hash value for the original data and sends both the original data and the HMAC as a single message. The receiver recomputes the hash value on the received message and checks that the computed hash value matches the transmitted hash value.       HMAC can be used with any iterative cryptographic hash function, such as MD5 or SHA-1, in combination with a secret shared key. The cryptographic strength of HMAC depends on the properties of the underlying hash function.       Any change to the data or the hash value results in a mismatch, because knowledge of the secret key is required to change the message and reproduce the correct hash value. Therefore, if the original and computed hash values match, the message is authenticated."
+  summary: "Obtém ou define a chave a utilizar no algoritmo hash."
+  remarks: "Esta propriedade é a chave para o o algoritmo de hash.       Uma base em Hash Message Authentication Code (HMAC) pode ser utilizado para determinar se uma mensagem enviada através de um canal inseguras tenha sido adulterada, desde que o remetente e o recetor partilham uma chave secreta. O remetente calcula o valor de hash de dados originais e envia os dados originais e a HMAC como uma única mensagem. O recetor recomputes o valor de hash à mensagem recebida e verifica se o valor de hash calculado corresponde ao valor de hash transmitidos.       HMAC pode ser utilizado com a função de hash criptográfico iterativo, como MD5 ou SHA-1, em combinação com uma chave secreta partilhada. A segurança criptográfica da HMAC depende as propriedades da função de hash subjacente.       Qualquer alteração aos dados ou o valor de hash resulta num erro de correspondência, porque os dados de conhecimento da chave secreta é necessário para alterar a mensagem e reproduzir o valor de hash correto. Por conseguinte, se os valores de hash original e calculada corresponderem, a mensagem é autenticada."
   syntax:
     content: public override byte[] Key { get; set; }
     return:
       type: System.Byte[]
-      description: "The key to use in the hash algorithm."
+      description: "A chave a utilizar no algoritmo hash."
   overload: System.Security.Cryptography.HMAC.Key*
   exceptions:
   - type: System.Security.Cryptography.CryptographicException
     commentId: T:System.Security.Cryptography.CryptographicException
-    description: "An attempt is made to change the Key property after hashing has begun."
+    description: "É efetuada uma tentativa de alterar a propriedade de chave depois de o hash foi iniciada."
   platform:
   - net462
 references:
