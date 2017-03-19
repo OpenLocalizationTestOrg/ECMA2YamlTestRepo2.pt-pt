@@ -30,7 +30,7 @@ items:
   nameWithType: FileIOPermission
   fullName: System.Security.Permissions.FileIOPermission
   type: Class
-  summary: "Controls the ability to access files and folders. This class cannot be inherited."
+  summary: "Controla a capacidade de aceder a ficheiros e pastas. Esta classe não pode ser herdada."
   remarks: "This permission distinguishes between the following four types of file IO access provided by <xref:System.Security.Permissions.FileIOPermissionAccess>:  \n  \n-   `Read`: Read access to the contents of the file or access to information about the file, such as its length or last modification time.  \n  \n-   `Write`: Write access to the contents of the file or access to change information about the file, such as its name. Also allows for deletion and overwriting.  \n  \n-   `Append`: Ability to write to the end of a file only. No ability to read.  \n  \n-   `PathDiscovery`: Access to the information in the path itself. This helps protect sensitive information in the path, such as user names, as well as information about the directory structure that is revealed in the path. This value does not grant access to files or folders represented by the path.  \n  \n> [!NOTE]\n>  Giving <xref:System.Security.Permissions.FileIOPermissionAccess> access to an assembly is similar to granting it full trust. If an application should not write to the file system, it should not have <xref:System.Security.Permissions.FileIOPermissionAccess> access.  \n  \n All these permissions are independent, meaning that rights to one do not imply rights to another. For example, `Write` permission does not imply permission to `Read` or `Append`. If more than one permission is desired, they can be combined using a bitwise OR as shown in the code example that follows. File permission is defined in terms of canonical absolute paths; calls should always be made with canonical file paths.  \n  \n FileIOPermission describes protected operations on files and folders. The <xref:System.IO.File> class helps provide secure access to files and folders. The security access check is performed when the handle to the file is created. By doing the check at creation time, the performance impact of the security check is minimized. Opening a file happens once, while reading and writing can happen multiple times. Once the file is opened, no further checks are done. If the object is passed to an untrusted caller, it can be misused. For example, file handles should not be stored in public global statics where code with less permission can access them.  \n  \n <xref:System.Security.Permissions.FileIOPermissionAccess> specifies actions that can be performed on the file or folder. In addition, these actions can be combined using a bitwise OR to form complex instances.  \n  \n Access to a folder implies access to all the files it contains, as well as access to all the files and folders in its subfolders. For example, `Read` access to C:\\folder1\\ implies `Read` access to C:\\folder1\\file1.txt, C:\\folder1\\folder2\\\\, C:\\folder1\\folder2\\file2.txt, and so on.  \n  \n> [!NOTE]\n>  In versions of the .NET Framework before the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)], you could use the <xref:System.Security.CodeAccessPermission.Deny%2A?displayProperty=fullName> method to prevent inadvertent access to system resources by trusted code. <xref:System.Security.CodeAccessPermission.Deny%2A> is now obsolete, and access to resources is now determined solely by the granted permission set for an assembly. To limit access to files, you must run partially trusted code in a sandbox and assign it permissions only to resources that the code is allowed to access. For information about running an application in a sandbox, see [How to: Run Partially Trusted Code in a Sandbox](~/add/includes/ajax-current-ext-md.md)."
   example:
   - "The following examples illustrate code that uses FileIOPermission. After the following two lines of code, the object `f` represents permission to read all files on the client computer's local disks. The code example then demands the permission to determine whether the application has permission to read the files.  \n  \n [!code-cs[Classic FileIOPermission Example#1](~/add/codesnippet/csharp/t-system.security.permis_23_1.cs)]\n [!code-vb[Classic FileIOPermission Example#1](~/add/codesnippet/visualbasic/t-system.security.permis_23_1.vb)]\n [!code-cpp[Classic FileIOPermission Example#1](~/add/codesnippet/cpp/t-system.security.permis_23_1.cpp)]  \n  \n After the following two lines of code, the object `f2` represents permissions to read C:\\test_r and read and write to C:\\example\\out.txt. `Read` and `Write` represent the file/folder permissions as previously described. After creating the permission, the code demands the permission to determine whether the application has the right to read and write to the file.  \n  \n [!code-cs[Classic FileIOPermission Example#2](~/add/codesnippet/csharp/t-system.security.permis_23_2.cs)]\n [!code-vb[Classic FileIOPermission Example#2](~/add/codesnippet/visualbasic/t-system.security.permis_23_2.vb)]\n [!code-cpp[Classic FileIOPermission Example#2](~/add/codesnippet/cpp/t-system.security.permis_23_2.cpp)]"
@@ -68,8 +68,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Initializes a new instance of the <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref> class with fully restricted or unrestricted permission as specified."
-  remarks: "Creates either fully restricted (`None`) or `Unrestricted` access to files and directories."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref> classe com permissão totalmente restrito ou sem restrições, conforme especificado."
+  remarks: "Cria um totalmente restrito (`None`) ou `Unrestricted` acesso aos ficheiros e diretórios."
   example:
   - "The following code example creates a new instance of the <xref:System.Security.Permissions.FileIOPermission> class with fully restricted read access.  \n  \n [!code-cs[Classic FileIOPermission Example#1](~/add/codesnippet/csharp/77d769e4-2464-4991-ba06-_1.cs)]\n [!code-vb[Classic FileIOPermission Example#1](~/add/codesnippet/visualbasic/77d769e4-2464-4991-ba06-_1.vb)]\n [!code-cpp[Classic FileIOPermission Example#1](~/add/codesnippet/cpp/77d769e4-2464-4991-ba06-_1.cpp)]"
   syntax:
@@ -77,12 +77,12 @@ items:
     parameters:
     - id: state
       type: System.Security.Permissions.PermissionState
-      description: "One of the <xref href=&quot;System.Security.Permissions.PermissionState&quot;></xref> enumeration values."
+      description: "Um do <xref href=&quot;System.Security.Permissions.PermissionState&quot;> </xref> valores de enumeração."
   overload: System.Security.Permissions.FileIOPermission.#ctor*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>state</code> parameter is not a valid value of <xref href=&quot;System.Security.Permissions.PermissionState&quot;></xref>."
+    description: "O <code> state </code> parâmetro não é um valor válido de <xref href=&quot;System.Security.Permissions.PermissionState&quot;> </xref>."
   platform:
   - net462
 - uid: System.Security.Permissions.FileIOPermission.#ctor(System.Security.Permissions.FileIOPermissionAccess,System.String)
@@ -97,8 +97,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Initializes a new instance of the <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref> class with the specified access to the designated file or directory."
-  remarks: "This constructor allows only one of the <xref:System.Security.Permissions.FileIOPermissionAccess> values to be specified for the specified file or directory. Use the <xref:System.Security.Permissions.FileIOPermission.AddPathList%2A> method to define complex permissions."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref> classe com o acesso ao ficheiro designado ou diretório especificado."
+  remarks: "Este construtor permite que apenas um do <xref:System.Security.Permissions.FileIOPermissionAccess>valores especificados para o diretório ou ficheiro especificados.</xref:System.Security.Permissions.FileIOPermissionAccess> Utilize o <xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>método para definir as permissões de complexas.</xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>"
   example:
   - "The following code example shows the use of the FileIOPermission constructor to create a new instance of the <xref:System.Security.Permissions.FileIOPermission> class, which provides complete access to the C:\\test_r file.  \n  \n [!code-cs[Classic FileIOPermission Example#2](~/add/codesnippet/csharp/51a3f39e-30ae-4011-8c38-_1.cs)]\n [!code-vb[Classic FileIOPermission Example#2](~/add/codesnippet/visualbasic/51a3f39e-30ae-4011-8c38-_1.vb)]\n [!code-cpp[Classic FileIOPermission Example#2](~/add/codesnippet/cpp/51a3f39e-30ae-4011-8c38-_1.cpp)]"
   syntax:
@@ -106,15 +106,15 @@ items:
     parameters:
     - id: access
       type: System.Security.Permissions.FileIOPermissionAccess
-      description: "A bitwise combination of the <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref> enumeration values."
+      description: "Uma combinação bit a bit do <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref> valores de enumeração."
     - id: path
       type: System.String
-      description: "The absolute path of the file or directory."
+      description: "O caminho absoluto do ficheiro ou diretório."
   overload: System.Security.Permissions.FileIOPermission.#ctor*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>access</code> parameter is not a valid value of <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>.       -or-       The <code>path</code> parameter is not a valid string.       -or-       The <code>path</code> parameter does not specify the absolute path to the file or directory."
+    description: "O <code> access </code> parâmetro não é um valor válido de <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>.       - ou - <code> path </code> parâmetro não é uma cadeia válida.       - ou - <code> path </code> parâmetro não especifica o caminho absoluto para o ficheiro ou diretório."
   platform:
   - net462
 - uid: System.Security.Permissions.FileIOPermission.#ctor(System.Security.Permissions.FileIOPermissionAccess,System.String[])
@@ -129,22 +129,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Initializes a new instance of the <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref> class with the specified access to the designated files and directories."
-  remarks: "This constructor allows only one <xref:System.Security.Permissions.FileIOPermissionAccess> value to be specified for the specified files and directories. Use the <xref:System.Security.Permissions.FileIOPermission.AddPathList%2A> method to define complex permissions."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref> classe com o acesso aos ficheiros designados e diretórios especificado."
+  remarks: "Este construtor permite que apenas um <xref:System.Security.Permissions.FileIOPermissionAccess>valor especificado para os ficheiros especificados e diretórios.</xref:System.Security.Permissions.FileIOPermissionAccess> Utilize o <xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>método para definir as permissões de complexas.</xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>"
   syntax:
     content: public FileIOPermission (System.Security.Permissions.FileIOPermissionAccess access, string[] pathList);
     parameters:
     - id: access
       type: System.Security.Permissions.FileIOPermissionAccess
-      description: "A bitwise combination of the <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref> enumeration values."
+      description: "Uma combinação bit a bit do <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref> valores de enumeração."
     - id: pathList
       type: System.String[]
-      description: "An array containing the absolute paths of the files and directories."
+      description: "Uma matriz que contém os caminhos absolutos dos ficheiros e diretórios."
   overload: System.Security.Permissions.FileIOPermission.#ctor*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>access</code> parameter is not a valid value of <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>.       -or-       An entry in the <code>pathList</code> array is not a valid string."
+    description: "O <code> access </code> parâmetro não é um valor válido de <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>.       - ou - uma entrada no <code> pathList </code> matriz não é uma cadeia válida."
   platform:
   - net462
 - uid: System.Security.Permissions.FileIOPermission.#ctor(System.Security.Permissions.FileIOPermissionAccess,System.Security.AccessControl.AccessControlActions,System.String)
@@ -159,25 +159,25 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Initializes a new instance of the <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref> class with the specified access to the designated file or directory and the specified access rights to file control information."
-  remarks: "This constructor allows only one <xref:System.Security.Permissions.FileIOPermissionAccess> value to be specified for the specified file or directories. Use the <xref:System.Security.Permissions.FileIOPermission.AddPathList%2A> method to define complex permissions.       The `control` parameter specifies whether the access control list (ACL) for the file or directory specified by `path` can be changed, viewed, or cannot be accessed.      > [!IMPORTANT] >  An access control list (ACL) describes individuals or groups who have, or do not have, rights to specific actions on the given file and its properties.  The ability to change or view an ACL is an important permission and should be granted with caution."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref> classe com o acesso especificado para o ficheiro designado ou diretório e os direitos de acesso especificado para informações de controlo de ficheiro."
+  remarks: "Este construtor permite que apenas um <xref:System.Security.Permissions.FileIOPermissionAccess>valor especificado para o ficheiro especificado ou diretórios.</xref:System.Security.Permissions.FileIOPermissionAccess> Utilize o <xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>método para definir as permissões de complexas.</xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>       O `control` parâmetro especifica se o controlo de acesso (ACL) de lista para o ficheiro ou diretório especificado pelo `path` podem ser alteradas, visualizar, ou não pode ser acedido.      > [!IMPORTANT] > Uma lista de controlo de acesso (ACL) descreve utilizadores individuais ou grupos de utilizadores que tenham ou não tem, direitos para as ações específicas sobre o ficheiro e as respetivas propriedades.  A capacidade de alterar ou visualizar uma ACL é uma permissão importante e deverá ser concedida com cuidado."
   syntax:
     content: public FileIOPermission (System.Security.Permissions.FileIOPermissionAccess access, System.Security.AccessControl.AccessControlActions control, string path);
     parameters:
     - id: access
       type: System.Security.Permissions.FileIOPermissionAccess
-      description: "A bitwise combination of the <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref> enumeration values."
+      description: "Uma combinação bit a bit do <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref> valores de enumeração."
     - id: control
       type: System.Security.AccessControl.AccessControlActions
-      description: "A bitwise combination of the <xref href=&quot;System.Security.AccessControl.AccessControlActions&quot;></xref> enumeration values."
+      description: "Uma combinação bit a bit do <xref href=&quot;System.Security.AccessControl.AccessControlActions&quot;> </xref> valores de enumeração."
     - id: path
       type: System.String
-      description: "The absolute path of the file or directory."
+      description: "O caminho absoluto do ficheiro ou diretório."
   overload: System.Security.Permissions.FileIOPermission.#ctor*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>access</code> parameter is not a valid value of <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>.       -or-       The <code>path</code> parameter is not a valid string.       -or-       The <code>path</code> parameter does not specify the absolute path to the file or directory."
+    description: "O <code> access </code> parâmetro não é um valor válido de <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>.       - ou - <code> path </code> parâmetro não é uma cadeia válida.       - ou - <code> path </code> parâmetro não especifica o caminho absoluto para o ficheiro ou diretório."
   platform:
   - net462
 - uid: System.Security.Permissions.FileIOPermission.#ctor(System.Security.Permissions.FileIOPermissionAccess,System.Security.AccessControl.AccessControlActions,System.String[])
@@ -192,25 +192,25 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Initializes a new instance of the <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref> class with the specified access to the designated files and directories and the specified access rights to file control information."
-  remarks: "This constructor allows only one <xref:System.Security.Permissions.FileIOPermissionAccess> value to be specified for the specified files and directories. Use the <xref:System.Security.Permissions.FileIOPermission.AddPathList%2A> method to define complex permissions.       The `control` parameter specifies whether the access control list (ACL) for the file or directory specified by `path` can be changed, viewed, or cannot be accessed.      > [!IMPORTANT] >  An access control list (ACL) describes individuals or groups who have, or do not have, rights to specific actions on the given file and its properties.  The ability to change or view an ACL is an important permission and should be granted with caution."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref> classe com o acesso especificado para os ficheiros designados e diretórios e os direitos de acesso especificado para informações de controlo de ficheiro."
+  remarks: "Este construtor permite que apenas um <xref:System.Security.Permissions.FileIOPermissionAccess>valor especificado para os ficheiros especificados e diretórios.</xref:System.Security.Permissions.FileIOPermissionAccess> Utilize o <xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>método para definir as permissões de complexas.</xref:System.Security.Permissions.FileIOPermission.AddPathList%2A>       O `control` parâmetro especifica se o controlo de acesso (ACL) de lista para o ficheiro ou diretório especificado pelo `path` podem ser alteradas, visualizar, ou não pode ser acedido.      > [!IMPORTANT] > Uma lista de controlo de acesso (ACL) descreve utilizadores individuais ou grupos de utilizadores que tenham ou não tem, direitos para as ações específicas sobre o ficheiro e as respetivas propriedades.  A capacidade de alterar ou visualizar uma ACL é uma permissão importante e deverá ser concedida com cuidado."
   syntax:
     content: public FileIOPermission (System.Security.Permissions.FileIOPermissionAccess access, System.Security.AccessControl.AccessControlActions control, string[] pathList);
     parameters:
     - id: access
       type: System.Security.Permissions.FileIOPermissionAccess
-      description: "A bitwise combination of the <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref> enumeration values."
+      description: "Uma combinação bit a bit do <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref> valores de enumeração."
     - id: control
       type: System.Security.AccessControl.AccessControlActions
-      description: "A bitwise combination of the <xref href=&quot;System.Security.AccessControl.AccessControlActions&quot;></xref> enumeration values."
+      description: "Uma combinação bit a bit do <xref href=&quot;System.Security.AccessControl.AccessControlActions&quot;> </xref> valores de enumeração."
     - id: pathList
       type: System.String[]
-      description: "An array containing the absolute paths of the files and directories."
+      description: "Uma matriz que contém os caminhos absolutos dos ficheiros e diretórios."
   overload: System.Security.Permissions.FileIOPermission.#ctor*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>access</code> parameter is not a valid value of <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>.       -or-       An entry in the <code>pathList</code> array is not a valid string."
+    description: "O <code> access </code> parâmetro não é um valor válido de <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>.       - ou - uma entrada no <code> pathList </code> matriz não é uma cadeia válida."
   platform:
   - net462
 - uid: System.Security.Permissions.FileIOPermission.AddPathList(System.Security.Permissions.FileIOPermissionAccess,System.String)
@@ -225,8 +225,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Adds access for the specified file or directory to the existing state of the permission."
-  remarks: "Use this method to modify file and directory access by adding to the state of the current permission."
+  summary: "Adiciona o acesso para o diretório ou ficheiro especificados para o estado da permissão existente."
+  remarks: "Utilize este método para modificar o ficheiro e diretório acesso adicionando-os para o estado da permissão atual."
   example:
   - "The following code example shows the use of the AddPathList method.  \n  \n [!code-cs[Classic FileIOPermission Example#2](~/add/codesnippet/csharp/179395dd-6ede-43e0-bf6e-_1.cs)]\n [!code-vb[Classic FileIOPermission Example#2](~/add/codesnippet/visualbasic/179395dd-6ede-43e0-bf6e-_1.vb)]\n [!code-cpp[Classic FileIOPermission Example#2](~/add/codesnippet/cpp/179395dd-6ede-43e0-bf6e-_1.cpp)]"
   syntax:
@@ -234,21 +234,21 @@ items:
     parameters:
     - id: access
       type: System.Security.Permissions.FileIOPermissionAccess
-      description: "A bitwise combination of the <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref> values."
+      description: "Uma combinação bit a bit do <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref> valores."
     - id: path
       type: System.String
-      description: "The absolute path of a file or directory."
+      description: "O caminho absoluto de um ficheiro ou diretório."
   overload: System.Security.Permissions.FileIOPermission.AddPathList*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>access</code> parameter is not a valid value of <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>.       -or-       The <code>path</code> parameter is not a valid string.       -or-       The <code>path</code> parameter did not specify the absolute path to the file or directory."
+    description: "O <code> access </code> parâmetro não é um valor válido de <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>.       - ou - <code> path </code> parâmetro não é uma cadeia válida.       - ou - <code> path </code> parâmetro não especificou o caminho absoluto para o ficheiro ou diretório."
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "The <code>path</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The <code>path</code> parameter has an invalid format."
+    description: "O <code> path </code> parâmetro tem um formato inválido."
   platform:
   - net462
 - uid: System.Security.Permissions.FileIOPermission.AddPathList(System.Security.Permissions.FileIOPermissionAccess,System.String[])
@@ -263,25 +263,25 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Adds access for the specified files and directories to the existing state of the permission."
-  remarks: "Use this method to modify file and directory access by adding to the state of the current permission."
+  summary: "Adiciona o acesso a diretórios e os ficheiros especificados para o estado da permissão existente."
+  remarks: "Utilize este método para modificar o ficheiro e diretório acesso adicionando-os para o estado da permissão atual."
   syntax:
     content: public void AddPathList (System.Security.Permissions.FileIOPermissionAccess access, string[] pathList);
     parameters:
     - id: access
       type: System.Security.Permissions.FileIOPermissionAccess
-      description: "A bitwise combination of the <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref> values."
+      description: "Uma combinação bit a bit do <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref> valores."
     - id: pathList
       type: System.String[]
-      description: "An array containing the absolute paths of the files and directories."
+      description: "Uma matriz que contém os caminhos absolutos dos ficheiros e diretórios."
   overload: System.Security.Permissions.FileIOPermission.AddPathList*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>access</code> parameter is not a valid value of <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>.       -or-       An entry in the <code>pathList</code> array is not valid."
+    description: "O <code> access </code> parâmetro não é um valor válido de <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>.       - ou - uma entrada no <code> pathList </code> matriz não é válida."
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "An entry in the <code>pathList</code> array has an invalid format."
+    description: "Uma entrada no <code> pathList </code> matriz tem um formato inválido."
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "The <code>pathList</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
@@ -299,15 +299,15 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Gets or sets the permitted access to all files."
-  remarks: "This property gets or sets the permitted access to all files on the local computer and network drives.       An individual <xref:System.Security.Permissions.FileIOPermissionAccess> value can be checked for using a bitwise AND operation."
+  summary: "Obtém ou define o acesso permitido para todos os ficheiros."
+  remarks: "Esta propriedade obtém ou define o acesso permitido para todos os ficheiros nas unidades do computador e da rede locais.       Um indivíduo <xref:System.Security.Permissions.FileIOPermissionAccess>valor pode ser verificado utilizando uma operação e bit.</xref:System.Security.Permissions.FileIOPermissionAccess>"
   example:
   - "The following code example shows the use of the AllFiles property.  \n  \n [!code-cs[Classic FileIOPermission Example#3](~/add/codesnippet/csharp/p-system.security.permis_9_1.cs)]\n [!code-vb[Classic FileIOPermission Example#3](~/add/codesnippet/visualbasic/p-system.security.permis_9_1.vb)]\n [!code-cpp[Classic FileIOPermission Example#3](~/add/codesnippet/cpp/p-system.security.permis_9_1.cpp)]"
   syntax:
     content: public System.Security.Permissions.FileIOPermissionAccess AllFiles { get; set; }
     return:
       type: System.Security.Permissions.FileIOPermissionAccess
-      description: "The set of file I/O flags for all files."
+      description: "O conjunto de e/s de ficheiro sinalizadores para todos os ficheiros."
   overload: System.Security.Permissions.FileIOPermission.AllFiles*
   exceptions: []
   platform:
@@ -324,15 +324,15 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Gets or sets the permitted access to all local files."
-  remarks: "Local files are files contained on the local computer. Any files not accessed through a network drive are local files.       An individual <xref:System.Security.Permissions.FileIOPermissionAccess> value can be checked for using a bitwise AND operation."
+  summary: "Obtém ou define o acesso permitido para todos os ficheiros locais."
+  remarks: "Ficheiros locais são ficheiros contidos no computador local. Todos os ficheiros não são acedidos através de uma unidade de rede são ficheiros locais.       Um indivíduo <xref:System.Security.Permissions.FileIOPermissionAccess>valor pode ser verificado utilizando uma operação e bit.</xref:System.Security.Permissions.FileIOPermissionAccess>"
   example:
   - "The following code example shows the use of the AllLocalFiles property.  \n  \n [!code-cs[Classic FileIOPermission Example#1](~/add/codesnippet/csharp/p-system.security.permis_10_1.cs)]\n [!code-vb[Classic FileIOPermission Example#1](~/add/codesnippet/visualbasic/p-system.security.permis_10_1.vb)]\n [!code-cpp[Classic FileIOPermission Example#1](~/add/codesnippet/cpp/p-system.security.permis_10_1.cpp)]"
   syntax:
     content: public System.Security.Permissions.FileIOPermissionAccess AllLocalFiles { get; set; }
     return:
       type: System.Security.Permissions.FileIOPermissionAccess
-      description: "The set of file I/O flags for all local files."
+      description: "O conjunto de e/s de ficheiro sinalizadores para todos os ficheiros locais."
   overload: System.Security.Permissions.FileIOPermission.AllLocalFiles*
   exceptions: []
   platform:
@@ -349,14 +349,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Creates and returns an identical copy of the current permission."
-  remarks: "A copy of the permission represents the same access to resources as the original permission."
+  summary: "Cria e devolve uma cópia da permissão atual idêntica."
+  remarks: "Uma cópia da permissão representa o mesmo acesso aos recursos, como a permissão original."
   syntax:
     content: public override System.Security.IPermission Copy ();
     parameters: []
     return:
       type: System.Security.IPermission
-      description: "A copy of the current permission."
+      description: "Uma cópia da permissão atual."
   overload: System.Security.Permissions.FileIOPermission.Copy*
   exceptions: []
   platform:
@@ -373,17 +373,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Determines whether the specified <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref> object is equal to the current <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref>."
-  remarks: "For more information, see <xref:System.Object.Equals%2A>."
+  summary: "Determina se especificado <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref> objeto é igual a atual <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref>."
+  remarks: "Para obter mais informações, consulte <xref:System.Object.Equals%2A>.</xref:System.Object.Equals%2A>"
   syntax:
     content: public override bool Equals (object obj);
     parameters:
     - id: obj
       type: System.Object
-      description: "The <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref> object to compare with the current <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref>."
+      description: "O <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref> objeto para a comparação com a atual <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref>."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the specified <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref> is equal to the current <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref> object; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se especificado <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref> é igual a atual <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref> objeto; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.Permissions.FileIOPermission.Equals*
   exceptions: []
   platform:
@@ -400,13 +400,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Reconstructs a permission with a specified state from an XML encoding."
+  summary: "Reconstructs uma permissão com um estado especificado de uma codificação de XML."
   syntax:
     content: public override void FromXml (System.Security.SecurityElement esd);
     parameters:
     - id: esd
       type: System.Security.SecurityElement
-      description: "The XML encoding used to reconstruct the permission."
+      description: "A codificação de XML utilizado para reconstrua a permissão."
   overload: System.Security.Permissions.FileIOPermission.FromXml*
   exceptions:
   - type: System.ArgumentNullException
@@ -414,7 +414,7 @@ items:
     description: "The <code>esd</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>esd</code> parameter is not a valid permission element.       -or-       The <code>esd</code> parameter&quot;s version number is not compatible."
+    description: "O <code> esd </code> parâmetro não é um elemento de permissão válido.       - ou - <code> esd </code> número da versão do parâmetro não é compatível."
   platform:
   - net462
 - uid: System.Security.Permissions.FileIOPermission.GetHashCode
@@ -429,14 +429,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Gets a hash code for the <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref> object that is suitable for use in hashing algorithms and data structures such as a hash table."
-  remarks: "The hash code for two instances of the same permission might be different, hence a hash code should not be used to compare two <xref:System.Security.Permissions.FileIOPermission> objects."
+  summary: "Obtém um código hash para o <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref> objeto que é adequado para utilização em estruturas de dados e algoritmos, tais como uma tabela hash de hash."
+  remarks: "O código hash para duas instâncias da mesma permissão poderão ser diferente, por conseguinte, um código hash não deve ser utilizado para comparar dois <xref:System.Security.Permissions.FileIOPermission>objetos.</xref:System.Security.Permissions.FileIOPermission>"
   syntax:
     content: public override int GetHashCode ();
     parameters: []
     return:
       type: System.Int32
-      description: "A hash code for the current <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;></xref> object."
+      description: "Um código hash para o atual <xref href=&quot;System.Security.Permissions.FileIOPermission&quot;> </xref> objeto."
   overload: System.Security.Permissions.FileIOPermission.GetHashCode*
   exceptions: []
   platform:
@@ -453,8 +453,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Gets all files and directories with the specified <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>."
-  remarks: "Use this method to get the state of the current permission. To get the state of both `Read` and `Write` access, two calls to this method are required.      > [!NOTE] >  The `access` parameter is limited to the values of <xref:System.Security.Permissions.FileIOPermissionAccess>, which represent single types of file access. Those values are <xref:System.Security.Permissions.FileIOPermissionAccess>, <xref:System.Security.Permissions.FileIOPermissionAccess>, <xref:System.Security.Permissions.FileIOPermissionAccess>, and <xref:System.Security.Permissions.FileIOPermissionAccess>. The values acceptable to `access` do not include <xref:System.Security.Permissions.FileIOPermissionAccess> and <xref:System.Security.Permissions.FileIOPermissionAccess>, which do not represent single types of file access."
+  summary: "Obtém todos os ficheiros e diretórios com especificado <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>."
+  remarks: "Utilize este método para obter o estado da permissão atual. Para obter o estado de ambos `Read` e `Write` acesso, dois chamadas para este método são necessárias.      > [!NOTE] > O `access` é limitado para os valores de parâmetro <xref:System.Security.Permissions.FileIOPermissionAccess>, que representa tipos único de acesso a ficheiros.</xref:System.Security.Permissions.FileIOPermissionAccess> Os valores são <xref:System.Security.Permissions.FileIOPermissionAccess>, <xref:System.Security.Permissions.FileIOPermissionAccess>, <xref:System.Security.Permissions.FileIOPermissionAccess>e <xref:System.Security.Permissions.FileIOPermissionAccess>.</xref:System.Security.Permissions.FileIOPermissionAccess> </xref:System.Security.Permissions.FileIOPermissionAccess> </xref:System.Security.Permissions.FileIOPermissionAccess> </xref:System.Security.Permissions.FileIOPermissionAccess> Os valores aceitáveis para `access` não incluem <xref:System.Security.Permissions.FileIOPermissionAccess>e <xref:System.Security.Permissions.FileIOPermissionAccess>, que não representam tipos único de acesso a ficheiros.</xref:System.Security.Permissions.FileIOPermissionAccess> </xref:System.Security.Permissions.FileIOPermissionAccess>"
   example:
   - "The following code example shows the use of the GetPathList method. This example is part of a larger example provided for the <xref:System.Security.Permissions.FileIOPermission> class.  \n  \n [!code-cpp[System.Security.Permissions.FileIOPermission#7](~/add/codesnippet/cpp/996247c6-c512-46ad-9cab-_1.cpp)]\n [!code-cs[System.Security.Permissions.FileIOPermission#7](~/add/codesnippet/csharp/996247c6-c512-46ad-9cab-_1.cs)]\n [!code-vb[System.Security.Permissions.FileIOPermission#7](~/add/codesnippet/visualbasic/996247c6-c512-46ad-9cab-_1.vb)]"
   syntax:
@@ -462,15 +462,15 @@ items:
     parameters:
     - id: access
       type: System.Security.Permissions.FileIOPermissionAccess
-      description: "One of the <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref> values that represents a single type of file access."
+      description: "Um do <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref> valores que representa um único tipo de acesso a ficheiros."
     return:
       type: System.String[]
-      description: "An array containing the paths of the files and directories to which access specified by the <code>access</code> parameter is granted."
+      description: "Uma matriz que contém os caminhos dos ficheiros e diretórios para que o acesso especificado pelo <code> access </code> parâmetro é concedido."
   overload: System.Security.Permissions.FileIOPermission.GetPathList*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "<code>access</code> is not a valid value of <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>.       -or-       <code>access</code> is <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>, which represents more than one type of file access, or <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>, which does not represent any type of file access."
+    description: "<code>access</code>Não é um valor válido de <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>.       - ou - <code>access</code> é <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>, que representa a mais do que um tipo de acesso a ficheiros, ou <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>, que não representam qualquer tipo de acesso a ficheiros."
   platform:
   - net462
 - uid: System.Security.Permissions.FileIOPermission.Intersect(System.Security.IPermission)
@@ -485,22 +485,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Creates and returns a permission that is the intersection of the current permission and the specified permission."
-  remarks: "The intersection of two permissions is a permission that describes the set of operations they both describe in common. Only a demand that passes both original permissions will pass the intersection."
+  summary: "Cria e devolve uma permissão que está a interseção da permissão atual e a permissão especificada."
+  remarks: "A intersecção de dois permissões é uma permissão que descreve o conjunto de operações de ambas as descrevem em comum. Apenas um pedido que transmite ambas as permissões originais passarão a interseção."
   syntax:
     content: public override System.Security.IPermission Intersect (System.Security.IPermission target);
     parameters:
     - id: target
       type: System.Security.IPermission
-      description: "A permission to intersect with the current permission. It must be the same type as the current permission."
+      description: "Uma permissão para intersect com a permissão atual. Tem de ser do mesmo tipo com a permissão atual."
     return:
       type: System.Security.IPermission
-      description: "A new permission that represents the intersection of the current permission and the specified permission. This new permission is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if the intersection is empty."
+      description: "Uma nova permissão que representa a interseção da permissão atual e a permissão especificada. Esta nova permissão é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se a interseção está vazia."
   overload: System.Security.Permissions.FileIOPermission.Intersect*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>target</code> parameter is not <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> and is not of the same type as the current permission."
+    description: "O <code> target </code> não é o parâmetro <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> e não é do mesmo tipo de que a permissão atual."
   platform:
   - net462
 - uid: System.Security.Permissions.FileIOPermission.IsSubsetOf(System.Security.IPermission)
@@ -515,22 +515,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Determines whether the current permission is a subset of the specified permission."
-  remarks: "The current permission is a subset of the specified permission if the current permission specifies a set of operations that is contained by the specified permission. For example, a permission that represents read access to C:\\example.txt is a subset of a permission that represents read access to C:\\\\. If this method returns `true`, the current permission represents no more access to the protected resource than does the specified permission."
+  summary: "Determina se a permissão atual é um subconjunto da permissão especificado."
+  remarks: "A permissão atual é um subconjunto da permissão especificada se a permissão atual Especifica um conjunto de operações que está contido pela permissão especificada. Por exemplo, uma permissão que representa acesso de leitura C:\\example.txt é um subconjunto de uma permissão que representa acesso de leitura para c:\\\\. Se este método devolve `true`, a permissão atual representa sem acesso ao recurso protegido mais do que a permissão especificada."
   syntax:
     content: public override bool IsSubsetOf (System.Security.IPermission target);
     parameters:
     - id: target
       type: System.Security.IPermission
-      description: "A permission that is to be tested for the subset relationship. This permission must be the same type as the current permission."
+      description: "Uma permissão que está a ser testada para a relação de subconjunto. Esta permissão tem de ser do mesmo tipo com a permissão atual."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the current permission is a subset of the specified permission; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a permissão atual é um subconjunto da permissão especificado; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.Permissions.FileIOPermission.IsSubsetOf*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>target</code> parameter is not <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> and is not of the same type as the current permission."
+    description: "O <code> target </code> não é o parâmetro <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> e não é do mesmo tipo de que a permissão atual."
   platform:
   - net462
 - uid: System.Security.Permissions.FileIOPermission.IsUnrestricted
@@ -545,14 +545,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Returns a value indicating whether the current permission is unrestricted."
-  remarks: "An unrestricted permission represents access to all resources protected by the permission."
+  summary: "Devolve um valor que indica se a permissão atual é sem restrições."
+  remarks: "Uma permissão sem restrições representa acesso a todos os recursos protegidos pela permissão."
   syntax:
     content: public bool IsUnrestricted ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the current permission is unrestricted; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a atual permissão é restrita; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.Permissions.FileIOPermission.IsUnrestricted*
   exceptions: []
   platform:
@@ -569,7 +569,7 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Sets the specified access to the specified file or directory, replacing the existing state of the permission."
+  summary: "Define o acesso especificado para o ficheiro especificado ou o diretório, substituindo o estado da permissão existente."
   remarks: "The previous state of the current permission for the specified access type is overwritten. The following code sets the access for C:\\temp to <xref:System.Security.Permissions.FileIOPermissionAccess>.  \n  \n [!code-cpp[System.Security.Permissions.FileIOPermission#12](~/add/codesnippet/cpp/21456ab4-f876-4c97-b331-_1.cpp)]\n [!code-vb[System.Security.Permissions.FileIOPermission#12](~/add/codesnippet/visualbasic/21456ab4-f876-4c97-b331-_1.vb)]\n [!code-cs[System.Security.Permissions.FileIOPermission#12](~/add/codesnippet/csharp/21456ab4-f876-4c97-b331-_1.cs)]  \n  \n This access will not be overwritten by the following code because the access types are not the same.  \n  \n [!code-cpp[System.Security.Permissions.FileIOPermission#13](~/add/codesnippet/cpp/21456ab4-f876-4c97-b331-_2.cpp)]\n [!code-vb[System.Security.Permissions.FileIOPermission#13](~/add/codesnippet/visualbasic/21456ab4-f876-4c97-b331-_2.vb)]\n [!code-cs[System.Security.Permissions.FileIOPermission#13](~/add/codesnippet/csharp/21456ab4-f876-4c97-b331-_2.cs)]"
   example:
   - "The following code example shows the use of the SetPathList method.  \n  \n [!code-cpp[System.Security.Permissions.FileIOPermission#7](~/add/codesnippet/cpp/21456ab4-f876-4c97-b331-_3.cpp)]\n [!code-cs[System.Security.Permissions.FileIOPermission#7](~/add/codesnippet/csharp/21456ab4-f876-4c97-b331-_3.cs)]\n [!code-vb[System.Security.Permissions.FileIOPermission#7](~/add/codesnippet/visualbasic/21456ab4-f876-4c97-b331-_3.vb)]"
@@ -578,15 +578,15 @@ items:
     parameters:
     - id: access
       type: System.Security.Permissions.FileIOPermissionAccess
-      description: "A bitwise combination of the <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref> values."
+      description: "Uma combinação bit a bit do <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref> valores."
     - id: path
       type: System.String
-      description: "The absolute path of the file or directory."
+      description: "O caminho absoluto do ficheiro ou diretório."
   overload: System.Security.Permissions.FileIOPermission.SetPathList*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>access</code> parameter is not a valid value of <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>.       -or-       The <code>path</code> parameter is not a valid string.       -or-       The <code>path</code> parameter did not specify the absolute path to the file or directory."
+    description: "O <code> access </code> parâmetro não é um valor válido de <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>.       - ou - <code> path </code> parâmetro não é uma cadeia válida.       - ou - <code> path </code> parâmetro não especificou o caminho absoluto para o ficheiro ou diretório."
   platform:
   - net462
 - uid: System.Security.Permissions.FileIOPermission.SetPathList(System.Security.Permissions.FileIOPermissionAccess,System.String[])
@@ -601,22 +601,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Sets the specified access to the specified files and directories, replacing the current state for the specified access with the new set of paths."
+  summary: "Define o acesso especificado para os ficheiros especificados e diretórios, substituindo o estado atual para o acesso especificado com o novo conjunto de caminhos."
   remarks: "The previous state of the current permission for the specified access type is overwritten. The following code sets the access for C:\\temp to <xref:System.Security.Permissions.FileIOPermissionAccess>.  \n  \n This access will not be overwritten by the following code because the access types are not the same.  \n  \n [!code-cpp[System.Security.Permissions.FileIOPermission#15](~/add/codesnippet/cpp/653665a4-6451-42cc-8bd1-_1.cpp)]\n [!code-vb[System.Security.Permissions.FileIOPermission#15](~/add/codesnippet/visualbasic/653665a4-6451-42cc-8bd1-_1.vb)]\n [!code-cs[System.Security.Permissions.FileIOPermission#15](~/add/codesnippet/csharp/653665a4-6451-42cc-8bd1-_1.cs)]"
   syntax:
     content: public void SetPathList (System.Security.Permissions.FileIOPermissionAccess access, string[] pathList);
     parameters:
     - id: access
       type: System.Security.Permissions.FileIOPermissionAccess
-      description: "A bitwise combination of the <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref> values."
+      description: "Uma combinação bit a bit do <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref> valores."
     - id: pathList
       type: System.String[]
-      description: "An array containing the absolute paths of the files and directories."
+      description: "Uma matriz que contém os caminhos absolutos dos ficheiros e diretórios."
   overload: System.Security.Permissions.FileIOPermission.SetPathList*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>access</code> parameter is not a valid value of <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>.       -or-       An entry in the <code>pathList</code> parameter is not a valid string."
+    description: "O <code> access </code> parâmetro não é um valor válido de <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>.       - ou - uma entrada no <code> pathList </code> parâmetro não é uma cadeia válida."
   platform:
   - net462
 - uid: System.Security.Permissions.FileIOPermission.ToXml
@@ -631,13 +631,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Creates an XML encoding of the permission and its current state."
+  summary: "Cria uma codificação XML de permissão e o respetivo estado atual."
   syntax:
     content: public override System.Security.SecurityElement ToXml ();
     parameters: []
     return:
       type: System.Security.SecurityElement
-      description: "An XML encoding of the permission, including any state information."
+      description: "Uma codificação XML da permissão, incluindo as informações de estado."
   overload: System.Security.Permissions.FileIOPermission.ToXml*
   exceptions: []
   platform:
@@ -654,22 +654,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Creates a permission that is the union of the current permission and the specified permission."
-  remarks: "The result of a call to Union is a permission that represents all the operations represented by both the current permission and the specified permission. Any demand that passes either permission passes their union."
+  summary: "Cria uma permissão que é a União de permissão atual e a permissão especificada."
+  remarks: "O resultado de uma chamada para União é uma permissão que representa todas as operações representadas pela permissão atual e a permissão especificada. Qualquer pedido que passa a permissão transmite os respetivos union."
   syntax:
     content: public override System.Security.IPermission Union (System.Security.IPermission other);
     parameters:
     - id: other
       type: System.Security.IPermission
-      description: "A permission to combine with the current permission. It must be the same type as the current permission."
+      description: "Uma permissão para combinar com a permissão atual. Tem de ser do mesmo tipo com a permissão atual."
     return:
       type: System.Security.IPermission
-      description: "A new permission that represents the union of the current permission and the specified permission."
+      description: "Uma nova permissão que representa a União de permissão atual e a permissão especificada."
   overload: System.Security.Permissions.FileIOPermission.Union*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>other</code> parameter is not <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> and is not of the same type as the current permission."
+    description: "O <code> other </code> não é o parâmetro <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> e não é do mesmo tipo de que a permissão atual."
   platform:
   - net462
 references:

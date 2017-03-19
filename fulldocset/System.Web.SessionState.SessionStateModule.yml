@@ -16,8 +16,8 @@ items:
   nameWithType: SessionStateModule
   fullName: System.Web.SessionState.SessionStateModule
   type: Class
-  summary: "Provides session-state services for an application. This class cannot be inherited."
-  remarks: "SessionStateModule is ASP.NET&quot;s default session-state handler. It writes session data to and retrieves it from the session-state store and raises the **Session_OnStart** and **Session_OnEnd** events. For details about how to use ASP.NET session state to store and retrieve values for a user session, see [ASP.NET Session State Overview](~/add/includes/ajax-current-ext-md.md).       You can replace the SessionStateModule with a custom implementation of the <xref:System.Web.IHttpModule> interface that manages session state. For an example of a custom session-state module, see the <xref:System.Web.SessionState.SessionStateUtility> class overview."
+  summary: "Fornece serviços de estado da sessão para uma aplicação. Esta classe não pode ser herdada."
+  remarks: "SessionStateModule é ASP. Processador de estado da sessão de predefinida da rede. Escreve dados de sessão e obtém-lo a partir do arquivo de estado da sessão e gera o **Session_OnStart** e **Session_OnEnd** eventos. Para obter mais informações sobre como utilizar o estado da sessão ASP.NET para armazenar e obter os valores para uma sessão de utilizador, consulte [descrição geral do Estado de sessão ASP.NET](~/add/includes/ajax-current-ext-md.md).       Pode substituir o SessionStateModule por uma implementação personalizada a <xref:System.Web.IHttpModule>interface que gere o estado da sessão.</xref:System.Web.IHttpModule> Para obter um exemplo de um módulo de estado da sessão personalizado, consulte o <xref:System.Web.SessionState.SessionStateUtility>Descrição geral de classe.</xref:System.Web.SessionState.SessionStateUtility>"
   syntax:
     content: 'public sealed class SessionStateModule : System.Web.SessionState.ISessionStateModule'
   inheritance:
@@ -39,8 +39,8 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.SessionState
-  summary: "Initializes a new instance of the <xref href=&quot;System.Web.SessionState.SessionStateModule&quot;></xref> class."
-  remarks: "This constructor is not intended to be called from application code.       An <xref:System.Web.HttpApplication> object is created when an ASP.NET application is started. The <xref:System.Web.HttpApplication> object calls the <xref:System.Web.SessionState.SessionStateModule> constructor to create the <xref:System.Web.SessionState.SessionStateModule> object for the application. The <xref:System.Web.SessionState.SessionStateModule> is specified in the configuration for an application."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Web.SessionState.SessionStateModule&quot;> </xref> classe."
+  remarks: "Este construtor não se destina a ser chamado a partir do código da aplicação.       Um <xref:System.Web.HttpApplication>objeto é criado quando uma aplicação ASP.NET é iniciada.</xref:System.Web.HttpApplication> O <xref:System.Web.HttpApplication>chamadas de objeto a <xref:System.Web.SessionState.SessionStateModule>construtor para criar o <xref:System.Web.SessionState.SessionStateModule>objeto para a aplicação.</xref:System.Web.SessionState.SessionStateModule> </xref:System.Web.SessionState.SessionStateModule> </xref:System.Web.HttpApplication> O <xref:System.Web.SessionState.SessionStateModule>é especificado na configuração para uma aplicação.</xref:System.Web.SessionState.SessionStateModule>"
   syntax:
     content: public SessionStateModule ();
     parameters: []
@@ -60,8 +60,8 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.SessionState
-  summary: "Executes final cleanup code before the <xref href=&quot;System.Web.SessionState.SessionStateModule&quot;></xref> object is released from memory."
-  remarks: "This method is not intended to be called from application code.       An <xref:System.Web.HttpApplication> object is created when an ASP.NET application is started. The <xref:System.Web.HttpApplication> object creates and initializes the <xref:System.Web.SessionState.SessionStateModule> object for the application and calls the Dispose method when the object is released. The <xref:System.Web.SessionState.SessionStateModule> is specified in the configuration for an application."
+  summary: "Executa o código de limpeza final antes do <xref href=&quot;System.Web.SessionState.SessionStateModule&quot;> </xref> objeto é libertado da memória."
+  remarks: "Este método não se destina a ser chamado a partir do código da aplicação.       Um <xref:System.Web.HttpApplication>objeto é criado quando uma aplicação ASP.NET é iniciada.</xref:System.Web.HttpApplication> O <xref:System.Web.HttpApplication>objeto cria e inicia o <xref:System.Web.SessionState.SessionStateModule>objeto para a aplicação e chama o método de Dispose quando o objeto é lançado.</xref:System.Web.SessionState.SessionStateModule> </xref:System.Web.HttpApplication> O <xref:System.Web.SessionState.SessionStateModule>é especificado na configuração para uma aplicação.</xref:System.Web.SessionState.SessionStateModule>"
   syntax:
     content: public void Dispose ();
     parameters: []
@@ -81,15 +81,15 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.SessionState
-  summary: "Occurs when a session ends."
-  remarks: "The End event is raised at the end of a request when the <xref:System.Web.SessionState.HttpSessionState.Abandon%2A> method has been called or when the session has expired. A session expires when the number of minutes specified by the <xref:System.Web.SessionState.HttpSessionState.Timeout%2A> property passes without a request being made for the session.       The **Session_OnEnd** event is used to perform any cleanup work for a session such as disposing of resources used by the session.       You can specify a handler for the End event by adding a public subroutine named **Session_OnEnd** to the Global.asax file.      > [!NOTE] >  The **Session_OnEnd** event is only supported when the session-state <xref:System.Web.SessionState.HttpSessionState.Mode%2A?displayProperty=fullName> property value is <xref:System.Web.SessionState.SessionStateMode>, which is the default. If the session-state <xref:System.Web.SessionState.HttpSessionState.Mode%2A> is set to <xref:System.Web.SessionState.SessionStateMode> or <xref:System.Web.SessionState.SessionStateMode>, then the **Session_OnEnd** event in the Global.asax file is ignored. If the session state <xref:System.Web.SessionState.HttpSessionState.Mode%2A> property value is <xref:System.Web.SessionState.SessionStateMode>, then support for the **Session_OnEnd** event is determined by the custom session-state store provider.       Though the End event is public, you can only handle it by adding an event handler in the Global.asax file. This restriction is implemented because <xref:System.Web.HttpApplication> instances are reused for performance. When a session expires, only the **Session_OnEnd** event specified in the Global.asax file is executed, to prevent code from calling  an End event handler associated with an <xref:System.Web.HttpApplication> instance that is currently in use.       For more information about the Global.asax file, see [Global.asax Syntax](http://msdn.microsoft.com/en-us/9ade9d4d-4d52-4e88-af52-53a9ffa26582)."
+  summary: "Ocorre quando uma sessão termina."
+  remarks: "O evento de fim é gerado no final de um pedido quando o <xref:System.Web.SessionState.HttpSessionState.Abandon%2A>método foi chamado ou quando a sessão expirou.</xref:System.Web.SessionState.HttpSessionState.Abandon%2A> Uma sessão expira se o número de minutos especificado pelo <xref:System.Web.SessionState.HttpSessionState.Timeout%2A>propriedade transmite sem um pedido que está a ser efetuadas para a sessão.</xref:System.Web.SessionState.HttpSessionState.Timeout%2A>       O **Session_OnEnd** eventos é utilizado para efetuar qualquer trabalho de limpeza para uma sessão como disposing dos recursos utilizados por sessão.       Pode especificar um processador para o evento de extremidade adicionando um subroutine pública nomeado **Session_OnEnd** para o ficheiro global. asax.      > [!NOTE] > O **Session_OnEnd** evento apenas é suportada quando o estado da sessão <xref:System.Web.SessionState.HttpSessionState.Mode%2A?displayProperty=fullName>valor da propriedade é <xref:System.Web.SessionState.SessionStateMode>, que é a predefinição.</xref:System.Web.SessionState.SessionStateMode> </xref:System.Web.SessionState.HttpSessionState.Mode%2A?displayProperty=fullName> Se o estado da sessão <xref:System.Web.SessionState.HttpSessionState.Mode%2A>está definido como <xref:System.Web.SessionState.SessionStateMode>ou <xref:System.Web.SessionState.SessionStateMode>, em seguida, a **Session_OnEnd** evento no ficheiro global. asax é ignorado.</xref:System.Web.SessionState.SessionStateMode> </xref:System.Web.SessionState.SessionStateMode> </xref:System.Web.SessionState.HttpSessionState.Mode%2A> Se o estado da sessão <xref:System.Web.SessionState.HttpSessionState.Mode%2A>valor da propriedade é <xref:System.Web.SessionState.SessionStateMode>, em seguida, suporte para o **Session_OnEnd** evento é determinado pelo fornecedor de arquivo de estado de sessão personalizado.</xref:System.Web.SessionState.SessionStateMode> </xref:System.Web.SessionState.HttpSessionState.Mode%2A>       Apesar do evento de fim é público, só pode processá-lo ao adicionar um processador de eventos no ficheiro global. asax. Esta restrição é implementada porque <xref:System.Web.HttpApplication>instâncias são reutilizadas para desempenho.</xref:System.Web.HttpApplication> Quando uma sessão expira, apenas o **Session_OnEnd** evento especificado no ficheiro global. asax é executado, para impedir que o código de um processador de eventos de fim associado ao chamar um <xref:System.Web.HttpApplication>instância que está a ser utilizada.</xref:System.Web.HttpApplication>       Para obter mais informações sobre o ficheiro global. asax, consulte [global. asax sintaxe](http://msdn.microsoft.com/en-us/9ade9d4d-4d52-4e88-af52-53a9ffa26582)."
   example:
   - "The following code example shows the contents of a Global.asax file with the **Session_OnStart** and **Session_OnEnd** events defined.  \n  \n```vb#  \n<script language=\"VB\" runat=\"server\">  \nPublic Sub Session_OnStart()  \n  \nEnd Sub  \n  \nPublic Sub Session_OnEnd()  \n  \nEnd Sub  \n</script>  \n```  \n  \n```c#  \n<script language=\"C#\" runat=\"server\">  \npublic void Session_OnStart()  \n{  \n  \n}  \n  \npublic void Session_OnEnd()  \n{  \n  \n}  \n</script>  \n```"
   syntax:
     content: public event EventHandler End;
     return:
       type: System.EventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -105,22 +105,22 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.SessionState
-  summary: "Calls initialization code when a <xref href=&quot;System.Web.SessionState.SessionStateModule&quot;></xref> object is created."
-  remarks: "This method is not intended to be called from application code.       An <xref:System.Web.HttpApplication> is created when an ASP.NET application is started. The <xref:System.Web.HttpApplication> object calls the Init method when it creates the <xref:System.Web.SessionState.SessionStateModule> object for the application. The <xref:System.Web.SessionState.SessionStateModule> class is specified in the configuration for an application."
+  summary: "Chama inicialização code quando um <xref href=&quot;System.Web.SessionState.SessionStateModule&quot;> </xref> objeto é criado."
+  remarks: "Este método não se destina a ser chamado a partir do código da aplicação.       Um <xref:System.Web.HttpApplication>é criado quando uma aplicação ASP.NET é iniciada.</xref:System.Web.HttpApplication> O <xref:System.Web.HttpApplication>objeto chama o método Init, quando cria o <xref:System.Web.SessionState.SessionStateModule>objeto para a aplicação.</xref:System.Web.SessionState.SessionStateModule> </xref:System.Web.HttpApplication> O <xref:System.Web.SessionState.SessionStateModule>classe é especificada na configuração para uma aplicação.</xref:System.Web.SessionState.SessionStateModule>"
   syntax:
     content: public void Init (System.Web.HttpApplication app);
     parameters:
     - id: app
       type: System.Web.HttpApplication
-      description: "The current application."
+      description: "A aplicação atual."
   overload: System.Web.SessionState.SessionStateModule.Init*
   exceptions:
   - type: System.Web.HttpException
     commentId: T:System.Web.HttpException
-    description: "The <xref uid=&quot;langword_csharp_mode&quot; name=&quot;mode&quot; href=&quot;&quot;></xref> attribute in the [sessionState Element (ASP.NET Settings Schema)](http://msdn.microsoft.com/en-us/bda6fb8c-0076-43e3-9ce2-8cf1f8bdaa7d) configuration element is set to <xref href=&quot;System.Web.SessionState.SessionStateMode&quot;></xref> or <xref href=&quot;System.Web.SessionState.SessionStateMode&quot;></xref>, and the ASP.NET application has less than <xref href=&quot;System.Web.AspNetHostingPermissionLevel&quot;></xref> trust."
+    description: "O <xref uid=&quot;langword_csharp_mode&quot; name=&quot;mode&quot; href=&quot;&quot;> </xref> atributo no [sessionState elemento (esquema de definições do ASP.NET)](http://msdn.microsoft.com/en-us/bda6fb8c-0076-43e3-9ce2-8cf1f8bdaa7d) elemento de configuração está definido como <xref href=&quot;System.Web.SessionState.SessionStateMode&quot;> </xref> ou <xref href=&quot;System.Web.SessionState.SessionStateMode&quot;> </xref>, e a aplicação ASP.NET tem menos de <xref href=&quot;System.Web.AspNetHostingPermissionLevel&quot;> </xref> confiança."
   - type: System.Configuration.ConfigurationErrorsException
     commentId: T:System.Configuration.ConfigurationErrorsException
-    description: "The <xref uid=&quot;langword_csharp_mode&quot; name=&quot;mode&quot; href=&quot;&quot;></xref> attribute in the [sessionState Element (ASP.NET Settings Schema)](http://msdn.microsoft.com/en-us/bda6fb8c-0076-43e3-9ce2-8cf1f8bdaa7d) configuration element is set to <xref href=&quot;System.Web.SessionState.SessionStateMode&quot;></xref> and the <xref uid=&quot;langword_csharp_customProvider&quot; name=&quot;customProvider&quot; href=&quot;&quot;></xref> attribute is empty or does not exist.       -or-       The <xref uid=&quot;langword_csharp_mode&quot; name=&quot;mode&quot; href=&quot;&quot;></xref> attribute in the [sessionState Element (ASP.NET Settings Schema)](http://msdn.microsoft.com/en-us/bda6fb8c-0076-43e3-9ce2-8cf1f8bdaa7d) configuration element is set to <xref href=&quot;System.Web.SessionState.SessionStateMode&quot;></xref> and the provider identified by name in the <xref uid=&quot;langword_csharp_customProvider&quot; name=&quot;customProvider&quot; href=&quot;&quot;></xref> attribute has not been added to the [providers Element for sessionState (ASP.NET Settings Schema)](http://msdn.microsoft.com/en-us/219d6778-9fb8-48ac-810d-bec68cf7d6aa) sub-element."
+    description: "O <xref uid=&quot;langword_csharp_mode&quot; name=&quot;mode&quot; href=&quot;&quot;> </xref> atributo no [sessionState elemento (esquema de definições do ASP.NET)](http://msdn.microsoft.com/en-us/bda6fb8c-0076-43e3-9ce2-8cf1f8bdaa7d) elemento de configuração está definido como <xref href=&quot;System.Web.SessionState.SessionStateMode&quot;> </xref> e <xref uid=&quot;langword_csharp_customProvider&quot; name=&quot;customProvider&quot; href=&quot;&quot;> </xref> atributo está vazio ou não existe.       - ou - o <xref uid=&quot;langword_csharp_mode&quot; name=&quot;mode&quot; href=&quot;&quot;> </xref> atributo no [sessionState elemento (esquema de definições do ASP.NET)](http://msdn.microsoft.com/en-us/bda6fb8c-0076-43e3-9ce2-8cf1f8bdaa7d) elemento de configuração está definido como <xref href=&quot;System.Web.SessionState.SessionStateMode&quot;> </xref> e o fornecedor identificado pelo nome no <xref uid=&quot;langword_csharp_customProvider&quot; name=&quot;customProvider&quot; href=&quot;&quot;> </xref> atributo não foi adicionado para o [fornecedores elemento para sessionState (esquema de definições do ASP.NET)](http://msdn.microsoft.com/en-us/219d6778-9fb8-48ac-810d-bec68cf7d6aa) subelemento."
   platform:
   - net462
 - uid: System.Web.SessionState.SessionStateModule.ReleaseSessionState(System.Web.HttpContext)
@@ -135,13 +135,13 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.SessionState
-  summary: "Releases the session state for the specified <xref href=&quot;System.Web.HttpContext&quot;></xref>."
+  summary: "Liberta o estado da sessão para especificado <xref href=&quot;System.Web.HttpContext&quot;> </xref>."
   syntax:
     content: public void ReleaseSessionState (System.Web.HttpContext context);
     parameters:
     - id: context
       type: System.Web.HttpContext
-      description: "The  <xref href=&quot;System.Web.HttpContext&quot;></xref> for which to to release the session state."
+      description: "O <xref href=&quot;System.Web.HttpContext&quot;> </xref> para o qual libertar o estado da sessão."
   overload: System.Web.SessionState.SessionStateModule.ReleaseSessionState*
   exceptions: []
   platform:
@@ -158,16 +158,16 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.SessionState
-  summary: "Asynchronously releases the session state for the specified <xref href=&quot;System.Web.HttpContext&quot;></xref>."
+  summary: "No modo assíncrono liberta o estado da sessão para especificado <xref href=&quot;System.Web.HttpContext&quot;> </xref>."
   syntax:
     content: public System.Threading.Tasks.Task ReleaseSessionStateAsync (System.Web.HttpContext context);
     parameters:
     - id: context
       type: System.Web.HttpContext
-      description: "The  <xref href=&quot;System.Web.HttpContext&quot;></xref> for which to to release the session state."
+      description: "O <xref href=&quot;System.Web.HttpContext&quot;> </xref> para o qual libertar o estado da sessão."
     return:
       type: System.Threading.Tasks.Task
-      description: "A <xref:System.Threading.Tasks.Task> for the asynchronous operation."
+      description: "A <xref:System.Threading.Tasks.Task>para a operação assíncrona.</xref:System.Threading.Tasks.Task>"
   overload: System.Web.SessionState.SessionStateModule.ReleaseSessionStateAsync*
   exceptions: []
   platform:
@@ -184,15 +184,15 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.SessionState
-  summary: "The event that occurs when a session is created."
-  remarks: "The Start event is raised at the beginning of a request when a new session is started. A new session is started if a request is made that does not contain a session identifier, the session identifier is invalid, or the session associated with a session identifier has expired.       The **Session_OnStart** event is used to perform any initialization work for a session such as setting up default values for session variables.       You can specify a handler for the Start event by adding a public subroutine named **Session_OnStart** to the Global.asax file.       For more information about the Global.asax file, see [Global.asax Syntax](http://msdn.microsoft.com/en-us/9ade9d4d-4d52-4e88-af52-53a9ffa26582)."
+  summary: "O evento que ocorre quando é criada uma sessão."
+  remarks: "O evento de início é gerado no início de um pedido quando é iniciada uma nova sessão. Uma nova sessão é iniciada se é efetuado um pedido que não contém um identificador de sessão, o identificador de sessão é inválido ou a sessão associada com um identificador de sessão expirou.       O **Session_OnStart** eventos é utilizado para efetuar qualquer trabalho de inicialização de uma sessão de como configurar os valores predefinidos para variáveis de sessão.       Pode especificar um processador para o evento de início, adicionando um subroutine pública nomeado **Session_OnStart** para o ficheiro global. asax.       Para obter mais informações sobre o ficheiro global. asax, consulte [global. asax sintaxe](http://msdn.microsoft.com/en-us/9ade9d4d-4d52-4e88-af52-53a9ffa26582)."
   example:
   - "The following code example shows the contents of a Global.asax file with the **Session_OnStart** and **Session_OnEnd** events defined.  \n  \n```vb#  \n<script language=\"VB\" runat=\"server\">  \nPublic Sub Session_OnStart()  \n  \nEnd Sub  \n  \nPublic Sub Session_OnEnd()  \n  \nEnd Sub  \n</script>  \n```  \n  \n```c#  \n<script language=\"C#\" runat=\"server\">  \npublic void Session_OnStart()  \n{  \n  \n}  \n  \npublic void Session_OnEnd()  \n{  \n  \n}  \n</script>  \n```"
   syntax:
     content: public event EventHandler Start;
     return:
       type: System.EventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462

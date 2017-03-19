@@ -27,8 +27,8 @@ items:
   nameWithType: SemaphoreSecurity
   fullName: System.Security.AccessControl.SemaphoreSecurity
   type: Class
-  summary: "Represents the Windows access control security for a named semaphore. This class cannot be inherited."
-  remarks: "A SemaphoreSecurity object specifies access rights for a named system semaphore, and also specifies how access attempts are audited. Access rights to the semaphore are expressed as rules, with each access rule represented by a <xref:System.Security.AccessControl.SemaphoreAccessRule> object. Each auditing rule is represented by a <xref:System.Security.AccessControl.SemaphoreAuditRule> object.       This mirrors the underlying Windows security system, in which each securable object has at most one discretionary access control list (DACL) that controls access to the secured object, and at most one system access control list (SACL) that specifies which access attempts are audited. The DACL and SACL are ordered lists of access control entries (ACE) that specify access and auditing for users and groups. A <xref:System.Security.AccessControl.SemaphoreAccessRule> or <xref:System.Security.AccessControl.SemaphoreAuditRule> object might represent more than one ACE.      > [!NOTE] >  A <xref:System.Threading.Semaphore> object can represent a local semaphore or a named system semaphore. Windows access control security is meaningful only for named system semaphores.       The SemaphoreSecurity, <xref:System.Security.AccessControl.SemaphoreAccessRule>, and <xref:System.Security.AccessControl.SemaphoreAuditRule> classes hide the implementation details of ACLs and ACEs. They allow you to ignore the seventeen different ACE types and the complexity of correctly maintaining inheritance and propagation of access rights. These objects are also designed to prevent the following common access control errors:      -   Creating a security descriptor with a null DACL. A null reference to a DACL allows any user to add access rules to an object, potentially creating a denial-of-service attack. A new SemaphoreSecurity object always starts with an empty DACL, which denies all access for all users.      -   Violating the canonical ordering of ACEs. If the ACE list in the DACL is not kept in the canonical order, users might inadvertently be given access to the secured object. For example, denied access rights must always appear before allowed access rights. SemaphoreSecurity objects maintain the correct order internally.      -   Manipulating security descriptor flags, which should be under resource manager control only.      -   Creating invalid combinations of ACE flags.      -   Manipulating inherited ACEs. Inheritance and propagation are handled by the resource manager, in response to changes you make to access and audit rules.      -   Inserting meaningless ACEs into ACLs.       The only capabilities not supported by the .NET security objects are dangerous activities that should be avoided by the majority of application developers, such as the following:      -   Low-level tasks that are normally performed by the resource manager.      -   Adding or removing access control entries in ways that do not maintain the canonical ordering.       To modify Windows access control security for a named semaphore, use the <xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName> method to get the SemaphoreSecurity object. Modify the security object by adding and removing rules, and then use the <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName> method to reattach it.      > [!IMPORTANT] >  Changes you make to a SemaphoreSecurity object do not affect the access levels of the named semaphore until you call the <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName> method to assign the altered security object to the named semaphore.       To copy access control security from one semaphore to another, use the <xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName> method to get a SemaphoreSecurity object representing the access and audit rules for the first semaphore, then use the <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName> method, or a constructor that accepts a SemaphoreSecurity object, to assign those rules to the second semaphore.       Users with an investment in the security descriptor definition language (SDDL) can use the <xref:System.Security.AccessControl.ObjectSecurity.SetSecurityDescriptorSddlForm%2A> method to set access rules for a named semaphore, and the <xref:System.Security.AccessControl.ObjectSecurity.GetSecurityDescriptorSddlForm%2A> method to obtain a string that represents the access rules in SDDL format. This is not recommended for new development.      > [!NOTE] >  Security on synchronization objects is not supported for Windows 98 or Windows Millennium Edition."
+  summary: "Representa a segurança de controlo de acesso do Windows para um semáforo com nome. Esta classe não pode ser herdada."
+  remarks: "Um objeto de SemaphoreSecurity especifica direitos de acesso para o semáforo um sistema com nome e também especifica como são auditadas tentativas de acesso. Direitos de acesso para o semáforo são expressos em regras, com cada regra de acesso representado por um <xref:System.Security.AccessControl.SemaphoreAccessRule>objeto.</xref:System.Security.AccessControl.SemaphoreAccessRule> Cada regra de auditoria é representada por um <xref:System.Security.AccessControl.SemaphoreAuditRule>objeto.</xref:System.Security.AccessControl.SemaphoreAuditRule>       Isto reflete o sistema de segurança de Windows subjacente, no qual cada objeto com capacidade de segurança tem no máximo um controlo lista de acesso discricionário (DACL) que controla o acesso ao objeto segurado e no máximo um sistema acesso lista de controlo (SACL) que especifica as tentativas de acesso são auditadas. O DACL e SACL ordenadas apresenta uma lista de entradas de controlo de acesso (ACE) que especificam o acesso e auditoria para utilizadores e grupos. A <xref:System.Security.AccessControl.SemaphoreAccessRule>ou <xref:System.Security.AccessControl.SemaphoreAuditRule>objeto poderão representar mais de uma ACE.</xref:System.Security.AccessControl.SemaphoreAuditRule> </xref:System.Security.AccessControl.SemaphoreAccessRule>      > [!NOTE] > A <xref:System.Threading.Semaphore>objeto pode representar um semáforo local ou um semáforo sistema nomeado.</xref:System.Threading.Semaphore> Segurança de controlo de acesso do Windows é significativa apenas para semaphores de sistema com nome.       O SemaphoreSecurity <xref:System.Security.AccessControl.SemaphoreAccessRule>, e <xref:System.Security.AccessControl.SemaphoreAuditRule>classes ocultar os detalhes de implementação de ACLs e ACEs.</xref:System.Security.AccessControl.SemaphoreAuditRule> </xref:System.Security.AccessControl.SemaphoreAccessRule> Estas permitem-lhe ignorar os diferentes tipos ACE seventeen e a complexidade de manter corretamente herança e propagação de direitos de acesso. Estes objetos são também foi concebidos para impedir que os seguintes erros de controlo de acesso comuns:-criar um descritor de segurança com um DACL nulo. Uma referência nula para um DACL permite que qualquer utilizador adicionar regras de acesso a um objeto, potencialmente, criar um ataque denial-of-service. Um novo objeto de SemaphoreSecurity sempre começa com um DACL vazio, que nega todos os acessos para todos os utilizadores.      -A ordenação canónico ACEs violação. Se a lista de ACE o DACL não é mantida pela ordem canónica, os utilizadores podem inadvertidamente ser dado acesso ao objeto segurado. Por exemplo, direitos de acesso negado sempre têm de aparecer antes de direitos de acesso permitido. Objetos de SemaphoreSecurity mantêm internamente ordem correta.      -Manipulação de sinalizadores de descritor de segurança, devem ser sob o controlo do Gestor de recursos apenas.      -Criar inválidas combinações de ACE sinalizadores.      -Manipular ACEs herdados. Herança e propagação são processadas pelo Gestor de recursos em resposta a alterações efetuadas às regras de acesso e auditoria.      -Inserir ACEs sem significado ACLs.       As capacidades apenas não suportadas pelos objetos de segurança do .NET estão perigosos atividades que devem ser evitadas pela maioria dos programadores de aplicações, tais como o seguinte:-tarefas de baixo nível que normalmente são executadas pelo Gestor de recursos.      -Adicionar ou remover entradas de controlo de acesso de formas que não mantêm a ordenação canónico.       Para modificar a segurança de controlo de acesso do Windows para um semáforo com nome, utilize o <xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName>método para obter o objeto de SemaphoreSecurity.</xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName> Modificar o objecto de segurança ao adicionar e remover regras e, em seguida, utilize o <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName>método para reattach mesmo.</xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName>      > [!IMPORTANT] > Alterações efetuadas a um objeto de SemaphoreSecurity não afetam os níveis de acesso de semáforo nomeado até que tem de chamar o <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName>método para atribuir o objeto de segurança alterada para o semáforo nomeado.</xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName>       Para copiar segurança de controlo de acesso de um semáforo para outro, utilize o <xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName>método para obter um objeto de SemaphoreSecurity que representa as regras de acesso e auditoria para o semáforo primeiro, em seguida, utilizar o <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName>método ou um construtor que aceite um objeto de SemaphoreSecurity, para atribuir essas regras para o segundo semáforo.</xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName> </xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName>       Os utilizadores com um investimento na linguagem de definição de descritor de segurança (SDDL) podem utilizar o <xref:System.Security.AccessControl.ObjectSecurity.SetSecurityDescriptorSddlForm%2A>método para definir regras de acesso para um semáforo com nome e o <xref:System.Security.AccessControl.ObjectSecurity.GetSecurityDescriptorSddlForm%2A>método para obter uma cadeia que representa as regras de acesso no formato SDDL.</xref:System.Security.AccessControl.ObjectSecurity.GetSecurityDescriptorSddlForm%2A> </xref:System.Security.AccessControl.ObjectSecurity.SetSecurityDescriptorSddlForm%2A> Não é recomendado para um novo desenvolvimento.      > [!NOTE] > Segurança em objetos de sincronização não é suportada para Windows 98 ou Windows Millennium Edition."
   example:
   - "The following code example demonstrates the separation between <xref:System.Security.AccessControl.AccessControlType> rules and <xref:System.Security.AccessControl.AccessControlType> rules, and shows the combination of rights in compatible rules. The example creates a SemaphoreSecurity object, adds rules that allow and deny various rights for the current user, and displays the resulting pair of rules. The example then allows new rights for the current user and displays the result, showing that the new rights are merged with the existing <xref:System.Security.AccessControl.AccessControlType> rule.  \n  \n> [!NOTE]\n>  This example does not attach the security object to a <xref:System.Threading.Semaphore> object. Examples that attach security objects can be found in <xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName> and <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName>.  \n  \n [!code-cs[System.Security.AccessControl.SemaphoreSecurity.AddAccessRule#1](~/add/codesnippet/csharp/t-system.security.access_8_1.cs)]\n [!code-vb[System.Security.AccessControl.SemaphoreSecurity.AddAccessRule#1](~/add/codesnippet/visualbasic/t-system.security.access_8_1.vb)]"
   syntax:
@@ -108,8 +108,8 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Initializes a new instance of the <xref href=&quot;System.Security.AccessControl.SemaphoreSecurity&quot;></xref> class with default values."
-  remarks: "A new <xref:System.Security.AccessControl.SemaphoreSecurity> object always starts with an empty discretionary access list (DACL), which denies all access for all users."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Security.AccessControl.SemaphoreSecurity&quot;> </xref> classe com valores predefinidos."
+  remarks: "Um novo <xref:System.Security.AccessControl.SemaphoreSecurity>objeto sempre começa com uma lista vazia de acesso discricionário (DACL), que nega todos os acessos para todos os utilizadores.</xref:System.Security.AccessControl.SemaphoreSecurity>"
   syntax:
     content: public SemaphoreSecurity ();
     parameters: []
@@ -117,7 +117,7 @@ items:
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "This class is not supported on Windows 98 or Windows Millennium Edition."
+    description: "Esta classe não é suportada no Windows 98 ou edição de Millennium do Windows."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.#ctor(System.String,System.Security.AccessControl.AccessControlSections)
@@ -132,22 +132,22 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Initializes a new instance of the <xref href=&quot;System.Security.AccessControl.SemaphoreSecurity&quot;></xref> class with the specified sections of the access control security rules from the system semaphore with the specified name."
-  remarks: "This constructor allows you to obtain the access control security for a named system semaphore without first creating a <xref:System.Threading.Semaphore> object.       Caution must be exercised when working with named system objects. If there is a system object named `name` that is not a semaphore, its control access security might be retrieved."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Security.AccessControl.SemaphoreSecurity&quot;> </xref> classe com as secções que se especificado, as regras de segurança do controlo de acesso de semáforo sistema com o nome especificado."
+  remarks: "Este construtor permite-lhe obter a segurança de controlo de acesso para o semáforo um sistema com nome sem criar primeiro um <xref:System.Threading.Semaphore>objeto.</xref:System.Threading.Semaphore>       Atenção tem de ser executada ao trabalhar com objetos do sistema com nome. Se houver um objeto de sistema com o nome `name` que não é um semáforo, a segurança de acesso de controlo pode ser obtida."
   syntax:
     content: public SemaphoreSecurity (string name, System.Security.AccessControl.AccessControlSections includeSections);
     parameters:
     - id: name
       type: System.String
-      description: "The name of the system semaphore whose access control security rules are to be retrieved."
+      description: "O nome do semáforo sistema cujas regras de segurança do controlo de acesso estão a ser obtidos."
     - id: includeSections
       type: System.Security.AccessControl.AccessControlSections
-      description: "A combination of <xref href=&quot;System.Security.AccessControl.AccessControlSections&quot;></xref> flags specifying the sections to retrieve."
+      description: "Uma combinação de <xref href=&quot;System.Security.AccessControl.AccessControlSections&quot;> </xref> sinalizadores especificando as secções a obter."
   overload: System.Security.AccessControl.SemaphoreSecurity.#ctor*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "This class is not supported on Windows 98 or Windows Millennium Edition."
+    description: "Esta classe não é suportada no Windows 98 ou edição de Millennium do Windows."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.AccessRightType
@@ -162,13 +162,13 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Gets the enumeration that the <xref href=&quot;System.Security.AccessControl.SemaphoreSecurity&quot;></xref> class uses to represent access rights."
-  remarks: "Classes that derive from the <xref:System.Security.AccessControl.ObjectSecurity> class override the <xref:System.Security.AccessControl.ObjectSecurity.AccessRightType%2A> property and return the type they use to represent access rights. When you work with arrays or collections that contain multiple types of security objects, use this property to determine the correct enumeration type to use with each security object."
+  summary: "Obtém a enumeração que o <xref href=&quot;System.Security.AccessControl.SemaphoreSecurity&quot;> </xref> utiliza para representar os direitos de acesso de classe."
+  remarks: "Classes que derivam de <xref:System.Security.AccessControl.ObjectSecurity>substituição de classe a <xref:System.Security.AccessControl.ObjectSecurity.AccessRightType%2A>propriedade e devolver o tipo que utilizam para representar os direitos de acesso.</xref:System.Security.AccessControl.ObjectSecurity.AccessRightType%2A> </xref:System.Security.AccessControl.ObjectSecurity> Quando trabalha com matrizes ou coleções que contenham vários tipos de objetos de segurança, utilize esta propriedade para determinar o tipo de enumeração correto a utilizar com cada objeto de segurança."
   syntax:
     content: public override Type AccessRightType { get; }
     return:
       type: System.Type
-      description: "A <xref:System.Type> object representing the <xref href=&quot;System.Security.AccessControl.SemaphoreRights&quot;></xref> enumeration."
+      description: "A <xref:System.Type>objeto que representa o <xref href=&quot;System.Security.AccessControl.SemaphoreRights&quot;> </xref> enumeração.</xref:System.Type>"
   overload: System.Security.AccessControl.SemaphoreSecurity.AccessRightType*
   exceptions: []
   platform:
@@ -185,43 +185,43 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Creates a new access control rule for the specified user, with the specified access rights, access control, and flags."
-  remarks: "The recommended way to create access control rules is to use the constructors of the <xref:System.Security.AccessControl.SemaphoreAccessRule> class.      > [!NOTE] >  Although inheritance and propagation flags are meaningless for named semaphores, it is still possible to specify them This is not recommended, because it needlessly complicates the maintenance of rules, for example by interfering with the combination of rules that would otherwise be compatible."
+  summary: "Cria uma nova regra de controlo de acesso para o utilizador especificado, com os direitos de acesso especificado, o controlo de acesso e sinalizadores."
+  remarks: "O modo recomendado para criar regras de controlo de acesso está a utilizar os construtores da <xref:System.Security.AccessControl.SemaphoreAccessRule>classe.</xref:System.Security.AccessControl.SemaphoreAccessRule>      > [!NOTE] > Apesar dos sinalizadores de herança e propagação serem sem significado para semaphores com nome, é possível especificar não seja recomendado, porque este perdas de tempo complicates a manutenção de regras, por exemplo, interferir com a combinação de regras que de outra forma seriam compatível."
   syntax:
     content: public override System.Security.AccessControl.AccessRule AccessRuleFactory (System.Security.Principal.IdentityReference identityReference, int accessMask, bool isInherited, System.Security.AccessControl.InheritanceFlags inheritanceFlags, System.Security.AccessControl.PropagationFlags propagationFlags, System.Security.AccessControl.AccessControlType type);
     parameters:
     - id: identityReference
       type: System.Security.Principal.IdentityReference
-      description: "An <xref href=&quot;System.Security.Principal.IdentityReference&quot;></xref> that identifies the user or group the rule applies to."
+      description: "Um <xref href=&quot;System.Security.Principal.IdentityReference&quot;> </xref> que identifica o utilizador ou grupo a regra se aplica."
     - id: accessMask
       type: System.Int32
-      description: "A bitwise combination of <xref href=&quot;System.Security.AccessControl.SemaphoreRights&quot;></xref> values specifying the access rights to allow or deny, cast to an integer."
+      description: "Uma combinação bit a bit de <xref href=&quot;System.Security.AccessControl.SemaphoreRights&quot;> </xref> valores especificar os direitos de acesso para permitir ou negar, converter para um número inteiro."
     - id: isInherited
       type: System.Boolean
-      description: "Meaningless for named semaphores, because they have no hierarchy."
+      description: "Sem significado para com o nome semaphores, porque não têm nenhuma hierarquia."
     - id: inheritanceFlags
       type: System.Security.AccessControl.InheritanceFlags
-      description: "Meaningless for named semaphores, because they have no hierarchy."
+      description: "Sem significado para com o nome semaphores, porque não têm nenhuma hierarquia."
     - id: propagationFlags
       type: System.Security.AccessControl.PropagationFlags
-      description: "Meaningless for named semaphores, because they have no hierarchy."
+      description: "Sem significado para com o nome semaphores, porque não têm nenhuma hierarquia."
     - id: type
       type: System.Security.AccessControl.AccessControlType
-      description: "One of the <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;></xref> values specifying whether the rights are allowed or denied."
+      description: "Um do <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;> </xref> valores especificar se os direitos são permitidos ou negados."
     return:
       type: System.Security.AccessControl.AccessRule
-      description: "A <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;></xref> object representing the specified rights for the specified user."
+      description: "A <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;> </xref> objeto que representa os direitos especificados para o utilizador especificado."
   overload: System.Security.AccessControl.SemaphoreSecurity.AccessRuleFactory*
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "<code>accessMask</code>, <code>inheritanceFlags</code>, <code>propagationFlags</code>, or <code>type</code> specifies an invalid value."
+    description: "<code>accessMask</code>, <code>inheritanceFlags</code>, <code>propagationFlags</code>, ou <code>type</code> Especifica um valor inválido."
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>identityReference</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       <code>accessMask</code> is zero."
+    description: "<code>identityReference</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       - ou - <code>accessMask</code> é zero."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "<code>identityReference</code> is neither of type <xref href=&quot;System.Security.Principal.SecurityIdentifier&quot;></xref>, nor of a type such as <xref href=&quot;System.Security.Principal.NTAccount&quot;></xref> that can be converted to type <xref href=&quot;System.Security.Principal.SecurityIdentifier&quot;></xref>."
+    description: "<code>identityReference</code>é nenhum tipo <xref href=&quot;System.Security.Principal.SecurityIdentifier&quot;> </xref>, nem um tipo como <xref href=&quot;System.Security.Principal.NTAccount&quot;> </xref> que pode ser convertido no tipo <xref href=&quot;System.Security.Principal.SecurityIdentifier&quot;> </xref>."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.AccessRuleType
@@ -236,13 +236,13 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Gets the type that the <xref href=&quot;System.Security.AccessControl.SemaphoreSecurity&quot;></xref> class uses to represent access rules."
-  remarks: "Classes that derive from the <xref:System.Security.AccessControl.ObjectSecurity> class override the <xref:System.Security.AccessControl.ObjectSecurity.AccessRuleType%2A> property and return the type they use to represent access rules. When you work with arrays or collections that contain multiple types of security objects, use this property to determine the correct access rule type to use with each security object."
+  summary: "Obtém o tipo que o <xref href=&quot;System.Security.AccessControl.SemaphoreSecurity&quot;> </xref> utiliza para representar as regras de acesso de classe."
+  remarks: "Classes que derivam de <xref:System.Security.AccessControl.ObjectSecurity>substituição de classe a <xref:System.Security.AccessControl.ObjectSecurity.AccessRuleType%2A>propriedade e devolver o tipo que utilizam para representar as regras de acesso.</xref:System.Security.AccessControl.ObjectSecurity.AccessRuleType%2A> </xref:System.Security.AccessControl.ObjectSecurity> Quando trabalha com matrizes ou coleções que contenham vários tipos de objetos de segurança, utilize esta propriedade para determinar o tipo de regra de acesso corretas para utilizar com cada objeto de segurança."
   syntax:
     content: public override Type AccessRuleType { get; }
     return:
       type: System.Type
-      description: "A <xref:System.Type> object representing the <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;></xref> class."
+      description: "A <xref:System.Type>objeto que representa o <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;> </xref> classe</xref:System.Type>"
   overload: System.Security.AccessControl.SemaphoreSecurity.AccessRuleType*
   exceptions: []
   platform:
@@ -259,8 +259,8 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Searches for a matching rule with which the new rule can be merged. If none are found, adds the new rule."
-  remarks: "The AddAccessRule method searches for rules with the same user or group and the same <xref:System.Security.AccessControl.AccessControlType> as `rule`. If none are found, `rule` is added. If a matching rule is found, the rights in `rule` are merged with the existing rule."
+  summary: "Procura uma regra correspondente com o qual a nova regra possam ser intercalada. Se não for encontrada nenhuma, adiciona a nova regra."
+  remarks: "O método AddAccessRule procura regras com o mesmo utilizador ou grupo e o mesmo <xref:System.Security.AccessControl.AccessControlType>como `rule`.</xref:System.Security.AccessControl.AccessControlType> Se não for encontrada nenhuma, `rule` é adicionado. Se for encontrada uma regra correspondente, os direitos no `rule` são intercaladas com a regra existente."
   example:
   - "The following code example demonstrates the separation between <xref:System.Security.AccessControl.AccessControlType> rules and <xref:System.Security.AccessControl.AccessControlType> rules, and shows the combination of rights in compatible rules. The example creates a <xref:System.Security.AccessControl.SemaphoreSecurity> object, adds rules that allow and deny various rights for the current user, and displays the resulting pair of rules. The example then allows new rights for the current user and displays the result, showing that the new rights are merged with the existing <xref:System.Security.AccessControl.AccessControlType> rule.  \n  \n> [!NOTE]\n>  This example does not attach the security object to a <xref:System.Threading.Semaphore> object. Examples that attach security objects can be found in <xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName> and <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName>.  \n  \n [!code-cs[System.Security.AccessControl.SemaphoreSecurity.AddAccessRule#1](~/add/codesnippet/csharp/5be6d691-cc28-4e1b-ae9c-_1.cs)]\n [!code-vb[System.Security.AccessControl.SemaphoreSecurity.AddAccessRule#1](~/add/codesnippet/visualbasic/5be6d691-cc28-4e1b-ae9c-_1.vb)]"
   syntax:
@@ -268,12 +268,12 @@ items:
     parameters:
     - id: rule
       type: System.Security.AccessControl.SemaphoreAccessRule
-      description: "The access control rule to add."
+      description: "A regra de controlo de acesso para adicionar."
   overload: System.Security.AccessControl.SemaphoreSecurity.AddAccessRule*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>rule</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>rule</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.AddAuditRule(System.Security.AccessControl.SemaphoreAuditRule)
@@ -288,14 +288,14 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Searches for an audit rule with which the new rule can be merged. If none are found, adds the new rule."
-  remarks: "The AddAuditRule method searches for rules with the same user or group as `rule`. If none are found, `rule` is added. If a matching rule is found, the flags in `rule` are merged into the existing rule."
+  summary: "Procura uma regra de auditoria com a qual a nova regra pode ser intercalada. Se não for encontrada nenhuma, adiciona a nova regra."
+  remarks: "O método AddAuditRule procura regras com o mesmo utilizador ou grupo como `rule`. Se não for encontrada nenhuma, `rule` é adicionado. Se for encontrada uma regra correspondente, os sinalizadores no `rule` são intercaladas para a regra existente."
   syntax:
     content: public void AddAuditRule (System.Security.AccessControl.SemaphoreAuditRule rule);
     parameters:
     - id: rule
       type: System.Security.AccessControl.SemaphoreAuditRule
-      description: "The audit rule to add. The user specified by this rule determines the search."
+      description: "A regra de auditoria para adicionar. O utilizador especificado por esta regra determina a pesquisa."
   overload: System.Security.AccessControl.SemaphoreSecurity.AddAuditRule*
   exceptions: []
   platform:
@@ -312,43 +312,43 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Creates a new audit rule, specifying the user the rule applies to, the access rights to audit, and the outcome that triggers the audit rule."
-  remarks: "The recommended way to create audit rules is to use the constructors of the <xref:System.Security.AccessControl.SemaphoreAuditRule> class.      > [!NOTE] >  Although inheritance and propagation flags are meaningless for named semaphores, it is still possible to specify them. This is not recommended, because it needlessly complicates the maintenance of rules, for example by interfering with the combination of rules that would otherwise be compatible."
+  summary: "Cria uma nova regra de auditoria, especificando o utilizador que a regra se aplica, os direitos de acesso para auditoria e o resultado que aciona a regra de auditoria."
+  remarks: "O modo recomendado para criar regras de auditoria é utilizar os construtores da <xref:System.Security.AccessControl.SemaphoreAuditRule>classe.</xref:System.Security.AccessControl.SemaphoreAuditRule>      > [!NOTE] > Apesar dos sinalizadores de herança e propagação serem sem significado para semaphores com nome, é possível de especificá-los. Isto não é recomendado, porque este perdas de tempo complicates a manutenção de regras, por exemplo, interferir com a combinação de regras que de outra forma seriam compatível."
   syntax:
     content: public override System.Security.AccessControl.AuditRule AuditRuleFactory (System.Security.Principal.IdentityReference identityReference, int accessMask, bool isInherited, System.Security.AccessControl.InheritanceFlags inheritanceFlags, System.Security.AccessControl.PropagationFlags propagationFlags, System.Security.AccessControl.AuditFlags flags);
     parameters:
     - id: identityReference
       type: System.Security.Principal.IdentityReference
-      description: "An <xref href=&quot;System.Security.Principal.IdentityReference&quot;></xref> that identifies the user or group the rule applies to."
+      description: "Um <xref href=&quot;System.Security.Principal.IdentityReference&quot;> </xref> que identifica o utilizador ou grupo a regra se aplica."
     - id: accessMask
       type: System.Int32
-      description: "A bitwise combination of <xref href=&quot;System.Security.AccessControl.SemaphoreRights&quot;></xref> values specifying the access rights to audit, cast to an integer."
+      description: "Uma combinação bit a bit de <xref href=&quot;System.Security.AccessControl.SemaphoreRights&quot;> </xref> valores especificar os direitos de acesso a auditoria, converter para um número inteiro."
     - id: isInherited
       type: System.Boolean
-      description: "Meaningless for named wait handles, because they have no hierarchy."
+      description: "Sem significado para identificadores de espera com nome, porque não têm nenhuma hierarquia."
     - id: inheritanceFlags
       type: System.Security.AccessControl.InheritanceFlags
-      description: "Meaningless for named wait handles, because they have no hierarchy."
+      description: "Sem significado para identificadores de espera com nome, porque não têm nenhuma hierarquia."
     - id: propagationFlags
       type: System.Security.AccessControl.PropagationFlags
-      description: "Meaningless for named wait handles, because they have no hierarchy."
+      description: "Sem significado para identificadores de espera com nome, porque não têm nenhuma hierarquia."
     - id: flags
       type: System.Security.AccessControl.AuditFlags
-      description: "A bitwise combination of <xref href=&quot;System.Security.AccessControl.AuditFlags&quot;></xref> values that specify whether to audit successful access, failed access, or both."
+      description: "Uma combinação bit a bit de <xref href=&quot;System.Security.AccessControl.AuditFlags&quot;> </xref> valores que especifique se a auditoria de acesso com êxito, falha de acesso ou ambos."
     return:
       type: System.Security.AccessControl.AuditRule
-      description: "A <xref href=&quot;System.Security.AccessControl.SemaphoreAuditRule&quot;></xref> object representing the specified audit rule for the specified user. The return type of the method is the base class, <xref href=&quot;System.Security.AccessControl.AuditRule&quot;></xref>, but the return value can be cast safely to the derived class."
+      description: "A <xref href=&quot;System.Security.AccessControl.SemaphoreAuditRule&quot;> </xref> objeto que representa a regra de auditoria especificado para o utilizador especificado. O tipo de retorno do método é a classe base, <xref href=&quot;System.Security.AccessControl.AuditRule&quot;> </xref>, mas o valor de retorno pode ser convertido em segurança para a classe derivada."
   overload: System.Security.AccessControl.SemaphoreSecurity.AuditRuleFactory*
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "<code>accessMask</code>, <code>inheritanceFlags</code>, <code>propagationFlags</code>, or <code>flags</code> specifies an invalid value."
+    description: "<code>accessMask</code>, <code>inheritanceFlags</code>, <code>propagationFlags</code>, ou <code>flags</code> Especifica um valor inválido."
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>identityReference</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       <code>accessMask</code> is zero."
+    description: "<code>identityReference</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       - ou - <code>accessMask</code> é zero."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "<code>identityReference</code> is neither of type <xref href=&quot;System.Security.Principal.SecurityIdentifier&quot;></xref>, nor of a type such as <xref href=&quot;System.Security.Principal.NTAccount&quot;></xref> that can be converted to type <xref href=&quot;System.Security.Principal.SecurityIdentifier&quot;></xref>."
+    description: "<code>identityReference</code>é nenhum tipo <xref href=&quot;System.Security.Principal.SecurityIdentifier&quot;> </xref>, nem um tipo como <xref href=&quot;System.Security.Principal.NTAccount&quot;> </xref> que pode ser convertido no tipo <xref href=&quot;System.Security.Principal.SecurityIdentifier&quot;> </xref>."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.AuditRuleType
@@ -363,13 +363,13 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Gets the type that the <xref href=&quot;System.Security.AccessControl.SemaphoreSecurity&quot;></xref> class uses to represent audit rules."
-  remarks: "Classes that derive from the <xref:System.Security.AccessControl.ObjectSecurity> class override the <xref:System.Security.AccessControl.ObjectSecurity.AuditRuleType%2A> property and return the type they use to represent audit rights. When you work with arrays or collections that contain multiple types of security objects, use this property to determine the correct audit rule type to use with each security object."
+  summary: "Obtém o tipo que o <xref href=&quot;System.Security.AccessControl.SemaphoreSecurity&quot;> </xref> utiliza para representar regras de auditoria de classe."
+  remarks: "Classes que derivam de <xref:System.Security.AccessControl.ObjectSecurity>substituição de classe a <xref:System.Security.AccessControl.ObjectSecurity.AuditRuleType%2A>propriedade e devolver o tipo que utilizam para representar os direitos de auditoria.</xref:System.Security.AccessControl.ObjectSecurity.AuditRuleType%2A> </xref:System.Security.AccessControl.ObjectSecurity> Quando trabalha com matrizes ou coleções que contenham vários tipos de objetos de segurança, utilize esta propriedade para determinar o tipo de regra de auditoria correta a utilizar com cada objeto de segurança."
   syntax:
     content: public override Type AuditRuleType { get; }
     return:
       type: System.Type
-      description: "A <xref:System.Type> object representing the <xref href=&quot;System.Security.AccessControl.SemaphoreAuditRule&quot;></xref> class."
+      description: "A <xref:System.Type>objeto que representa o <xref href=&quot;System.Security.AccessControl.SemaphoreAuditRule&quot;> </xref> classe</xref:System.Type>"
   overload: System.Security.AccessControl.SemaphoreSecurity.AuditRuleType*
   exceptions: []
   platform:
@@ -386,8 +386,8 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Searches for an access control rule with the same user and <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;></xref> (allow or deny) as the specified rule, and with compatible inheritance and propagation flags; if such a rule is found, the rights contained in the specified access rule are removed from it."
-  remarks: "The current <xref:System.Security.AccessControl.SemaphoreSecurity> is searched for a rule that has the same user and the same <xref:System.Security.AccessControl.AccessControlType> value as `rule`. If no such rule is found, no action is taken, and the method returns `false`. If matching rules are found, their inheritance and compatibility flags are checked for compatibility with the flags specified in `rule`. If no compatible rule is found, no action is taken, and the method returns `false`. If a rule with compatible flags is found, the rights specified in `rule` are removed from the compatible rule, and the method returns `true`. If `rule` specifies rights not contained in the compatible rule, no action is taken with respect to those rights. If all rights are removed from the compatible rule, the entire rule is removed from the current <xref:System.Security.AccessControl.SemaphoreSecurity> object.      > [!IMPORTANT] >  Although you can specify inheritance and propagation flags for semaphore access rules, by creating them with the <xref:System.Security.AccessControl.SemaphoreSecurity.AccessRuleFactory%2A> method, this is not recommended. Inheritance and propagation have no meaning for named semaphores, and they make the maintenance of access rules more complicated."
+  summary: "Procura uma regra de controlo de acesso com o mesmo utilizador e <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;> </xref> (permitir ou negar) como a regra especificada e com compatível herança e sinalizadores de propagação; se for encontrada essa uma regra, os direitos contidos na regra de acesso especificado são removidos do mesmo."
+  remarks: "Atual <xref:System.Security.AccessControl.SemaphoreSecurity>é procurada uma regra que tem o mesmo utilizador e o mesmo <xref:System.Security.AccessControl.AccessControlType>valor como `rule`.</xref:System.Security.AccessControl.AccessControlType> </xref:System.Security.AccessControl.SemaphoreSecurity> Se nenhuma regra tal for encontrada, foi efetuada nenhuma ação e o método devolve `false`. Se forem encontradas regras de correspondência, os sinalizadores de herança e de compatibilidade são verificados para compatibilidade com os sinalizadores especificados na `rule`. Não se for encontrada nenhuma regra compatível, foi efetuada nenhuma ação e o método devolve `false`. Se for encontrada qualquer regra com sinalizadores compatíveis, os direitos especificados `rule` são removidas da regra compatível, e o método devolve `true`. Se `rule` especifica direitos não contidos na regra compatível, foi efetuada nenhuma ação no que respeita a esses direitos. Se todos os direitos são removidos da regra compatível, a regra completa é removida do atual <xref:System.Security.AccessControl.SemaphoreSecurity>objeto.</xref:System.Security.AccessControl.SemaphoreSecurity>      > [!IMPORTANT] > Embora possa especificar sinalizadores de herança e propagação para as regras de acesso do semáforo, criando-los com o <xref:System.Security.AccessControl.SemaphoreSecurity.AccessRuleFactory%2A>método, isto não é recomendado.</xref:System.Security.AccessControl.SemaphoreSecurity.AccessRuleFactory%2A> Herança e propagação não tem nenhum significado para semaphores nomeados e efetuam a manutenção de regras de acesso mais complicada."
   example:
   - "The following code example demonstrates the use of the RemoveAccessRule method to remove rights from an <xref:System.Security.AccessControl.AccessControlType> rule in a <xref:System.Security.AccessControl.SemaphoreSecurity> object. It also shows that other rights in `rule` are ignored.  \n  \n The example creates a <xref:System.Security.AccessControl.SemaphoreSecurity> object and adds rules that allow and deny various rights for the current user. The rights allowed include <xref:System.Security.AccessControl.SemaphoreRights>, <xref:System.Security.AccessControl.SemaphoreRights>, and <xref:System.Security.AccessControl.SemaphoreRights>. The example then creates a new rule for the current user, including <xref:System.Security.AccessControl.SemaphoreRights> and <xref:System.Security.AccessControl.SemaphoreRights> rights, and uses that rule with the RemoveAccessRule method to remove <xref:System.Security.AccessControl.SemaphoreRights> from the <xref:System.Security.AccessControl.AccessControlType> rule in the <xref:System.Security.AccessControl.SemaphoreSecurity> object. The extraneous <xref:System.Security.AccessControl.SemaphoreRights> right in `rule` is ignored.  \n  \n> [!NOTE]\n>  This example does not attach the security object to a <xref:System.Threading.Semaphore> object. Examples that attach security objects can be found in <xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName> and <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName>.  \n  \n [!code-cs[System.Security.AccessControl.SemaphoreSecurity.RemoveAccessRule#1](~/add/codesnippet/csharp/967006c5-d60e-4018-a570-_1.cs)]\n [!code-vb[System.Security.AccessControl.SemaphoreSecurity.RemoveAccessRule#1](~/add/codesnippet/visualbasic/967006c5-d60e-4018-a570-_1.vb)]"
   syntax:
@@ -395,15 +395,15 @@ items:
     parameters:
     - id: rule
       type: System.Security.AccessControl.SemaphoreAccessRule
-      description: "A <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;></xref> that specifies the user and <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;></xref> to search for, and a set of inheritance and propagation flags that a matching rule, if found, must be compatible with. Specifies the rights to remove from the compatible rule, if found."
+      description: "A <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;> </xref> Especifica que o utilizador e <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;> </xref> para procurar e um conjunto de sinalizadores de herança e propagação de uma correspondência de regras, se encontrar, tem de ser compatível com. Especifica os direitos para remover a regra compatível, se encontrar."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if a compatible rule is found; otherwise <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se for encontrada uma regra compatível; caso contrário <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.AccessControl.SemaphoreSecurity.RemoveAccessRule*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>rule</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>rule</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.RemoveAccessRuleAll(System.Security.AccessControl.SemaphoreAccessRule)
@@ -418,8 +418,8 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Searches for all access control rules with the same user and <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;></xref> (allow or deny) as the specified rule and, if found, removes them."
-  remarks: "The current <xref:System.Security.AccessControl.SemaphoreSecurity> object is searched for rules that have the same user and the same <xref:System.Security.AccessControl.AccessControlType> value as `rule`. Any rights specified by `rule` are ignored when performing this search. If no matching rules are found, no action is taken."
+  summary: "Regras de controlo com o mesmo utilizador de acesso de procura para todos os e <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;> </xref> (permitir ou negar) especificado como regra e, se encontrar remove-los."
+  remarks: "Atual <xref:System.Security.AccessControl.SemaphoreSecurity>objeto será pesquisado as regras que têm o mesmo utilizador e o mesmo <xref:System.Security.AccessControl.AccessControlType>valor como `rule`.</xref:System.Security.AccessControl.AccessControlType> </xref:System.Security.AccessControl.SemaphoreSecurity> Quaisquer direitos especificados por `rule` são ignoradas quando efetuar esta pesquisa. Se não for encontradas nenhuma regras de correspondência, não é necessária nenhuma ação."
   example:
   - "The following code example shows that the RemoveAccessRuleAll method removes all rules that match user and <xref:System.Security.AccessControl.AccessControlType>, ignoring rights.  \n  \n The example creates a <xref:System.Security.AccessControl.SemaphoreSecurity> object, adds rules that allow and deny various rights for the current user, and then merges additional rights into the <xref:System.Security.AccessControl.AccessControlType> rule. The example then creates a new rule that allows the current user to take ownership, and uses that rule to remove the <xref:System.Security.AccessControl.AccessControlType> rule from the <xref:System.Security.AccessControl.SemaphoreSecurity> object.  \n  \n> [!NOTE]\n>  This example does not attach the security object to a <xref:System.Threading.Semaphore> object. Examples that attach security objects can be found in <xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName> and <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName>.  \n  \n [!code-vb[System.Security.AccessControl.SemaphoreSecurity.RemoveAccessRuleAll#1](~/add/codesnippet/visualbasic/0b2e6ab3-65bc-4eea-922e-_1.vb)]\n [!code-cs[System.Security.AccessControl.SemaphoreSecurity.RemoveAccessRuleAll#1](~/add/codesnippet/csharp/0b2e6ab3-65bc-4eea-922e-_1.cs)]"
   syntax:
@@ -427,12 +427,12 @@ items:
     parameters:
     - id: rule
       type: System.Security.AccessControl.SemaphoreAccessRule
-      description: "A <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;></xref> that specifies the user and <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;></xref> to search for. Any rights specified by this rule are ignored."
+      description: "A <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;> </xref> Especifica que o utilizador e <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;> </xref> para procurar. Quaisquer direitos especificados por esta regra são ignorados."
   overload: System.Security.AccessControl.SemaphoreSecurity.RemoveAccessRuleAll*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>rule</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>rule</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.RemoveAccessRuleSpecific(System.Security.AccessControl.SemaphoreAccessRule)
@@ -447,8 +447,8 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Searches for an access control rule that exactly matches the specified rule and, if found, removes it."
-  remarks: "The rule is removed only if it exactly matches `rule` in all details, including flags. Other rules with the same user and <xref:System.Security.AccessControl.AccessControlType> are not affected.      > [!IMPORTANT] >  A rule represents one or more underlying access control entries (ACE), and these entries are split or combined as necessary when you modify the access security rules for a user. Thus, a rule might no longer exist in the specific form it had when it was added, and in that case the RemoveAccessRuleSpecific method cannot remove it."
+  summary: "Procura de uma regra de controlo de acesso que corresponde exatamente a especificado regra e, se encontrar remove-lo."
+  remarks: "A regra é removida apenas se corresponde exatamente `rule` em todos os detalhes, incluindo sinalizadores. Outras regras com o mesmo utilizador e <xref:System.Security.AccessControl.AccessControlType>não são afetadas.</xref:System.Security.AccessControl.AccessControlType>      > [!IMPORTANT] > Uma regra representa uma ou mais subjacente controlo entradas de acesso (ACE), e estas entradas são dividir ou combinadas, conforme necessário, ao modificar as regras de segurança de acesso para um utilizador. Assim, uma regra já não pode existir no formato específico tinha quando foi adicionado e, caso em que o método RemoveAccessRuleSpecific o não é possível removê-lo."
   example:
   - "The following code example shows that the RemoveAccessRuleSpecific method requires an exact match in order to remove a rule, and that rules to allow and deny rights are independent of each other.  \n  \n The example creates a <xref:System.Security.AccessControl.SemaphoreSecurity> object, adds rules that allow and deny various rights for the current user, and then merges additional rights into the <xref:System.Security.AccessControl.AccessControlType> access rule. The example then passes the original <xref:System.Security.AccessControl.AccessControlType> rule to the RemoveAccessRuleSpecific method, and displays the results, showing that nothing is deleted. The example then constructs a rule that matches the <xref:System.Security.AccessControl.AccessControlType> rule in the <xref:System.Security.AccessControl.SemaphoreSecurity> object, and successfully uses the RemoveAccessRuleSpecific method to remove the rule.  \n  \n> [!NOTE]\n>  This example does not attach the security object to a <xref:System.Threading.Semaphore> object. Examples that attach security objects can be found in <xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName> and <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName>.  \n  \n [!code-vb[System.Security.AccessControl.SemaphoreSecurity.RemoveAccessRuleSpecific#1](~/add/codesnippet/visualbasic/0797aedd-e0bb-444b-b25e-_1.vb)]\n [!code-cs[System.Security.AccessControl.SemaphoreSecurity.RemoveAccessRuleSpecific#1](~/add/codesnippet/csharp/0797aedd-e0bb-444b-b25e-_1.cs)]"
   syntax:
@@ -456,12 +456,12 @@ items:
     parameters:
     - id: rule
       type: System.Security.AccessControl.SemaphoreAccessRule
-      description: "The <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;></xref> to remove."
+      description: "O <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;> </xref> para remover."
   overload: System.Security.AccessControl.SemaphoreSecurity.RemoveAccessRuleSpecific*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>rule</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>rule</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.RemoveAuditRule(System.Security.AccessControl.SemaphoreAuditRule)
@@ -476,22 +476,22 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Searches for an audit control rule with the same user as the specified rule, and with compatible inheritance and propagation flags; if a compatible rule is found, the rights contained in the specified rule are removed from it."
-  remarks: "The current <xref:System.Security.AccessControl.SemaphoreSecurity> is searched for an audit rule that has the same user as `rule`. If no such rule is found, no action is taken, and the method returns `false`. If matching rules are found, their inheritance and compatibility flags are checked for compatibility with the flags specified in `rule`. If no compatible rule is found, no action is taken, and the method returns `false`. If a rule with compatible flags is found, the rights specified in `rule` are removed from the compatible rule, and the method returns `true`. If `rule` specifies rights not contained in the compatible rule, no action is taken with respect to those rights. If all rights are removed from the compatible rule, the entire rule is removed from the current <xref:System.Security.AccessControl.SemaphoreSecurity> object.      > [!IMPORTANT] >  Although you can specify inheritance and propagation flags for semaphore audit rules, by creating them with the <xref:System.Security.AccessControl.SemaphoreSecurity.AuditRuleFactory%2A> method, this is not recommended. Inheritance and propagation have no meaning for named semaphores, and they make the maintenance of audit rules more complicated."
+  summary: "Procura uma regra de controlo de auditoria com o mesmo utilizador a regra especificado e com compatível herança e sinalizadores de propagação; Se for encontrada uma regra compatível, os direitos contidos na regra especificada são removidos do mesmo."
+  remarks: "Atual <xref:System.Security.AccessControl.SemaphoreSecurity>é procurada uma regra de auditoria que tem o mesmo utilizador `rule`.</xref:System.Security.AccessControl.SemaphoreSecurity> Se nenhuma regra tal for encontrada, foi efetuada nenhuma ação e o método devolve `false`. Se forem encontradas regras de correspondência, os sinalizadores de herança e de compatibilidade são verificados para compatibilidade com os sinalizadores especificados na `rule`. Não se for encontrada nenhuma regra compatível, foi efetuada nenhuma ação e o método devolve `false`. Se for encontrada qualquer regra com sinalizadores compatíveis, os direitos especificados `rule` são removidas da regra compatível, e o método devolve `true`. Se `rule` especifica direitos não contidos na regra compatível, foi efetuada nenhuma ação no que respeita a esses direitos. Se todos os direitos são removidos da regra compatível, a regra completa é removida do atual <xref:System.Security.AccessControl.SemaphoreSecurity>objeto.</xref:System.Security.AccessControl.SemaphoreSecurity>      > [!IMPORTANT] > Embora possa especificar sinalizadores de herança e propagação para as regras de auditoria do semáforo, criando-los com o <xref:System.Security.AccessControl.SemaphoreSecurity.AuditRuleFactory%2A>método, isto não é recomendado.</xref:System.Security.AccessControl.SemaphoreSecurity.AuditRuleFactory%2A> Herança e propagação não tem nenhum significado para semaphores nomeados e efetuam a manutenção das regras de auditoria mais complicada."
   syntax:
     content: public bool RemoveAuditRule (System.Security.AccessControl.SemaphoreAuditRule rule);
     parameters:
     - id: rule
       type: System.Security.AccessControl.SemaphoreAuditRule
-      description: "A <xref href=&quot;System.Security.AccessControl.SemaphoreAuditRule&quot;></xref> that specifies the user to search for, and a set of inheritance and propagation flags that a matching rule, if found, must be compatible with. Specifies the rights to remove from the compatible rule, if found."
+      description: "A <xref href=&quot;System.Security.AccessControl.SemaphoreAuditRule&quot;> </xref> Especifica que o utilizador para procurar e um conjunto de sinalizadores de herança e propagação de que a regra uma correspondência, se encontrar, tem de ser compatível com. Especifica os direitos para remover a regra compatível, se encontrar."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if a compatible rule is found; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se for encontrada uma regra compatível; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.AccessControl.SemaphoreSecurity.RemoveAuditRule*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>rule</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>rule</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.RemoveAuditRuleAll(System.Security.AccessControl.SemaphoreAuditRule)
@@ -506,19 +506,19 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Searches for all audit rules with the same user as the specified rule and, if found, removes them."
-  remarks: "The current <xref:System.Security.AccessControl.SemaphoreSecurity> is searched for audit rules that have the same user as `rule`. Any rights specified by `rule` are ignored when performing this search. All matching rules are removed. If no matching rules are found, no action is taken."
+  summary: "Pesquisa para todas as regras com o mesmo utilizador a regra especificada de auditoria e, se encontrar, remove-os."
+  remarks: "Atual <xref:System.Security.AccessControl.SemaphoreSecurity>serão pesquisadas as regras de auditoria que têm o mesmo utilizador `rule`.</xref:System.Security.AccessControl.SemaphoreSecurity> Quaisquer direitos especificados por `rule` são ignoradas quando efetuar esta pesquisa. Todas as regras de correspondência são removidas. Se não for encontradas nenhuma regras de correspondência, não é necessária nenhuma ação."
   syntax:
     content: public void RemoveAuditRuleAll (System.Security.AccessControl.SemaphoreAuditRule rule);
     parameters:
     - id: rule
       type: System.Security.AccessControl.SemaphoreAuditRule
-      description: "A <xref href=&quot;System.Security.AccessControl.SemaphoreAuditRule&quot;></xref> that specifies the user to search for. Any rights specified by this rule are ignored."
+      description: "A <xref href=&quot;System.Security.AccessControl.SemaphoreAuditRule&quot;> </xref> Especifica que o utilizador para procurar. Quaisquer direitos especificados por esta regra são ignorados."
   overload: System.Security.AccessControl.SemaphoreSecurity.RemoveAuditRuleAll*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>rule</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>rule</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.RemoveAuditRuleSpecific(System.Security.AccessControl.SemaphoreAuditRule)
@@ -533,19 +533,19 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Searches for an audit rule that exactly matches the specified rule and, if found, removes it."
-  remarks: "The rule is removed only if it exactly matches `rule` in all details, including flags. Other audit rules for the same user are not affected.      > [!IMPORTANT] >  A rule represents one or more underlying access control entries (ACE), and these entries are split or combined as necessary when you modify the audit security rules for a user. Thus, a rule might no longer exist in the specific form it had when it was added, and in that case the RemoveAuditRuleSpecific method cannot remove it."
+  summary: "Procura de uma regra de auditoria que corresponde exatamente ao especificado regra e, se encontrar remove-lo."
+  remarks: "A regra é removida apenas se corresponde exatamente `rule` em todos os detalhes, incluindo sinalizadores. Não são afetadas outras regras de auditoria para o mesmo utilizador.      > [!IMPORTANT] > Uma regra representa uma ou mais subjacente controlo entradas de acesso (ACE), e estas entradas são dividir ou combinadas, conforme necessário, ao modificar as regras de segurança de auditoria para um utilizador. Assim, uma regra já não pode existir no formato específico tinha quando foi adicionado e, caso em que o método RemoveAuditRuleSpecific o não é possível removê-lo."
   syntax:
     content: public void RemoveAuditRuleSpecific (System.Security.AccessControl.SemaphoreAuditRule rule);
     parameters:
     - id: rule
       type: System.Security.AccessControl.SemaphoreAuditRule
-      description: "The <xref href=&quot;System.Security.AccessControl.SemaphoreAuditRule&quot;></xref> to remove."
+      description: "O <xref href=&quot;System.Security.AccessControl.SemaphoreAuditRule&quot;> </xref> para remover."
   overload: System.Security.AccessControl.SemaphoreSecurity.RemoveAuditRuleSpecific*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>rule</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>rule</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.ResetAccessRule(System.Security.AccessControl.SemaphoreAccessRule)
@@ -560,8 +560,8 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Removes all access control rules with the same user as the specified rule, regardless of <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;></xref>, and then adds the specified rule."
-  remarks: "If there are no access rules whose user matches the specified rule, `rule` is added."
+  summary: "Remove todas as regras de controlo de acesso com o mesmo utilizador regra especificada, independentemente da <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;> </xref>e, em seguida, adiciona a regra especificada."
+  remarks: "Se existem quaisquer regras de acesso cujo utilizador corresponde à regra de especificado, `rule` é adicionado."
   example:
   - "The following code example shows how the ResetAccessRule method replaces all rules for the matching user with the rule specified for the match.  \n  \n The example creates a <xref:System.Security.AccessControl.SemaphoreSecurity> object and adds rules that allow and deny various rights for the current user. The example then creates a new rule that allows the current user full control, and uses the ResetAccessRule method to replace both of the existing rules with the new rule.  \n  \n> [!NOTE]\n>  This example does not attach the security object to a <xref:System.Threading.Semaphore> object. Examples that attach security objects can be found in <xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName> and <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName>.  \n  \n [!code-cs[System.Security.AccessControl.SemaphoreSecurity.ResetAccessRule#1](~/add/codesnippet/csharp/950b9d2b-d0bb-443e-8790-_1.cs)]\n [!code-vb[System.Security.AccessControl.SemaphoreSecurity.ResetAccessRule#1](~/add/codesnippet/visualbasic/950b9d2b-d0bb-443e-8790-_1.vb)]"
   syntax:
@@ -569,12 +569,12 @@ items:
     parameters:
     - id: rule
       type: System.Security.AccessControl.SemaphoreAccessRule
-      description: "The <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;></xref> to add. The user specified by this rule determines the rules to remove before this rule is added."
+      description: "The <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;></xref> to add. O utilizador especificado por esta regra determina as regras para remover antes de é adicionada esta regra."
   overload: System.Security.AccessControl.SemaphoreSecurity.ResetAccessRule*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>rule</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>rule</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.SetAccessRule(System.Security.AccessControl.SemaphoreAccessRule)
@@ -589,8 +589,8 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Removes all access control rules with the same user and <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;></xref> (allow or deny) as the specified rule, and then adds the specified rule."
-  remarks: "If the specified rule has <xref:System.Security.AccessControl.AccessControlType>, the effect of this method is to remove all <xref:System.Security.AccessControl.AccessControlType> rules for the specified user, replacing them with the specified rule. If the specified rule has <xref:System.Security.AccessControl.AccessControlType>, all <xref:System.Security.AccessControl.AccessControlType> rules for the specified user are replaced with the specified rule.       If there are no rules whose user and <xref:System.Security.AccessControl.AccessControlType> match the specified rule, `rule` is added."
+  summary: "Remove todas as regras de controlo de acesso com o mesmo utilizador e <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;> </xref> (permitir ou negar) como a regra especificada e, em seguida, adiciona a regra especificada."
+  remarks: "Se a regra especificada tem <xref:System.Security.AccessControl.AccessControlType>, o efeito deste método é remover todas as <xref:System.Security.AccessControl.AccessControlType>regras para o utilizador especificado, substituindo-las com a regra especificada.</xref:System.Security.AccessControl.AccessControlType> </xref:System.Security.AccessControl.AccessControlType> Se a regra especificada tem <xref:System.Security.AccessControl.AccessControlType>, todos os <xref:System.Security.AccessControl.AccessControlType>regras para o utilizador especificado são substituídas com a regra especificada.</xref:System.Security.AccessControl.AccessControlType> </xref:System.Security.AccessControl.AccessControlType>       Se existem quaisquer regras cujo utilizador e <xref:System.Security.AccessControl.AccessControlType>corresponde à regra especificada, `rule` é adicionado.</xref:System.Security.AccessControl.AccessControlType>"
   example:
   - "The following code example shows how the SetAccessRule method removes all rules that match both the user and the <xref:System.Security.AccessControl.AccessControlType> of `rule`, replacing them with `rule`.  \n  \n The example creates a <xref:System.Security.AccessControl.SemaphoreSecurity> object and adds rules that allow and deny various rights for the current user. The example then creates a new rule that allows the current user full control, and uses the SetAccessRule method to replace the existing Allow rule with the new rule. The rule that denies access is not affected.  \n  \n> [!NOTE]\n>  This example does not attach the security object to a <xref:System.Threading.Semaphore> object. Examples that attach security objects can be found in <xref:System.Threading.Semaphore.GetAccessControl%2A?displayProperty=fullName> and <xref:System.Threading.Semaphore.SetAccessControl%2A?displayProperty=fullName>.  \n  \n [!code-vb[System.Security.AccessControl.SemaphoreSecurity.SetAccessRule#1](~/add/codesnippet/visualbasic/8a133971-d359-43dd-87ab-_1.vb)]\n [!code-cs[System.Security.AccessControl.SemaphoreSecurity.SetAccessRule#1](~/add/codesnippet/csharp/8a133971-d359-43dd-87ab-_1.cs)]"
   syntax:
@@ -598,12 +598,12 @@ items:
     parameters:
     - id: rule
       type: System.Security.AccessControl.SemaphoreAccessRule
-      description: "The <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;></xref> to add. The user and <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;></xref> of this rule determine the rules to remove before this rule is added."
+      description: "The <xref href=&quot;System.Security.AccessControl.SemaphoreAccessRule&quot;></xref> to add. O utilizador e <xref href=&quot;System.Security.AccessControl.AccessControlType&quot;> </xref> desta regra determinar as regras para remover antes de é adicionada esta regra."
   overload: System.Security.AccessControl.SemaphoreSecurity.SetAccessRule*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>rule</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>rule</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Security.AccessControl.SemaphoreSecurity.SetAuditRule(System.Security.AccessControl.SemaphoreAuditRule)
@@ -618,19 +618,19 @@ items:
   assemblies:
   - System
   namespace: System.Security.AccessControl
-  summary: "Removes all audit rules with the same user as the specified rule, regardless of the <xref href=&quot;System.Security.AccessControl.AuditFlags&quot;></xref> value, and then adds the specified rule."
-  remarks: "If there are no audit rules whose user matches the specified rule, `rule` is added."
+  summary: "Remove todas as regras com o mesmo utilizador regra especificada, de auditoria, independentemente do <xref href=&quot;System.Security.AccessControl.AuditFlags&quot;> </xref> valor e, em seguida, adiciona a regra especificada."
+  remarks: "Se existem quaisquer regras de auditoria cujo utilizador corresponde à regra de especificado, `rule` é adicionado."
   syntax:
     content: public void SetAuditRule (System.Security.AccessControl.SemaphoreAuditRule rule);
     parameters:
     - id: rule
       type: System.Security.AccessControl.SemaphoreAuditRule
-      description: "The <xref href=&quot;System.Security.AccessControl.SemaphoreAuditRule&quot;></xref> to add. The user specified by this rule determines the rules to remove before this rule is added."
+      description: "The <xref href=&quot;System.Security.AccessControl.SemaphoreAuditRule&quot;></xref> to add. O utilizador especificado por esta regra determina as regras para remover antes de é adicionada esta regra."
   overload: System.Security.AccessControl.SemaphoreSecurity.SetAuditRule*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>rule</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>rule</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 references:
