@@ -13,8 +13,8 @@ items:
   nameWithType: SqlTriggerContext
   fullName: Microsoft.SqlServer.Server.SqlTriggerContext
   type: Class
-  summary: "Provides contextual information about the trigger that was fired."
-  remarks: "The contextual information provided includes the type of action that caused the trigger to fire, which columns were modified in an UPDATE operation, and, in the case of a data definition language (DDL) trigger, an XML EventData structure (see &quot;Transact-SQL Reference&quot; in SQL Server Books Online) that describes the triggering operation.       An instance of SqlTriggerContext is available from the <xref:Microsoft.SqlServer.Server.SqlContext> class, when the code is running inside a trigger through the <xref:Microsoft.SqlServer.Server.SqlContext.TriggerContext%2A> property."
+  summary: "Fornece a nível contextual das informações sobre o acionador foi desencadeado."
+  remarks: "As nível contextual das informações fornecidas incluem o tipo de ação que causou o acionador a acionar, as colunas que foram modificadas numa operação de ATUALIZAÇÃO, e, no caso de uma definição de dados idioma (DDL) acionar, uma estrutura XML EventData (consulte &quot;Transact-SQL Reference&quot; no SQL Server Books Online) que descrevem a operação de acionamento.       Uma instância de SqlTriggerContext está disponível a partir de <xref:Microsoft.SqlServer.Server.SqlContext>classe, quando o código é executado dentro de um acionador através de <xref:Microsoft.SqlServer.Server.SqlContext.TriggerContext%2A>propriedade.</xref:Microsoft.SqlServer.Server.SqlContext.TriggerContext%2A> </xref:Microsoft.SqlServer.Server.SqlContext>"
   example:
   - "The following example shows a SqlTriggerContext object being used to determine if an <xref:Microsoft.SqlServer.Server.TriggerAction> action occurred. If a row was inserted into the `user`'s table, the user name and real name are retrieved from the inserted row and then added to the **UserNameAudit** table.  \n  \n [!code-cs[DataWorks SqlTriggerContext Sample#1](~/add/codesnippet/csharp/t-microsoft.sqlserver.se_7_1.cs)]\n [!code-vb[DataWorks SqlTriggerContext Sample#1](~/add/codesnippet/visualbasic/t-microsoft.sqlserver.se_7_1.vb)]"
   syntax:
@@ -37,13 +37,13 @@ items:
   assemblies:
   - System.Data
   namespace: Microsoft.SqlServer.Server
-  summary: "Gets the number of columns contained by the data table bound to the trigger. This property is read-only."
-  remarks: "ColumnCount property is useful to determine the maximum ordinal that <xref:Microsoft.SqlServer.Server.SqlTriggerContext.IsUpdatedColumn%2A> allows for a given trigger invocation."
+  summary: "Obtém o número de colunas contido pela tabela de dados vinculada ao acionador. Esta propriedade é só de leitura."
+  remarks: "A propriedade ColumnCount é útil para determinar o ordinal máximo que <xref:Microsoft.SqlServer.Server.SqlTriggerContext.IsUpdatedColumn%2A>permite uma invocação de Acionador fornecido.</xref:Microsoft.SqlServer.Server.SqlTriggerContext.IsUpdatedColumn%2A>"
   syntax:
     content: public int ColumnCount { get; }
     return:
       type: System.Int32
-      description: "The number of columns contained by the data table bound to the trigger, as an integer."
+      description: "O número de colunas contido pela tabela de dados vinculada ao acionador, como um número inteiro."
   overload: Microsoft.SqlServer.Server.SqlTriggerContext.ColumnCount*
   exceptions: []
   platform:
@@ -60,13 +60,13 @@ items:
   assemblies:
   - System.Data
   namespace: Microsoft.SqlServer.Server
-  summary: "Gets the event data specific to the action that fired the trigger."
-  remarks: "This information is available for data definition language (DDL) triggers. No information is available through this property for data manipulation language (DML) triggers."
+  summary: "Obtém os dados de eventos específicos para a ação que o desencadeou o acionador."
+  remarks: "Esta informação está disponível para acionadores de idioma (DDL) de definição de dados. Nenhuma informação está disponível através desta propriedade para acionadores de idioma (DML) de manipulação de dados."
   syntax:
     content: public System.Data.SqlTypes.SqlXml EventData { get; }
     return:
       type: System.Data.SqlTypes.SqlXml
-      description: "The event data specific to the action that fired the trigger as a <xref href=&quot;System.Data.SqlTypes.SqlXml&quot;></xref> if more information is available; <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> otherwise."
+      description: "Os dados de eventos específicos para a ação que o desencadeou o acionador como um <xref href=&quot;System.Data.SqlTypes.SqlXml&quot;> </xref> se estão disponíveis; mais informações <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> caso contrário."
   overload: Microsoft.SqlServer.Server.SqlTriggerContext.EventData*
   exceptions: []
   platform:
@@ -83,21 +83,21 @@ items:
   assemblies:
   - System.Data
   namespace: Microsoft.SqlServer.Server
-  summary: "Returns <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if a column was affected by an INSERT or UPDATE statement."
+  summary: "Devolve <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;> </xref> se uma coluna foi afetada por uma instrução INSERT ou UPDATE."
   syntax:
     content: public bool IsUpdatedColumn (int columnOrdinal);
     parameters:
     - id: columnOrdinal
       type: System.Int32
-      description: "The zero-based ordinal of the column."
+      description: "O ordinal baseado em zero da coluna."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the column was affected by an INSERT or UPDATE operation."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a coluna foi afetada por uma operação de inserção ou ATUALIZAÇÃO."
   overload: Microsoft.SqlServer.Server.SqlTriggerContext.IsUpdatedColumn*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "Called in the context of a trigger where the value of the <xref:Microsoft.SqlServer.Server.SqlTriggerContext.TriggerAction*> property is not <xref uid=&quot;langword_csharp_Insert&quot; name=&quot;Insert&quot; href=&quot;&quot;></xref> or <xref uid=&quot;langword_csharp_Update&quot; name=&quot;Update&quot; href=&quot;&quot;></xref>."
+    description: "Chamado no contexto de um acionador em que o valor da <xref:Microsoft.SqlServer.Server.SqlTriggerContext.TriggerAction*>propriedade não é <xref uid=&quot;langword_csharp_Insert&quot; name=&quot;Insert&quot; href=&quot;&quot;> </xref> ou <xref uid=&quot;langword_csharp_Update&quot; name=&quot;Update&quot; href=&quot;&quot;> </xref>.</xref:Microsoft.SqlServer.Server.SqlTriggerContext.TriggerAction*>"
   platform:
   - net462
 - uid: Microsoft.SqlServer.Server.SqlTriggerContext.TriggerAction
@@ -112,7 +112,7 @@ items:
   assemblies:
   - System.Data
   namespace: Microsoft.SqlServer.Server
-  summary: "Indicates what action fired the trigger."
+  summary: "Indica que ação desencadeou o acionador."
   remarks: ''
   example:
   - "The following example shows an auditing trigger. If an <xref:Microsoft.SqlServer.Server.TriggerAction> or <xref:Microsoft.SqlServer.Server.TriggerAction> action occurred, the affected rows are retrieved from the INSERTED and DELETED tables.  \n  \n [!code-cs[DataWorks SqlTriggerContext Sample#2](~/add/codesnippet/csharp/p-microsoft.sqlserver.se_1_1.cs)]\n [!code-vb[DataWorks SqlTriggerContext Sample#2](~/add/codesnippet/visualbasic/p-microsoft.sqlserver.se_1_1.vb)]"
@@ -120,7 +120,7 @@ items:
     content: public Microsoft.SqlServer.Server.TriggerAction TriggerAction { get; }
     return:
       type: Microsoft.SqlServer.Server.TriggerAction
-      description: "The action that fired the trigger as a <xref href=&quot;Microsoft.SqlServer.Server.TriggerAction&quot;></xref>."
+      description: "A ação que o desencadeou o acionador como um <xref href=&quot;Microsoft.SqlServer.Server.TriggerAction&quot;> </xref>."
   overload: Microsoft.SqlServer.Server.SqlTriggerContext.TriggerAction*
   exceptions: []
   platform:

@@ -15,8 +15,8 @@ items:
   nameWithType: ResourceExpressionBuilder
   fullName: System.Web.Compilation.ResourceExpressionBuilder
   type: Class
-  summary: "Provides code to the page parser for assigning property values on a control."
-  remarks: "The ResourceExpressionBuilder class creates code to retrieve resource values when the page is executed. A resource file typically contains information localized for a particular language or culture.       A resource expression takes the form `<%$ Resources: ClassKey, ResourceKey %>` within the page. The part of the expression before the colon (:) designates the type of expression builder to use, and the part after the colon signifies the class name and resource key. The preceding expression would retrieve the following value from a file named `ClassKey.resx`:      ```   <data name=&quot;ResourceKey&quot;><value xml:space=&quot;preserve&quot;>Hello!</value></data>   ```       When the page parser encounters an expression with the `Resources` prefix, it creates an instance of the ResourceExpressionBuilder class. The ResourceExpressionBuilder class either evaluates the expression or generates code to return a value for the expression when the page is executed.       If the expression is encountered in a page that will be compiled, the ResourceExpressionBuilder object generates code that retrieves the specified value from the resource file. If the expression is encountered in a page that will not be compiled, the ResourceExpressionBuilder object returns the value from the resource file when the page is parsed."
+  summary: "Fornece o código para o parser de página para atribuir valores de propriedade num controlo."
+  remarks: "A classe de ResourceExpressionBuilder cria código para obter valores de recurso quando a página é executada. Um ficheiro de recursos contém normalmente informações localizadas para um idioma específico ou a cultura.       Uma expressão de recurso assume a forma `<%$ Resources: ClassKey, ResourceKey %>` na página. A parte da expressão antes da vírgula (:) designa o tipo de construtor de expressão a utilizar e a parte após a vírgula significa a chave de recurso e o nome de classe. A expressão anterior seria obter o seguinte valor de um ficheiro com o nome `ClassKey.resx`: ```   <data name=&quot;ResourceKey&quot;><value xml:space=&quot;preserve&quot;>Hello!</value></data>   ``` quando o analisador de página encontra uma expressão com o `Resources` prefixo, cria uma instância da classe ResourceExpressionBuilder. A classe de ResourceExpressionBuilder avalia a expressão ou gera o código para devolver um valor para a expressão quando a página é executada.       Se a expressão é encontrou uma página que será compilado, o objeto de ResourceExpressionBuilder gera o código que obtém o valor especificado a partir do ficheiro de recursos. Se a expressão é encontrou uma página que não será compilado, o objeto de ResourceExpressionBuilder devolve o valor do ficheiro de recursos quando a página é analisada."
   example:
   - "The following code example retrieves the default currency from a resource file.  \n  \n [!code-cs[System.Web.Compilation.ResourceExpressionBuilder#1](~/add/codesnippet/csharp/t-system.web.compilation_3_1.aspx)]\n [!code-vb[System.Web.Compilation.ResourceExpressionBuilder#1](~/add/codesnippet/visualbasic/t-system.web.compilation_3_1.aspx)]  \n  \n This code reads the following value from a resource file named `Financial.resx` in the App_GlobalResources directory.  \n  \n```  \n<data name=\"Currency\"><value xml:space=\"preserve\">US dollars</value></data>  \n```"
   syntax:
@@ -45,7 +45,7 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Compilation
-  summary: "Initializes a new instance of the <xref href=&quot;System.Web.Compilation.ResourceExpressionBuilder&quot;></xref> class."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Web.Compilation.ResourceExpressionBuilder&quot;> </xref> classe."
   syntax:
     content: public ResourceExpressionBuilder ();
     parameters: []
@@ -65,26 +65,26 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Compilation
-  summary: "Returns a value from a resource file."
-  remarks: 'This method is called when an expression of the form `<%$ Resources: someResourceKey %>` is encountered in a page that uses the no-compile feature. It retrieves the appropriate value from a key/value pair in a resource file.'
+  summary: "Devolve um valor de um ficheiro de recursos."
+  remarks: 'Este método é chamado quando uma expressão do formulário `<%$ Resources: someResourceKey %>` uma página que utiliza a funcionalidade de compilação não é encontrada. Obtém o valor adequado de um par chave/valor num ficheiro de recurso.'
   syntax:
     content: public override object EvaluateExpression (object target, System.Web.UI.BoundPropertyEntry entry, object parsedData, System.Web.Compilation.ExpressionBuilderContext context);
     parameters:
     - id: target
       type: System.Object
-      description: "The object containing the expression."
+      description: "O objeto que contém a expressão."
     - id: entry
       type: System.Web.UI.BoundPropertyEntry
-      description: "The object that represents information about the property bound to by the expression."
+      description: "O objecto que representa as informações sobre a propriedade vinculada a pela expressão de."
     - id: parsedData
       type: System.Object
-      description: "The object containing parsed data as returned by the <xref:System.Web.Compilation.ResourceExpressionBuilder.ParseExpression*> method."
+      description: "O objeto que contém analisar dados, tal como devolvido pelo <xref:System.Web.Compilation.ResourceExpressionBuilder.ParseExpression*>método.</xref:System.Web.Compilation.ResourceExpressionBuilder.ParseExpression*>"
     - id: context
       type: System.Web.Compilation.ExpressionBuilderContext
-      description: "Contextual information for the evaluation of the expression."
+      description: "Nível contextual das informações para a avaliação da expressão."
     return:
       type: System.Object
-      description: "An <xref:System.Object> associated with the parsed expression. The parsed expression contains the class name and resource key."
+      description: "Um <xref:System.Object>associada com a expressão analisada.</xref:System.Object> A expressão analisada contém a chave de recurso e o nome de classe."
   overload: System.Web.Compilation.ResourceExpressionBuilder.EvaluateExpression*
   exceptions: []
   platform:
@@ -101,23 +101,23 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Compilation
-  summary: "Returns a code expression to evaluate during page execution."
-  remarks: "This method is called during the CodeDOM creation for a page or control. The <xref:System.CodeDom.CodeExpression> object returned is of the type <xref:System.CodeDom.CodeMethodInvokeExpression> and represents the method to call when retrieving a resource value during page execution."
+  summary: "Devolve uma expressão de código para avaliar durante a execução da página."
+  remarks: "Este método é denominado durante a criação de CodeDOM para uma página ou um controlo. O <xref:System.CodeDom.CodeExpression>objeto devolvido é do tipo <xref:System.CodeDom.CodeMethodInvokeExpression>e representa o método a chamar ao obter um valor de recursos durante a execução da página.</xref:System.CodeDom.CodeMethodInvokeExpression> </xref:System.CodeDom.CodeExpression>"
   syntax:
     content: public override System.CodeDom.CodeExpression GetCodeExpression (System.Web.UI.BoundPropertyEntry entry, object parsedData, System.Web.Compilation.ExpressionBuilderContext context);
     parameters:
     - id: entry
       type: System.Web.UI.BoundPropertyEntry
-      description: "The property name of the object."
+      description: "O nome da propriedade do objeto."
     - id: parsedData
       type: System.Object
-      description: "The parsed value of the expression."
+      description: "O valor analisado da expressão."
     - id: context
       type: System.Web.Compilation.ExpressionBuilderContext
-      description: "Properties for the control or page."
+      description: "Propriedades para o controlo ou página."
     return:
       type: System.CodeDom.CodeExpression
-      description: "A <xref href=&quot;System.CodeDom.CodeExpression&quot;></xref> that invokes a method."
+      description: "A <xref href=&quot;System.CodeDom.CodeExpression&quot;> </xref> que invoca um método."
   overload: System.Web.Compilation.ResourceExpressionBuilder.GetCodeExpression*
   exceptions: []
   platform:
@@ -134,17 +134,17 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Compilation
-  summary: "Returns an object that represents the parsed expression."
-  remarks: "This method parses the expression and returns a <xref:System.Web.Compilation.ResourceExpressionFields.ClassKey%2A> and a <xref:System.Web.Compilation.ResourceExpressionFields.ResourceKey%2A> property value in the returned <xref:System.Web.Compilation.ResourceExpressionFields> object, if these properties are provided in the expression."
+  summary: "Devolve um objeto que representa a expressão analisada."
+  remarks: "Este método analisa a expressão e devolve um <xref:System.Web.Compilation.ResourceExpressionFields.ClassKey%2A>e um <xref:System.Web.Compilation.ResourceExpressionFields.ResourceKey%2A>no devolvido o valor da propriedade <xref:System.Web.Compilation.ResourceExpressionFields>objeto, se estas propriedades são fornecidas na expressão.</xref:System.Web.Compilation.ResourceExpressionFields> </xref:System.Web.Compilation.ResourceExpressionFields.ResourceKey%2A> </xref:System.Web.Compilation.ResourceExpressionFields.ClassKey%2A>"
   syntax:
     content: public static System.Web.Compilation.ResourceExpressionFields ParseExpression (string expression);
     parameters:
     - id: expression
       type: System.String
-      description: "The expression value to be parsed."
+      description: "O valor da expressão para ser analisada."
     return:
       type: System.Web.Compilation.ResourceExpressionFields
-      description: "The <xref href=&quot;System.Web.Compilation.ResourceExpressionFields&quot;></xref> for the expression."
+      description: "O <xref href=&quot;System.Web.Compilation.ResourceExpressionFields&quot;> </xref> para a expressão."
   overload: System.Web.Compilation.ResourceExpressionBuilder.ParseExpression*
   exceptions: []
   platform:
@@ -161,28 +161,28 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Compilation
-  summary: "Returns an object that represents the parsed expression."
-  remarks: "The returned <xref:System.Object> is of type <xref:System.Web.Compilation.ResourceExpressionFields>. This method parses the expression and returns a <xref:System.Web.Compilation.ResourceExpressionFields.ClassKey%2A> and a <xref:System.Web.Compilation.ResourceExpressionFields.ResourceKey%2A> property value in the returned <xref:System.Web.Compilation.ResourceExpressionFields> object, if those properties are provided in the expression."
+  summary: "Devolve um objeto que representa a expressão analisada."
+  remarks: "Devolvido <xref:System.Object>é do tipo <xref:System.Web.Compilation.ResourceExpressionFields>.</xref:System.Web.Compilation.ResourceExpressionFields> </xref:System.Object> Este método analisa a expressão e devolve um <xref:System.Web.Compilation.ResourceExpressionFields.ClassKey%2A>e um <xref:System.Web.Compilation.ResourceExpressionFields.ResourceKey%2A>no devolvido o valor da propriedade <xref:System.Web.Compilation.ResourceExpressionFields>objeto, se essas propriedades são fornecidas na expressão.</xref:System.Web.Compilation.ResourceExpressionFields> </xref:System.Web.Compilation.ResourceExpressionFields.ResourceKey%2A> </xref:System.Web.Compilation.ResourceExpressionFields.ClassKey%2A>"
   syntax:
     content: public override object ParseExpression (string expression, Type propertyType, System.Web.Compilation.ExpressionBuilderContext context);
     parameters:
     - id: expression
       type: System.String
-      description: "The value of the declarative expression."
+      description: "O valor da expressão declarativa."
     - id: propertyType
       type: System.Type
-      description: "The type of the property bound to by the expression."
+      description: "O tipo da propriedade vinculado pela expressão."
     - id: context
       type: System.Web.Compilation.ExpressionBuilderContext
-      description: "Contextual information for the evaluation of the expression."
+      description: "Nível contextual das informações para a avaliação da expressão."
     return:
       type: System.Object
-      description: "An <xref:System.Object> that represents the parsed expression."
+      description: "Um <xref:System.Object>que representa a expressão analisada.</xref:System.Object>"
   overload: System.Web.Compilation.ResourceExpressionBuilder.ParseExpression*
   exceptions:
   - type: System.Web.HttpException
     commentId: T:System.Web.HttpException
-    description: "The resource expression cannot be found or is invalid."
+    description: "A expressão de recurso não é possível localizar ou é inválida."
   platform:
   - net462
 - uid: System.Web.Compilation.ResourceExpressionBuilder.SupportsEvaluate
@@ -197,13 +197,13 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.Compilation
-  summary: "Returns a value indicating whether an expression can be evaluated in a page that uses the no-compile feature."
-  remarks: "The SupportsEvaluate property indicates whether the <xref:System.Web.Compilation.ResourceExpressionBuilder.EvaluateExpression%2A> method has been implemented in the class. <xref:System.Web.Compilation.ResourceExpressionBuilder.EvaluateExpression%2A> must be implemented within an expression builder for an expression to be evaluated in a page that uses the no-compile feature. <xref:System.Web.Compilation.ResourceExpressionBuilder> supports evaluation of resource values in non-compiled pages, so this property always returns `true`."
+  summary: "Devolve um valor que indica se uma expressão pode ser avaliada numa página que utiliza a funcionalidade de compilação não."
+  remarks: "A propriedade SupportsEvaluate indica se o <xref:System.Web.Compilation.ResourceExpressionBuilder.EvaluateExpression%2A>método foi implementado na classe.</xref:System.Web.Compilation.ResourceExpressionBuilder.EvaluateExpression%2A> <xref:System.Web.Compilation.ResourceExpressionBuilder.EvaluateExpression%2A>tem de ser implementado dentro de um construtor de expressão para uma expressão a avaliar numa página que utiliza a funcionalidade de compilação não.</xref:System.Web.Compilation.ResourceExpressionBuilder.EvaluateExpression%2A> <xref:System.Web.Compilation.ResourceExpressionBuilder>suporta avaliação dos valores de recurso não compilada páginas, pelo que esta propriedade devolve sempre `true`.</xref:System.Web.Compilation.ResourceExpressionBuilder>"
   syntax:
     content: public override bool SupportsEvaluate { get; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> in all cases."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>em todos os casos."
   overload: System.Web.Compilation.ResourceExpressionBuilder.SupportsEvaluate*
   exceptions: []
   platform:

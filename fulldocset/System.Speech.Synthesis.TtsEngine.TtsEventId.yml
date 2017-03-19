@@ -18,8 +18,8 @@ items:
   nameWithType: TtsEventId
   fullName: System.Speech.Synthesis.TtsEngine.TtsEventId
   type: Enum
-  summary: "Enumerates types of speech synthesis events."
-  remarks: "Custom speech synthesis engines define the types of events submitted to the Speech platform synthesizer infrastructure with the TtsEventId.       Specification is performed by setting the <xref:System.Speech.Synthesis.TtsEngine.SpeechEventInfo.EventId%2A> property of <xref:System.Speech.Synthesis.TtsEngine.SpeechEventInfo> instances passed to the <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.AddEvents%2A> member of the class implementing the <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite> interface passed to the <xref:System.Speech.Synthesis.TtsEngine.TtsEngineSsml.Speak%2A> method on a custom speech engine&quot;s implementation of <xref:System.Speech.Synthesis.TtsEngine.TtsEngineSsml>.       The Speech platform infrastructure indicates the type of events it is currently handling through the <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A> property on the <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite> passed to the speak implementation.       The value of <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A> is a bitmask, where the members of TtsEventId define the location of the bit corresponding to the event type. For example, WordBoundary has a value of five (5), meaning the fifth bit in the value returned by <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A> indicates if the site supports the event type."
+  summary: "Enumera os tipos de eventos de synthesis de reconhecimento de voz."
+  remarks: "Motores de synthesis de reconhecimento de voz personalizadas definem os tipos de eventos foi submetidos para a infraestrutura de sintetizador de plataforma de voz com o TtsEventId.       Especificação é realizada definindo a <xref:System.Speech.Synthesis.TtsEngine.SpeechEventInfo.EventId%2A>propriedade de <xref:System.Speech.Synthesis.TtsEngine.SpeechEventInfo>instâncias transmitido para o <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.AddEvents%2A>Membro da classe de implementar a <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite>interface transmitido para o <xref:System.Speech.Synthesis.TtsEngine.TtsEngineSsml.Speak%2A>método de implementação de um motor de reconhecimento de voz personalizadas de <xref:System.Speech.Synthesis.TtsEngine.TtsEngineSsml>.</xref:System.Speech.Synthesis.TtsEngine.TtsEngineSsml> </xref:System.Speech.Synthesis.TtsEngine.TtsEngineSsml.Speak%2A> </xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite> </xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.AddEvents%2A> </xref:System.Speech.Synthesis.TtsEngine.SpeechEventInfo> </xref:System.Speech.Synthesis.TtsEngine.SpeechEventInfo.EventId%2A>       Infraestrutura da plataforma de voz indica o tipo de eventos que está atualmente a processar através de <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A>propriedade o <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite>transmitido para a implementação de speak.</xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite> </xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A>       O valor de <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A>é uma máscara de bits, onde os membros de TtsEventId definem localização do bits correspondente para o tipo de evento.</xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A> Por exemplo, WordBoundary tem um valor de cinco (5), que significa que o bit quinto no valor devolvido pelo <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A>indica se o site suporta o tipo de evento.</xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A>"
   example:
   - "The example below is part of a custom speech synthesis implementation inheriting from <xref:System.Speech.Synthesis.TtsEngine.TtsEngineSsml>, and using the use of <xref:System.Speech.Synthesis.TtsEngine.TextFragment>, <xref:System.Speech.Synthesis.TtsEngine.SpeechEventInfo>, <xref:System.Speech.Synthesis.TtsEngine.FragmentState>, and TtsEventId  \n  \n The implementation of <xref:System.Speech.Synthesis.TtsEngine.TtsEngineSsml.Speak%2A>  \n  \n1.  Receives an array of <xref:System.Speech.Synthesis.TtsEngine.TextFragment> instances and creates a new array of <xref:System.Speech.Synthesis.TtsEngine.TextFragment> instances to be passed to the `Speak` method on an underlying synthesis engine.  \n  \n2.  If the <xref:System.Speech.Synthesis.TtsEngine.TtsEngineAction> enumeration value by found from the <xref:System.Speech.Synthesis.TtsEngine.FragmentState.Action%2A> property on the <xref:System.Speech.Synthesis.TtsEngine.FragmentState> returned by the <xref:System.Speech.Synthesis.TtsEngine.TextFragment.State%2A> property of each <xref:System.Speech.Synthesis.TtsEngine.TextFragment> instance is <xref:System.Speech.Synthesis.TtsEngine.TtsEngineAction>, the implementation  \n  \n    -   Translates Americanism to Britishisms in the text to be spoken.  \n  \n    -   If the <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite.EventInterest%2A> property on the <xref:System.Speech.Synthesis.TtsEngine.ITtsEngineSite> interfaces provided to the implementation support the WordBoundary event type, a <xref:System.Speech.Synthesis.TtsEngine.SpeechEventInfo> instance is used to create an event to drive a synthesizer progress meter is created.  \n  \n3.  A speech rendering engine is then called with the modified <xref:System.Speech.Synthesis.TtsEngine.TextFragment> array.  \n  \n```  \nprivate const int WordBoundaryFlag = 1 << (int)TtsEventId.WordBoundary;  \nprivate readonly char[] spaces = new char[] { ' ', '\\t', '\\r', '\\n' };  \ninternal struct UsVsUk  \n{  \n  internal string UK;  \n  internal string US;  \n}  \n  \noverride public void Speak (TextFragment [] frags, IntPtr wfx, ITtsEngineSite site)  \n{  \n  TextFragment [] newFrags=new TextFragment[frags.Length];  \n  \n  for (int i=0;i<frags.Length;i++){  \n    newFrags[i].State=frags[i].State;  \n    //truncate  \n    newFrags[i].TextToSpeak = frags[i].TextToSpeak.Substring(frags[i].TextOffset,  \n                               frags[i].TextLength);  \n    newFrags[i].TextLength = newFrags[i].TextToSpeak.Length;  \n    newFrags[i].TextOffset = 0;  \n    if (newFrags[i].State.Action == TtsEngineAction.Speak) {  \n      //Us to UK conversion  \n      foreach (UsVsUk term in TransList) {  \n      newFrags[i].TextToSpeak.Replace(term.US, term.UK);  \n      }  \n      //Generate progress meter events if supported  \n      if ((site.EventInterest & WordBoundaryFlag) != 0) {  \n      string[] subs = newFrags[i].TextToSpeak.Split(spaces);  \n  \n      foreach (string s in subs) {  \n        int offset = newFrags[i].TextOffset;  \n        SpeechEventInfo spEvent = new SpeechEventInfo((Int16)TtsEventId.WordBoundary,   \n                (Int16)EventParameterType.Undefined,   \n                 s.Length, new IntPtr(offset));  \n        offset += s.Length;  \n        if (s.Trim().Length > 0) {  \n          SpeechEventInfo[] events = new SpeechEventInfo[1];  \n          events[0] = spEvent;  \n          site.AddEvents(events, 1);  \n        }  \n      }  \n      }  \n    }  \n  }  \n  \n  _baseSynthesize.Speak(newFrags, wfx, site);  \n  \n}  \n```"
   syntax:
@@ -40,12 +40,12 @@ items:
   assemblies:
   - System.Speech
   namespace: System.Speech.Synthesis.TtsEngine
-  summary: "Identifies events generated when a speech synthesize engine completes an audio level change while speaking."
+  summary: "Identifica os eventos gerados quando uma voz sintetizar motor conclui uma alteração de nível de áudio durante a fala."
   syntax:
     content: AudioLevel
     return:
       type: System.Speech.Synthesis.TtsEngine.TtsEventId
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -61,12 +61,12 @@ items:
   assemblies:
   - System.Speech
   namespace: System.Speech.Synthesis.TtsEngine
-  summary: "Identifies events generated when a speech synthesize engine encounters a bookmark while speaking."
+  summary: "Identifica os eventos gerados quando uma voz sintetizar motor encontra um marcador durante a fala."
   syntax:
     content: Bookmark
     return:
       type: System.Speech.Synthesis.TtsEngine.TtsEventId
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -82,12 +82,12 @@ items:
   assemblies:
   - System.Speech
   namespace: System.Speech.Synthesis.TtsEngine
-  summary: "Identifies events generated when a speech synthesize engine encounters the end of its input stream while speaking."
+  summary: "Identifica os eventos gerados quando uma voz sintetizar o motor de detetar o fim do seu fluxo de entrada durante a fala."
   syntax:
     content: EndInputStream
     return:
       type: System.Speech.Synthesis.TtsEngine.TtsEventId
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -103,12 +103,12 @@ items:
   assemblies:
   - System.Speech
   namespace: System.Speech.Synthesis.TtsEngine
-  summary: "Identifies events generated when a speech synthesize engine completes a phoneme while speaking."
+  summary: "Identifica os eventos gerados quando uma voz sintetizar motor conclui uma phoneme durante a fala."
   syntax:
     content: Phoneme
     return:
       type: System.Speech.Synthesis.TtsEngine.TtsEventId
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -124,12 +124,12 @@ items:
   assemblies:
   - System.Speech
   namespace: System.Speech.Synthesis.TtsEngine
-  summary: "Identifies events generated when a speech synthesize engine completes a sentence while speaking."
+  summary: "Identifica os eventos gerados quando uma voz sintetizar motor conclui uma frase durante a fala."
   syntax:
     content: SentenceBoundary
     return:
       type: System.Speech.Synthesis.TtsEngine.TtsEventId
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -145,12 +145,12 @@ items:
   assemblies:
   - System.Speech
   namespace: System.Speech.Synthesis.TtsEngine
-  summary: "Identifies events generated when a speech synthesize engine a begins speaking a stream."
+  summary: "Identifica os eventos gerados quando uma voz sintetizar o motor de uma começa falando uma transmissão em fluxo."
   syntax:
     content: StartInputStream
     return:
       type: System.Speech.Synthesis.TtsEngine.TtsEventId
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -166,12 +166,12 @@ items:
   assemblies:
   - System.Speech
   namespace: System.Speech.Synthesis.TtsEngine
-  summary: "Identifies events generated when a speech synthesize engine completes a viseme while speaking."
+  summary: "Identifica os eventos gerados quando uma voz sintetizar motor conclui uma viseme durante a fala."
   syntax:
     content: Viseme
     return:
       type: System.Speech.Synthesis.TtsEngine.TtsEventId
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -187,12 +187,12 @@ items:
   assemblies:
   - System.Speech
   namespace: System.Speech.Synthesis.TtsEngine
-  summary: "Identifies events generated when a speech synthesize engine encounters a change of Voice while speaking."
+  summary: "Identifica os eventos gerados quando uma voz sintetizar o motor de detetar uma alteração de voz durante a fala."
   syntax:
     content: VoiceChange
     return:
       type: System.Speech.Synthesis.TtsEngine.TtsEventId
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -208,12 +208,12 @@ items:
   assemblies:
   - System.Speech
   namespace: System.Speech.Synthesis.TtsEngine
-  summary: "Identifies events generated when a speech synthesize engine completes a word while speaking."
+  summary: "Identifica os eventos gerados quando uma voz sintetizar motor conclui uma palavra durante a fala."
   syntax:
     content: WordBoundary
     return:
       type: System.Speech.Synthesis.TtsEngine.TtsEventId
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
