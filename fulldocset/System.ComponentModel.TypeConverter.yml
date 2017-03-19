@@ -48,8 +48,8 @@ items:
   nameWithType: TypeConverter
   fullName: System.ComponentModel.TypeConverter
   type: Class
-  summary: "Provides a unified way of converting types of values to other types, as well as for accessing standard values and subproperties."
-  remarks: "The most common type of converter is one that converts to and from a text representation. The type converter for a class is bound to the class with a <xref:System.ComponentModel.TypeConverterAttribute>. Unless this attribute is overridden, all classes that inherit from this class use the same type converter as the base class.      > [!NOTE] >  For general type system purposes, do not access a type converter directly. Instead, access the appropriate converter by using <xref:System.ComponentModel.TypeDescriptor>. For more information, see the code examples provided.       **Note** For XAML purposes, a XAML processor searches for the <xref:System.ComponentModel.TypeConverterAttribute> directly, instead of going through <xref:System.ComponentModel.TypeDescriptor>. For cases where you do want a <xref:System.ComponentModel.TypeDescriptor> instance from code, or where you create a shared instance in WPF resources, it is acceptable to construct it directly without referencing <xref:System.ComponentModel.TypeDescriptor> or other reflection and type system support.       Classes derived from TypeConverter are often referenced as part of how a XAML processor converts an attribute or initialization text value from markup (which is inherently a string) and generates an object for a run-time representation. Custom type authors that intend to support a type conversion behavior for XAML typically implement a TypeConverter class that supports their own unique `ConvertFrom` behavior from a string. This behavior enables type conversion from the string provided as a XAML attribute value and provides a XAML processor with the support needed to create an object from the string, so that the object can be produced in a parsed object graph. Custom types or members of custom types are indicated by applying <xref:System.ComponentModel.TypeConverterAttribute> to the definitions, with the attribute referencing the custom TypeConverter implementation. For more information, see [Type Converters for XAML Overview](~/add/includes/ajax-current-ext-md.md)."
+  summary: "Fornece uma forma de conversão de tipos de valores de outros tipos, bem como para aceder aos valores padrão e subproperties unificada."
+  remarks: "O tipo de conversor mais comum é aquele que converte de e para uma representação de texto. O conversor de tipos para uma classe está vinculado à classe com <xref:System.ComponentModel.TypeConverterAttribute>.</xref:System.ComponentModel.TypeConverterAttribute> A menos que este atributo é substituído, todas as classes que herdam desta classe utilizam o mesmo conversor de tipos que a classe base.      > [!NOTE] > Para fins de sistema de tipo geral, não acedam a um conversor de tipos diretamente. Em vez disso, aceder o conversor adequado utilizando <xref:System.ComponentModel.TypeDescriptor>.</xref:System.ComponentModel.TypeDescriptor> Para obter mais informações, consulte os exemplos de código fornecidos.       **Tenha em atenção** para fins XAML, um processador XAML procura <xref:System.ComponentModel.TypeConverterAttribute>diretamente, em vez de percorrer <xref:System.ComponentModel.TypeDescriptor>.</xref:System.ComponentModel.TypeDescriptor> </xref:System.ComponentModel.TypeConverterAttribute> Nos casos em que pretende que um <xref:System.ComponentModel.TypeDescriptor>instância a partir do código, ou onde criar uma instância partilhada no WPF recursos, é aceitável para construi-lo diretamente sem referenciar <xref:System.ComponentModel.TypeDescriptor>ou outro sistema de reflexão e o tipo de suporte.</xref:System.ComponentModel.TypeDescriptor> </xref:System.ComponentModel.TypeDescriptor>       Classes derivadas de TypeConverter, muitas vezes, são referenciadas como parte de como um processador XAML converte um valor de texto do atributo ou inicialização a partir do markup (que é, inerentemente, uma cadeia) e gera um objeto para uma representação de tempo de execução. Os autores de tipo personalizado que pretendam para suportar um comportamento de conversão de tipo XAML, normalmente, implementam uma classe TypeConverter que suporta os seus próprios exclusivo `ConvertFrom` comportamento de uma cadeia. Este comportamento permite a conversão de tipo de cadeia fornecida como um valor de atributo XAML e fornece um processador XAML com o suporte necessário para criar um objeto de cadeia, para que o objeto pode ser produzido no gráfico de objeto analisados. Tipos personalizados ou membros dos tipos personalizados são indicados por aplicar <xref:System.ComponentModel.TypeConverterAttribute>as definições, com o atributo a referenciar a implementação personalizada de TypeConverter.</xref:System.ComponentModel.TypeConverterAttribute> Para obter mais informações, consulte [conversores de tipo de descrição geral de XAML](~/add/includes/ajax-current-ext-md.md)."
   example:
   - "The following code example shows how to create an instance of a type converter and bind it to a class. The class implementing the converter, `MyClassConverter`, must inherit from the TypeConverter class.  \n  \n [!code-cpp[Classic TypeConverter Example#1](~/add/codesnippet/cpp/t-system.componentmodel._43_1.cpp)]\n [!code-cs[Classic TypeConverter Example#1](~/add/codesnippet/csharp/t-system.componentmodel._43_1.cs)]\n [!code-vb[Classic TypeConverter Example#1](~/add/codesnippet/visualbasic/t-system.componentmodel._43_1.vb)]  \n  \n When you have a property that has an enumeration, check to see whether an enumeration value is valid before setting the property. The next code example requires that an enumeration called `MyPropertyEnum` has been declared.  \n  \n [!code-cpp[Classic TypeConverter Example#2](~/add/codesnippet/cpp/t-system.componentmodel._43_2.cpp)]\n [!code-cs[Classic TypeConverter Example#2](~/add/codesnippet/csharp/t-system.componentmodel._43_2.cs)]\n [!code-vb[Classic TypeConverter Example#2](~/add/codesnippet/visualbasic/t-system.componentmodel._43_2.vb)]  \n  \n Another common type converter usage is to convert an object to a string. The following code example prints out the name of the <xref:System.Drawing.Color> stored in the variable `c`.  \n  \n [!code-cpp[Classic TypeConverter Example#3](~/add/codesnippet/cpp/t-system.componentmodel._43_3.cpp)]\n [!code-cs[Classic TypeConverter Example#3](~/add/codesnippet/csharp/t-system.componentmodel._43_3.cs)]\n [!code-vb[Classic TypeConverter Example#3](~/add/codesnippet/visualbasic/t-system.componentmodel._43_3.vb)]  \n  \n You can also use a type converter to convert a value from its name, as shown in the next code example.  \n  \n [!code-cpp[Classic TypeConverter Example#4](~/add/codesnippet/cpp/t-system.componentmodel._43_4.cpp)]\n [!code-cs[Classic TypeConverter Example#4](~/add/codesnippet/csharp/t-system.componentmodel._43_4.cs)]\n [!code-vb[Classic TypeConverter Example#4](~/add/codesnippet/visualbasic/t-system.componentmodel._43_4.vb)]  \n  \n In the following code example, you can use a type converter to print out the set of standard values that the object supports.  \n  \n [!code-cpp[Classic TypeConverter Example#5](~/add/codesnippet/cpp/t-system.componentmodel._43_5.cpp)]\n [!code-cs[Classic TypeConverter Example#5](~/add/codesnippet/csharp/t-system.componentmodel._43_5.cs)]\n [!code-vb[Classic TypeConverter Example#5](~/add/codesnippet/visualbasic/t-system.componentmodel._43_5.vb)]"
   syntax:
@@ -75,7 +75,7 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Initializes a new instance of the <xref href=&quot;System.ComponentModel.TypeConverter&quot;></xref> class."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.ComponentModel.TypeConverter&quot;> </xref> classe."
   syntax:
     content: public TypeConverter ();
     parameters: []
@@ -95,17 +95,17 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether this converter can convert an object of the given type to the type of this converter."
-  remarks: "As implemented in this class, this method always returns `false`. It never returns `true`."
+  summary: "Devolve se este conversor pode converter um objeto do tipo indicado para o tipo deste conversor."
+  remarks: "Conforme implementado desta classe, este método devolve sempre `false`. Nunca devolve `true`."
   syntax:
     content: public bool CanConvertFrom (Type sourceType);
     parameters:
     - id: sourceType
       type: System.Type
-      description: "A <xref:System.Type> that represents the type you want to convert from."
+      description: "A <xref:System.Type>que representa o tipo de que pretende converter de.</xref:System.Type>"
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if this converter can perform the conversion; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se este conversor pode efetuar a conversão; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.ComponentModel.TypeConverter.CanConvertFrom*
   exceptions: []
   platform:
@@ -122,20 +122,20 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether this converter can convert an object of the given type to the type of this converter, using the specified context."
-  remarks: "As implemented in this class, this method returns `false`, unless `sourceType` is an <xref:System.ComponentModel.Design.Serialization.InstanceDescriptor>."
+  summary: "Devolve se este conversor pode converter um objeto do tipo indicado para o tipo deste conversor, utilizando o contexto especificado."
+  remarks: "Conforme implementado desta classe, este método devolve `false`, a menos que `sourceType` é <xref:System.ComponentModel.Design.Serialization.InstanceDescriptor>.</xref:System.ComponentModel.Design.Serialization.InstanceDescriptor>"
   syntax:
     content: public virtual bool CanConvertFrom (System.ComponentModel.ITypeDescriptorContext context, Type sourceType);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: sourceType
       type: System.Type
-      description: "A <xref:System.Type> that represents the type you want to convert from."
+      description: "A <xref:System.Type>que representa o tipo de que pretende converter de.</xref:System.Type>"
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if this converter can perform the conversion; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se este conversor pode efetuar a conversão; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.ComponentModel.TypeConverter.CanConvertFrom*
   exceptions: []
   platform:
@@ -152,17 +152,17 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether this converter can convert the object to the specified type."
-  remarks: "If `destinationType` is a string, the default implementation of <xref:System.ComponentModel.TypeConverter.CanConvertTo%2A> always returns `true`."
+  summary: "Devolve se este conversor pode converter o objeto para o tipo especificado."
+  remarks: "Se `destinationType` é uma cadeia, a implementação predefinida do <xref:System.ComponentModel.TypeConverter.CanConvertTo%2A>sempre devolve `true`.</xref:System.ComponentModel.TypeConverter.CanConvertTo%2A>"
   syntax:
     content: public bool CanConvertTo (Type destinationType);
     parameters:
     - id: destinationType
       type: System.Type
-      description: "A <xref:System.Type> that represents the type you want to convert to."
+      description: "A <xref:System.Type>que representa o tipo de que pretende converter.</xref:System.Type>"
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if this converter can perform the conversion; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se este conversor pode efetuar a conversão; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.ComponentModel.TypeConverter.CanConvertTo*
   exceptions: []
   platform:
@@ -179,20 +179,20 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether this converter can convert the object to the specified type, using the specified context."
-  remarks: "Use the `context` parameter to extract additional information about the environment from which this converter is invoked. This parameter can be `null`, so always check it. Also, properties on the context object can return `null`.       If `destinationType` is a string, the default implementation of <xref:System.ComponentModel.TypeConverter.CanConvertTo%2A> always returns `true`."
+  summary: "Devolve se este conversor pode converter o objeto para o tipo especificado, utilizando o contexto especificado."
+  remarks: "Utilize o `context` parâmetro para extrair informações adicionais sobre o ambiente a partir do qual é invocado este conversor. Este parâmetro pode ser `null`, sempre a verificar. Além disso, podem devolver propriedades no objeto context `null`.       Se `destinationType` é uma cadeia, a implementação predefinida do <xref:System.ComponentModel.TypeConverter.CanConvertTo%2A>sempre devolve `true`.</xref:System.ComponentModel.TypeConverter.CanConvertTo%2A>"
   syntax:
     content: public virtual bool CanConvertTo (System.ComponentModel.ITypeDescriptorContext context, Type destinationType);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: destinationType
       type: System.Type
-      description: "A <xref:System.Type> that represents the type you want to convert to."
+      description: "A <xref:System.Type>que representa o tipo de que pretende converter.</xref:System.Type>"
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if this converter can perform the conversion; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se este conversor pode efetuar a conversão; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.ComponentModel.TypeConverter.CanConvertTo*
   exceptions: []
   platform:
@@ -209,21 +209,21 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the given value to the type of this converter."
+  summary: "Converte o valor indicado para o tipo deste conversor."
   syntax:
     content: public object ConvertFrom (object value);
     parameters:
     - id: value
       type: System.Object
-      description: "The <xref:System.Object> to convert."
+      description: "O <xref:System.Object>converter.</xref:System.Object>"
     return:
       type: System.Object
-      description: "An <xref:System.Object> that represents the converted value."
+      description: "Um <xref:System.Object>que representa o valor convertido.</xref:System.Object>"
   overload: System.ComponentModel.TypeConverter.ConvertFrom*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
@@ -238,28 +238,28 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the given object to the type of this converter, using the specified context and culture information."
-  remarks: "Custom type authors that intend to support a type conversion behavior for XAML typically implement a <xref:System.ComponentModel.TypeConverter> class that supports ConvertFrom behavior from a string. This behavior enables type conversion from the string provided as a XAML attribute value and provides a XAML processor with the support needed to create an object from the string, so that the object can be produced in a parsed object graph. Custom types or members of custom types are indicated by applying <xref:System.ComponentModel.TypeConverterAttribute> to the definitions, with the attribute referencing the custom <xref:System.ComponentModel.TypeConverter> implementation.       For XAML purposes, you do not typically provide branching implementations based on `culture`. This is because XAML is precompiled in a development environment context, and culture-specific information for runtime XAML is not relevant for XAML type conversion. For more information, see [Type Converters for XAML Overview](~/add/includes/ajax-current-ext-md.md)."
+  summary: "Converte o objecto fornecido para o tipo deste conversor, utilizando as informações de contexto e cultura especificada."
+  remarks: "Os autores de tipo personalizado que pretendam para suportar um comportamento de conversão de tipo XAML, normalmente, implementam um <xref:System.ComponentModel.TypeConverter>classe que suporta o comportamento de ConvertFrom de uma cadeia.</xref:System.ComponentModel.TypeConverter> Este comportamento permite a conversão de tipo de cadeia fornecida como um valor de atributo XAML e fornece um processador XAML com o suporte necessário para criar um objeto de cadeia, para que o objeto pode ser produzido no gráfico de objeto analisados. Tipos personalizados ou membros dos tipos personalizados são indicados por aplicar <xref:System.ComponentModel.TypeConverterAttribute>as definições, com o atributo referenciar personalizado <xref:System.ComponentModel.TypeConverter>implementação.</xref:System.ComponentModel.TypeConverter> </xref:System.ComponentModel.TypeConverterAttribute>       Para efeitos XAML, não normalmente fornecer implementações de ramificação com base no `culture`. Isto acontece porque XAML é pré-compilada num contexto de ambiente de desenvolvimento e informações de cultura específicas para o runtime XAML não é relevante para a conversão de tipo XAML. Para obter mais informações, consulte [conversores de tipo de descrição geral de XAML](~/add/includes/ajax-current-ext-md.md)."
   syntax:
     content: public virtual object ConvertFrom (System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: culture
       type: System.Globalization.CultureInfo
-      description: "The <xref:System.Globalization.CultureInfo> to use as the current culture."
+      description: "O <xref:System.Globalization.CultureInfo>para utilizar como a cultura atual.</xref:System.Globalization.CultureInfo>"
     - id: value
       type: System.Object
-      description: "The <xref:System.Object> to convert."
+      description: "O <xref:System.Object>converter.</xref:System.Object>"
     return:
       type: System.Object
-      description: "An <xref:System.Object> that represents the converted value."
+      description: "Um <xref:System.Object>que representa o valor convertido.</xref:System.Object>"
   overload: System.ComponentModel.TypeConverter.ConvertFrom*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)
@@ -274,22 +274,22 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the given string to the type of this converter, using the invariant culture."
-  remarks: "The default implementation always returns `null`."
+  summary: "Converte a cadeia especificada para o tipo deste conversor, utilizando a cultura invariável."
+  remarks: "Devolve a implementação predefinida sempre `null`."
   syntax:
     content: public object ConvertFromInvariantString (string text);
     parameters:
     - id: text
       type: System.String
-      description: "The <xref:System.String> to convert."
+      description: "O <xref:System.String>converter.</xref:System.String>"
     return:
       type: System.Object
-      description: "An <xref:System.Object> that represents the converted text."
+      description: "Um <xref:System.Object>que representa o texto convertido.</xref:System.Object>"
   overload: System.ComponentModel.TypeConverter.ConvertFromInvariantString*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)
@@ -304,25 +304,25 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the given string to the type of this converter, using the invariant culture and the specified context."
-  remarks: "An exception is raised if the string cannot be converted into the appropriate object. The default implementation always returns `null`.       Use the `context` parameter to extract additional information about the environment from which this converter is invoked. This parameter can be `null`, so always check it. Also, properties on the context object can return `null`."
+  summary: "Converte a cadeia especificada para o tipo deste conversor, utilizando a cultura invariável e o contexto especificado."
+  remarks: "Uma exceção é gerada se a cadeia não é possível converter o objecto apropriado. Devolve a implementação predefinida sempre `null`.       Utilize o `context` parâmetro para extrair informações adicionais sobre o ambiente a partir do qual é invocado este conversor. Este parâmetro pode ser `null`, sempre a verificar. Além disso, podem devolver propriedades no objeto context `null`."
   syntax:
     content: public object ConvertFromInvariantString (System.ComponentModel.ITypeDescriptorContext context, string text);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: text
       type: System.String
-      description: "The <xref:System.String> to convert."
+      description: "O <xref:System.String>converter.</xref:System.String>"
     return:
       type: System.Object
-      description: "An <xref:System.Object> that represents the converted text."
+      description: "Um <xref:System.Object>que representa o texto convertido.</xref:System.Object>"
   overload: System.ComponentModel.TypeConverter.ConvertFromInvariantString*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertFromString(System.String)
@@ -337,8 +337,8 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the specified text to an object."
-  remarks: "The default implementation always returns `null`."
+  summary: "Converte o texto especificado para um objeto."
+  remarks: "Devolve a implementação predefinida sempre `null`."
   example:
   - For an example of this function, see the <xref:System.ComponentModel.TypeConverter> class.
   syntax:
@@ -346,15 +346,15 @@ items:
     parameters:
     - id: text
       type: System.String
-      description: "The text representation of the object to convert."
+      description: "A representação de texto do objecto a converter."
     return:
       type: System.Object
-      description: "An <xref:System.Object> that represents the converted text."
+      description: "Um <xref:System.Object>que representa o texto convertido.</xref:System.Object>"
   overload: System.ComponentModel.TypeConverter.ConvertFromString*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The string cannot be converted into the appropriate object."
+    description: "A cadeia não é possível converter o objecto apropriado."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)
@@ -369,25 +369,25 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the given text to an object, using the specified context."
-  remarks: "An exception is raised if the string cannot be converted into the appropriate object. The default implementation always returns `null`.       Use the `context` parameter to extract additional information about the environment from which this converter is invoked. This parameter can be `null`, so always check it. Also, properties on the context object can return `null`."
+  summary: "Converte o texto especificado para um objeto, utilizando o contexto especificado."
+  remarks: "Uma exceção é gerada se a cadeia não é possível converter o objecto apropriado. Devolve a implementação predefinida sempre `null`.       Utilize o `context` parâmetro para extrair informações adicionais sobre o ambiente a partir do qual é invocado este conversor. Este parâmetro pode ser `null`, sempre a verificar. Além disso, podem devolver propriedades no objeto context `null`."
   syntax:
     content: public object ConvertFromString (System.ComponentModel.ITypeDescriptorContext context, string text);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: text
       type: System.String
-      description: "The <xref:System.String> to convert."
+      description: "O <xref:System.String>converter.</xref:System.String>"
     return:
       type: System.Object
-      description: "An <xref:System.Object> that represents the converted text."
+      description: "Um <xref:System.Object>que representa o texto convertido.</xref:System.Object>"
   overload: System.ComponentModel.TypeConverter.ConvertFromString*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)
@@ -402,28 +402,28 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the given text to an object, using the specified context and culture information."
-  remarks: "An exception is raised if the string cannot be converted into the appropriate object. The default implementation always returns `null`.       Use the `context` parameter to extract additional information about the environment from which this converter is invoked. This parameter can be `null`, so always check it. Also, properties on the context object can return `null`."
+  summary: "Converte o texto especificado para um objeto, utilizando as informações de contexto e cultura especificada."
+  remarks: "Uma exceção é gerada se a cadeia não é possível converter o objecto apropriado. Devolve a implementação predefinida sempre `null`.       Utilize o `context` parâmetro para extrair informações adicionais sobre o ambiente a partir do qual é invocado este conversor. Este parâmetro pode ser `null`, sempre a verificar. Além disso, podem devolver propriedades no objeto context `null`."
   syntax:
     content: public object ConvertFromString (System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, string text);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: culture
       type: System.Globalization.CultureInfo
-      description: "A <xref:System.Globalization.CultureInfo>. If <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> is passed, the current culture is assumed."
+      description: "A <xref:System.Globalization.CultureInfo>.</xref:System.Globalization.CultureInfo> Se <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> é transmitida atual é assumida cultura."
     - id: text
       type: System.String
-      description: "The <xref:System.String> to convert."
+      description: "O <xref:System.String>converter.</xref:System.String>"
     return:
       type: System.Object
-      description: "An <xref:System.Object> that represents the converted text."
+      description: "Um <xref:System.Object>que representa o texto convertido.</xref:System.Object>"
   overload: System.ComponentModel.TypeConverter.ConvertFromString*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)
@@ -438,20 +438,20 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the given value object to the specified type, using the arguments."
-  remarks: "The most common type to convert to and from is a string object. This implementation calls <xref:System.Object.ToString%2A> on the object, if the object is valid and if the destination type is a string."
+  summary: "Converte o objeto do valor indicado para o tipo especificado, utilizando os argumentos."
+  remarks: "O tipo mais comum para converter de e é um objeto de cadeia. Esta implementação chama <xref:System.Object.ToString%2A>do objeto, se o objeto é válido e se o tipo de destino é uma cadeia.</xref:System.Object.ToString%2A>"
   syntax:
     content: public object ConvertTo (object value, Type destinationType);
     parameters:
     - id: value
       type: System.Object
-      description: "The <xref:System.Object> to convert."
+      description: "O <xref:System.Object>converter.</xref:System.Object>"
     - id: destinationType
       type: System.Type
-      description: "The <xref:System.Type> to convert the `value` parameter to."
+      description: "O <xref:System.Type>para converter o `value` parâmetro.</xref:System.Type>"
     return:
       type: System.Object
-      description: "An <xref:System.Object> that represents the converted value."
+      description: "Um <xref:System.Object>que representa o valor convertido.</xref:System.Object>"
   overload: System.ComponentModel.TypeConverter.ConvertTo*
   exceptions:
   - type: System.ArgumentNullException
@@ -459,7 +459,7 @@ items:
     description: "The <code>destinationType</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
@@ -474,26 +474,26 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the given value object to the specified type, using the specified context and culture information."
-  remarks: "The most common types to convert are to and from a string object. This implementation calls <xref:System.Object.ToString%2A> on the object if the object is valid and if the destination type is a string.       Use the `context` parameter to extract additional information about the environment from which this converter is invoked. This parameter can be `null`, so always check it. Also, properties on the context object can return `null`.       Custom type authors that intend to support a type conversion behavior for XAML typically implement a <xref:System.ComponentModel.TypeConverter> class that supports <xref:System.ComponentModel.TypeConverter.ConvertFrom%2A> behavior from a string. These type converters might also implement ConvertTo to support serialization back to XAML.       Some XAML serialization scenarios cannot be adequately addressed with <xref:System.ComponentModel.TypeConverter> alone. In these cases, it may be necessary to also define a <xref:System.Windows.Markup.ValueSerializer> that handles the serialization cases that would otherwise be handled by ConvertTo. For more information, see <xref:System.Windows.Markup.ValueSerializer>."
+  summary: "Converte o objeto do valor indicado para o tipo especificado, utilizando as informações de contexto e cultura especificada."
+  remarks: "Os tipos de mais comuns para converter são para e de um objeto de cadeia. Esta implementação chama <xref:System.Object.ToString%2A>no objeto se o objeto é válido e se o tipo de destino é uma cadeia.</xref:System.Object.ToString%2A>       Utilize o `context` parâmetro para extrair informações adicionais sobre o ambiente a partir do qual é invocado este conversor. Este parâmetro pode ser `null`, sempre a verificar. Além disso, podem devolver propriedades no objeto context `null`.       Os autores de tipo personalizado que pretendam para suportar um comportamento de conversão de tipo XAML, normalmente, implementam um <xref:System.ComponentModel.TypeConverter>classe que suporta <xref:System.ComponentModel.TypeConverter.ConvertFrom%2A>comportamento de uma cadeia.</xref:System.ComponentModel.TypeConverter.ConvertFrom%2A> </xref:System.ComponentModel.TypeConverter> Estes conversores de tipo também podem implementar ConvertTo para suportar a serialização para XAML.       Alguns cenários de serialização XAML não podem ser endereçados adequadamente com <xref:System.ComponentModel.TypeConverter>individualmente.</xref:System.ComponentModel.TypeConverter> Nestes casos, poderá ser necessário também definir um <xref:System.Windows.Markup.ValueSerializer>que processa os casos de serialização que caso contrário, teriam de ser processados por ConvertTo.</xref:System.Windows.Markup.ValueSerializer> Para obter mais informações, consulte <xref:System.Windows.Markup.ValueSerializer>.</xref:System.Windows.Markup.ValueSerializer>"
   syntax:
     content: public virtual object ConvertTo (System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: culture
       type: System.Globalization.CultureInfo
-      description: "A <xref:System.Globalization.CultureInfo>. If <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> is passed, the current culture is assumed."
+      description: "A <xref:System.Globalization.CultureInfo>.</xref:System.Globalization.CultureInfo> Se <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> é transmitida atual é assumida cultura."
     - id: value
       type: System.Object
-      description: "The <xref:System.Object> to convert."
+      description: "O <xref:System.Object>converter.</xref:System.Object>"
     - id: destinationType
       type: System.Type
-      description: "The <xref:System.Type> to convert the `value` parameter to."
+      description: "O <xref:System.Type>para converter o `value` parâmetro.</xref:System.Type>"
     return:
       type: System.Object
-      description: "An <xref:System.Object> that represents the converted value."
+      description: "Um <xref:System.Object>que representa o valor convertido.</xref:System.Object>"
   overload: System.ComponentModel.TypeConverter.ConvertTo*
   exceptions:
   - type: System.ArgumentNullException
@@ -501,7 +501,7 @@ items:
     description: "The <code>destinationType</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)
@@ -516,22 +516,22 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the specified value to a culture-invariant string representation."
-  remarks: "The `context` parameter can be used to extract additional information about the environment from which this converter is being invoked. This can be `null`, so always check. Also, properties on the context object can return `null`.       Depending on the implementation of the value formatter, it might be possible to pass the returned string back into the value formatter to re-create an instance of the object."
+  summary: "Converte o valor especificado para uma representação de cadeia de cultura invariante."
+  remarks: "O `context` parâmetro pode ser utilizado para extrair informações adicionais sobre o ambiente a partir do qual está a ser invocado este conversor. Isto pode ser `null`, por isso sempre a existência. Além disso, podem devolver propriedades no objeto context `null`.       Dependendo da implementação do formatador de valor, poderá ser possível transferir a cadeia devolvida novamente para o formatador de valor para voltar a criar uma instância do objeto."
   syntax:
     content: public string ConvertToInvariantString (object value);
     parameters:
     - id: value
       type: System.Object
-      description: "The <xref:System.Object> to convert."
+      description: "O <xref:System.Object>converter.</xref:System.Object>"
     return:
       type: System.String
-      description: "A <xref:System.String> that represents the converted value."
+      description: "A <xref:System.String>que representa o valor convertido.</xref:System.String>"
   overload: System.ComponentModel.TypeConverter.ConvertToInvariantString*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)
@@ -546,25 +546,25 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the specified value to a culture-invariant string representation, using the specified context."
-  remarks: "Use the `context` parameter to extract additional information about the environment from which this converter is invoked. This parameter can be `null`, so always check it. Also, properties on the context object can return `null`.       Depending on the implementation of the value formatter, it might be possible to pass the returned string back into the value formatter to re-create an instance of the object."
+  summary: "Converte o valor especificado para uma representação de cadeia de cultura invariante, utilizando o contexto especificado."
+  remarks: "Utilize o `context` parâmetro para extrair informações adicionais sobre o ambiente a partir do qual é invocado este conversor. Este parâmetro pode ser `null`, sempre a verificar. Além disso, podem devolver propriedades no objeto context `null`.       Dependendo da implementação do formatador de valor, poderá ser possível transferir a cadeia devolvida novamente para o formatador de valor para voltar a criar uma instância do objeto."
   syntax:
     content: public string ConvertToInvariantString (System.ComponentModel.ITypeDescriptorContext context, object value);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: value
       type: System.Object
-      description: "The <xref:System.Object> to convert."
+      description: "O <xref:System.Object>converter.</xref:System.Object>"
     return:
       type: System.String
-      description: "A <xref:System.String> that represents the converted value."
+      description: "A <xref:System.String>que representa o valor convertido.</xref:System.String>"
   overload: System.ComponentModel.TypeConverter.ConvertToInvariantString*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertToString(System.Object)
@@ -579,8 +579,8 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the specified value to a string representation."
-  remarks: "Depending on the implementation of the value formatter, it might be possible to pass the returned string back into the value formatter to re-create an instance of the object."
+  summary: "Converte o valor especificado para uma representação de cadeia."
+  remarks: "Dependendo da implementação do formatador de valor, poderá ser possível transferir a cadeia devolvida novamente para o formatador de valor para voltar a criar uma instância do objeto."
   example:
   - For an example on this function, see the <xref:System.ComponentModel.TypeConverter> class.
   syntax:
@@ -588,15 +588,15 @@ items:
     parameters:
     - id: value
       type: System.Object
-      description: "The <xref:System.Object> to convert."
+      description: "O <xref:System.Object>converter.</xref:System.Object>"
     return:
       type: System.String
-      description: "An <xref:System.Object> that represents the converted value."
+      description: "Um <xref:System.Object>que representa o valor convertido.</xref:System.Object>"
   overload: System.ComponentModel.TypeConverter.ConvertToString*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)
@@ -611,25 +611,25 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the given value to a string representation, using the given context."
-  remarks: "Use the `context` parameter to extract additional information about the environment from which this converter is invoked. This parameter can be `null`, so always check it. Also, properties on the context object can return `null`.       Depending on the implementation of the value formatter, it might be possible to pass the returned string back into the value formatter to re-create an instance of the object."
+  summary: "Converte o valor indicado para uma representação de cadeia, utilizando o contexto fornecido."
+  remarks: "Utilize o `context` parâmetro para extrair informações adicionais sobre o ambiente a partir do qual é invocado este conversor. Este parâmetro pode ser `null`, sempre a verificar. Além disso, podem devolver propriedades no objeto context `null`.       Dependendo da implementação do formatador de valor, poderá ser possível transferir a cadeia devolvida novamente para o formatador de valor para voltar a criar uma instância do objeto."
   syntax:
     content: public string ConvertToString (System.ComponentModel.ITypeDescriptorContext context, object value);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: value
       type: System.Object
-      description: "The <xref:System.Object> to convert."
+      description: "O <xref:System.Object>converter.</xref:System.Object>"
     return:
       type: System.String
-      description: "An <xref:System.Object> that represents the converted value."
+      description: "Um <xref:System.Object>que representa o valor convertido.</xref:System.Object>"
   overload: System.ComponentModel.TypeConverter.ConvertToString*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
@@ -644,28 +644,28 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Converts the given value to a string representation, using the specified context and culture information."
-  remarks: "Use the `context` parameter to extract additional information about the environment from which this converter is invoked. This parameter can be `null`, so always check it. Also, properties on the context object can return `null`.       Depending on the implementation of the value formatter, it might be possible to pass the returned string back into the value formatter to re-create an instance of the object."
+  summary: "Converte o valor indicado para uma representação de cadeia, utilizando as informações de contexto e cultura especificada."
+  remarks: "Utilize o `context` parâmetro para extrair informações adicionais sobre o ambiente a partir do qual é invocado este conversor. Este parâmetro pode ser `null`, sempre a verificar. Além disso, podem devolver propriedades no objeto context `null`.       Dependendo da implementação do formatador de valor, poderá ser possível transferir a cadeia devolvida novamente para o formatador de valor para voltar a criar uma instância do objeto."
   syntax:
     content: public string ConvertToString (System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: culture
       type: System.Globalization.CultureInfo
-      description: "A <xref:System.Globalization.CultureInfo>. If <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> is passed, the current culture is assumed."
+      description: "A <xref:System.Globalization.CultureInfo>.</xref:System.Globalization.CultureInfo> Se <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> é transmitida atual é assumida cultura."
     - id: value
       type: System.Object
-      description: "The <xref:System.Object> to convert."
+      description: "O <xref:System.Object>converter.</xref:System.Object>"
     return:
       type: System.String
-      description: "An <xref:System.Object> that represents the converted value."
+      description: "Um <xref:System.Object>que representa o valor convertido.</xref:System.Object>"
   overload: System.ComponentModel.TypeConverter.ConvertToString*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "The conversion cannot be performed."
+    description: "Não é possível efetuar a conversão."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)
@@ -680,17 +680,17 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Re-creates an <xref:System.Object> given a set of property values for the object."
-  remarks: "Use this method for objects that are immutable, but for which you want to provide changeable properties.       The dictionary provided by the `propertyValues` parameter has a series of name/value pairs, one for each property returned from <xref:System.ComponentModel.TypeConverter.GetProperties%2A>."
+  summary: "Recria um <xref:System.Object>num determinado conjunto de valores de propriedade para o objeto.</xref:System.Object>"
+  remarks: "Utilize este método para objetos que são imutáveis, mas para os quais pretende fornecer propriedades das partições.       O dicionário fornecido o `propertyValues` parâmetro tem uma série de pares nome/valor, um para cada propriedade devolvido de <xref:System.ComponentModel.TypeConverter.GetProperties%2A>.</xref:System.ComponentModel.TypeConverter.GetProperties%2A>"
   syntax:
     content: public object CreateInstance (System.Collections.IDictionary propertyValues);
     parameters:
     - id: propertyValues
       type: System.Collections.IDictionary
-      description: "An <xref:System.Collections.IDictionary> that represents a dictionary of new property values."
+      description: "Um <xref:System.Collections.IDictionary>que representa um dicionário de novos valores de propriedade.</xref:System.Collections.IDictionary>"
     return:
       type: System.Object
-      description: "An <xref:System.Object> representing the given <xref:System.Collections.IDictionary>, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if the object cannot be created. This method always returns <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "Um <xref:System.Object>que representa o determinado <xref:System.Collections.IDictionary>, ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se não é possível criar o objeto.</xref:System.Collections.IDictionary> </xref:System.Object> Este método devolve sempre <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   overload: System.ComponentModel.TypeConverter.CreateInstance*
   exceptions: []
   platform:
@@ -707,20 +707,20 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Creates an instance of the type that this <xref href=&quot;System.ComponentModel.TypeConverter&quot;></xref> is associated with, using the specified context, given a set of property values for the object."
-  remarks: "Use this method for objects that are immutable, but for which you want to provide changeable properties."
+  summary: "Cria uma instância do tipo que isto <xref href=&quot;System.ComponentModel.TypeConverter&quot;> </xref> está associado, utilizando o contexto especificado, num determinado conjunto de valores de propriedade para o objeto."
+  remarks: "Utilize este método para objetos que são imutáveis, mas para os quais pretende fornecer propriedades das partições."
   syntax:
     content: public virtual object CreateInstance (System.ComponentModel.ITypeDescriptorContext context, System.Collections.IDictionary propertyValues);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: propertyValues
       type: System.Collections.IDictionary
-      description: "An <xref:System.Collections.IDictionary> of new property values."
+      description: "Um <xref:System.Collections.IDictionary>dos novos valores de propriedade.</xref:System.Collections.IDictionary>"
     return:
       type: System.Object
-      description: "An <xref:System.Object> representing the given <xref:System.Collections.IDictionary>, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if the object cannot be created. This method always returns <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "Um <xref:System.Object>que representa o determinado <xref:System.Collections.IDictionary>, ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se não é possível criar o objeto.</xref:System.Collections.IDictionary> </xref:System.Object> Este método devolve sempre <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   overload: System.ComponentModel.TypeConverter.CreateInstance*
   exceptions: []
   platform:
@@ -737,21 +737,21 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns an exception to throw when a conversion cannot be performed."
+  summary: "Devolve uma exceção a acionar quando não é possível efetuar uma conversão."
   syntax:
     content: protected Exception GetConvertFromException (object value);
     parameters:
     - id: value
       type: System.Object
-      description: "The <xref:System.Object> to convert, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if the object is not available."
+      description: "O <xref:System.Object>para converter, ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se o objeto não está disponível.</xref:System.Object>"
     return:
       type: System.Exception
-      description: "An <xref:System.Exception> that represents the exception to throw when a conversion cannot be performed."
+      description: "Um <xref:System.Exception>que representa a exceção a acionar quando não é possível efetuar uma conversão.</xref:System.Exception>"
   overload: System.ComponentModel.TypeConverter.GetConvertFromException*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "Automatically thrown by this method."
+    description: "Automaticamente emitida por este método."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)
@@ -766,24 +766,24 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns an exception to throw when a conversion cannot be performed."
+  summary: "Devolve uma exceção a acionar quando não é possível efetuar uma conversão."
   syntax:
     content: protected Exception GetConvertToException (object value, Type destinationType);
     parameters:
     - id: value
       type: System.Object
-      description: "The <xref:System.Object> to convert, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if the object is not available."
+      description: "O <xref:System.Object>para converter, ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se o objeto não está disponível.</xref:System.Object>"
     - id: destinationType
       type: System.Type
-      description: "A <xref:System.Type> that represents the type the conversion was trying to convert to."
+      description: "A <xref:System.Type>que representa o tipo de conversão estava a tentar converter.</xref:System.Type>"
     return:
       type: System.Exception
-      description: "An <xref:System.Exception> that represents the exception to throw when a conversion cannot be performed."
+      description: "Um <xref:System.Exception>que representa a exceção a acionar quando não é possível efetuar uma conversão.</xref:System.Exception>"
   overload: System.ComponentModel.TypeConverter.GetConvertToException*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "Automatically thrown by this method."
+    description: "Automaticamente emitida por este método."
   platform:
   - net462
 - uid: System.ComponentModel.TypeConverter.GetCreateInstanceSupported
@@ -798,13 +798,13 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether changing a value on this object requires a call to the <xref:System.ComponentModel.TypeConverter.CreateInstance*> method to create a new value."
+  summary: "Devolve se alterar um valor deste objeto requer uma chamada para o <xref:System.ComponentModel.TypeConverter.CreateInstance*>método para criar um novo valor.</xref:System.ComponentModel.TypeConverter.CreateInstance*>"
   syntax:
     content: public bool GetCreateInstanceSupported ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if changing a property on this object requires a call to <xref:System.ComponentModel.TypeConverter.CreateInstance*> to create a new value; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se alterar uma propriedade deste objeto necessita de uma chamada para <xref:System.ComponentModel.TypeConverter.CreateInstance*>para criar um novo valor; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>.</xref:System.ComponentModel.TypeConverter.CreateInstance*>"
   overload: System.ComponentModel.TypeConverter.GetCreateInstanceSupported*
   exceptions: []
   platform:
@@ -821,17 +821,17 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether changing a value on this object requires a call to <xref:System.ComponentModel.TypeConverter.CreateInstance*> to create a new value, using the specified context."
-  remarks: "As implemented in this class, this method always returns `false`."
+  summary: "Devolve se alterar um valor deste objeto requer uma chamada para <xref:System.ComponentModel.TypeConverter.CreateInstance*>para criar um novo valor utilizando o contexto especificado.</xref:System.ComponentModel.TypeConverter.CreateInstance*>"
+  remarks: "Conforme implementado desta classe, este método devolve sempre `false`."
   syntax:
     content: public virtual bool GetCreateInstanceSupported (System.ComponentModel.ITypeDescriptorContext context);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if changing a property on this object requires a call to <xref:System.ComponentModel.TypeConverter.CreateInstance*> to create a new value; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se alterar uma propriedade deste objeto necessita de uma chamada para <xref:System.ComponentModel.TypeConverter.CreateInstance*>para criar um novo valor; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>.</xref:System.ComponentModel.TypeConverter.CreateInstance*>"
   overload: System.ComponentModel.TypeConverter.GetCreateInstanceSupported*
   exceptions: []
   platform:
@@ -848,17 +848,17 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns a collection of properties for the type of array specified by the value parameter."
-  remarks: "As implemented in this class, this method always returns `null`.       By default, a type does not return properties. An easy implementation of this method can call <xref:System.ComponentModel.TypeDescriptor.GetProperties%2A> for the correct data type."
+  summary: "Devolve uma coleção de propriedades para o tipo de matriz especificada pelo parâmetro de valor."
+  remarks: "Conforme implementado desta classe, este método devolve sempre `null`.       Por predefinição, um tipo de retorno não propriedades. Uma implementação fácil deste método pode chamar <xref:System.ComponentModel.TypeDescriptor.GetProperties%2A>para o tipo de dados correto.</xref:System.ComponentModel.TypeDescriptor.GetProperties%2A>"
   syntax:
     content: public System.ComponentModel.PropertyDescriptorCollection GetProperties (object value);
     parameters:
     - id: value
       type: System.Object
-      description: "An <xref:System.Object> that specifies the type of array for which to get properties."
+      description: "Um <xref:System.Object>que especifica o tipo de matriz para o qual pretende obter propriedades.</xref:System.Object>"
     return:
       type: System.ComponentModel.PropertyDescriptorCollection
-      description: "A <xref href=&quot;System.ComponentModel.PropertyDescriptorCollection&quot;></xref> with the properties that are exposed for this data type, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if there are no properties."
+      description: "A <xref href=&quot;System.ComponentModel.PropertyDescriptorCollection&quot;> </xref> com as propriedades expostas para este tipo de dados, ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se existirem sem propriedades."
   overload: System.ComponentModel.TypeConverter.GetProperties*
   exceptions: []
   platform:
@@ -875,20 +875,20 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns a collection of properties for the type of array specified by the value parameter, using the specified context."
-  remarks: "Use the `context` parameter to extract additional information about the environment from which this converter is invoked. This parameter can be `null`, so always check it. Also, properties on the context object can return `null`.       As implemented in this class, this method always returns `null`.       By default, a type does not return properties. An easy implementation of this method can call <xref:System.ComponentModel.TypeDescriptor.GetProperties%2A> for the correct data type."
+  summary: "Devolve uma coleção de propriedades para o tipo de matriz especificada pelo parâmetro de valor, utilizando o contexto especificado."
+  remarks: "Utilize o `context` parâmetro para extrair informações adicionais sobre o ambiente a partir do qual é invocado este conversor. Este parâmetro pode ser `null`, sempre a verificar. Além disso, podem devolver propriedades no objeto context `null`.       Conforme implementado desta classe, este método devolve sempre `null`.       Por predefinição, um tipo de retorno não propriedades. Uma implementação fácil deste método pode chamar <xref:System.ComponentModel.TypeDescriptor.GetProperties%2A>para o tipo de dados correto.</xref:System.ComponentModel.TypeDescriptor.GetProperties%2A>"
   syntax:
     content: public System.ComponentModel.PropertyDescriptorCollection GetProperties (System.ComponentModel.ITypeDescriptorContext context, object value);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: value
       type: System.Object
-      description: "An <xref:System.Object> that specifies the type of array for which to get properties."
+      description: "Um <xref:System.Object>que especifica o tipo de matriz para o qual pretende obter propriedades.</xref:System.Object>"
     return:
       type: System.ComponentModel.PropertyDescriptorCollection
-      description: "A <xref href=&quot;System.ComponentModel.PropertyDescriptorCollection&quot;></xref> with the properties that are exposed for this data type, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if there are no properties."
+      description: "A <xref href=&quot;System.ComponentModel.PropertyDescriptorCollection&quot;> </xref> com as propriedades expostas para este tipo de dados, ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se existirem sem propriedades."
   overload: System.ComponentModel.TypeConverter.GetProperties*
   exceptions: []
   platform:
@@ -905,23 +905,23 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns a collection of properties for the type of array specified by the value parameter, using the specified context and attributes."
-  remarks: "As implemented in this class, this method always returns `null`."
+  summary: "Devolve uma coleção de propriedades para o tipo de matriz especificada pelo parâmetro de valor, utilizando os atributos e contexto especificado."
+  remarks: "Conforme implementado desta classe, este método devolve sempre `null`."
   syntax:
     content: public virtual System.ComponentModel.PropertyDescriptorCollection GetProperties (System.ComponentModel.ITypeDescriptorContext context, object value, Attribute[] attributes);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: value
       type: System.Object
-      description: "An <xref:System.Object> that specifies the type of array for which to get properties."
+      description: "Um <xref:System.Object>que especifica o tipo de matriz para o qual pretende obter propriedades.</xref:System.Object>"
     - id: attributes
       type: System.Attribute[]
-      description: "An array of type <xref:System.Attribute> that is used as a filter."
+      description: "Uma matriz do tipo <xref:System.Attribute>que é utilizado como um filtro.</xref:System.Attribute>"
     return:
       type: System.ComponentModel.PropertyDescriptorCollection
-      description: "A <xref href=&quot;System.ComponentModel.PropertyDescriptorCollection&quot;></xref> with the properties that are exposed for this data type, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if there are no properties."
+      description: "A <xref href=&quot;System.ComponentModel.PropertyDescriptorCollection&quot;> </xref> com as propriedades expostas para este tipo de dados, ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se existirem sem propriedades."
   overload: System.ComponentModel.TypeConverter.GetProperties*
   exceptions: []
   platform:
@@ -938,14 +938,14 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether this object supports properties."
-  remarks: "As implemented in this class, this method always returns `false`."
+  summary: "Devolve se este objeto suporta propriedades."
+  remarks: "Conforme implementado desta classe, este método devolve sempre `false`."
   syntax:
     content: public bool GetPropertiesSupported ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if <xref:System.ComponentModel.TypeConverter.GetProperties*> should be called to find the properties of this object; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se <xref:System.ComponentModel.TypeConverter.GetProperties*>deve ser chamado para localizar as propriedades deste objeto; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>.</xref:System.ComponentModel.TypeConverter.GetProperties*>"
   overload: System.ComponentModel.TypeConverter.GetPropertiesSupported*
   exceptions: []
   platform:
@@ -962,17 +962,17 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether this object supports properties, using the specified context."
-  remarks: "As implemented in this class, this method always returns `false`."
+  summary: "Devolve se este objeto suporta propriedades, utilizando o contexto especificado."
+  remarks: "Conforme implementado desta classe, este método devolve sempre `false`."
   syntax:
     content: public virtual bool GetPropertiesSupported (System.ComponentModel.ITypeDescriptorContext context);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if <xref:System.ComponentModel.TypeConverter.GetProperties*> should be called to find the properties of this object; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se <xref:System.ComponentModel.TypeConverter.GetProperties*>deve ser chamado para localizar as propriedades deste objeto; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>.</xref:System.ComponentModel.TypeConverter.GetProperties*>"
   overload: System.ComponentModel.TypeConverter.GetPropertiesSupported*
   exceptions: []
   platform:
@@ -989,14 +989,14 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns a collection of standard values from the default context for the data type this type converter is designed for."
-  remarks: "As implemented in this class, this method always returns `null`."
+  summary: "Devolve uma coleção de valores padrão do contexto predefinido para este conversor de tipos foi concebido para o tipo de dados."
+  remarks: "Conforme implementado desta classe, este método devolve sempre `null`."
   syntax:
     content: public System.Collections.ICollection GetStandardValues ();
     parameters: []
     return:
       type: System.Collections.ICollection
-      description: "A <xref:System.ComponentModel.TypeConverter.StandardValuesCollection> containing a standard set of valid values, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if the data type does not support a standard set of values."
+      description: "A <xref:System.ComponentModel.TypeConverter.StandardValuesCollection>que contém um conjunto de valores válidos, padrão ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se o tipo de dados não suporta um conjunto padrão de valores.</xref:System.ComponentModel.TypeConverter.StandardValuesCollection>"
   overload: System.ComponentModel.TypeConverter.GetStandardValues*
   exceptions: []
   platform:
@@ -1013,8 +1013,8 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns a collection of standard values for the data type this type converter is designed for when provided with a format context."
-  remarks: "As implemented in <xref:System.ComponentModel.TypeConverter>, this method always returns `null`."
+  summary: "Devolve um conjunto de valores padrão para o tipo de dados, que este conversor de tipos foi concebido para quando é fornecido com um contexto de formato."
+  remarks: "Como implementados no <xref:System.ComponentModel.TypeConverter>, este método devolve sempre `null`.</xref:System.ComponentModel.TypeConverter>"
   example:
   - For an example on this function, see the <xref:System.ComponentModel.TypeConverter> class.
   syntax:
@@ -1022,10 +1022,10 @@ items:
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context that can be used to extract additional information about the environment from which this converter is invoked. This parameter or properties of this parameter can be <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato que pode ser utilizado para extrair informações adicionais sobre o ambiente a partir do qual é invocado este conversor. Este parâmetro ou as propriedades deste parâmetro podem ser <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
     return:
       type: System.ComponentModel.TypeConverter.StandardValuesCollection
-      description: "A <xref:System.ComponentModel.TypeConverter.StandardValuesCollection> that holds a standard set of valid values, or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if the data type does not support a standard set of values."
+      description: "A <xref:System.ComponentModel.TypeConverter.StandardValuesCollection>que contém um conjunto de valores válidos, padrão ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se o tipo de dados não suporta um conjunto padrão de valores.</xref:System.ComponentModel.TypeConverter.StandardValuesCollection>"
   overload: System.ComponentModel.TypeConverter.GetStandardValues*
   exceptions: []
   platform:
@@ -1042,14 +1042,14 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether the collection of standard values returned from <xref:System.ComponentModel.TypeConverter.GetStandardValues*> is an exclusive list."
-  remarks: "As implemented in this class, this method always returns `false`.       If the list is exclusive, such as in an enumeration data type, then no other values are valid. If the list is not exclusive, then other valid values might exist in addition to the list of standard values that the <xref:System.ComponentModel.TypeConverter.GetStandardValues%2A> method provides. If the values are exclusive, the list returned by <xref:System.ComponentModel.TypeConverter.GetStandardValues%2A> should not allow these values to be edited."
+  summary: "Devolve se a coleção de valores padrão devolvido de <xref:System.ComponentModel.TypeConverter.GetStandardValues*>é uma lista exclusiva.</xref:System.ComponentModel.TypeConverter.GetStandardValues*>"
+  remarks: "Conforme implementado desta classe, este método devolve sempre `false`.       Se a lista é exclusiva, tal como um tipo de dados de enumeração, outros valores não são válidos. Se a lista não for exclusiva, poderão existir outros valores válidos além da lista de valores padrão que o <xref:System.ComponentModel.TypeConverter.GetStandardValues%2A>fornece de método.</xref:System.ComponentModel.TypeConverter.GetStandardValues%2A> Se os valores são exclusivos, a lista devolvida pelo <xref:System.ComponentModel.TypeConverter.GetStandardValues%2A>não deve permitir estes valores ser editado.</xref:System.ComponentModel.TypeConverter.GetStandardValues%2A>"
   syntax:
     content: public bool GetStandardValuesExclusive ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the <xref:System.ComponentModel.TypeConverter.StandardValuesCollection> returned from <xref:System.ComponentModel.TypeConverter.GetStandardValues*> is an exhaustive list of possible values; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref> if other values are possible."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o <xref:System.ComponentModel.TypeConverter.StandardValuesCollection>devolvido de <xref:System.ComponentModel.TypeConverter.GetStandardValues*>é uma lista exaustiva de possíveis valores; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref> se outros valores são possíveis.</xref:System.ComponentModel.TypeConverter.GetStandardValues*> </xref:System.ComponentModel.TypeConverter.StandardValuesCollection>"
   overload: System.ComponentModel.TypeConverter.GetStandardValuesExclusive*
   exceptions: []
   platform:
@@ -1066,17 +1066,17 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether the collection of standard values returned from <xref:System.ComponentModel.TypeConverter.GetStandardValues*> is an exclusive list of possible values, using the specified context."
-  remarks: "As implemented in this class, this method always returns `false`.       If the list is exclusive, such as in an enumeration data type, then no other values are valid. If the list is not exclusive, then other valid values might exist in addition to the list of standard values that the <xref:System.ComponentModel.TypeConverter.GetStandardValues%2A> method provides. If the values are exclusive, the list returned by <xref:System.ComponentModel.TypeConverter.GetStandardValues%2A> should not allow these values to be edited."
+  summary: "Devolve se a coleção de valores padrão devolvido de <xref:System.ComponentModel.TypeConverter.GetStandardValues*>é uma lista exclusiva de valores possíveis, utilizando o contexto especificado.</xref:System.ComponentModel.TypeConverter.GetStandardValues*>"
+  remarks: "Conforme implementado desta classe, este método devolve sempre `false`.       Se a lista é exclusiva, tal como um tipo de dados de enumeração, outros valores não são válidos. Se a lista não for exclusiva, poderão existir outros valores válidos além da lista de valores padrão que o <xref:System.ComponentModel.TypeConverter.GetStandardValues%2A>fornece de método.</xref:System.ComponentModel.TypeConverter.GetStandardValues%2A> Se os valores são exclusivos, a lista devolvida pelo <xref:System.ComponentModel.TypeConverter.GetStandardValues%2A>não deve permitir estes valores ser editado.</xref:System.ComponentModel.TypeConverter.GetStandardValues%2A>"
   syntax:
     content: public virtual bool GetStandardValuesExclusive (System.ComponentModel.ITypeDescriptorContext context);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the <xref:System.ComponentModel.TypeConverter.StandardValuesCollection> returned from <xref:System.ComponentModel.TypeConverter.GetStandardValues*> is an exhaustive list of possible values; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref> if other values are possible."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o <xref:System.ComponentModel.TypeConverter.StandardValuesCollection>devolvido de <xref:System.ComponentModel.TypeConverter.GetStandardValues*>é uma lista exaustiva de possíveis valores; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref> se outros valores são possíveis.</xref:System.ComponentModel.TypeConverter.GetStandardValues*> </xref:System.ComponentModel.TypeConverter.StandardValuesCollection>"
   overload: System.ComponentModel.TypeConverter.GetStandardValuesExclusive*
   exceptions: []
   platform:
@@ -1093,13 +1093,13 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether this object supports a standard set of values that can be picked from a list."
+  summary: "Devolve se este objeto suporta um conjunto padrão de valores que podem ser selecionadas a partir de uma lista."
   syntax:
     content: public bool GetStandardValuesSupported ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if <xref:System.ComponentModel.TypeConverter.GetStandardValues*> should be called to find a common set of values the object supports; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se <xref:System.ComponentModel.TypeConverter.GetStandardValues*>deve ser chamado para localizar um conjunto comum de valores que suporta o objeto; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>.</xref:System.ComponentModel.TypeConverter.GetStandardValues*>"
   overload: System.ComponentModel.TypeConverter.GetStandardValuesSupported*
   exceptions: []
   platform:
@@ -1116,17 +1116,17 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether this object supports a standard set of values that can be picked from a list, using the specified context."
-  remarks: "As implemented in this class, this method always returns `false`.       Use the `context` parameter to extract additional information about the environment from which this converter is invoked. This parameter can be `null`, so always check it. Also, properties on the context object can return `null`."
+  summary: "Devolve se este objeto suporta um conjunto padrão de valores que podem ser selecionadas a partir de uma lista, utilizando o contexto especificado."
+  remarks: "Conforme implementado desta classe, este método devolve sempre `false`.       Utilize o `context` parâmetro para extrair informações adicionais sobre o ambiente a partir do qual é invocado este conversor. Este parâmetro pode ser `null`, sempre a verificar. Além disso, podem devolver propriedades no objeto context `null`."
   syntax:
     content: public virtual bool GetStandardValuesSupported (System.ComponentModel.ITypeDescriptorContext context);
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if <xref:System.ComponentModel.TypeConverter.GetStandardValues*> should be called to find a common set of values the object supports; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se <xref:System.ComponentModel.TypeConverter.GetStandardValues*>deve ser chamado para localizar um conjunto comum de valores que suporta o objeto; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>.</xref:System.ComponentModel.TypeConverter.GetStandardValues*>"
   overload: System.ComponentModel.TypeConverter.GetStandardValuesSupported*
   exceptions: []
   platform:
@@ -1143,17 +1143,17 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether the given value object is valid for this type."
-  remarks: "Starting in [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)], the <xref:System.ComponentModel.TypeConverter.IsValid%2A> method catches exceptions from the <xref:System.ComponentModel.TypeConverter.CanConvertFrom%2A> and <xref:System.ComponentModel.TypeConverter.ConvertFrom%2A> methods. If the input value type causes <xref:System.ComponentModel.TypeConverter.CanConvertFrom%2A> to return `false`, or if the input value causes <xref:System.ComponentModel.TypeConverter.ConvertFrom%2A> to raise an exception, the <xref:System.ComponentModel.TypeConverter.IsValid%2A> method returns `false`.       To enable the legacy behavior, insert the following lines into the configuration file of the application, for example, application1.exe.config.      ```xml   <configuration>     <appSettings>       <add key=&quot;UseCompatibleTypeConverterBehavior&quot; value=&quot;true&quot; />     </appSettings>   </configuration>   ```"
+  summary: "Devolve se o objeto do valor fornecido é válido para este tipo."
+  remarks: "A partir de [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)], a <xref:System.ComponentModel.TypeConverter.IsValid%2A>método obtém as exceções do <xref:System.ComponentModel.TypeConverter.CanConvertFrom%2A>e <xref:System.ComponentModel.TypeConverter.ConvertFrom%2A>métodos.</xref:System.ComponentModel.TypeConverter.ConvertFrom%2A> </xref:System.ComponentModel.TypeConverter.CanConvertFrom%2A> </xref:System.ComponentModel.TypeConverter.IsValid%2A> Se o tipo de valor de entrada faz com que <xref:System.ComponentModel.TypeConverter.CanConvertFrom%2A>para devolver `false`, ou se o valor de entrada faz com que <xref:System.ComponentModel.TypeConverter.ConvertFrom%2A>para gerar uma exceção, o <xref:System.ComponentModel.TypeConverter.IsValid%2A>método devolve `false`.</xref:System.ComponentModel.TypeConverter.IsValid%2A> </xref:System.ComponentModel.TypeConverter.ConvertFrom%2A> </xref:System.ComponentModel.TypeConverter.CanConvertFrom%2A>       Para ativar o comportamento de legado, inserir as seguintes linhas no ficheiro de configuração da aplicação, por exemplo, application1.exe.config.      ```xml   <configuration>     <appSettings>       <add key=&quot;UseCompatibleTypeConverterBehavior&quot; value=&quot;true&quot; />     </appSettings>   </configuration>   ```"
   syntax:
     content: public bool IsValid (object value);
     parameters:
     - id: value
       type: System.Object
-      description: "The object to test for validity."
+      description: "O objeto de teste de validade."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the specified value is valid for this object; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o valor especificado é válido para este objeto; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.ComponentModel.TypeConverter.IsValid*
   exceptions: []
   platform:
@@ -1170,8 +1170,8 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Returns whether the given value object is valid for this type and for the specified context."
-  remarks: "Use the `context` parameter to extract additional information about the environment from which this converter is invoked. This parameter can be `null`, so always check it. Also, properties on the context object can return `null`.       Starting in [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)], the IsValid method catches exceptions from the <xref:System.ComponentModel.TypeConverter.CanConvertFrom%2A> and <xref:System.ComponentModel.TypeConverter.ConvertFrom%2A> methods. If the input value type causes <xref:System.ComponentModel.TypeConverter.CanConvertFrom%2A> to return `false`, or if the input value causes <xref:System.ComponentModel.TypeConverter.ConvertFrom%2A> to raise an exception, the IsValid method returns `false`.       To enable the legacy behavior, insert the following lines into the configuration file of the application, for example, application1.exe.config.      ```xml   <configuration>     <appSettings>       <add key=&quot;UseCompatibleTypeConverterBehavior&quot; value=&quot;true&quot; />     </appSettings>   </configuration>   ```"
+  summary: "Devolve se o objeto do valor fornecido é válido para este tipo de e para o contexto especificado."
+  remarks: "Utilize o `context` parâmetro para extrair informações adicionais sobre o ambiente a partir do qual é invocado este conversor. Este parâmetro pode ser `null`, sempre a verificar. Além disso, podem devolver propriedades no objeto context `null`.       A partir de [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)], o método IsValid intercete as exceções do <xref:System.ComponentModel.TypeConverter.CanConvertFrom%2A>e <xref:System.ComponentModel.TypeConverter.ConvertFrom%2A>métodos.</xref:System.ComponentModel.TypeConverter.ConvertFrom%2A> </xref:System.ComponentModel.TypeConverter.CanConvertFrom%2A> Se o tipo de valor de entrada faz com que <xref:System.ComponentModel.TypeConverter.CanConvertFrom%2A>para devolver `false`, ou se o valor de entrada faz com que <xref:System.ComponentModel.TypeConverter.ConvertFrom%2A>para gerar uma exceção, o método de IsValid devolve `false`.</xref:System.ComponentModel.TypeConverter.ConvertFrom%2A> </xref:System.ComponentModel.TypeConverter.CanConvertFrom%2A>       Para ativar o comportamento de legado, inserir as seguintes linhas no ficheiro de configuração da aplicação, por exemplo, application1.exe.config.      ```xml   <configuration>     <appSettings>       <add key=&quot;UseCompatibleTypeConverterBehavior&quot; value=&quot;true&quot; />     </appSettings>   </configuration>   ```"
   example:
   - For an example of this function, see the <xref:System.ComponentModel.TypeConverter> class.
   syntax:
@@ -1179,13 +1179,13 @@ items:
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "An <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;></xref> that provides a format context."
+      description: "Um <xref href=&quot;System.ComponentModel.ITypeDescriptorContext&quot;> </xref> que fornece um contexto de formato."
     - id: value
       type: System.Object
-      description: "The <xref:System.Object> to test for validity."
+      description: "O <xref:System.Object>para testar a validade.</xref:System.Object>"
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the specified value is valid for this object; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o valor especificado é válido para este objeto; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.ComponentModel.TypeConverter.IsValid*
   exceptions: []
   platform:
@@ -1202,20 +1202,20 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel
-  summary: "Sorts a collection of properties."
-  remarks: "All properties in the collection that are not already in the array of names are added alphabetically to the end. If the `names` parameter is an empty array or `null`, all the properties in the collection are sorted alphabetically."
+  summary: "Ordena um conjunto de propriedades."
+  remarks: "Todas as propriedades na coleção que não estão a ser a matriz de nomes já são adicionadas, por ordem alfabética, ao fim. Se o `names` parâmetro é uma matriz vazia ou `null`, todas as propriedades da coleção são ordenadas por ordem alfabética."
   syntax:
     content: protected System.ComponentModel.PropertyDescriptorCollection SortProperties (System.ComponentModel.PropertyDescriptorCollection props, string[] names);
     parameters:
     - id: props
       type: System.ComponentModel.PropertyDescriptorCollection
-      description: "A <xref href=&quot;System.ComponentModel.PropertyDescriptorCollection&quot;></xref> that has the properties to sort."
+      description: "A <xref href=&quot;System.ComponentModel.PropertyDescriptorCollection&quot;> </xref> que tem as propriedades para ordenar."
     - id: names
       type: System.String[]
-      description: "An array of names in the order you want the properties to appear in the collection."
+      description: "Uma matriz de nomes na ordem de que pretende que as propriedades a aparecer na coleção."
     return:
       type: System.ComponentModel.PropertyDescriptorCollection
-      description: "A <xref href=&quot;System.ComponentModel.PropertyDescriptorCollection&quot;></xref> that contains the sorted properties."
+      description: "A <xref href=&quot;System.ComponentModel.PropertyDescriptorCollection&quot;> </xref> que contém as propriedades ordenadas."
   overload: System.ComponentModel.TypeConverter.SortProperties*
   exceptions: []
   platform:

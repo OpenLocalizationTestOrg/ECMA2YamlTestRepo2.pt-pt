@@ -19,8 +19,8 @@ items:
   nameWithType: ActivityDesigner
   fullName: System.Activities.Presentation.ActivityDesigner
   type: Class
-  summary: "Provides a base class for all activity designer components."
-  remarks: "This type provides the basic look-and-feel functionality for other activity designers and allows a developer to add additional capabilities to an activity designer surface. This is typically done in order to either display additional interesting information to the user of the activity, create a better on canvas editing experience  (for example, using the `ExpressionTextBox` on an `If` activity designer), or to allow contained elements to be edited (again, consider the <xref:System.Activities.Statements.If.Then%2A> and <xref:System.Activities.Statements.If.Else%2A> properties of the <xref:System.Activities.Statements.If> activity).       The ActivityDesigner inherits from <xref:System.Activities.Presentation.WorkflowViewElement> and primarily adds the default styling, as well as the ability to customize the icon via the <xref:System.Activities.Presentation.ActivityDesigner.Icon%2A> property. It should be used whenever you are creating a designer for a type which derives from <xref:System.Activities.Activity>. When associated with an <xref:System.Activities.Activity> type, the <xref:System.Activities.Presentation.WorkflowViewElement.ModelItem%2A> property will point to the ModelItem hierarchy describing the instance of that type being edited."
+  summary: "Fornece uma classe base para a atividade de todos os componentes do designer."
+  remarks: "Este tipo fornece a funcionalidade de aspeto e funcionalidade básica para outros estruturadores de atividades e permite que um programador adicionar capacidades adicionais para uma superfície do designer de atividade. Isto é geralmente feito para um apresentar informações adicionais de interessantes ao utilizador da atividade, criar uma melhor experiência de edição de tela (por exemplo, utilizando o `ExpressionTextBox` num `If` designer de atividade), ou para permitir que os elementos contidos ser editado (novamente, considere o <xref:System.Activities.Statements.If.Then%2A>e <xref:System.Activities.Statements.If.Else%2A>Propriedades do <xref:System.Activities.Statements.If>atividade).</xref:System.Activities.Statements.If> </xref:System.Activities.Statements.If.Else%2A> </xref:System.Activities.Statements.If.Then%2A>       O ActivityDesigner herda <xref:System.Activities.Presentation.WorkflowViewElement>e principalmente adiciona o estilo predefinido, bem como a capacidade para personalizar o ícone através de <xref:System.Activities.Presentation.ActivityDesigner.Icon%2A>propriedade.</xref:System.Activities.Presentation.ActivityDesigner.Icon%2A> </xref:System.Activities.Presentation.WorkflowViewElement> Deve ser utilizado sempre que estiver a criar um estruturador para um tipo que deriva de <xref:System.Activities.Activity>.</xref:System.Activities.Activity> Quando associados a um <xref:System.Activities.Activity>tipo, o <xref:System.Activities.Presentation.WorkflowViewElement.ModelItem%2A>propriedade irá apontar para a hierarquia de ModelItem que descrevem a instância desse tipo a ser editado.</xref:System.Activities.Presentation.WorkflowViewElement.ModelItem%2A> </xref:System.Activities.Activity>"
   example:
   - "In the sample code below, a `First2of3` activity is defined first, then the code for the First2of3 designer is shown, and finally it is shown how to use the Designer attribute to associate the activity with the designer is provided.  \n  \n```  \n  \n//The First2of3 activity  \nusing System.Activities;  \nusing System.Collections.Generic;  \nusing System.Linq;  \n  \nnamespace Microsoft.Activities.Documentation.ActivityTypes  \n{  \n  \n    public sealed class First2of3 : NativeActivity  \n    {  \n        public Activity Activity1 { get; set; }  \n        public Activity Activity2 { get; set; }  \n        public Activity Activity3 { get; set; }  \n  \n        Variable<List<ActivityInstance>> ExecutingActivities { get; set; }  \n  \n        public First2of3()  \n        {  \n            ExecutingActivities = new Variable<List<ActivityInstance>>();  \n        }  \n  \n        // If your activity returns a value, derive from CodeActivity<TResult>  \n        // and return the value from the Execute method.  \n        protected override void Execute(NativeActivityContext context)  \n        {  \n            // Obtain the runtime value of the Text input argument  \n            var l = new List<ActivityInstance>();  \n            ExecutingActivities.Set(context, l);  \n            l.Add(context.ScheduleActivity(Activity1, onComplete));  \n            l.Add(context.ScheduleActivity(Activity2, onComplete));  \n            l.Add(context.ScheduleActivity(Activity3, onComplete));  \n        }  \n  \n        protected override void CacheMetadata(NativeActivityMetadata metadata)  \n        {  \n            metadata.AddImplementationVariable(ExecutingActivities);  \n            metadata.AddChild(Activity1);  \n            metadata.AddChild(Activity2);  \n            metadata.AddChild(Activity3);  \n        }  \n  \n        private void onComplete(NativeActivityContext context, ActivityInstance completedInstance)  \n        {  \n            var l = ExecutingActivities.Get(context);  \n            l.Remove(completedInstance);  \n            if (l.Count == 1)  \n            {  \n                context.CancelChild(l.Single());  \n            }  \n        }  \n    }  \n}  \n  \n//’Code for the First2of3 Designer:  \n<sap:ActivityDesigner x:Class=\"Microsoft.Activites.Documentation.First2of3Designer\"  \n    xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"  \n    xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"  \n    xmlns:sap=\"clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation\"  \n    xmlns:sapv=\"clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation\">  \n    <StackPanel>  \n        <Label Content=\"2 of 3 activity\">  \n            <Label.ToolTip>  \n                This activity has 3 child activities which will be scheduled in parallel.    \n                Upon completion of any 2, the third will be cancelled  \n            </Label.ToolTip>  \n        </Label>  \n        <StackPanel Orientation=\"Horizontal\">  \n            <Border BorderBrush=\"Blue\" BorderThickness=\"2\" CornerRadius=\"2\" Margin=\"2\" Padding=\"2\">  \n                <sap:WorkflowItemPresenter HintText=\"Drop Activity1 Here\" Item=\"{Binding Path=ModelItem.Activity1, Mode=TwoWay}\" />  \n            </Border>  \n            <Border BorderBrush=\"Blue\" BorderThickness=\"2\" CornerRadius=\"2\" Margin=\"2\" Padding=\"2\">  \n                <sap:WorkflowItemPresenter HintText=\"Drop Activity2 Here\" Item=\"{Binding Path=ModelItem.Activity2, Mode=TwoWay}\" />  \n  \n            </Border>  \n            <Border BorderBrush=\"Blue\" BorderThickness=\"2\" CornerRadius=\"2\" Margin=\"2\" Padding=\"2\">  \n                <sap:WorkflowItemPresenter HintText=\"Drop Activity3 Here\" Item=\"{Binding Path=ModelItem.Activity3, Mode=TwoWay}\" />  \n  \n            </Border>  \n        </StackPanel>  \n    </StackPanel>  \n</sap:ActivityDesigner>  \n  \n//Code for associating the activity with the designer using the Designer attribute.  \n[Designer(typeof(First2of3Designer))]  \npublic sealed class First2of3 : NativeActivity  \n  \n```"
   syntax:
@@ -702,7 +702,7 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation
-  summary: "Initializes a new instance of the <xref href=&quot;System.Activities.Presentation.ActivityDesigner&quot;></xref> class."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Activities.Presentation.ActivityDesigner&quot;> </xref> classe."
   syntax:
     content: public ActivityDesigner ();
     parameters: []
@@ -722,13 +722,13 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation
-  summary: "Returns the string “DisplayName” in this overridden method implementation."
+  summary: "Devolve a cadeia &quot;DisplayName&quot; nesta implementação de método substituída."
   syntax:
     content: protected override string GetAutomationIdMemberName ();
     parameters: []
     return:
       type: System.String
-      description: "The string “DisplayName” in this overridden method implementation."
+      description: "A cadeia &quot;DisplayName&quot; nesta implementação de método substituída."
   overload: System.Activities.Presentation.ActivityDesigner.GetAutomationIdMemberName*
   exceptions: []
   platform:
@@ -745,13 +745,13 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation
-  summary: "Returns the status of the automation item."
+  summary: "Devolve o estado do item de automatização."
   syntax:
     content: protected override string GetAutomationItemStatus ();
     parameters: []
     return:
       type: System.String
-      description: "The status of the automation item."
+      description: "O estado do item de automatização."
   overload: System.Activities.Presentation.ActivityDesigner.GetAutomationItemStatus*
   exceptions: []
   platform:
@@ -768,12 +768,12 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation
-  summary: "Gets or sets the icon associated with this <xref href=&quot;System.Activities.Presentation.ActivityDesigner&quot;></xref>."
+  summary: "Obtém ou define o ícone associado a este <xref href=&quot;System.Activities.Presentation.ActivityDesigner&quot;> </xref>."
   syntax:
     content: public System.Windows.Media.DrawingBrush Icon { get; set; }
     return:
       type: System.Windows.Media.DrawingBrush
-      description: "Returns a <xref href=&quot;System.Windows.Media.DrawingBrush&quot;></xref> that represents the icon associated with this <xref href=&quot;System.Activities.Presentation.ActivityDesigner&quot;></xref>."
+      description: "Devolve um <xref href=&quot;System.Windows.Media.DrawingBrush&quot;> </xref> que representa o ícone associado a este <xref href=&quot;System.Activities.Presentation.ActivityDesigner&quot;> </xref>."
   overload: System.Activities.Presentation.ActivityDesigner.Icon*
   exceptions: []
   platform:
@@ -790,12 +790,12 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation
-  summary: "Identifies the IconProperty dependency property."
+  summary: "Identifica a propriedade de dependência IconProperty."
   syntax:
     content: public static readonly System.Windows.DependencyProperty IconProperty;
     return:
       type: System.Windows.DependencyProperty
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -811,7 +811,7 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation
-  summary: "Begins the process of applying a template to create an <xref href=&quot;System.Activities.Presentation.ActivityDesigner&quot;></xref>."
+  summary: "Inicia o processo de aplicar um modelo para criar um <xref href=&quot;System.Activities.Presentation.ActivityDesigner&quot;> </xref>."
   syntax:
     content: public override void OnApplyTemplate ();
     parameters: []
@@ -831,7 +831,7 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation
-  summary: "Begins the processing that occurs when editing annotation."
+  summary: "Inicia o processamento que ocorre quando editar anotação."
   syntax:
     content: protected override void OnEditAnnotation ();
     parameters: []
@@ -851,13 +851,13 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation
-  summary: "Begins the processing that occurs when the model item is changed.."
+  summary: "Inicia o processamento que ocorre quando o item de modelo é alterado..."
   syntax:
     content: protected override void OnModelItemChanged (object newItem);
     parameters:
     - id: newItem
       type: System.Object
-      description: "The new item."
+      description: "O novo item."
   overload: System.Activities.Presentation.ActivityDesigner.OnModelItemChanged*
   exceptions: []
   platform:
@@ -874,13 +874,13 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation
-  summary: "Begins the processing that occurs when any mouse button is released."
+  summary: "Inicia o processamento que ocorre quando qualquer botão do rato é libertado."
   syntax:
     content: protected override void OnMouseUp (System.Windows.Input.MouseButtonEventArgs e);
     parameters:
     - id: e
       type: System.Windows.Input.MouseButtonEventArgs
-      description: "A <xref href=&quot;System.Windows.Forms.DragEventArgs&quot;></xref> that contains the event data."
+      description: "A <xref href=&quot;System.Windows.Forms.DragEventArgs&quot;> </xref> que contém os dados do evento."
   overload: System.Activities.Presentation.ActivityDesigner.OnMouseUp*
   exceptions: []
   platform:
@@ -897,13 +897,13 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation
-  summary: "Begins the processing that occurs when an unhandled <xref:System.Windows.Input.Mouse.PreviewMouseDown> attached routed event reaches an element in its route that is derived from this class."
+  summary: "Inicia o processamento que ocorre quando um não processada <xref:System.Windows.Input.Mouse.PreviewMouseDown>anexado evento encaminhado atinge um elemento na respetiva rota que deriva esta classe.</xref:System.Windows.Input.Mouse.PreviewMouseDown>"
   syntax:
     content: protected override void OnPreviewMouseDown (System.Windows.Input.MouseButtonEventArgs e);
     parameters:
     - id: e
       type: System.Windows.Input.MouseButtonEventArgs
-      description: "A <xref href=&quot;System.Windows.Forms.DragEventArgs&quot;></xref> that contains the event data."
+      description: "A <xref href=&quot;System.Windows.Forms.DragEventArgs&quot;> </xref> que contém os dados do evento."
   overload: System.Activities.Presentation.ActivityDesigner.OnPreviewMouseDown*
   exceptions: []
   platform:

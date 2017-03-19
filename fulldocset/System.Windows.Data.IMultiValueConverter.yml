@@ -11,8 +11,8 @@ items:
   nameWithType: IMultiValueConverter
   fullName: System.Windows.Data.IMultiValueConverter
   type: Interface
-  summary: "Provides a way to apply custom logic in a <xref href=&quot;System.Windows.Data.MultiBinding&quot;></xref>."
-  remarks: "To associate a converter with a <xref:System.Windows.Data.MultiBinding>, create a class that implements the IMultiValueConverter interface, and then implement the <xref:System.Windows.Data.IMultiValueConverter.Convert%2A> and <xref:System.Windows.Data.IMultiValueConverter.ConvertBack%2A> methods.       Individual bindings in the collection can have their own value converters. For more information, see <xref:System.Windows.Data.IValueConverter>."
+  summary: "Fornece uma forma de aplicar a lógica personalizada num <xref href=&quot;System.Windows.Data.MultiBinding&quot;> </xref>."
+  remarks: "Para associar um conversor com um <xref:System.Windows.Data.MultiBinding>, crie uma classe que implementa a interface IMultiValueConverter e, em seguida, implementar o <xref:System.Windows.Data.IMultiValueConverter.Convert%2A>e <xref:System.Windows.Data.IMultiValueConverter.ConvertBack%2A>métodos.</xref:System.Windows.Data.IMultiValueConverter.ConvertBack%2A> </xref:System.Windows.Data.IMultiValueConverter.Convert%2A> </xref:System.Windows.Data.MultiBinding>       Enlaces individuais na coleção podem ter os seus próprios conversores de valor. Para obter mais informações, consulte <xref:System.Windows.Data.IValueConverter>.</xref:System.Windows.Data.IValueConverter>"
   syntax:
     content: public interface IMultiValueConverter
   implements: []
@@ -30,26 +30,26 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Data
-  summary: "Converts source values to a value for the binding target. The data binding engine calls this method when it propagates the values from source bindings to the binding target."
-  remarks: "The data binding engine does not catch exceptions that are thrown by a user-supplied converter. Any exception that is thrown by the Convert method, or any uncaught exceptions that are thrown by methods that the Convert method calls, are treated as run-time errors. Handle anticipated problems by returning <xref:System.Windows.DependencyProperty>.<xref:System.Windows.DependencyProperty.UnsetValue>."
+  summary: "Converte valores de origem para um valor para o destino de enlace. O motor de enlace de dados chama este método quando propaga-os valores dos enlaces de origem para o destino de enlace."
+  remarks: "O motor de enlace de dados não interceta exceções forem emitidas por um conversor fornecido pelo utilizador. Qualquer exceção que é emitida pelo método converter ou quaisquer exceções não identificadas que são acionadas por métodos que chama o método converter, são tratadas como erros de tempo de execução. Lidar com problemas previstos devolvendo <xref:System.Windows.DependencyProperty>.<xref:System.Windows.DependencyProperty.UnsetValue>.</xref:System.Windows.DependencyProperty.UnsetValue> </xref:System.Windows.DependencyProperty>"
   syntax:
     content: public object Convert (object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture);
     parameters:
     - id: values
       type: System.Object[]
-      description: "The array of values that the source bindings in the <xref href=&quot;System.Windows.Data.MultiBinding&quot;></xref> produces. The value <xref href=&quot;System.Windows.DependencyProperty.UnsetValue&quot;></xref> indicates that the source binding has no value to provide for conversion."
+      description: "A matriz de valores que os enlaces de origem no <xref href=&quot;System.Windows.Data.MultiBinding&quot;> </xref> produz. O valor <xref href=&quot;System.Windows.DependencyProperty.UnsetValue&quot;> </xref> indica que o enlace de origem não tem um valor para fornecer para conversão."
     - id: targetType
       type: System.Type
-      description: "The type of the binding target property."
+      description: "O tipo da propriedade de destino de enlace."
     - id: parameter
       type: System.Object
-      description: "The converter parameter to use."
+      description: "O parâmetro de conversor para utilizar."
     - id: culture
       type: System.Globalization.CultureInfo
-      description: "The culture to use in the converter."
+      description: "A cultura a utilizar o conversor."
     return:
       type: System.Object
-      description: "A converted value.       If the method returns <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>, the valid <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> value is used.       A return value of <xref href=&quot;System.Windows.DependencyProperty&quot;></xref>.<xref href=&quot;System.Windows.DependencyProperty.UnsetValue&quot;></xref> indicates that the converter did not produce a value, and that the binding will use the <xref:System.Windows.Data.BindingBase.FallbackValue*> if it is available, or else will use the default value.       A return value of <xref href=&quot;System.Windows.Data.Binding&quot;></xref>.<xref href=&quot;System.Windows.Data.Binding.DoNothing&quot;></xref> indicates that the binding does not transfer the value or use the <xref:System.Windows.Data.BindingBase.FallbackValue*> or the default value."
+      description: "Um valor convertido.       Se o método devolve <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>, válido <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> valor é utilizado.       Um valor de retorno da <xref href=&quot;System.Windows.DependencyProperty&quot;> </xref>.<xref href=&quot;System.Windows.DependencyProperty.UnsetValue&quot;></xref> indica que o conversor não produziu um valor, e que irá utilizar o enlace a <> </> *> se estiver disponível, ou outra pessoa utilizará o valor predefinido.       Um valor de retorno da <xref href=&quot;System.Windows.Data.Binding&quot;> </xref>.<xref href=&quot;System.Windows.Data.Binding.DoNothing&quot;> </xref> indica que o enlace não transferir o valor ou utilize o <> </> *> ou o valor predefinido."
   overload: System.Windows.Data.IMultiValueConverter.Convert*
   exceptions: []
   platform:
@@ -66,26 +66,26 @@ items:
   assemblies:
   - PresentationFramework
   namespace: System.Windows.Data
-  summary: "Converts a binding target value to the source binding values."
-  remarks: "If there are more return values than there are bindings in the <xref:System.Windows.Data.MultiBinding>, the excess return values are ignored. If there are more source bindings than there are return values, the remaining source bindings do not have any values set on them. Types of return values are not verified against `targetTypes`; the values are set on the source bindings directly.       Return <xref:System.Windows.Data.Binding.DoNothing> at position `i` to indicate that no value is to be set on the source binding at index `i`.       Return <xref:System.Windows.DependencyProperty>.<xref:System.Windows.DependencyProperty.UnsetValue> at position `i` to indicate that the converter is unable to provide a value for the source binding at index `i`, and that no value is to be set on it.       Return `null` to indicate that the converter cannot perform the conversion or that it does not support conversion in this direction.       The data binding engine does not catch exceptions that are thrown by a user-supplied converter. Any exception that is thrown by the ConvertBack method or any uncaught exceptions that are thrown by methods that the ConvertBack method calls are treated as run-time errors. Handle anticipated problems by returning `null`."
+  summary: "Converte um valor de destino do enlace para os valores de enlace de origem."
+  remarks: "Se existirem mais valores de retorno que existem enlaces no <xref:System.Windows.Data.MultiBinding>, os valores de retorno em excesso são ignorados.</xref:System.Windows.Data.MultiBinding> Se existirem mais enlaces de origem que existem valores de retorno, os restantes enlaces de origem não tem quaisquer valores definidos nos mesmos. Tipos de valores de retorno não são verificados contra `targetTypes`; os valores estão definidos nos enlaces de origem diretamente.       Devolver <xref:System.Windows.Data.Binding.DoNothing>na posição `i` para indicar que nenhum valor está a ser definido no enlace de origem no índice `i`.</xref:System.Windows.Data.Binding.DoNothing>       Devolver <xref:System.Windows.DependencyProperty>.<xref:System.Windows.DependencyProperty.UnsetValue> na posição `i` para indicar que o conversor não consegue fornecer um valor para o enlace de origem no índice `i`, e que nenhum valor deve ser definido no mesmo.</xref:System.Windows.DependencyProperty.UnsetValue> </xref:System.Windows.DependencyProperty>       Devolver `null` para indicar que o conversor não é possível efetuar a conversão ou que não suporta a conversão nesta direção.       O motor de enlace de dados não interceta exceções forem emitidas por um conversor fornecido pelo utilizador. Qualquer exceção que é emitida pelo método ConvertBack ou quaisquer exceções não identificadas que são acionadas por métodos que chama o método ConvertBack são tratadas como erros de tempo de execução. Lidar com problemas previstos devolvendo `null`."
   syntax:
     content: public object[] ConvertBack (object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture);
     parameters:
     - id: value
       type: System.Object
-      description: "The value that the binding target produces."
+      description: "O valor que produz o destino de enlace."
     - id: targetTypes
       type: System.Type[]
-      description: "The array of types to convert to. The array length indicates the number and types of values that are suggested for the method to return."
+      description: "A matriz de tipos para converter. O comprimento da matriz indica o número e tipos de valores são sugeridos para o método devolver."
     - id: parameter
       type: System.Object
-      description: "The converter parameter to use."
+      description: "O parâmetro de conversor para utilizar."
     - id: culture
       type: System.Globalization.CultureInfo
-      description: "The culture to use in the converter."
+      description: "A cultura a utilizar o conversor."
     return:
       type: System.Object[]
-      description: "An array of values that have been converted from the target value back to the source values."
+      description: "Uma matriz de valores que foi convertido a partir do valor de destino para os valores de origem."
   overload: System.Windows.Data.IMultiValueConverter.ConvertBack*
   exceptions: []
   platform:

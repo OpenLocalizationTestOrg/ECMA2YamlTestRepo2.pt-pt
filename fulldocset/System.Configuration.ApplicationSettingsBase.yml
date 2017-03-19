@@ -32,8 +32,8 @@ items:
   nameWithType: ApplicationSettingsBase
   fullName: System.Configuration.ApplicationSettingsBase
   type: Class
-  summary: "Acts as a base class for deriving concrete wrapper classes to implement the application settings feature in Window Forms applications."
-  remarks: "ApplicationSettingsBase adds the following functionality to the <xref:System.Configuration.SettingsBase> class, which is used by Web-based applications:      -   The ability to detect attributes on a derived, settings wrapper class. ApplicationSettingsBase supports the declarative model used for wrapper class properties, as described later.      -   Higher-level <xref:System.Configuration.ApplicationSettingsBase.Save%2A> and <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> methods.      -   Additional validation events that you can handle to ensure the correctness of individual settings.       In the application settings architecture, to access a group of settings properties you need to derive a concrete wrapper class from ApplicationSettingsBase. The wrapper class customizes ApplicationSettingsBase in the following ways:      -   For every settings property to be accessed, a corresponding strongly typed public property is added to the wrapper class. This property has `get` and `set` accessors for read/write application settings, but only a `get` accessor for read-only settings.      -   Appropriated attributes must be applied to the wrapper class&quot;s public properties to indicate characteristics of the settings property, such as the setting&quot;s scope (application or user), whether the setting should support roaming, the default value for the setting, the settings provider to be used, and so on. Each property is required to specify its scope, using either <xref:System.Configuration.ApplicationScopedSettingAttribute> or <xref:System.Configuration.UserScopedSettingAttribute>. Application-scoped settings are read-only if the default <xref:System.Configuration.LocalFileSettingsProvider> is used.       The ApplicationSettingsBase class uses reflection to detect these attributes at run time. Most of this information gets passed to the settings provider layer, which is responsible for storage, persistence format, and so on.       When an application has multiple settings wrapper classes, each class defines a *settings group*. Each group has the following characteristics:      -   A group can contain any number or type of property settings.      -   If the group name is not explicitly set by the decorating the wrapper class with a <xref:System.Configuration.SettingsGroupNameAttribute>, then a name is automatically generated.       By default, all client-based applications use the <xref:System.Configuration.LocalFileSettingsProvider> to provide storage. If an alternate settings provider is desired, then the wrapper class or property must be decorated with a corresponding <xref:System.Configuration.SettingsProviderAttribute>.       For more information about using application settings, see [Application Settings for Windows Forms](~/add/includes/ajax-current-ext-md.md)."
+  summary: "Funciona como uma classe base para efetuar a derivação de classes concretas wrapper para implementar a funcionalidade de definições de aplicação nas aplicações de formulários de janela."
+  remarks: "ApplicationSettingsBase adiciona as seguintes funcionalidades para o <xref:System.Configuration.SettingsBase>classe, que é utilizado por aplicações baseadas na Web:-a capacidade para detetar os atributos de uma classe de wrapper definições derivada,.</xref:System.Configuration.SettingsBase> ApplicationSettingsBase suporta o modelo declarativo utilizado para propriedades de classe de wrapper, conforme descrito mais à frente.      -Nível mais elevado <xref:System.Configuration.ApplicationSettingsBase.Save%2A>e <xref:System.Configuration.ApplicationSettingsBase.Reload%2A>métodos.</xref:System.Configuration.ApplicationSettingsBase.Reload%2A> </xref:System.Configuration.ApplicationSettingsBase.Save%2A>      -Eventos de validação adicionais que pode processar para garantir a correção de definições individuais.       Na arquitetura de definições da aplicação, para aceder a um grupo de propriedades de definições tem de derivar uma classe de wrapper concreto ApplicationSettingsBase. A classe de wrapper customizes ApplicationSettingsBase das seguintes formas: - para cada propriedade de definições para poderem ser acedidos, um correspondente tipos de dados inflexíveis público é adicionada uma propriedade para a classe de wrapper. Esta propriedade tem `get` e `set` os acessores de leitura/escrita para definições de aplicação, mas apenas um `get` acessor para as definições só de leitura.      -Appropriated atributos tem de ser aplicados a propriedades públicas da classe wrapper para indicar características da propriedade de definições, tais como o âmbito da definição (aplicação ou utilizador), se a definição deve suportar roaming, o valor predefinido para a definição, o fornecedor de definições a ser utilizada e assim sucessivamente. Cada propriedade é necessária especificar o respetivo âmbito, utilizando um <xref:System.Configuration.ApplicationScopedSettingAttribute>ou <xref:System.Configuration.UserScopedSettingAttribute>.</xref:System.Configuration.UserScopedSettingAttribute> </xref:System.Configuration.ApplicationScopedSettingAttribute> Definições do âmbito de aplicação são só de leitura se a predefinição <xref:System.Configuration.LocalFileSettingsProvider>é utilizado.</xref:System.Configuration.LocalFileSettingsProvider>       A classe de ApplicationSettingsBase utiliza reflexão para detetar estes atributos em tempo de execução. A maioria destas informações obtém transmitido para a camada de fornecedor de definições, o que é responsável por armazenamento, o formato de persistência e assim sucessivamente.       Quando uma aplicação tem várias classes de wrapper de definições, cada classe define um *grupo de definições*. Cada grupo tem as seguintes características:-um grupo pode conter qualquer número ou tipo de definições de propriedade.      -Se o nome do grupo não for explicitamente definido pela classe de wrapper com decorating um <xref:System.Configuration.SettingsGroupNameAttribute>, em seguida, é gerado automaticamente um nome.</xref:System.Configuration.SettingsGroupNameAttribute>       Por predefinição, todas as aplicações baseados no cliente utilizam o <xref:System.Configuration.LocalFileSettingsProvider>para fornecer armazenamento.</xref:System.Configuration.LocalFileSettingsProvider> Se pretender um fornecedor de definições alternativo, em seguida, a classe de wrapper ou a propriedade tem de ser decorada com um <xref:System.Configuration.SettingsProviderAttribute>.</xref:System.Configuration.SettingsProviderAttribute> correspondente       Para obter mais informações sobre como utilizar as definições da aplicação, consulte [as definições de aplicação para Windows Forms](~/add/includes/ajax-current-ext-md.md)."
   example:
   - "The following code example demonstrates the use of application settings to persist the following attributes of the main form: location, size, background color, and title bar text. All of these attributes are persisted as single application settings properties in the `FormSettings` class, named `FormLocation`, `FormSize`, `FormBackColor` and `FormText`, respectively. All except for `FormText` and `Size` are data bound to their associated form properties and have a default setting value applied using <xref:System.Configuration.DefaultSettingValueAttribute>.  \n  \n The form contains four child controls that have the following names and functions:  \n  \n-   A button named `btnBackColor` used to display the **Color** common dialog box.  \n  \n-   A button named `btnReload` used to <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> the application settings.  \n  \n-   A button named `btnReset` used to <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> the application settings.  \n  \n-   A textbox named `tbStatus` used to display status information about the program.  \n  \n Notice that after every execution of the application, an additional period character is appended to the title text of the form.  \n  \n This code example requires a Form with a <xref:System.Windows.Forms.ColorDialog> class named `colorDialog1`, and a <xref:System.Windows.Forms.StatusStrip> control with a <xref:System.Windows.Forms.ToolStripStatusLabel> named `tbStatus`. Additionally, it requires three <xref:System.Windows.Forms.Button> objects named `btnReload`, `btnReset`, and `btnBackColor`.  \n  \n [!code-cpp[AppSettingsSample#1](~/add/codesnippet/cpp/t-system.configuration.a_1_1.cpp)]\n [!code-cs[AppSettingsSample#1](~/add/codesnippet/csharp/t-system.configuration.a_1_1.cs)]\n [!code-vb[AppSettingsSample#1](~/add/codesnippet/visualbasic/AppSettingsSample/Form1.vb#1)]"
   syntax:
@@ -61,8 +61,8 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Initializes an instance of the <xref href=&quot;System.Configuration.ApplicationSettingsBase&quot;></xref> class to its default state."
-  remarks: "The default constructor was designed to work under the assumption that there is no component associated with the current settings wrapper class, which derives from <xref:System.Configuration.ApplicationSettingsBase>.       When an instance of a wrapper class is created, inherited code will automatically perform the following actions:      1.  Reflect over the class.      2.  For each property on the wrapper marked with either `[UserScopedSettingAttribute]` or `[ApplicationScopedSettingAttribute]`, a corresponding <xref:System.Configuration.SettingsProperty> is created.      3.  Each <xref:System.Configuration.SettingsProperty> has some of its properties set based on other attributes that are optionally present on the wrapper&quot;s properties, such as the default value or the settings provider.      4.  All other attributes are simply put into an attribute bag, the <xref:System.Configuration.SettingsProperty.Attributes%2A> property of the <xref:System.Configuration.SettingsProperty> class.      5.  All <xref:System.Configuration.SettingsProperty> objects are added to a <xref:System.Configuration.SettingsPropertyCollection> represented by the <xref:System.Configuration.ApplicationSettingsBase.Properties%2A> property of the <xref:System.Configuration.ApplicationSettingsBase> class. This collection is then passed to the <xref:System.Configuration.SettingsBase.Initialize%2A> method.       As implied by step 3 mentioned previously, <xref:System.Configuration.ApplicationSettingsBase> natively works with several property attributes, specifically the following: <xref:System.Configuration.SettingsProviderAttribute>, <xref:System.Configuration.DefaultSettingValueAttribute>, and <xref:System.Configuration.SettingsSerializeAsAttribute>. All other settings attributes are simply passed through to the appropriate underlying provider."
+  summary: "Inicializa uma instância do <xref href=&quot;System.Configuration.ApplicationSettingsBase&quot;> </xref> classe para o estado predefinido."
+  remarks: "O construtor predefinido foi concebido para funcionar no pressuposto de que não existe nenhum componente associada com a classe de wrapper definições atual, que deriva de <xref:System.Configuration.ApplicationSettingsBase>.</xref:System.Configuration.ApplicationSettingsBase>       Quando é criada uma instância de uma classe de wrapper, código herdado efetuará automaticamente as seguintes ações: 1.  Refletir sobre a classe.      2.  Para cada propriedade no wrapper de marcados com um `[UserScopedSettingAttribute]` ou `[ApplicationScopedSettingAttribute]`, um correspondente <xref:System.Configuration.SettingsProperty>é criado.</xref:System.Configuration.SettingsProperty>      3.  Cada <xref:System.Configuration.SettingsProperty>tem algumas do seu conjunto de propriedades com base nos outros atributos que são opcionalmente presentes nas propriedades do dispositivo de moldagem, tais como o valor predefinido ou o fornecedor de definições.</xref:System.Configuration.SettingsProperty>      4.  Todos os outros atributos são colocados simplesmente uma matriz de atributo, a <xref:System.Configuration.SettingsProperty.Attributes%2A>propriedade de <xref:System.Configuration.SettingsProperty>classe.</xref:System.Configuration.SettingsProperty> </xref:System.Configuration.SettingsProperty.Attributes%2A>      5.  Todos os <xref:System.Configuration.SettingsProperty>objetos são adicionados a um <xref:System.Configuration.SettingsPropertyCollection>representado pela <xref:System.Configuration.ApplicationSettingsBase.Properties%2A>propriedade de <xref:System.Configuration.ApplicationSettingsBase>classe.</xref:System.Configuration.ApplicationSettingsBase> </xref:System.Configuration.ApplicationSettingsBase.Properties%2A> </xref:System.Configuration.SettingsPropertyCollection> </xref:System.Configuration.SettingsProperty> Esta coleção é então passada para o <xref:System.Configuration.SettingsBase.Initialize%2A>método.</xref:System.Configuration.SettingsBase.Initialize%2A>       Como implícitas pelo passo 3 mencionada anteriormente, <xref:System.Configuration.ApplicationSettingsBase>nativamente funciona com vários atributos de propriedade, especificamente o seguinte: <xref:System.Configuration.SettingsProviderAttribute>, <xref:System.Configuration.DefaultSettingValueAttribute>e <xref:System.Configuration.SettingsSerializeAsAttribute>.</xref:System.Configuration.SettingsSerializeAsAttribute> </xref:System.Configuration.DefaultSettingValueAttribute> </xref:System.Configuration.SettingsProviderAttribute> </xref:System.Configuration.ApplicationSettingsBase> Todos os outros atributos de definições simplesmente passam para o fornecedor subjacente apropriado."
   syntax:
     content: protected ApplicationSettingsBase ();
     parameters: []
@@ -82,19 +82,19 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Initializes an instance of the <xref href=&quot;System.Configuration.ApplicationSettingsBase&quot;></xref> class using the supplied owner component."
-  remarks: "This constructor is exactly equivalent to the <xref:System.Configuration.ApplicationSettingsBase.%23ctor%28System.ComponentModel.IComponent%2CSystem.String%29> constructor using the invocation:       `ApplicationSettingsBase(owner, String.Empty)`       For information about how reflection is used during the instantiation of a wrapper class, see the default <xref:System.Configuration.ApplicationSettingsBase.%23ctor> constructor."
+  summary: "Inicializa uma instância do <xref href=&quot;System.Configuration.ApplicationSettingsBase&quot;> </xref> classe com o componente de proprietário fornecidos."
+  remarks: "Este construtor é exactamente equivalente à <xref:System.Configuration.ApplicationSettingsBase.%23ctor%28System.ComponentModel.IComponent%2CSystem.String%29>utilizando a invocação do construtor: `ApplicationSettingsBase(owner, String.Empty)` para obter informações sobre como reflexão é utilizado durante a instanciação de uma classe de wrapper, consulte a predefinição <xref:System.Configuration.ApplicationSettingsBase.%23ctor>construtor.</xref:System.Configuration.ApplicationSettingsBase.%23ctor> </xref:System.Configuration.ApplicationSettingsBase.%23ctor%28System.ComponentModel.IComponent%2CSystem.String%29>"
   syntax:
     content: protected ApplicationSettingsBase (System.ComponentModel.IComponent owner);
     parameters:
     - id: owner
       type: System.ComponentModel.IComponent
-      description: "The component that will act as the owner of the application settings object."
+      description: "O componente que irão funcionar como o proprietário do objeto de definições de aplicação."
   overload: System.Configuration.ApplicationSettingsBase.#ctor*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>owner</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>owner</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Configuration.ApplicationSettingsBase.#ctor(System.String)
@@ -109,14 +109,14 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Initializes an instance of the <xref href=&quot;System.Configuration.ApplicationSettingsBase&quot;></xref> class using the supplied settings key."
-  remarks: "This constructor initializes the <xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> property to the value of the `settingsKey` parameter. This property is useful in disambiguating different instances of the settings wrapper class in the same application domain.       For information about how reflection is used during the instantiation of a wrapper class, see the default <xref:System.Configuration.ApplicationSettingsBase.%23ctor> constructor."
+  summary: "Inicializa uma instância do <xref href=&quot;System.Configuration.ApplicationSettingsBase&quot;> </xref> utilizando a chave fornecida definições de classe."
+  remarks: "Este construtor inicializa a <xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A>propriedade para o valor da `settingsKey` parâmetro.</xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> Esta propriedade é útil em disambiguating várias instâncias da classe de wrapper definições no mesmo domínio de aplicação.       Para obter informações sobre como reflexão é utilizado durante a instanciação de uma classe de wrapper, consulte a predefinição <xref:System.Configuration.ApplicationSettingsBase.%23ctor>construtor.</xref:System.Configuration.ApplicationSettingsBase.%23ctor>"
   syntax:
     content: protected ApplicationSettingsBase (string settingsKey);
     parameters:
     - id: settingsKey
       type: System.String
-      description: "A <xref:System.String> that uniquely identifies separate instances of the wrapper class."
+      description: "Um <xref:System.String>que identificam de forma separadas instâncias de classe de wrapper.</xref:System.String>"
   overload: System.Configuration.ApplicationSettingsBase.#ctor*
   exceptions: []
   platform:
@@ -133,22 +133,22 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Initializes an instance of the <xref href=&quot;System.Configuration.ApplicationSettingsBase&quot;></xref> class using the supplied owner component and settings key."
-  remarks: "The <xref:System.ComponentModel.IComponent> object specified by the `owner` parameter acts as the owner of the current instance of this applications settings class. During the initialization of the settings wrapper class derived from <xref:System.Configuration.ApplicationSettingsBase>, the owner&quot;s site is queried for a <xref:System.Configuration.ISettingsProviderService>. If one exists, it is used in preference to native settings provider for all the properties of the wrapper class, as specified by the <xref:System.Configuration.SettingsProviderAttribute>.       This constructor initializes the <xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> property to the value of the `settingsKey` parameter. This property is useful in disambiguating different instances of the wrapper class in the same application domain.       For information about how reflection is used during the instantiation of a wrapper class, see the default <xref:System.Configuration.ApplicationSettingsBase.%23ctor> constructor."
+  summary: "Inicializa uma instância do <xref href=&quot;System.Configuration.ApplicationSettingsBase&quot;> </xref> utilizando o componente de proprietário fornecidos e a chave de definições de classe."
+  remarks: "O <xref:System.ComponentModel.IComponent>o objeto especificado pelo `owner` parâmetro atua como o proprietário da instância atual desta classe. as definições de aplicações</xref:System.ComponentModel.IComponent> Durante a inicialização da classe de wrapper definições derivado <xref:System.Configuration.ApplicationSettingsBase>, o site do proprietário é consultado relativamente às <xref:System.Configuration.ISettingsProviderService>.</xref:System.Configuration.ISettingsProviderService> </xref:System.Configuration.ApplicationSettingsBase> Se existir, é utilizada in preference to fornecedor de definições de nativo para todas as propriedades da classe de wrapper, tal como especificado pelo <xref:System.Configuration.SettingsProviderAttribute>.</xref:System.Configuration.SettingsProviderAttribute>       Este construtor inicializa a <xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A>propriedade para o valor da `settingsKey` parâmetro.</xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> Esta propriedade é útil em disambiguating várias instâncias da classe de wrapper no mesmo domínio de aplicação.       Para obter informações sobre como reflexão é utilizado durante a instanciação de uma classe de wrapper, consulte a predefinição <xref:System.Configuration.ApplicationSettingsBase.%23ctor>construtor.</xref:System.Configuration.ApplicationSettingsBase.%23ctor>"
   syntax:
     content: protected ApplicationSettingsBase (System.ComponentModel.IComponent owner, string settingsKey);
     parameters:
     - id: owner
       type: System.ComponentModel.IComponent
-      description: "The component that will act as the owner of the application settings object."
+      description: "O componente que irão funcionar como o proprietário do objeto de definições de aplicação."
     - id: settingsKey
       type: System.String
-      description: "A <xref:System.String> that uniquely identifies separate instances of the wrapper class."
+      description: "Um <xref:System.String>que identificam de forma separadas instâncias de classe de wrapper.</xref:System.String>"
   overload: System.Configuration.ApplicationSettingsBase.#ctor*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>owner</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>owner</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Configuration.ApplicationSettingsBase.Context
@@ -163,13 +163,13 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Gets the application settings context associated with the settings group."
-  remarks: "Each settings wrapper class derived from <xref:System.Configuration.ApplicationSettingsBase> has a context associated with it. The context is passed to the settings provider for each property to identify how the property is used. Context therefore acts as a hint to help the settings provider determine how best to persist the associated application settings values.       In contrast, the <xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A> property enables the settings provider to disambiguate multiple instances of the same wrapper class."
+  summary: "Obtém o contexto de definições de aplicação associado ao grupo de definições."
+  remarks: "Cada classe de wrapper definições derivado <xref:System.Configuration.ApplicationSettingsBase>tem um contexto associado.</xref:System.Configuration.ApplicationSettingsBase> O contexto é passado para o fornecedor de definições para cada propriedade para identificar a forma como a propriedade é utilizada. Contexto, por conseguinte, funciona como uma sugestão para o ajudar o determinar a melhor forma de manter os valores de definições de aplicação associada do fornecedor de definições.       Por outro lado, a <xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A>propriedade ativa o fornecedor de definições para eliminar a ambiguidade de várias instâncias da classe de wrapper mesmo.</xref:System.Configuration.ApplicationSettingsBase.SettingsKey%2A>"
   syntax:
     content: public override System.Configuration.SettingsContext Context { get; }
     return:
       type: System.Configuration.SettingsContext
-      description: "A <xref href=&quot;System.Configuration.SettingsContext&quot;></xref> associated with the settings group."
+      description: "A <xref href=&quot;System.Configuration.SettingsContext&quot;> </xref> associados ao grupo de definições."
   overload: System.Configuration.ApplicationSettingsBase.Context*
   exceptions: []
   platform:
@@ -186,22 +186,22 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Returns the value of the named settings property for the previous version of the same application."
-  remarks: "The GetPreviousVersion method is often used in conjunction with the <xref:System.Configuration.ApplicationSettingsBase.Upgrade%2A> method when migrating application settings during the installation of a new version of an application."
+  summary: "Devolve o valor da propriedade nomeada definições para a versão anterior da mesma aplicação."
+  remarks: "O método GetPreviousVersion, muitas vezes, é utilizado em conjunto com o <xref:System.Configuration.ApplicationSettingsBase.Upgrade%2A>método quando migrar as definições da aplicação durante a instalação de uma nova versão de uma aplicação.</xref:System.Configuration.ApplicationSettingsBase.Upgrade%2A>"
   syntax:
     content: public object GetPreviousVersion (string propertyName);
     parameters:
     - id: propertyName
       type: System.String
-      description: "A <xref:System.String> containing the name of the settings property whose value is to be returned."
+      description: "A <xref:System.String>que contém o nome da propriedade definições cujo valor é a ser devolvido.</xref:System.String>"
     return:
       type: System.Object
-      description: "An <xref:System.Object> containing the value of the specified <xref href=&quot;System.Configuration.SettingsProperty&quot;></xref> if found; otherwise, <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "Um <xref:System.Object>que contém o valor especificado de <xref href=&quot;System.Configuration.SettingsProperty&quot;> </xref> se encontrado; caso contrário, <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>.</xref:System.Object>"
   overload: System.Configuration.ApplicationSettingsBase.GetPreviousVersion*
   exceptions:
   - type: System.Configuration.SettingsPropertyNotFoundException
     commentId: T:System.Configuration.SettingsPropertyNotFoundException
-    description: "The property does not exist. The property count is zero or the property cannot be found in the data store."
+    description: "A propriedade não existe. A contagem de propriedade é zero ou a propriedade não é possível encontrar no arquivo de dados."
   platform:
   - net462
 - uid: System.Configuration.ApplicationSettingsBase.Item(System.String)
@@ -216,31 +216,31 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Gets or sets the value of the specified application settings property."
-  remarks: "The Item property, also known as the indexer, is routinely used in the settings wrapper class derived from <xref:System.Configuration.ApplicationSettingsBase>. Item binds the public property of the wrapper class to the corresponding settings property.       Item raises several events depending on the operation being performed:      -   The first time a property is retrieved, the <xref:System.Configuration.ApplicationSettingsBase.SettingsLoaded> event is raised.      -   When a property is set, the <xref:System.Configuration.ApplicationSettingsBase.OnSettingChanging%2A> event is raised. If the handler does not cancel the event, then the property value is set and the <xref:System.Configuration.ApplicationSettingsBase.PropertyChanged> event is raised."
+  summary: "Obtém ou define o valor da propriedade de definições de aplicação especificada."
+  remarks: "A propriedade do Item, também conhecido como o indexador regularmente é utilizada na classe de wrapper definições derivado <xref:System.Configuration.ApplicationSettingsBase>.</xref:System.Configuration.ApplicationSettingsBase> Item está vinculado a propriedade da classe de wrapper pública para a propriedade de definições correspondente.       Item desencadeia eventos várias dependendo da operação a ser efetuada: - a primeira vez que é obtida, de uma propriedade de <xref:System.Configuration.ApplicationSettingsBase.SettingsLoaded>o evento é gerado.</xref:System.Configuration.ApplicationSettingsBase.SettingsLoaded>      -Quando uma propriedade estiver definida, o <xref:System.Configuration.ApplicationSettingsBase.OnSettingChanging%2A>o evento é gerado.</xref:System.Configuration.ApplicationSettingsBase.OnSettingChanging%2A> Se o processador não cancele o evento, em seguida, o valor da propriedade está definido e o <xref:System.Configuration.ApplicationSettingsBase.PropertyChanged>o evento é gerado.</xref:System.Configuration.ApplicationSettingsBase.PropertyChanged>"
   syntax:
     content: public override object this[string propertyName] { get; set; }
     parameters:
     - id: propertyName
       type: System.String
-      description: "A <xref:System.String> containing the name of the property to access."
+      description: "A <xref:System.String>que contém o nome da propriedade para aceder.</xref:System.String>"
     return:
       type: System.Object
-      description: "If found, the value of the named settings property; otherwise, <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "Se encontrar, o valor da propriedade de definições denominado; caso contrário, <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   overload: System.Configuration.ApplicationSettingsBase.Item*
   exceptions:
   - type: System.Configuration.SettingsPropertyNotFoundException
     commentId: T:System.Configuration.SettingsPropertyNotFoundException
-    description: "There are no properties associated with the current wrapper or the specified property could not be found."
+    description: "Existem não existem propriedades associadas ao dispositivo de moldagem atual ou não foi possível encontrar a propriedade especificada."
   - type: System.Configuration.SettingsPropertyIsReadOnlyException
     commentId: T:System.Configuration.SettingsPropertyIsReadOnlyException
-    description: "An attempt was made to set a read-only property."
+    description: "Foi efetuada uma tentativa para definir uma propriedade só de leitura."
   - type: System.Configuration.SettingsPropertyWrongTypeException
     commentId: T:System.Configuration.SettingsPropertyWrongTypeException
-    description: "The value supplied is of a type incompatible with the settings property, during a set operation."
+    description: "O valor fornecido é de um tipo incompatível com a propriedade de definições durante uma operação de definição."
   - type: System.Configuration.ConfigurationErrorsException
     commentId: T:System.Configuration.ConfigurationErrorsException
-    description: "The configuration file could not be parsed."
+    description: "Não foi possível analisar o ficheiro de configuração."
   platform:
   - net462
 - uid: System.Configuration.ApplicationSettingsBase.OnPropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)
@@ -255,17 +255,17 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Raises the <xref href=&quot;System.Configuration.ApplicationSettingsBase.PropertyChanged&quot;></xref> event."
-  remarks: "Raising an event invokes the event handler through a delegate. For more information, see [NIB: Raising an Event](http://msdn.microsoft.com/en-us/f2adaf01-1ed1-42e1-8c31-8d467e7e0ee2).       The OnPropertyChanged method also allows derived classes to handle the event without attaching a delegate. This is the preferred technique for handling the event in a derived class."
+  summary: "Gera o <xref href=&quot;System.Configuration.ApplicationSettingsBase.PropertyChanged&quot;> </xref> eventos."
+  remarks: "Gerar um evento invoca o processador de eventos através de um delegado. Para obter mais informações, consulte [NIB: gerar um evento](http://msdn.microsoft.com/en-us/f2adaf01-1ed1-42e1-8c31-8d467e7e0ee2).       O método OnPropertyChanged também permite que as classes derivadas processar o evento sem anexar um delegado. Este é a preferido técnica para processar o evento de uma classe derivada."
   syntax:
     content: protected virtual void OnPropertyChanged (object sender, System.ComponentModel.PropertyChangedEventArgs e);
     parameters:
     - id: sender
       type: System.Object
-      description: "The source of the event."
+      description: "A origem do evento."
     - id: e
       type: System.ComponentModel.PropertyChangedEventArgs
-      description: "A <xref:System.ComponentModel.PropertyChangedEventArgs> that contains the event data."
+      description: "A <xref:System.ComponentModel.PropertyChangedEventArgs>que contém os dados do evento.</xref:System.ComponentModel.PropertyChangedEventArgs>"
   overload: System.Configuration.ApplicationSettingsBase.OnPropertyChanged*
   exceptions: []
   platform:
@@ -282,17 +282,17 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Raises the <xref href=&quot;System.Configuration.ApplicationSettingsBase.SettingChanging&quot;></xref> event."
-  remarks: "Raising an event invokes the event handler through a delegate. For more information, see [NIB: Raising an Event](http://msdn.microsoft.com/en-us/f2adaf01-1ed1-42e1-8c31-8d467e7e0ee2).       The OnSettingChanging method also allows derived classes to handle the event without attaching a delegate. This is the preferred technique for handling the event in a derived class."
+  summary: "Gera o <xref href=&quot;System.Configuration.ApplicationSettingsBase.SettingChanging&quot;> </xref> eventos."
+  remarks: "Gerar um evento invoca o processador de eventos através de um delegado. Para obter mais informações, consulte [NIB: gerar um evento](http://msdn.microsoft.com/en-us/f2adaf01-1ed1-42e1-8c31-8d467e7e0ee2).       O método OnSettingChanging também permite que as classes derivadas processar o evento sem anexar um delegado. Este é a preferido técnica para processar o evento de uma classe derivada."
   syntax:
     content: protected virtual void OnSettingChanging (object sender, System.Configuration.SettingChangingEventArgs e);
     parameters:
     - id: sender
       type: System.Object
-      description: "The source of the event."
+      description: "A origem do evento."
     - id: e
       type: System.Configuration.SettingChangingEventArgs
-      description: "A <xref href=&quot;System.Configuration.SettingChangingEventArgs&quot;></xref> that contains the event data."
+      description: "A <xref href=&quot;System.Configuration.SettingChangingEventArgs&quot;> </xref> que contém os dados do evento."
   overload: System.Configuration.ApplicationSettingsBase.OnSettingChanging*
   exceptions: []
   platform:
@@ -309,17 +309,17 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Raises the <xref href=&quot;System.Configuration.ApplicationSettingsBase.SettingsLoaded&quot;></xref> event."
-  remarks: "Raising an event invokes the event handler through a delegate. For more information, see [NIB: Raising an Event](http://msdn.microsoft.com/en-us/f2adaf01-1ed1-42e1-8c31-8d467e7e0ee2).       The OnSettingsLoaded method also allows derived classes to handle the event without attaching a delegate. This is the preferred technique for handling the event in a derived class."
+  summary: "Gera o <xref href=&quot;System.Configuration.ApplicationSettingsBase.SettingsLoaded&quot;> </xref> eventos."
+  remarks: "Gerar um evento invoca o processador de eventos através de um delegado. Para obter mais informações, consulte [NIB: gerar um evento](http://msdn.microsoft.com/en-us/f2adaf01-1ed1-42e1-8c31-8d467e7e0ee2).       O método OnSettingsLoaded também permite que as classes derivadas processar o evento sem anexar um delegado. Este é a preferido técnica para processar o evento de uma classe derivada."
   syntax:
     content: protected virtual void OnSettingsLoaded (object sender, System.Configuration.SettingsLoadedEventArgs e);
     parameters:
     - id: sender
       type: System.Object
-      description: "The source of the event."
+      description: "A origem do evento."
     - id: e
       type: System.Configuration.SettingsLoadedEventArgs
-      description: "A <xref href=&quot;System.Configuration.SettingsLoadedEventArgs&quot;></xref> that contains the event data."
+      description: "A <xref href=&quot;System.Configuration.SettingsLoadedEventArgs&quot;> </xref> que contém os dados do evento."
   overload: System.Configuration.ApplicationSettingsBase.OnSettingsLoaded*
   exceptions: []
   platform:
@@ -336,17 +336,17 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Raises the <xref href=&quot;System.Configuration.ApplicationSettingsBase.SettingsSaving&quot;></xref> event."
-  remarks: "Raising an event invokes the event handler through a delegate. For more information, see [NIB: Raising an Event](http://msdn.microsoft.com/en-us/f2adaf01-1ed1-42e1-8c31-8d467e7e0ee2).       The OnSettingsSaving method also allows derived classes to handle the event without attaching a delegate. This is the preferred technique for handling the event in a derived class."
+  summary: "Gera o <xref href=&quot;System.Configuration.ApplicationSettingsBase.SettingsSaving&quot;> </xref> eventos."
+  remarks: "Gerar um evento invoca o processador de eventos através de um delegado. Para obter mais informações, consulte [NIB: gerar um evento](http://msdn.microsoft.com/en-us/f2adaf01-1ed1-42e1-8c31-8d467e7e0ee2).       O método OnSettingsSaving também permite que as classes derivadas processar o evento sem anexar um delegado. Este é a preferido técnica para processar o evento de uma classe derivada."
   syntax:
     content: protected virtual void OnSettingsSaving (object sender, System.ComponentModel.CancelEventArgs e);
     parameters:
     - id: sender
       type: System.Object
-      description: "The source of the event."
+      description: "A origem do evento."
     - id: e
       type: System.ComponentModel.CancelEventArgs
-      description: "A <xref:System.ComponentModel.CancelEventArgs> that contains the event data."
+      description: "A <xref:System.ComponentModel.CancelEventArgs>que contém os dados do evento.</xref:System.ComponentModel.CancelEventArgs>"
   overload: System.Configuration.ApplicationSettingsBase.OnSettingsSaving*
   exceptions: []
   platform:
@@ -363,18 +363,18 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Gets the collection of settings properties in the wrapper."
-  remarks: "The `get` accessor of the Properties property reflects over the metadata of the settings wrapper class, which is derived from <xref:System.Configuration.ApplicationSettingsBase>, to dynamically determine the set of available application settings properties.       The <xref:System.Configuration.ApplicationSettingsBase> class natively recognizes certain characteristics of an application setting, such as its name, property type, settings provider, default value, read only status, and a serialization preference. These characteristics are mirrored as properties in the <xref:System.Configuration.SettingsProperty> class. All other attributes of the settings property are just passed through to its associated settings provider."
+  summary: "Obtém a coleção de propriedades das definições no wrapper de."
+  remarks: "O `get` descritor de acesso da propriedade propriedades reflete através de metadados da classe de wrapper definições, que é derivado de <xref:System.Configuration.ApplicationSettingsBase>, para determinar dinamicamente o conjunto de propriedades de definições de aplicação disponível.</xref:System.Configuration.ApplicationSettingsBase>       O <xref:System.Configuration.ApplicationSettingsBase>classe nativamente reconhece determinadas características de uma definição de aplicação, tais como o respetivo nome, tipo de propriedade, o fornecedor de definições, valor predefinido, leem os únicos Estados e uma preferência de serialização.</xref:System.Configuration.ApplicationSettingsBase> Estas características são espelhadas como propriedades de <xref:System.Configuration.SettingsProperty>classe.</xref:System.Configuration.SettingsProperty> Todos os outros atributos da propriedade definições apenas passam para o fornecedor de definições associadas."
   syntax:
     content: public override System.Configuration.SettingsPropertyCollection Properties { get; }
     return:
       type: System.Configuration.SettingsPropertyCollection
-      description: "A <xref href=&quot;System.Configuration.SettingsPropertyCollection&quot;></xref> containing all the <xref href=&quot;System.Configuration.SettingsProperty&quot;></xref> objects used in the current wrapper."
+      description: "A <xref href=&quot;System.Configuration.SettingsPropertyCollection&quot;> </xref> que contém todas as <xref href=&quot;System.Configuration.SettingsProperty&quot;> </xref> objetos utilizados no dispositivo de moldagem atual."
   overload: System.Configuration.ApplicationSettingsBase.Properties*
   exceptions:
   - type: System.Configuration.ConfigurationErrorsException
     commentId: T:System.Configuration.ConfigurationErrorsException
-    description: "The associated settings provider could not be found or its instantiation failed."
+    description: "Não foi possível encontrar o fornecedor de definições associadas ou falhou a instanciação do objeto."
   platform:
   - net462
 - uid: System.Configuration.ApplicationSettingsBase.PropertyChanged
@@ -389,13 +389,13 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Occurs after the value of an application settings property is changed."
-  remarks: "The PropertyChanged event is raised when a settings property is changed through the `set` accessor of the <xref:System.Configuration.ApplicationSettingsBase.Item%2A> method, or for every property that is restored when a call is made to the <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> or <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> methods.       There is no corresponding `PropertyChanging` event for this class; instead, see the <xref:System.Configuration.ApplicationSettingsBase.SettingChanging> event."
+  summary: "Ocorre depois do valor de uma propriedade de definições de aplicação é alterado."
+  remarks: "O evento PropertyChanged é desencadeado quando uma propriedade de definições é alterada através de `set` acessor do <xref:System.Configuration.ApplicationSettingsBase.Item%2A>método, ou para cada propriedade que é restaurada quando é efetuada uma chamada para o <xref:System.Configuration.ApplicationSettingsBase.Reload%2A>ou <xref:System.Configuration.ApplicationSettingsBase.Reset%2A>métodos.</xref:System.Configuration.ApplicationSettingsBase.Reset%2A> </xref:System.Configuration.ApplicationSettingsBase.Reload%2A> </xref:System.Configuration.ApplicationSettingsBase.Item%2A>       Não há nenhum correspondente `PropertyChanging` evento para esta classe; em vez disso, consulte o <xref:System.Configuration.ApplicationSettingsBase.SettingChanging>eventos.</xref:System.Configuration.ApplicationSettingsBase.SettingChanging>"
   syntax:
     content: public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
     return:
       type: System.ComponentModel.PropertyChangedEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -411,12 +411,12 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Gets a collection of property values."
+  summary: "Obtém uma coleção de valores de propriedade."
   syntax:
     content: public override System.Configuration.SettingsPropertyValueCollection PropertyValues { get; }
     return:
       type: System.Configuration.SettingsPropertyValueCollection
-      description: "A <xref href=&quot;System.Configuration.SettingsPropertyValueCollection&quot;></xref> of property values."
+      description: "A <xref href=&quot;System.Configuration.SettingsPropertyValueCollection&quot;> </xref> dos valores de propriedade."
   overload: System.Configuration.ApplicationSettingsBase.PropertyValues*
   exceptions: []
   platform:
@@ -433,13 +433,13 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Gets the collection of application settings providers used by the wrapper."
-  remarks: "The <xref:System.Configuration.SettingsProviderAttribute> determines what setting provider is used by a settings wrapper class or an individual setting property. If this attribute is not specified, a client application will use the <xref:System.Configuration.LocalFileSettingsProvider>."
+  summary: "Obtém a coleção de fornecedores de definições de aplicação utilizada pelo wrapper de."
+  remarks: "O <xref:System.Configuration.SettingsProviderAttribute>determina o fornecedor da definição é utilizado por uma classe de wrapper definições ou uma propriedade de definição individual.</xref:System.Configuration.SettingsProviderAttribute> Se este atributo não for especificado, uma aplicação cliente utilizará <xref:System.Configuration.LocalFileSettingsProvider>.</xref:System.Configuration.LocalFileSettingsProvider>"
   syntax:
     content: public override System.Configuration.SettingsProviderCollection Providers { get; }
     return:
       type: System.Configuration.SettingsProviderCollection
-      description: "A <xref href=&quot;System.Configuration.SettingsProviderCollection&quot;></xref> containing all the <xref href=&quot;System.Configuration.SettingsProvider&quot;></xref> objects used by the settings properties of the current settings wrapper."
+      description: "A <xref href=&quot;System.Configuration.SettingsProviderCollection&quot;> </xref> que contém todas as <xref href=&quot;System.Configuration.SettingsProvider&quot;> </xref> objetos utilizados pelas propriedades de definições de wrapper de definições atuais."
   overload: System.Configuration.ApplicationSettingsBase.Providers*
   exceptions: []
   platform:
@@ -456,8 +456,8 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Refreshes the application settings property values from persistent storage."
-  remarks: "The Reload method clears the currently cached property values, causing a reload of these values from persistent storage when they are subsequently accessed. This method performs the following actions:      -   It clears the currently cached properties by clearing the collection represented by the <xref:System.Configuration.SettingsBase.PropertyValues%2A> property.      -   It raises the <xref:System.Configuration.ApplicationSettingsBase.PropertyChanged> event for every member of the <xref:System.Configuration.ApplicationSettingsBase.Properties%2A> collection.       Reload contrasts with <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> in that the former will load the last set of saved application settings values, whereas the latter will load the saved default values."
+  summary: "Atualiza os valores de propriedade de definições de aplicação do armazenamento persistente."
+  remarks: "O método de recarregamento limpa os valores de propriedade atualmente em cache, provocando um recarregar destes valores do armazenamento persistente, quando estes são acedidos posteriormente. Este método executa as ações seguintes:--limpa as propriedades atualmente em cache ao desmarcar a colecção representada pelo <xref:System.Configuration.SettingsBase.PropertyValues%2A>propriedade.</xref:System.Configuration.SettingsBase.PropertyValues%2A>      -Gera o <xref:System.Configuration.ApplicationSettingsBase.PropertyChanged>eventos para cada membro do <xref:System.Configuration.ApplicationSettingsBase.Properties%2A>coleção.</xref:System.Configuration.ApplicationSettingsBase.Properties%2A> </xref:System.Configuration.ApplicationSettingsBase.PropertyChanged>       Recarregar contrasta com <xref:System.Configuration.ApplicationSettingsBase.Reset%2A>em que a primeira irá carregar o último conjunto de valores de definições de aplicação guardados, enquanto que esta irá carregar os valores predefinidos guardado.</xref:System.Configuration.ApplicationSettingsBase.Reset%2A>"
   example:
   - "The following code example shows the Reload method being invoked in the body of the <xref:System.Windows.Forms.Control.Click> event handler for a button named `btnReload`. As a result of this call, the currently stored values for the application settings are reloaded into their corresponding properties. The full code example is listed in the <xref:System.Configuration.ApplicationSettingsBase> class overview.  \n  \n [!code-cpp[AppSettingsSample#6](~/add/codesnippet/cpp/m-system.configuration.a_0_1.cpp)]\n [!code-cs[AppSettingsSample#6](~/add/codesnippet/csharp/m-system.configuration.a_0_1.cs)]\n [!code-vb[AppSettingsSample#6](~/add/codesnippet/visualbasic/AppSettingsSample/Form1.vb#6)]"
   syntax:
@@ -479,8 +479,8 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Restores the persisted application settings values to their corresponding default properties."
-  remarks: "The Reset method overwrites the user-scoped settings properties by restoring the currently persisted value of each application settings. This method performs the following actions:      -   It calls the <xref:System.Configuration.IApplicationSettingsProvider.Reset%2A?displayProperty=fullName> method on every settings provider that supports this optional method.      -   It calls the <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> method to force a refresh of the settings property values.       <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> contrasts with Reset in that the former will load the last set of saved application settings values, whereas the latter will load the saved default values."
+  summary: "Restaura os valores de definições de aplicação persistente para as respetivas propriedades correspondentes do predefinido."
+  remarks: "O método de reposição substitui as propriedades de definições no âmbito do utilizador ao restaurar o valor atualmente persistente de cada definições da aplicação. Este método executa as ações seguintes:-chama o <xref:System.Configuration.IApplicationSettingsProvider.Reset%2A?displayProperty=fullName>método em cada fornecedor de definições que suporte este método opcional.</xref:System.Configuration.IApplicationSettingsProvider.Reset%2A?displayProperty=fullName>      -Chama o <xref:System.Configuration.ApplicationSettingsBase.Reload%2A>método para forçar uma atualização de definições de valores de propriedade.</xref:System.Configuration.ApplicationSettingsBase.Reload%2A>       <xref:System.Configuration.ApplicationSettingsBase.Reload%2A>contrasta com reposição em que a primeira carregará o último conjunto de valores de definições de aplicação guardados, enquanto que esta irá carregar os valores predefinidos guardado.</xref:System.Configuration.ApplicationSettingsBase.Reload%2A>"
   example:
   - "The following code example shows the Reset method being invoked in the body of the <xref:System.Windows.Forms.Control.Click> event handler for a button named `btnReset`. As a result of this call, the stored default values for the application settings are reloaded into their corresponding properties. The full code example is listed in the <xref:System.Configuration.ApplicationSettingsBase> class overview.  \n  \n [!code-cpp[AppSettingsSample#5](~/add/codesnippet/cpp/m-system.configuration.a_3_1.cpp)]\n [!code-cs[AppSettingsSample#5](~/add/codesnippet/csharp/m-system.configuration.a_3_1.cs)]\n [!code-vb[AppSettingsSample#5](~/add/codesnippet/visualbasic/AppSettingsSample/Form1.vb#5)]"
   syntax:
@@ -490,7 +490,7 @@ items:
   exceptions:
   - type: System.Configuration.ConfigurationErrorsException
     commentId: T:System.Configuration.ConfigurationErrorsException
-    description: "The configuration file could not be parsed."
+    description: "Não foi possível analisar o ficheiro de configuração."
   platform:
   - net462
 - uid: System.Configuration.ApplicationSettingsBase.Save
@@ -505,8 +505,8 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Stores the current values of the application settings properties."
-  remarks: "The Save method writes the current value of each settings property to its associated data store. For each property, this method calls the <xref:System.Configuration.SettingsProvider.SetPropertyValues%2A> method on the associated settings provider.       This method differs from the base class implementation in that it raises the <xref:System.Configuration.ApplicationSettingsBase.SettingsSaving> event before the values are written.       If the only settings defined are application-scoped settings, Save will have no effect and return no error if called with the default <xref:System.Configuration.LocalFileSettingsProvider>. <xref:System.Configuration.LocalFileSettingsProvider> only saves user-scoped settings.      > [!IMPORTANT] >  There is no corresponding Load method because the values of application settings are automatically loaded during wrapper class initialization. In contrast, these values are not automatically saved when an application ends. Therefore, you must explicitly call the Save method to persist the current values of the application settings. This is typically performed in the <xref:System.Windows.Forms.Form.Closing> event handler of the primary or containing <xref:System.Windows.Forms.Form>."
+  summary: "Armazena os valores atuais das propriedades de definições da aplicação."
+  remarks: "O método de guardar escreve o valor atual de cada propriedade de definições ao seu arquivo de dados associado. Para cada propriedade, este método chama o <xref:System.Configuration.SettingsProvider.SetPropertyValues%2A>método no fornecedor de definições associadas.</xref:System.Configuration.SettingsProvider.SetPropertyValues%2A>       Este método difere da implementação de classe base em que gera o <xref:System.Configuration.ApplicationSettingsBase.SettingsSaving>eventos antes dos valores são escritos.</xref:System.Configuration.ApplicationSettingsBase.SettingsSaving>       Se as definições apenas definidas no âmbito de aplicação definições, guarde irá não tem qualquer efeito e não devolverem nenhum erro se a chamada com a predefinição <xref:System.Configuration.LocalFileSettingsProvider>.</xref:System.Configuration.LocalFileSettingsProvider> <xref:System.Configuration.LocalFileSettingsProvider>apenas guarda as definições no âmbito do utilizador.</xref:System.Configuration.LocalFileSettingsProvider>      > [!IMPORTANT] > Não é não existe nenhum método de carregamento correspondente porque os valores das definições da aplicação são carregados automaticamente durante a inicialização da classe de wrapper. Em contrapartida, estes valores não são automaticamente guardados quando termina uma aplicação. Por conseguinte, tem de chamar explicitamente o método de guardar para manter os valores atuais das definições da aplicação. Isto é, normalmente realizado no <xref:System.Windows.Forms.Form.Closing>processador de eventos dos principais ou que contêm <xref:System.Windows.Forms.Form>.</xref:System.Windows.Forms.Form> </xref:System.Windows.Forms.Form.Closing>"
   example:
   - "The following code example shows the Save method being called from the <xref:System.Windows.Forms.Form.Closing> event handler for the primary form. This method also appends an extra period to the settings property that is associated with the form's <xref:System.Windows.Forms.Control.Text%2A> property.  \n  \n The full code example is listed in the <xref:System.Configuration.ApplicationSettingsBase> class overview.  \n  \n [!code-cpp[AppSettingsSample#3](~/add/codesnippet/cpp/m-system.configuration.a_1_1.cpp)]\n [!code-cs[AppSettingsSample#3](~/add/codesnippet/csharp/m-system.configuration.a_1_1.cs)]\n [!code-vb[AppSettingsSample#3](~/add/codesnippet/visualbasic/AppSettingsSample/Form1.vb#3)]"
   syntax:
@@ -528,15 +528,15 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Occurs before the value of an application settings property is changed."
-  remarks: "The SettingChanging event occurs before an application setting value property is changed through the <xref:System.Configuration.ApplicationSettingsBase.Item%2A> method. This event is not raised when the <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> or <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> methods are called. SettingChanging can be canceled through the <xref:System.Configuration.SettingChangingEventArgs> event data class.       You typically use the SettingChanging event to handle immediate validation of an individual settings property. For more information about validation, see [How to: Validate Application Settings](~/add/includes/ajax-current-ext-md.md).       There is no corresponding `SettingChanged` event for this class; instead, see the <xref:System.Configuration.ApplicationSettingsBase.PropertyChanged> event."
+  summary: "Ocorre antes do valor de uma propriedade de definições de aplicação é alterado."
+  remarks: "O evento SettingChanging ocorre antes de uma propriedade de valor de definição de aplicação é alterada através de <xref:System.Configuration.ApplicationSettingsBase.Item%2A>método.</xref:System.Configuration.ApplicationSettingsBase.Item%2A> Este evento não é desencadeado quando o <xref:System.Configuration.ApplicationSettingsBase.Reload%2A>ou <xref:System.Configuration.ApplicationSettingsBase.Reset%2A>métodos são denominados.</xref:System.Configuration.ApplicationSettingsBase.Reset%2A> </xref:System.Configuration.ApplicationSettingsBase.Reload%2A> Pode ser cancelada SettingChanging através da <xref:System.Configuration.SettingChangingEventArgs>classe de dados de eventos</xref:System.Configuration.SettingChangingEventArgs>       O evento SettingChanging é normalmente utilizada para processar validação imediata de uma propriedade de definições individuais. Para obter mais informações sobre a validação, consulte [como: validar as definições da aplicação](~/add/includes/ajax-current-ext-md.md).       Não há nenhum correspondente `SettingChanged` evento para esta classe; em vez disso, consulte o <xref:System.Configuration.ApplicationSettingsBase.PropertyChanged>eventos.</xref:System.Configuration.ApplicationSettingsBase.PropertyChanged>"
   example:
   - "The following code example shows the SettingChanging event handler for object of type `FormSettings`, which is a wrapper class derived from <xref:System.Configuration.ApplicationSettingsBase>. The handler displays the event information in a textbox named `tbStatus`. The full code example is listed in the <xref:System.Configuration.ApplicationSettingsBase> class overview.  \n  \n [!code-cpp[AppSettingsSample#7](~/add/codesnippet/cpp/e-system.configuration.a_0_1.cpp)]\n [!code-cs[AppSettingsSample#7](~/add/codesnippet/csharp/e-system.configuration.a_0_1.cs)]\n [!code-vb[AppSettingsSample#7](~/add/codesnippet/visualbasic/AppSettingsSample/Form1.vb#7)]"
   syntax:
     content: public event System.Configuration.SettingChangingEventHandler SettingChanging;
     return:
       type: System.Configuration.SettingChangingEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -552,13 +552,13 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Gets or sets the settings key for the application settings group."
-  remarks: "The SettingsKey property is provided to enable client code, and in particular the settings provider, to disambiguate between multiple instances of the same application settings class.       Unless the settings wrapper class is designed using the singleton pattern, there can be multiple instances of the same application settings class in a single application. The value of SettingsKey should be set according to how the property values are intended to be shared.      -   If the settings properties of the wrapper are intended to be shared across all instances of the wrapper in the same application, then SettingsKey should have the same value in all of the instances. This is the default behavior of the <xref:System.Configuration.ApplicationSettingsBase> class.      -   If the settings properties of the wrapper are intended to be per instance, then SettingsKey should have a unique value for every instance. The <xref:System.Configuration.ApplicationSettingsBase.%23ctor%28System.String%29> version of the constructor enables you to initialize SettingsKey to a unique string.       In contrast, the <xref:System.Configuration.ApplicationSettingsBase.Context%2A> property provides hints to the settings provider to enable it to persist values in an efficient and orderly manner.       The <xref:System.Configuration.SettingChangingEventArgs> class contains a similar <xref:System.Configuration.SettingChangingEventArgs.SettingKey%2A> property that helps identify the source of the <xref:System.Configuration.ApplicationSettingsBase.SettingChanging> event."
+  summary: "Obtém ou define a tecla de definições para o grupo de definições de aplicação."
+  remarks: "A propriedade SettingsKey é fornecida para ativar o código de cliente e, em especial o fornecedor de definições, para eliminar a ambiguidade entre várias instâncias da mesma classe de definições da aplicação.       A menos que a classe de wrapper definições foi concebida para utilizar o padrão de singleton, podem existir várias instâncias da mesma classe de definições de aplicação numa única aplicação. O valor de SettingsKey deve ser definido de acordo com a forma como os valores de propriedade destinam-se a ser partilhado.      -Se as propriedades de definições do wrapper de destinam-se a ser partilhado entre todas as instâncias do wrapper de na mesma aplicação, em seguida, SettingsKey deve ter o mesmo valor em todas as instâncias. Este é o comportamento predefinido da <xref:System.Configuration.ApplicationSettingsBase>classe.</xref:System.Configuration.ApplicationSettingsBase>      -Se as propriedades de definições do wrapper de destinam-se a ser por instância, SettingsKey deve ter um valor exclusivo para cada instância. O <xref:System.Configuration.ApplicationSettingsBase.%23ctor%28System.String%29>versão do construtor permite-lhe inicializar SettingsKey para uma cadeia exclusiva.</xref:System.Configuration.ApplicationSettingsBase.%23ctor%28System.String%29>       Em contrapartida, o <xref:System.Configuration.ApplicationSettingsBase.Context%2A>propriedade fornece sugestões para o fornecedor de definições para ativá-la manter valores de forma eficiente e ordenada.</xref:System.Configuration.ApplicationSettingsBase.Context%2A>       O <xref:System.Configuration.SettingChangingEventArgs>classe contém um semelhante <xref:System.Configuration.SettingChangingEventArgs.SettingKey%2A>propriedade que ajuda a identificar a origem do <xref:System.Configuration.ApplicationSettingsBase.SettingChanging>eventos.</xref:System.Configuration.ApplicationSettingsBase.SettingChanging> </xref:System.Configuration.SettingChangingEventArgs.SettingKey%2A> </xref:System.Configuration.SettingChangingEventArgs>"
   syntax:
     content: public string SettingsKey { get; set; }
     return:
       type: System.String
-      description: "A <xref:System.String> containing the settings key for the current settings group."
+      description: "A <xref:System.String>que contém a chave de definições para o grupo de definições atuais.</xref:System.String>"
   overload: System.Configuration.ApplicationSettingsBase.SettingsKey*
   exceptions: []
   platform:
@@ -575,13 +575,13 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Occurs after the application settings are retrieved from storage."
-  remarks: "The SettingsLoaded event occurs only after the initial `get` access of the first configuration property used, typically through the <xref:System.Configuration.ApplicationSettingsBase.Item%2A> method. Subsequent accesses use values for the settings property that are cached locally. The <xref:System.Configuration.ApplicationSettingsBase.Reset%2A> and <xref:System.Configuration.ApplicationSettingsBase.Reload%2A> methods will clear all cached values so this event will be raised again upon subsequent property access."
+  summary: "Ocorre depois das definições da aplicação são obtidas a partir do armazenamento."
+  remarks: "O evento SettingsLoaded ocorre apenas após iniciais `get` acesso da propriedade de configuração primeiro utilizado, normalmente, através de <xref:System.Configuration.ApplicationSettingsBase.Item%2A>método.</xref:System.Configuration.ApplicationSettingsBase.Item%2A> Acede subsequente utiliza valores para a propriedade de definições que estão em cache localmente. O <xref:System.Configuration.ApplicationSettingsBase.Reset%2A>e <xref:System.Configuration.ApplicationSettingsBase.Reload%2A>métodos irão limpar os valores de todos os em cache, pelo que este evento é acionado novamente após o acesso de propriedade subsequentes.</xref:System.Configuration.ApplicationSettingsBase.Reload%2A> </xref:System.Configuration.ApplicationSettingsBase.Reset%2A>"
   syntax:
     content: public event System.Configuration.SettingsLoadedEventHandler SettingsLoaded;
     return:
       type: System.Configuration.SettingsLoadedEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -597,15 +597,15 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Occurs before values are saved to the data store."
-  remarks: "The SettingsSaving event is raised by the <xref:System.Configuration.ApplicationSettingsBase.Save%2A> method before it stores the application settings properties to their associated data store. The associated event handler can cancel this event."
+  summary: "Ocorre antes dos valores são guardados para o arquivo de dados."
+  remarks: "O evento de SettingsSaving é gerado pelo <xref:System.Configuration.ApplicationSettingsBase.Save%2A>método antes de armazena as propriedades de definições de aplicação para o respetivo arquivo de dados associado.</xref:System.Configuration.ApplicationSettingsBase.Save%2A> O processador de eventos associados pode cancelar este evento."
   example:
   - "The following code example shows the SettingsSaving event handler for object of type `FormSettings`, which is a wrapper class derived from <xref:System.Configuration.ApplicationSettingsBase>. The handler queries the user to save the current application settings property values. The full code example is listed in the <xref:System.Configuration.ApplicationSettingsBase> class overview.  \n  \n [!code-cpp[AppSettingsSample#8](~/add/codesnippet/cpp/e-system.configuration.a_1_1.cpp)]\n [!code-cs[AppSettingsSample#8](~/add/codesnippet/csharp/e-system.configuration.a_1_1.cs)]\n [!code-vb[AppSettingsSample#8](~/add/codesnippet/visualbasic/AppSettingsSample/Form1.vb#8)]"
   syntax:
     content: public event System.Configuration.SettingsSavingEventHandler SettingsSaving;
     return:
       type: System.Configuration.SettingsSavingEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -621,8 +621,8 @@ items:
   assemblies:
   - System
   namespace: System.Configuration
-  summary: "Updates application settings to reflect a more recent installation of the application."
-  remarks: "The Upgrade method performs two actions to assure smooth transition to a new version of an application:      -   It notifies all of the corresponding settings providers of the existence of the upgraded application through a call to their <xref:System.Configuration.IApplicationSettingsProvider.Upgrade%2A?displayProperty=fullName> method, assuming they have implemented the <xref:System.Configuration.IApplicationSettingsProvider> interface. This action is not performed if the settings wrapper class is marked with <xref:System.Configuration.NoSettingsVersionUpgradeAttribute>.      -   It reloads the values for all of the application settings.       You can override the default behavior of Upgrade to implement custom upgrading or merging behavior. Use the <xref:System.Configuration.ApplicationSettingsBase.GetPreviousVersion%2A> method to retrieve individual values for a setting for the previous version of the application. Examples of custom upgrade behavior include:      -   Using new policy defaults that override one or more of the previous user-specified values or previous defaults.      -   Special translation of old values to be compatible with newer ranges, a different settings property group, and so on."
+  summary: "Atualiza as definições de aplicação para refletir uma instalação mais recente da aplicação."
+  remarks: "O método de atualização executa duas ações para garantir uma transição tranquila para uma nova versão de uma aplicação:-notifica todos os fornecedores de definições correspondentes de existência da aplicação atualizada através de uma chamada para as respetivas <xref:System.Configuration.IApplicationSettingsProvider.Upgrade%2A?displayProperty=fullName>método, partindo do princípio de que implementou o <xref:System.Configuration.IApplicationSettingsProvider>interface.</xref:System.Configuration.IApplicationSettingsProvider> </xref:System.Configuration.IApplicationSettingsProvider.Upgrade%2A?displayProperty=fullName> Esta ação não é efetuada se a classe de wrapper de definições está marcada com <xref:System.Configuration.NoSettingsVersionUpgradeAttribute>.</xref:System.Configuration.NoSettingsVersionUpgradeAttribute>      --Reloads os valores para todas as definições de aplicação.       Pode substituir o comportamento predefinido da atualização para implementar a atualizar ou intercalação comportamento personalizados. Utilize o <xref:System.Configuration.ApplicationSettingsBase.GetPreviousVersion%2A>método obter valores individuais para uma definição para a versão anterior da aplicação.</xref:System.Configuration.ApplicationSettingsBase.GetPreviousVersion%2A> Exemplos de comportamento da atualização personalizado:-utilizando novas predefinições da política que substituem um ou mais dos valores especificados de utilizador anteriores ou predefinições anteriores.      -Especial tradução dos valores antigos para ser compatível com mais recente intervalos, um grupo de propriedade de diferentes definições e assim sucessivamente."
   syntax:
     content: public virtual void Upgrade ();
     parameters: []
@@ -630,7 +630,7 @@ items:
   exceptions:
   - type: System.Configuration.ConfigurationErrorsException
     commentId: T:System.Configuration.ConfigurationErrorsException
-    description: "The configuration file could not be parsed."
+    description: "Não foi possível analisar o ficheiro de configuração."
   platform:
   - net462
 references:

@@ -13,8 +13,8 @@ items:
   nameWithType: PersistenceParticipant
   fullName: System.Activities.Persistence.PersistenceParticipant
   type: Class
-  summary: "This class allows both <xref href=&quot;System.Activities.WorkflowApplication&quot;></xref> and <xref href=&quot;System.ServiceModel.WorkflowServiceHost&quot;></xref> to participate in persistence process. A persistence participant derives from the PersistenceParticipant class or the <xref href=&quot;System.Activities.Persistence.PersistenceIOParticipant&quot;></xref> class (derived class of the PersistenceParticipant class), implements abstract methods, and then add an instance of the class as a workflow instance extension. The <xref href=&quot;System.Activities.WorkflowApplication&quot;></xref> and <xref href=&quot;System.ServiceModel.WorkflowServiceHost&quot;></xref> look for such extensions when persisting an instance and invoke appropriate methods at appropriate times."
-  remarks: "A host executes the following steps (or stages) when persisting an instance:      1.  Collects values to be persisted.      2.  Maps fields of monolithic structured values to individual values.      3.  Issues the <xref:System.Activities.DurableInstancing.SaveWorkflowCommand> to the persistence provider.      4.  Performs I/O under the persistence transaction.       A host completes a stage before beginning the next stage. For example when persisting, the host collects values from all the persistence participants before moving to the second stage. In the second stage, the host provides all the values collected in the first stage to all persistence participants in the second stage for mapping. In the third stage, the host provides all the collected values in the first and second stages to the persistence provider when invoking the <xref:System.Activities.DurableInstancing.SaveWorkflowCommand>. Then in the fourth stage, the host provides all the collected values to all the persistence IO participants under the persistence transaction.       A host executes the following stages when loading a persistence instance:      1.  Issues the <xref:System.Activities.DurableInstancing.LoadWorkflowCommand> and <xref:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand> to the persistence provider.      2.  Performs I/O under the persistence transaction.      3.  Publishes the loaded values.       At the highest level, workflow instance extensions that derive from the PersistenceParticipant class can participate in the first (Collect) and second (Map) stages of persisting process and the third stage (Publish) of loading process.  Workflow instance extensions deriving from the PersistenceIOParticipant class can additionally participate in the fourth stage of the persisting process and the second stage of the loading process (I/O)."
+  summary: "Esta classe permite ambos <xref href=&quot;System.Activities.WorkflowApplication&quot;> </xref> e <xref href=&quot;System.ServiceModel.WorkflowServiceHost&quot;> </xref> participar no processo de persistência. Um participante persistente deriva da classe de PersistenceParticipant ou <xref href=&quot;System.Activities.Persistence.PersistenceIOParticipant&quot;> </xref> (classe derivada da classe PersistenceParticipant), implementa abstratos métodos de classe e, em seguida, adicionar uma instância da classe como uma extensão de instância de fluxo de trabalho. O <xref href=&quot;System.Activities.WorkflowApplication&quot;> </xref> e <xref href=&quot;System.ServiceModel.WorkflowServiceHost&quot;> </xref> procure essas extensões quando a persistência de uma instância e invocar métodos adequados em momentos adequados."
+  remarks: "Um anfitrião executa os passos seguintes (ou fases) quando a persistência de uma instância: 1.  Recolhe os valores para ser persistente.      2.  Mapeia os campos de valores estruturados monolithic para valores individuais.      3.  Problemas de <xref:System.Activities.DurableInstancing.SaveWorkflowCommand>para o fornecedor de persistência.</xref:System.Activities.DurableInstancing.SaveWorkflowCommand>      4.  Executa e/s sob a transação de persistência.       Um anfitrião conclui uma fase antes de iniciar a próxima fase. Por exemplo, quando a persistência, o anfitrião recolhe os valores de todos os participantes de persistência antes de mover para a segunda fase. Na segunda fase, o anfitrião fornece todos os valores recolhidos na primeira fase para todos os participantes de persistência na segunda fase de mapeamento. A terceira fase, o anfitrião fornece todos os valores recolhidos nas fases primeira e segunda para o fornecedor de persistência ao invocar <xref:System.Activities.DurableInstancing.SaveWorkflowCommand>.</xref:System.Activities.DurableInstancing.SaveWorkflowCommand> Em seguida, a quarta fase, o anfitrião fornece todos os valores recolhidos para todos os participantes de e/s de persistência sob a transação de persistência.       Um anfitrião executa as seguintes fases ao carregar uma instância de persistência: 1.  Problemas de <xref:System.Activities.DurableInstancing.LoadWorkflowCommand>e <xref:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand>para o fornecedor de persistência.</xref:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand> </xref:System.Activities.DurableInstancing.LoadWorkflowCommand>      2.  Executa e/s sob a transação de persistência.      3.  Publica os valores carregados.       O nível mais elevado, as extensões de instância de fluxo de trabalho que derivam da classe de PersistenceParticipant podem participar na primeira (recolher) e segundo fases de (mapa) do processo persistentes e a terceira fase (publicar) do processo de carregamento.  As extensões de instância de fluxo de trabalho derivados de classe PersistenceIOParticipant adicionalmente podem participar na quarta fase do processo de persistentes e a segunda etapa do processo de carregamento (e/s)."
   example:
   - "The following code sample demonstrates creating a class that derives from PersistenceParticipant. This example is from the [Hiring Process](~/add/includes/ajax-current-ext-md.md) sample.  \n  \n [!code-cs[wfs_HiringRequestProcess#1](~/add/codesnippet/csharp/hiringrequestservice/hiringrequestpersistenceparticipant.cs#1)]"
   syntax:
@@ -37,7 +37,7 @@ items:
   assemblies:
   - System.Activities
   namespace: System.Activities.Persistence
-  summary: "Initializes an instance of the <xref href=&quot;System.Activities.Persistence.PersistenceParticipant&quot;></xref> class."
+  summary: "Inicializa uma instância do <xref href=&quot;System.Activities.Persistence.PersistenceParticipant&quot;> </xref> classe."
   remarks: ''
   example:
   - "The following code sample demonstrates creating a class that derives from <xref:System.Activities.Persistence.PersistenceParticipant>. This example is from the [Hiring Process](~/add/includes/ajax-current-ext-md.md) sample.  \n  \n [!code-cs[wfs_HiringRequestProcess#1](~/add/codesnippet/csharp/hiringrequestservice/hiringrequestpersistenceparticipant.cs#1)]"
@@ -60,8 +60,8 @@ items:
   assemblies:
   - System.Activities
   namespace: System.Activities.Persistence
-  summary: "A host invokes this method on a custom persistence participant to collect read-write values and write-only values, to be persisted."
-  remarks: "The host packages read-write values in the first dictionary as <xref:System.Runtime.Persistence.InstanceValue> objects of an <xref:System.Activities.Persistence.SaveWorkflowCommand.InstanceData%2A> collection, and packages write-only values in the second dictionary as <xref:System.Runtime.Persistence.InstanceValue> objects with <xref:System.Runtime.Persistence.InstanceValueOptions.Optional> and <xref:System.Runtime.Persistence.InstanceValueOptions.WriteOnly> flags set. [!INCLUDE[crdefault](~/add/includes/ajax-current-ext-md.md)]<xref:System.Runtime.Persistence.InstanceValueOptions>.      > [!IMPORTANT] >  Each value provided by implementations of CollectValues across all persistence participants within one persistence episode must have a unique XName."
+  summary: "Um anfitrião invoca este método num participante de persistência personalizado para recolher os valores só de escrita para ser persistente e valores de leitura e escrita."
+  remarks: "O anfitrião pacotes valores de leitura / escrita no dicionário de primeiro como <xref:System.Runtime.Persistence.InstanceValue>objetos de uma <xref:System.Activities.Persistence.SaveWorkflowCommand.InstanceData%2A>coleção e valores de só de escrita de pacotes no dicionário de segundo como <xref:System.Runtime.Persistence.InstanceValue>objetos com <xref:System.Runtime.Persistence.InstanceValueOptions.Optional>e <xref:System.Runtime.Persistence.InstanceValueOptions.WriteOnly>sinaliza o conjunto.</xref:System.Runtime.Persistence.InstanceValueOptions.WriteOnly> </xref:System.Runtime.Persistence.InstanceValueOptions.Optional> </xref:System.Runtime.Persistence.InstanceValue> </xref:System.Activities.Persistence.SaveWorkflowCommand.InstanceData%2A> </xref:System.Runtime.Persistence.InstanceValue> [!INCLUDE[crdefault](~/add/includes/ajax-current-ext-md.md)]<xref:System.Runtime.Persistence.InstanceValueOptions>.</xref:System.Runtime.Persistence.InstanceValueOptions>      > [!IMPORTANT] > Cada valor fornecido por implementações de CollectValues em todos os participantes de persistência dentro de um episódio de persistência tem de ter um XName exclusivo."
   example:
   - "The following code sample demonstrates using CollectValues in a class that derives from <xref:System.Activities.Persistence.PersistenceParticipant>. This example is from the [Persistence Participants](~/add/includes/ajax-current-ext-md.md) sample.  \n  \n [!code-cs[wfs_PersistenceParticipants#2](~/add/codesnippet/csharp/wfs_persistenceparticipants.workflow/stepcountextension.cs#2)]"
   syntax:
@@ -69,10 +69,10 @@ items:
     parameters:
     - id: readWriteValues
       type: System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}
-      description: "The read-write values to be persisted."
+      description: "Os valores de leitura e escrita para ser persistente."
     - id: writeOnlyValues
       type: System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}
-      description: "The write-only values to be persisted."
+      description: "Os valores só de escrita para ser persistente."
   overload: System.Activities.Persistence.PersistenceParticipant.CollectValues*
   exceptions: []
   platform:
@@ -89,8 +89,8 @@ items:
   assemblies:
   - System.Activities
   namespace: System.Activities.Persistence
-  summary: "A host invokes this method after it is done with collecting the values in the first stage. The host forwards two read-only dictionaries of values it collected from all persistence participants during the first stage (CollectValues stage) to this method for mapping. The host adds values in the dictionary returned by this method to the collection of write-only values."
-  remarks: "Each value provided by implementations of all the MapValues methods across all persistence participants including all the values collected in the first stage (CollectValues stage) must have a unique XName."
+  summary: "Um anfitrião invoca este método depois de terminar com a recolha de valores na primeira fase. O anfitrião reencaminha dois dicionários só de leitura de valores que recolhidos a partir de todos os participantes de persistência durante a primeira fase (CollectValues fase) a este método para o mapeamento. O anfitrião adiciona os valores no dicionário devolvido por este método para a coleção de valores de só de escrita."
+  remarks: "Cada valor fornecido por implementações de todos os métodos de MapValues em todos os participantes de persistência, incluindo todos os valores recolhidos na primeira fase (CollectValues fase) tem de ter um XName exclusivo."
   example:
   - "The following code sample demonstrates using MapValues in a class that derives from <xref:System.Activities.Persistence.PersistenceParticipant>. This example is from the [Corporate Purchase Process](~/add/includes/ajax-current-ext-md.md) sample.  \n  \n [!code-cs[wfs_PurchaseProcess#2](~/add/codesnippet/csharp/wfdefinition/xmlpersistenceparticipant.cs#2)]"
   syntax:
@@ -98,13 +98,13 @@ items:
     parameters:
     - id: readWriteValues
       type: System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}
-      description: "The read-write values to be persisted."
+      description: "Os valores de leitura e escrita para ser persistente."
     - id: writeOnlyValues
       type: System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}
-      description: "The write-only values to be persisted."
+      description: "Os valores só de escrita para ser persistente."
     return:
       type: System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}
-      description: "A dictionary containing additional write-only values to be persisted."
+      description: "Um dicionário que contém os valores adicionais como só de escrita para ser persistente."
   overload: System.Activities.Persistence.PersistenceParticipant.MapValues*
   exceptions: []
   platform:
@@ -121,7 +121,7 @@ items:
   assemblies:
   - System.Activities
   namespace: System.Activities.Persistence
-  summary: "The host invokes this method and passes all the loaded values in the <xref:System.Activities.Persistence.SaveWorkflowCommand.InstanceData*> collection (filled by the <xref:System.Activities.Persistence.LoadWorkflowCommand> or <xref:System.Activities.Persistence.LoadWorkflowByInstanceKeyCommand>) as a dictionary parameter."
+  summary: "O anfitrião invoca este método e passar em todos os valores carregados no <xref:System.Activities.Persistence.SaveWorkflowCommand.InstanceData*>coleção (preenchido pelo <xref:System.Activities.Persistence.LoadWorkflowCommand>ou <xref:System.Activities.Persistence.LoadWorkflowByInstanceKeyCommand>) como um parâmetro de dicionário.</xref:System.Activities.Persistence.LoadWorkflowByInstanceKeyCommand> </xref:System.Activities.Persistence.LoadWorkflowCommand> </xref:System.Activities.Persistence.SaveWorkflowCommand.InstanceData*>"
   remarks: ''
   example:
   - "The following code sample demonstrates using PublishValues in a class that derives from <xref:System.Activities.Persistence.PersistenceParticipant>. This example is from the [Persistence Participants](~/add/includes/ajax-current-ext-md.md) sample.  \n  \n [!code-cs[wfs_PersistenceParticipants#2](~/add/codesnippet/csharp/wfs_persistenceparticipants.workflow/stepcountextension.cs#2)]"
@@ -130,7 +130,7 @@ items:
     parameters:
     - id: readWriteValues
       type: System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}
-      description: "The read-write values that were loaded from the persistence store. This dictionary corresponds to the dictionary of read-write values persisted in the most recent persistence episode."
+      description: "Os valores de leitura e escrita foram carregados a partir do arquivo de persistência. Este dicionário corresponde ao dicionário de leitura e escrita valores continuada no episódio de persistência mais recente."
   overload: System.Activities.Persistence.PersistenceParticipant.PublishValues*
   exceptions: []
   platform:

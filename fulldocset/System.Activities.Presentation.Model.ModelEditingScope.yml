@@ -19,8 +19,8 @@ items:
   nameWithType: ModelEditingScope
   fullName: System.Activities.Presentation.Model.ModelEditingScope
   type: Class
-  summary: "Represents a group of changes to the editing store. Change groups are transactional. The changes made under an editing scope can be committed or aborted as a unit."
-  remarks: "When an editing scope is committed, the editing store takes all changes that occurred within it and applies them to the model. If the editing scope’s <xref:System.Activities.Presentation.Model.ModelEditingScope.Revert%2A> method is called, or the editing scope is disposed of before <xref:System.Activities.Presentation.Model.ModelEditingScope.Complete%2A> is called, the editing scope will instead reverse the changes made to the underlying objects, reapplying state from the editing store. This provides a solid basis for an undo mechanism."
+  summary: "Representa um grupo de alterações para o arquivo de edição. Os grupos de alteração são transacionais. As alterações feitas num âmbito de edição podem ser consolidadas ou abortadas como uma unidade."
+  remarks: "Quando um âmbito de edição está consolidado, o arquivo de edição tem todas as alterações que ocorreram dentro da mesma e aplica-se no modelo. Se o âmbito de edição <xref:System.Activities.Presentation.Model.ModelEditingScope.Revert%2A>método é denominado ou o âmbito de edição é eliminado antes <xref:System.Activities.Presentation.Model.ModelEditingScope.Complete%2A>denomina-se, editar âmbito em vez disso, irá reverter as alterações efetuadas em objetos subjacentes, reapplying estado a partir do arquivo de edição.</xref:System.Activities.Presentation.Model.ModelEditingScope.Complete%2A> </xref:System.Activities.Presentation.Model.ModelEditingScope.Revert%2A> Isto fornece uma base sólida para um mecanismo de anulação."
   syntax:
     content: 'public abstract class ModelEditingScope : IDisposable'
   inheritance:
@@ -42,7 +42,7 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation.Model
-  summary: "Creates a new <xref href=&quot;System.Activities.Presentation.Model.ModelEditingScope&quot;></xref>."
+  summary: "Cria uma nova <xref href=&quot;System.Activities.Presentation.Model.ModelEditingScope&quot;> </xref>."
   syntax:
     content: protected ModelEditingScope ();
     parameters: []
@@ -62,13 +62,13 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation.Model
-  summary: "Determines whether <xref:System.Activities.Presentation.Model.ModelEditingScope.OnComplete*> should be called, or whether the change should instead be reverted. Reasons for reverting might include a file cannot be checked out of a source control system for modification."
+  summary: "Determina se <xref:System.Activities.Presentation.Model.ModelEditingScope.OnComplete*>deve ser chamado, ou se a alteração em vez disso, deve ser revertida.</xref:System.Activities.Presentation.Model.ModelEditingScope.OnComplete*> Entre as razões reverter pode incluir um ficheiro não pode ser verificado fora de um sistema de controlo de origem para a modificação."
   syntax:
     content: protected abstract bool CanComplete ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if completion can occur; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref> if the change should instead revert."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a conclusão, pode ocorrer; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref> se a alteração em vez disso, deve reverter."
   overload: System.Activities.Presentation.Model.ModelEditingScope.CanComplete*
   exceptions: []
   platform:
@@ -85,7 +85,7 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation.Model
-  summary: "Completes the editing scope by calling the <xref:System.Activities.Presentation.Model.ModelEditingScope.OnComplete*> method."
+  summary: "Conclui o âmbito de edição ao chamar o <xref:System.Activities.Presentation.Model.ModelEditingScope.OnComplete*>método.</xref:System.Activities.Presentation.Model.ModelEditingScope.OnComplete*>"
   syntax:
     content: public void Complete ();
     parameters: []
@@ -93,7 +93,7 @@ items:
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The editing scope has already been reverted or completed."
+    description: "O âmbito de edição já foi revertido ou foi concluído."
   platform:
   - net462
 - uid: System.Activities.Presentation.Model.ModelEditingScope.Description
@@ -108,12 +108,12 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation.Model
-  summary: "Describes the group of changes. It can be changed anytime before the changes are committed."
+  summary: "Descreve o grupo de alterações. -Pode ser alterada em qualquer altura antes das alterações forem consolidadas."
   syntax:
     content: public string Description { get; set; }
     return:
       type: System.String
-      description: "Returnsa <xref:System.String> that describes the changes."
+      description: "Returnsa <xref:System.String>que descreve as alterações.</xref:System.String>"
   overload: System.Activities.Presentation.Model.ModelEditingScope.Description*
   exceptions: []
   platform:
@@ -130,8 +130,8 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation.Model
-  summary: "Disposes of this object by aborting changes unless the editing scope has already been completed or reverted."
-  remarks: "If either the editing scope has completed or it has been reverted previously, then calling this method does nothing. This method calls <xref:System.Activities.Presentation.Model.ModelEditingScope.Dispose%2A> with the input parameter set to `true`."
+  summary: "Disposes deste objeto por abortar alterações, a menos que o âmbito de edição já foi concluído ou revertido."
+  remarks: "Se o âmbito de edição foi concluída ou foi revertido anteriormente, em seguida, chamar este método não produz qualquer efeito. Este método chama <xref:System.Activities.Presentation.Model.ModelEditingScope.Dispose%2A>com o parâmetro de entrada definido como `true`.</xref:System.Activities.Presentation.Model.ModelEditingScope.Dispose%2A>"
   syntax:
     content: public void Dispose ();
     parameters: []
@@ -151,14 +151,14 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation.Model
-  summary: "Disposes of this object by aborting changes."
-  remarks: "Calls <xref:System.Activities.Presentation.Model.ModelEditingScope.Revert%2A> if `disposing` is set to `true`."
+  summary: "Disposes deste objeto por abortar alterações."
+  remarks: "Chamadas <xref:System.Activities.Presentation.Model.ModelEditingScope.Revert%2A>se `disposing` está definido como `true`.</xref:System.Activities.Presentation.Model.ModelEditingScope.Revert%2A>"
   syntax:
     content: protected virtual void Dispose (bool disposing);
     parameters:
     - id: disposing
       type: System.Boolean
-      description: "Determines whether the changes should be reverted as part of an undo operation or because the object is being finalized."
+      description: "Determina se as alterações devem ser revertidas como parte de uma operação de anulação ou porque o objeto está a ser finalizado."
   overload: System.Activities.Presentation.Model.ModelEditingScope.Dispose*
   exceptions: []
   platform:
@@ -175,7 +175,7 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation.Model
-  summary: "Performs the actual complete of the editing scope."
+  summary: "Efetua a real completa do âmbito de edição."
   syntax:
     content: protected abstract void OnComplete ();
     parameters: []
@@ -195,17 +195,17 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation.Model
-  summary: "Handles an exception."
-  remarks: "The <xref:System.Activities.Presentation.Model.ModelEditingScope.Complete%2A> and <xref:System.Activities.Presentation.Model.ModelEditingScope.Revert%2A> methods call this method to handle exceptions."
+  summary: "Gere uma exceção."
+  remarks: "O <xref:System.Activities.Presentation.Model.ModelEditingScope.Complete%2A>e <xref:System.Activities.Presentation.Model.ModelEditingScope.Revert%2A>métodos de chamar este método para lidar com exceções.</xref:System.Activities.Presentation.Model.ModelEditingScope.Revert%2A> </xref:System.Activities.Presentation.Model.ModelEditingScope.Complete%2A>"
   syntax:
     content: protected abstract bool OnException (Exception exception);
     parameters:
     - id: exception
       type: System.Exception
-      description: "The exception to handle."
+      description: "A exceção para processar."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the exception is handled; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a exceção é processada; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Activities.Presentation.Model.ModelEditingScope.OnException*
   exceptions: []
   platform:
@@ -222,13 +222,13 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation.Model
-  summary: "Performs the actual revert of the editing scope."
+  summary: "Efetua a reversão real do âmbito de edição."
   syntax:
     content: protected abstract void OnRevert (bool finalizing);
     parameters:
     - id: finalizing
       type: System.Boolean
-      description: "Determines whether the abort is occurring because the object is being finalized. Some undo systems might attempt to abort in this case, while others might abandon the change and record it as a reactive undo operation."
+      description: "Determina se está a ocorrer a abortar porque o objeto está a ser finalizado. Alguns sistemas de anulação poderão tentar abortar neste caso, enquanto outras pessoas possam abandonar a alteração e registe-o como uma operação de anulação reativa."
   overload: System.Activities.Presentation.Model.ModelEditingScope.OnRevert*
   exceptions: []
   platform:
@@ -245,8 +245,8 @@ items:
   assemblies:
   - System.Activities.Presentation
   namespace: System.Activities.Presentation.Model
-  summary: "Abandons the changes made during the editing scope."
-  remarks: "This method calls <xref:System.Activities.Presentation.Model.ModelEditingScope.OnRevert%2A> with the input parameter set to `false`."
+  summary: "Abandons as alterações efetuadas durante o âmbito de edição."
+  remarks: "Este método chama <xref:System.Activities.Presentation.Model.ModelEditingScope.OnRevert%2A>com o parâmetro de entrada definido como `false`.</xref:System.Activities.Presentation.Model.ModelEditingScope.OnRevert%2A>"
   syntax:
     content: public void Revert ();
     parameters: []
@@ -254,7 +254,7 @@ items:
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The group of changes has already been committed."
+    description: "O grupo de alterações já foi consolidado."
   platform:
   - net462
 references:
