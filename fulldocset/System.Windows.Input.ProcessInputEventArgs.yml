@@ -13,8 +13,8 @@ items:
   nameWithType: ProcessInputEventArgs
   fullName: System.Windows.Input.ProcessInputEventArgs
   type: Class
-  summary: "Provides data for postprocess input events."
-  remarks: "Process input events enable access to the <xref:System.Windows.Input.InputManager> staging area.       The input staging area processes raw input into [!INCLUDE[TLA2#tla_wpf](~/add/includes/ajax-current-ext-md.md)] events.       ProcessInputEventArgs is used with the <xref:System.Windows.Input.InputManager.PostProcessInput> event.       Input is processed in [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] in the follow stages:      1.  Pre-process stage.  The input manager raises the <xref:System.Windows.Input.InputManager.PreProcessInput> event.      2.  Pre-notify stage.  The input manager raises the <xref:System.Windows.Input.InputManager.PreNotifyInput> event.      3.  The [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] input event or events are raised.      4.  Post-notify stage.  The input manager raises the <xref:System.Windows.Input.InputManager.PostNotifyInput> event.      5.  Post-process stage.  The input manager raises the <xref:System.Windows.Input.InputManager.PostProcessInput> event."
+  summary: "Disponibiliza dados para postprocess eventos de entrada."
+  remarks: "Ativar o acesso a processar eventos de entrada a <xref:System.Windows.Input.InputManager>área de transição.</xref:System.Windows.Input.InputManager>       A área de transição de entrada processa a entrada não processada para [!INCLUDE[TLA2#tla_wpf](~/add/includes/ajax-current-ext-md.md)] eventos.       ProcessInputEventArgs é utilizado com o <xref:System.Windows.Input.InputManager.PostProcessInput>eventos.</xref:System.Windows.Input.InputManager.PostProcessInput>       Entrada é processada em [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] nas fases siga: 1.  Pré-processar fase.  A Gestor de entrada gera o <xref:System.Windows.Input.InputManager.PreProcessInput>eventos.</xref:System.Windows.Input.InputManager.PreProcessInput>      2.  Pré-notificar fase.  A Gestor de entrada gera o <xref:System.Windows.Input.InputManager.PreNotifyInput>eventos.</xref:System.Windows.Input.InputManager.PreNotifyInput>      3.  O [!INCLUDE[TLA2#tla_winclient](~/add/includes/tla2sharptla-winclient-md.md)] entrada de evento ou eventos são gerados.      4.  Notificar pós-cópia fase.  A Gestor de entrada gera o <xref:System.Windows.Input.InputManager.PostNotifyInput>eventos.</xref:System.Windows.Input.InputManager.PostNotifyInput>      5.  Fase de pós-processo.  A Gestor de entrada gera o <xref:System.Windows.Input.InputManager.PostProcessInput>eventos.</xref:System.Windows.Input.InputManager.PostProcessInput>"
   syntax:
     content: 'public class ProcessInputEventArgs : System.Windows.Input.NotifyInputEventArgs'
   inheritance:
@@ -38,14 +38,14 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Gets, but does not pop, the input event on the top of the staging area stack."
-  remarks: "The return value will be `null` if the staging area is empty."
+  summary: "Obtém, mas não destaque, o evento de entrada no topo da pilha de área de transição."
+  remarks: "O valor de retorno será `null` se a área de transição está vazia."
   syntax:
     content: public System.Windows.Input.StagingAreaInputItem PeekInput ();
     parameters: []
     return:
       type: System.Windows.Input.StagingAreaInputItem
-      description: "The input event that is on the top of the staging area stack."
+      description: "O evento de entrada que está no topo da pilha de área de transição."
   overload: System.Windows.Input.ProcessInputEventArgs.PeekInput*
   exceptions: []
   platform:
@@ -62,13 +62,13 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Removes the input event off the top of the staging area stack."
+  summary: "Remove o evento de entrada fora do topo da pilha de área de transição."
   syntax:
     content: public System.Windows.Input.StagingAreaInputItem PopInput ();
     parameters: []
     return:
       type: System.Windows.Input.StagingAreaInputItem
-      description: "The input event that was on the top of the staging area stack. This will be <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if the staging area is empty."
+      description: "O evento de entrada que estava no topo da pilha de área de transição. Este será <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se a área de transição está vazia."
   overload: System.Windows.Input.ProcessInputEventArgs.PopInput*
   exceptions: []
   platform:
@@ -85,17 +85,17 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Puts the specified input event onto the top of the staging area stack."
-  remarks: '`input` cannot be `null` and it cannot already exist in the staging area.'
+  summary: "Coloca o evento de entrada especificado no topo da pilha de área de transição."
+  remarks: '`input`Não é possível `null` e já não é possível existir na área de transição.'
   syntax:
     content: public System.Windows.Input.StagingAreaInputItem PushInput (System.Windows.Input.StagingAreaInputItem input);
     parameters:
     - id: input
       type: System.Windows.Input.StagingAreaInputItem
-      description: "The input event to put on the staging area stack."
+      description: "O evento de entrada para colocar em pausa a pilha de área de transição."
     return:
       type: System.Windows.Input.StagingAreaInputItem
-      description: "The staging area input item."
+      description: "O item da área de transição de entrada."
   overload: System.Windows.Input.ProcessInputEventArgs.PushInput*
   exceptions: []
   platform:
@@ -112,20 +112,20 @@ items:
   assemblies:
   - PresentationCore
   namespace: System.Windows.Input
-  summary: "Puts the specified input event onto the top of the specified staging area stack."
-  remarks: '`input` cannot be `null` and it cannot already exist in the staging area.'
+  summary: "Coloca o evento de entrada especificado no topo da pilha de área de transição especificado."
+  remarks: '`input`Não é possível `null` e já não é possível existir na área de transição.'
   syntax:
     content: public System.Windows.Input.StagingAreaInputItem PushInput (System.Windows.Input.InputEventArgs input, System.Windows.Input.StagingAreaInputItem promote);
     parameters:
     - id: input
       type: System.Windows.Input.InputEventArgs
-      description: "The input event to put on the staging area stack."
+      description: "O evento de entrada para colocar em pausa a pilha de área de transição."
     - id: promote
       type: System.Windows.Input.StagingAreaInputItem
-      description: "An existing staging area item to promote the state from."
+      description: "Um item de área de transição existente para promover o estado do."
     return:
       type: System.Windows.Input.StagingAreaInputItem
-      description: "The staging area input item that wraps the specified input."
+      description: "O item de área de transição de entrada que encapsula num wrapper a entrada especificada."
   overload: System.Windows.Input.ProcessInputEventArgs.PushInput*
   exceptions: []
   platform:
