@@ -37,8 +37,8 @@ items:
   nameWithType: SqlBulkCopy
   fullName: System.Data.SqlClient.SqlBulkCopy
   type: Class
-  summary: "Lets you efficiently bulk load a SQL Server table with data from another source."
-  remarks: "Microsoft SQL Server includes a popular command-prompt utility named **bcp** for moving data from one table to another, whether on a single server or between servers. The SqlBulkCopy class lets you write managed code solutions that provide similar functionality. There are other ways to load data into a SQL Server table (INSERT statements, for example), but SqlBulkCopy offers a significant performance advantage over them.       The SqlBulkCopy class can be used to write data only to SQL Server tables. However, the data source is not limited to SQL Server; any data source can be used, as long as the data can be loaded to a <xref:System.Data.DataTable> instance or read with a <xref:System.Data.IDataReader> instance.       SqlBulkCopy will fail when bulk loading a <xref:System.Data.DataTable> column of type <xref:System.Data.SqlTypes.SqlDateTime> into a SQL Server column whose type is one of the date/time types added in SQL Server 2008."
+  summary: "Permite-lhe eficientemente carregamento em massa uma tabela de SQL Server com a dados a partir de outra origem."
+  remarks: "Microsoft SQL Server inclui um utilitário de linha de comandos popular denominado **bcp** para mover dados de uma tabela para outro, se um único servidor ou entre servidores. A classe de SqlBulkCopy permite-lhe escrever soluções de código gerido que fornecem uma funcionalidade semelhante. Existem outras formas de carregar dados para uma tabela de SQL Server (instruções INSERT, por exemplo), mas SqlBulkCopy oferece das vantagens de desempenho significativas por cima deles.       A classe de SqlBulkCopy pode ser utilizada para escrever dados apenas às tabelas de SQL Server. No entanto, a origem de dados não está limitada ao SQL Server; qualquer origem de dados pode ser utilizada, desde que os dados podem ser carregados para uma <xref:System.Data.DataTable>instância ou ler com uma <xref:System.Data.IDataReader>instância.</xref:System.Data.IDataReader> </xref:System.Data.DataTable>       SqlBulkCopy irão falhar quando carregamento em massa um <xref:System.Data.DataTable>coluna do tipo <xref:System.Data.SqlTypes.SqlDateTime>para um SQL Server coluna cujo tipo é um dos tipos de data/hora adicionado no SQL Server 2008.</xref:System.Data.SqlTypes.SqlDateTime> </xref:System.Data.DataTable>"
   example:
   - "The following console application demonstrates how to load data using the SqlBulkCopy class. In this example, a <xref:System.Data.SqlClient.SqlDataReader> is used to copy data from the **Production.Product** table in the [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)]**AdventureWorks** database to a similar table in the same database.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-cs[DataWorks BulkCopy.Single#1](~/add/codesnippet/csharp/t-system.data.sqlclient._9_1.cs)]\n [!code-vb[DataWorks BulkCopy.Single#1](~/add/codesnippet/visualbasic/t-system.data.sqlclient._9_1.vb)]"
   syntax:
@@ -62,8 +62,8 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Initializes a new instance of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> class using the specified open instance of <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref>."
-  remarks: "Because the connection is already open when the <xref:System.Data.SqlClient.SqlBulkCopy> instance is initialized, the connection remains open after the <xref:System.Data.SqlClient.SqlBulkCopy> instance is closed.       If the `connection` argument is null, an <xref:System.ArgumentNullException> is thrown."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> classe utilizando especificada instância aberta da <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref>."
+  remarks: "Porque a ligação já está aberta quando a <xref:System.Data.SqlClient.SqlBulkCopy>instância foi inicializado, a ligação permanece aberta após o <xref:System.Data.SqlClient.SqlBulkCopy>instância está fechada.</xref:System.Data.SqlClient.SqlBulkCopy> </xref:System.Data.SqlClient.SqlBulkCopy>       Se o `connection` argumento é nulo, um <xref:System.ArgumentNullException>é emitida.</xref:System.ArgumentNullException>"
   example:
   - "The following console application demonstrates how to bulk load data using a connection that is already open. In this example, a <xref:System.Data.SqlClient.SqlDataReader> is used to copy data from the **Production.Product** table in the [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)]**AdventureWorks** database to a similar table in the same database. This example is for demonstration purposes only. You would not use `SqlBulkCopy` to move data from one table to another in the same database in a production application. Note that the source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref:System.Data.IDataReader> or loaded to a <xref:System.Data.DataTable>.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-cs[DataWorks BulkCopy.Single#1](~/add/codesnippet/csharp/759c1349-38f0-4ca1-9e42-_1.cs)]\n [!code-vb[DataWorks BulkCopy.Single#1](~/add/codesnippet/visualbasic/759c1349-38f0-4ca1-9e42-_1.vb)]"
   syntax:
@@ -71,7 +71,7 @@ items:
     parameters:
     - id: connection
       type: System.Data.SqlClient.SqlConnection
-      description: "The already open <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> instance that will be used to perform the bulk copy operation. If your connection string does not use <xref uid=&quot;langword_csharp_Integrated Security = true&quot; name=&quot;Integrated Security = true&quot; href=&quot;&quot;></xref>, you can use <xref href=&quot;System.Data.SqlClient.SqlCredential&quot;></xref> to pass the user ID and password more securely than by specifying the user ID and password as text in the connection string."
+      description: "Já aberta <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> instância que será utilizada para efetuar a operação de cópia em massa. Se não utilizar a cadeia de ligação <xref uid=&quot;langword_csharp_Integrated Security = true&quot; name=&quot;Integrated Security = true&quot; href=&quot;&quot;> </xref>, pode utilizar <xref href=&quot;System.Data.SqlClient.SqlCredential&quot;> </xref> para passar o ID de utilizador e palavra-passe de forma mais segura do que ao especificar o ID de utilizador e palavra-passe como texto na cadeia de ligação."
   overload: System.Data.SqlClient.SqlBulkCopy.#ctor*
   exceptions: []
   platform:
@@ -88,8 +88,8 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Initializes and opens a new instance of <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> based on the supplied <code>connectionString</code>. The constructor uses the <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> to initialize a new instance of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> class."
-  remarks: "The connection is automatically closed at the end of the bulk copy operation.       If `connectionString` is null, an <xref:System.ArgumentNullException> is thrown. If `connectionString` is an empty string, an <xref:System.ArgumentException> is thrown."
+  summary: "Inicializa e abre uma nova instância do <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> com base no fornecido <code> connectionString </code>. O construtor utiliza o <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> para inicializar uma nova instância do <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> classe."
+  remarks: "A ligação é fechada automaticamente no final da operação de cópia em massa.       Se `connectionString` é nulo, um <xref:System.ArgumentNullException>é emitida.</xref:System.ArgumentNullException> Se `connectionString` é uma cadeia vazia, um <xref:System.ArgumentException>é emitida.</xref:System.ArgumentException>"
   example:
   - "The following console application demonstrates how to bulk load data by using a connection specified as a string. The connection is automatically closed when the <xref:System.Data.SqlClient.SqlBulkCopy> instance is closed.  \n  \n In this example, the source data is first read from a SQL Server table to a <xref:System.Data.SqlClient.SqlDataReader> instance. The source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref:System.Data.IDataReader> or loaded to a <xref:System.Data.DataTable>.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-vb[DataWorks SqlBulkCopy.ConnectionString#1](~/add/codesnippet/visualbasic/m-system.data.sqlclient._5_1.vb)]\n [!code-cs[DataWorks SqlBulkCopy.ConnectionString#1](~/add/codesnippet/csharp/m-system.data.sqlclient._5_1.cs)]"
   syntax:
@@ -97,7 +97,7 @@ items:
     parameters:
     - id: connectionString
       type: System.String
-      description: "The string defining the connection that will be opened for use by the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> instance. If your connection string does not use <xref uid=&quot;langword_csharp_Integrated Security = true&quot; name=&quot;Integrated Security = true&quot; href=&quot;&quot;></xref>, you can use &lt;xref:System.Data.SqlClient.SqlBulkCopy.%23ctor%2A&gt; or &lt;xref:System.Data.SqlClient.SqlBulkCopy.%23ctor%2A&gt; and <xref href=&quot;System.Data.SqlClient.SqlCredential&quot;></xref> to pass the user ID and password more securely than by specifying the user ID and password as text in the connection string."
+      description: "A cadeia a definir a ligação que será aberta para utilização pelo <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> instância. Se não utilizar a cadeia de ligação <xref uid=&quot;langword_csharp_Integrated Security = true&quot; name=&quot;Integrated Security = true&quot; href=&quot;&quot;> </xref>, pode utilizar &lt;xref:System.Data.SqlClient.SqlBulkCopy.%23ctor%2A&gt; ou &lt;xref:System.Data.SqlClient.SqlBulkCopy.%23ctor%2A&gt; e <xref href=&quot;System.Data.SqlClient.SqlCredential&quot;> </xref> para passar o ID de utilizador e palavra-passe de forma mais segura do que ao especificar o ID de utilizador e palavra-passe como texto na cadeia de ligação."
   overload: System.Data.SqlClient.SqlBulkCopy.#ctor*
   exceptions: []
   platform:
@@ -114,8 +114,8 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Initializes and opens a new instance of <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> based on the supplied <code>connectionString</code>. The constructor uses that <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> to initialize a new instance of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> class. The <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> instance behaves according to options supplied in the <code>copyOptions</code> parameter."
-  remarks: "You can obtain detailed information about all the bulk copy options in the <xref:System.Data.SqlClient.SqlBulkCopyOptions> topic."
+  summary: "Inicializa e abre uma nova instância do <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> com base no fornecido <code> connectionString </code>. O construtor utiliza esse <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> para inicializar uma nova instância do <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> classe. O <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> instância comporta-se de acordo com as opções fornecidas no <code> copyOptions </code> parâmetro."
+  remarks: "Pode obter informações detalhadas sobre todas as opções de cópia em massa no <xref:System.Data.SqlClient.SqlBulkCopyOptions>tópico.</xref:System.Data.SqlClient.SqlBulkCopyOptions>"
   example:
   - "The following console application demonstrates how to perform a bulk load by using a connection specified as a string. An option is set to use the value in the identity column of the source table when you load the destination table. In this example, the source data is first read from a SQL Server table to a <xref:System.Data.SqlClient.SqlDataReader> instance. The source table and destination table each include an Identity column. By default, a new value for the **Identity** column is generated in the destination table for each row added. In this example, an option is set when the connection is opened that forces the bulk load process to use the **Identity** values from the source table instead. To see how the option changes the way the bulk load works, run the sample with the **dbo.BulkCopyDemoMatchingColumns** table empty. All rows load from the source. Then run the sample again without emptying the table. An exception is thrown and the code writes a message to the console notifying you that rows weren't added because of primary key constraint violations.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-cs[DataWorks SqlBulkCopy.KeepIdentity#1](~/add/codesnippet/csharp/9a723f0e-d2b0-40de-a13f-_1.cs)]\n [!code-vb[DataWorks SqlBulkCopy.KeepIdentity#1](~/add/codesnippet/visualbasic/9a723f0e-d2b0-40de-a13f-_1.vb)]"
   syntax:
@@ -123,10 +123,10 @@ items:
     parameters:
     - id: connectionString
       type: System.String
-      description: "The string defining the connection that will be opened for use by the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> instance. If your connection string does not use <xref uid=&quot;langword_csharp_Integrated Security = true&quot; name=&quot;Integrated Security = true&quot; href=&quot;&quot;></xref>, you can use &lt;xref:System.Data.SqlClient.SqlBulkCopy.%23ctor%2A&gt; or &lt;xref:System.Data.SqlClient.SqlBulkCopy.%23ctor%2A&gt; and <xref href=&quot;System.Data.SqlClient.SqlCredential&quot;></xref> to pass the user ID and password more securely than by specifying the user ID and password as text in the connection string."
+      description: "A cadeia a definir a ligação que será aberta para utilização pelo <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> instância. Se não utilizar a cadeia de ligação <xref uid=&quot;langword_csharp_Integrated Security = true&quot; name=&quot;Integrated Security = true&quot; href=&quot;&quot;> </xref>, pode utilizar &lt;xref:System.Data.SqlClient.SqlBulkCopy.%23ctor%2A&gt; ou &lt;xref:System.Data.SqlClient.SqlBulkCopy.%23ctor%2A&gt; e <xref href=&quot;System.Data.SqlClient.SqlCredential&quot;> </xref> para passar o ID de utilizador e palavra-passe de forma mais segura do que ao especificar o ID de utilizador e palavra-passe como texto na cadeia de ligação."
     - id: copyOptions
       type: System.Data.SqlClient.SqlBulkCopyOptions
-      description: "A combination of values from the <xref href=&quot;System.Data.SqlClient.SqlBulkCopyOptions&quot;></xref> enumeration that determines which data source rows are copied to the destination table."
+      description: "Uma combinação de valores do <xref href=&quot;System.Data.SqlClient.SqlBulkCopyOptions&quot;> </xref> enumeração que determina que linhas da origem de dados são copiadas para a tabela de destino."
   overload: System.Data.SqlClient.SqlBulkCopy.#ctor*
   exceptions: []
   platform:
@@ -143,20 +143,20 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Initializes a new instance of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> class using the supplied existing open instance of <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref>. The <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> instance behaves according to options supplied in the <code>copyOptions</code> parameter. If a non-null <xref href=&quot;System.Data.SqlClient.SqlTransaction&quot;></xref> is supplied, the copy operations will be performed within that transaction."
-  remarks: "If options include `UseInternalTransaction` and the `externalTransaction` argument is not null, an **InvalidArgumentException** is thrown.       For examples demonstrating how to use `SqlBulkCopy` in a transaction, see [Transaction and Bulk Copy Operations](~/add/includes/ajax-current-ext-md.md)."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> classe utilizando fornecida instância aberta existente da <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref>. O <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> instância comporta-se de acordo com as opções fornecidas no <code> copyOptions </code> parâmetro. Se um não-nulos <xref href=&quot;System.Data.SqlClient.SqlTransaction&quot;> </xref> é fornecido, as operações de cópia serão efetuadas esse transação."
+  remarks: "Se as opções incluem `UseInternalTransaction` e `externalTransaction` argumento não é nulo, um **InvalidArgumentException** é emitida.       Para obter exemplos demonstra como utilizar `SqlBulkCopy` numa transação, consulte [transação e operações de cópia em massa](~/add/includes/ajax-current-ext-md.md)."
   syntax:
     content: public SqlBulkCopy (System.Data.SqlClient.SqlConnection connection, System.Data.SqlClient.SqlBulkCopyOptions copyOptions, System.Data.SqlClient.SqlTransaction externalTransaction);
     parameters:
     - id: connection
       type: System.Data.SqlClient.SqlConnection
-      description: "The already open <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> instance that will be used to perform the bulk copy. If your connection string does not use <xref uid=&quot;langword_csharp_Integrated Security = true&quot; name=&quot;Integrated Security = true&quot; href=&quot;&quot;></xref>, you can use <xref href=&quot;System.Data.SqlClient.SqlCredential&quot;></xref> to pass the user ID and password more securely than by specifying the user ID and password as text in the connection string."
+      description: "Já aberta <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> instância que será utilizada para efetuar a cópia em massa. Se não utilizar a cadeia de ligação <xref uid=&quot;langword_csharp_Integrated Security = true&quot; name=&quot;Integrated Security = true&quot; href=&quot;&quot;> </xref>, pode utilizar <xref href=&quot;System.Data.SqlClient.SqlCredential&quot;> </xref> para passar o ID de utilizador e palavra-passe de forma mais segura do que ao especificar o ID de utilizador e palavra-passe como texto na cadeia de ligação."
     - id: copyOptions
       type: System.Data.SqlClient.SqlBulkCopyOptions
-      description: "A combination of values from the <xref href=&quot;System.Data.SqlClient.SqlBulkCopyOptions&quot;></xref> enumeration that determines which data source rows are copied to the destination table."
+      description: "Uma combinação de valores do <xref href=&quot;System.Data.SqlClient.SqlBulkCopyOptions&quot;> </xref> enumeração que determina que linhas da origem de dados são copiadas para a tabela de destino."
     - id: externalTransaction
       type: System.Data.SqlClient.SqlTransaction
-      description: "An existing <xref href=&quot;System.Data.SqlClient.SqlTransaction&quot;></xref> instance under which the bulk copy will occur."
+      description: "Existente <xref href=&quot;System.Data.SqlClient.SqlTransaction&quot;> </xref> instância em que ocorrerá a cópia em massa."
   overload: System.Data.SqlClient.SqlBulkCopy.#ctor*
   exceptions: []
   platform:
@@ -173,15 +173,15 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Number of rows in each batch. At the end of each batch, the rows in the batch are sent to the server."
-  remarks: "A batch is complete when BatchSize rows have been processed or there are no more rows to send to the destination data source.       Zero (the default) indicates that each <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A> operation is a single batch.       If the <xref:System.Data.SqlClient.SqlBulkCopy> instance has been declared without the <xref:System.Data.SqlClient.SqlBulkCopyOptions> option in effect, rows are sent to the server BatchSize rows at a time, but no transaction-related action is taken. If <xref:System.Data.SqlClient.SqlBulkCopyOptions> is in effect, each batch of rows is inserted as a separate transaction.       The BatchSize property can be set at any time. If a bulk copy is already in progress, the current batch is sized according to the previous batch size. Subsequent batches use the new size. If the BatchSize is initially zero and changed while a <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A> operation is already in progress, that operation loads the data as a single batch. Any subsequent <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A> operations on the same <xref:System.Data.SqlClient.SqlBulkCopy> instance use the new BatchSize."
+  summary: "Número de linhas em cada lote. No final de cada lote, as linhas no batch são enviadas para o servidor."
+  remarks: "Um lote está concluído quando foram processadas BatchSize linhas ou existirem mais linhas para enviar para a origem de dados de destino.       Zero (o predefinido) indica que cada <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A>operação é um único lote.</xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A>       Se o <xref:System.Data.SqlClient.SqlBulkCopy>instância foi declarada sem o <xref:System.Data.SqlClient.SqlBulkCopyOptions>opção em vigor, as linhas são enviadas para as linhas de BatchSize de servidor numa altura, mas foi efetuada nenhuma ação relacionadas com a transação.</xref:System.Data.SqlClient.SqlBulkCopyOptions> </xref:System.Data.SqlClient.SqlBulkCopy> Se <xref:System.Data.SqlClient.SqlBulkCopyOptions>está em vigor, cada lote de linhas é inserido como uma transação separada.</xref:System.Data.SqlClient.SqlBulkCopyOptions>       A propriedade BatchSize pode ser definida em qualquer altura. Se uma cópia em massa já está em curso, o batch atual é um tamanho, de acordo com o tamanho de lote anterior. Lotes subsequentes utilizam o novo tamanho. Se o BatchSize inicialmente for zero e alterados durante um <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A>operação já está em curso, que a operação carrega os dados como um único lote.</xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A> Qualquer subsequentes <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A>operações no mesmo <xref:System.Data.SqlClient.SqlBulkCopy>instância utilizar o novo BatchSize.</xref:System.Data.SqlClient.SqlBulkCopy> </xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A>"
   example:
   - "The following console application demonstrates how to bulk load data in batches of 50 rows. For an example illustrating how BatchSize works with a transaction, see [Transaction and Bulk Copy Operations](~/add/includes/ajax-current-ext-md.md).  \n  \n In this example, the source data is first read from a SQL Server table to a <xref:System.Data.SqlClient.SqlDataReader> instance. The source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref:System.Data.IDataReader> or loaded to a <xref:System.Data.DataTable>.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-cs[DataWorks SqlBulkCopy.BatchSize#1](~/add/codesnippet/csharp/p-system.data.sqlclient._2_1.cs)]\n [!code-vb[DataWorks SqlBulkCopy.BatchSize#1](~/add/codesnippet/visualbasic/p-system.data.sqlclient._2_1.vb)]"
   syntax:
     content: public int BatchSize { get; set; }
     return:
       type: System.Int32
-      description: "The integer value of the BatchSize property, or zero if no value has been set."
+      description: "O valor de número inteiro da propriedade BatchSize, ou zero se nenhum valor foi definido."
   overload: System.Data.SqlClient.SqlBulkCopy.BatchSize*
   exceptions: []
   platform:
@@ -198,15 +198,15 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Number of seconds for the operation to complete before it times out."
-  remarks: "If the operation does time out, the transaction is not committed and all copied rows are removed from the destination table."
+  summary: "Número de segundos para a operação seja concluída antes de atingir o tempo limite."
+  remarks: "Se a operação de tempo limite, a transação não está consolidada e todas as linhas copiadas são removidas da tabela de destino."
   example:
   - "The following console application demonstrates how to modify the time-out to 60 seconds when bulk loading data.  \n  \n In this example, the source data is first read from a [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] table to a <xref:System.Data.SqlClient.SqlDataReader> instance. The source data does not have to be located on [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)]; you can use any data source that can be read to an <xref:System.Data.IDataReader> or loaded to a <xref:System.Data.DataTable>.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] instance, it is easier and faster to use a [!INCLUDE[tsql](~/add/includes/tsql-md.md)]`INSERT … SELECT` statement to copy the data.  \n  \n [!code-vb[DataWorks SqlBulkCopy.Timeout#1](~/add/codesnippet/visualbasic/p-system.data.sqlclient._14_1.vb)]\n [!code-cs[DataWorks SqlBulkCopy.Timeout#1](~/add/codesnippet/csharp/p-system.data.sqlclient._14_1.cs)]"
   syntax:
     content: public int BulkCopyTimeout { get; set; }
     return:
       type: System.Int32
-      description: "The integer value of the BulkCopyTimeout property. The default is 30 seconds. A value of 0 indicates no limit; the bulk copy will wait indefinitely."
+      description: "O valor de número inteiro da propriedade BulkCopyTimeout. A predefinição é 30 segundos. Um valor de 0 indica sem limite; a cópia em massa irá aguardar indefinidamente."
   overload: System.Data.SqlClient.SqlBulkCopy.BulkCopyTimeout*
   exceptions: []
   platform:
@@ -223,8 +223,8 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Closes the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> instance."
-  remarks: "After you call a Close on the <xref:System.Data.SqlClient.SqlBulkCopy> object, no other operation will succeed. Calls to the <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A> method will throw an <xref:System.InvalidOperationException>.       Calling the Close method from the <xref:System.Data.SqlClient.SqlBulkCopy.SqlRowsCopied> event causes an <xref:System.InvalidOperationException> to be thrown.       Note that open <xref:System.Data.SqlClient.SqlBulkCopy> instances are closed implicitly at the end of a `using` block."
+  summary: "Fecha o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> instância."
+  remarks: "Depois de chamar o um fecho no <xref:System.Data.SqlClient.SqlBulkCopy>objeto, nenhuma outra operação terá êxito.</xref:System.Data.SqlClient.SqlBulkCopy> Chamadas para o <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A>método irá gerar um <xref:System.InvalidOperationException>.</xref:System.InvalidOperationException> </xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A>       Chamar o método de fechar o <xref:System.Data.SqlClient.SqlBulkCopy.SqlRowsCopied>evento faz com que um <xref:System.InvalidOperationException>para ser emitida.</xref:System.InvalidOperationException> </xref:System.Data.SqlClient.SqlBulkCopy.SqlRowsCopied>       Tenha em atenção que abra <xref:System.Data.SqlClient.SqlBulkCopy>instâncias são implicitamente fechadas no final de um `using` bloco.</xref:System.Data.SqlClient.SqlBulkCopy>"
   example:
   - "The following example uses the same <xref:System.Data.SqlClient.SqlBulkCopy> instance to add sales orders and their associated details to two destination tables. Because the **AdventureWorks** sales order tables are large, the sample reads only orders placed by a certain account number and bulk copies those orders and details to the destination tables. The Close method is used only after both bulk copy operations are complete.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-vb[DataWorks SqlBulkCopy.OrdersDetails#1](~/add/codesnippet/visualbasic/m-system.data.sqlclient._43_1.vb)]\n [!code-cs[DataWorks SqlBulkCopy.OrdersDetails#1](~/add/codesnippet/csharp/m-system.data.sqlclient._43_1.cs)]"
   syntax:
@@ -246,13 +246,13 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Returns a collection of <xref href=&quot;System.Data.SqlClient.SqlBulkCopyColumnMapping&quot;></xref> items. Column mappings define the relationships between columns in the data source and columns in the destination."
-  remarks: "If the data source and the destination table have the same number of columns, and the ordinal position of each source column within the data source matches the ordinal position of the corresponding destination column, the ColumnMappings collection is unnecessary. However, if the column counts differ, or the ordinal positions are not consistent, you must use ColumnMappings to make sure that data is copied into the correct columns.       During the execution of a bulk copy operation, this collection can be accessed, but it cannot be changed. Any attempt to change it will throw an <xref:System.InvalidOperationException>."
+  summary: "Devolve uma coleção de <xref href=&quot;System.Data.SqlClient.SqlBulkCopyColumnMapping&quot;> </xref> itens. Mapeamentos da coluna definem as relações entre as colunas na origem de dados e colunas no destino."
+  remarks: "Se a origem de dados e a tabela de destino têm o mesmo número de colunas e a posição ordinal de cada coluna de origem numa origem de dados corresponde a posição ordinal da coluna de destino correspondente, a coleção de ColumnMappings é desnecessária. No entanto, se o número de coluna é diferente ou as posições ordinais não são consistentes, tem de utilizar ColumnMappings para se certificar de que os dados são copiados para as colunas corretas.       Durante a execução de uma operação de cópia em massa, é possível aceder esta coleção, mas não pode ser alterada. Qualquer tentativa de alterá-la irá gerar um <xref:System.InvalidOperationException>.</xref:System.InvalidOperationException>"
   syntax:
     content: public System.Data.SqlClient.SqlBulkCopyColumnMappingCollection ColumnMappings { get; }
     return:
       type: System.Data.SqlClient.SqlBulkCopyColumnMappingCollection
-      description: "A collection of column mappings. By default, it is an empty collection."
+      description: "Uma coleção de mapeamentos da coluna. Por predefinição, é uma coleção vazia."
   overload: System.Data.SqlClient.SqlBulkCopy.ColumnMappings*
   exceptions: []
   platform:
@@ -269,15 +269,15 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Name of the destination table on the server."
-  remarks: "If DestinationTableName has not been set when <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A> is called, an <xref:System.ArgumentNullException> is thrown.       If DestinationTableName is modified while a <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A> operation is running, the change does not affect the current operation. The new DestinationTableName value is used the next time a <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A> method is called.       DestinationTableName is a three-part name (`<database>.<owningschema>.<name>`). You can qualify the table name with its database and owning schema if you choose. However, if the table name uses an underscore (&quot;_&quot;) or any other special characters, you must escape the name using surrounding brackets as in (`[<database>.<owningschema>.<name_01>]`). For more information, see &quot;Identifiers&quot; in SQL Server Books Online.       You can bulk-copy data to a temporary table by using a value such as `tempdb..#table` or `tempdb.<owner>.#table` for the DestinationTableName property."
+  summary: "Nome da tabela de destino no servidor."
+  remarks: "Se não tiver sido definida DestinationTableName quando <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A>é chamado um <xref:System.ArgumentNullException>é emitida.</xref:System.ArgumentNullException> </xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A>       Se DestinationTableName é modificada enquanto um <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A>operação está em execução, a alteração não afeta a operação atual.</xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A> O novo valor de DestinationTableName é utilizado da próxima vez que um <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A>método é chamado.</xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer%2A>       DestinationTableName é um nome de três partes (`<database>.<owningschema>.<name>`). Pode qualificar o nome da tabela com a base de dados e o esquema de proprietário, se escolher. No entanto, se o nome da tabela utiliza um caráter de sublinhado (&quot;_&quot;) ou carateres especiais, tem de escape nome utilizando parênteses Retos envolvente do (`[<database>.<owningschema>.<name_01>]`). Para obter mais informações, consulte &quot;Identificadores&quot; no SQL Server Books Online.       Pode dados de cópia em massa para uma tabela temporária, utilizando um valor, tal como `tempdb..#table` ou `tempdb.<owner>.#table` para a propriedade DestinationTableName."
   example:
   - "The following console application demonstrates how to bulk load data using a connection that is already open. The destination table is a table in the **AdventureWorks** database.  \n  \n In this example, the connection is first used to read data from a SQL Server table to a <xref:System.Data.SqlClient.SqlDataReader> instance. The source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref:System.Data.IDataReader> or loaded to a <xref:System.Data.DataTable>.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-vb[DataWorks SqlBulkCopy.Single#1](~/add/codesnippet/visualbasic/p-system.data.sqlclient._5_1.vb)]\n [!code-cs[DataWorks SqlBulkCopy.Single#1](~/add/codesnippet/csharp/p-system.data.sqlclient._5_1.cs)]"
   syntax:
     content: public string DestinationTableName { get; set; }
     return:
       type: System.String
-      description: "The string value of the DestinationTableName property, or null if none as been supplied."
+      description: "O valor da cadeia da propriedade DestinationTableName ou nulo se nenhum conforme foi fornecido."
   overload: System.Data.SqlClient.SqlBulkCopy.DestinationTableName*
   exceptions: []
   platform:
@@ -294,13 +294,13 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Enables or disables a <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object to stream data from an <xref href=&quot;System.Data.IDataReader&quot;></xref> object"
-  remarks: "When EnableStreaming is `true`, <xref:System.Data.SqlClient.SqlBulkCopy> reads from an <xref:System.Data.IDataReader> object using <xref:System.Data.CommandBehavior>, optimizing memory usage by using the <xref:System.Data.IDataReader> streaming capabilities. When it’s set to false, the <xref:System.Data.SqlClient.SqlBulkCopy> class loads all the data returned by the <xref:System.Data.IDataReader> object into memory before sending it to [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] or SQL Azure."
+  summary: "Ativa ou desativa um <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto para dados de sequência de um <xref href=&quot;System.Data.IDataReader&quot;> </xref> objeto"
+  remarks: "Quando é EnableStreaming `true`, <xref:System.Data.SqlClient.SqlBulkCopy>lê a partir de um <xref:System.Data.IDataReader>objeto utilizando <xref:System.Data.CommandBehavior>, otimizar utilização da memória utilizando o <xref:System.Data.IDataReader>capacidades de transmissão em fluxo.</xref:System.Data.IDataReader> </xref:System.Data.CommandBehavior> </xref:System.Data.IDataReader> </xref:System.Data.SqlClient.SqlBulkCopy> Quando for definida como false, o <xref:System.Data.SqlClient.SqlBulkCopy>classe carrega todos os dados devolvidos pelo <xref:System.Data.IDataReader>objeto na memória antes de a enviar para [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] ou SQL Azure.</xref:System.Data.IDataReader> </xref:System.Data.SqlClient.SqlBulkCopy>"
   syntax:
     content: public bool EnableStreaming { get; set; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if a <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object can stream data from an <xref href=&quot;System.Data.IDataReader&quot;></xref> object; otherwise, false. The default is <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se um <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto pode transmitir dados a partir de um <xref href=&quot;System.Data.IDataReader&quot;> </xref> objeto; caso contrário, FALSO. A predefinição é <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Data.SqlClient.SqlBulkCopy.EnableStreaming*
   exceptions: []
   platform:
@@ -317,15 +317,15 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Defines the number of rows to be processed before generating a notification event."
-  remarks: "This property is designed for user interface components that illustrate the progress of a bulk copy operation. It indicates the number of rows to be processed before generating a notification event. The NotifyAfter property can be set at any time, even while a bulk copy operation is underway. Changes made during a bulk copy operation take effect after the next notification. The new setting applies to all subsequent operations on the same instance.       If NotifyAfter is set to a number less than zero, an <xref:System.ArgumentOutOfRangeException> is thrown."
+  summary: "Define o número de linhas a serem processados antes de gerar um evento de notificação."
+  remarks: "Esta propriedade foi concebida para componentes de interface de utilizador que ilustram o progresso de uma operação de cópia em massa. Indica o número de linhas a serem processados antes de gerar um evento de notificação. A propriedade NotifyAfter pode ser definida em qualquer altura, mesmo quando está em curso uma operação de cópia em massa. As alterações efetuadas durante uma operação de cópia em massa entram em vigor após a seguinte notificação. A nova definição aplica-se a todas as operações subsequentes na mesma instância.       Se NotifyAfter estiver definido como um número inferior a zero, um <xref:System.ArgumentOutOfRangeException>é emitida.</xref:System.ArgumentOutOfRangeException>"
   example:
   - "The following console application demonstrates how to bulk load data using a connection that is already open. The NotifyAfter property is set so that the event handler is called after every 50 rows copied to the table.  \n  \n In this example, the connection is first used to read data from a SQL Server table to a <xref:System.Data.SqlClient.SqlDataReader> instance. Then a second connection is opened to bulk copy the data. Note that the source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref:System.Data.IDataReader> or loaded to a <xref:System.Data.DataTable>.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-vb[DataWorks SqlBulkCopy.NotifyAfter#1](~/add/codesnippet/visualbasic/p-system.data.sqlclient._11_1.vb)]\n [!code-cs[DataWorks SqlBulkCopy.NotifyAfter#1](~/add/codesnippet/csharp/p-system.data.sqlclient._11_1.cs)]"
   syntax:
     content: public int NotifyAfter { get; set; }
     return:
       type: System.Int32
-      description: "The integer value of the NotifyAfter property, or zero if the property has not been set."
+      description: "O valor de número inteiro da propriedade NotifyAfter, ou zero se a propriedade não foi definida."
   overload: System.Data.SqlClient.SqlBulkCopy.NotifyAfter*
   exceptions: []
   platform:
@@ -342,15 +342,15 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Occurs every time that the number of rows specified by the <xref:System.Data.SqlClient.SqlBulkCopy.NotifyAfter*> property have been processed."
-  remarks: "Note that the settings of <xref:System.Data.SqlClient.SqlBulkCopy.NotifyAfter%2A> and <xref:System.Data.SqlClient.SqlBulkCopy.BatchSize%2A> are independent. Receipt of a SqlRowsCopied event does not imply that any rows have been sent to the server or committed.       You cannot call SqlBulkCopy.Close (<xref:System.Data.SqlClient.SqlBulkCopy.Close%2A>) or SqlConnection.Close (<xref:System.Data.SqlClient.SqlConnection.Close%2A>) from this event. Doing this will cause an <xref:System.InvalidOperationException> being thrown, and the <xref:System.Data.SqlClient.SqlBulkCopy> object state will not change. If the user wants to cancel the operation from the event, the <xref:System.Data.SqlClient.SqlRowsCopiedEventArgs.Abort%2A> property of the <xref:System.Data.SqlClient.SqlRowsCopiedEventArgs> can be used. (See [Transaction and Bulk Copy Operations](~/add/includes/ajax-current-ext-md.md) for examples that use the <xref:System.Data.SqlClient.SqlRowsCopiedEventArgs.Abort%2A> property.)       No action, such as transaction activity, is supported in the connection during the execution of the bulk copy operation, and it is recommended that you not use the same connection used during the SqlRowsCopied event. However, you can open a different connection."
+  summary: "Ocorre sempre que o número de linhas especificado pelo <xref:System.Data.SqlClient.SqlBulkCopy.NotifyAfter*>propriedade foram processados.</xref:System.Data.SqlClient.SqlBulkCopy.NotifyAfter*>"
+  remarks: "Tenha em atenção que as definições de <xref:System.Data.SqlClient.SqlBulkCopy.NotifyAfter%2A>e <xref:System.Data.SqlClient.SqlBulkCopy.BatchSize%2A>são independentes.</xref:System.Data.SqlClient.SqlBulkCopy.BatchSize%2A> </xref:System.Data.SqlClient.SqlBulkCopy.NotifyAfter%2A> A receção de um evento de SqlRowsCopied não implica que foram enviadas para o servidor ou consolidadas quaisquer linhas.       Não é possível chamar SqlBulkCopy.Close (<xref:System.Data.SqlClient.SqlBulkCopy.Close%2A>) ou SqlConnection.Close (<xref:System.Data.SqlClient.SqlConnection.Close%2A>) deste evento.</xref:System.Data.SqlClient.SqlConnection.Close%2A> </xref:System.Data.SqlClient.SqlBulkCopy.Close%2A> Ao fazê-lo, Isto fará com que um <xref:System.InvalidOperationException>que está a ser emitida e o <xref:System.Data.SqlClient.SqlBulkCopy>não irá alterar o estado do objeto.</xref:System.Data.SqlClient.SqlBulkCopy> </xref:System.InvalidOperationException> Se o utilizador que pretende cancelar a operação do evento, o <xref:System.Data.SqlClient.SqlRowsCopiedEventArgs.Abort%2A>propriedade o <xref:System.Data.SqlClient.SqlRowsCopiedEventArgs>pode ser utilizado.</xref:System.Data.SqlClient.SqlRowsCopiedEventArgs> </xref:System.Data.SqlClient.SqlRowsCopiedEventArgs.Abort%2A> (Consulte [transação e operações de cópia em massa](~/add/includes/ajax-current-ext-md.md) para obter exemplos que utilizam o <xref:System.Data.SqlClient.SqlRowsCopiedEventArgs.Abort%2A>propriedade.)</xref:System.Data.SqlClient.SqlRowsCopiedEventArgs.Abort%2A>       Nenhuma ação, como a atividade de transação, é suportada na ligação durante a execução da operação de cópia em massa e é recomendado que não utilize a mesma ligação utilizada durante o evento SqlRowsCopied. No entanto, pode abrir uma ligação diferente."
   example:
   - "The following console application demonstrates how to bulk load data using a connection that is already open. The <xref:System.Data.SqlClient.SqlBulkCopy.NotifyAfter%2A> property is set so that the event handler is called after every 50 rows copied to the table.  \n  \n In this example, the connection is first used to read data from a SQL Server table to a <xref:System.Data.SqlClient.SqlDataReader> instance. Note that the source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref:System.Data.IDataReader> or loaded to a <xref:System.Data.DataTable>.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-vb[DataWorks SqlBulkCopy.NotifyAfter#1](~/add/codesnippet/visualbasic/e-system.data.sqlclient._2_1.vb)]\n [!code-cs[DataWorks SqlBulkCopy.NotifyAfter#1](~/add/codesnippet/csharp/e-system.data.sqlclient._2_1.cs)]"
   syntax:
     content: public event System.Data.SqlClient.SqlRowsCopiedEventHandler SqlRowsCopied;
     return:
       type: System.Data.SqlClient.SqlRowsCopiedEventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -367,8 +367,8 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Releases all resources used by the current instance of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> class."
-  remarks: "Call `Dispose` when you are finished using the <xref:System.Data.SqlClient.SqlBulkCopy>. The `Dispose` method leaves the <xref:System.Data.SqlClient.SqlBulkCopy> in an unusable state. After calling `Dispose`, you must release all references to the <xref:System.Data.SqlClient.SqlBulkCopy> so the garbage collector can reclaim the memory that the <xref:System.Data.SqlClient.SqlBulkCopy> was occupying.       For more information, see [Cleaning Up Unmanaged Resources](~/add/includes/ajax-current-ext-md.md) and [Implementing a Dispose Method](~/add/includes/ajax-current-ext-md.md).      > [!NOTE] >  Always call `Dispose` before you release your last reference to the <xref:System.Data.SqlClient.SqlBulkCopy>. Otherwise, the resources it is using will not be freed until the garbage collector calls the <xref:System.Data.SqlClient.SqlBulkCopy> object&quot;s `Finalize` method."
+  summary: "Versões de todos os recursos utilizados pela instância atual do <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> classe."
+  remarks: "Chamar `Dispose` quando tiver terminado de utilizando <xref:System.Data.SqlClient.SqlBulkCopy>.</xref:System.Data.SqlClient.SqlBulkCopy> O `Dispose` método mantém o <xref:System.Data.SqlClient.SqlBulkCopy>num Estado não utilizável.</xref:System.Data.SqlClient.SqlBulkCopy> Após a chamada `Dispose`, tem de libertar todas as referências ao <xref:System.Data.SqlClient.SqlBulkCopy>para que o recoletor de lixo pode reclame a memória que a <xref:System.Data.SqlClient.SqlBulkCopy>foi occupying.</xref:System.Data.SqlClient.SqlBulkCopy> </xref:System.Data.SqlClient.SqlBulkCopy>       Para obter mais informações, consulte [recursos não geridos limpeza](~/add/includes/ajax-current-ext-md.md) e [implementar um método eliminar](~/add/includes/ajax-current-ext-md.md).      > [!NOTE] > Sempre chamada `Dispose` antes de libertar a última referência <xref:System.Data.SqlClient.SqlBulkCopy>.</xref:System.Data.SqlClient.SqlBulkCopy> Caso contrário, os recursos que está a utilizar não irão ser libertados até que as chamadas de recoletor de lixo a <xref:System.Data.SqlClient.SqlBulkCopy>do objeto `Finalize` método.</xref:System.Data.SqlClient.SqlBulkCopy>"
   syntax:
     content: void IDisposable.Dispose ();
     parameters: []
@@ -388,13 +388,13 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Copies all rows from the supplied <xref href=&quot;System.Data.Common.DbDataReader&quot;></xref> array to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object."
+  summary: "Copia todas as linhas a partir de fornecido <xref href=&quot;System.Data.Common.DbDataReader&quot;> </xref> matriz a uma tabela de destino especificada pelo <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*>propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto.</xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*>"
   syntax:
     content: public void WriteToServer (System.Data.Common.DbDataReader reader);
     parameters:
     - id: reader
       type: System.Data.Common.DbDataReader
-      description: "A <xref href=&quot;System.Data.Common.DbDataReader&quot;></xref> whose rows will be copied to the destination table."
+      description: "A <xref href=&quot;System.Data.Common.DbDataReader&quot;> </xref> cujas linhas serão copiadas para a tabela de destino."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServer*
   exceptions: []
   platform:
@@ -411,8 +411,8 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Copies all rows from the supplied <xref href=&quot;System.Data.DataRow&quot;></xref> array to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object."
-  remarks: "While the bulk copy operation is in progress, the associated destination <xref:System.Data.SqlClient.SqlConnection> is busy serving it, and no other operations can be performed on the connection.       The <xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A> collection maps from the <xref:System.Data.DataRow> columns to the destination database table."
+  summary: "Copia todas as linhas a partir de fornecido <xref href=&quot;System.Data.DataRow&quot;> </xref> matriz a uma tabela de destino especificada pelo <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*>propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto.</xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*>"
+  remarks: "Enquanto a operação de cópia em massa está em curso, o destino associado <xref:System.Data.SqlClient.SqlConnection>está ocupado a servi-lo e outras operações não podem ser efetuadas na ligação.</xref:System.Data.SqlClient.SqlConnection>       O <xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A>coleção mapas do <xref:System.Data.DataRow>colunas à tabela de base de dados de destino.</xref:System.Data.DataRow> </xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A>"
   example:
   - "The following console application demonstrates how to bulk load data from a <xref:System.Data.DataRow> array. The destination table is a table in the **AdventureWorks** database.  \n  \n In this example, a <xref:System.Data.DataTable> is created at run time. A single row is selected from the <xref:System.Data.DataTable> to copy to the destination table.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-cs[DataWorks SqlBulkCopy.RowArray#1](~/add/codesnippet/csharp/m-system.data.sqlclient._3_1.cs)]\n [!code-vb[DataWorks SqlBulkCopy.RowArray#1](~/add/codesnippet/visualbasic/m-system.data.sqlclient._3_1.vb)]"
   syntax:
@@ -420,7 +420,7 @@ items:
     parameters:
     - id: rows
       type: System.Data.DataRow[]
-      description: "An array of <xref href=&quot;System.Data.DataRow&quot;></xref> objects that will be copied to the destination table."
+      description: "Uma matriz de <xref href=&quot;System.Data.DataRow&quot;> </xref> objetos que serão copiados para a tabela de destino."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServer*
   exceptions: []
   platform:
@@ -437,8 +437,8 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Copies all rows in the supplied <xref href=&quot;System.Data.DataTable&quot;></xref> to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object."
-  remarks: "All rows in the <xref:System.Data.DataTable> are copied to the destination table except those that have been deleted.       While the bulk copy operation is in progress, the associated destination <xref:System.Data.SqlClient.SqlConnection> is busy serving it, and no other operations can be performed on the connection.       The <xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A> collection maps from the <xref:System.Data.DataTable> columns to the destination database table."
+  summary: "Copia todas as linhas a fornecido <xref href=&quot;System.Data.DataTable&quot;> </xref> a uma tabela de destino especificada pelo <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*>propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto.</xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*>"
+  remarks: "Todas as linhas a <xref:System.Data.DataTable>são copiados para a tabela de destino, exceto aqueles que tenham sido eliminadas.</xref:System.Data.DataTable>       Enquanto a operação de cópia em massa está em curso, o destino associado <xref:System.Data.SqlClient.SqlConnection>está ocupado a servi-lo e outras operações não podem ser efetuadas na ligação.</xref:System.Data.SqlClient.SqlConnection>       O <xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A>coleção mapas do <xref:System.Data.DataTable>colunas à tabela de base de dados de destino.</xref:System.Data.DataTable> </xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A>"
   example:
   - "The following Console application demonstrates how to bulk load data from a <xref:System.Data.DataTable>. The destination table is a table in the **AdventureWorks** database.  \n  \n In this example, a <xref:System.Data.DataTable> is created at run time and is the source of the `SqlBulkCopy` operation.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-cs[DataWorks SqlBulkCopy.DataTable#1](~/add/codesnippet/csharp/m-system.data.sqlclient._16_1.cs)]\n [!code-vb[DataWorks SqlBulkCopy.DataTable#1](~/add/codesnippet/visualbasic/m-system.data.sqlclient._16_1.vb)]"
   syntax:
@@ -446,7 +446,7 @@ items:
     parameters:
     - id: table
       type: System.Data.DataTable
-      description: "A <xref href=&quot;System.Data.DataTable&quot;></xref> whose rows will be copied to the destination table."
+      description: "A <xref href=&quot;System.Data.DataTable&quot;> </xref> cujas linhas serão copiadas para a tabela de destino."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServer*
   exceptions: []
   platform:
@@ -463,8 +463,8 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Copies all rows in the supplied <xref href=&quot;System.Data.IDataReader&quot;></xref> to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object."
-  remarks: "The copy operation starts at the next available row in the reader. Most of the time, the reader was just returned by <xref:System.Data.IDbCommand.ExecuteReader%2A> or a similar call, so the next available row is the first row. To process multiple results, call <xref:System.Data.IDataReader.NextResult%2A> on the data reader and call WriteToServer again.       Note that using WriteToServer modifies the state of the reader. The method will call <xref:System.Data.IDataReader.Read%2A> until it returns false, the operation is aborted, or an error occurs. This means that the data reader will be in a different state, probably at the end of the result set, when the WriteToServer operation is complete.       While the bulk copy operation is in progress, the associated destination <xref:System.Data.SqlClient.SqlConnection> is busy serving it, and no other operations can be performed on the connection.       The <xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A> collection maps from the data reader columns to the destination database table."
+  summary: "Copia todas as linhas a fornecido <xref href=&quot;System.Data.IDataReader&quot;> </xref> a uma tabela de destino especificada pelo <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*>propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto.</xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*>"
+  remarks: "Inicia a operação de cópia da linha seguinte disponível no leitor. Na maioria das vezes, o leitor apenas foi devolvido por <xref:System.Data.IDbCommand.ExecuteReader%2A>ou uma chamada semelhante, pelo que a linha seguinte disponível é a primeira linha.</xref:System.Data.IDbCommand.ExecuteReader%2A> Para processar vários resultados, chame <xref:System.Data.IDataReader.NextResult%2A>no leitor de dados e chamada WriteToServer novamente.</xref:System.Data.IDataReader.NextResult%2A>       Tenha em atenção que utilizar WriteToServer modifica o estado do leitor. O método irá chamar <xref:System.Data.IDataReader.Read%2A>até devolve false, a operação foi abortada ou ocorre um erro.</xref:System.Data.IDataReader.Read%2A> Isto significa que o leitor de dados estará num Estado diferente, provavelmente, no final do conjunto de resultados, quando a operação de WriteToServer foi concluída.       Enquanto a operação de cópia em massa está em curso, o destino associado <xref:System.Data.SqlClient.SqlConnection>está ocupado a servi-lo e outras operações não podem ser efetuadas na ligação.</xref:System.Data.SqlClient.SqlConnection>       O <xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A>coleção mapeia os dados colunas do leitor para a tabela de base de dados de destino.</xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A>"
   example:
   - "The following console application demonstrates how to bulk load data from a <xref:System.Data.SqlClient.SqlDataReader>. The destination table is a table in the **AdventureWorks** database.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-vb[DataWorks SqlBulkCopy.ConnectionString#1](~/add/codesnippet/visualbasic/m-system.data.sqlclient._35_1.vb)]\n [!code-cs[DataWorks SqlBulkCopy.ConnectionString#1](~/add/codesnippet/csharp/m-system.data.sqlclient._35_1.cs)]"
   syntax:
@@ -472,7 +472,7 @@ items:
     parameters:
     - id: reader
       type: System.Data.IDataReader
-      description: "A <xref href=&quot;System.Data.IDataReader&quot;></xref> whose rows will be copied to the destination table."
+      description: "A <xref href=&quot;System.Data.IDataReader&quot;> </xref> cujas linhas serão copiadas para a tabela de destino."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServer*
   exceptions: []
   platform:
@@ -489,8 +489,8 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "Copies only rows that match the supplied row state in the supplied <xref href=&quot;System.Data.DataTable&quot;></xref> to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object."
-  remarks: "Only rows in the <xref:System.Data.DataTable> that are in the states indicated in the `rowState` argument and have not been deleted are copied to the destination table.      > [!NOTE] >  If <xref:System.Data.DataRowState> is specified, any <xref:System.Data.DataRowState>, <xref:System.Data.DataRowState>, and <xref:System.Data.DataRowState> rows will also be copied to the server. No exception will be raised.       While the bulk copy operation is in progress, the associated destination <xref:System.Data.SqlClient.SqlConnection> is busy serving it, and no other operations can be performed on the connection.       The <xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A> collection maps from the <xref:System.Data.DataTable> columns to the destination database table."
+  summary: "Copia apenas as linhas que correspondem o estado de linha fornecido o fornecido na <xref href=&quot;System.Data.DataTable&quot;> </xref> a uma tabela de destino especificada pelo <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*>propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto.</xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*>"
+  remarks: "Apenas as linhas no <xref:System.Data.DataTable>que estão nos Estados indicados a `rowState` argumento e não ter sido eliminado são copiados para a tabela de destino.</xref:System.Data.DataTable>      > [!NOTE] > Se <xref:System.Data.DataRowState>for especificado, quaisquer <xref:System.Data.DataRowState>, <xref:System.Data.DataRowState>, e <xref:System.Data.DataRowState>linhas também serão copiadas para o servidor.</xref:System.Data.DataRowState> </xref:System.Data.DataRowState> </xref:System.Data.DataRowState> </xref:System.Data.DataRowState> Será desencadeada sem exceção.       Enquanto a operação de cópia em massa está em curso, o destino associado <xref:System.Data.SqlClient.SqlConnection>está ocupado a servi-lo e outras operações não podem ser efetuadas na ligação.</xref:System.Data.SqlClient.SqlConnection>       O <xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A>coleção mapas do <xref:System.Data.DataTable>colunas à tabela de base de dados de destino.</xref:System.Data.DataTable> </xref:System.Data.SqlClient.SqlBulkCopy.ColumnMappings%2A>"
   example:
   - "The following Console application demonstrates how to bulk load only the rows in a <xref:System.Data.DataTable> that match a specified state. In this case, only unchanged rows are added. The destination table is a table in the **AdventureWorks** database.  \n  \n In this example, a <xref:System.Data.DataTable> is created at run time and three rows are added to it. Before the WriteToServer method is executed, one of the rows is edited. The WriteToServer method is called with a `DataRowState.Unchanged``rowState` argument, so only the two unchanged rows are bulk copied to the destination.  \n  \n> [!IMPORTANT]\n>  This sample will not run unless you have created the work tables as described in [Bulk Copy Example Setup](~/add/includes/ajax-current-ext-md.md). This code is provided to demonstrate the syntax for using **SqlBulkCopy** only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL `INSERT … SELECT` statement to copy the data.  \n  \n [!code-cs[DataWorks SqlBulkCopy.DataRowState#1](~/add/codesnippet/csharp/65bb2b63-7c25-4470-9a90-_1.cs)]\n [!code-vb[DataWorks SqlBulkCopy.DataRowState#1](~/add/codesnippet/visualbasic/65bb2b63-7c25-4470-9a90-_1.vb)]"
   syntax:
@@ -498,10 +498,10 @@ items:
     parameters:
     - id: table
       type: System.Data.DataTable
-      description: "A <xref href=&quot;System.Data.DataTable&quot;></xref> whose rows will be copied to the destination table."
+      description: "A <xref href=&quot;System.Data.DataTable&quot;> </xref> cujas linhas serão copiadas para a tabela de destino."
     - id: rowState
       type: System.Data.DataRowState
-      description: "A value from the <xref href=&quot;System.Data.DataRowState&quot;></xref> enumeration. Only rows matching the row state are copied to the destination."
+      description: "Um valor entre o <xref href=&quot;System.Data.DataRowState&quot;> </xref> enumeração. Apenas as linhas correspondentes o estado de linha são copiadas para o destino."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServer*
   exceptions: []
   platform:
@@ -518,16 +518,16 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "The asynchronous version of <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>, which copies all rows from the supplied <xref href=&quot;System.Data.Common.DbDataReader&quot;></xref> array to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object."
+  summary: "A versão assíncrona de <> </> *>, que copia todas as linhas do fornecido <xref href=&quot;System.Data.Common.DbDataReader&quot;> </xref> matriz a uma tabela de destino especificada pelo <> </> *> propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto."
   syntax:
     content: public System.Threading.Tasks.Task WriteToServerAsync (System.Data.Common.DbDataReader reader);
     parameters:
     - id: reader
       type: System.Data.Common.DbDataReader
-      description: "A <xref href=&quot;System.Data.Common.DbDataReader&quot;></xref> whose rows will be copied to the destination table."
+      description: "A <xref href=&quot;System.Data.Common.DbDataReader&quot;> </xref> cujas linhas serão copiadas para a tabela de destino."
     return:
       type: System.Threading.Tasks.Task
-      description: "A task representing the asynchronous operation."
+      description: "Uma tarefa que representa a operação assíncrona."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*
   exceptions: []
   platform:
@@ -544,25 +544,25 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "The asynchronous version of <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>, which copies all rows from the supplied <xref href=&quot;System.Data.DataRow&quot;></xref> array to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object."
-  remarks: "For more information about asynchronous programming in the [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] Data Provider for [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], see [Asynchronous Programming](~/add/includes/ajax-current-ext-md.md)."
+  summary: "A versão assíncrona de <> </> *>, que copia todas as linhas do fornecido <xref href=&quot;System.Data.DataRow&quot;> </xref> matriz a uma tabela de destino especificada pelo <> </> *> propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto."
+  remarks: "Para obter mais informações sobre a programação assíncrona no [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] fornecedor de dados para [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], consulte [programação assíncrona](~/add/includes/ajax-current-ext-md.md)."
   syntax:
     content: public System.Threading.Tasks.Task WriteToServerAsync (System.Data.DataRow[] rows);
     parameters:
     - id: rows
       type: System.Data.DataRow[]
-      description: "An array of <xref href=&quot;System.Data.DataRow&quot;></xref> objects that will be copied to the destination table."
+      description: "Uma matriz de <xref href=&quot;System.Data.DataRow&quot;> </xref> objetos que serão copiados para a tabela de destino."
     return:
       type: System.Threading.Tasks.Task
-      description: "A task representing the asynchronous operation."
+      description: "Uma tarefa que representa a operação assíncrona."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "Calling WriteToServerAsync multiple times for the same instance before task completion.       Calling WriteToServerAsync and <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*> for the same instance before task completion.       The connection drops or is closed during WriteToServerAsync execution.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object was closed during the method execution.       Returned in the task object, there was a connection pool timeout.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> object is closed before method execution.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref> is specified in the connection string."
+    description: "Chamar WriteToServerAsync várias vezes para a mesma instância antes da conclusão da tarefa.       Chamar WriteToServerAsync e <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>para a mesma instância antes da conclusão da tarefa.</xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>       A ligação ignora ou é fechada durante a execução de WriteToServerAsync.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto foi fechado durante a execução do método.       Devolvido do objeto de tarefa, Ocorreu um tempo de limite do conjunto de ligação.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> objeto está fechado antes da execução do método.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref>foi especificado na cadeia de ligação."
   - type: System.Data.SqlClient.SqlException
     commentId: T:System.Data.SqlClient.SqlException
-    description: "Returned in the task object, any error returned by [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] that occurred while opening the connection."
+    description: "Devolvido do objeto de tarefa, quaisquer erros devolvidos pelo [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] que ocorreu ao abrir a ligação."
   platform:
   - net462
 - uid: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync(System.Data.DataTable)
@@ -577,25 +577,25 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "The asynchronous version of <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>, which copies all rows in the supplied <xref href=&quot;System.Data.DataTable&quot;></xref> to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object."
-  remarks: "For more information about asynchronous programming in the [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] Data Provider for [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], see [Asynchronous Programming](~/add/includes/ajax-current-ext-md.md)."
+  summary: "A versão assíncrona de <> </> *>, que copia todas as linhas a fornecido <xref href=&quot;System.Data.DataTable&quot;> </xref> a uma tabela de destino especificada pelo <> </> *> propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto."
+  remarks: "Para obter mais informações sobre a programação assíncrona no [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] fornecedor de dados para [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], consulte [programação assíncrona](~/add/includes/ajax-current-ext-md.md)."
   syntax:
     content: public System.Threading.Tasks.Task WriteToServerAsync (System.Data.DataTable table);
     parameters:
     - id: table
       type: System.Data.DataTable
-      description: "A <xref href=&quot;System.Data.DataTable&quot;></xref> whose rows will be copied to the destination table."
+      description: "A <xref href=&quot;System.Data.DataTable&quot;> </xref> cujas linhas serão copiadas para a tabela de destino."
     return:
       type: System.Threading.Tasks.Task
-      description: "A task representing the asynchronous operation."
+      description: "Uma tarefa que representa a operação assíncrona."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "Calling WriteToServerAsync multiple times for the same instance before task completion.       Calling WriteToServerAsync and <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*> for the same instance before task completion.       The connection drops or is closed during WriteToServerAsync execution.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object was closed during the method execution.       Returned in the task object, there was a connection pool timeout.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> object is closed before method execution.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref> is specified in the connection string."
+    description: "Chamar WriteToServerAsync várias vezes para a mesma instância antes da conclusão da tarefa.       Chamar WriteToServerAsync e <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>para a mesma instância antes da conclusão da tarefa.</xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>       A ligação ignora ou é fechada durante a execução de WriteToServerAsync.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto foi fechado durante a execução do método.       Devolvido do objeto de tarefa, Ocorreu um tempo de limite do conjunto de ligação.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> objeto está fechado antes da execução do método.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref>foi especificado na cadeia de ligação."
   - type: System.Data.SqlClient.SqlException
     commentId: T:System.Data.SqlClient.SqlException
-    description: "Returned in the task object, any error returned by [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] that occurred while opening the connection."
+    description: "Devolvido do objeto de tarefa, quaisquer erros devolvidos pelo [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] que ocorreu ao abrir a ligação."
   platform:
   - net462
 - uid: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync(System.Data.IDataReader)
@@ -610,25 +610,25 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "The asynchronous version of <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>, which copies all rows in the supplied <xref href=&quot;System.Data.IDataReader&quot;></xref> to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object."
-  remarks: "For more information about asynchronous programming in the [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] Data Provider for [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], see [Asynchronous Programming](~/add/includes/ajax-current-ext-md.md)."
+  summary: "A versão assíncrona de <> </> *>, que copia todas as linhas a fornecido <xref href=&quot;System.Data.IDataReader&quot;> </xref> a uma tabela de destino especificada pelo <> </> *> propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto."
+  remarks: "Para obter mais informações sobre a programação assíncrona no [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] fornecedor de dados para [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], consulte [programação assíncrona](~/add/includes/ajax-current-ext-md.md)."
   syntax:
     content: public System.Threading.Tasks.Task WriteToServerAsync (System.Data.IDataReader reader);
     parameters:
     - id: reader
       type: System.Data.IDataReader
-      description: "A <xref href=&quot;System.Data.IDataReader&quot;></xref> whose rows will be copied to the destination table."
+      description: "A <xref href=&quot;System.Data.IDataReader&quot;> </xref> cujas linhas serão copiadas para a tabela de destino."
     return:
       type: System.Threading.Tasks.Task
-      description: "A task representing the asynchronous operation."
+      description: "Uma tarefa que representa a operação assíncrona."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "Calling WriteToServerAsync multiple times for the same instance before task completion.       Calling WriteToServerAsync and <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*> for the same instance before task completion.       The connection drops or is closed during WriteToServerAsync execution.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object was closed during the method execution.       Returned in the task object, there was a connection pool timeout.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> object is closed before method execution.       The <xref href=&quot;System.Data.IDataReader&quot;></xref> was closed before the completed <xref:System.Threading.Tasks.Task> returned.       The <xref href=&quot;System.Data.IDataReader&quot;></xref>&quot;s associated connection was closed before the completed <xref:System.Threading.Tasks.Task> returned.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref> is specified in the connection string."
+    description: "Chamar WriteToServerAsync várias vezes para a mesma instância antes da conclusão da tarefa.       Chamar WriteToServerAsync e <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>para a mesma instância antes da conclusão da tarefa.</xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>       A ligação ignora ou é fechada durante a execução de WriteToServerAsync.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto foi fechado durante a execução do método.       Devolvido do objeto de tarefa, Ocorreu um tempo de limite do conjunto de ligação.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> objeto está fechado antes da execução do método.       O <xref href=&quot;System.Data.IDataReader&quot;> </xref> foi fechada antes da conclusão <xref:System.Threading.Tasks.Task>devolveu.</xref:System.Threading.Tasks.Task>       O <xref href=&quot;System.Data.IDataReader&quot;> </xref>da ligação associada foi fechada antes da conclusão <xref:System.Threading.Tasks.Task>devolveu.</xref:System.Threading.Tasks.Task>       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref>foi especificado na cadeia de ligação."
   - type: System.Data.SqlClient.SqlException
     commentId: T:System.Data.SqlClient.SqlException
-    description: "Returned in the task object, any error returned by [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] that occurred while opening the connection."
+    description: "Devolvido do objeto de tarefa, quaisquer erros devolvidos pelo [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] que ocorreu ao abrir a ligação."
   platform:
   - net462
 - uid: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync(System.Data.Common.DbDataReader,System.Threading.CancellationToken)
@@ -643,19 +643,19 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "The asynchronous version of <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>, which copies all rows from the supplied <xref href=&quot;System.Data.Common.DbDataReader&quot;></xref> array to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object."
+  summary: "A versão assíncrona de <> </> *>, que copia todas as linhas do fornecido <xref href=&quot;System.Data.Common.DbDataReader&quot;> </xref> matriz a uma tabela de destino especificada pelo <> </> *> propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto."
   syntax:
     content: public System.Threading.Tasks.Task WriteToServerAsync (System.Data.Common.DbDataReader reader, System.Threading.CancellationToken cancellationToken);
     parameters:
     - id: reader
       type: System.Data.Common.DbDataReader
-      description: "A <xref href=&quot;System.Data.Common.DbDataReader&quot;></xref> whose rows will be copied to the destination table."
+      description: "A <xref href=&quot;System.Data.Common.DbDataReader&quot;> </xref> cujas linhas serão copiadas para a tabela de destino."
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "The cancellation instruction. A <xref:System.Threading.CancellationToken.None*> value in this parameter makes this method equivalent to <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*>."
+      description: "A instrução de cancelamento. A <> </> *> valor neste parâmetro faz com que este método equivalente ao <> </> *>."
     return:
       type: System.Threading.Tasks.Task
-      description: "Returns <xref:System.Threading.Tasks.Task>."
+      description: "Devolve <xref:System.Threading.Tasks.Task>.</xref:System.Threading.Tasks.Task>"
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*
   exceptions: []
   platform:
@@ -672,28 +672,28 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "The asynchronous version of <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>, which copies all rows from the supplied <xref href=&quot;System.Data.DataRow&quot;></xref> array to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object.       The cancellation token can be used to request that the operation be abandoned before the command timeout elapses.  Exceptions will be reported via the returned Task object."
-  remarks: "For more information about asynchronous programming in the [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] Data Provider for [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], see [Asynchronous Programming](~/add/includes/ajax-current-ext-md.md)."
+  summary: "A versão assíncrona de <> </> *>, que copia todas as linhas do fornecido <xref href=&quot;System.Data.DataRow&quot;> </xref> matriz a uma tabela de destino especificada pelo <> </> *> propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto.       O token de cancelamento pode ser utilizado para pedir que a operação ser abandonada antes do tempo limite do comando decorrida.  Exceções serão comunicadas através do objeto de tarefa devolvido."
+  remarks: "Para obter mais informações sobre a programação assíncrona no [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] fornecedor de dados para [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], consulte [programação assíncrona](~/add/includes/ajax-current-ext-md.md)."
   syntax:
     content: public System.Threading.Tasks.Task WriteToServerAsync (System.Data.DataRow[] rows, System.Threading.CancellationToken cancellationToken);
     parameters:
     - id: rows
       type: System.Data.DataRow[]
-      description: "An array of <xref href=&quot;System.Data.DataRow&quot;></xref> objects that will be copied to the destination table."
+      description: "Uma matriz de <xref href=&quot;System.Data.DataRow&quot;> </xref> objetos que serão copiados para a tabela de destino."
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "The cancellation instruction. A <xref:System.Threading.CancellationToken.None*> value in this parameter makes this method equivalent to <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*>."
+      description: "A instrução de cancelamento. A <> </> *> valor neste parâmetro faz com que este método equivalente ao <> </> *>."
     return:
       type: System.Threading.Tasks.Task
-      description: "A task representing the asynchronous operation."
+      description: "Uma tarefa que representa a operação assíncrona."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "Calling <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*> multiple times for the same instance before task completion.       Calling <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*> and <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*> for the same instance before task completion.       The connection drops or is closed during <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*> execution.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object was closed during the method execution.       Returned in the task object, there was a connection pool timeout.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> object is closed before method execution.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref> is specified in the connection string."
+    description: "Chamar <> </> *> várias vezes para a mesma instância antes da conclusão da tarefa.       Chamar <> </> *> e <> </> *> para a mesma instância antes da conclusão da tarefa.       A ligação ignora ou é fechado durante <> </> *> execução.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto foi fechado durante a execução do método.       Devolvido do objeto de tarefa, Ocorreu um tempo de limite do conjunto de ligação.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> objeto está fechado antes da execução do método.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref>foi especificado na cadeia de ligação."
   - type: System.Data.SqlClient.SqlException
     commentId: T:System.Data.SqlClient.SqlException
-    description: "Returned in the task object, any error returned by [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] that occurred while opening the connection."
+    description: "Devolvido do objeto de tarefa, quaisquer erros devolvidos pelo [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] que ocorreu ao abrir a ligação."
   platform:
   - net462
 - uid: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync(System.Data.DataTable,System.Data.DataRowState)
@@ -708,28 +708,28 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "The asynchronous version of <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>, which copies only rows that match the supplied row state in the supplied <xref href=&quot;System.Data.DataTable&quot;></xref> to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object."
-  remarks: "For more information about asynchronous programming in the [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] Data Provider for [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], see [Asynchronous Programming](~/add/includes/ajax-current-ext-md.md)."
+  summary: "A versão assíncrona de <> </> *>, que copia apenas as linhas que correspondem o estado de linha fornecido o fornecido na <xref href=&quot;System.Data.DataTable&quot;> </xref> a uma tabela de destino especificada pelo <> </> *> propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto."
+  remarks: "Para obter mais informações sobre a programação assíncrona no [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] fornecedor de dados para [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], consulte [programação assíncrona](~/add/includes/ajax-current-ext-md.md)."
   syntax:
     content: public System.Threading.Tasks.Task WriteToServerAsync (System.Data.DataTable table, System.Data.DataRowState rowState);
     parameters:
     - id: table
       type: System.Data.DataTable
-      description: "A <xref href=&quot;System.Data.DataTable&quot;></xref> whose rows will be copied to the destination table."
+      description: "A <xref href=&quot;System.Data.DataTable&quot;> </xref> cujas linhas serão copiadas para a tabela de destino."
     - id: rowState
       type: System.Data.DataRowState
-      description: "A value from the <xref href=&quot;System.Data.DataRowState&quot;></xref> enumeration. Only rows matching the row state are copied to the destination."
+      description: "Um valor entre o <xref href=&quot;System.Data.DataRowState&quot;> </xref> enumeração. Apenas as linhas correspondentes o estado de linha são copiadas para o destino."
     return:
       type: System.Threading.Tasks.Task
-      description: "A task representing the asynchronous operation."
+      description: "Uma tarefa que representa a operação assíncrona."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "Calling WriteToServerAsync multiple times for the same instance before task completion.       Calling WriteToServerAsync and <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*> for the same instance before task completion.       The connection drops or is closed during WriteToServerAsync execution.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object was closed during the method execution.       Returned in the task object, there was a connection pool timeout.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> object is closed before method execution.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref> is specified in the connection string."
+    description: "Chamar WriteToServerAsync várias vezes para a mesma instância antes da conclusão da tarefa.       Chamar WriteToServerAsync e <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>para a mesma instância antes da conclusão da tarefa.</xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>       A ligação ignora ou é fechada durante a execução de WriteToServerAsync.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto foi fechado durante a execução do método.       Devolvido do objeto de tarefa, Ocorreu um tempo de limite do conjunto de ligação.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> objeto está fechado antes da execução do método.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref>foi especificado na cadeia de ligação."
   - type: System.Data.SqlClient.SqlException
     commentId: T:System.Data.SqlClient.SqlException
-    description: "Returned in the task object, any error returned by [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] that occurred while opening the connection."
+    description: "Devolvido do objeto de tarefa, quaisquer erros devolvidos pelo [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] que ocorreu ao abrir a ligação."
   platform:
   - net462
 - uid: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync(System.Data.DataTable,System.Threading.CancellationToken)
@@ -744,28 +744,28 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "The asynchronous version of <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>, which copies all rows in the supplied <xref href=&quot;System.Data.DataTable&quot;></xref> to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object.       The cancellation token can be used to request that the operation be abandoned before the command timeout elapses.  Exceptions will be reported via the returned Task object."
-  remarks: "For more information about asynchronous programming in the [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] Data Provider for [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], see [Asynchronous Programming](~/add/includes/ajax-current-ext-md.md)."
+  summary: "A versão assíncrona de <> </> *>, que copia todas as linhas a fornecido <xref href=&quot;System.Data.DataTable&quot;> </xref> a uma tabela de destino especificada pelo <> </> *> propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto.       O token de cancelamento pode ser utilizado para pedir que a operação ser abandonada antes do tempo limite do comando decorrida.  Exceções serão comunicadas através do objeto de tarefa devolvido."
+  remarks: "Para obter mais informações sobre a programação assíncrona no [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] fornecedor de dados para [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], consulte [programação assíncrona](~/add/includes/ajax-current-ext-md.md)."
   syntax:
     content: public System.Threading.Tasks.Task WriteToServerAsync (System.Data.DataTable table, System.Threading.CancellationToken cancellationToken);
     parameters:
     - id: table
       type: System.Data.DataTable
-      description: "A <xref href=&quot;System.Data.DataTable&quot;></xref> whose rows will be copied to the destination table."
+      description: "A <xref href=&quot;System.Data.DataTable&quot;> </xref> cujas linhas serão copiadas para a tabela de destino."
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "The cancellation instruction. A <xref:System.Threading.CancellationToken.None*> value in this parameter makes this method equivalent to <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*>."
+      description: "A instrução de cancelamento. A <> </> *> valor neste parâmetro faz com que este método equivalente ao <> </> *>."
     return:
       type: System.Threading.Tasks.Task
-      description: "A task representing the asynchronous operation."
+      description: "Uma tarefa que representa a operação assíncrona."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "Calling <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*> multiple times for the same instance before task completion.       Calling <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*> and <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*> for the same instance before task completion.       The connection drops or is closed during <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*> execution.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object was closed during the method execution.       Returned in the task object, there was a connection pool timeout.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> object is closed before method execution.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref> is specified in the connection string."
+    description: "Chamar <> </> *> várias vezes para a mesma instância antes da conclusão da tarefa.       Chamar <> </> *> e <> </> *> para a mesma instância antes da conclusão da tarefa.       A ligação ignora ou é fechado durante <> </> *> execução.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto foi fechado durante a execução do método.       Devolvido do objeto de tarefa, Ocorreu um tempo de limite do conjunto de ligação.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> objeto está fechado antes da execução do método.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref>foi especificado na cadeia de ligação."
   - type: System.Data.SqlClient.SqlException
     commentId: T:System.Data.SqlClient.SqlException
-    description: "Returned in the task object, any error returned by [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] that occurred while opening the connection."
+    description: "Devolvido do objeto de tarefa, quaisquer erros devolvidos pelo [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] que ocorreu ao abrir a ligação."
   platform:
   - net462
 - uid: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync(System.Data.IDataReader,System.Threading.CancellationToken)
@@ -780,28 +780,28 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "The asynchronous version of <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>, which copies all rows in the supplied <xref href=&quot;System.Data.IDataReader&quot;></xref> to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object.       The cancellation token can be used to request that the operation be abandoned before the command timeout elapses.  Exceptions will be reported via the returned Task object."
-  remarks: "For more information about asynchronous programming in the [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] Data Provider for [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], see [Asynchronous Programming](~/add/includes/ajax-current-ext-md.md)."
+  summary: "A versão assíncrona de <> </> *>, que copia todas as linhas a fornecido <xref href=&quot;System.Data.IDataReader&quot;> </xref> a uma tabela de destino especificada pelo <> </> *> propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto.       O token de cancelamento pode ser utilizado para pedir que a operação ser abandonada antes do tempo limite do comando decorrida.  Exceções serão comunicadas através do objeto de tarefa devolvido."
+  remarks: "Para obter mais informações sobre a programação assíncrona no [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] fornecedor de dados para [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], consulte [programação assíncrona](~/add/includes/ajax-current-ext-md.md)."
   syntax:
     content: public System.Threading.Tasks.Task WriteToServerAsync (System.Data.IDataReader reader, System.Threading.CancellationToken cancellationToken);
     parameters:
     - id: reader
       type: System.Data.IDataReader
-      description: "A <xref href=&quot;System.Data.IDataReader&quot;></xref> whose rows will be copied to the destination table."
+      description: "A <xref href=&quot;System.Data.IDataReader&quot;> </xref> cujas linhas serão copiadas para a tabela de destino."
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "The cancellation instruction. A <xref:System.Threading.CancellationToken.None*> value in this parameter makes this method equivalent to <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*>."
+      description: "A instrução de cancelamento. A <> </> *> valor neste parâmetro faz com que este método equivalente ao <> </> *>."
     return:
       type: System.Threading.Tasks.Task
-      description: "A task representing the asynchronous operation."
+      description: "Uma tarefa que representa a operação assíncrona."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "Calling <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*> multiple times for the same instance before task completion.       Calling <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*> and <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*> for the same instance before task completion.       The connection drops or is closed during <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*> execution.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object was closed during the method execution.       Returned in the task object, there was a connection pool timeout.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> object is closed before method execution.       The <xref href=&quot;System.Data.IDataReader&quot;></xref> was closed before the completed <xref:System.Threading.Tasks.Task> returned.       The <xref href=&quot;System.Data.IDataReader&quot;></xref>&quot;s associated connection was closed before the completed <xref:System.Threading.Tasks.Task> returned.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref> is specified in the connection string."
+    description: "Chamar <> </> *> várias vezes para a mesma instância antes da conclusão da tarefa.       Chamar <> </> *> e <> </> *> para a mesma instância antes da conclusão da tarefa.       A ligação ignora ou é fechado durante <> </> *> execução.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto foi fechado durante a execução do método.       Devolvido do objeto de tarefa, Ocorreu um tempo de limite do conjunto de ligação.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> objeto está fechado antes da execução do método.       O <xref href=&quot;System.Data.IDataReader&quot;> </xref> foi fechada antes da conclusão <xref:System.Threading.Tasks.Task>devolveu.</xref:System.Threading.Tasks.Task>       O <xref href=&quot;System.Data.IDataReader&quot;> </xref>da ligação associada foi fechada antes da conclusão <xref:System.Threading.Tasks.Task>devolveu.</xref:System.Threading.Tasks.Task>       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref>foi especificado na cadeia de ligação."
   - type: System.Data.SqlClient.SqlException
     commentId: T:System.Data.SqlClient.SqlException
-    description: "Returned in the task object, any error returned by [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] that occurred while opening the connection."
+    description: "Devolvido do objeto de tarefa, quaisquer erros devolvidos pelo [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] que ocorreu ao abrir a ligação."
   platform:
   - net462
 - uid: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync(System.Data.DataTable,System.Data.DataRowState,System.Threading.CancellationToken)
@@ -816,31 +816,31 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.SqlClient
-  summary: "The asynchronous version of <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*>, which copies only rows that match the supplied row state in the supplied <xref href=&quot;System.Data.DataTable&quot;></xref> to a destination table specified by the <xref:System.Data.SqlClient.SqlBulkCopy.DestinationTableName*> property of the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object.       The cancellation token can be used to request that the operation be abandoned before the command timeout elapses.  Exceptions will be reported via the returned Task object."
-  remarks: "For more information about asynchronous programming in the [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] Data Provider for [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], see [Asynchronous Programming](~/add/includes/ajax-current-ext-md.md)."
+  summary: "A versão assíncrona de <> </> *>, que copia apenas as linhas que correspondem o estado de linha fornecido o fornecido na <xref href=&quot;System.Data.DataTable&quot;> </xref> a uma tabela de destino especificada pelo <> </> *> propriedade o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto.       O token de cancelamento pode ser utilizado para pedir que a operação ser abandonada antes do tempo limite do comando decorrida.  Exceções serão comunicadas através do objeto de tarefa devolvido."
+  remarks: "Para obter mais informações sobre a programação assíncrona no [!INCLUDE[dnprdnshort](~/add/includes/dnprdnshort-md.md)] fornecedor de dados para [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)], consulte [programação assíncrona](~/add/includes/ajax-current-ext-md.md)."
   syntax:
     content: public System.Threading.Tasks.Task WriteToServerAsync (System.Data.DataTable table, System.Data.DataRowState rowState, System.Threading.CancellationToken cancellationToken);
     parameters:
     - id: table
       type: System.Data.DataTable
-      description: "A <xref href=&quot;System.Data.DataTable&quot;></xref> whose rows will be copied to the destination table."
+      description: "A <xref href=&quot;System.Data.DataTable&quot;> </xref> cujas linhas serão copiadas para a tabela de destino."
     - id: rowState
       type: System.Data.DataRowState
-      description: "A value from the <xref href=&quot;System.Data.DataRowState&quot;></xref> enumeration. Only rows matching the row state are copied to the destination."
+      description: "Um valor entre o <xref href=&quot;System.Data.DataRowState&quot;> </xref> enumeração. Apenas as linhas correspondentes o estado de linha são copiadas para o destino."
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "The cancellation instruction. A <xref:System.Threading.CancellationToken.None*> value in this parameter makes this method equivalent to <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*>."
+      description: "A instrução de cancelamento. A <> </> *> valor neste parâmetro faz com que este método equivalente ao <> </> *>."
     return:
       type: System.Threading.Tasks.Task
-      description: "A task representing the asynchronous operation."
+      description: "Uma tarefa que representa a operação assíncrona."
   overload: System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "Calling <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*> multiple times for the same instance before task completion.       Calling <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*> and <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServer*> for the same instance before task completion.       The connection drops or is closed during <xref:System.Data.SqlClient.SqlBulkCopy.WriteToServerAsync*> execution.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;></xref> object was closed during the method execution.       Returned in the task object, there was a connection pool timeout.       Returned in the task object, the <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;></xref> object is closed before method execution.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref> is specified in the connection string."
+    description: "Chamar <> </> *> várias vezes para a mesma instância antes da conclusão da tarefa.       Chamar <> </> *> e <> </> *> para a mesma instância antes da conclusão da tarefa.       A ligação ignora ou é fechado durante <> </> *> execução.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlBulkCopy&quot;> </xref> objeto foi fechado durante a execução do método.       Devolvido do objeto de tarefa, Ocorreu um tempo de limite do conjunto de ligação.       Devolveu o objeto de tarefa, o <xref href=&quot;System.Data.SqlClient.SqlConnection&quot;> </xref> objeto está fechado antes da execução do método.       <xref uid=&quot;langword_csharp_Context Connection=true&quot; name=&quot;Context Connection=true&quot; href=&quot;&quot;></xref>foi especificado na cadeia de ligação."
   - type: System.Data.SqlClient.SqlException
     commentId: T:System.Data.SqlClient.SqlException
-    description: "Returned in the task object, any error returned by [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] that occurred while opening the connection."
+    description: "Devolvido do objeto de tarefa, quaisquer erros devolvidos pelo [!INCLUDE[ssNoVersion](~/add/includes/ssnoversion-md.md)] que ocorreu ao abrir a ligação."
   platform:
   - net462
 references:

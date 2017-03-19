@@ -38,8 +38,8 @@ items:
   nameWithType: Formatter
   fullName: System.Runtime.Serialization.Formatter
   type: Class
-  summary: "Provides base functionality for the common language runtime serialization formatters."
-  remarks: "Formatter is the `abstract` base class for all runtime serialization formatters, and provides some helper methods for implementing the <xref:System.Runtime.Serialization.IFormatter> interface. The Formatter also manages queuing objects for serialization and generating IDs on a per-object basis."
+  summary: "Fornece uma funcionalidade de base para o idioma comum formatadores de serialização de tempo de execução."
+  remarks: "Formatador é o `abstract` classe base para todos os formatadores de serialização de tempo de execução e fornece alguns métodos de programa auxiliar para implementar o <xref:System.Runtime.Serialization.IFormatter>interface.</xref:System.Runtime.Serialization.IFormatter> O formatador também gere objetos de colocação para serialização e gerar IDs numa base por objeto."
   syntax:
     content: >-
       [System.CLSCompliant(false)]
@@ -66,8 +66,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "Initializes a new instance of the <xref href=&quot;System.Runtime.Serialization.Formatter&quot;></xref> class."
-  remarks: "Creates a <xref:System.Collections.Queue> for objects to serialize and a <xref:System.Runtime.Serialization.ObjectIDGenerator> to generate IDs for them."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Runtime.Serialization.Formatter&quot;> </xref> classe."
+  remarks: "Cria um <xref:System.Collections.Queue>destinada a objetos para serializar e um <xref:System.Runtime.Serialization.ObjectIDGenerator>para gerar IDs para os mesmos.</xref:System.Runtime.Serialization.ObjectIDGenerator> </xref:System.Collections.Queue>"
   syntax:
     content: protected Formatter ();
     parameters: []
@@ -87,13 +87,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, gets or sets the <xref href=&quot;System.Runtime.Serialization.SerializationBinder&quot;></xref> used with the current formatter."
-  remarks: "The <xref:System.Runtime.Serialization.SerializationBinder> performs lookups for types from the type names passed during deserialization. If no <xref:System.Runtime.Serialization.SerializationBinder> is set, a default is used."
+  summary: "Quando substituí-lo de uma classe derivada, obtém ou define o <xref href=&quot;System.Runtime.Serialization.SerializationBinder&quot;> </xref> utilizado com o formatador atual."
+  remarks: "O <xref:System.Runtime.Serialization.SerializationBinder>efetua as pesquisas para tipos dos nomes de tipo passados durante a desserialização.</xref:System.Runtime.Serialization.SerializationBinder> Se não <xref:System.Runtime.Serialization.SerializationBinder>configurado, é utilizado um predefinido.</xref:System.Runtime.Serialization.SerializationBinder>"
   syntax:
     content: public abstract System.Runtime.Serialization.SerializationBinder Binder { get; set; }
     return:
       type: System.Runtime.Serialization.SerializationBinder
-      description: "The <xref href=&quot;System.Runtime.Serialization.SerializationBinder&quot;></xref> used with the current formatter."
+      description: "O <xref href=&quot;System.Runtime.Serialization.SerializationBinder&quot;> </xref> utilizado com o formatador atual."
   overload: System.Runtime.Serialization.Formatter.Binder*
   exceptions: []
   platform:
@@ -110,13 +110,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, gets or sets the <xref:System.Runtime.Serialization.StreamingContext> used for the current serialization."
-  remarks: "The <xref:System.Runtime.Serialization.StreamingContext> is an indication of either the source of the bits being deserialized or the destination of the bits being serialized. It has no impact on default serialization, but is passed as an argument to <xref:System.Runtime.Serialization.ISerializable> and <xref:System.Runtime.Serialization.ISerializationSurrogate>."
+  summary: "Quando substituí-lo de uma classe derivada, obtém ou define o <xref:System.Runtime.Serialization.StreamingContext>utilizado para a serialização atual.</xref:System.Runtime.Serialization.StreamingContext>"
+  remarks: "O <xref:System.Runtime.Serialization.StreamingContext>é uma indicação de uma origem de bits que está a ser desserializado ou o destino de bits que está a ser serializado.</xref:System.Runtime.Serialization.StreamingContext> Não tem impacto na serialização predefinido, mas é transmitida como um argumento e <xref:System.Runtime.Serialization.ISerializable> <xref:System.Runtime.Serialization.ISerializationSurrogate>.</xref:System.Runtime.Serialization.ISerializationSurrogate> </xref:System.Runtime.Serialization.ISerializable>"
   syntax:
     content: public abstract System.Runtime.Serialization.StreamingContext Context { get; set; }
     return:
       type: System.Runtime.Serialization.StreamingContext
-      description: "The <xref:System.Runtime.Serialization.StreamingContext> used for the current serialization."
+      description: "O <xref:System.Runtime.Serialization.StreamingContext>utilizado para a serialização atual.</xref:System.Runtime.Serialization.StreamingContext>"
   overload: System.Runtime.Serialization.Formatter.Context*
   exceptions: []
   platform:
@@ -133,16 +133,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, deserializes the stream attached to the formatter when it was created, creating a graph of objects identical to the graph originally serialized into that stream."
+  summary: "Quando substituí-lo de uma classe derivada, deserializes fluxo ligado para o formatador quando foi criado, criar um gráfico de objectos idênticos ao gráfico originalmente serializado para esse fluxo."
   syntax:
     content: public abstract object Deserialize (System.IO.Stream serializationStream);
     parameters:
     - id: serializationStream
       type: System.IO.Stream
-      description: "The stream to deserialize."
+      description: "O fluxo de anular a serialização."
     return:
       type: System.Object
-      description: "The top object of the deserialized graph of objects."
+      description: "O objecto de nível superior do gráfico de objetos de serialização anulado."
   overload: System.Runtime.Serialization.Formatter.Deserialize*
   exceptions: []
   platform:
@@ -159,22 +159,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "Returns the next object to serialize, from the formatter&quot;s internal work queue."
-  remarks: "Objects are returned in a first in first out order based on how they were passed to <xref:System.Runtime.Serialization.Formatter.Schedule%2A>. The ID of the object is put into the `objID` parameter and the object is returned from the function."
+  summary: "Devolve o seguinte objeto de serialização da fila de trabalho interno o formatador."
+  remarks: "Objetos são devolvidos em próprio em primeiro lugar fora de ordem com base na forma como foram transmitidos para <xref:System.Runtime.Serialization.Formatter.Schedule%2A>.</xref:System.Runtime.Serialization.Formatter.Schedule%2A> O ID do objeto é inserido o `objID` parâmetro e o objeto é devolvido na função."
   syntax:
     content: protected virtual object GetNext (out long objID);
     parameters:
     - id: objID
       type: System.Int64
-      description: "The ID assigned to the current object during serialization."
+      description: "O ID de atribuído para o objeto atual a durante a serialização."
     return:
       type: System.Object
-      description: "The next object to serialize."
+      description: "O seguinte objeto de serialização."
   overload: System.Runtime.Serialization.Formatter.GetNext*
   exceptions:
   - type: System.Runtime.Serialization.SerializationException
     commentId: T:System.Runtime.Serialization.SerializationException
-    description: "The next object retrieved from the work queue did not have an assigned ID."
+    description: "O seguinte objeto obtidas a partir da fila de trabalho não tinha um ID atribuído."
   platform:
   - net462
 - uid: System.Runtime.Serialization.Formatter.m_idGenerator
@@ -189,13 +189,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "Contains the <xref href=&quot;System.Runtime.Serialization.ObjectIDGenerator&quot;></xref> used with the current formatter."
-  remarks: "The <xref:System.Runtime.Serialization.ObjectIDGenerator> maintains a list of the objects that have been identified and the IDs that they were given."
+  summary: "Contém o <xref href=&quot;System.Runtime.Serialization.ObjectIDGenerator&quot;> </xref> utilizado com o formatador atual."
+  remarks: "O <xref:System.Runtime.Serialization.ObjectIDGenerator>mantém uma lista de objetos que tenham sido identificados e os IDs de que estes foram fornecidos.</xref:System.Runtime.Serialization.ObjectIDGenerator>"
   syntax:
     content: protected System.Runtime.Serialization.ObjectIDGenerator m_idGenerator;
     return:
       type: System.Runtime.Serialization.ObjectIDGenerator
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -211,13 +211,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "Contains a <xref href=&quot;System.Collections.Queue&quot;></xref> of the objects left to serialize."
-  remarks: "Objects scheduled for serialization with the <xref:System.Runtime.Serialization.Formatter.Schedule%2A> method are pushed on the queue."
+  summary: "Contém um <xref href=&quot;System.Collections.Queue&quot;> </xref> dos objetos à esquerda para a serialização."
+  remarks: "Objetos agendados para serialização com o <xref:System.Runtime.Serialization.Formatter.Schedule%2A>método são enviadas por push na fila.</xref:System.Runtime.Serialization.Formatter.Schedule%2A>"
   syntax:
     content: protected System.Collections.Queue m_objectQueue;
     return:
       type: System.Collections.Queue
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -233,17 +233,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "Schedules an object for later serialization."
-  remarks: "Schedule obtains an ID for the object and puts it on the queue for later serialization if this is a new object ID. The schedule is a work queue of objects to serialize, and is held inside the formatter. If the object is already on the work queue, it will not be added a second time, but an exception will not be thrown either."
+  summary: "As agendas de um objeto para a serialização posterior."
+  remarks: "Agenda obtém um ID para o objeto e coloca-o numa fila de espera para serialização posterior se se tratar de um novo ID de objeto. A agenda é uma fila de trabalho de objetos a serialização, é permanecer dentro formatador. Se o objeto já se encontra na fila de trabalho, que será não ser adicionado uma segunda vez, mas não irá ser emitida uma exceção a."
   syntax:
     content: protected virtual long Schedule (object obj);
     parameters:
     - id: obj
       type: System.Object
-      description: "The object to schedule for serialization."
+      description: "O objeto para agendar para serialização."
     return:
       type: System.Int64
-      description: "The object ID assigned to the object."
+      description: "O ID de objeto atribuído para o objeto."
   overload: System.Runtime.Serialization.Formatter.Schedule*
   exceptions: []
   platform:
@@ -260,16 +260,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, serializes the graph of objects with the specified root to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, serializa o gráfico de objetos com o raiz especificado no fluxo já ligado para o formatador."
   syntax:
     content: public abstract void Serialize (System.IO.Stream serializationStream, object graph);
     parameters:
     - id: serializationStream
       type: System.IO.Stream
-      description: "The stream to which the objects are serialized."
+      description: "O fluxo para os quais os objetos são serializados."
     - id: graph
       type: System.Object
-      description: "The object at the root of the graph to serialize."
+      description: "O objeto na raiz do gráfico de serialização."
   overload: System.Runtime.Serialization.Formatter.Serialize*
   exceptions: []
   platform:
@@ -286,13 +286,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, gets or sets the <xref href=&quot;System.Runtime.Serialization.ISurrogateSelector&quot;></xref> used with the current formatter."
-  remarks: "Use the <xref:System.Runtime.Serialization.SurrogateSelector> to look up implementations of <xref:System.Runtime.Serialization.ISerializationSurrogate> that control the serialization of a particular type.       If an object type has a matching surrogate, then serialization and deserialization are handed off to the surrogate even if the type implements the <xref:System.Runtime.Serialization.ISerializable> interface."
+  summary: "Quando substituí-lo de uma classe derivada, obtém ou define o <xref href=&quot;System.Runtime.Serialization.ISurrogateSelector&quot;> </xref> utilizado com o formatador atual."
+  remarks: "Utilize o <xref:System.Runtime.Serialization.SurrogateSelector>para procurar as implementações de <xref:System.Runtime.Serialization.ISerializationSurrogate>que controlam a serialização de um tipo específico.</xref:System.Runtime.Serialization.ISerializationSurrogate> </xref:System.Runtime.Serialization.SurrogateSelector>       Se um tipo de objeto tem um substituto correspondente, em seguida, serialização e a anulação da serialização são entregues para o substituto, mesmo se o tipo implementa o <xref:System.Runtime.Serialization.ISerializable>interface.</xref:System.Runtime.Serialization.ISerializable>"
   syntax:
     content: public abstract System.Runtime.Serialization.ISurrogateSelector SurrogateSelector { get; set; }
     return:
       type: System.Runtime.Serialization.ISurrogateSelector
-      description: "The <xref href=&quot;System.Runtime.Serialization.ISurrogateSelector&quot;></xref> used with the current formatter."
+      description: "O <xref href=&quot;System.Runtime.Serialization.ISurrogateSelector&quot;> </xref> utilizado com o formatador atual."
   overload: System.Runtime.Serialization.Formatter.SurrogateSelector*
   exceptions: []
   platform:
@@ -309,19 +309,19 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes an array to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve uma matriz para o fluxo já ligado para o formatador."
   syntax:
     content: protected abstract void WriteArray (object obj, string name, Type memberType);
     parameters:
     - id: obj
       type: System.Object
-      description: "The array to write."
+      description: "A matriz de escrita."
     - id: name
       type: System.String
-      description: "The name of the array."
+      description: "O nome da matriz."
     - id: memberType
       type: System.Type
-      description: "The type of elements that the array holds."
+      description: "O tipo de elementos que contém a matriz."
   overload: System.Runtime.Serialization.Formatter.WriteArray*
   exceptions: []
   platform:
@@ -338,16 +338,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a Boolean value to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um valor booleano para o fluxo já ligado para o formatador."
   syntax:
     content: protected abstract void WriteBoolean (bool val, string name);
     parameters:
     - id: val
       type: System.Boolean
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteBoolean*
   exceptions: []
   platform:
@@ -364,16 +364,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes an 8-bit unsigned integer to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um número inteiro sem sinal de 8 bits no fluxo já ligado para o formatador."
   syntax:
     content: protected abstract void WriteByte (byte val, string name);
     parameters:
     - id: val
       type: System.Byte
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteByte*
   exceptions: []
   platform:
@@ -390,16 +390,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a Unicode character to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um carácter Unicode no fluxo já ligado para o formatador."
   syntax:
     content: protected abstract void WriteChar (char val, string name);
     parameters:
     - id: val
       type: System.Char
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteChar*
   exceptions: []
   platform:
@@ -416,16 +416,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a <xref:System.DateTime> value to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um <xref:System.DateTime>valor para o fluxo já ligado para o formatador.</xref:System.DateTime>"
   syntax:
     content: protected abstract void WriteDateTime (DateTime val, string name);
     parameters:
     - id: val
       type: System.DateTime
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteDateTime*
   exceptions: []
   platform:
@@ -442,16 +442,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a <xref:System.Decimal> value to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um <xref:System.Decimal>valor para o fluxo já ligado para o formatador.</xref:System.Decimal>"
   syntax:
     content: protected abstract void WriteDecimal (decimal val, string name);
     parameters:
     - id: val
       type: System.Decimal
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteDecimal*
   exceptions: []
   platform:
@@ -468,16 +468,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a double-precision floating-point number to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um número de vírgula flutuante de dupla precisão para a sequência já ligada para o formatador."
   syntax:
     content: protected abstract void WriteDouble (double val, string name);
     parameters:
     - id: val
       type: System.Double
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteDouble*
   exceptions: []
   platform:
@@ -494,16 +494,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a 16-bit signed integer to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um número inteiro com sinal de 16 bits no fluxo já ligado para o formatador."
   syntax:
     content: protected abstract void WriteInt16 (short val, string name);
     parameters:
     - id: val
       type: System.Int16
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteInt16*
   exceptions: []
   platform:
@@ -520,16 +520,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a 32-bit signed integer to the stream."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um número inteiro com sinal de 32 bits no fluxo."
   syntax:
     content: protected abstract void WriteInt32 (int val, string name);
     parameters:
     - id: val
       type: System.Int32
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteInt32*
   exceptions: []
   platform:
@@ -546,16 +546,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a 64-bit signed integer to the stream."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um número inteiro com sinal de 64 bits no fluxo."
   syntax:
     content: protected abstract void WriteInt64 (long val, string name);
     parameters:
     - id: val
       type: System.Int64
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteInt64*
   exceptions: []
   platform:
@@ -572,17 +572,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "Inspects the type of data received, and calls the appropriate <xref uid=&quot;langword_csharp_Write&quot; name=&quot;Write&quot; href=&quot;&quot;></xref> method to perform the write to the stream already attached to the formatter."
-  remarks: "To use this method properly, all the `Write` methods (<xref:System.Runtime.Serialization.Formatter.WriteArray%2A> method, <xref:System.Runtime.Serialization.Formatter.WriteBoolean%2A> method, <xref:System.Runtime.Serialization.Formatter.WriteByte%2A> method, and so on) should have the appropriate functionality."
+  summary: "Inspeciona o tipo de dados recebidos e chama o adequado <xref uid=&quot;langword_csharp_Write&quot; name=&quot;Write&quot; href=&quot;&quot;> </xref> método para efetuar a operação de escrita no fluxo já ligado para o formatador."
+  remarks: "Para utilizar este método corretamente, todos os o `Write` métodos (<xref:System.Runtime.Serialization.Formatter.WriteArray%2A> método, <xref:System.Runtime.Serialization.Formatter.WriteBoolean%2A>método, <xref:System.Runtime.Serialization.Formatter.WriteByte%2A>método e assim sucessivamente) devem ter a funcionalidade adequada.</xref:System.Runtime.Serialization.Formatter.WriteByte%2A> </xref:System.Runtime.Serialization.Formatter.WriteBoolean%2A> </xref:System.Runtime.Serialization.Formatter.WriteArray%2A>"
   syntax:
     content: protected virtual void WriteMember (string memberName, object data);
     parameters:
     - id: memberName
       type: System.String
-      description: "The name of the member to serialize."
+      description: "O nome do membro de serialização."
     - id: data
       type: System.Object
-      description: "The object to write to the stream attached to the formatter."
+      description: "O objeto para escrever no fluxo ligado para o formatador."
   overload: System.Runtime.Serialization.Formatter.WriteMember*
   exceptions: []
   platform:
@@ -599,20 +599,20 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes an object reference to the stream already attached to the formatter."
-  remarks: "Schedules the object with the graph walker to handle the work."
+  summary: "Quando substituí-lo de uma classe derivada, escreve uma referência de objeto para o fluxo já ligado para o formatador."
+  remarks: "Agenda o objeto com o walker gráfico para processar o trabalho."
   syntax:
     content: protected abstract void WriteObjectRef (object obj, string name, Type memberType);
     parameters:
     - id: obj
       type: System.Object
-      description: "The object reference to write."
+      description: "A referência do objeto para escrita."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
     - id: memberType
       type: System.Type
-      description: "The type of object the reference points to."
+      description: "Indica o tipo de objeto de referência."
   overload: System.Runtime.Serialization.Formatter.WriteObjectRef*
   exceptions: []
   platform:
@@ -629,16 +629,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes an 8-bit signed integer to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um número inteiro com sinal de 8 bits no fluxo já ligado para o formatador."
   syntax:
     content: protected abstract void WriteSByte (sbyte val, string name);
     parameters:
     - id: val
       type: System.SByte
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteSByte*
   exceptions: []
   platform:
@@ -655,16 +655,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a single-precision floating-point number to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um número de vírgula flutuante de precisão simples no fluxo já ligado para o formatador."
   syntax:
     content: protected abstract void WriteSingle (float val, string name);
     parameters:
     - id: val
       type: System.Single
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteSingle*
   exceptions: []
   platform:
@@ -681,16 +681,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a <xref:System.TimeSpan> value to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um <xref:System.TimeSpan>valor para o fluxo já ligado para o formatador.</xref:System.TimeSpan>"
   syntax:
     content: protected abstract void WriteTimeSpan (TimeSpan val, string name);
     parameters:
     - id: val
       type: System.TimeSpan
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteTimeSpan*
   exceptions: []
   platform:
@@ -707,16 +707,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a 16-bit unsigned integer to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um número inteiro sem sinal de 16 bits no fluxo já ligado para o formatador."
   syntax:
     content: protected abstract void WriteUInt16 (ushort val, string name);
     parameters:
     - id: val
       type: System.UInt16
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteUInt16*
   exceptions: []
   platform:
@@ -733,16 +733,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a 32-bit unsigned integer to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um número inteiro sem sinal de 32 bits no fluxo já ligado para o formatador."
   syntax:
     content: protected abstract void WriteUInt32 (uint val, string name);
     parameters:
     - id: val
       type: System.UInt32
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteUInt32*
   exceptions: []
   platform:
@@ -759,16 +759,16 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a 64-bit unsigned integer to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um número inteiro sem sinal de 64 bits no fluxo já ligado para o formatador."
   syntax:
     content: protected abstract void WriteUInt64 (ulong val, string name);
     parameters:
     - id: val
       type: System.UInt64
-      description: "The value to write."
+      description: "O valor a escrever."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
   overload: System.Runtime.Serialization.Formatter.WriteUInt64*
   exceptions: []
   platform:
@@ -785,19 +785,19 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Runtime.Serialization
-  summary: "When overridden in a derived class, writes a value of the given type to the stream already attached to the formatter."
+  summary: "Quando substituí-lo de uma classe derivada, escreve um valor do tipo indicado no fluxo já ligado para o formatador."
   syntax:
     content: protected abstract void WriteValueType (object obj, string name, Type memberType);
     parameters:
     - id: obj
       type: System.Object
-      description: "The object representing the value type."
+      description: "O objecto que representa o tipo de valor."
     - id: name
       type: System.String
-      description: "The name of the member."
+      description: "O nome do membro."
     - id: memberType
       type: System.Type
-      description: "The <xref:System.Type> of the value type."
+      description: "O <xref:System.Type>do tipo de valor.</xref:System.Type>"
   overload: System.Runtime.Serialization.Formatter.WriteValueType*
   exceptions: []
   platform:

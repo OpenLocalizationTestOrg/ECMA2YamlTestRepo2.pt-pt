@@ -16,8 +16,8 @@ items:
   nameWithType: IXamlNameResolver
   fullName: System.Xaml.IXamlNameResolver
   type: Interface
-  summary: "Describes a service that can return objects that are specified by XAML name, or alternatively, returns a token that defers name resolution. The service can also return an enumerable set of all named objects that are in the XAML namescope."
-  remarks: "This interface is not intended for external implementation of typical XAML scenarios because it is a service. This service enables markup extensions and type converters to resolve XAML names to other objects from the same XAML source while they are still in a XAML node representation. The service can be used to resolve forward references for any mechanism that relies on XAML names for nonlinear access to the surrounding XAML production. For more information, see [Type Converters and Markup Extensions for XAML](~/add/includes/ajax-current-ext-md.md).       Type converters and markup extensions can query for IXamlNameResolver as a service on the service context that is provided by a XAML object writer, when the XAML object writer invokes value conversion behavior. For more information, see [Type Converters and Markup Extensions for XAML](../Topic/Type%20Converters%20and%20Markup%20Extensions%20for%20XAML.md) and [Service Contexts Available to Type Converters and Markup Extensions](~/add/includes/ajax-current-ext-md.md).       This service exposes an API that can defer name resolution. The metaphor implemented by the service is that names that cannot be resolved in a first pass against a partial name-object graph should be stored and used to create the fixup token. In the default behavior, all such names are submitted for another resolution attempt on a second pass. On the second pass, the overall name-object graph is complete, and all the fixup tokens are able to resolve.      > [!NOTE] >  Even if they are permitted by a particular implementation, forward references in XAML inevitably have performance consequences. As a best practice for production-quality XAML, avoid forward references whenever possible."
+  summary: "Descreve um serviço que pode devolver objetos que são especificados por nome XAML ou, em alternativa, devolve um token que defers resolução do nome. O serviço também pode devolver um conjunto enumeráveis de todos os objetos com nome que se encontrem no namescope XAML."
+  remarks: "Esta interface não se destina implementação externa de cenários típicos de XAML porque é um serviço. Este serviço permite que as extensões de markup e conversores de tipo para resolver nomes XAML outros objetos da mesma origem XAML enquanto estão ainda numa representação de nó XAML. O serviço pode ser utilizado para resolver referências de reencaminhamento para qualquer mecanismo que se baseie nos nomes XAML para nonlinear acesso para a produção de XAML surrounding. Para obter mais informações, consulte [conversores de tipo e as extensões de Markup para XAML](~/add/includes/ajax-current-ext-md.md).       Tipo conversores e as extensões de markup podem consultar IXamlNameResolver como um serviço no contexto do serviço que é fornecido por um escritor de objeto XAML, quando o escritor de objeto XAML invoca o comportamento de conversão do valor. Para obter mais informações, consulte [conversores de tipo e as extensões de Markup para XAML](../Topic/Type%20Converters%20and%20Markup%20Extensions%20for%20XAML.md) e [serviço contextos disponíveis para os conversores de tipo e as extensões de Markup](~/add/includes/ajax-current-ext-md.md).       Este serviço expõe uma API que pode diferir resolução do nome. Metaphor implementado pelo serviço é que os nomes que não não possível resolver uma passagem primeiro contra um gráfico de objeto de nome parcial devem ser armazenados e utilizados para criar o token de correção. No comportamento predefinido, todos os nomes deste tipo são submetidos para outra tentativa de resolução em passagem uma segundo. A passagem de segundo, o gráfico de objeto de nome global foi concluído, em todos os tokens de correcção são capazes de resolver.      > [!NOTE] > Mesmo sejam permitidos por uma implementação específica, referências de reencaminhamento em XAML tem inevitavelmente consequências de desempenho. Como melhor prática para XAML de qualidade de produção, evite referências de reencaminhamento sempre que possível."
   syntax:
     content: public interface IXamlNameResolver
   implements: []
@@ -35,13 +35,13 @@ items:
   assemblies:
   - System.Xaml
   namespace: System.Xaml
-  summary: "Returns an enumerable set of all named objects in the XAML namescope."
+  summary: "Devolve um conjunto enumeráveis de todos os objetos com nome namescope o XAML."
   syntax:
     content: public System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string,object>> GetAllNamesAndValuesInScope ();
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}}
-      description: "An enumerable set of &lt;xref:System.Collections.Generic.KeyValuePair%602&gt; objects. For each &lt;xref:System.Collections.Generic.KeyValuePair%602&gt;, the &lt;xref:System.Collections.Generic.KeyValuePair%602.Key%2A&gt; component is a string, and the &lt;xref:System.Collections.Generic.KeyValuePair%602.Value%2A&gt; component is the object that uses the &lt;xref:System.Collections.Generic.KeyValuePair%602.Key%2A&gt; name in the XAML namescope."
+      description: "Um conjunto enumeráveis de &lt;xref:System.Collections.Generic.KeyValuePair%602&gt; objetos. Para cada &lt;xref:System.Collections.Generic.KeyValuePair%602&gt;, a &lt;xref:System.Collections.Generic.KeyValuePair%602.Key%2A&gt; componente é uma cadeia e o &lt;xref:System.Collections.Generic.KeyValuePair%602.Value%2A&gt; componente é o objeto que utiliza o &lt;xref:System.Collections.Generic.KeyValuePair%602.Key%2A&gt; nome no namescope XAML."
   overload: System.Xaml.IXamlNameResolver.GetAllNamesAndValuesInScope*
   exceptions: []
   platform:
@@ -58,17 +58,17 @@ items:
   assemblies:
   - System.Xaml
   namespace: System.Xaml
-  summary: "Returns an object that can correct for certain markup patterns that produce forward references."
-  remarks: "Existing internal service providers that are available in schema contexts for markup extensions and type converters can implement this service; however, they return an internal type that only the existing XAML writers that work under the default XAML schema context can process.       When all the forward referenced names are resolvable, the user code is called to reparse each name in the list."
+  summary: "Devolve um objeto que pode corrigir determinados padrões de markup que produzem referências de reencaminhamento."
+  remarks: "Fornecedores de serviço interno existentes que estão disponíveis nos contextos de esquema para as extensões de markup e escreva conversores podem implementar este serviço; No entanto, devolvem um tipo interno que apenas os existentes XAML escritores que funcionam no contexto do esquema XAML predefinido podem processar.       Quando todos os nomes de referenciado reencaminhar resolvíveis, o código de utilizador é chamado para cada nome na lista de reanálise."
   syntax:
     content: public object GetFixupToken (System.Collections.Generic.IEnumerable<string> names);
     parameters:
     - id: names
       type: System.Collections.Generic.IEnumerable{System.String}
-      description: "A collection of names that are possible forward references."
+      description: "Uma coleção de nomes que são possíveis referências de reencaminhamento."
     return:
       type: System.Object
-      description: "An object that provides a token for lookup behavior to be evaluated later."
+      description: "Um objeto que fornece um token para o comportamento de pesquisa ser avaliadas mais tarde."
   overload: System.Xaml.IXamlNameResolver.GetFixupToken*
   exceptions: []
   platform:
@@ -85,20 +85,20 @@ items:
   assemblies:
   - System.Xaml
   namespace: System.Xaml
-  summary: "Returns an object that can correct for certain markup patterns that produce forward references."
-  remarks: "Existing internal service providers that are available in schema contexts for markup extensions and type converters implement this service; however, they return an internal type that can only be processed by the existing XAML writers that work under the default XAML schema context.       If `canAssignDirectly` is `false`, when all the forward referenced names are resolvable, the user code is called to reparse each name in the list."
+  summary: "Devolve um objeto que pode corrigir determinados padrões de markup que produzem referências de reencaminhamento."
+  remarks: "Fornecedores de serviço interno existentes que estão disponíveis nos contextos de esquema para as extensões de markup e escreva conversores implementam este serviço; No entanto, devolvem um tipo interno que só pode ser processado pelos escritores XAML existentes que funcionam no contexto do esquema XAML de predefinição.       Se `canAssignDirectly` é `false`, quando todos os nomes de referenciado direta estão resolvíveis, o código de utilizador é chamado para cada nome na lista de reanálise."
   syntax:
     content: public object GetFixupToken (System.Collections.Generic.IEnumerable<string> names, bool canAssignDirectly);
     parameters:
     - id: names
       type: System.Collections.Generic.IEnumerable{System.String}
-      description: "A collection of names that are possible forward references."
+      description: "Uma coleção de nomes que são possíveis referências de reencaminhamento."
     - id: canAssignDirectly
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> to immediately assign the resolved name reference to the target property. <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref> to call the user code for a reparse. The default behavior is <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>atribuir imediatamente a referência de resolução de nome para a propriedade de destino. <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>para chamar o código de utilizador para uma reanálise. O comportamento predefinido é <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
     return:
       type: System.Object
-      description: "An object that provides a token for lookup behavior to be evaluated later."
+      description: "Um objeto que fornece um token para o comportamento de pesquisa ser avaliadas mais tarde."
   overload: System.Xaml.IXamlNameResolver.GetFixupToken*
   exceptions: []
   platform:
@@ -115,13 +115,13 @@ items:
   assemblies:
   - System.Xaml
   namespace: System.Xaml
-  summary: "Gets a value that determines whether calling <xref:System.Xaml.IXamlNameResolver.GetFixupToken*> is available in order to resolve a name into a token for forward resolution."
-  remarks: "This property returns `false` when <xref:System.Xaml.IXamlNameResolver.GetFixupToken%2A> does not return a token because a <xref:System.Xaml.Schema.XamlValueConverter%601> is involved in the second pass on an existing token."
+  summary: "Obtém um valor que determina se chamar <xref:System.Xaml.IXamlNameResolver.GetFixupToken*>está disponível para resolver um nome para um token para a resolução direta.</xref:System.Xaml.IXamlNameResolver.GetFixupToken*>"
+  remarks: "Esta propriedade devolve `false` quando <xref:System.Xaml.IXamlNameResolver.GetFixupToken%2A>devolveu um token porque um <xref:System.Xaml.Schema.XamlValueConverter%601>envolvido da passagem segundo num token existente.</xref:System.Xaml.Schema.XamlValueConverter%601> </xref:System.Xaml.IXamlNameResolver.GetFixupToken%2A>"
   syntax:
     content: public bool IsFixupTokenAvailable { get; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if <xref:System.Xaml.IXamlNameResolver.GetFixupToken*> is available as an implementation that returns a useful token for forward resolution; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se <xref:System.Xaml.IXamlNameResolver.GetFixupToken*>está disponível como uma implementação que devolva um token útil para resolução direta de; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>.</xref:System.Xaml.IXamlNameResolver.GetFixupToken*>"
   overload: System.Xaml.IXamlNameResolver.IsFixupTokenAvailable*
   exceptions: []
   platform:
@@ -138,12 +138,12 @@ items:
   assemblies:
   - System.Xaml
   namespace: System.Xaml
-  summary: "Occurs when a XAML processor has registered all the relevant names to the backing XAML namescope."
+  summary: "Ocorre quando um processador XAML registou todos os nomes de relevantes para o namescope XAML de cópia de segurança."
   syntax:
     content: public event EventHandler OnNameScopeInitializationComplete;
     return:
       type: System.EventHandler
-      description: "To be added."
+      description: "A adicionar."
   exceptions: []
   platform:
   - net462
@@ -159,17 +159,17 @@ items:
   assemblies:
   - System.Xaml
   namespace: System.Xaml
-  summary: "Resolves an object from a name reference."
-  remarks: "If a value is returned as `null`, a forward reference might exist. Implementations that want to support forward references can use the `FixupToken` pattern through the <xref:System.Xaml.IXamlNameResolver.GetFixupToken%2A> and <xref:System.Xaml.IXamlNameResolver.IsFixupTokenAvailable%2A> APIs."
+  summary: "Resolve um objeto de uma referência de nome."
+  remarks: "Se um valor é devolvido como `null`, poderá existir uma referência direta. As implementações que pretendem suportar referências de reencaminhamento podem utilizar o `FixupToken` padrão através de <xref:System.Xaml.IXamlNameResolver.GetFixupToken%2A>e <xref:System.Xaml.IXamlNameResolver.IsFixupTokenAvailable%2A>APIs.</xref:System.Xaml.IXamlNameResolver.IsFixupTokenAvailable%2A> </xref:System.Xaml.IXamlNameResolver.GetFixupToken%2A>"
   syntax:
     content: public object Resolve (string name);
     parameters:
     - id: name
       type: System.String
-      description: "The name reference to resolve."
+      description: "A referência de nome para resolver."
     return:
       type: System.Object
-      description: "The resolved object; or null."
+      description: "O objecto resolvido; ou nulo."
   overload: System.Xaml.IXamlNameResolver.Resolve*
   exceptions: []
   platform:
@@ -186,19 +186,19 @@ items:
   assemblies:
   - System.Xaml
   namespace: System.Xaml
-  summary: "Resolves an object from a name reference, and provides a tracking value that reports whether the object is fully initialized for object graph purposes."
+  summary: "Resolve um objeto de uma referência de nome e fornece um valor de registo que indica se o objeto foi completamente inicializado para fins de gráfico de objeto."
   syntax:
     content: public object Resolve (string name, out bool isFullyInitialized);
     parameters:
     - id: name
       type: System.String
-      description: "The name reference to resolve."
+      description: "A referência de nome para resolver."
     - id: isFullyInitialized
       type: System.Boolean
-      description: "When this method returns, <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the returned object has any dependencies on unresolved references; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "Quando este método devolve, <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;> </xref> se o objeto devolvido tiver quaisquer dependências de referências não resolvidas; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
     return:
       type: System.Object
-      description: "An object that provides a token for lookup behavior to be evaluated later."
+      description: "Um objeto que fornece um token para o comportamento de pesquisa ser avaliadas mais tarde."
   overload: System.Xaml.IXamlNameResolver.Resolve*
   exceptions: []
   platform:

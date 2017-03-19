@@ -23,8 +23,8 @@ items:
   nameWithType: PrincipalPermission
   fullName: System.Security.Permissions.PrincipalPermission
   type: Class
-  summary: "Allows checks against the active principal (see <xref:System.Security.Principal.IPrincipal>) using the language constructs defined for both declarative and imperative security actions. This class cannot be inherited."
-  remarks: "By passing identity information (user name and role) to the constructor, PrincipalPermission can be used to demand that the identity of the active principal matches this information.       To match the active <xref:System.Security.Principal.IPrincipal> and associated <xref:System.Security.Principal.IIdentity>, both the specified identity and role must match. If `null` identity string is used, it is interpreted as a request to match any identity. Use of `null` role string will match any role. By implication, passing `null` parameter for `name` or `role` to PrincipalPermission will match the identity and roles in any <xref:System.Security.Principal.IPrincipal>. It is also possible to construct a PrincipalPermission that only determines whether the <xref:System.Security.Principal.IIdentity> represents an authenticated or unauthenticated entity. In this case, `name` and `role` are ignored.       Unlike most other permissions, PrincipalPermission does not extend <xref:System.Security.CodeAccessPermission>. It does, however, implement the <xref:System.Security.IPermission> interface. This is because PrincipalPermission is not a code access permission; that is, it is not granted based on the identity of the executing assembly. Instead, it allows code to perform actions (<xref:System.Security.Permissions.PrincipalPermission.Demand%2A>, <xref:System.Security.Permissions.PrincipalPermission.Union%2A>, <xref:System.Security.Permissions.PrincipalPermission.Intersect%2A>, and so on) against the current user identity in a manner consistent with the way those actions are performed for code access and code identity permissions.      > [!IMPORTANT] >  Prior to a demand for principal permission it is necessary to set the current application domain&quot;s principal policy to the enumeration value <xref:System.Security.Principal.PrincipalPolicy>. By default, the principal policy is set to <xref:System.Security.Principal.PrincipalPolicy>. If you do not set the principal policy to <xref:System.Security.Principal.PrincipalPolicy>, a demand for principal permission will fail. The following code should be executed before the principal permission is demanded:   >    >  `AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal).`"
+  summary: "Permite que as verificações de contra o principal do Active Directory (consulte <xref:System.Security.Principal.IPrincipal>) utilizando as construções de idioma definidas para ambas as ações de segurança declarativos e imperativo.</xref:System.Security.Principal.IPrincipal> Esta classe não pode ser herdada."
+  remarks: "Através da transmissão de informações de identidade (nome de utilizador e função) para o construtor, PrincipalPermission pode ser utilizado para exigir que a identidade do Active Directory principal corresponde a estas informações.       Para fazer corresponder o Active Directory <xref:System.Security.Principal.IPrincipal>e associados <xref:System.Security.Principal.IIdentity>, a identidade especificada e a função tem de corresponder ao.</xref:System.Security.Principal.IIdentity> </xref:System.Security.Principal.IPrincipal> Se `null` cadeia de identidade é utilizada, ela é interpretada como um pedido para corresponder a qualquer identidade. A utilização de `null` cadeia função corresponderá qualquer função. Por implicação, transmitir `null` parâmetro `name` ou `role` para PrincipalPermission corresponderá as funções em qualquer <xref:System.Security.Principal.IPrincipal>.</xref:System.Security.Principal.IPrincipal> e identidade Também é possível construir um PrincipalPermission que apenas determina se o <xref:System.Security.Principal.IIdentity>represente uma entidade autenticada ou não autenticada.</xref:System.Security.Principal.IIdentity> Neste caso, `name` e `role` são ignorados.       Ao contrário da maioria das outras permissões PrincipalPermission não expande <xref:System.Security.CodeAccessPermission>.</xref:System.Security.CodeAccessPermission> Este, no entanto, implementa o <xref:System.Security.IPermission>interface.</xref:System.Security.IPermission> Isto acontece porque PrincipalPermission não é uma permissão de acesso de código; ou seja, não é concedido com base na identidade da assemblagem em execução. Em vez disso, permite que o código efetuar ações (<xref:System.Security.Permissions.PrincipalPermission.Demand%2A>, <xref:System.Security.Permissions.PrincipalPermission.Union%2A>, <xref:System.Security.Permissions.PrincipalPermission.Intersect%2A>, e assim sucessivamente) contra a identidade do utilizador atual de uma forma consistente com a forma como essas ações são efetuadas para acesso de código e permissões de identidade do código.</xref:System.Security.Permissions.PrincipalPermission.Intersect%2A> </xref:System.Security.Permissions.PrincipalPermission.Union%2A> </xref:System.Security.Permissions.PrincipalPermission.Demand%2A>      > [!IMPORTANT] > Antes de um pedido da permissão principal é necessário definir a política de principal do domínio de aplicação atual com o valor de enumeração <xref:System.Security.Principal.PrincipalPolicy>.</xref:System.Security.Principal.PrincipalPolicy> Por predefinição, a política de principal está definida como <xref:System.Security.Principal.PrincipalPolicy>.</xref:System.Security.Principal.PrincipalPolicy> Se definir a política de principal <xref:System.Security.Principal.PrincipalPolicy>, uma pedido da permissão principal irá falhar.</xref:System.Security.Principal.PrincipalPolicy> O seguinte código deve ser executado antes da permissão principal é demanded: >>`AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal).`"
   example:
   - "The following example requires the active principal to be an administrator. The `name` parameter is `null`, which enables any user who is an administrator to pass the demand.  \n  \n> [!NOTE]\n>  In Windows Vista, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that requires you to be an administrator, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator.  \n  \n [!code-cs[Classic PrincipalPermission Example#1](~/add/codesnippet/csharp/t-system.security.permis_19_1.cs)]\n [!code-vb[Classic PrincipalPermission Example#1](~/add/codesnippet/visualbasic/t-system.security.permis_19_1.vb)]\n [!code-cpp[Classic PrincipalPermission Example#1](~/add/codesnippet/cpp/t-system.security.permis_19_1.cpp)]"
   syntax:
@@ -52,19 +52,19 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Initializes a new instance of the <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;></xref> class with the specified <xref href=&quot;System.Security.Permissions.PermissionState&quot;></xref>."
-  remarks: "`None` matches only the unauthenticated principal (<xref:System.Security.Permissions.PrincipalPermissionAttribute.Name%2A> is the empty string (&quot;&quot;), no <xref:System.Security.Permissions.PrincipalPermissionAttribute.Role%2A>, <xref:System.Security.Permissions.PrincipalPermissionAttribute.Authenticated%2A> is `false`). `Unrestricted` matches all principals (<xref:System.Security.Permissions.PrincipalPermissionAttribute.Name%2A> is `null`, <xref:System.Security.Permissions.PrincipalPermissionAttribute.Role%2A> is `null`).      > [!NOTE] >  This constructor is included for consistency with the design of other permissions, but is not useful in practice."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;> </xref> classe com especificado <xref href=&quot;System.Security.Permissions.PermissionState&quot;> </xref>."
+  remarks: "`None`corresponde a apenas o principal não autenticado (<xref:System.Security.Permissions.PrincipalPermissionAttribute.Name%2A> é a cadeia vazia (&quot;&quot;), não <xref:System.Security.Permissions.PrincipalPermissionAttribute.Role%2A>, <xref:System.Security.Permissions.PrincipalPermissionAttribute.Authenticated%2A>é `false`).</xref:System.Security.Permissions.PrincipalPermissionAttribute.Authenticated%2A> </xref:System.Security.Permissions.PrincipalPermissionAttribute.Role%2A> </xref:System.Security.Permissions.PrincipalPermissionAttribute.Name%2A> `Unrestricted`corresponde a todos os objetos principais (<xref:System.Security.Permissions.PrincipalPermissionAttribute.Name%2A> é `null`, <xref:System.Security.Permissions.PrincipalPermissionAttribute.Role%2A>é `null`).</xref:System.Security.Permissions.PrincipalPermissionAttribute.Role%2A> </xref:System.Security.Permissions.PrincipalPermissionAttribute.Name%2A>      > [!NOTE] > Este construtor está incluído para consistência com a estrutura de outras permissões, mas não é útil em prática."
   syntax:
     content: public PrincipalPermission (System.Security.Permissions.PermissionState state);
     parameters:
     - id: state
       type: System.Security.Permissions.PermissionState
-      description: "One of the <xref href=&quot;System.Security.Permissions.PermissionState&quot;></xref> values."
+      description: "Um do <xref href=&quot;System.Security.Permissions.PermissionState&quot;> </xref> valores."
   overload: System.Security.Permissions.PrincipalPermission.#ctor*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>state</code> parameter is not a valid <xref href=&quot;System.Security.Permissions.PermissionState&quot;></xref>."
+    description: "O <code> state </code> parâmetro não é um <xref href=&quot;System.Security.Permissions.PermissionState&quot;> </xref>."
   platform:
   - net462
 - uid: System.Security.Permissions.PrincipalPermission.#ctor(System.String,System.String)
@@ -79,8 +79,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Initializes a new instance of the <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;></xref> class for the specified <code>name</code> and <code>role</code>."
-  remarks: "Both the `name` parameter and the `role` parameter must match for this permission to match the active <xref:System.Security.Principal.IPrincipal> and associated <xref:System.Security.Principal.IIdentity>. Set `name` to `null` to check for any user in a role."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;> </xref> classe especificada para <code> name </code> e <code> role </code>."
+  remarks: "Tanto o `name` parâmetro e o `role` parâmetro tem de corresponder esta permissão corresponder ao Active Directory <xref:System.Security.Principal.IPrincipal>e associados <xref:System.Security.Principal.IIdentity>.</xref:System.Security.Principal.IIdentity> </xref:System.Security.Principal.IPrincipal> Definir `name` para `null` para procurar qualquer utilizador numa função."
   example:
   - "The following example requires the active principal to be an administrator. The `name` parameter is `null`, which enables any user who is an administrator to pass the demand.  \n  \n **Note** In Windows Vista, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that requires you to be an administrator, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator.  \n  \n [!code-cs[Classic PrincipalPermission Example#1](~/add/codesnippet/csharp/b42fc3af-7a7c-4eef-9f54-_1.cs)]\n [!code-vb[Classic PrincipalPermission Example#1](~/add/codesnippet/visualbasic/b42fc3af-7a7c-4eef-9f54-_1.vb)]\n [!code-cpp[Classic PrincipalPermission Example#1](~/add/codesnippet/cpp/b42fc3af-7a7c-4eef-9f54-_1.cpp)]"
   syntax:
@@ -88,10 +88,10 @@ items:
     parameters:
     - id: name
       type: System.String
-      description: "The name of the <xref:System.Security.Principal.IPrincipal> object&quot;s user."
+      description: "O nome do <xref:System.Security.Principal.IPrincipal>utilizador do objeto.</xref:System.Security.Principal.IPrincipal>"
     - id: role
       type: System.String
-      description: "The role of the <xref:System.Security.Principal.IPrincipal> object&quot;s user (for example, Administrator)."
+      description: "A função do <xref:System.Security.Principal.IPrincipal>do objeto (por exemplo, administrador utilizador).</xref:System.Security.Principal.IPrincipal>"
   overload: System.Security.Permissions.PrincipalPermission.#ctor*
   exceptions: []
   platform:
@@ -108,20 +108,20 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Initializes a new instance of the <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;></xref> class for the specified <code>name</code>, <code>role</code>, and authentication status."
-  remarks: "Both the `name` parameter and the `role` parameter must match for this permission to match the active <xref:System.Security.Principal.IPrincipal> and associated <xref:System.Security.Principal.IIdentity>."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;> </xref> classe especificada para <code> name </code>, <code> role </code>e o estado de autenticação."
+  remarks: "Tanto o `name` parâmetro e o `role` parâmetro tem de corresponder esta permissão corresponder ao Active Directory <xref:System.Security.Principal.IPrincipal>e associados <xref:System.Security.Principal.IIdentity>.</xref:System.Security.Principal.IIdentity> </xref:System.Security.Principal.IPrincipal>"
   syntax:
     content: public PrincipalPermission (string name, string role, bool isAuthenticated);
     parameters:
     - id: name
       type: System.String
-      description: "The name of the <xref:System.Security.Principal.IPrincipal> object&quot;s user."
+      description: "O nome do <xref:System.Security.Principal.IPrincipal>utilizador do objeto.</xref:System.Security.Principal.IPrincipal>"
     - id: role
       type: System.String
-      description: "The role of the <xref:System.Security.Principal.IPrincipal> object&quot;s user (for example, Administrator)."
+      description: "A função do <xref:System.Security.Principal.IPrincipal>do objeto (por exemplo, administrador utilizador).</xref:System.Security.Principal.IPrincipal>"
     - id: isAuthenticated
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> to signify that the user is authenticated; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>para indicar que o utilizador é autenticado; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.Permissions.PrincipalPermission.#ctor*
   exceptions: []
   platform:
@@ -138,14 +138,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Creates and returns an identical copy of the current permission."
-  remarks: "A copy of the permission represents the same principal and identity as the original permission."
+  summary: "Cria e devolve uma cópia da permissão atual idêntica."
+  remarks: "Uma cópia da permissão representa o mesmo principal e a identidade como a permissão original."
   syntax:
     content: public System.Security.IPermission Copy ();
     parameters: []
     return:
       type: System.Security.IPermission
-      description: "A copy of the current permission."
+      description: "Uma cópia da permissão atual."
   overload: System.Security.Permissions.PrincipalPermission.Copy*
   exceptions: []
   platform:
@@ -162,8 +162,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Determines at run time whether the current principal matches the principal specified by the current permission."
-  remarks: "If no <xref:System.Security.SecurityException> is raised, Demand succeeds.       This method acts against the principal attached to the calling thread.      > [!IMPORTANT] >  Prior to calling the Demand method, it is necessary to set the current application domain&quot;s principal policy to the enumeration value <xref:System.Security.Principal.PrincipalPolicy>. By default the principal policy is set to <xref:System.Security.Principal.PrincipalPolicy>. If you do not set the principal policy to <xref:System.Security.Principal.PrincipalPolicy>, a demand for principal permission will fail. The following code should be executed before the demand for principal permission occurs:   >    >  `AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal).`"
+  summary: "Em tempo de execução, determina se o principal atual corresponde ao principal especificado, a permissão atual."
+  remarks: "Se não <xref:System.Security.SecurityException>é gerado, a pedido é concluída com êxito.</xref:System.Security.SecurityException>       Este método funciona contra o principal ligado para o thread de chamada.      > [!IMPORTANT] > Antes de chamar o método de pedido, é necessário definir a política de principal do domínio de aplicação atual com o valor de enumeração <xref:System.Security.Principal.PrincipalPolicy>.</xref:System.Security.Principal.PrincipalPolicy> Por predefinição, a política de principal está definida como <xref:System.Security.Principal.PrincipalPolicy>.</xref:System.Security.Principal.PrincipalPolicy> Se definir a política de principal <xref:System.Security.Principal.PrincipalPolicy>, uma pedido da permissão principal irá falhar.</xref:System.Security.Principal.PrincipalPolicy> O seguinte código deve ser executado antes de ocorre o pedido da permissão principal: >>`AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal).`"
   syntax:
     content: public void Demand ();
     parameters: []
@@ -171,7 +171,7 @@ items:
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The current principal does not pass the security check for the principal specified by the current permission.       -or-       The current <xref:System.Security.Principal.IPrincipal> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "O principal atual não passaram a verificação de segurança para o principal especificado, a permissão atual.       - ou - atual <xref:System.Security.Principal.IPrincipal>é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>.</xref:System.Security.Principal.IPrincipal>"
   platform:
   - net462
 - uid: System.Security.Permissions.PrincipalPermission.Equals(System.Object)
@@ -186,17 +186,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Determines whether the specified <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;></xref> object is equal to the current <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;></xref>."
-  remarks: "For more information, see <xref:System.Object.Equals%2A>."
+  summary: "Determina se especificado <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;> </xref> objeto é igual a atual <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;> </xref>."
+  remarks: "Para obter mais informações, consulte <xref:System.Object.Equals%2A>.</xref:System.Object.Equals%2A>"
   syntax:
     content: public override bool Equals (object obj);
     parameters:
     - id: obj
       type: System.Object
-      description: "The <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;></xref> object to compare with the current <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;></xref>."
+      description: "O <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;> </xref> objeto para a comparação com a atual <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;> </xref>."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the specified <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;></xref> is equal to the current <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;></xref> object; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se especificado <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;> </xref> é igual a atual <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;> </xref> objeto; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.Permissions.PrincipalPermission.Equals*
   exceptions: []
   platform:
@@ -213,13 +213,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Reconstructs a permission with a specified state from an XML encoding."
+  summary: "Reconstructs uma permissão com um estado especificado de uma codificação de XML."
   syntax:
     content: public void FromXml (System.Security.SecurityElement elem);
     parameters:
     - id: elem
       type: System.Security.SecurityElement
-      description: "The XML encoding to use to reconstruct the permission."
+      description: "O codificação XML a utilizar para reconstrua a permissão."
   overload: System.Security.Permissions.PrincipalPermission.FromXml*
   exceptions:
   - type: System.ArgumentNullException
@@ -227,7 +227,7 @@ items:
     description: "The <code>elem</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>elem</code> parameter is not a valid permission element.       -or-       The <code>elem</code> parameter&quot;s version number is not valid."
+    description: "O <code> elem </code> parâmetro não é um elemento de permissão válido.       - ou - <code> elem </code> número da versão do parâmetro não é válido."
   platform:
   - net462
 - uid: System.Security.Permissions.PrincipalPermission.GetHashCode
@@ -242,14 +242,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Gets a hash code for the <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;></xref> object that is suitable for use in hashing algorithms and data structures such as a hash table."
-  remarks: "The hash code for two instances of the same permission might be different, hence a hash code should not be used to compare two <xref:System.Security.Permissions.PrincipalPermission> objects."
+  summary: "Obtém um código hash para o <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;> </xref> objeto que é adequado para utilização em estruturas de dados e algoritmos, tais como uma tabela hash de hash."
+  remarks: "O código hash para duas instâncias da mesma permissão poderão ser diferente, por conseguinte, um código hash não deve ser utilizado para comparar dois <xref:System.Security.Permissions.PrincipalPermission>objetos.</xref:System.Security.Permissions.PrincipalPermission>"
   syntax:
     content: public override int GetHashCode ();
     parameters: []
     return:
       type: System.Int32
-      description: "A hash code for the current <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;></xref> object."
+      description: "Um código hash para o atual <xref href=&quot;System.Security.Permissions.PrincipalPermission&quot;> </xref> objeto."
   overload: System.Security.Permissions.PrincipalPermission.GetHashCode*
   exceptions: []
   platform:
@@ -266,22 +266,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Creates and returns a permission that is the intersection of the current permission and the specified permission."
-  remarks: "Because two users never intersect, this method is not useful for <xref:System.Security.Permissions.PrincipalPermission>. For example,       [!code-cpp[System.Security.Permissions.PrincipalPermission#1](~/add/codesnippet/cpp/7be5e612-f4dc-44d9-9530-_1.cpp)]  [!code-cs[System.Security.Permissions.PrincipalPermission#1](~/add/codesnippet/csharp/7be5e612-f4dc-44d9-9530-_1.cs)]  [!code-vb[System.Security.Permissions.PrincipalPermission#1](~/add/codesnippet/visualbasic/7be5e612-f4dc-44d9-9530-_1.vb)]       is equivalent to       [!code-cpp[System.Security.Permissions.PrincipalPermission#2](~/add/codesnippet/cpp/7be5e612-f4dc-44d9-9530-_2.cpp)]  [!code-cs[System.Security.Permissions.PrincipalPermission#2](~/add/codesnippet/csharp/7be5e612-f4dc-44d9-9530-_2.cs)]  [!code-vb[System.Security.Permissions.PrincipalPermission#2](~/add/codesnippet/visualbasic/7be5e612-f4dc-44d9-9530-_2.vb)]       because no identity can simultaneously represent both Bob and Louise. In effect, `pp1.Demand()` only succeeds if an unauthenticated principal (with name equal to the empty string (&quot;&quot;)) is allowed to act in the Administrator role."
+  summary: "Cria e devolve uma permissão que está a interseção da permissão atual e a permissão especificada."
+  remarks: "Uma vez que nunca intersect dois utilizadores, este método não é útil para <xref:System.Security.Permissions.PrincipalPermission>.</xref:System.Security.Permissions.PrincipalPermission> Por exemplo, [!code-cpp [System.Security.Permissions.PrincipalPermission#1](~/add/codesnippet/cpp/7be5e612-f4dc-44d9-9530-_1.cpp)][!code-cs[System.Security.Permissions.PrincipalPermission#1](~/add/codesnippet/csharp/7be5e612-f4dc-44d9-9530-_1.cs)][!code-vb[System.Security.Permissions.PrincipalPermission#1](~/add/codesnippet/visualbasic/7be5e612-f4dc-44d9-9530-_1.vb) ] é equivalente ao [!code-cpp [System.Security.Permissions.PrincipalPermission#2](~/add/codesnippet/cpp/7be5e612-f4dc-44d9-9530-_2.cpp)][!code-cs[System.Security.Permissions.PrincipalPermission#2](~/add/codesnippet/csharp/7be5e612-f4dc-44d9-9530-_2.cs)][!code-vb[System.Security.Permissions.PrincipalPermission#2](~/add/codesnippet/visualbasic/7be5e612-f4dc-44d9-9530-_2.vb) ] porque nenhuma identidade em simultâneo pode representar Bernardo e Louise.         Em vigor, `pp1.Demand()` só tem êxito se uma principal não autenticado (com o nome igual à cadeia vazia (&quot;&quot;)) é permitido para atuar na função de administrador."
   syntax:
     content: public System.Security.IPermission Intersect (System.Security.IPermission target);
     parameters:
     - id: target
       type: System.Security.IPermission
-      description: "A permission to intersect with the current permission. It must be of the same type as the current permission."
+      description: "Uma permissão para intersect com a permissão atual. Tem de ser do mesmo tipo de que a permissão atual."
     return:
       type: System.Security.IPermission
-      description: "A new permission that represents the intersection of the current permission and the specified permission. This new permission will be <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if the intersection is empty."
+      description: "Uma nova permissão que representa a interseção da permissão atual e a permissão especificada. Esta nova permissão será <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se intersecção está vazia."
   overload: System.Security.Permissions.PrincipalPermission.Intersect*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>target</code> parameter is not <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> and is not an instance of the same class as the current permission."
+    description: "O <code> target </code> não é o parâmetro <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> e não é uma instância da mesma classe como a permissão atual."
   platform:
   - net462
 - uid: System.Security.Permissions.PrincipalPermission.IsSubsetOf(System.Security.IPermission)
@@ -296,8 +296,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Determines whether the current permission is a subset of the specified permission."
-  remarks: "The current permission is a subset of the specified permission if all demands that succeed for the current permission also succeed for the specified permission."
+  summary: "Determina se a permissão atual é um subconjunto da permissão especificado."
+  remarks: "A permissão atual é um subconjunto da permissão especificado se todos os pedidos que concluída com êxito para a permissão atual também for bem-sucedida para a permissão especificada."
   example:
   - "The following example defines instances of <xref:System.Security.Permissions.PrincipalPermission> corresponding to three distinct users. Two additional instances are then created as groups of users. `pp1` represents Bob and Louise, `pp2` represents Bob, Louise, and Greg.  \n  \n [!code-cpp[Classic PrincipalPermission.IsSubsetOf Example#1](~/add/codesnippet/cpp/88c77b70-6ab7-4d6b-914d-_1.cpp)]\n [!code-vb[Classic PrincipalPermission.IsSubsetOf Example#1](~/add/codesnippet/visualbasic/88c77b70-6ab7-4d6b-914d-_1.vb)]\n [!code-cs[Classic PrincipalPermission.IsSubsetOf Example#1](~/add/codesnippet/csharp/88c77b70-6ab7-4d6b-914d-_1.cs)]  \n  \n With the preceding declarations, `pp1.IsSubsetOf(pp2)` returns `true`, and `pp2.IsSubsetOf(pp1)` returns `false`."
   syntax:
@@ -305,15 +305,15 @@ items:
     parameters:
     - id: target
       type: System.Security.IPermission
-      description: "A permission that is to be tested for the subset relationship. This permission must be of the same type as the current permission."
+      description: "Uma permissão que está a ser testada para a relação de subconjunto. Esta permissão tem de ser do mesmo tipo como a permissão atual."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the current permission is a subset of the specified permission; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a permissão atual é um subconjunto da permissão especificado; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.Permissions.PrincipalPermission.IsSubsetOf*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>target</code> parameter is an object that is not of the same type as the current permission."
+    description: "O <code> target </code> parâmetro é um objeto que não é do mesmo tipo de que a permissão atual."
   platform:
   - net462
 - uid: System.Security.Permissions.PrincipalPermission.IsUnrestricted
@@ -328,14 +328,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Returns a value indicating whether the current permission is unrestricted."
-  remarks: "An unrestricted <xref:System.Security.Permissions.PrincipalPermission> matches any principal."
+  summary: "Devolve um valor que indica se a permissão atual é sem restrições."
+  remarks: "Um sem restrições <xref:System.Security.Permissions.PrincipalPermission>corresponde a qualquer principal.</xref:System.Security.Permissions.PrincipalPermission>"
   syntax:
     content: public bool IsUnrestricted ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the current permission is unrestricted; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a atual permissão é restrita; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.Permissions.PrincipalPermission.IsUnrestricted*
   exceptions: []
   platform:
@@ -352,13 +352,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Creates and returns a string representing the current permission."
+  summary: "Cria e devolve uma cadeia que representa a permissão atual."
   syntax:
     content: public override string ToString ();
     parameters: []
     return:
       type: System.String
-      description: "A representation of the current permission."
+      description: "Uma representação da permissão atual."
   overload: System.Security.Permissions.PrincipalPermission.ToString*
   exceptions: []
   platform:
@@ -375,13 +375,13 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Creates an XML encoding of the permission and its current state."
+  summary: "Cria uma codificação XML de permissão e o respetivo estado atual."
   syntax:
     content: public System.Security.SecurityElement ToXml ();
     parameters: []
     return:
       type: System.Security.SecurityElement
-      description: "An XML encoding of the permission, including any state information."
+      description: "Uma codificação XML da permissão, incluindo as informações de estado."
   overload: System.Security.Permissions.PrincipalPermission.ToXml*
   exceptions: []
   platform:
@@ -398,22 +398,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security.Permissions
-  summary: "Creates a permission that is the union of the current permission and the specified permission."
-  remarks: "Union creates a permission representing the criteria of a given set of individual <xref:System.Security.Permissions.PrincipalPermission> objects. It is useful for compactly representing a set of conditions to test. For example, with the declarations       [!code-cpp[System.Security.Permissions.PrincipalPermission#3](~/add/codesnippet/cpp/dd443af0-98ea-4e3c-9761-_1.cpp)]  [!code-cs[System.Security.Permissions.PrincipalPermission#3](~/add/codesnippet/csharp/dd443af0-98ea-4e3c-9761-_1.cs)]  [!code-vb[System.Security.Permissions.PrincipalPermission#3](~/add/codesnippet/visualbasic/dd443af0-98ea-4e3c-9761-_1.vb)]       `(ppBob.Union(ppLouise)).Demand()` will succeed if the current principal represents Bob in the role of Administrator or Louise in the role of Administrator."
+  summary: "Cria uma permissão que é a União de permissão atual e a permissão especificada."
+  remarks: "União cria uma permissão que representa os critérios de um determinado conjunto de indivíduo <xref:System.Security.Permissions.PrincipalPermission>objetos.</xref:System.Security.Permissions.PrincipalPermission> É útil para compactly que representa um conjunto de condições para testar. Por exemplo, com as declarações de [!code-cpp [System.Security.Permissions.PrincipalPermission#3](~/add/codesnippet/cpp/dd443af0-98ea-4e3c-9761-_1.cpp)][!code-cs[System.Security.Permissions.PrincipalPermission#3](~/add/codesnippet/csharp/dd443af0-98ea-4e3c-9761-_1.cs)][!code-vb[System.Security.Permissions.PrincipalPermission#3](~/add/codesnippet/visualbasic/dd443af0-98ea-4e3c-9761-_1.vb) ] `(ppBob.Union(ppLouise)).Demand()` terá êxito se o principal atual representa Bernardo a função de administrador ou Louise na função de administrador.           "
   syntax:
     content: public System.Security.IPermission Union (System.Security.IPermission other);
     parameters:
     - id: other
       type: System.Security.IPermission
-      description: "A permission to combine with the current permission. It must be of the same type as the current permission."
+      description: "Uma permissão para combinar com a permissão atual. Tem de ser do mesmo tipo de que a permissão atual."
     return:
       type: System.Security.IPermission
-      description: "A new permission that represents the union of the current permission and the specified permission."
+      description: "Uma nova permissão que representa a União de permissão atual e a permissão especificada."
   overload: System.Security.Permissions.PrincipalPermission.Union*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>other</code> parameter is an object that is not of the same type as the current permission."
+    description: "O <code> other </code> parâmetro é um objeto que não é do mesmo tipo de que a permissão atual."
   platform:
   - net462
 references:
