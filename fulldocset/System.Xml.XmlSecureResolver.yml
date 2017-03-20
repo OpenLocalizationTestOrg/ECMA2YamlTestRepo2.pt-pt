@@ -17,8 +17,8 @@ items:
   nameWithType: XmlSecureResolver
   fullName: System.Xml.XmlSecureResolver
   type: Class
-  summary: "Helps to secure another implementation of <xref href=&quot;System.Xml.XmlResolver&quot;></xref> by wrapping the <xref href=&quot;System.Xml.XmlResolver&quot;></xref> object and restricting the resources that the underlying <xref href=&quot;System.Xml.XmlResolver&quot;></xref> has access to."
-  remarks: "The <xref:System.Xml.XmlUrlResolver> class is the default resolver for all classes in the <xref:System.Xml> namespace. It is used to load XML documents and to resolve external resources such as entities, DTDs or schemas, and import or include directives.       You can override this default by specifying the <xref:System.Xml.XmlResolver> object to use. For example, if you want to restrict the resources that the underlying <xref:System.Xml.XmlResolver> can access, you can use an XmlSecureResolver object.       XmlSecureResolver wraps around a concrete implementation of <xref:System.Xml.XmlResolver> and restricts the resources that the underlying <xref:System.Xml.XmlResolver> has access to. For example, XmlSecureResolver has the ability to prohibit cross-domain redirection, which occurs from an embedded Uniform Resource Identifier (URI) reference.       When you construct an XmlSecureResolver object, you provide a valid <xref:System.Xml.XmlResolver> implementation along with a URL, an instance of an evidence object, or a permission set, which is used by the XmlSecureResolver to determine security. Either a <xref:System.Security.PermissionSet?displayProperty=fullName> is generated or the existing one is used and <xref:System.Security.PermissionSet.PermitOnly%2A?displayProperty=fullName> is called on it to help secure the underlying <xref:System.Xml.XmlResolver>.      > [!IMPORTANT] >  XmlSecureResolver objects can contain sensitive information such as user credentials. You should be careful when caching XmlSecureResolver objects and should not pass the XmlSecureResolver object to an untrusted component.      > [!IMPORTANT] >  There are differences in the security infrastructure for code running on the .NET Framework common language runtime (CLR) and for code running on the CLR that is integrated within Microsoft SQL Server 2005. This can lead to cases where code developed for the .NET Framework CLR operates differently when used on the SQL Server integrated CLR. One of these differences affects the XmlSecureResolver class when you have evidence that is based on a URL (that is, when you use the <xref:System.Xml.XmlSecureResolver.CreateEvidenceForUrl%28System.String%29> method or the <xref:System.Xml.XmlSecureResolver.%23ctor%2A> constructor). The policy resolution mechanism of the SQL Server integrated CLR does not use the <xref:System.Security.Policy.Url> or <xref:System.Security.Policy.Zone> information. Instead, it grants permissions based on the GUID that the server adds when assemblies are loaded. When you use the XmlSecureResolver in the SQL Server integrated CLR, provide any required evidence directly by using a specified <xref:System.Security.PermissionSet>.      ## To use a secure resolver      1.  Create an XmlSecureResolver with the correct permission set.      2.  Create an <xref:System.Xml.XmlReaderSettings> object that uses the XmlSecureResolver object.           [!code-vb[XmlSecureResolver_Samples#5a](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_1.vb)]      [!code-cs[XmlSecureResolver_Samples#5a](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_1.cs)]      3.  Pass  the <xref:System.Xml.XmlReaderSettings> object to the <xref:System.Xml.XmlReader.Create%2A> method when you&quot;re creating the <xref:System.Xml.XmlReader> object.           [!code-vb[XmlSecureResolver_Samples#5b](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_2.vb)]      [!code-cs[XmlSecureResolver_Samples#5b](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_2.cs)]      ## To restrict access by using a URL    Use the <xref:System.Xml.XmlSecureResolver.%23ctor%28System.Xml.XmlResolver%2CSystem.String%29> constructor to create an XmlSecureResolver object that is allowed to access your local intranet site only.       [!code-vb[XmlSecureResolver_Samples#3](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_3.vb)]  [!code-cs[XmlSecureResolver_Samples#3](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_3.cs)]      ## To restrict access by using a permission set      1.  Create a <xref:System.Net.WebPermission> object.           [!code-vb[XmlSecureResolver_Samples#4a](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_4.vb)]      [!code-cs[XmlSecureResolver_Samples#4a](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_4.cs)]      2.  Specify the URLs that you want to allow access to.           [!code-vb[XmlSecureResolver_Samples#4b](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_5.vb)]      [!code-cs[XmlSecureResolver_Samples#4b](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_5.cs)]      3.  Add the web permissions to the <xref:System.Security.PermissionSet> object.           [!code-vb[XmlSecureResolver_Samples#4c](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_6.vb)]      [!code-cs[XmlSecureResolver_Samples#4c](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_6.cs)]      4.  Use the <xref:System.Xml.XmlSecureResolver.%23ctor%28System.Xml.XmlResolver%2CSystem.Security.PermissionSet%29> constructor to create an XmlSecureResolver object by using the permission set.           [!code-vb[XmlSecureResolver_Samples#4d](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_7.vb)]      [!code-cs[XmlSecureResolver_Samples#4d](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_7.cs)]           See the <xref:System.Xml.XmlSecureResolver.%23ctor%2A> reference page for another example.      ## To restrict access by using evidence    You can restrict access by using the <xref:System.Xml.XmlSecureResolver.%23ctor%28System.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29> constructor and specifying <xref:System.Security.Policy.Evidence>. The <xref:System.Security.Policy.Evidence> is used to create the <xref:System.Security.PermissionSet> that is applied to the underlying <xref:System.Xml.XmlResolver>. The XmlSecureResolver calls <xref:System.Security.PermissionSet.PermitOnly%2A> on the created <xref:System.Security.PermissionSet> before opening any resources.       Here are some common scenarios and the type of evidence to provide for each:      -   If you are working in a fully trusted environment, use your assembly to create the evidence:           [!code-vb[XmlSecureResolver_Samples#1](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_8.vb)]      [!code-cs[XmlSecureResolver_Samples#1](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_8.cs)]      -   If you are working in a semi-trusted environment, you have code or data coming from an outside source, and you know the origin of the outside source and have a verifiable URI, use the URI to create the evidence:           [!code-vb[XmlSecureResolver_Samples#2](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_9.vb)]      [!code-cs[XmlSecureResolver_Samples#2](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_9.cs)]      -   If you are working in a semi-trusted environment and you have code or data coming from an outside source, but you don&quot;t know the origin of the outside source, either:           Set the `evidence` parameter to `null`. This allows no access to resources.           -or-           If your application requires some access to resources, request evidence from the caller.      ## To use the secure resolver to load an XSLT style sheet      1.  Create an XmlSecureResolver with the correct permission set.      2.  Pass the XmlSecureResolver to the <xref:System.Xml.Xsl.XslCompiledTransform.Load%2A> method.           [!code-vb[XmlSecureResolver_Samples#6](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_10.vb)]      [!code-cs[XmlSecureResolver_Samples#6](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_10.cs)]"
+  summary: "Ajuda a proteger a outra implementação de <xref href=&quot;System.Xml.XmlResolver&quot;> </xref> envolvendo o <xref href=&quot;System.Xml.XmlResolver&quot;> </xref> objeto e restringir os recursos que subjacentes <xref href=&quot;System.Xml.XmlResolver&quot;> </xref> tem acesso."
+  remarks: "O <xref:System.Xml.XmlUrlResolver>classe é a resolução predefinida para todas as classes no <xref:System.Xml>espaço de nomes.</xref:System.Xml> </xref:System.Xml.XmlUrlResolver> É utilizado para carregar documentos XML e para resolver recursos externos, como entidades, DTDs ou esquemas e importe ou diretivas de inclusão.       Pode substituir esta predefinição, especificando o <xref:System.Xml.XmlResolver>objeto a utilizar.</xref:System.Xml.XmlResolver> Por exemplo, se pretender restringir os recursos que subjacentes <xref:System.Xml.XmlResolver>pode aceder, pode utilizar um objeto de XmlSecureResolver.</xref:System.Xml.XmlResolver>       XmlSecureResolver encapsula num wrapper em torno de uma implementação concreta da <xref:System.Xml.XmlResolver>e restringe os recursos que subjacentes <xref:System.Xml.XmlResolver>tem acesso ao.</xref:System.Xml.XmlResolver> </xref:System.Xml.XmlResolver> Por exemplo, XmlSecureResolver tem a capacidade para proibir o redirecionamento entre domínios, que ocorre a partir de uma referência de Uniform Resource Identifier (URI) incorporado.       Quando construir um objeto de XmlSecureResolver, que fornece um <xref:System.Xml.XmlResolver>implementação juntamente com um URL, uma instância de um objeto de provas ou um conjunto de permissões, o que é utilizado pelo XmlSecureResolver para determinar a segurança.</xref:System.Xml.XmlResolver> Quer um <xref:System.Security.PermissionSet?displayProperty=fullName>é gerado ou o existente um é utilizado e <xref:System.Security.PermissionSet.PermitOnly%2A?displayProperty=fullName>é chamado na mesma para ajudar a proteger o <xref:System.Xml.XmlResolver>.</xref:System.Xml.XmlResolver> subjacente</xref:System.Security.PermissionSet.PermitOnly%2A?displayProperty=fullName> </xref:System.Security.PermissionSet?displayProperty=fullName>      > [!IMPORTANT] > XmlSecureResolver objetos podem conter informações confidenciais, tais como as credenciais do utilizador. Deve ter cuidado quando XmlSecureResolver a colocação em cache objetos e não deverá passar o objeto de XmlSecureResolver para um componente não fidedigno.      > [!IMPORTANT] > Existem diferenças na infraestrutura de segurança para o código em execução no .NET Framework language runtime (CLR) e para o código em execução no CLR que está integrado no Microsoft SQL Server 2005. Isto pode levar a casos onde o código desenvolvido para o .NET Framework CLR funciona de forma diferente quando utilizado no SQL Server integrado CLR. Um destas diferenças afeta a classe de XmlSecureResolver quando tiver provas de que o se baseia num URL (ou seja, quando utiliza o <xref:System.Xml.XmlSecureResolver.CreateEvidenceForUrl%28System.String%29>método ou <xref:System.Xml.XmlSecureResolver.%23ctor%2A>construtor).</xref:System.Xml.XmlSecureResolver.%23ctor%2A> </xref:System.Xml.XmlSecureResolver.CreateEvidenceForUrl%28System.String%29> A política de resolução mecanismo do SQL Server integrado CLR não utiliza o <xref:System.Security.Policy.Url>ou <xref:System.Security.Policy.Zone>informações.</xref:System.Security.Policy.Zone> </xref:System.Security.Policy.Url> Em vez disso, conceder permissões com base no GUID que o servidor adiciona quando as assemblagens são carregadas. Quando utiliza o XmlSecureResolver no SQL Server integrado CLR, forneça quaisquer provas necessária diretamente, utilizando um <xref:System.Security.PermissionSet>.</xref:System.Security.PermissionSet> especificado      ## Para utilizar uma resolução segura 1.  Crie um XmlSecureResolver com o conjunto de permissões corretas.      2.  Criar um <xref:System.Xml.XmlReaderSettings>objeto que utiliza o objeto de XmlSecureResolver.</xref:System.Xml.XmlReaderSettings>           [!code-vb[XmlSecureResolver_Samples #5a](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_1.vb)][!code-cs[XmlSecureResolver_Samples #5a](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_1.cs) ] 3.        Transmita o <xref:System.Xml.XmlReaderSettings>de objeto para o <xref:System.Xml.XmlReader.Create%2A>método quando estiver a criar o <xref:System.Xml.XmlReader>objeto.</xref:System.Xml.XmlReader> </xref:System.Xml.XmlReader.Create%2A> </xref:System.Xml.XmlReaderSettings>           [!code-vb[XmlSecureResolver_Samples&#5;b](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_2.vb)][!code-cs[XmlSecureResolver_Samples&#5;b](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_2.cs) ] # # para restringir o acesso através da utilização de uma utilização de URL de <xref:System.Xml.XmlSecureResolver.%23ctor%28System.Xml.XmlResolver%2CSystem.String%29>construtor para criar um objeto de XmlSecureResolver que tem permissão para aceder ao site da intranet local apenas.</xref:System.Xml.XmlSecureResolver.%23ctor%28System.Xml.XmlResolver%2CSystem.String%29>             [!code-vb[XmlSecureResolver_Samples 3](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_3.vb)][!code-cs[XmlSecureResolver_Samples #3](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_3.cs) ] # # para restringir o acesso através da utilização de uma permissão definida 1.    Criar um <xref:System.Net.WebPermission>objeto.</xref:System.Net.WebPermission>           [!code-vb[XmlSecureResolver_Samples #4a](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_4.vb)][!code-cs[XmlSecureResolver_Samples #4a](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_4.cs) ] 2.        Especifique os URLs que pretende permitir o acesso ao.           [!code-vb[XmlSecureResolver_Samples #4b](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_5.vb)][!code-cs[XmlSecureResolver_Samples #4b](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_5.cs) ] 3.        Adicione as permissões de web para o <xref:System.Security.PermissionSet>objeto.</xref:System.Security.PermissionSet>           [!code-vb[XmlSecureResolver_Samples #4 c](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_6.vb)][!code-cs[XmlSecureResolver_Samples #4 c](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_6.cs) ] 4.        Utilize o <xref:System.Xml.XmlSecureResolver.%23ctor%28System.Xml.XmlResolver%2CSystem.Security.PermissionSet%29>construtor para criar um objeto de XmlSecureResolver utilizando o conjunto de permissões.</xref:System.Xml.XmlSecureResolver.%23ctor%28System.Xml.XmlResolver%2CSystem.Security.PermissionSet%29>           [!code-vb[D XmlSecureResolver_Samples&#4;](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_7.vb)][!code-cs[XmlSecureResolver_Samples&#4; d](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_7.cs) ] consulte o <xref:System.Xml.XmlSecureResolver.%23ctor%2A>página de referência para outro exemplo.</xref:System.Xml.XmlSecureResolver.%23ctor%2A>            ## Para restringir o acesso através da utilização de provas pode restringir o acesso através do <xref:System.Xml.XmlSecureResolver.%23ctor%28System.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29>construtor e especificando <xref:System.Security.Policy.Evidence>.</xref:System.Security.Policy.Evidence> </xref:System.Xml.XmlSecureResolver.%23ctor%28System.Xml.XmlResolver%2CSystem.Security.Policy.Evidence%29> <xref:System.Security.Policy.Evidence>É utilizado para criar o <xref:System.Security.PermissionSet>que é aplicada ao subjacente <xref:System.Xml.XmlResolver>.</xref:System.Xml.XmlResolver> </xref:System.Security.PermissionSet> </xref:System.Security.Policy.Evidence> As chamadas de XmlSecureResolver <xref:System.Security.PermissionSet.PermitOnly%2A>o criada no <xref:System.Security.PermissionSet>antes de o abrir quaisquer recursos.</xref:System.Security.PermissionSet> </xref:System.Security.PermissionSet.PermitOnly%2A>       Seguem-se alguns cenários comuns e o tipo de prova para fornecer para cada: - se de que está a trabalhar num ambiente totalmente fidedigno, utilize a assemblagem para criar a provas: [!code-vb [XmlSecureResolver_Samples n. º&1;](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_8.vb)][!code-cs[XmlSecureResolver_Samples n. º&1;](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_8.cs) ] -se estiver a trabalhar num ambiente fidedigno por, tem de código ou dados provenientes de uma origem externa, e já conhece a origem da origem externa e tem um URI verificável , utilize o URI para criar a provas: [!code-vb [XmlSecureResolver_Samples n. º&2;](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_9.vb)][!code-cs[XmlSecureResolver_Samples n. º&2;](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_9.cs) ] - se de que está a trabalhar num ambiente fidedigno por e tiver código ou dados provenientes de uma origem externa, mas não sabe que a origem de origem externa, está: definir o `evidence` parâmetro `null`.             Isto permite sem acesso aos recursos.           - ou - se a sua aplicação requer alguns acesso aos recursos, pedir provas do chamador.      ## Para utilizar o resolvedor seguro para carregar uma folha de estilos XSLT 1.  Crie um XmlSecureResolver com o conjunto de permissões corretas.      2.  Passar XmlSecureResolver para o <xref:System.Xml.Xsl.XslCompiledTransform.Load%2A>método.</xref:System.Xml.Xsl.XslCompiledTransform.Load%2A>           [!code-vb[XmlSecureResolver_Samples&#6;](~/add/codesnippet/visualbasic/t-system.xml.xmlsecurere_10.vb)][!code-cs[XmlSecureResolver_Samples&#6;      ](~/add/codesnippet/csharp/t-system.xml.xmlsecurere_10.cs)]"
   syntax:
     content: 'public class XmlSecureResolver : System.Xml.XmlResolver'
   inheritance:
@@ -41,7 +41,7 @@ items:
   assemblies:
   - System.Xml
   namespace: System.Xml
-  summary: "Initializes a new instance of the <xref href=&quot;System.Xml.XmlSecureResolver&quot;></xref> class with the <xref href=&quot;System.Xml.XmlResolver&quot;></xref> and <xref href=&quot;System.Security.PermissionSet&quot;></xref> specified."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Xml.XmlSecureResolver&quot;> </xref> classe com o <xref href=&quot;System.Xml.XmlResolver&quot;> </xref> e <xref href=&quot;System.Security.PermissionSet&quot;> </xref> especificado."
   remarks: ''
   example:
   - "The following example constructs an <xref:System.Xml.XmlSecureResolver> object by using a customized permission set.  \n  \n [!code-cs[XmlSecureResolver.cctor#1](~/add/codesnippet/csharp/e6fb0edb-66a8-45c7-82d0-_1.cs)]\n [!code-cpp[XmlSecureResolver.cctor#1](~/add/codesnippet/cpp/e6fb0edb-66a8-45c7-82d0-_1.cpp)]\n [!code-vb[XmlSecureResolver.cctor#1](~/add/codesnippet/visualbasic/e6fb0edb-66a8-45c7-82d0-_1.vb)]"
@@ -50,10 +50,10 @@ items:
     parameters:
     - id: resolver
       type: System.Xml.XmlResolver
-      description: "The XML resolver that is wrapped by the <xref href=&quot;System.Xml.XmlSecureResolver&quot;></xref>."
+      description: "A resolução XML é eliminada pelo <xref href=&quot;System.Xml.XmlSecureResolver&quot;> </xref>."
     - id: permissionSet
       type: System.Security.PermissionSet
-      description: "The permission set to apply to the underlying <xref href=&quot;System.Xml.XmlResolver&quot;></xref>. The <xref href=&quot;System.Xml.XmlSecureResolver&quot;></xref> calls the &lt;xref:System.Security.PermissionSet.PermitOnly%2A?displayProperty=fullName&gt; method on the permission set before calling the <xref:System.Xml.XmlSecureResolver.GetEntity*> method on the underlying XML resolver."
+      description: "Definir a permissão para aplicar a subjacentes <xref href=&quot;System.Xml.XmlResolver&quot;> </xref>. O <xref href=&quot;System.Xml.XmlSecureResolver&quot;> </xref> chamadas a &lt;xref:System.Security.PermissionSet.PermitOnly%2A?displayProperty=fullName&gt; método a permissão definido antes de chamar o <xref:System.Xml.XmlSecureResolver.GetEntity*>método no resolvedor XML subjacente.</xref:System.Xml.XmlSecureResolver.GetEntity*>"
   overload: System.Xml.XmlSecureResolver.#ctor*
   exceptions: []
   platform:
@@ -70,17 +70,17 @@ items:
   assemblies:
   - System.Xml
   namespace: System.Xml
-  summary: "Initializes a new instance of the <xref href=&quot;System.Xml.XmlSecureResolver&quot;></xref> class with the <xref href=&quot;System.Xml.XmlResolver&quot;></xref> and <xref href=&quot;System.Security.Policy.Evidence&quot;></xref> specified."
-  remarks: "Here are some possible scenarios and the type of evidence to provide for each scenario:      -   If you are working in a fully trusted environment, use your assembly to create the evidence:           [!code-vb[XmlSecureResolver_Samples#1](~/add/codesnippet/visualbasic/74601da4-12bd-44fe-a117-_1.vb)]      [!code-cs[XmlSecureResolver_Samples#1](~/add/codesnippet/csharp/74601da4-12bd-44fe-a117-_1.cs)]      -   If you are working in a semi-trusted environment, you have code or data coming from an outside source, and you know the origin of the outside source and have a verifiable URI, use the URI to create the evidence:           [!code-vb[XmlSecureResolver_Samples#2](~/add/codesnippet/visualbasic/74601da4-12bd-44fe-a117-_2.vb)]      [!code-cs[XmlSecureResolver_Samples#2](~/add/codesnippet/csharp/74601da4-12bd-44fe-a117-_2.cs)]      -   If you are working in a semi-trusted environment and you have code or data coming from an outside source, but you don&quot;t know the origin of the outside source, either:           Set the `evidence` parameter to `null`. This allows no access to resources.           -or-           If your application requires some access to resources, request evidence from the caller."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Xml.XmlSecureResolver&quot;> </xref> classe com o <xref href=&quot;System.Xml.XmlResolver&quot;> </xref> e <xref href=&quot;System.Security.Policy.Evidence&quot;> </xref> especificado."
+  remarks: "Seguem-se alguns cenários possíveis e o tipo de prova para fornecer para cada cenário: - se de que está a trabalhar num ambiente totalmente fidedigno, utilize a assemblagem para criar a provas: [!code-vb [XmlSecureResolver_Samples n. º&1;](~/add/codesnippet/visualbasic/74601da4-12bd-44fe-a117-_1.vb)][!code-cs[XmlSecureResolver_Samples n. º&1;](~/add/codesnippet/csharp/74601da4-12bd-44fe-a117-_1.cs) ] -se estiver a trabalhar num ambiente fidedigno por, tem de código ou dados provenientes de uma origem externa, e já conhece a origem da origem externa e tem um URI verificável , utilize o URI para criar a provas: [!code-vb [XmlSecureResolver_Samples n. º&2;](~/add/codesnippet/visualbasic/74601da4-12bd-44fe-a117-_2.vb)][!code-cs[XmlSecureResolver_Samples n. º&2;](~/add/codesnippet/csharp/74601da4-12bd-44fe-a117-_2.cs) ] - se de que está a trabalhar num ambiente fidedigno por e tiver código ou dados provenientes de uma origem externa, mas não sabe que a origem de origem externa, está: definir o `evidence` parâmetro `null`.             Isto permite sem acesso aos recursos.           - ou - se a sua aplicação requer alguns acesso aos recursos, pedir provas do chamador."
   syntax:
     content: public XmlSecureResolver (System.Xml.XmlResolver resolver, System.Security.Policy.Evidence evidence);
     parameters:
     - id: resolver
       type: System.Xml.XmlResolver
-      description: "The XML resolver that is wrapped by the <xref href=&quot;System.Xml.XmlSecureResolver&quot;></xref>."
+      description: "A resolução XML é eliminada pelo <xref href=&quot;System.Xml.XmlSecureResolver&quot;> </xref>."
     - id: evidence
       type: System.Security.Policy.Evidence
-      description: "The evidence used to create the <xref href=&quot;System.Security.PermissionSet&quot;></xref> that will be applied to the underlying <xref href=&quot;System.Xml.XmlResolver&quot;></xref>. The <xref href=&quot;System.Xml.XmlSecureResolver&quot;></xref> calls the &lt;xref:System.Security.PermissionSet.PermitOnly%2A?displayProperty=fullName&gt; method on the created <xref href=&quot;System.Security.PermissionSet&quot;></xref> before calling <xref:System.Xml.XmlSecureResolver.GetEntity*> on the underlying <xref href=&quot;System.Xml.XmlResolver&quot;></xref>."
+      description: "Provas utilizada para criar o <xref href=&quot;System.Security.PermissionSet&quot;> </xref> que serão aplicadas a subjacentes <xref href=&quot;System.Xml.XmlResolver&quot;> </xref>. O <xref href=&quot;System.Xml.XmlSecureResolver&quot;> </xref> chamadas a &lt;xref:System.Security.PermissionSet.PermitOnly%2A?displayProperty=fullName&gt; o método de criação no <xref href=&quot;System.Security.PermissionSet&quot;> </xref> antes de chamar <xref:System.Xml.XmlSecureResolver.GetEntity*>no subjacentes <xref href=&quot;System.Xml.XmlResolver&quot;> </xref>.</xref:System.Xml.XmlSecureResolver.GetEntity*>"
   overload: System.Xml.XmlSecureResolver.#ctor*
   exceptions: []
   platform:
@@ -97,7 +97,7 @@ items:
   assemblies:
   - System.Xml
   namespace: System.Xml
-  summary: "Initializes a new instance of the <xref href=&quot;System.Xml.XmlSecureResolver&quot;></xref> class with the <xref href=&quot;System.Xml.XmlResolver&quot;></xref> and URL provided."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Xml.XmlSecureResolver&quot;> </xref> classe com o <xref href=&quot;System.Xml.XmlResolver&quot;> </xref> e o URL fornecido."
   remarks: >-
     > [!IMPORTANT]
 
@@ -109,10 +109,10 @@ items:
     parameters:
     - id: resolver
       type: System.Xml.XmlResolver
-      description: "The XML resolver that is wrapped by the <xref href=&quot;System.Xml.XmlSecureResolver&quot;></xref>."
+      description: "A resolução XML é eliminada pelo <xref href=&quot;System.Xml.XmlSecureResolver&quot;> </xref>."
     - id: securityUrl
       type: System.String
-      description: "The URL used to create the <xref href=&quot;System.Security.PermissionSet&quot;></xref> that will be applied to the underlying <xref href=&quot;System.Xml.XmlResolver&quot;></xref>. The <xref href=&quot;System.Xml.XmlSecureResolver&quot;></xref> calls &lt;xref:System.Security.PermissionSet.PermitOnly%2A?displayProperty=fullName&gt; on the created <xref href=&quot;System.Security.PermissionSet&quot;></xref> before calling <xref:System.Xml.XmlSecureResolver.GetEntity*> on the underlying <xref href=&quot;System.Xml.XmlResolver&quot;></xref>."
+      description: "O URL utilizado para criar o <xref href=&quot;System.Security.PermissionSet&quot;> </xref> que serão aplicadas a subjacentes <xref href=&quot;System.Xml.XmlResolver&quot;> </xref>. O <xref href=&quot;System.Xml.XmlSecureResolver&quot;> </xref> chamadas &lt;xref:System.Security.PermissionSet.PermitOnly%2A?displayProperty=fullName&gt; o criada no <xref href=&quot;System.Security.PermissionSet&quot;> </xref> antes de chamar <xref:System.Xml.XmlSecureResolver.GetEntity*>no subjacentes <xref href=&quot;System.Xml.XmlResolver&quot;> </xref>.</xref:System.Xml.XmlSecureResolver.GetEntity*>"
   overload: System.Xml.XmlSecureResolver.#ctor*
   exceptions: []
   platform:
@@ -129,7 +129,7 @@ items:
   assemblies:
   - System.Xml
   namespace: System.Xml
-  summary: "Creates evidence using the supplied URL."
+  summary: "Cria provas utilizando o URL fornecido."
   remarks: >-
     > [!IMPORTANT]
 
@@ -139,10 +139,10 @@ items:
     parameters:
     - id: securityUrl
       type: System.String
-      description: "The URL used to create the evidence."
+      description: "O URL utilizado para criar a provas."
     return:
       type: System.Security.Policy.Evidence
-      description: "The evidence generated from the supplied URL as defined by the default policy."
+      description: "A prova gerada a partir do URL fornecido tal como definido pela política predefinida."
   overload: System.Xml.XmlSecureResolver.CreateEvidenceForUrl*
   exceptions: []
   platform:
@@ -159,7 +159,7 @@ items:
   assemblies:
   - System.Xml
   namespace: System.Xml
-  summary: "Sets credentials used to authenticate web requests."
+  summary: "Define as credenciais utilizadas para autenticar pedidos web."
   remarks: ''
   example:
   - "The following example uses an <xref:System.Xml.XmlSecureResolver> with default credentials to resolve and open network resources needed by the <xref:System.Xml.XmlTextReader>.  \n  \n [!code-cpp[XmlSecureResolver.Credentials#1](~/add/codesnippet/cpp/p-system.xml.xmlsecurere_1.cpp)]\n [!code-vb[XmlSecureResolver.Credentials#1](~/add/codesnippet/visualbasic/p-system.xml.xmlsecurere_1.vb)]\n [!code-cs[XmlSecureResolver.Credentials#1](~/add/codesnippet/csharp/p-system.xml.xmlsecurere_1.cs)]"
@@ -167,7 +167,7 @@ items:
     content: public override System.Net.ICredentials Credentials { set; }
     return:
       type: System.Net.ICredentials
-      description: "The credentials to be used to authenticate web requests. The <xref href=&quot;System.Xml.XmlSecureResolver&quot;></xref> sets the given credentials on the underlying <xref href=&quot;System.Xml.XmlResolver&quot;></xref>. If this property is not set, the value defaults to <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>; that is, the <xref href=&quot;System.Xml.XmlSecureResolver&quot;></xref> has no user credentials."
+      description: "As credenciais para ser utilizado para autenticar pedidos web. O <xref href=&quot;System.Xml.XmlSecureResolver&quot;> </xref> define as credenciais fornecidas no subjacentes <xref href=&quot;System.Xml.XmlResolver&quot;> </xref>. Se esta propriedade não for definida, o valor será assumida a <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>; ou seja, o <xref href=&quot;System.Xml.XmlSecureResolver&quot;> </xref> tenha sem credenciais de utilizador."
   overload: System.Xml.XmlSecureResolver.Credentials*
   exceptions: []
   platform:
@@ -184,7 +184,7 @@ items:
   assemblies:
   - System.Xml
   namespace: System.Xml
-  summary: "Maps a URI to an object that contains the actual resource. This method temporarily sets the <xref href=&quot;System.Security.PermissionSet&quot;></xref> created in the constructor by calling &lt;xref:System.Security.PermissionSet.PermitOnly%2A?displayProperty=fullName&gt; before calling <xref uid=&quot;langword_csharp_GetEntity&quot; name=&quot;GetEntity&quot; href=&quot;&quot;></xref> on the underlying <xref href=&quot;System.Xml.XmlResolver&quot;></xref> to open the resource."
+  summary: "Mapeia um URI para um objeto que contém o recurso real. Este método temporariamente define o <xref href=&quot;System.Security.PermissionSet&quot;> </xref> criado no construtor chamando &lt;xref:System.Security.PermissionSet.PermitOnly%2A?displayProperty=fullName&gt; antes de chamar <xref uid=&quot;langword_csharp_GetEntity&quot; name=&quot;GetEntity&quot; href=&quot;&quot;> </xref> no subjacentes <xref href=&quot;System.Xml.XmlResolver&quot;> </xref> para abrir o recurso."
   remarks: >-
     > [!IMPORTANT]
 
@@ -194,30 +194,30 @@ items:
     parameters:
     - id: absoluteUri
       type: System.Uri
-      description: "The URI that is returned from <xref:System.Xml.XmlSecureResolver.ResolveUri*>."
+      description: "O URI que é devolvido de <xref:System.Xml.XmlSecureResolver.ResolveUri*>.</xref:System.Xml.XmlSecureResolver.ResolveUri*>"
     - id: role
       type: System.String
-      description: "Currently not used."
+      description: "Atualmente não utilizado."
     - id: ofObjectToReturn
       type: System.Type
-      description: "The type of object to return. The current version only returns <xref:System.IO.Stream> objects."
+      description: "O tipo de objeto para devolver. A versão atual só devolve <xref:System.IO.Stream>objetos.</xref:System.IO.Stream>"
     return:
       type: System.Object
-      description: "The stream returned by calling <xref uid=&quot;langword_csharp_GetEntity&quot; name=&quot;GetEntity&quot; href=&quot;&quot;></xref> on the underlying <xref href=&quot;System.Xml.XmlResolver&quot;></xref>. If a type other than <xref:System.IO.Stream> is specified, the method returns <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "A sequência devolvida por chamar <xref uid=&quot;langword_csharp_GetEntity&quot; name=&quot;GetEntity&quot; href=&quot;&quot;> </xref> no subjacentes <xref href=&quot;System.Xml.XmlResolver&quot;> </xref>. Se um tipo diferente <xref:System.IO.Stream>for especificado, o método devolve <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>.</xref:System.IO.Stream>"
   overload: System.Xml.XmlSecureResolver.GetEntity*
   exceptions:
   - type: System.Xml.XmlException
     commentId: T:System.Xml.XmlException
-    description: "<code>ofObjectToReturn</code> is neither <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> nor a <xref:System.IO.Stream> type."
+    description: "<code>ofObjectToReturn</code>é nenhum dos dois <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> nem um <xref:System.IO.Stream> tipo."
   - type: System.UriFormatException
     commentId: T:System.UriFormatException
-    description: "The specified URI is not an absolute URI."
+    description: "O URI especificado não é um URI absoluto."
   - type: System.NullReferenceException
     commentId: T:System.NullReferenceException
-    description: "<code>absoluteUri</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>absoluteUri</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.Exception
     commentId: T:System.Exception
-    description: "There is a runtime error (for example, an interrupted server connection)."
+    description: "Não há um erro de tempo de execução (por exemplo, uma ligação ao servidor interrompido)."
   platform:
   - net462
 - uid: System.Xml.XmlSecureResolver.GetEntityAsync(System.Uri,System.String,System.Type)
@@ -232,22 +232,22 @@ items:
   assemblies:
   - System.Xml
   namespace: System.Xml
-  summary: "Asynchronously maps a URI to an object that contains the actual resource."
+  summary: "No modo assíncrono mapeia um URI para um objeto que contém o recurso real."
   syntax:
     content: public override System.Threading.Tasks.Task<object> GetEntityAsync (Uri absoluteUri, string role, Type ofObjectToReturn);
     parameters:
     - id: absoluteUri
       type: System.Uri
-      description: "The URI returned from <xref:System.Xml.XmlSecureResolver.ResolveUri*>."
+      description: "O URI devolvido de <xref:System.Xml.XmlSecureResolver.ResolveUri*>.</xref:System.Xml.XmlSecureResolver.ResolveUri*>"
     - id: role
       type: System.String
-      description: "Currently not used."
+      description: "Atualmente não utilizado."
     - id: ofObjectToReturn
       type: System.Type
-      description: "The type of object to return. The current version only returns <xref:System.IO.Stream> objects."
+      description: "O tipo de objeto para devolver. A versão atual só devolve <xref:System.IO.Stream>objetos.</xref:System.IO.Stream>"
     return:
       type: System.Threading.Tasks.Task{System.Object}
-      description: "The stream returned by calling <xref uid=&quot;langword_csharp_GetEntity&quot; name=&quot;GetEntity&quot; href=&quot;&quot;></xref> on the underlying <xref href=&quot;System.Xml.XmlResolver&quot;></xref>. If a type other than <xref:System.IO.Stream> is specified, the method returns <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "A sequência devolvida por chamar <xref uid=&quot;langword_csharp_GetEntity&quot; name=&quot;GetEntity&quot; href=&quot;&quot;> </xref> no subjacentes <xref href=&quot;System.Xml.XmlResolver&quot;> </xref>. Se um tipo diferente <xref:System.IO.Stream>for especificado, o método devolve <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>.</xref:System.IO.Stream>"
   overload: System.Xml.XmlSecureResolver.GetEntityAsync*
   exceptions: []
   platform:
@@ -264,24 +264,24 @@ items:
   assemblies:
   - System.Xml
   namespace: System.Xml
-  summary: "Resolves the absolute URI from the base and relative URIs by calling <xref uid=&quot;langword_csharp_ResolveUri&quot; name=&quot;ResolveUri&quot; href=&quot;&quot;></xref> on the underlying <xref href=&quot;System.Xml.XmlResolver&quot;></xref>."
+  summary: "Resolve o URI absoluto de URIs de base e relativo ao chamar <xref uid=&quot;langword_csharp_ResolveUri&quot; name=&quot;ResolveUri&quot; href=&quot;&quot;> </xref> no subjacentes <xref href=&quot;System.Xml.XmlResolver&quot;> </xref>."
   syntax:
     content: public override Uri ResolveUri (Uri baseUri, string relativeUri);
     parameters:
     - id: baseUri
       type: System.Uri
-      description: "The base URI used to resolve the relative URI."
+      description: "O URI base utilizado para resolver o URI relativo."
     - id: relativeUri
       type: System.String
-      description: "The URI to resolve. The URI can be absolute or relative. If absolute, this value effectively replaces the `baseUri` value. If relative, it combines with the `baseUri` to make an absolute URI."
+      description: "O URI para resolver. O URI pode ser absoluto ou relativo. Se absoluto, este valor eficazmente substitui o `baseUri` valor. Se relativo, combina com o `baseUri` para tornar um URI absoluto."
     return:
       type: System.Uri
-      description: "The absolute URI or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> if the relative URI cannot be resolved (returned by calling <xref uid=&quot;langword_csharp_ResolveUri&quot; name=&quot;ResolveUri&quot; href=&quot;&quot;></xref> on the underlying <xref href=&quot;System.Xml.XmlResolver&quot;></xref>)."
+      description: "O URI absoluto ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> se o URI relativo não é possível resolver (devolvido ao chamar <xref uid=&quot;langword_csharp_ResolveUri&quot; name=&quot;ResolveUri&quot; href=&quot;&quot;> </xref> no subjacentes <xref href=&quot;System.Xml.XmlResolver&quot;> </xref>)."
   overload: System.Xml.XmlSecureResolver.ResolveUri*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "<code>relativeUri</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>relativeUri</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 references:
