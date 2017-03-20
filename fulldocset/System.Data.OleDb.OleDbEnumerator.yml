@@ -13,7 +13,7 @@ items:
   nameWithType: OleDbEnumerator
   fullName: System.Data.OleDb.OleDbEnumerator
   type: Class
-  summary: "Provides a mechanism for enumerating all available OLE DB providers within the local network."
+  summary: "Fornece um mecanismo para enumerar todos os fornecedores de OLE DB disponíveis dentro da rede local."
   syntax:
     content: public sealed class OleDbEnumerator
   inheritance:
@@ -34,7 +34,7 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.OleDb
-  summary: "Creates an instance of the <xref href=&quot;System.Data.OleDb.OleDbEnumerator&quot;></xref> class."
+  summary: "Cria uma instância do <xref href=&quot;System.Data.OleDb.OleDbEnumerator&quot;> </xref> classe."
   syntax:
     content: public OleDbEnumerator ();
     parameters: []
@@ -54,8 +54,8 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.OleDb
-  summary: "Retrieves a <xref href=&quot;System.Data.DataTable&quot;></xref> that contains information about all visible OLE DB providers."
-  remarks: "The table that is returned by this method contains the following columns, all of which contain strings:      |Column Ordinal|Column|Description|   |--------------------|------------|-----------------|   |0|SOURCES_NAME|The invariant name of the native OLEDB data source or enumerator.|   |1|SOURCES_PARSENAME|A human-readable name that can be converted to a moniker by using the native COM interface IParseDisplayName. Corresponds to the SOURCES_PARSENAME column returned by the native OLE DB sources rowset.|   |2|SOURCES_DESCRIPTION|Description of the native OLE DB data source. Corresponds to the SOURCES_DESCRIPTION column returned by the native OLE DB sources rowset.|   |3|SOURCES_TYPE|One of the following enumeration members: Binder (0), DataSource_MDP (1), DataSource_TDP (2), Enumerator (3). These correspond to the values returned in the SOURCES_TYPE column of the native OLE DB sources rowset.|   |4|SOURCES_ISPARENT|Applicable to enumerators only. If `true`, indicates that the entry applies to the same enumerator on which GetSourcesRowset was called, implying that it is also included in the sub-enumeration. Corresponds to the SOURCES_ISPARENT column of the native OLE DB sources rowset|   |5|SOURCES_CLSID|A human-readable name, that can be converted to a moniker using the native COM interface IParseDisplayName. Corresponds to the SOURCES_CLSID column returned by the native OLE DB sources rowset.|"
+  summary: "Obtém um <xref href=&quot;System.Data.DataTable&quot;> </xref> que contém informações sobre todos os fornecedores de OLE DB visível."
+  remarks: "A tabela que é devolvida por este método contém as seguintes colunas que contêm cadeias: | O Ordinal de coluna | Coluna | Descrição |   |--------------------|------------|-----------------|   |&0; | SOURCES_NAME | O nome invariável da origem de dados OLEDB nativa ou enumerador. |   |&1; | SOURCES_PARSENAME | Um nome legível por humanos que pode ser convertido para um moniker utilizando a interface COM nativa IParseDisplayName. Corresponde à coluna SOURCES_PARSENAME devolvida pelo conjunto de linhas de origens de OLE DB nativo. |   |&2; | SOURCES_DESCRIPTION | Descrição da origem de dados de OLE DB nativa. Corresponde à coluna SOURCES_DESCRIPTION devolvida pelo conjunto de linhas de origens de OLE DB nativo. |   |&3; | SOURCES_TYPE | Um dos seguintes membros de enumeração: Binder (0), DataSource_MDP (1), DataSource_TDP (2), enumerador (3). Estes correspondem aos valores devolvidos na coluna SOURCES_TYPE do conjunto de linhas de origens OLE DB nativo. |   |&4; | SOURCES_ISPARENT | Aplicável a apenas enumeradores. Se `true`, indica que a entrada aplica-se para o mesmo enumerador no qual foi chamado GetSourcesRowset, implying que também está incluído na enumeração secundárias. Corresponde à coluna do conjunto de linhas de origens OLE DB nativo SOURCES_ISPARENT |   |&5; | SOURCES_CLSID | Um nome legível por humanos, que pode ser convertido para um moniker utilizando a interface COM nativa IParseDisplayName. Corresponde à coluna SOURCES_CLSID devolvida pelo conjunto de linhas de origens de OLE DB nativo. |"
   example:
   - "The following console application retrieves information about all the visible OLE DB providers and displays the information in the console window.  \n  \n```vb#  \nImports System.Data  \nImports System.Data.OleDb  \n  \nModule Module1  \n  \nSub Main()  \n  Dim enumerator As New OleDbEnumerator  \n  Dim table As System.Data.DataTable = enumerator.GetElements()  \n  \n  DisplayData(table)  \n  \n   Console.WriteLine(\"Press any key to continue.\")  \n   Console.ReadKey()  \n End Sub  \n  \n Private Sub DisplayData(ByVal table As DataTable)  \n   For Each row As DataRow In table.Rows  \n     For Each col As DataColumn In table.Columns  \n       Console.WriteLine(\"{0} = {1}\", col.ColumnName, row(col))  \n     Next  \n     Console.WriteLine(\"==================================\")  \n   Next  \n End Sub  \nEnd Module  \n```  \n  \n```c#  \nusing System;  \nusing System.Data;  \nusing System.Data.OleDb;  \n  \nclass Program  \n{  \n static void Main()  \n {  \n   OleDbEnumerator enumerator = new OleDbEnumerator();  \n   DataTable table = enumerator.GetElements();  \n  \n   DisplayData(table);  \n  \n   Console.WriteLine(\"Press any key to continue.\");  \n   Console.ReadKey();  \n }  \n  \n static void DisplayData(DataTable table)  \n {  \n   foreach (DataRow row in table.Rows)  \n   {  \n     foreach (DataColumn col in table.Columns)  \n     {  \n       Console.WriteLine(\"{0} = {1}\", col.ColumnName, row[col]);  \n     }  \n     Console.WriteLine(\"==================================\");  \n   }  \n }  \n}  \n```"
   syntax:
@@ -63,15 +63,15 @@ items:
     parameters: []
     return:
       type: System.Data.DataTable
-      description: "Returns a <xref href=&quot;System.Data.DataTable&quot;></xref> that contains information about the visible OLE DB providers."
+      description: "Devolve um <xref href=&quot;System.Data.DataTable&quot;> </xref> que contém informações sobre os fornecedores de OLE DB visível."
   overload: System.Data.OleDb.OleDbEnumerator.GetElements*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The provider does not support ISourcesRowset."
+    description: "O fornecedor não suporta ISourcesRowset."
   - type: System.Data.OleDb.OleDbException
     commentId: T:System.Data.OleDb.OleDbException
-    description: "Exception has occurred in the underlying provider."
+    description: "Ocorreu uma exceção no fornecedor subjacente."
   platform:
   - net462
 - uid: System.Data.OleDb.OleDbEnumerator.GetEnumerator(System.Type)
@@ -86,8 +86,8 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.OleDb
-  summary: "Uses a specific OLE DB enumerator to return an <xref href=&quot;System.Data.OleDb.OleDbDataReader&quot;></xref> that contains information about the currently installed OLE DB providers, without requiring an instance of the <xref href=&quot;System.Data.OleDb.OleDbEnumerator&quot;></xref> class."
-  remarks: "The reader that is returned by this method contains the following columns, all of which contain strings:      |Column ordinal|Column|Description|   |--------------------|------------|-----------------|   |0|SOURCES_NAME|The invariant name of the native OLE DB data source or enumerator.|   |1|SOURCES_PARSENAME|A human-readable name that can be converted to a moniker by using the native COM interface **IParseDisplayName**. Corresponds to the SOURCES_PARSENAME column returned by the native OLE DB sources rowset.|   |2|SOURCES_DESCRIPTION|Description of the native OLE DB data source. Corresponds to the SOURCES_DESCRIPTION column returned by the native OLE DB sources rowset.|   |3|SOURCES_TYPE|One of the following enumeration members: Binder (0), DataSource_MDP (1), DataSource_TDP (2), Enumerator (3). These correspond to the values returned in the SOURCES_TYPE column of the native OLE DB sources rowset.|   |4|SOURCES_ISPARENT|Applicable to enumerators only. If `true`, indicates that the entry applies to the same enumerator on which **GetSourcesRowset** was called, implying that it is also included in the sub-enumeration. Corresponds to the SOURCES_ISPARENT column of the native OLE DB sources rowset|       OLE DB provides several enumerator components, including MSDAENUM, MSDASQL Enumerator, SQLNCLI Enumerator, SQLOLEDB Enumerator, and others. For more information about the enumerator components and how to use them, see the [OLE DB Programmer&quot;s Reference](http://go.microsoft.com/fwlink/?LinkId=45232)."
+  summary: "Utiliza um enumerador de OLE DB específico para devolver uma <xref href=&quot;System.Data.OleDb.OleDbDataReader&quot;> </xref> que contém informações sobre os fornecedores de OLE DB atualmente instalados, sem necessidade de uma instância do <xref href=&quot;System.Data.OleDb.OleDbEnumerator&quot;> </xref> classe."
+  remarks: "O leitor que é devolvido por este método contém as seguintes colunas que contêm cadeias: | Ordinal da coluna | Coluna | Descrição |   |--------------------|------------|-----------------|   |&0; | SOURCES_NAME | O nome invariável do enumerador ou origem de dados de OLE DB nativa. |   |&1; | SOURCES_PARSENAME | Um nome legível por humanos que pode ser convertido para um moniker utilizando a interface COM nativa **IParseDisplayName**. Corresponde à coluna SOURCES_PARSENAME devolvida pelo conjunto de linhas de origens de OLE DB nativo. |   |&2; | SOURCES_DESCRIPTION | Descrição da origem de dados de OLE DB nativa. Corresponde à coluna SOURCES_DESCRIPTION devolvida pelo conjunto de linhas de origens de OLE DB nativo. |   |&3; | SOURCES_TYPE | Um dos seguintes membros de enumeração: Binder (0), DataSource_MDP (1), DataSource_TDP (2), enumerador (3). Estes correspondem aos valores devolvidos na coluna SOURCES_TYPE do conjunto de linhas de origens OLE DB nativo. |   |&4; | SOURCES_ISPARENT | Aplicável a apenas enumeradores. Se `true`, indica que a entrada aplica-se para o mesmo enumerador no qual **GetSourcesRowset** foi chamado implying que também está incluído na enumeração secundárias. Corresponde à coluna do conjunto de linhas de origens OLE DB nativo SOURCES_ISPARENT |       OLE DB fornece vários componentes do enumerador, incluindo MSDAENUM, enumerador de MSDASQL, enumerador SQLNCLI, SQLOLEDB enumerador e outros. Para obter mais informações sobre os componentes de enumerador e como utilizá-los, consulte o [referência de OLE DB do programador](http://go.microsoft.com/fwlink/?LinkId=45232)."
   example:
   - "The following console application uses the MSDAENUM component to retrieve information about all the OLE DB providers and displays the information in the console window.  \n  \n```vb#  \nImports System.Data  \nImports System.Data.OleDb  \n  \nModule Module1  \n  \n  Sub Main()  \n    Dim enumerator As New OleDbEnumerator  \n    Dim reader As OleDbDataReader = _  \n     OleDbEnumerator.GetEnumerator(Type.GetTypeFromProgID(\"MSDAENUM\"))  \n  \n    DisplayData(reader)  \n  \n    Console.WriteLine(\"Press any key to continue.\")  \n    Console.ReadKey()  \n  End Sub  \n  \n  Private Sub DisplayData(ByVal reader As OleDbDataReader)  \n    While reader.Read()  \n      For i As Integer = 0 To reader.FieldCount - 1  \n        Console.WriteLine(\"{0} = {1}\", _  \n         reader.GetName(i), reader.GetValue(i))  \n      Next  \n      Console.WriteLine(\"==================================\")  \n    End While  \n  \n  End Sub  \nEnd Module  \n```  \n  \n```c#  \nusing System;  \nusing System.Data;  \nusing System.Data.OleDb;  \n  \nclass Program  \n{  \n static void Main()  \n {  \n   OleDbDataReader reader =   \n     OleDbEnumerator.GetEnumerator(Type.GetTypeFromProgID(\"MSDAENUM\"));  \n  \n   DisplayData(reader);  \n  \n   Console.WriteLine(\"Press any key to continue.\");  \n   Console.ReadKey();  \n }  \n  \n static void DisplayData(OleDbDataReader reader)  \n {  \n   while (reader.Read())  \n   {  \n     for (int i = 0; i < reader.FieldCount; i++)  \n     {  \n       Console.WriteLine(\"{0} = {1}\",  \n        reader.GetName(i), reader.GetValue(i));  \n     }  \n     Console.WriteLine(\"==================================\");  \n   }  \n }  \n}  \n```"
   syntax:
@@ -95,18 +95,18 @@ items:
     parameters:
     - id: type
       type: System.Type
-      description: "A <xref:System.Type>."
+      description: "A <xref:System.Type>.</xref:System.Type>"
     return:
       type: System.Data.OleDb.OleDbDataReader
-      description: "Returns an <xref href=&quot;System.Data.OleDb.OleDbDataReader&quot;></xref> that contains information about the requested OLE DB providers, using the specified OLE DB enumerator."
+      description: "Devolve um <xref href=&quot;System.Data.OleDb.OleDbDataReader&quot;> </xref> que contém informações sobre os fornecedores de OLE DB solicitados, utilizando o enumerador de OLE DB especificado."
   overload: System.Data.OleDb.OleDbEnumerator.GetEnumerator*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The provider does not support **ISourcesRowset**."
+    description: "O fornecedor não suporta **ISourcesRowset**."
   - type: System.Data.OleDb.OleDbException
     commentId: T:System.Data.OleDb.OleDbException
-    description: "An exception has occurred in the underlying provider."
+    description: "Ocorreu uma exceção no fornecedor subjacente."
   platform:
   - net462
 - uid: System.Data.OleDb.OleDbEnumerator.GetRootEnumerator
@@ -121,8 +121,8 @@ items:
   assemblies:
   - System.Data
   namespace: System.Data.OleDb
-  summary: "Returns an <xref href=&quot;System.Data.OleDb.OleDbDataReader&quot;></xref> that contains information about the currently installed OLE DB providers, without requiring an instance of the <xref href=&quot;System.Data.OleDb.OleDbEnumerator&quot;></xref> class."
-  remarks: "The reader returned by this method contains the following columns, all of which contain strings:      |Column Ordinal|Column|Description|   |--------------------|------------|-----------------|   |0|SOURCES_NAME|The invariant name of the native OLEDB data source or enumerator.|   |1|SOURCES_PARSENAME|A human-readable name that can be converted to a moniker using the native COM interface IParseDisplayName. Corresponds to the SOURCES_PARSENAME column returned by the native OLE DB sources rowset.|   |2|SOURCES_DESCRIPTION|Description of the native OLE DB data source. Corresponds to the SOURCES_DESCRIPTION column returned by the native OLE DB sources rowset.|   |3|SOURCES_TYPE|One of the following enumeration members: Binder (0), DataSource_MDP (1), DataSource_TDP (2), Enumerator (3). These correspond to the values returned in the SOURCES_TYPE column of the native OLE DB sources rowset.|   |4|SOURCES_ISPARENT|Applicable to enumerators only. If `true`, indicates that the entry applies to the same enumerator on which GetSourcesRowset was called, implying that it is also included in the sub-enumeration. Corresponds to the SOURCES_ISPARENT column of the native OLE DB sources rowset|   |5|SOURCES_CLSID|A human-readable name, that can be converted to a moniker using the native COM interface IParseDisplayName. Corresponds to the SOURCES_CLSID column returned by the native OLE DB sources rowset.|"
+  summary: "Devolve um <xref href=&quot;System.Data.OleDb.OleDbDataReader&quot;> </xref> que contém informações sobre os fornecedores de OLE DB atualmente instalados, sem necessidade de uma instância do <xref href=&quot;System.Data.OleDb.OleDbEnumerator&quot;> </xref> classe."
+  remarks: "O leitor devolvido por este método contém as seguintes colunas que contêm cadeias: | O Ordinal de coluna | Coluna | Descrição |   |--------------------|------------|-----------------|   |&0; | SOURCES_NAME | O nome invariável da origem de dados OLEDB nativa ou enumerador. |   |&1; | SOURCES_PARSENAME | Um nome legível por humanos que pode ser convertido para um moniker utilizando a interface COM nativa IParseDisplayName. Corresponde à coluna SOURCES_PARSENAME devolvida pelo conjunto de linhas de origens de OLE DB nativo. |   |&2; | SOURCES_DESCRIPTION | Descrição da origem de dados de OLE DB nativa. Corresponde à coluna SOURCES_DESCRIPTION devolvida pelo conjunto de linhas de origens de OLE DB nativo. |   |&3; | SOURCES_TYPE | Um dos seguintes membros de enumeração: Binder (0), DataSource_MDP (1), DataSource_TDP (2), enumerador (3). Estes correspondem aos valores devolvidos na coluna SOURCES_TYPE do conjunto de linhas de origens OLE DB nativo. |   |&4; | SOURCES_ISPARENT | Aplicável a apenas enumeradores. Se `true`, indica que a entrada aplica-se para o mesmo enumerador no qual foi chamado GetSourcesRowset, implying que também está incluído na enumeração secundárias. Corresponde à coluna do conjunto de linhas de origens OLE DB nativo SOURCES_ISPARENT |   |&5; | SOURCES_CLSID | Um nome legível por humanos, que pode ser convertido para um moniker utilizando a interface COM nativa IParseDisplayName. Corresponde à coluna SOURCES_CLSID devolvida pelo conjunto de linhas de origens de OLE DB nativo. |"
   example:
   - "The following console application retrieves information about all the visible OLE DB providers and displays the information in the console window.  \n  \n```vb#  \nImports System.Data  \nImports System.Data.OleDb  \n  \nModule Module1  \n  \n  Sub Main()  \n    Dim enumerator As New OleDbEnumerator  \n    Dim reader As OleDbDataReader = OleDbEnumerator.GetRootEnumerator()  \n  \n    DisplayData(reader)  \n  \n    Console.WriteLine(\"Press any key to continue.\")  \n    Console.ReadKey()  \n  End Sub  \n  \n  Private Sub DisplayData(ByVal reader As OleDbDataReader)  \n    While reader.Read()  \n      For i As Integer = 0 To reader.FieldCount - 1  \n        Console.WriteLine(\"{0} = {1}\", _  \n         reader.GetName(i), reader.GetValue(i))  \n      Next  \n      Console.WriteLine(\"==================================\")  \n    End While  \n  \n  End Sub  \nEnd Module  \n```  \n  \n```c#  \nusing System;  \nusing System.Data;  \nusing System.Data.OleDb;  \n  \nclass Program  \n{  \n static void Main()  \n {  \n   OleDbDataReader reader = OleDbEnumerator.GetRootEnumerator();  \n  \n   DisplayData(reader);  \n  \n   Console.WriteLine(\"Press any key to continue.\");  \n   Console.ReadKey();  \n }  \n  \n static void DisplayData(OleDbDataReader reader)  \n {  \n   while (reader.Read())  \n   {  \n     for (int i = 0; i < reader.FieldCount; i++)  \n     {  \n       Console.WriteLine(\"{0} = {1}\",  \n        reader.GetName(i), reader.GetValue(i));  \n     }  \n     Console.WriteLine(\"==================================\");  \n   }  \n }  \n}  \n```"
   syntax:
@@ -130,15 +130,15 @@ items:
     parameters: []
     return:
       type: System.Data.OleDb.OleDbDataReader
-      description: "Returns a <xref href=&quot;System.Data.OleDb.OleDbDataReader&quot;></xref> that contains information about the visible OLE DB providers."
+      description: "Devolve um <xref href=&quot;System.Data.OleDb.OleDbDataReader&quot;> </xref> que contém informações sobre os fornecedores de OLE DB visível."
   overload: System.Data.OleDb.OleDbEnumerator.GetRootEnumerator*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The provider does not support ISourcesRowset."
+    description: "O fornecedor não suporta ISourcesRowset."
   - type: System.Data.OleDb.OleDbException
     commentId: T:System.Data.OleDb.OleDbException
-    description: "Exception has occurred in the underlying provider."
+    description: "Ocorreu uma exceção no fornecedor subjacente."
   platform:
   - net462
 references:

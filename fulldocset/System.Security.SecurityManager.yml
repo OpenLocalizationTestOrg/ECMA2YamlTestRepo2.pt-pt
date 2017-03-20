@@ -25,8 +25,8 @@ items:
   nameWithType: SecurityManager
   fullName: System.Security.SecurityManager
   type: Class
-  summary: "Provides the main access point for classes interacting with the security system. This class cannot be inherited."
-  remarks: "Security provides methods to access and manipulate the security policy configuration. You cannot create instances of SecurityManager."
+  summary: "Fornece o ponto de acesso principal para interagir com o sistema de segurança de classes. Esta classe não pode ser herdada."
+  remarks: "A segurança fornece métodos para aceder e manipular a configuração da política de segurança. Não é possível criar instâncias do SecurityManager."
   syntax:
     content: >-
       [System.Runtime.InteropServices.ComVisible(true)]
@@ -50,18 +50,18 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Gets or sets a value indicating whether code must have <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;></xref> in order to execute."
-  remarks: "If this property is `false`, even code without <xref:System.Security.Permissions.SecurityPermissionFlag> can execute. Execution checking is expensive and can eliminate the advantages of lazy policy resolution. This property is provided to disable execution checking when needed.       A change to this property is not persisted until <xref:System.Security.SecurityManager.SavePolicy%2A> is called. New processes will not be affected by the change until it is persisted in the registry."
+  summary: "Obtém ou define um valor que indica se código tem de ter <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;> </xref> para executar."
+  remarks: "Se esta propriedade é `false`, mesmo código sem <xref:System.Security.Permissions.SecurityPermissionFlag>pode ser executado.</xref:System.Security.Permissions.SecurityPermissionFlag> Verificação de execução é cara e pode eliminar as vantagens de resolução de política em diferido. Esta propriedade é fornecida para desativar a execução de verificação quando necessário.       Uma alteração para esta propriedade não é continuada até <xref:System.Security.SecurityManager.SavePolicy%2A>é chamado.</xref:System.Security.SecurityManager.SavePolicy%2A> Novos processos não serão afetados pela alteração até que este é continuada no registo."
   syntax:
     content: public static bool CheckExecutionRights { get; set; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if code must have <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;></xref> in order to execute; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o código tem de ter <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;> </xref> para executar; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.SecurityManager.CheckExecutionRights*
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The code that calls this method does not have <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;></xref>."
+    description: "O código que chama este método não tem <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;> </xref>."
   platform:
   - net462
 - uid: System.Security.SecurityManager.CurrentThreadRequiresSecurityContextCapture
@@ -76,14 +76,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines whether the current thread requires a security context capture if its security state has to be re-created at a later point in time."
-  remarks: "You can use the CurrentThreadRequiresSecurityContextCapture method before you cache sensitive data that is obtained after successful security demands.       If the <xref:System.Security.CodeAccessPermission.Assert%2A> method has been called higher on the stack, the data should not be cached without capturing the corresponding security context. Otherwise, sensitive data that is obtained under an <xref:System.Security.CodeAccessPermission.Assert%2A> may become available to code that is no longer be running with that <xref:System.Security.CodeAccessPermission.Assert%2A> in place.      > [!IMPORTANT] >  The return value is reliable only when it is `false`, which means that the thread is guaranteed not to require a security context capture. The method may return true when a security context capture is not necessary, to avoid security vulnerabilities.       CurrentThreadRequiresSecurityContextCapture is security-critical because its main use is to avoid unnecessary security context captures, which indicates that the code using it is security-sensitive and must be audited."
+  summary: "Determina se o thread atual requer uma captura de contexto de segurança se o estado de segurança tem de ser recriada posteriormente no tempo."
+  remarks: "Pode utilizar o método CurrentThreadRequiresSecurityContextCapture antes que colocar em cache dados confidenciais que são obtidos após exigências de segurança com êxito.       Se o <xref:System.Security.CodeAccessPermission.Assert%2A>método foi chamado superior na pilha, os dados não devem ser colocados em cache sem capturar o contexto de segurança correspondente.</xref:System.Security.CodeAccessPermission.Assert%2A> Dados confidenciais, caso contrário, que são obtidos num <xref:System.Security.CodeAccessPermission.Assert%2A>podem tornar-se disponível para o código que já não estar em execução com que <xref:System.Security.CodeAccessPermission.Assert%2A>no local.</xref:System.Security.CodeAccessPermission.Assert%2A> </xref:System.Security.CodeAccessPermission.Assert%2A>      > [!IMPORTANT] > O valor de retorno é fiável apenas quando é `false`, o que significa que o thread não fique requerem uma captura de contexto de segurança. O método pode devolver true, quando uma captura de contexto de segurança não é necessária evitar vulnerabilidades de segurança.       CurrentThreadRequiresSecurityContextCapture é crítica de segurança porque a sua utilização principal é evitar o contexto de segurança desnecessários captura, que indica que o código de utilizá-lo é segurança confidenciais e tem de ser auditado."
   syntax:
     content: public static bool CurrentThreadRequiresSecurityContextCapture ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref> if the stack contains no partially trusted application domains, no partially trusted assemblies, and no currently active <xref:System.Security.CodeAccessPermission.PermitOnly*> or <xref:System.Security.CodeAccessPermission.Deny*> modifiers; <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the common language runtime cannot guarantee that the stack contains none of these."
+      description: "<xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>Se a pilha contém não domínios de aplicação parcialmente fidedigna, nenhum assemblagens parcialmente fidedignas e não está ativa <> </> *> ou <> </> *> Modificadores; <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;> </xref> se o language runtime não pode garantir que a pilha contém nenhuma destas."
   overload: System.Security.SecurityManager.CurrentThreadRequiresSecurityContextCapture*
   exceptions: []
   platform:
@@ -100,8 +100,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Gets a permission set that is safe to grant to an application that has the provided evidence."
-  remarks: "> [!NOTE] >  In the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)], the host evidence in `evidence` must contain <xref:System.Security.Policy.Zone?displayProperty=fullName> evidence.   >    >  The following table shows the permission sets that are returned for each zone.      |Zone|Permission set|   |----------|--------------------|   |<xref:System.Security.SecurityZone>|`FullTrust`|   |<xref:System.Security.SecurityZone>|`LocalIntranet`|   |<xref:System.Security.SecurityZone>|`Internet`|   |<xref:System.Security.SecurityZone>|`Internet`|   |<xref:System.Security.SecurityZone>|None|   |<xref:System.Security.SecurityZone>|None|       Other evidence, such as <xref:System.Security.Policy.Url> or <xref:System.Security.Policy.Site>, may be considered.       The returned permission set can be used by a sandbox to run the application. Note that this method does not specify policy, but helps a host to determine whether the permission set requested by an application is reasonable. This method can be used to map a zone to a sandbox."
+  summary: "Obtém um conjunto de permissões que é seguro conceder a uma aplicação que tenha a provas fornecida."
+  remarks: "> [!NOTE]> No [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)], provas de anfitrião no `evidence` tem de conter <xref:System.Security.Policy.Zone?displayProperty=fullName>provas.</xref:System.Security.Policy.Zone?displayProperty=fullName>   >> A tabela seguinte mostra os conjuntos de permissões que são devolvidos para cada zona.      | Zona | Conjunto de permissões |   |----------|--------------------|   | <xref:System.Security.SecurityZone>| `FullTrust`|   | <xref:System.Security.SecurityZone>| `LocalIntranet`|   | <xref:System.Security.SecurityZone>| `Internet`|   | <xref:System.Security.SecurityZone>| `Internet`|   | <xref:System.Security.SecurityZone>| Nenhum |   | <xref:System.Security.SecurityZone>| Nenhum |       Outros provas, tais como <xref:System.Security.Policy.Url>ou <xref:System.Security.Policy.Site>, pode ser considerada.</xref:System.Security.Policy.Site> </xref:System.Security.Policy.Url> </xref:System.Security.SecurityZone> </xref:System.Security.SecurityZone> </xref:System.Security.SecurityZone> </xref:System.Security.SecurityZone> </xref:System.Security.SecurityZone> </xref:System.Security.SecurityZone>       O conjunto de permissões devolvido pode ser utilizado por uma sandbox para executar a aplicação. Tenha em atenção que este método não especificar a política, mas que ajuda a um anfitrião para determinar se o conjunto de permissões solicitado por uma aplicação é razoável. Este método pode ser utilizado para mapear uma zona a uma sandbox."
   example:
   - "The following example shows how to use the GetStandardSandbox method to obtain the permission set for a sandboxed application. For more information about running an application in a sandbox, see [How to: Run Partially Trusted Code in a Sandbox](~/add/includes/ajax-current-ext-md.md).  \n  \n [!code-vb[sandboxingApis#1](~/add/codesnippet/visualbasic/2aad9996-0182-4c3d-a405-_1.vb)]\n [!code-cs[sandboxingApis#1](~/add/codesnippet/csharp/2aad9996-0182-4c3d-a405-_1.cs)]"
   syntax:
@@ -109,15 +109,15 @@ items:
     parameters:
     - id: evidence
       type: System.Security.Policy.Evidence
-      description: "The host evidence to match to a permission set."
+      description: "A prova de anfitrião para corresponder a um conjunto de permissões."
     return:
       type: System.Security.PermissionSet
-      description: "A permission set that can be used as a grant set for the application that has the provided evidence."
+      description: "Um conjunto de permissões que pode ser utilizado como um conjunto para a aplicação que tenha a fornecido provas de permissões."
   overload: System.Security.SecurityManager.GetStandardSandbox*
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>evidence</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>evidence</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   platform:
   - net462
 - uid: System.Security.SecurityManager.GetZoneAndOrigin(System.Collections.ArrayList@,System.Collections.ArrayList@)
@@ -132,22 +132,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Gets the granted zone identity and URL identity permission sets for the current assembly."
-  remarks: "The recommended alternative to this method is to use the URL and Zone evidence for the executing assembly to call <xref:System.Security.SecurityManager.ResolvePolicy%2A> for each evidence type. The permission sets returned from the <xref:System.Security.SecurityManager.ResolvePolicy%2A> calls identify the permissions granted to the executing assembly based on its zone and URL of origin.      > [!NOTE] >  This member makes a link demand for the ECMA public key, which is not a valid cryptographic key but a pseudo key. Within the .NET Framework the link demand for the ECMA pseudo key is automatically converted to a link demand for the Microsoft public key. The security exception is based on the Microsoft public key, not the ECMA pseudo key."
+  summary: "Obtém a identidade de zona concedida e conjuntos de permissões de identidade do URL para a assemblagem atual."
+  remarks: "A alternativa recomendada para este método é utilizar o URL e horário provas para a assemblagem em execução para chamar <xref:System.Security.SecurityManager.ResolvePolicy%2A>para cada tipo de prova.</xref:System.Security.SecurityManager.ResolvePolicy%2A> Os conjuntos de permissão devolvidos o <xref:System.Security.SecurityManager.ResolvePolicy%2A>chamadas identificam as permissões concedidas à assemblagem em execução com base na respetiva zona e o URL de origem.</xref:System.Security.SecurityManager.ResolvePolicy%2A>      > [!NOTE] > Este membro faz um pedido de ligação para a chave pública ECMA, que não é uma chave criptográfica válida, mas uma chave de pseudo. Dentro do .NET Framework o pedido de ligação para a chave de pseudo ECMA é automaticamente convertido para um pedido de ligação para a chave pública da Microsoft. A exceção de segurança baseia-se a chave pública do Microsoft, não a chave de pseudo ECMA."
   syntax:
     content: public static void GetZoneAndOrigin (out System.Collections.ArrayList zone, out System.Collections.ArrayList origin);
     parameters:
     - id: zone
       type: System.Collections.ArrayList
-      description: "An output parameter that contains an <xref href=&quot;System.Collections.ArrayList&quot;></xref> of granted <xref:System.Security.Permissions.ZoneIdentityPermissionAttribute.Zone*> objects."
+      description: "Um parâmetro de saída que contém um <xref href=&quot;System.Collections.ArrayList&quot;> </xref> de concedida <xref:System.Security.Permissions.ZoneIdentityPermissionAttribute.Zone*>objetos.</xref:System.Security.Permissions.ZoneIdentityPermissionAttribute.Zone*>"
     - id: origin
       type: System.Collections.ArrayList
-      description: "An output parameter that contains an <xref href=&quot;System.Collections.ArrayList&quot;></xref> of granted <xref href=&quot;System.Security.Permissions.UrlIdentityPermission&quot;></xref> objects."
+      description: "Um parâmetro de saída que contém um <xref href=&quot;System.Collections.ArrayList&quot;> </xref> de concedida <xref href=&quot;System.Security.Permissions.UrlIdentityPermission&quot;> </xref> objetos."
   overload: System.Security.SecurityManager.GetZoneAndOrigin*
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The request for <xref href=&quot;System.Security.Permissions.StrongNameIdentityPermission&quot;></xref> failed."
+    description: "O pedido para <xref href=&quot;System.Security.Permissions.StrongNameIdentityPermission&quot;> </xref> falhou."
   platform:
   - net462
 - uid: System.Security.SecurityManager.IsGranted(System.Security.IPermission)
@@ -162,17 +162,17 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines whether a permission is granted to the caller."
-  remarks: "Granting of permissions is determined by policy and is different from a demand subject to overrides, such as an assert. Also, IsGranted only tests the grant of the calling code assembly, independent of other callers on the stack."
+  summary: "Determina se uma permissão é concedida ao chamador."
+  remarks: "Concessão de permissões é determinado através da política e é diferente de um pedido sujeitos substituições, tais como uma asserção. Além disso, IsGranted apenas os testes a concessão da chamada código assemblagem, independente de outros os chamadores na pilha."
   syntax:
     content: public static bool IsGranted (System.Security.IPermission perm);
     parameters:
     - id: perm
       type: System.Security.IPermission
-      description: "The permission to test against the grant of the caller."
+      description: "A permissão para testar contra a concessão do chamador."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the permissions granted to the caller include the permission <code>perm</code>; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se as permissões concedidas ao chamador incluem a permissão <code> perm </code>; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.SecurityManager.IsGranted*
   exceptions: []
   platform:
@@ -189,19 +189,19 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Loads a <xref href=&quot;System.Security.Policy.PolicyLevel&quot;></xref> from the specified file."
+  summary: "Carrega um <xref href=&quot;System.Security.Policy.PolicyLevel&quot;> </xref> do ficheiro especificado."
   syntax:
     content: public static System.Security.Policy.PolicyLevel LoadPolicyLevelFromFile (string path, System.Security.PolicyLevelType type);
     parameters:
     - id: path
       type: System.String
-      description: "The physical file path to a file containing the security policy information."
+      description: "O caminho físico para um ficheiro que contém as informações de política de segurança."
     - id: type
       type: System.Security.PolicyLevelType
-      description: "One of the enumeration values that specifies the type of the policy level to be loaded."
+      description: "Um dos valores da enumeração que especifica o tipo de nível de política para ser carregado."
     return:
       type: System.Security.Policy.PolicyLevel
-      description: "The loaded policy level."
+      description: "O nível de política carregado."
   overload: System.Security.SecurityManager.LoadPolicyLevelFromFile*
   exceptions:
   - type: System.ArgumentNullException
@@ -209,13 +209,13 @@ items:
     description: "The <code>path</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The file indicated by the <code>path</code> parameter does not exist."
+    description: "O ficheiro indicado pelo <code> path </code> parâmetro não existe."
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The code that calls this method does not have <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;></xref>.       -or-       The code that calls this method does not have <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>.       -or-       The code that calls this method does not have <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>.       -or-       The code that calls this method does not have <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;></xref>."
+    description: "O código que chama este método não tem <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;> </xref>.       - ou - o código que chama este método não tem <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>.       - ou - o código que chama este método não tem <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>.       - ou - o código que chama este método não tem <xref href=&quot;System.Security.Permissions.FileIOPermissionAccess&quot;> </xref>."
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "This method uses code access security (CAS) policy, which is obsolete in the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. To enable CAS policy for compatibility with earlier versions of the .NET Framework, use the [&lt;legacyCasPolicy&gt; element](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
+    description: "Este método utiliza a política acesso a código (CAS) de segurança, que é obsoleta no [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. Para ativar a política CAS para compatibilidade com versões anteriores do .NET Framework, utilize o [ &lt;legacyCasPolicy&gt; elemento](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
   platform:
   - net462
 - uid: System.Security.SecurityManager.LoadPolicyLevelFromString(System.String,System.Security.PolicyLevelType)
@@ -230,19 +230,19 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Loads a <xref href=&quot;System.Security.Policy.PolicyLevel&quot;></xref> from the specified string."
+  summary: "Carrega um <xref href=&quot;System.Security.Policy.PolicyLevel&quot;> </xref> da cadeia especificada."
   syntax:
     content: public static System.Security.Policy.PolicyLevel LoadPolicyLevelFromString (string str, System.Security.PolicyLevelType type);
     parameters:
     - id: str
       type: System.String
-      description: "The XML representation of a security policy level in the same form in which it appears in a configuration file."
+      description: "A representação XML de um nível de política de segurança no mesmo formulário em que é apresentado no ficheiro de configuração."
     - id: type
       type: System.Security.PolicyLevelType
-      description: "One of the enumeration values that specifies the type of the policy level to be loaded."
+      description: "Um dos valores da enumeração que especifica o tipo de nível de política para ser carregado."
     return:
       type: System.Security.Policy.PolicyLevel
-      description: "The loaded policy level."
+      description: "O nível de política carregado."
   overload: System.Security.SecurityManager.LoadPolicyLevelFromString*
   exceptions:
   - type: System.ArgumentNullException
@@ -250,10 +250,10 @@ items:
     description: "The <code>str</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>str</code> parameter is not valid."
+    description: "O <code> str </code> parâmetro não é válido."
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The code that calls this method does not have <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;></xref>."
+    description: "O código que chama este método não tem <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;> </xref>."
   platform:
   - net462
 - uid: System.Security.SecurityManager.PolicyHierarchy
@@ -268,22 +268,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Provides an enumerator to access the security policy hierarchy by levels, such as computer policy and user policy."
-  remarks: "The returned enumerator provides successive <xref:System.Security.Policy.PolicyLevel> objects that represent the policy at the respective (machine, user, enterprise, application domain) level of the hierarchy. These objects are the live policy objects; altering these objects can have unpredictable results.       Minimum policy hierarchy consists of a machine level, an enterprise level, and a user level. However, the hierarchy can include additional levels."
+  summary: "Fornece um enumerador para aceder à hierarquia de política de segurança por níveis, tais como a política de computador e a política de utilizador."
+  remarks: "O enumerador devolvido fornece sucessivas <xref:System.Security.Policy.PolicyLevel>objetos que representam a política a respetiva (máquina, utilizador, enterprise, o domínio de aplicação) ao nível da hierarquia.</xref:System.Security.Policy.PolicyLevel> Estes objetos são os objetos de política em direto; alterar estes objetos pode ter resultados imprevisíveis.       Política mínimo hierarquia é constituída por um nível de máquina, um nível empresarial e um nível de utilizador. No entanto, a hierarquia pode incluir níveis adicionais."
   syntax:
     content: public static System.Collections.IEnumerator PolicyHierarchy ();
     parameters: []
     return:
       type: System.Collections.IEnumerator
-      description: "An enumerator for <xref href=&quot;System.Security.Policy.PolicyLevel&quot;></xref> objects that compose the security policy hierarchy."
+      description: "O enumerador de <xref href=&quot;System.Security.Policy.PolicyLevel&quot;> </xref> objetos que compõem a hierarquia de política de segurança."
   overload: System.Security.SecurityManager.PolicyHierarchy*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "This method uses code access security (CAS) policy, which is obsolete in the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. To enable CAS policy for compatibility with earlier versions of the .NET Framework, use the [&lt;legacyCasPolicy&gt; element](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
+    description: "Este método utiliza a política acesso a código (CAS) de segurança, que é obsoleta no [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. Para ativar a política CAS para compatibilidade com versões anteriores do .NET Framework, utilize o [ &lt;legacyCasPolicy&gt; elemento](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The code that calls this method does not have <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;></xref>."
+    description: "O código que chama este método não tem <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;> </xref>."
   platform:
   - net462
 - uid: System.Security.SecurityManager.ResolvePolicy(System.Security.Policy.Evidence)
@@ -298,22 +298,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines what permissions to grant to code based on the specified evidence."
-  remarks: "This method invokes the security policy engine, providing it with evidence of the calling code&quot;s identity. The result is determined by the security policy."
+  summary: "Determina o que permissões para conceder ao código com base na provas especificada."
+  remarks: "Este método invoca o motor de política de segurança, fornecendo-lo com prova de identidade o código de chamada. O resultado é determinado pela política de segurança."
   syntax:
     content: public static System.Security.PermissionSet ResolvePolicy (System.Security.Policy.Evidence evidence);
     parameters:
     - id: evidence
       type: System.Security.Policy.Evidence
-      description: "The evidence set used to evaluate policy."
+      description: "A prova definir utilizada para avaliar a política."
     return:
       type: System.Security.PermissionSet
-      description: "The set of permissions that can be granted by the security system."
+      description: "O conjunto de permissões que podem ser concedidas pelo sistema de segurança."
   overload: System.Security.SecurityManager.ResolvePolicy*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "This method uses code access security (CAS) policy, which is obsolete in the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. To enable CAS policy for compatibility with earlier versions of the .NET Framework, use the [&lt;legacyCasPolicy&gt; element](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
+    description: "Este método utiliza a política acesso a código (CAS) de segurança, que é obsoleta no [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. Para ativar a política CAS para compatibilidade com versões anteriores do .NET Framework, utilize o [ &lt;legacyCasPolicy&gt; elemento](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
   platform:
   - net462
 - uid: System.Security.SecurityManager.ResolvePolicy(System.Security.Policy.Evidence[])
@@ -328,22 +328,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines what permissions to grant to code based on the specified evidence."
-  remarks: "This method invokes the security policy engine, providing it with an array of <xref:System.Security.Policy.Evidence> objects. The returned permission set represents only those permissions that apply to every evidence in the array. These permissions are either equivalent to, or a subset of the permissions that policy would have granted to each individual evidence. This method behaves as if you were performing an intersection on the results of resolving policy on each of the <xref:System.Security.Policy.Evidence> objects in the array."
+  summary: "Determina o que permissões para conceder ao código com base na provas especificada."
+  remarks: "Este método invoca o motor de política de segurança, fornecendo-la com uma matriz de <xref:System.Security.Policy.Evidence>objetos.</xref:System.Security.Policy.Evidence> O conjunto de permissões devolvido representa apenas essas permissões que se aplicam a cada provas na matriz. Estas permissões são equivalentes para ou um subconjunto das permissões de política seria ter concedidas para cada provas individuais. Este método funciona como se foram efetuar uma intersecção nos resultados de política em cada um de resolver o <xref:System.Security.Policy.Evidence>objetos na matriz.</xref:System.Security.Policy.Evidence>"
   syntax:
     content: public static System.Security.PermissionSet ResolvePolicy (System.Security.Policy.Evidence[] evidences);
     parameters:
     - id: evidences
       type: System.Security.Policy.Evidence[]
-      description: "An array of evidence objects used to evaluate policy."
+      description: "Uma matriz de objetos de provas utilizados para avaliar a política."
     return:
       type: System.Security.PermissionSet
-      description: "The set of permissions that is appropriate for all of the provided evidence."
+      description: "O conjunto de permissões que é adequado para todas as provas fornecida."
   overload: System.Security.SecurityManager.ResolvePolicy*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "This method uses code access security (CAS) policy, which is obsolete in the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. To enable CAS policy for compatibility with earlier versions of the .NET Framework, use the [&lt;legacyCasPolicy&gt; element](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
+    description: "Este método utiliza a política acesso a código (CAS) de segurança, que é obsoleta no [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. Para ativar a política CAS para compatibilidade com versões anteriores do .NET Framework, utilize o [ &lt;legacyCasPolicy&gt; elemento](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
   platform:
   - net462
 - uid: System.Security.SecurityManager.ResolvePolicy(System.Security.Policy.Evidence,System.Security.PermissionSet,System.Security.PermissionSet,System.Security.PermissionSet,System.Security.PermissionSet@)
@@ -358,37 +358,37 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines what permissions to grant to code based on the specified evidence and requests."
-  remarks: "This method invokes the security policy engine, providing it with evidence of the calling code&quot;s identity and the set of permissions the code requests. The result is determined by the security policy. This method returns the set of permissions that would be granted by the security system, and returns the set of permissions that would be denied as an output parameter. The effective granted permissions are those in the granted set that are not in the denied set."
+  summary: "Determina o que permissões para conceder ao código com base nos pedidos e provas especificada."
+  remarks: "Este método invoca o motor de política de segurança, fornecendo-lo, com prova de identidade de chamada do código e o conjunto de permissões, o código de pedidos. O resultado é determinado pela política de segurança. Este método devolve o conjunto de permissões que deverá ser concedida pelo sistema de segurança e devolve o conjunto de permissões que seriam negado como um parâmetro de saída. As permissões efetivas concedidas são as no conjunto concedido que não estão no conjunto de negado."
   syntax:
     content: public static System.Security.PermissionSet ResolvePolicy (System.Security.Policy.Evidence evidence, System.Security.PermissionSet reqdPset, System.Security.PermissionSet optPset, System.Security.PermissionSet denyPset, out System.Security.PermissionSet denied);
     parameters:
     - id: evidence
       type: System.Security.Policy.Evidence
-      description: "The evidence set used to evaluate policy."
+      description: "A prova definir utilizada para avaliar a política."
     - id: reqdPset
       type: System.Security.PermissionSet
-      description: "The required permissions the code needs to run."
+      description: "As permissões necessárias, que tem de executar o código."
     - id: optPset
       type: System.Security.PermissionSet
-      description: "The optional permissions that will be used if granted, but aren&quot;t required for the code to run."
+      description: "As permissões opcionais que serão utilizadas se concedidas, mas não são necessários o código executar."
     - id: denyPset
       type: System.Security.PermissionSet
-      description: "The denied permissions that must never be granted to the code even if policy otherwise permits it."
+      description: "As permissões negadas que nunca devem ser concedidas o código mesmo, de outra forma de política permite-lo."
     - id: denied
       type: System.Security.PermissionSet
-      description: "An output parameter that contains the set of permissions not granted."
+      description: "Um parâmetro de saída que contém o conjunto de permissões não concedida."
     return:
       type: System.Security.PermissionSet
-      description: "The set of permissions that would be granted by the security system."
+      description: "O conjunto de permissões que deverá ser concedida pelo sistema de segurança."
   overload: System.Security.SecurityManager.ResolvePolicy*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "This method uses code access security (CAS) policy, which is obsolete in the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. To enable CAS policy for compatibility with earlier versions of the .NET Framework, use the [&lt;legacyCasPolicy&gt; element](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
+    description: "Este método utiliza a política acesso a código (CAS) de segurança, que é obsoleta no [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. Para ativar a política CAS para compatibilidade com versões anteriores do .NET Framework, utilize o [ &lt;legacyCasPolicy&gt; elemento](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
   - type: System.Security.Policy.PolicyException
     commentId: T:System.Security.Policy.PolicyException
-    description: "Policy fails to grant the minimum required permissions specified by the <code>reqdPset</code> parameter."
+    description: "Política de falha conceder as permissões necessárias mínimas especificadas pelo <code> reqdPset </code> parâmetro."
   platform:
   - net462
 - uid: System.Security.SecurityManager.ResolvePolicyGroups(System.Security.Policy.Evidence)
@@ -403,22 +403,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Gets a collection of code groups matching the specified evidence."
-  remarks: "This method is useful in analyzing how a specified policy configuration works with specific kinds of evidence.       Code groups will be returned from all applicable levels of the policy hierarchy matching the `evidence` parameter."
+  summary: "Obtém um conjunto de grupos de código correspondentes a provas especificada."
+  remarks: "Este método é útil analisar como uma configuração de política especificado funciona com a tipos específicos de prova.       Grupos de código serão devolvidos de todos os níveis aplicáveis da hierarquia de política que correspondam a `evidence` parâmetro."
   syntax:
     content: public static System.Collections.IEnumerator ResolvePolicyGroups (System.Security.Policy.Evidence evidence);
     parameters:
     - id: evidence
       type: System.Security.Policy.Evidence
-      description: "The evidence set against which the policy is evaluated."
+      description: "A prova definido em relação a que a política é avaliada."
     return:
       type: System.Collections.IEnumerator
-      description: "An enumeration of the set of code groups matching the evidence."
+      description: "Uma enumeração do conjunto de grupos de código a provas de correspondência."
   overload: System.Security.SecurityManager.ResolvePolicyGroups*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "This method uses code access security (CAS) policy, which is obsolete in the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. To enable CAS policy for compatibility with earlier versions of the .NET Framework, use the [&lt;legacyCasPolicy&gt; element](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
+    description: "Este método utiliza a política acesso a código (CAS) de segurança, que é obsoleta no [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. Para ativar a política CAS para compatibilidade com versões anteriores do .NET Framework, utilize o [ &lt;legacyCasPolicy&gt; elemento](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
   platform:
   - net462
 - uid: System.Security.SecurityManager.ResolveSystemPolicy(System.Security.Policy.Evidence)
@@ -433,22 +433,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines which permissions to grant to code based on the specified evidence, excluding the policy for the <xref href=&quot;System.AppDomain&quot;></xref> level."
-  remarks: "This method invokes the security policy engine and provides it with evidence of the calling code&quot;s identity. The result is determined by the system security policy exclusive of any <xref:System.AppDomain> policy."
+  summary: "Determina as permissões para conceder ao código com base no provas especificada, excluindo a política para o <xref href=&quot;System.AppDomain&quot;> </xref> nível."
+  remarks: "Este método invoca o motor de política de segurança e fornece-lhe uma prova de identidade o código de chamada. O resultado é determinado pela política de segurança do sistema não incluindo quaisquer <xref:System.AppDomain>política.</xref:System.AppDomain>"
   syntax:
     content: public static System.Security.PermissionSet ResolveSystemPolicy (System.Security.Policy.Evidence evidence);
     parameters:
     - id: evidence
       type: System.Security.Policy.Evidence
-      description: "The evidence set used to evaluate policy."
+      description: "A prova definir utilizada para avaliar a política."
     return:
       type: System.Security.PermissionSet
-      description: "The set of permissions that can be granted by the security system."
+      description: "O conjunto de permissões que podem ser concedidas pelo sistema de segurança."
   overload: System.Security.SecurityManager.ResolveSystemPolicy*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "This method uses code access security (CAS) policy, which is obsolete in the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. To enable CAS policy for compatibility with earlier versions of the .NET Framework, use the [&lt;legacyCasPolicy&gt; element](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
+    description: "Este método utiliza a política acesso a código (CAS) de segurança, que é obsoleta no [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. Para ativar a política CAS para compatibilidade com versões anteriores do .NET Framework, utilize o [ &lt;legacyCasPolicy&gt; elemento](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
   platform:
   - net462
 - uid: System.Security.SecurityManager.SavePolicy
@@ -463,8 +463,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Saves the modified security policy state."
-  remarks: "This method saves the policy as exposed by <xref:System.Security.SecurityManager.PolicyHierarchy%2A>, <xref:System.Security.Policy.PolicyLevel>, and other classes that represent configuration of the security policy. Unless this method is called, changes made to the policy objects will not be saved and will not affect subsequent application runs."
+  summary: "Guarda o estado de política de segurança modificado."
+  remarks: "Este método poupa a política conforme exposta pelo <xref:System.Security.SecurityManager.PolicyHierarchy%2A>, <xref:System.Security.Policy.PolicyLevel>, e outras classes que representam a configuração da política de segurança.</xref:System.Security.Policy.PolicyLevel> </xref:System.Security.SecurityManager.PolicyHierarchy%2A> A menos que este método é denominado, as alterações efetuadas para os objetos de política não serão guardadas e não irão afetar a aplicação subsequentes executa."
   syntax:
     content: public static void SavePolicy ();
     parameters: []
@@ -472,10 +472,10 @@ items:
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "This method uses code access security (CAS) policy, which is obsolete in the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. To enable CAS policy for compatibility with earlier versions of the .NET Framework, use the [&lt;legacyCasPolicy&gt; element](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
+    description: "Este método utiliza a política acesso a código (CAS) de segurança, que é obsoleta no [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. Para ativar a política CAS para compatibilidade com versões anteriores do .NET Framework, utilize o [ &lt;legacyCasPolicy&gt; elemento](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The code that calls this method does not have <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;></xref>."
+    description: "O código que chama este método não tem <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;> </xref>."
   platform:
   - net462
 - uid: System.Security.SecurityManager.SavePolicyLevel(System.Security.Policy.PolicyLevel)
@@ -490,22 +490,22 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Saves a modified security policy level loaded with <xref:System.Security.SecurityManager.LoadPolicyLevelFromFile*>."
-  remarks: "The <xref:System.Security.Policy.PolicyLevel> will be saved to the same location from which it loaded."
+  summary: "Guarda um nível de política de segurança modificado carregado com <xref:System.Security.SecurityManager.LoadPolicyLevelFromFile*>.</xref:System.Security.SecurityManager.LoadPolicyLevelFromFile*>"
+  remarks: "O <xref:System.Security.Policy.PolicyLevel>será guardado na mesma localização a partir do qual carregada.</xref:System.Security.Policy.PolicyLevel>"
   syntax:
     content: public static void SavePolicyLevel (System.Security.Policy.PolicyLevel level);
     parameters:
     - id: level
       type: System.Security.Policy.PolicyLevel
-      description: "The policy level object to be saved."
+      description: "O objeto de nível política sejam guardados."
   overload: System.Security.SecurityManager.SavePolicyLevel*
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The code that calls this method does not have <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;></xref>."
+    description: "O código que chama este método não tem <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;> </xref>."
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "This method uses code access security (CAS) policy, which is obsolete in the [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. To enable CAS policy for compatibility with earlier versions of the .NET Framework, use the [&lt;legacyCasPolicy&gt; element](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
+    description: "Este método utiliza a política acesso a código (CAS) de segurança, que é obsoleta no [!INCLUDE[net_v40_long](~/add/includes/net-v40-long-md.md)]. Para ativar a política CAS para compatibilidade com versões anteriores do .NET Framework, utilize o [ &lt;legacyCasPolicy&gt; elemento](../Topic/%3CNetFx40_LegacySecurityPolicy%3E%20Element.md)."
   platform:
   - net462
 - uid: System.Security.SecurityManager.SecurityEnabled
@@ -520,18 +520,18 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Gets or sets a value indicating whether security is enabled."
-  remarks: "This property is used by the [Caspol.exe (Code Access Security Policy Tool)](~/add/includes/ajax-current-ext-md.md)       `-security` (`-s`) option to turn off code-based security.       SecurityEnabled provides a way for administrators to disable code access security. When code access security is disabled, all code access demands succeed. Effectively, this grants all code `FullTrust`. Disabling code access security bypasses the security system so that code might perform slightly better than the equivalent security policy granting `FullTrust` to all code. This property does not disable role-based security; therefore, <xref:System.Security.Permissions.PrincipalPermission> demands are not affected.      > [!CAUTION] >  Disabling code access security makes the system vulnerable to attacks by malicious code such as viruses and worms. Disabling code access security does not automatically block managed code from running in any way. It only causes managed code to run without restriction by the code access security system, and should only be done with the most extreme caution. Turning off security to gain extra performance should only be done when other security measures have been taken to help protect system security. Examples of other security precautions include disconnecting from public networks, physically securing computers, and so on.       A change to this property is not persisted in the registry until <xref:System.Security.SecurityManager.SavePolicy%2A> is called. New processes will not be affected by the change until it is persisted in the registry. Changing the value of this property in a running process does not necessarily change the state in the expected manner. To ensure changes have taken effect, you must call <xref:System.Security.SecurityManager.SavePolicy%2A> and start a new process."
+  summary: "Obtém ou define um valor que indica se a segurança está ativada."
+  remarks: "Esta propriedade é utilizada pelo [Caspol.exe (ferramenta de política de segurança de acesso do código)](~/add/includes/ajax-current-ext-md.md) `-security` (`-s`) a opção para desativar a segurança baseada no código.              SecurityEnabled fornece uma forma para os administradores desativar a segurança de acesso de código. Quando a segurança de acesso de código estiver desativada, todos os pedidos de acesso de código concluída com êxito. Efetivamente, esta ação garante todo o código `FullTrust`. Segurança de acesso de código de Desativação contornar o sistema de segurança para que pode executar código ligeiramente melhor do que a concessão de política de segurança equivalente `FullTrust` para todo o código. Esta propriedade não desativar a segurança baseada em funções; Por conseguinte, <xref:System.Security.Permissions.PrincipalPermission>exigências não são afetadas.</xref:System.Security.Permissions.PrincipalPermission>      > [!CAUTION] > Segurança de acesso de código de Desativação faz com que o sistema vulnerável a ataques por código malicioso tais como vírus e worms. Desativar a segurança de acesso de código não bloqueia automaticamente código gerido a execução de qualquer forma. TI causas apenas código para executar sem restrição pelo sistema de segurança de acesso de código gerido e só devem ser feitas com o máximo é necessário ter muito cuidado. Desativar a segurança para obter um desempenho adicional só deve ser efetuada quando foram executadas outras medidas de segurança para ajudar a proteger a segurança do sistema. Exemplos de outras precauções de segurança incluem a desligar a partir de redes públicas, fisicamente proteger computadores e assim sucessivamente.       Uma alteração para esta propriedade não é continuada no registo até <xref:System.Security.SecurityManager.SavePolicy%2A>é chamado.</xref:System.Security.SecurityManager.SavePolicy%2A> Novos processos não serão afetados pela alteração até que este é continuada no registo. Alterar o valor desta propriedade num processo em execução não necessariamente alterar o estado da forma esperada. Para garantir que as alterações tenham sido aplicadas, tem de chamar <xref:System.Security.SecurityManager.SavePolicy%2A>e iniciar um processo de novo.</xref:System.Security.SecurityManager.SavePolicy%2A>"
   syntax:
     content: public static bool SecurityEnabled { get; set; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if security is enabled; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se estiver ativada a segurança; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.SecurityManager.SecurityEnabled*
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
-    description: "The code that calls this method does not have <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;></xref>."
+    description: "O código que chama este método não tem <xref href=&quot;System.Security.Permissions.SecurityPermissionFlag&quot;> </xref>."
   platform:
   - net462
 references:

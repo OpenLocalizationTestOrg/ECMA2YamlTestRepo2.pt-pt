@@ -56,8 +56,8 @@ items:
   nameWithType: OracleDataReader
   fullName: System.Data.OracleClient.OracleDataReader
   type: Class
-  summary: "Provides a way of reading a forward-only stream of data rows from a data source. This class cannot be inherited."
-  remarks: "To create an OracleDataReader, you must call the <xref:System.Data.OracleClient.OracleCommand.ExecuteReader%2A> method of the <xref:System.Data.OracleClient.OracleCommand> object, rather than directly using a constructor.       Changes made to a resultset by another process or thread while data is being read may be visible to the user of the OracleDataReader.       <xref:System.Data.OracleClient.OracleDataReader.IsClosed%2A> and <xref:System.Data.OracleClient.OracleDataReader.RecordsAffected%2A> are the only properties that you can call after the OracleDataReader is closed. In some cases, you must call <xref:System.Data.OracleClient.OracleDataReader.Close%2A> before you can call <xref:System.Data.OracleClient.OracleDataReader.RecordsAffected%2A>.       More than one OracleDataReader can be open at any given time.       The following two Visual Basic examples demonstrate how to use an OracleDataReader to retrieve an Oracle `REF CURSOR`. These examples use tables that are defined in the Oracle Scott/Tiger schema, and require the following PL/SQL package and package body. You must create these on your server to use the examples.       Create the following Oracle package on the Oracle server.      ```   CREATE OR REPLACE PACKAGE CURSPKG AS       TYPE T_CURSOR IS REF CURSOR;       PROCEDURE OPEN_ONE_CURSOR (N_EMPNO IN NUMBER,          IO_CURSOR IN OUT T_CURSOR);       PROCEDURE OPEN_TWO_CURSORS (EMPCURSOR OUT T_CURSOR,          DEPTCURSOR OUT T_CURSOR);   END CURSPKG;   /   ```       Create the following Oracle package body on the Oracle server.      ```      CREATE OR REPLACE PACKAGE BODY CURSPKG AS        PROCEDURE OPEN_ONE_CURSOR (N_EMPNO IN NUMBER,                                   IO_CURSOR OUT T_CURSOR)        IS            V_CURSOR T_CURSOR;        BEGIN            IF N_EMPNO <> 0 THEN                 OPEN V_CURSOR FOR                 SELECT EMP.EMPNO, EMP.ENAME, DEPT.DEPTNO, DEPT.DNAME                      FROM EMP, DEPT                      WHERE EMP.DEPTNO = DEPT.DEPTNO                            AND EMP.EMPNO = N_EMPNO;            ELSE                 OPEN V_CURSOR FOR                 SELECT EMP.EMPNO, EMP.ENAME, DEPT.DEPTNO, DEPT.DNAME                      FROM EMP, DEPT                      WHERE EMP.DEPTNO = DEPT.DEPTNO;            END IF;            IO_CURSOR := V_CURSOR;        END OPEN_ONE_CURSOR;        PROCEDURE OPEN_TWO_CURSORS (EMPCURSOR OUT T_CURSOR,                                    DEPTCURSOR OUT T_CURSOR)        IS            V_CURSOR1 T_CURSOR;            V_CURSOR2 T_CURSOR;        BEGIN            OPEN V_CURSOR1 FOR SELECT * FROM EMP;            OPEN V_CURSOR2 FOR SELECT * FROM DEPT;            EMPCURSOR  := V_CURSOR1;            DEPTCURSOR := V_CURSOR2;        END OPEN_TWO_CURSORS;    END CURSPKG;   /   ```       This Visual Basic example executes a PL/SQL stored procedure that returns a `REF CURSOR` parameter, and reads the value as an OracleDataReader.      ```vb#   Private Sub ReadOracleData(ByVal connectionString As String)      Dim connection As New OracleConnection(connectionString)      Dim command As New OracleCommand()      Dim reader As OracleDataReader         connection.Open()      command.Connection = connection      command.CommandText = &quot;CURSPKG.OPEN_ONE_CURSOR&quot;      command.CommandType = CommandType.StoredProcedure      command.Parameters.Add(New OracleParameter(&quot;N_EMPNO&quot;, OracleType.Number)).Value = 7369      command.Parameters.Add(New OracleParameter(&quot;IO_CURSOR&quot;, OracleType.Cursor)).Direction = ParameterDirection.Output         reader = command.ExecuteReader()      While (reader.Read())         &quot; Do something with the values.      End While      reader.Close()      connection.Close()   End Sub   ```       This Visual Basic example executes a PL/SQL stored procedure that returns two `REF CURSOR` parameters, and reads the values using an OracleDataReader.      ```vb#   Private Sub ReadOracleData(ByVal connectionString As String)      Dim dataSet As New DataSet()      Dim connection As New OracleConnection(connectionString)      Dim command As New OracleCommand()      Dim reader As OracleDataReader         connection.Open()      command.Connection = connection      command.CommandText = &quot;CURSPKG.OPEN_TWO_CURSORS&quot;      command.CommandType = CommandType.StoredProcedure      command.Parameters.Add(New OracleParameter(&quot;EMPCURSOR&quot;, OracleType.Cursor)).Direction = ParameterDirection.Output      command.Parameters.Add(New OracleParameter(&quot;DEPTCURSOR&quot;, OracleType.Cursor)).Direction = ParameterDirection.Output         reader = command.ExecuteReader(CommandBehavior.CloseConnection)      While (reader.Read())         &quot; Do something with the values.      End While      reader.NextResult()      While (reader.Read())           &quot; Do something with the values.      End While      reader.Close()      connection.Close()    End Sub   ```       This C# example creates an Oracle table and loads it with data. You must run this example prior to running the subsequent example, which demonstrates using an OracleDataReader to access the data using OracleType structures.      ```c#   public void Setup(string connectionString)   {      OracleConnection connection = new OracleConnection(connectionString);      try      {         connection.Open();         OracleCommand command = connection.CreateCommand();         command.CommandText =&quot;CREATE TABLE OracleTypesTable (MyVarchar2 varchar2(3000),MyNumber number(28,4) PRIMARY KEY,MyDate date, MyRaw raw(255))&quot;;         command.ExecuteNonQuery();         command.CommandText =&quot;INSERT INTO OracleTypesTable VALUES (&quot;test&quot;, 2, to_date(&quot;2000-01-11 12:54:01&quot;,&quot;yyyy-mm-dd hh24:mi:ss&quot;), &quot;0001020304&quot;)&quot;;         command.ExecuteNonQuery();         command.CommandText=&quot;SELECT * FROM OracleTypesTable&quot;;      }      catch(Exception)      {      }      finally      {         connection.Close();      }   }   ```       This C# example uses an OracleDataReader to access data, and uses several <xref:System.Data.OracleClient.OracleType> structures to display the data.      ```c#   public void ReadOracleTypesExample(string connectionString)   {      OracleConnection connection = new OracleConnection(connectionString);      connection.Open();      OracleCommand command = connection.CreateCommand();      try      {         command.CommandText = &quot;SELECT * FROM OracleTypesTable&quot;;         OracleDataReader reader = command.ExecuteReader();         reader.Read();         //Using the Oracle specific getters for each type is faster than         //using GetOracleValue.         //First column, MyVarchar2, is a VARCHAR2 data type in Oracle Server         //and maps to OracleString.         OracleString oraclestring1 = reader.GetOracleString(0);         Console.WriteLine(&quot;OracleString &quot; + oraclestring1.ToString());            //Second column, MyNumber, is a NUMBER data type in Oracle Server         //and maps to OracleNumber.         OracleNumber oraclenumber1 = reader.GetOracleNumber(1);         Console.WriteLine(&quot;OracleNumber &quot; + oraclenumber1.ToString());            //Third column, MyDate, is a DATA data type in Oracle Server         //and maps to OracleDateTime.         OracleDateTime oracledatetime1 = reader.GetOracleDateTime(2);         Console.WriteLine(&quot;OracleDateTime &quot; + oracledatetime1.ToString());            //Fourth column, MyRaw, is a RAW data type in Oracle Server and         //maps to OracleBinary.         OracleBinary oraclebinary1 = reader.GetOracleBinary(3);            //Calling value on a null OracleBinary throws         //OracleNullValueException; therefore, check for a null value.         if (oraclebinary1.IsNull==false)         {            foreach(byte b in oraclebinary1.Value)            {               Console.WriteLine(&quot;byte &quot; + b.ToString());            }         }         reader.Close();      }      catch(Exception e)      {         Console.WriteLine(e.ToString());      }      finally      {         connection.Close();      }   }   ```"
+  summary: "Fornece uma forma de ler um fluxo apenas de reencaminhamento de linhas de dados a partir de uma origem de dados. Esta classe não pode ser herdada."
+  remarks: "Para criar um OracleDataReader, tem de chamar o <xref:System.Data.OracleClient.OracleCommand.ExecuteReader%2A>método o <xref:System.Data.OracleClient.OracleCommand>objeto, em vez de utilizar diretamente um construtor.</xref:System.Data.OracleClient.OracleCommand> </xref:System.Data.OracleClient.OracleCommand.ExecuteReader%2A>       As alterações efetuadas a um conjunto de resultados por outro processo ou thread durante a leitura de dados poderão estar visíveis ao utilizador o OracleDataReader.       <xref:System.Data.OracleClient.OracleDataReader.IsClosed%2A>e <xref:System.Data.OracleClient.OracleDataReader.RecordsAffected%2A>são as propriedades de apenas pode chamar depois do OracleDataReader está fechado.</xref:System.Data.OracleClient.OracleDataReader.RecordsAffected%2A></xref:System.Data.OracleClient.OracleDataReader.IsClosed%2A> Em alguns casos, tem de chamar <xref:System.Data.OracleClient.OracleDataReader.Close%2A>antes de poder chamar <xref:System.Data.OracleClient.OracleDataReader.RecordsAffected%2A>.</xref:System.Data.OracleClient.OracleDataReader.RecordsAffected%2A> </xref:System.Data.OracleClient.OracleDataReader.Close%2A>       OracleDataReader mais do que um pode ser aberto em qualquer momento.       Os exemplos do Visual Basic dois seguintes demonstram como utilizar um OracleDataReader para obter um Oracle `REF CURSOR`. Estes exemplos utilizam tabelas que são definidas no esquema do Oracle. o blogue/Tiger e exigem o seguinte pacote LP/SQL e o corpo do pacote. Tem de criar estes no seu servidor para utilizar os exemplos.       Crie o seguinte pacote Oracle no servidor Oracle.      ```   CREATE OR REPLACE PACKAGE CURSPKG AS       TYPE T_CURSOR IS REF CURSOR;       PROCEDURE OPEN_ONE_CURSOR (N_EMPNO IN NUMBER,          IO_CURSOR IN OUT T_CURSOR);       PROCEDURE OPEN_TWO_CURSORS (EMPCURSOR OUT T_CURSOR,          DEPTCURSOR OUT T_CURSOR);   END CURSPKG;   /   ```Crie o corpo do pacote Oracle seguinte no servidor Oracle.      ```      CREATE OR REPLACE PACKAGE BODY CURSPKG AS        PROCEDURE OPEN_ONE_CURSOR (N_EMPNO IN NUMBER,                                   IO_CURSOR OUT T_CURSOR)        IS            V_CURSOR T_CURSOR;        BEGIN            IF N_EMPNO <> 0 THEN                 OPEN V_CURSOR FOR                 SELECT EMP.EMPNO, EMP.ENAME, DEPT.DEPTNO, DEPT.DNAME                      FROM EMP, DEPT                      WHERE EMP.DEPTNO = DEPT.DEPTNO                            AND EMP.EMPNO = N_EMPNO;            ELSE                 OPEN V_CURSOR FOR                 SELECT EMP.EMPNO, EMP.ENAME, DEPT.DEPTNO, DEPT.DNAME                      FROM EMP, DEPT                      WHERE EMP.DEPTNO = DEPT.DEPTNO;            END IF;            IO_CURSOR := V_CURSOR;        END OPEN_ONE_CURSOR;        PROCEDURE OPEN_TWO_CURSORS (EMPCURSOR OUT T_CURSOR,                                    DEPTCURSOR OUT T_CURSOR)        IS            V_CURSOR1 T_CURSOR;            V_CURSOR2 T_CURSOR;        BEGIN            OPEN V_CURSOR1 FOR SELECT * FROM EMP;            OPEN V_CURSOR2 FOR SELECT * FROM DEPT;            EMPCURSOR  := V_CURSOR1;            DEPTCURSOR := V_CURSOR2;        END OPEN_TWO_CURSORS;    END CURSPKG;   /   ```Neste exemplo do Visual Basic executa um procedimento armazenado LP/SQL que devolva uma `REF CURSOR` parâmetro, e lê o valor como um OracleDataReader.      ```vb#   Private Sub ReadOracleData(ByVal connectionString As String)      Dim connection As New OracleConnection(connectionString)      Dim command As New OracleCommand()      Dim reader As OracleDataReader         connection.Open()      command.Connection = connection      command.CommandText = &quot;CURSPKG.OPEN_ONE_CURSOR&quot;      command.CommandType = CommandType.StoredProcedure      command.Parameters.Add(New OracleParameter(&quot;N_EMPNO&quot;, OracleType.Number)).Value = 7369      command.Parameters.Add(New OracleParameter(&quot;IO_CURSOR&quot;, OracleType.Cursor)).Direction = ParameterDirection.Output         reader = command.ExecuteReader()      While (reader.Read())         &quot; Do something with the values.      End While      reader.Close()      connection.Close()   End Sub   ```Neste exemplo do Visual Basic executa um procedimento armazenado LP/SQL que devolve dois `REF CURSOR` parâmetros e lê os valores utilizando um OracleDataReader.      ```vb#   Private Sub ReadOracleData(ByVal connectionString As String)      Dim dataSet As New DataSet()      Dim connection As New OracleConnection(connectionString)      Dim command As New OracleCommand()      Dim reader As OracleDataReader         connection.Open()      command.Connection = connection      command.CommandText = &quot;CURSPKG.OPEN_TWO_CURSORS&quot;      command.CommandType = CommandType.StoredProcedure      command.Parameters.Add(New OracleParameter(&quot;EMPCURSOR&quot;, OracleType.Cursor)).Direction = ParameterDirection.Output      command.Parameters.Add(New OracleParameter(&quot;DEPTCURSOR&quot;, OracleType.Cursor)).Direction = ParameterDirection.Output         reader = command.ExecuteReader(CommandBehavior.CloseConnection)      While (reader.Read())         &quot; Do something with the values.      End While      reader.NextResult()      While (reader.Read())           &quot; Do something with the values.      End While      reader.Close()      connection.Close()    End Sub   ```Este exemplo c# cria uma tabela de Oracle e carrega-lo com dados. Tem de executar este exemplo antes de executar o exemplo subsequente, que demonstra uma OracleDataReader a utilizar para aceder aos dados utilizando as estruturas de OracleType.      ```c#   public void Setup(string connectionString)   {      OracleConnection connection = new OracleConnection(connectionString);      try      {         connection.Open();         OracleCommand command = connection.CreateCommand();         command.CommandText =&quot;CREATE TABLE OracleTypesTable (MyVarchar2 varchar2(3000),MyNumber number(28,4) PRIMARY KEY,MyDate date, MyRaw raw(255))&quot;;         command.ExecuteNonQuery();         command.CommandText =&quot;INSERT INTO OracleTypesTable VALUES (&quot;test&quot;, 2, to_date(&quot;2000-01-11 12:54:01&quot;,&quot;yyyy-mm-dd hh24:mi:ss&quot;), &quot;0001020304&quot;)&quot;;         command.ExecuteNonQuery();         command.CommandText=&quot;SELECT * FROM OracleTypesTable&quot;;      }      catch(Exception)      {      }      finally      {         connection.Close();      }   }   ```Neste exemplo c# utiliza um OracleDataReader para aceder a dados e utiliza vários <xref:System.Data.OracleClient.OracleType>estruturas para apresentar os dados.</xref:System.Data.OracleClient.OracleType>      ```c#   public void ReadOracleTypesExample(string connectionString)   {      OracleConnection connection = new OracleConnection(connectionString);      connection.Open();      OracleCommand command = connection.CreateCommand();      try      {         command.CommandText = &quot;SELECT * FROM OracleTypesTable&quot;;         OracleDataReader reader = command.ExecuteReader();         reader.Read();         //Using the Oracle specific getters for each type is faster than         //using GetOracleValue.         //First column, MyVarchar2, is a VARCHAR2 data type in Oracle Server         //and maps to OracleString.         OracleString oraclestring1 = reader.GetOracleString(0);         Console.WriteLine(&quot;OracleString &quot; + oraclestring1.ToString());            //Second column, MyNumber, is a NUMBER data type in Oracle Server         //and maps to OracleNumber.         OracleNumber oraclenumber1 = reader.GetOracleNumber(1);         Console.WriteLine(&quot;OracleNumber &quot; + oraclenumber1.ToString());            //Third column, MyDate, is a DATA data type in Oracle Server         //and maps to OracleDateTime.         OracleDateTime oracledatetime1 = reader.GetOracleDateTime(2);         Console.WriteLine(&quot;OracleDateTime &quot; + oracledatetime1.ToString());            //Fourth column, MyRaw, is a RAW data type in Oracle Server and         //maps to OracleBinary.         OracleBinary oraclebinary1 = reader.GetOracleBinary(3);            //Calling value on a null OracleBinary throws         //OracleNullValueException; therefore, check for a null value.         if (oraclebinary1.IsNull==false)         {            foreach(byte b in oraclebinary1.Value)            {               Console.WriteLine(&quot;byte &quot; + b.ToString());            }         }         reader.Close();      }      catch(Exception e)      {         Console.WriteLine(e.ToString());      }      finally      {         connection.Close();      }   }   ```"
   example:
   - "The following example creates an <xref:System.Data.OracleClient.OracleConnection>, an <xref:System.Data.OracleClient.OracleCommand>, and an OracleDataReader. The example reads through the data, writing it out to the console. Finally, the example closes the OracleDataReader, then the <xref:System.Data.OracleClient.OracleConnection>.  \n  \n [!code-vb[Classic WebData OracleDataReader#1](~/add/codesnippet/visualbasic/t-system.data.oracleclie_9_1.vb)]\n [!code-cs[Classic WebData OracleDataReader#1](~/add/codesnippet/csharp/t-system.data.oracleclie_9_1.cs)]"
   syntax:
@@ -103,8 +103,8 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Closes the <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;></xref> object."
-  remarks: "More than one <xref:System.Data.OracleClient.OracleDataReader> can be open at any given time.      > [!CAUTION] >  Do not call `Close` or `Dispose` on a connection, a `DataReader`, or any other managed object in the `Finalize` method of your class. In a finalizer, you should only release unmanaged resources that your class owns directly. If your class does not own any unmanaged resources, do not include a `Finalize` method in your class definition. For more information, see [Garbage Collection](~/add/includes/ajax-current-ext-md.md)."
+  summary: "Fecha o <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;> </xref> objeto."
+  remarks: "Mais do que um <xref:System.Data.OracleClient.OracleDataReader>podem ser abertos em qualquer momento.</xref:System.Data.OracleClient.OracleDataReader>      > [!CAUTION] > Não chame `Close` ou `Dispose` numa ligação, um `DataReader`, ou qualquer outro objeto gerido no `Finalize` método da sua classe. Num Finalizador, deve apenas de versão não geridos recursos que a classe pertence diretamente. Se a classe não possui quaisquer recursos não geridos, não incluem um `Finalize` método na sua definição de classe. Para obter mais informações, consulte [recolha de lixo](~/add/includes/ajax-current-ext-md.md)."
   syntax:
     content: public override void Close ();
     parameters: []
@@ -124,13 +124,13 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets a value indicating the depth of nesting for the current row."
-  remarks: "The outermost table has a depth of zero."
+  summary: "Obtém um valor que indica a profundidade de aninhamento para a linha atual."
+  remarks: "A tabela mais exterior tem uma profundidade de zero."
   syntax:
     content: public override int Depth { get; }
     return:
       type: System.Int32
-      description: "The depth of nesting for the current row."
+      description: "A profundidade de aninhamento para a linha atual."
   overload: System.Data.OracleClient.OracleDataReader.Depth*
   exceptions: []
   platform:
@@ -147,18 +147,18 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the number of columns in the current row."
-  remarks: "Includes hidden fields. Use <xref:System.Data.Common.DbDataReader.VisibleFieldCount%2A> to exclude hidden fields.       After executing a query that does not return rows, FieldCount returns 0."
+  summary: "Obtém o número de colunas na linha atual."
+  remarks: "Inclui campos ocultos. Utilize <xref:System.Data.Common.DbDataReader.VisibleFieldCount%2A>para excluir os campos ocultos.</xref:System.Data.Common.DbDataReader.VisibleFieldCount%2A>       Depois de executar uma consulta que não devolve linhas, FieldCount devolve 0."
   syntax:
     content: public override int FieldCount { get; }
     return:
       type: System.Int32
-      description: "When not positioned in a valid record set, 0; otherwise the number of columns in the current record. The default is -1."
+      description: "Quando não posicionado num conjunto de registos válido 0; caso contrário, o número de colunas no registo atual. A predefinição é de -1."
   overload: System.Data.OracleClient.OracleDataReader.FieldCount*
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "There is no current connection to a data source."
+    description: "Não há nenhuma ligação atual para uma origem de dados."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetBoolean(System.Int32)
@@ -173,22 +173,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a Boolean."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como um valor booleano."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public override bool GetBoolean (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Boolean
-      description: "A Boolean that is the value of the column."
+      description: "Um booleano que é o valor da coluna."
   overload: System.Data.OracleClient.OracleDataReader.GetBoolean*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetByte(System.Int32)
@@ -203,22 +203,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a byte."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como um byte."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public override byte GetByte (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Byte
-      description: "The value of the specified column as a byte."
+      description: "O valor da coluna especificada como um byte."
   overload: System.Data.OracleClient.OracleDataReader.GetByte*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)
@@ -233,29 +233,29 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Reads a stream of bytes from the specified column offset into the buffer as an array, starting at the given buffer offset."
-  remarks: "GetBytes returns the number of available bytes in the field. In most cases this is the exact length of the field. However, the number returned may be less than the true length of the field if `GetBytes` has already been used to obtain bytes from the field. This may be the case, for example, if the <xref:System.Data.OracleClient.OracleDataReader> is reading a large data structure into a buffer. For more information, see the `SequentialAccess` setting of <xref:System.Data.CommandBehavior>.       If you pass a buffer that is a null value, GetBytes returns the length of the field in bytes."
+  summary: "Lê um fluxo de bytes a partir do deslocamento da coluna especificada para a memória intermédia como uma matriz, começando no desvio da memória intermédia fornecida."
+  remarks: "Realizar GetBytes devolve o número de bytes disponíveis no campo. Na maioria dos casos, este é o comprimento do campo exato. No entanto, o número de devolvido pode ser inferior ao comprimento do campo VERDADEIRO se `GetBytes` já foi utilizado para obter os bytes do campo. Isto pode ser o caso, por exemplo, se o <xref:System.Data.OracleClient.OracleDataReader>está a ler uma estrutura de dados de grandes dimensões para uma memória intermédia.</xref:System.Data.OracleClient.OracleDataReader> Para obter mais informações, consulte o `SequentialAccess` definição de <xref:System.Data.CommandBehavior>.</xref:System.Data.CommandBehavior>       Se obtiver uma memória intermédia que é um valor nulo, GetBytes devolve o comprimento do campo em bytes."
   syntax:
     content: public override long GetBytes (int i, long fieldOffset, byte[] buffer2, int bufferoffset, int length);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     - id: fieldOffset
       type: System.Int64
-      description: "The index within the field where the read operation is to begin."
+      description: "O índice dentro do campo em que a operação de leitura é para começar."
     - id: buffer2
       type: System.Byte[]
-      description: "The buffer into which to read the stream of bytes."
+      description: "A memória intermédia para o qual é possível ler o fluxo de bytes."
     - id: bufferoffset
       type: System.Int32
-      description: "The index where `buffer` is to begin the write operation."
+      description: "O índice onde `buffer` é para iniciar a operação de escrita."
     - id: length
       type: System.Int32
-      description: "The number of bytes to read."
+      description: "O número de bytes a ler."
     return:
       type: System.Int64
-      description: "The actual number of bytes read."
+      description: "O número real de bytes lidos."
   overload: System.Data.OracleClient.OracleDataReader.GetBytes*
   exceptions: []
   platform:
@@ -272,22 +272,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a character."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como um caráter."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public override char GetChar (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Char
-      description: "The value of the specified column as a character."
+      description: "O valor da coluna especificada como um caráter."
   overload: System.Data.OracleClient.OracleDataReader.GetChar*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)
@@ -302,29 +302,29 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Reads a stream of characters from the specified column offset into the buffer as an array, starting at the given buffer offset."
-  remarks: "GetChars returns the number of available characters in the field. In most cases this is the exact length of the field. However, the number returned may be less than the true length of the field if `GetChars` has already been used to obtain characters from the field. This may be the case, for example, if the <xref:System.Data.OracleClient.OracleDataReader> is reading a large data structure into a buffer. For more information, see the `SequentialAccess` setting of <xref:System.Data.CommandBehavior>.       If you pass a buffer that is a null value. GetChars returns the length of the field in characters."
+  summary: "Lê uma sequência de carateres do deslocamento da coluna especificada para a memória intermédia como uma matriz, começando no desvio da memória intermédia fornecida."
+  remarks: "GetChars devolve o número de carateres disponíveis no campo. Na maioria dos casos, este é o comprimento do campo exato. No entanto, o número de devolvido pode ser inferior ao comprimento do campo VERDADEIRO se `GetChars` já foi utilizado para obter carateres do campo. Isto pode ser o caso, por exemplo, se o <xref:System.Data.OracleClient.OracleDataReader>está a ler uma estrutura de dados de grandes dimensões para uma memória intermédia.</xref:System.Data.OracleClient.OracleDataReader> Para obter mais informações, consulte o `SequentialAccess` definição de <xref:System.Data.CommandBehavior>.</xref:System.Data.CommandBehavior>       Se obtiver uma memória intermédia que é um valor nulo. GetChars devolve o comprimento do campo em carateres."
   syntax:
     content: public override long GetChars (int i, long fieldOffset, char[] buffer2, int bufferoffset, int length);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     - id: fieldOffset
       type: System.Int64
-      description: "The index within the row where the read operation is to begin."
+      description: "O índice na linha em que a operação de leitura é para começar."
     - id: buffer2
       type: System.Char[]
-      description: "The buffer into which to copy data."
+      description: "A memória intermédia para o qual copiar dados."
     - id: bufferoffset
       type: System.Int32
-      description: "The index where `buffer` is to begin the write operation."
+      description: "O índice onde `buffer` é para iniciar a operação de escrita."
     - id: length
       type: System.Int32
-      description: "The number of characters to read."
+      description: "O número de carateres a ler."
     return:
       type: System.Int64
-      description: "The actual number of characters read."
+      description: "O número real de carateres de leitura."
   overload: System.Data.OracleClient.OracleDataReader.GetChars*
   exceptions: []
   platform:
@@ -341,16 +341,16 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the name of the source data type."
+  summary: "Obtém o nome do tipo de dados de origem."
   syntax:
     content: public override string GetDataTypeName (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.String
-      description: "The name of the source data type."
+      description: "O nome do tipo de dados de origem."
   overload: System.Data.OracleClient.OracleDataReader.GetDataTypeName*
   exceptions: []
   platform:
@@ -367,22 +367,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a <xref uid=&quot;langword_csharp_DateTime&quot; name=&quot;DateTime&quot; href=&quot;&quot;></xref> object."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como uma <xref uid=&quot;langword_csharp_DateTime&quot; name=&quot;DateTime&quot; href=&quot;&quot;> </xref> objeto."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public override DateTime GetDateTime (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.DateTime
-      description: "The value of the specified column as a <xref uid=&quot;langword_csharp_DateTime&quot; name=&quot;DateTime&quot; href=&quot;&quot;></xref> object."
+      description: "O valor da coluna especificada como uma <xref uid=&quot;langword_csharp_DateTime&quot; name=&quot;DateTime&quot; href=&quot;&quot;> </xref> objeto."
   overload: System.Data.OracleClient.OracleDataReader.GetDateTime*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetDecimal(System.Int32)
@@ -397,22 +397,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a <xref uid=&quot;langword_csharp_Decimal&quot; name=&quot;Decimal&quot; href=&quot;&quot;></xref> object."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como uma <xref uid=&quot;langword_csharp_Decimal&quot; name=&quot;Decimal&quot; href=&quot;&quot;> </xref> objeto."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public override decimal GetDecimal (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Decimal
-      description: "The value of the specified column as a <xref uid=&quot;langword_csharp_Decimal&quot; name=&quot;Decimal&quot; href=&quot;&quot;></xref> object."
+      description: "O valor da coluna especificada como uma <xref uid=&quot;langword_csharp_Decimal&quot; name=&quot;Decimal&quot; href=&quot;&quot;> </xref> objeto."
   overload: System.Data.OracleClient.OracleDataReader.GetDecimal*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetDouble(System.Int32)
@@ -427,22 +427,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a double-precision floating point number."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como um número de ponto flutuante de dupla precisão."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public override double GetDouble (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Double
-      description: "The value of the specified column as a double-precision floating point number."
+      description: "O valor da coluna como um número de ponto flutuante de dupla precisão especificado."
   overload: System.Data.OracleClient.OracleDataReader.GetDouble*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetEnumerator
@@ -457,14 +457,14 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Returns an <xref:System.Collections.IEnumerator> that can be used to iterate through the rows in the data reader."
-  remarks: "Although you can use this method to retrieve an explicit enumerator, in languages that support a foreach construct, it&quot;s simpler to use the looping construct directly in order to iterate through the rows in the data reader."
+  summary: "Devolve um <xref:System.Collections.IEnumerator>que podem ser utilizados para iterar através de linhas no leitor de dados.</xref:System.Collections.IEnumerator>"
+  remarks: "Apesar de poder utilizar este método para obter um enumerador explícito, idiomas que suportam um foreach construir, é mais simples utilizar a construção de ciclo diretamente para iterar através de linhas no leitor de dados."
   syntax:
     content: public override System.Collections.IEnumerator GetEnumerator ();
     parameters: []
     return:
       type: System.Collections.IEnumerator
-      description: "An <xref:System.Collections.IEnumerator> that can be used to iterate through the rows in the data reader."
+      description: "Um <xref:System.Collections.IEnumerator>que podem ser utilizados para iterar através de linhas no leitor de dados.</xref:System.Collections.IEnumerator>"
   overload: System.Data.OracleClient.OracleDataReader.GetEnumerator*
   exceptions: []
   platform:
@@ -481,16 +481,16 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the <xref:System.Type> that is the data type of the object."
+  summary: "Obtém o <xref:System.Type>que é o tipo de dados do objeto.</xref:System.Type>"
   syntax:
     content: public override Type GetFieldType (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Type
-      description: "The <xref:System.Type> that is the data type of the object."
+      description: "O <xref:System.Type>que é o tipo de dados do objeto.</xref:System.Type>"
   overload: System.Data.OracleClient.OracleDataReader.GetFieldType*
   exceptions: []
   platform:
@@ -507,22 +507,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a single-precision floating-point number."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como um número de vírgula flutuante de precisão simples."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public override float GetFloat (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Single
-      description: "The value of the specified column as a single-precision floating-point number."
+      description: "O valor da coluna especificada como um número de vírgula flutuante de precisão simples."
   overload: System.Data.OracleClient.OracleDataReader.GetFloat*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetGuid(System.Int32)
@@ -537,22 +537,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a globally-unique identifier (GUID)."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como um identificador exclusivo global (GUID)."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public override Guid GetGuid (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Guid
-      description: "The value of the specified column as a GUID."
+      description: "O valor da coluna especificada como um GUID."
   overload: System.Data.OracleClient.OracleDataReader.GetGuid*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetInt16(System.Int32)
@@ -567,22 +567,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a 16-bit signed integer."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como um número inteiro com sinal de 16 bits."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public override short GetInt16 (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Int16
-      description: "The value of the specified column as a 16-bit signed integer."
+      description: "O valor da coluna especificada como um número inteiro com sinal de 16 bits."
   overload: System.Data.OracleClient.OracleDataReader.GetInt16*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetInt32(System.Int32)
@@ -597,22 +597,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a 32-bit signed integer."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como um número inteiro com sinal de 32 bits."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public override int GetInt32 (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Int32
-      description: "The value of the specified column as a 32-bit signed integer."
+      description: "O valor da coluna especificada como um número inteiro com sinal de 32 bits."
   overload: System.Data.OracleClient.OracleDataReader.GetInt32*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetInt64(System.Int32)
@@ -627,22 +627,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a 64-bit signed integer."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como um número inteiro com sinal de 64 bits."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public override long GetInt64 (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Int64
-      description: "The value of the specified column as a 64-bit signed integer."
+      description: "O valor da coluna especificada como um número inteiro com sinal de 64 bits."
   overload: System.Data.OracleClient.OracleDataReader.GetInt64*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetName(System.Int32)
@@ -657,16 +657,16 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the name of the specified column."
+  summary: "Obtém o nome da coluna especificada."
   syntax:
     content: public override string GetName (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.String
-      description: "A string that is the name of the specified column."
+      description: "Uma cadeia que é o nome da coluna especificada."
   overload: System.Data.OracleClient.OracleDataReader.GetName*
   exceptions: []
   platform:
@@ -683,22 +683,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleBFile&quot;></xref> object."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleBFile&quot;> </xref> objeto."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public System.Data.OracleClient.OracleBFile GetOracleBFile (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Data.OracleClient.OracleBFile
-      description: "The value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleBFile&quot;></xref> object."
+      description: "O valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleBFile&quot;> </xref> objeto."
   overload: System.Data.OracleClient.OracleDataReader.GetOracleBFile*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetOracleBinary(System.Int32)
@@ -713,22 +713,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleBinary&quot;></xref> object."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleBinary&quot;> </xref> objeto."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public System.Data.OracleClient.OracleBinary GetOracleBinary (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Data.OracleClient.OracleBinary
-      description: "The value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleBinary&quot;></xref> object."
+      description: "O valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleBinary&quot;> </xref> objeto."
   overload: System.Data.OracleClient.OracleDataReader.GetOracleBinary*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetOracleDateTime(System.Int32)
@@ -743,22 +743,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleDateTime&quot;></xref> object."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleDateTime&quot;> </xref> objeto."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public System.Data.OracleClient.OracleDateTime GetOracleDateTime (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Data.OracleClient.OracleDateTime
-      description: "The value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleDateTime&quot;></xref> object."
+      description: "O valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleDateTime&quot;> </xref> objeto."
   overload: System.Data.OracleClient.OracleDataReader.GetOracleDateTime*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetOracleLob(System.Int32)
@@ -773,22 +773,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleLob&quot;></xref> object."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleLob&quot;> </xref> objeto."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public System.Data.OracleClient.OracleLob GetOracleLob (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Data.OracleClient.OracleLob
-      description: "The value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleLob&quot;></xref> object."
+      description: "O valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleLob&quot;> </xref> objeto."
   overload: System.Data.OracleClient.OracleDataReader.GetOracleLob*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetOracleMonthSpan(System.Int32)
@@ -803,22 +803,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleMonthSpan&quot;></xref> object."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleMonthSpan&quot;> </xref> objeto."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public System.Data.OracleClient.OracleMonthSpan GetOracleMonthSpan (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Data.OracleClient.OracleMonthSpan
-      description: "The value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleMonthSpan&quot;></xref> object."
+      description: "O valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleMonthSpan&quot;> </xref> objeto."
   overload: System.Data.OracleClient.OracleDataReader.GetOracleMonthSpan*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetOracleNumber(System.Int32)
@@ -833,22 +833,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleNumber&quot;></xref> object."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleNumber&quot;> </xref> objeto."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public System.Data.OracleClient.OracleNumber GetOracleNumber (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Data.OracleClient.OracleNumber
-      description: "The value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleNumber&quot;></xref> object."
+      description: "O valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleNumber&quot;> </xref> objeto."
   overload: System.Data.OracleClient.OracleDataReader.GetOracleNumber*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetOracleString(System.Int32)
@@ -863,22 +863,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleString&quot;></xref> object."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleString&quot;> </xref> objeto."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public System.Data.OracleClient.OracleString GetOracleString (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Data.OracleClient.OracleString
-      description: "The value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleString&quot;></xref> object."
+      description: "O valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleString&quot;> </xref> objeto."
   overload: System.Data.OracleClient.OracleDataReader.GetOracleString*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetOracleTimeSpan(System.Int32)
@@ -893,22 +893,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleTimeSpan&quot;></xref> object."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleTimeSpan&quot;> </xref> objeto."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public System.Data.OracleClient.OracleTimeSpan GetOracleTimeSpan (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Data.OracleClient.OracleTimeSpan
-      description: "The value of the specified column as an <xref href=&quot;System.Data.OracleClient.OracleTimeSpan&quot;></xref> object."
+      description: "O valor da coluna especificada como uma <xref href=&quot;System.Data.OracleClient.OracleTimeSpan&quot;> </xref> objeto."
   overload: System.Data.OracleClient.OracleDataReader.GetOracleTimeSpan*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetOracleValue(System.Int32)
@@ -923,17 +923,17 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the column at the specified ordinal in its Oracle format."
-  remarks: "This method returns <xref:System.DBNull> for null database columns."
+  summary: "Obtém o valor da coluna no ordinal especificada no formato Oracle."
+  remarks: "Este método devolve <xref:System.DBNull>para colunas de base de dados nula.</xref:System.DBNull>"
   syntax:
     content: public object GetOracleValue (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Object
-      description: "The Oracle value to return."
+      description: "O valor de Oracle a devolver."
   overload: System.Data.OracleClient.OracleDataReader.GetOracleValue*
   exceptions: []
   platform:
@@ -950,17 +950,17 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets all the attribute columns in the current row in Oracle format."
-  remarks: "For most applications, the GetOracleValues method provides an efficient means for retrieving all columns, rather than retrieving each column individually.       You can pass an <xref:System.Object> array that contains fewer than the number of columns contained in the resulting row. Only the amount of data the <xref:System.Object> array holds is copied to the array. You can also pass an <xref:System.Object> array whose length is more than the number of columns contained in the resulting row.       This method returns <xref:System.DBNull> for null database columns."
+  summary: "Obtém todas as colunas de atributo na linha atual no formato de Oracle."
+  remarks: "Para a maioria das aplicações, o método GetOracleValues fornece um meio eficiente para obter todas as colunas, em vez de obtenção individualmente cada coluna.       Pode passar uma <xref:System.Object>matriz que contenha menos do que o número de colunas incluídas na linha resultante.</xref:System.Object> Apenas a quantidade de dados a <xref:System.Object>matriz contém é copiado para a matriz.</xref:System.Object> Também pode passar uma <xref:System.Object>matriz cujo comprimento é maior do que o número de colunas incluídas na linha resultante.</xref:System.Object>       Este método devolve <xref:System.DBNull>para colunas de base de dados nula.</xref:System.DBNull>"
   syntax:
     content: public int GetOracleValues (object[] values);
     parameters:
     - id: values
       type: System.Object[]
-      description: "An array of type <xref:System.Object> into which to copy the attribute columns."
+      description: "Uma matriz do tipo <xref:System.Object>na qual copiar as colunas de atributo.</xref:System.Object>"
     return:
       type: System.Int32
-      description: "The number of instances of <xref:System.Object> in the array."
+      description: "O número de instâncias de <xref:System.Object>na matriz.</xref:System.Object>"
   overload: System.Data.OracleClient.OracleDataReader.GetOracleValues*
   exceptions: []
   platform:
@@ -977,8 +977,8 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the column ordinal, given the name of the column."
-  remarks: "GetOrdinal performs a case-sensitive lookup first. If it fails, a second case-insensitive search is made. The method throws an `IndexOutOfRange` exception if the zero-based column ordinal is not found.       GetOrdinal is kana-width insensitive.       Because ordinal-based lookups are more efficient than named lookups, it is inefficient to call GetOrdinal within a loop. Instead, call GetOrdinal once and then assign the results to an integer variable for use within the loop."
+  summary: "Obtém a coluna ordinal, fornecido o nome da coluna."
+  remarks: "GetOrdinal efetua primeiro uma pesquisa de maiúsculas e minúsculas. Se falhar, é efetuada uma procura sensível segundo. O método emite um `IndexOutOfRange` exceção se não for encontrado o ordinal de coluna baseado em zero.       GetOrdinal é sensível e minúsculas kana largura.       Uma vez com base no ordinal pesquisas são mais eficientes de pesquisas com nome, é ineficaz para chamar GetOrdinal dentro de um ciclo. Em vez disso, chame GetOrdinal uma vez e, em seguida, atribuir os resultados para uma variável de número inteiro para utilização dentro do ciclo."
   example:
   - "The following example demonstrates how to use the GetOrdinal method.  \n  \n [Visual Basic]  \n  \n```  \nPublic Sub ReadOracleData(ByVal connectionString As String)  \n  \n    Dim queryString As String = \"SELECT OrderID, CustomerID FROM Orders\"  \n    Dim connection As New OracleConnection(connectionString)  \n    Dim command As New OracleCommand(queryString, connectionString)  \n  \n    connection.Open()  \n  \n    Dim reader As OracleDataReader = command.ExecuteReader()  \n  \n    Dim custIdCol As Integer = reader.GetOrdinal(\"CustomerID\")  \n  \n    Do While reader.Read()  \n        Console.WriteLine(\"CustomerID = {0}\", reader.GetString(custIdCol))  \n    Loop  \n  \n    reader.Close()  \n    connection.Close()  \nEnd Sub  \n```  \n  \n [C#]  \n  \n```  \npublic void ReadOracleData(string connectionString)  \n{  \n    string queryString = \"SELECT OrderID, CustomerID FROM Orders\";  \n    OracleConnection connection = new OracleConnection(connectionString);  \n    OracleCommand command = new OracleCommand(queryString,connection);  \n  \n    connection.Open();  \n    OracleDataReader reader = command.ExecuteReader();  \n  \n    int custIdCol = reader.GetOrdinal(\"CustomerID\");  \n  \n    while (reader.Read())  \n        Console.WriteLine(\"CustomerID = {0}\", reader.GetString(custIdCol));  \n  \n    reader.Close();  \n    connection.Close();  \n}  \n```"
   syntax:
@@ -986,10 +986,10 @@ items:
     parameters:
     - id: name
       type: System.String
-      description: "The name of the column."
+      description: "O nome da coluna."
     return:
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
   overload: System.Data.OracleClient.OracleDataReader.GetOrdinal*
   exceptions: []
   platform:
@@ -1006,16 +1006,16 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets an <xref uid=&quot;langword_csharp_Object&quot; name=&quot;Object&quot; href=&quot;&quot;></xref> that is a representation of the underlying provider specific field type."
+  summary: "Obtém um <xref uid=&quot;langword_csharp_Object&quot; name=&quot;Object&quot; href=&quot;&quot;> </xref> que é uma representação do tipo de campo específico do fornecedor subjacente."
   syntax:
     content: public override Type GetProviderSpecificFieldType (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "An <xref:System.Int32>."
+      description: "An <xref:System.Int32>.</xref:System.Int32>"
     return:
       type: System.Type
-      description: "Gets an <xref:System.Object> that is a representation of the underlying provider specific field type."
+      description: "Obtém um <xref:System.Object>que é uma representação do tipo de campo específico do fornecedor subjacente.</xref:System.Object>"
   overload: System.Data.OracleClient.OracleDataReader.GetProviderSpecificFieldType*
   exceptions: []
   platform:
@@ -1032,16 +1032,16 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets an <xref uid=&quot;langword_csharp_Object&quot; name=&quot;Object&quot; href=&quot;&quot;></xref> that is a representation of the underlying provider specific field type."
+  summary: "Obtém um <xref uid=&quot;langword_csharp_Object&quot; name=&quot;Object&quot; href=&quot;&quot;> </xref> que é uma representação do tipo de campo específico do fornecedor subjacente."
   syntax:
     content: public override object GetProviderSpecificValue (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "An <xref:System.Int32>."
+      description: "An <xref:System.Int32>.</xref:System.Int32>"
     return:
       type: System.Object
-      description: "Gets an <xref:System.Object> that is a representation of the underlying provider specific field type."
+      description: "Obtém um <xref:System.Object>que é uma representação do tipo de campo específico do fornecedor subjacente.</xref:System.Object>"
   overload: System.Data.OracleClient.OracleDataReader.GetProviderSpecificValue*
   exceptions: []
   platform:
@@ -1058,17 +1058,17 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets an array of objects that are a representation of the underlying provider specific values."
-  remarks: "For most applications, the GetProviderSpecificValues method provides an efficient means for retrieving all columns, rather than retrieving each column individually.       You can pass an <xref:System.Object> array that contains fewer than the number of columns contained in the resulting row. Only the amount of data the <xref:System.Object> array holds is copied to the array. You can also pass an <xref:System.Object> array whose length is more than the number of columns contained in the resulting row.       This method returns <xref:System.DBNull> for null database columns."
+  summary: "Obtém uma matriz de objetos que são uma representação dos valores específicos do fornecedor subjacente."
+  remarks: "Para a maioria das aplicações, o método GetProviderSpecificValues fornece um meio eficiente para obter todas as colunas, em vez de obtenção individualmente cada coluna.       Pode passar uma <xref:System.Object>matriz que contenha menos do que o número de colunas incluídas na linha resultante.</xref:System.Object> Apenas a quantidade de dados a <xref:System.Object>matriz contém é copiado para a matriz.</xref:System.Object> Também pode passar uma <xref:System.Object>matriz cujo comprimento é maior do que o número de colunas incluídas na linha resultante.</xref:System.Object>       Este método devolve <xref:System.DBNull>para colunas de base de dados nula.</xref:System.DBNull>"
   syntax:
     content: public override int GetProviderSpecificValues (object[] values);
     parameters:
     - id: values
       type: System.Object[]
-      description: "An array of <xref:System.Object>."
+      description: "Uma matriz de <xref:System.Object>.</xref:System.Object>"
     return:
       type: System.Int32
-      description: "The number of instances of <xref:System.Object> in the array."
+      description: "O número de instâncias de <xref:System.Object>na matriz.</xref:System.Object>"
   overload: System.Data.OracleClient.OracleDataReader.GetProviderSpecificValues*
   exceptions: []
   platform:
@@ -1085,14 +1085,14 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Returns a <xref href=&quot;System.Data.DataTable&quot;></xref> that describes the column metadata of the OracleDataReader."
-  remarks: "The GetSchemaTable method returns metadata about each column in the following order:      |DataReader Column|Description|   |-----------------------|-----------------|   |ColumnName|The name of the column; this might not be unique. If the column name cannot be determined, a null value is returned. This name always reflects the most recent naming of the column in the current view or command text.|   |ColumnOrdinal|The zero-based ordinal of the column. This column cannot contain a null value.|   |ColumnSize|The maximum possible length of a value in the column. For columns that use a fixed-length data type, this is the size of the data type.|   |NumericPrecision|If <xref:System.Data.OracleClient.OracleParameter.DbType%2A> is a numeric data type, this is the maximum precision of the column. The precision depends on the definition of the column. `Float` and `Double` data types in Oracle are binary precision.|   |NumericScale|If <xref:System.Data.OracleClient.OracleParameter.DbType%2A> is a numeric data type, the number of digits to the right of the decimal point. `Float` and `Double` data types in Oracle are binary scale.|   |DataType|Maps to the common language runtime type of <xref:System.Data.OracleClient.OracleParameter.DbType%2A>.|   |IsLong|`true` if the column contains a Binary Long Object (BLOB) that contains very long data.|   |AllowDBNull|`true` if the consumer can set the column to a null value; otherwise, `false`. A column may contain null values, even if it cannot be set to a null value.|   |IsUnique|`true`: No two rows in the base table-the table returned in <xref:System.Data.Common.SchemaTableColumn.BaseTableName> -can have the same value in this column. **IsUnique** is guaranteed to be `true` if the column constitutes a key by itself or if there is a constraint of type UNIQUE that applies only to this column. `false`: The column can contain duplicate values in the base table. The default for this column is false.|   |IsKey|`true`: The column is one of a set of columns in the rowset that, taken together, uniquely identify the row. The set of columns with **IsKey** set to true must uniquely identify a row in the rowset. There is no requirement that this set of columns is a minimal set of columns. This set of columns may be generated from a base table primary key, a unique constraint or a unique index. `false`: The column is not required to uniquely identify the row.|   |BaseTableName|The name of the table or view in the data store that contains the column. A null value if the base table name cannot be determined. The default of this column is a null value.|   |BaseColumnName|The name of the column in the data store. This might be different than the column name returned in the **ColumnName** column if an alias was used. A null value if the base column name cannot be determined or if the rowset column is derived, but not identical to, a column in the data store. The default for this column is a null value.|   |BaseSchemaName|The name of the schema in the data store that contains the column. A null value if the base schema name cannot be determined. The default for this column is a null value.|       A row is returned for every column in the results set.      > [!NOTE] >  To ensure that metadata columns return the correct information, you must call <xref:System.Data.OracleClient.OracleCommand.ExecuteReader%2A> with the `behavior` parameter set to `KeyInfo`. Otherwise, some of the columns in the schema table may return default, null, or incorrect data."
+  summary: "Devolve um <xref href=&quot;System.Data.DataTable&quot;> </xref> que descreve os metadados da coluna do OracleDataReader."
+  remarks: "O método GetSchemaTable devolve os metadados sobre cada coluna pela seguinte ordem: | Coluna DataReader | Descrição |   |-----------------------|-----------------|   | ColumnName | O nome da coluna; poderá não ser exclusivo. Se não é possível determinar o nome da coluna, é devolvido um valor nulo. Este nome sempre reflete a nomenclatura mais recente da coluna no texto de vista ou o comando atual. |   | ColumnOrdinal | O ordinal baseado em zero da coluna. Esta coluna não pode conter um valor nulo. |   | ColumnSize | O comprimento máximo possível de um valor na coluna. Para as colunas que utilizam um tipo de dados de comprimento fixo, este é o tamanho do tipo de dados. |   | NumericPrecision | Se <xref:System.Data.OracleClient.OracleParameter.DbType%2A>é um tipo de dados numéricos, esta é a precisão máxima da coluna.</xref:System.Data.OracleClient.OracleParameter.DbType%2A> A precisão depende a definição da coluna. `Float`e `Double` precisão binário de são os tipos de dados Oracle. |   | NumericScale | Se <xref:System.Data.OracleClient.OracleParameter.DbType%2A>é um tipo de dados numéricos, o número de dígitos à direita da vírgula decimal.</xref:System.Data.OracleClient.OracleParameter.DbType%2A> `Float`e `Double` escala binária de são os tipos de dados Oracle. |   | Tipo de dados | É mapeado para o tipo de tempo de execução de idioma comum de <xref:System.Data.OracleClient.OracleParameter.DbType%2A>. |   | IsLong | `true` se a coluna contém um binário longo objeto (BLOBS) que contém dados muito. |   | AllowDBNull | `true` se o consumidor pode definir a coluna com um valor nulo; caso contrário, `false`.</xref:System.Data.OracleClient.OracleParameter.DbType%2A> Uma coluna pode conter valores nulos, mesmo que não pode ser definido com um valor nulo. |   | IsUnique | `true`: Nenhum duas linhas na tabela base os tabela devolvida <xref:System.Data.Common.SchemaTableColumn.BaseTableName>-pode ter o mesmo valor nesta coluna.</xref:System.Data.Common.SchemaTableColumn.BaseTableName> **IsUnique** é garantida ser `true` se a coluna constitui uma chave por si só ou se existe uma restrição de tipo exclusivos que só se aplica a esta coluna. `false`: A coluna pode conter valores duplicados na tabela base. A predefinição para esta coluna é falsa. |   | IsKey | `true`: A coluna é um de um conjunto de colunas no conjunto de linhas, utilizadas em conjunto, identificar exclusivamente a linha. O conjunto de colunas com **IsKey** definido como VERDADEIRO tem de identificar exclusivamente uma linha no conjunto de linhas. Não é necessário que este conjunto de colunas é um conjunto mínimo de colunas. Este conjunto de colunas pode ser gerado a partir de um índice exclusivo, uma restrição exclusiva ou uma chave primária da tabela base. `false`: A coluna não é necessário para identificar exclusivamente a linha. |   | BaseTableName | O nome da tabela ou vista no arquivo de dados que contém a coluna. Um valor nulo se não é possível determinar o nome da tabela base. A predefinição desta coluna é um valor nulo. |   | BaseColumnName | O nome da coluna no arquivo de dados. Esta situação pode ser diferente do nome da coluna devolvido no **ColumnName** coluna se utilizou um alias. Um valor nulo se não é possível determinar o nome de coluna base ou se a coluna de conjunto de linhas é derivada, mas não é idêntico ao, armazenar uma coluna de dados. A predefinição para esta coluna é um valor nulo. |   | BaseSchemaName | O nome do esquema no arquivo de dados que contém a coluna. Um valor nulo se não é possível determinar o nome do esquema de base. A predefinição para esta coluna é um valor nulo. |       É devolvida uma linha para cada coluna no conjunto de resultados.      > [!NOTE] > Para garantir que as colunas de metadados devolvem as informações corretas, tem de chamar <xref:System.Data.OracleClient.OracleCommand.ExecuteReader%2A>com o `behavior` parâmetro definido como `KeyInfo`.</xref:System.Data.OracleClient.OracleCommand.ExecuteReader%2A> Caso contrário, algumas das colunas da tabela de esquema podem devolver predefinido, nulos ou incorreta os dados."
   syntax:
     content: public override System.Data.DataTable GetSchemaTable ();
     parameters: []
     return:
       type: System.Data.DataTable
-      description: "A <xref href=&quot;System.Data.DataTable&quot;></xref> that describes the column metadata."
+      description: "A <xref href=&quot;System.Data.DataTable&quot;> </xref> que descreve os metadados da coluna."
   overload: System.Data.OracleClient.OracleDataReader.GetSchemaTable*
   exceptions: []
   platform:
@@ -1109,22 +1109,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a string."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como uma cadeia."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public override string GetString (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.String
-      description: "The value of the specified column as a string."
+      description: "O valor da coluna especificada como uma cadeia."
   overload: System.Data.OracleClient.OracleDataReader.GetString*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetTimeSpan(System.Int32)
@@ -1139,22 +1139,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column as a <xref uid=&quot;langword_csharp_System.TimeSpan&quot; name=&quot;System.TimeSpan&quot; href=&quot;&quot;></xref>."
-  remarks: "Call <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A> to check for null values before calling this method."
+  summary: "Obtém o valor da coluna especificada como uma <xref uid=&quot;langword_csharp_System.TimeSpan&quot; name=&quot;System.TimeSpan&quot; href=&quot;&quot;> </xref>."
+  remarks: "Chamar <xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>verificar a existência de valores nulos antes de chamar este método.</xref:System.Data.OracleClient.OracleDataReader.IsDBNull%2A>"
   syntax:
     content: public TimeSpan GetTimeSpan (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.TimeSpan
-      description: "The value of the specified column as a <xref:System.TimeSpan>."
+      description: "O valor da coluna especificada como <xref:System.TimeSpan>.</xref:System.TimeSpan>"
   overload: System.Data.OracleClient.OracleDataReader.GetTimeSpan*
   exceptions:
   - type: System.InvalidCastException
     commentId: T:System.InvalidCastException
-    description: "The specified cast is not valid."
+    description: "A conversão especificada não é válida."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetValue(System.Int32)
@@ -1169,22 +1169,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the column at the specified ordinal in its native format."
-  remarks: "This method returns <xref:System.DBNull> for null database columns. The value returned by this method might be the result of the conversion from Oracle&quot;s Number data type to .NET Decimal type. If the value is too large to be stored in the .NET Decimal, this method throws an <xref:System.Data.OracleClient.OracleException> that is an overflow exception."
+  summary: "Obtém o valor da coluna no ordinal especificada no formato nativo."
+  remarks: "Este método devolve <xref:System.DBNull>para colunas de base de dados nula.</xref:System.DBNull> O valor devolvido por este método pode ser o resultado da conversão do tipo de dados de número do Oracle para o tipo .NET Decimal. Se o valor é demasiado grande para ser armazenado num Decimal de .NET, este método emite um <xref:System.Data.OracleClient.OracleException>que é uma exceção de capacidade excedida.</xref:System.Data.OracleClient.OracleException>"
   syntax:
     content: public override object GetValue (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Object
-      description: "The value to return."
+      description: "O valor a devolver."
   overload: System.Data.OracleClient.OracleDataReader.GetValue*
   exceptions:
   - type: System.Data.OracleClient.OracleException
     commentId: T:System.Data.OracleClient.OracleException
-    description: "The value is too large to be stored in the .NET Decimal."
+    description: "O valor é demasiado grande para ser armazenado num Decimal de .NET."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.GetValues(System.Object[])
@@ -1199,22 +1199,22 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Populates an array of objects with the column values of the current row."
-  remarks: "For most applications, the GetValues method provides an efficient means for retrieving all columns, rather than retrieving each column individually.       You can pass an <xref:System.Object> array that contains fewer than the number of columns contained in the resulting row. Only the amount of data the <xref:System.Object> array holds is copied to the array. You can also pass an <xref:System.Object> array whose length is more than the number of columns contained in the resulting row.       This method returns <xref:System.DBNull> for null database columns. The value returned in the <xref:System.Object> array might be the result of the conversion from Oracle&quot;s Number data type to .NET Decimal type. If the value is too large to be stored in the .NET Decimal, this method throws an <xref:System.Data.OracleClient.OracleException> that is an overflow exception."
+  summary: "Preenche uma matriz de objetos com os valores da coluna da linha actual."
+  remarks: "Para a maioria das aplicações, o método GetValues fornece um meio eficiente para obter todas as colunas, em vez de obtenção individualmente cada coluna.       Pode passar uma <xref:System.Object>matriz que contenha menos do que o número de colunas incluídas na linha resultante.</xref:System.Object> Apenas a quantidade de dados a <xref:System.Object>matriz contém é copiado para a matriz.</xref:System.Object> Também pode passar uma <xref:System.Object>matriz cujo comprimento é maior do que o número de colunas incluídas na linha resultante.</xref:System.Object>       Este método devolve <xref:System.DBNull>para colunas de base de dados nula.</xref:System.DBNull> O valor devolvido no <xref:System.Object>matriz pode ser o resultado da conversão do tipo de dados de número do Oracle para o tipo .NET Decimal.</xref:System.Object> Se o valor é demasiado grande para ser armazenado num Decimal de .NET, este método emite um <xref:System.Data.OracleClient.OracleException>que é uma exceção de capacidade excedida.</xref:System.Data.OracleClient.OracleException>"
   syntax:
     content: public override int GetValues (object[] values);
     parameters:
     - id: values
       type: System.Object[]
-      description: "An array of type <xref:System.Object> into which to copy the attribute columns."
+      description: "Uma matriz do tipo <xref:System.Object>na qual copiar as colunas de atributo.</xref:System.Object>"
     return:
       type: System.Int32
-      description: "The number of instances of <xref:System.Object> in the array."
+      description: "O número de instâncias de <xref:System.Object>na matriz.</xref:System.Object>"
   overload: System.Data.OracleClient.OracleDataReader.GetValues*
   exceptions:
   - type: System.Data.OracleClient.OracleException
     commentId: T:System.Data.OracleClient.OracleException
-    description: "The value is too large to be stored in the .NET Decimal."
+    description: "O valor é demasiado grande para ser armazenado num Decimal de .NET."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.HasRows
@@ -1229,12 +1229,12 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets a value indicating whether the <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;></xref> contains one or more rows."
+  summary: "Obtém um valor que indica se o <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;> </xref> contém uma ou mais linhas."
   syntax:
     content: public override bool HasRows { get; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;></xref> contains one or more rows; otherwise <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;> </xref> contém uma ou mais linhas; caso contrário <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Data.OracleClient.OracleDataReader.HasRows*
   exceptions: []
   platform:
@@ -1251,13 +1251,13 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Indicates whether the <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;></xref> is closed."
-  remarks: "IsClosed and <xref:System.Data.OracleClient.OracleDataReader.RecordsAffected%2A> are the only properties that you can call after the <xref:System.Data.OracleClient.OracleDataReader> is closed."
+  summary: "Indica se o <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;> </xref> está fechado."
+  remarks: "IsClosed e <xref:System.Data.OracleClient.OracleDataReader.RecordsAffected%2A>são as propriedades de só pode ser chamada após o <xref:System.Data.OracleClient.OracleDataReader>está fechado.</xref:System.Data.OracleClient.OracleDataReader> </xref:System.Data.OracleClient.OracleDataReader.RecordsAffected%2A>"
   syntax:
     content: public override bool IsClosed { get; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;></xref> is closed; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;> </xref> é fechada; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Data.OracleClient.OracleDataReader.IsClosed*
   exceptions: []
   platform:
@@ -1274,17 +1274,17 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets a value indicating whether the column contains non-existent or missing values."
-  remarks: "To avoid raising an error, call this method to check for null column values before calling the typed Get methods (for example, <xref:System.Data.OracleClient.OracleDataReader.GetByte%2A>, <xref:System.Data.OracleClient.OracleDataReader.GetChar%2A>, and so on)."
+  summary: "Obtém um valor que indica se a coluna contém valores inexistente ou está em falta."
+  remarks: "Para evitar que gera um erro, chamar este método para verificar para métodos de introdução de valores da coluna nulo antes de chamar o escrito (por exemplo, <xref:System.Data.OracleClient.OracleDataReader.GetByte%2A>, <xref:System.Data.OracleClient.OracleDataReader.GetChar%2A>, e assim sucessivamente).</xref:System.Data.OracleClient.OracleDataReader.GetChar%2A> </xref:System.Data.OracleClient.OracleDataReader.GetByte%2A>"
   syntax:
     content: public override bool IsDBNull (int i);
     parameters:
     - id: i
       type: System.Int32
-      description: "The zero-based column ordinal."
+      description: "O baseado em zero ordinal da coluna."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the specified column value is equivalent to <xref href=&quot;System.DBNull&quot;></xref>; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o valor de coluna especificada é equivalente ao <xref href=&quot;System.DBNull&quot;> </xref>; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Data.OracleClient.OracleDataReader.IsDBNull*
   exceptions: []
   platform:
@@ -1301,21 +1301,21 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column in its native format given the column ordinal."
+  summary: "Obtém o valor da coluna especificada no formato nativo dado o ordinal de coluna."
   syntax:
     content: public override object this[int i] { get; }
     parameters:
     - id: i
       type: System.Int32
-      description: "The column ordinal."
+      description: "O ordinal de coluna."
     return:
       type: System.Object
-      description: "The value of the specified column in its native format."
+      description: "O valor da coluna especificada no formato nativo."
   overload: System.Data.OracleClient.OracleDataReader.Item*
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: "The index passed was outside the range of 0 through <xref:System.Data.IDataRecord.FieldCount*>."
+    description: "O índice transmitido estava fora do intervalo de 0 a <xref:System.Data.IDataRecord.FieldCount*>.</xref:System.Data.IDataRecord.FieldCount*>"
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.Item(System.String)
@@ -1330,21 +1330,21 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the value of the specified column in its native format given the column name."
+  summary: "Obtém o valor da coluna especificada no formato nativo fornecido o nome de coluna."
   syntax:
     content: public override object this[string name] { get; }
     parameters:
     - id: name
       type: System.String
-      description: "The column name."
+      description: "O nome da coluna."
     return:
       type: System.Object
-      description: "The value of the specified column in its native format."
+      description: "O valor da coluna especificada no formato nativo."
   overload: System.Data.OracleClient.OracleDataReader.Item*
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: "No column with the specified name was found."
+    description: "Não foi encontrada nenhuma coluna com o nome especificado."
   platform:
   - net462
 - uid: System.Data.OracleClient.OracleDataReader.NextResult
@@ -1359,14 +1359,14 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Advances the <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;></xref> to the next result"
-  remarks: "You must use a `REF CURSOR` when calling this method."
+  summary: "Avança o <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;> </xref> ao seguinte resultado"
+  remarks: "Tem de utilizar um `REF CURSOR` ao chamar este método."
   syntax:
     content: public override bool NextResult ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if there are more result sets; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se não existirem mais conjuntos de resultados; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Data.OracleClient.OracleDataReader.NextResult*
   exceptions: []
   platform:
@@ -1383,8 +1383,8 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Advances the <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;></xref> to the next record."
-  remarks: "The default position of the <xref:System.Data.OracleClient.OracleDataReader> is prior to the first record. Therefore, you must call Read to begin accessing any data.       More than one <xref:System.Data.OracleClient.OracleDataReader> can be open at any given time."
+  summary: "Avança o <xref href=&quot;System.Data.OracleClient.OracleDataReader&quot;> </xref> ao registo seguinte."
+  remarks: "A posição da predefinição do <xref:System.Data.OracleClient.OracleDataReader>anterior do primeiro registo.</xref:System.Data.OracleClient.OracleDataReader> Por conseguinte, tem de chamar leitura para começar a aceder a quaisquer dados.       Mais do que um <xref:System.Data.OracleClient.OracleDataReader>podem ser abertos em qualquer momento.</xref:System.Data.OracleClient.OracleDataReader>"
   example:
   - "The following example creates an <xref:System.Data.OracleClient.OracleConnection>, an <xref:System.Data.OracleClient.OracleCommand>, and an <xref:System.Data.OracleClient.OracleDataReader>. The example reads through the data, writing it out to the console. Finally, the example closes the <xref:System.Data.OracleClient.OracleDataReader>, then the <xref:System.Data.OracleClient.OracleConnection>.  \n  \n [!code-cs[Classic WebData IDataReader.Read Example#1](~/add/codesnippet/csharp/m-system.data.oracleclie_4_1.cs)]\n [!code-vb[Classic WebData IDataReader.Read Example#1](~/add/codesnippet/visualbasic/m-system.data.oracleclie_4_1.vb)]"
   syntax:
@@ -1392,7 +1392,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if there are more rows; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se não existirem mais linhas; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Data.OracleClient.OracleDataReader.Read*
   exceptions: []
   platform:
@@ -1409,13 +1409,13 @@ items:
   assemblies:
   - System.Data.OracleClient
   namespace: System.Data.OracleClient
-  summary: "Gets the number of rows changed, inserted, or deleted by execution of the SQL statement."
-  remarks: "The RecordsAffected property is not set until all rows are read and you close the <xref:System.Data.OracleClient.OracleDataReader>.       <xref:System.Data.OracleClient.OracleDataReader.IsClosed%2A> and RecordsAffected are the only properties that you can call after the <xref:System.Data.OracleClient.OracleDataReader> is closed."
+  summary: "Obtém o número de linhas alterada, inseridas ou eliminadas pela execução da instrução SQL."
+  remarks: "A propriedade RecordsAffected não está definida até que todas as linhas são lidas e fechar o <xref:System.Data.OracleClient.OracleDataReader>.</xref:System.Data.OracleClient.OracleDataReader>       <xref:System.Data.OracleClient.OracleDataReader.IsClosed%2A>e RecordsAffected são as propriedades de só pode ser chamada após o <xref:System.Data.OracleClient.OracleDataReader>está fechado.</xref:System.Data.OracleClient.OracleDataReader></xref:System.Data.OracleClient.OracleDataReader.IsClosed%2A>"
   syntax:
     content: public override int RecordsAffected { get; }
     return:
       type: System.Int32
-      description: "The number of rows changed, inserted, or deleted. -1 for SELECT statements; 0 if no rows were affected, or the statement failed."
+      description: "O número de linhas alterado, inserir ou eliminado. -1 para instruções SELECT; 0 se não existem linhas foram afetadas ou falha na instrução."
   overload: System.Data.OracleClient.OracleDataReader.RecordsAffected*
   exceptions: []
   platform:
