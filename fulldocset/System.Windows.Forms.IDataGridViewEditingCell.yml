@@ -13,8 +13,8 @@ items:
   nameWithType: IDataGridViewEditingCell
   fullName: System.Windows.Forms.IDataGridViewEditingCell
   type: Interface
-  summary: "Defines common functionality for a cell that allows the manipulation of its value."
-  remarks: "This interface is implemented by classes such as <xref:System.Windows.Forms.DataGridViewCheckBoxCell> that derive from <xref:System.Windows.Forms.DataGridViewCell> and provide a user interface (UI) for specifying values without hosting an editing control. The UI in this case is displayed regardless of whether the cell is in edit mode.       Other cell types, such as <xref:System.Windows.Forms.DataGridViewButtonCell>, provide a UI but do not store user-specified values. In this case, the cell type does not implement IDataGridViewEditingCell or host an editing control.       Cell types that display an editing control when the cell is in edit mode, such as <xref:System.Windows.Forms.DataGridViewTextBoxCell>, do not implement IDataGridViewEditingCell but instead provide a companion class that implements <xref:System.Windows.Forms.IDataGridViewEditingControl>. For example, <xref:System.Windows.Forms.DataGridViewTextBoxCell> provides a <xref:System.Windows.Forms.DataGridViewTextBoxEditingControl> that derives from the <xref:System.Windows.Forms.TextBox> control and implements <xref:System.Windows.Forms.IDataGridViewEditingControl>. In this case, the cell <xref:System.Windows.Forms.DataGridViewCell.EditType%2A> property is set to a <xref:System.Type> object representing the editing control type. For information about implementing <xref:System.Windows.Forms.IDataGridViewEditingControl>, see [How to: Host Controls in Windows Forms DataGridView Cells](~/add/includes/ajax-current-ext-md.md)."
+  summary: "Define uma funcionalidade comum para uma célula que permite a manipulação de valor."
+  remarks: "Esta interface é implementada por classes, tal como <xref:System.Windows.Forms.DataGridViewCheckBoxCell>que deriva de <xref:System.Windows.Forms.DataGridViewCell>e fornecem uma interface de utilizador (IU) para especificar valores sem um controlo de edição de alojamento.</xref:System.Windows.Forms.DataGridViewCell> </xref:System.Windows.Forms.DataGridViewCheckBoxCell> A IU neste caso, é apresentada, independentemente se a célula está no modo de edição.       Tipos de outra célula, tais como <xref:System.Windows.Forms.DataGridViewButtonCell>, fornece uma IU, mas não armazene o utilizador especificado valores.</xref:System.Windows.Forms.DataGridViewButtonCell> Neste caso, o tipo de célula não implementa IDataGridViewEditingCell ou alojar um controlo de edição.       Editar de tipos de célula apresentam um controlo de edição quando a célula está no modo, como <xref:System.Windows.Forms.DataGridViewTextBoxCell>, não implementa IDataGridViewEditingCell mas em vez disso, fornece uma classe de complementar que implementa <xref:System.Windows.Forms.IDataGridViewEditingControl>.</xref:System.Windows.Forms.IDataGridViewEditingControl> </xref:System.Windows.Forms.DataGridViewTextBoxCell> Por exemplo, <xref:System.Windows.Forms.DataGridViewTextBoxCell>fornece uma <xref:System.Windows.Forms.DataGridViewTextBoxEditingControl>que deriva de <xref:System.Windows.Forms.TextBox>controlar e implementa <xref:System.Windows.Forms.IDataGridViewEditingControl>.</xref:System.Windows.Forms.IDataGridViewEditingControl> </xref:System.Windows.Forms.TextBox> </xref:System.Windows.Forms.DataGridViewTextBoxEditingControl> </xref:System.Windows.Forms.DataGridViewTextBoxCell> Neste caso, a célula <xref:System.Windows.Forms.DataGridViewCell.EditType%2A>propriedade está definida como um <xref:System.Type>objeto que representa o tipo de controlo de edição.</xref:System.Type> </xref:System.Windows.Forms.DataGridViewCell.EditType%2A> Para obter informações sobre a implementação <xref:System.Windows.Forms.IDataGridViewEditingControl>, consulte [como: controlos de anfitrião do Windows Forms DataGridView células](~/add/includes/ajax-current-ext-md.md).</xref:System.Windows.Forms.IDataGridViewEditingControl>"
   syntax:
     content: public interface IDataGridViewEditingCell
   implements: []
@@ -32,13 +32,13 @@ items:
   assemblies:
   - System.Windows.Forms
   namespace: System.Windows.Forms
-  summary: "Gets or sets the formatted value of the cell."
-  remarks: "The formatted value represents the value as it is displayed in the cell&quot;s user interface. The formatted value may be different in absolute value and even data type than the actual value contained in the cell.       Implementations of this property typically return a value retrieved by calling the <xref:System.Windows.Forms.IDataGridViewEditingCell.GetEditingCellFormattedValue%2A> method and passing in the <xref:System.Windows.Forms.DataGridViewDataErrorContexts> value."
+  summary: "Obtém ou define o valor formatado da célula."
+  remarks: "O valor formatado representa o valor, tal como é apresentado na interface de utilizador da célula. O valor formatado pode ser diferente no valor absoluto e tipo de dados, mesmo que o valor real contido na célula.       As implementações desta propriedade normalmente devolvem um valor obtido ao chamar o <xref:System.Windows.Forms.IDataGridViewEditingCell.GetEditingCellFormattedValue%2A>método e transmitir no <xref:System.Windows.Forms.DataGridViewDataErrorContexts>valor.</xref:System.Windows.Forms.DataGridViewDataErrorContexts> </xref:System.Windows.Forms.IDataGridViewEditingCell.GetEditingCellFormattedValue%2A>"
   syntax:
     content: public object EditingCellFormattedValue { get; set; }
     return:
       type: System.Object
-      description: "An &lt;xref:System.Object?displayProperty=fullName&gt; that contains the cell&quot;s value."
+      description: "Um &lt;xref:System.Object?displayProperty=fullName&gt; que contém o valor da célula."
   overload: System.Windows.Forms.IDataGridViewEditingCell.EditingCellFormattedValue*
   exceptions: []
   platform:
@@ -55,13 +55,13 @@ items:
   assemblies:
   - System.Windows.Forms
   namespace: System.Windows.Forms
-  summary: "Gets or sets a value indicating whether the value of the cell has changed."
-  remarks: "This property is set to `true` to indicate that the cell value has been modified and that its user interface (UI) may need to be updated to reflect this change in value. The owning cell or table should reset this property to `false` after an update."
+  summary: "Obtém ou define um valor que indica se o valor da célula foi alterado."
+  remarks: "Esta propriedade está definida como `true` para indicar que o valor de célula foi modificado e que a interface de utilizador (IU) poderá ter de ser atualizadas para refletir esta alteração no valor. A célula ou tabela proprietário deve repor esta propriedade para `false` após uma atualização."
   syntax:
     content: public bool EditingCellValueChanged { get; set; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the value of the cell has changed; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se tiver alterado o valor da célula; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Windows.Forms.IDataGridViewEditingCell.EditingCellValueChanged*
   exceptions: []
   platform:
@@ -78,17 +78,17 @@ items:
   assemblies:
   - System.Windows.Forms
   namespace: System.Windows.Forms
-  summary: "Retrieves the formatted value of the cell."
-  remarks: "The formatted value represents the value as it is displayed in the cell&quot;s user interface. The formatted value may be different in absolute value and even data type than the actual value contained in the cell.       To set the formatted value of the cell, use the <xref:System.Windows.Forms.IDataGridViewEditingCell.EditingCellFormattedValue%2A> property."
+  summary: "Obtém o valor formatado da célula."
+  remarks: "O valor formatado representa o valor, tal como é apresentado na interface de utilizador da célula. O valor formatado pode ser diferente no valor absoluto e tipo de dados, mesmo que o valor real contido na célula.       Para definir o valor formatado da célula, utilize o <xref:System.Windows.Forms.IDataGridViewEditingCell.EditingCellFormattedValue%2A>propriedade.</xref:System.Windows.Forms.IDataGridViewEditingCell.EditingCellFormattedValue%2A>"
   syntax:
     content: public object GetEditingCellFormattedValue (System.Windows.Forms.DataGridViewDataErrorContexts context);
     parameters:
     - id: context
       type: System.Windows.Forms.DataGridViewDataErrorContexts
-      description: "A bitwise combination of <xref href=&quot;System.Windows.Forms.DataGridViewDataErrorContexts&quot;></xref> values that specifies the context in which the data is needed."
+      description: "Uma combinação bit a bit de <xref href=&quot;System.Windows.Forms.DataGridViewDataErrorContexts&quot;> </xref> valores que especifica o contexto em que os dados é necessária."
     return:
       type: System.Object
-      description: "An <xref:System.Object> that represents the formatted version of the cell contents."
+      description: "Um <xref:System.Object>que representa a versão do conteúdo da célula de formatado.</xref:System.Object>"
   overload: System.Windows.Forms.IDataGridViewEditingCell.GetEditingCellFormattedValue*
   exceptions: []
   platform:
@@ -105,14 +105,14 @@ items:
   assemblies:
   - System.Windows.Forms
   namespace: System.Windows.Forms
-  summary: "Prepares the currently selected cell for editing"
-  remarks: "The purpose of this method is to prepare the cell and its contents for editing. For example, you might want to put the insertion point at the end of the cell contents, or change how the contents are aligned."
+  summary: "Prepara a célula seleccionada actualmente para editar"
+  remarks: "O objetivo deste método é preparar a célula e o respetivo conteúdo para edição. Por exemplo, poderá colocar o ponto de inserção no fim do conteúdo da célula de, ou alterar a forma como os conteúdos estão alinhados."
   syntax:
     content: public void PrepareEditingCellForEdit (bool selectAll);
     parameters:
     - id: selectAll
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> to select the cell contents; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>para selecionar o conteúdo da célula; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Windows.Forms.IDataGridViewEditingCell.PrepareEditingCellForEdit*
   exceptions: []
   platform:
