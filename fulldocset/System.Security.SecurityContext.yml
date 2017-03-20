@@ -18,7 +18,7 @@ items:
   nameWithType: SecurityContext
   fullName: System.Security.SecurityContext
   type: Class
-  summary: "Encapsulates and propagates all security-related data for execution contexts transferred across threads. This class cannot be inherited."
+  summary: "Encapsula e propaga todos os dados relacionados com segurança transferidos através de threads de contextos de execução. Esta classe não pode ser herdada."
   remarks: "A SecurityContext object captures all security-related information for a logical thread, including the information contained in the <xref:System.Security.Principal.WindowsIdentity> and <xref:System.Threading.CompressedStack> objects.  This configuration allows the Windows identity and the security elements on the stack to be propagated automatically when the SecurityContext is copied and transferred across asynchronous threads.  \n  \n> [!NOTE]\n>  The common language runtime (CLR) is aware of impersonation operations performed using only managed code, not of impersonation performed outside of managed code, such as through platform invoke to unmanaged code or through direct calls to Win32 functions. Only managed <xref:System.Security.Principal.WindowsIdentity> objects can flow across asynchronous points, unless the `alwaysFlowImpersonationPolicy` element has been set to `true` (`<alwaysFlowImpersonationPolicy enabled=\"true\"/>`). Setting the `alwaysFlowImpersonationPolicy` element to `true` specifies that the Windows identity always flows across asynchronous points, regardless of how impersonation was performed. For more information about flowing unmanaged impersonation across asynchronous points, see [\\&lt;alwaysFlowImpersonationPolicy\\&gt; Element](../Topic/%3CalwaysFlowImpersonationPolicy%3E%20Element.md).  \n  \n The SecurityContext is part of the larger <xref:System.Threading.ExecutionContext> and flows or migrates when the <xref:System.Threading.ExecutionContext> flows or migrates.  \n  \n> [!IMPORTANT]\n>  This type implements the <xref:System.IDisposable> interface. When you have finished using the type, you should dispose of it either directly or indirectly. To dispose of the type directly, call its <xref:System.IDisposable.Dispose%2A> method in a `try`/`catch` block. To dispose of it indirectly, use a language construct such as `using` (in C#) or `Using` (in Visual Basic). For more information, see the “Using an Object that Implements IDisposable” section in the <xref:System.IDisposable> interface topic."
   syntax:
     content: 'public sealed class SecurityContext : IDisposable'
@@ -41,14 +41,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Captures the security context for the current thread."
-  remarks: "The captured security context can be applied to another thread. The <xref:System.Security.SecurityContext> consists of the <xref:System.Threading.CompressedStack> and the <xref:System.Security.Principal.WindowsIdentity> for the executing thread."
+  summary: "Captura o contexto de segurança para o thread actual."
+  remarks: "O contexto de segurança capturada pode ser aplicado a outro thread. O <xref:System.Security.SecurityContext>consiste o <xref:System.Threading.CompressedStack>e <xref:System.Security.Principal.WindowsIdentity>para o thread em execução.</xref:System.Security.Principal.WindowsIdentity> </xref:System.Threading.CompressedStack> </xref:System.Security.SecurityContext>"
   syntax:
     content: public static System.Security.SecurityContext Capture ();
     parameters: []
     return:
       type: System.Security.SecurityContext
-      description: "The security context for the current thread."
+      description: "O contexto de segurança para o thread actual."
   overload: System.Security.SecurityContext.Capture*
   exceptions: []
   platform:
@@ -65,19 +65,19 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Creates a copy of the current security context."
-  remarks: "The current context must have been acquired through a capture or a copy operation. This method is useful for applying a captured <xref:System.Security.SecurityContext> to multiple threads."
+  summary: "Cria uma cópia do contexto de segurança atual."
+  remarks: "O contexto atual tem foi adquirido através de uma captura ou de uma operação de cópia. Este método é útil para aplicar um capturada <xref:System.Security.SecurityContext>para vários threads.</xref:System.Security.SecurityContext>"
   syntax:
     content: public System.Security.SecurityContext CreateCopy ();
     parameters: []
     return:
       type: System.Security.SecurityContext
-      description: "The security context for the current thread."
+      description: "O contexto de segurança para o thread actual."
   overload: System.Security.SecurityContext.CreateCopy*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The current security context has been previously used, was marshaled across application domains, or was not acquired through the <xref:System.Security.SecurityContext.Capture*> method."
+    description: "O contexto de segurança atual tenha sido utilizado anteriormente, foi empacotado nos domínios de aplicação ou não foi adquirido através de <xref:System.Security.SecurityContext.Capture*>método.</xref:System.Security.SecurityContext.Capture*>"
   platform:
   - net462
 - uid: System.Security.SecurityContext.Dispose
@@ -92,8 +92,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Releases all resources used by the current instance of the <xref href=&quot;System.Security.SecurityContext&quot;></xref> class."
-  remarks: "Call `Dispose` when you are finished using the <xref:System.Security.SecurityContext>. The `Dispose` method leaves the <xref:System.Security.SecurityContext> in an unusable state. After calling `Dispose`, you must release all references to the <xref:System.Security.SecurityContext> so the garbage collector can reclaim the memory that the <xref:System.Security.SecurityContext> was occupying.       For more information, see [Cleaning Up Unmanaged Resources](~/add/includes/ajax-current-ext-md.md) and [Implementing a Dispose Method](~/add/includes/ajax-current-ext-md.md).      > [!NOTE] >  Always call `Dispose` before you release your last reference to the <xref:System.Security.SecurityContext>. Otherwise, the resources it is using will not be freed until the garbage collector calls the <xref:System.Security.SecurityContext> object&quot;s `Finalize` method."
+  summary: "Versões de todos os recursos utilizados pela instância atual do <xref href=&quot;System.Security.SecurityContext&quot;> </xref> classe."
+  remarks: "Chamar `Dispose` quando tiver terminado de utilizando <xref:System.Security.SecurityContext>.</xref:System.Security.SecurityContext> O `Dispose` método mantém o <xref:System.Security.SecurityContext>num Estado não utilizável.</xref:System.Security.SecurityContext> Após a chamada `Dispose`, tem de libertar todas as referências ao <xref:System.Security.SecurityContext>para que o recoletor de lixo pode reclame a memória que a <xref:System.Security.SecurityContext>foi occupying.</xref:System.Security.SecurityContext> </xref:System.Security.SecurityContext>       Para obter mais informações, consulte [recursos não geridos limpeza](~/add/includes/ajax-current-ext-md.md) e [implementar um método eliminar](~/add/includes/ajax-current-ext-md.md).      > [!NOTE] > Sempre chamada `Dispose` antes de libertar a última referência <xref:System.Security.SecurityContext>.</xref:System.Security.SecurityContext> Caso contrário, os recursos que está a utilizar não irão ser libertados até que as chamadas de recoletor de lixo a <xref:System.Security.SecurityContext>do objeto `Finalize` método.</xref:System.Security.SecurityContext>"
   syntax:
     content: public void Dispose ();
     parameters: []
@@ -113,14 +113,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines whether the flow of the security context has been suppressed."
-  remarks: "The IsFlowSuppressed method is used by infrastructure components to determine whether to transfer the <xref:System.Security.SecurityContext> information during asynchronous operations."
+  summary: "Determina se o fluxo de contexto de segurança foi omitido."
+  remarks: "O método IsFlowSuppressed é utilizado pelos componentes de infraestrutura para determinar se pretende transferir a <xref:System.Security.SecurityContext>informações durante as operações assíncronas.</xref:System.Security.SecurityContext>"
   syntax:
     content: public static bool IsFlowSuppressed ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the flow has been suppressed; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o fluxo foi omitido; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.SecurityContext.IsFlowSuppressed*
   exceptions: []
   platform:
@@ -137,14 +137,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Determines whether the flow of the Windows identity portion of the current security context has been suppressed."
-  remarks: "The IsWindowsIdentityFlowSuppressed method is used by infrastructure components to determine whether to transfer the Windows identity information when the <xref:System.Security.SecurityContext> migrates during asynchronous operations."
+  summary: "Determina se o fluxo da parte de identidade do Windows de contexto de segurança atual foi omitido."
+  remarks: "O método IsWindowsIdentityFlowSuppressed é utilizado pelos componentes de infraestrutura para determinar se pretende transferir as informações de identidade do Windows quando a <xref:System.Security.SecurityContext>migra durante as operações assíncronas.</xref:System.Security.SecurityContext>"
   syntax:
     content: public static bool IsWindowsIdentityFlowSuppressed ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the flow has been suppressed; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o fluxo foi omitido; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Security.SecurityContext.IsWindowsIdentityFlowSuppressed*
   exceptions: []
   platform:
@@ -161,8 +161,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Restores the flow of the security context across asynchronous threads."
-  remarks: "The RestoreFlow method is called by the <xref:System.Threading.AsyncFlowControl.Undo%2A?displayProperty=fullName> method to reverse the effect of a prior <xref:System.Security.SecurityContext.SuppressFlow%2A> method call."
+  summary: "Restaura o fluxo de contexto de segurança entre threads assíncronas."
+  remarks: "O método de RestoreFlow é chamado <xref:System.Threading.AsyncFlowControl.Undo%2A?displayProperty=fullName>método para o efeito de um antes de reverter <xref:System.Security.SecurityContext.SuppressFlow%2A>chamada de método.</xref:System.Security.SecurityContext.SuppressFlow%2A> </xref:System.Threading.AsyncFlowControl.Undo%2A?displayProperty=fullName>"
   syntax:
     content: public static void RestoreFlow ();
     parameters: []
@@ -170,7 +170,7 @@ items:
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The security context is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref> or an empty string."
+    description: "O contexto de segurança é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref> ou uma cadeia vazia."
   platform:
   - net462
 - uid: System.Security.SecurityContext.Run(System.Security.SecurityContext,System.Threading.ContextCallback,System.Object)
@@ -185,8 +185,8 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Runs the specified method in the specified security context on the current thread."
-  remarks: "The security context for the current thread is returned to its previous state when the method call is complete."
+  summary: "Executa o método especificado no contexto de segurança especificados no thread atual."
+  remarks: "O contexto de segurança para o thread actual é devolvido para o estado anterior, quando a chamada do método está concluída."
   example:
   - "The following code example shows how to use the Run method to execute a method in a specified security context.  \n  \n [!code-cs[System.Security.SecurityContext.Run#1](~/add/codesnippet/csharp/f32751be-87d3-46b4-a1da-_1.cs)]\n [!code-vb[System.Security.SecurityContext.Run#1](~/add/codesnippet/visualbasic/f32751be-87d3-46b4-a1da-_1.vb)]"
   syntax:
@@ -194,18 +194,18 @@ items:
     parameters:
     - id: securityContext
       type: System.Security.SecurityContext
-      description: "The security context to set."
+      description: "O contexto de segurança para definir."
     - id: callback
       type: System.Threading.ContextCallback
-      description: "The delegate that represents the method to run in the specified security context."
+      description: "O delegado que representa o método a executar no contexto de segurança especificados."
     - id: state
       type: System.Object
-      description: "The object to pass to the callback method."
+      description: "O objeto para passar para o método de chamada de retorno."
   overload: System.Security.SecurityContext.Run*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "<code>securityContext</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       <code>securityContext</code> was not acquired through a capture operation.       -or-       <code>securityContext</code> has already been used as the argument to a Run method call."
+    description: "<code>securityContext</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       - ou - <code>securityContext</code> não foi adquirido através de uma operação de captura.       - ou - <code>securityContext</code> já foi utilizada como argumento para uma chamada de método de execução."
   platform:
   - net462
 - uid: System.Security.SecurityContext.SuppressFlow
@@ -220,14 +220,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Suppresses the flow of the security context across asynchronous threads."
-  remarks: "Use this method to suppress the flow of <xref:System.Security.SecurityContext> information on the current thread for asynchronous operations.       The common language runtime (CLR) is only aware of the impersonation operations performed using managed code. The CLR has no knowledge of impersonation performed outside of managed code, such as platform invokes to unmanaged code that does the impersonation, or through calls to Win32 functions. To flow identity across asynchronous points you must use the managed <xref:System.Security.Principal.WindowsIdentity> and <xref:System.Security.Principal.WindowsImpersonationContext> methods.       Use the <xref:System.Threading.AsyncFlowControl.Undo%2A> method on the returned <xref:System.Threading.AsyncFlowControl> structure to return the <xref:System.Security.SecurityContext> object to its previous state.       This method is protected with a <xref:System.Security.Permissions.SecurityAction?displayProperty=fullName> for <xref:System.Security.Permissions.SecurityPermissionFlag?displayProperty=fullName> permission. A fully trusted component can call this method to suppress the flow of the <xref:System.Security.SecurityContext> information during asynchronous calls. When the flow is suppressed, the <xref:System.Security.SecurityContext.Capture%2A> method returns `null`."
+  summary: "Suprime o fluxo de contexto de segurança entre threads assíncronas."
+  remarks: "Utilize este método para suprimir o fluxo de <xref:System.Security.SecurityContext>informações no thread atual para operações assíncronas.</xref:System.Security.SecurityContext>       O language runtime (CLR) só é compatível com as operações de representação efetuada utilizando o código gerido. O CLR não tem conhecimento de representação efetuada fora do código gerido, tal como plataforma invoca para código não gerido que suporta a representação ou através de chamadas para funções de Win32. A identidade de fluxo entre pontos assíncronos, tem de utilizar o <xref:System.Security.Principal.WindowsIdentity>e <xref:System.Security.Principal.WindowsImpersonationContext>métodos.</xref:System.Security.Principal.WindowsImpersonationContext> </xref:System.Security.Principal.WindowsIdentity>       Utilize o <xref:System.Threading.AsyncFlowControl.Undo%2A>método no devolvido <xref:System.Threading.AsyncFlowControl>estrutura para devolver o <xref:System.Security.SecurityContext>objeto para o estado anterior.</xref:System.Security.SecurityContext> </xref:System.Threading.AsyncFlowControl> </xref:System.Threading.AsyncFlowControl.Undo%2A>       Este método é protegido com uma <xref:System.Security.Permissions.SecurityAction?displayProperty=fullName>para <xref:System.Security.Permissions.SecurityPermissionFlag?displayProperty=fullName>permissão.</xref:System.Security.Permissions.SecurityPermissionFlag?displayProperty=fullName> </xref:System.Security.Permissions.SecurityAction?displayProperty=fullName> Um componente totalmente fidedigno pode chamar este método para suprimir o fluxo do <xref:System.Security.SecurityContext>informações durante chamadas assíncronas.</xref:System.Security.SecurityContext> Quando o fluxo está suprimido, os <xref:System.Security.SecurityContext.Capture%2A>método devolve `null`.</xref:System.Security.SecurityContext.Capture%2A>"
   syntax:
     content: public static System.Threading.AsyncFlowControl SuppressFlow ();
     parameters: []
     return:
       type: System.Threading.AsyncFlowControl
-      description: "An <xref href=&quot;System.Threading.AsyncFlowControl&quot;></xref> structure for restoring the flow."
+      description: "Um <xref href=&quot;System.Threading.AsyncFlowControl&quot;> </xref> estrutura para restaurar o fluxo."
   overload: System.Security.SecurityContext.SuppressFlow*
   exceptions: []
   platform:
@@ -244,14 +244,14 @@ items:
   assemblies:
   - mscorlib
   namespace: System.Security
-  summary: "Suppresses the flow of the Windows identity portion of the current security context across asynchronous threads."
+  summary: "Suprime o fluxo da parte de identidade do Windows de contexto de segurança atual entre threads assíncronas."
   remarks: "Use this method to suppress the flow of the Windows identity when the <xref:System.Security.SecurityContext> migrates across asynchronous threads.  \n  \n Use the <xref:System.Threading.AsyncFlowControl.Undo%2A> method on the returned <xref:System.Threading.AsyncFlowControl> structure to return the <xref:System.Security.SecurityContext> object to its previous state.  \n  \n> [!NOTE]\n>  The common language runtime (CLR) is aware of impersonation operations performed using only managed code, not of impersonation performed outside of managed code, such as through platform invoke to unmanaged code or through direct calls to Win32 functions. Only managed <xref:System.Security.Principal.WindowsIdentity> objects can flow across asynchronous points, unless the `alwaysFlowImpersonationPolicy` element has been set to `true` (`<alwaysFlowImpersonationPolicy enabled=\"true\"/>`). Setting the `alwaysFlowImpersonationPolicy` element to `true` specifies that the Windows identity always flows across asynchronous points, regardless of how impersonation was performed. For more information about flowing unmanaged impersonation across asynchronous points, see [\\<alwaysFlowImpersonationPolicy> Element](../Topic/%3CalwaysFlowImpersonationPolicy%3E%20Element.md)."
   syntax:
     content: public static System.Threading.AsyncFlowControl SuppressFlowWindowsIdentity ();
     parameters: []
     return:
       type: System.Threading.AsyncFlowControl
-      description: "A structure for restoring the flow."
+      description: "Uma estrutura para restaurar o fluxo."
   overload: System.Security.SecurityContext.SuppressFlowWindowsIdentity*
   exceptions: []
   platform:

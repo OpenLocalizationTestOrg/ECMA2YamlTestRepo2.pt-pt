@@ -12,8 +12,8 @@ items:
   nameWithType: IDesignerLoaderService
   fullName: System.ComponentModel.Design.Serialization.IDesignerLoaderService
   type: Interface
-  summary: "Provides an interface that can extend a designer loader to support asynchronous loading of external components."
-  remarks: "A <xref:System.ComponentModel.Design.Serialization.DesignerLoader> can implement this interface to manage designer loading that involves external components. This interface also allows external components to initiate a reload of the design surface by calling <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.Reload%2A>. A designer loader does not have to implement this interface if it does not require support for asynchronous loading.       Designer loading using a custom implementation of the IDesignerLoaderService can occur in a variety of ways. Sometimes external components are involved in the loading process. To facilitate loading with external dependencies, the designer loader service interface provides a mechanism that determines when loading is complete and allows each portion of loading to signal that it has completed. The IDesignerLoaderService typically determines when loading is complete by testing a counter that tracks the number of load dependencies remaining. When each portion of the load completes, <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A> is called, and the service decrements the counter. To set the number of dependent load processes, call <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A> once for each load process that calls <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A> when its loading is complete. When the final loading is complete, the service calls <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderHost.EndLoad%2A> on the loader host."
+  summary: "Fornece uma interface que pode expandir um carregador de estruturador para suportar o carregamento assíncrono da componentes externos."
+  remarks: "A <xref:System.ComponentModel.Design.Serialization.DesignerLoader>pode implementar esta interface para gerir a carregar estruturador que envolve componentes externos.</xref:System.ComponentModel.Design.Serialization.DesignerLoader> Esta interface também permite que os componentes externos iniciar um recarregamento da superfície do design chamando <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.Reload%2A>.</xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.Reload%2A> Não tem um carregador de estruturador para implementar esta interface se não requer o suporte para o carregamento assíncrono.       Estruturador de carregar a utilizar uma implementação personalizada a IDesignerLoaderService pode ocorrer numa variedade de formas. Componentes externos, por vezes, envolvidos no processo de carregamento. Para facilitar a carregar com dependências externas, a interface de serviço do carregador de estruturador fornece um mecanismo que determina quando o carregamento estiver concluído e permite que cada parte de carregar para assinalar que foi concluída. O IDesignerLoaderService normalmente determina quando carregar é concluída ao testar um contador que controla o número de dependências de carga restante. Quando tiver concluído a cada parte da carga do, <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>denomina-se e a é decrementada serviço o contador.</xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A> Para definir o número de processos de carga dependentes, chamar <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>uma vez para cada processo de carga que chama <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>quando o carregamento estiver concluído.</xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A> </xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A> Quando o carregamento final está concluído, as chamadas de serviço <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderHost.EndLoad%2A>no anfitrião de carregador.</xref:System.ComponentModel.Design.Serialization.IDesignerLoaderHost.EndLoad%2A>"
   syntax:
     content: public interface IDesignerLoaderService
   implements: []
@@ -31,8 +31,8 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel.Design.Serialization
-  summary: "Registers an external component as part of the load process managed by this interface."
-  remarks: "Call AddLoadDependency once for each external object participating in the load process. <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A> is called when the work of the load process is done."
+  summary: "Regista um componente externo como parte do processo de carregamento gerido por esta interface."
+  remarks: "Chamada AddLoadDependency uma vez para cada objeto externo que participam no processo de carga. <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>é chamado quando o trabalho do processo de carregamento é concluído.</xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete%2A>"
   syntax:
     content: public void AddLoadDependency ();
     parameters: []
@@ -52,17 +52,17 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel.Design.Serialization
-  summary: "Signals that a dependent load has finished."
-  remarks: "This method is called to signal that a dependent loading operation has completed. Call DependentLoadComplete once for every process that was registered by calling <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>, which has already completed.       If the dependent load succeeds, the caller sets the `successful` parameter to `true` and passes either an empty collection or `null` to the `errorCollection` parameter. If the dependent load encounters errors, the caller sets the `successful` parameter to `false` and passes a collection of exceptions that indicate the reason or reasons for failure to the `errorCollection` parameter."
+  summary: "Sinais que concluiu a uma carga dependente."
+  remarks: "Este método é denominado para assinalar que foi concluída uma operação de carregamento dependentes. Chamar DependentLoadComplete uma vez para cada processo que foi registado chamando <xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>, que já foi concluída.</xref:System.ComponentModel.Design.Serialization.IDesignerLoaderService.AddLoadDependency%2A>       Se a carga dependente for bem sucedida, os conjuntos de autor da chamada de `successful` parâmetro `true` e passa a uma coleção vazia ou `null` para o `errorCollection` parâmetro. Se a carga dependente detetar erros, o autor da chamada define o `successful` parâmetro `false` e passa a uma coleção de exceções que indicar o motivo ou os motivos da falha para o `errorCollection` parâmetro."
   syntax:
     content: public void DependentLoadComplete (bool successful, System.Collections.ICollection errorCollection);
     parameters:
     - id: successful
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the load of the designer is successful; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref> if errors prevented the load from finishing."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a carga do designer for bem sucedida; <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref> se erros impediram o carregamento de concluir."
     - id: errorCollection
       type: System.Collections.ICollection
-      description: "A collection of errors that occurred during the load, if any. If no errors occurred, pass either an empty collection or <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "Uma coleção de erros que ocorreram durante o carregamento, se aplicável. Se não existem erros detetados, passar a uma coleção vazia ou <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   overload: System.ComponentModel.Design.Serialization.IDesignerLoaderService.DependentLoadComplete*
   exceptions: []
   platform:
@@ -79,14 +79,14 @@ items:
   assemblies:
   - System
   namespace: System.ComponentModel.Design.Serialization
-  summary: "Reloads the design document."
-  remarks: "Any object can call this method to request that the loader reload the design document. If the loader supports reloading and complies with the reload, the designer loader can return `true`. Otherwise, it returns `false`, indicating that the reload will not occur. Callers cannot rely on the reload happening immediately; the designer loader can schedule this for some other time, or it can try to reload at once.       The caller can display a message to the user if the designer cannot be reloaded."
+  summary: "Reloads o documento de design."
+  remarks: "Qualquer objeto pode chamar este método para pedir que o documento de design de recarregamento de carregador. Se o carregador suporta recarregar e está em conformidade com a carregue novamente, o carregador do estruturador pode devolver `true`. Caso contrário, devolve `false`, indicando que a carregue novamente não irá ocorrer. Os chamadores não é possível dependem recarregar acontecer imediatamente; o carregador do estruturador pode agendar este outros algum tempo ou, pode tentar recarregar em simultâneo.       O autor da chamada pode apresentar uma mensagem ao utilizador se não é possível recarregar o estruturador."
   syntax:
     content: public bool Reload ();
     parameters: []
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the reload request is accepted, or <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref> if the loader does not allow the reload."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o pedido de recarregamento é aceite, ou <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref> se o carregador não permite a recarregar."
   overload: System.ComponentModel.Design.Serialization.IDesignerLoaderService.Reload*
   exceptions: []
   platform:

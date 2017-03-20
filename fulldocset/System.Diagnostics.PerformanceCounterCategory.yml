@@ -35,7 +35,7 @@ items:
   nameWithType: PerformanceCounterCategory
   fullName: System.Diagnostics.PerformanceCounterCategory
   type: Class
-  summary: "Represents a performance object, which defines a category of performance counters."
+  summary: "Representa um objeto de desempenho, que define uma categoria de contadores de desempenho."
   remarks: "> [!IMPORTANT]\n>  Creating or deleting a performance counter requires synchronization of the underlying code by using a named mutex. If a highly privileged application locks the named mutex, attempts to create or delete a performance counter causes the application to stop responding until the lock is released. To help avoid this problem, never grant <xref:System.Security.Permissions.SecurityPermissionFlag> permission to untrusted code. In addition, <xref:System.Security.Permissions.SecurityPermissionFlag> permission potentially allows other permissions to be bypassed and should only be granted to highly trusted code.  \n  \n The PerformanceCounterCategory instance's <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A> property is displayed in the Performance Object field of the Performance Viewer application's Add Counter dialog box.  \n  \n The PerformanceCounterCategory class provides several methods for interacting with counters and categories on the computer. The <xref:System.Diagnostics.PerformanceCounterCategory.Create%2A> methods enable you to define custom categories. The <xref:System.Diagnostics.PerformanceCounterCategory.Delete%2A> method provides a way to remove categories from the computer. The <xref:System.Diagnostics.PerformanceCounterCategory.GetCategories%2A> method enables you to view the list of categories, while <xref:System.Diagnostics.PerformanceCounterCategory.ReadCategory%2A> retrieves all the counter and instance data associated with a single category.  \n  \n A performance counter publishes performance data about an application. Categories include physical components (such as processors, disks, and memory) and system objects (such as processes and threads). System counters that are related to the same performance object are grouped into a category that indicates their common focus. When you create an instance of the <xref:System.Diagnostics.PerformanceCounter> class, you first indicate the category with which the component will interact, and then you choose a counter from that category.  \n  \n For example, one Windows counter category is the Memory category. System counters within this category track memory data such as the number of bytes available and the number of bytes cached. If you wanted to work with the bytes cached in your application, you would create an instance of the <xref:System.Diagnostics.PerformanceCounter> component, connect it to the Memory category, and then pick the appropriate counter (in this case, Cached Bytes) from that category.  \n  \n Although your system makes many more counter categories available, the categories that you will probably interact with most frequently are the Cache, Memory, Objects, PhysicalDisk, Process, Processor, Server, System, and Thread categories.  \n  \n> [!IMPORTANT]\n>  The <xref:System.Diagnostics.PerformanceCounter.RemoveInstance%2A> method in the <xref:System.Diagnostics.PerformanceCounter> class will release the counter and, if the reuse option is selected for that category, the instance of the counter will be reused. This could cause a race condition if another process or even another part of the code is trying to write to the counter instance.  \n  \n> [!NOTE]\n>  It is strongly recommended that new performance counter categories be created during the installation of the application, not during the execution of the application. This allows time for the operating system to refresh its list of registered performance counter categories. If the list has not been refreshed, the attempt to use the category will fail.  \n  \n> [!NOTE]\n>  Performance counter categories installed with the [!INCLUDE[dnprdnlong](~/add/includes/dnprdnlong-md.md)] use separate shared memory, with each performance counter category having its own memory. You can specify the size of separate shared memory by creating a DWORD named FileMappingSize in the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\\\*\\<category name>*\\Performance. The FileMappingSize value is set to the shared memory size of the category. The default size is 131072 decimal. If the FileMappingSize value is not present, the `fileMappingSize` attribute value for the `performanceCounters` element specified in the Machine.config file is used, causing additional overhead for configuration file processing. You can realize a performance improvement for application startup by setting the file mapping size in the registry. For more information about the file mapping size, see [\\&lt;performanceCounters\\&gt;](../Topic/%3CperformanceCounters%3E%20Element.md)."
   example:
   - "The following code example determines whether a <xref:System.Diagnostics.PerformanceCounter> and its PerformanceCounterCategory exist on the local computer or on another computer. If these objects do not exist on the local computer, the example optionally creates them. It uses the <xref:System.Diagnostics.PerformanceCounterCategory.Exists%2A> method to determine whether the PerformanceCounterCategory exists.  If the PerformanceCounterCategory does not exist and no counter name is specified, or if the computer is a remote machine, the example exits.  \n  \n If a <xref:System.Diagnostics.PerformanceCounter> name is provided, the example uses the <xref:System.Diagnostics.PerformanceCounterCategory.CounterExists%2A> method and displays the result to the user. If the <xref:System.Diagnostics.PerformanceCounter> does not exist, the user can delete and re-create the PerformanceCounterCategory with the new <xref:System.Diagnostics.PerformanceCounter>. If the user does so, the category is deleted using the <xref:System.Diagnostics.PerformanceCounterCategory.Delete%2A> method.  \n  \n If requested, the example now creates the new PerformanceCounterCategory and <xref:System.Diagnostics.PerformanceCounter> using the <xref:System.Diagnostics.PerformanceCounterCategory.Create%2A> method. If an instance name is specified, the example uses the <xref:System.Diagnostics.PerformanceCounterCategory.InstanceExists%2A> method and displays the result.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategory.Class#27](~/add/codesnippet/csharp/t-system.diagnostics.per_3_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.Class#27](~/add/codesnippet/visualbasic/t-system.diagnostics.per_3_1.vb)]"
@@ -59,8 +59,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Initializes a new instance of the <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> class, leaves the <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> property empty, and sets the <xref:System.Diagnostics.PerformanceCounterCategory.MachineName*> property to the local computer."
-  remarks: "The <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A> property must be set before associating this <xref:System.Diagnostics.PerformanceCounterCategory> instance with a performance object on the server. Otherwise, an exception is thrown."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> classe, mantém o <> </> *> propriedade vazia e define o <> </> *> propriedade no computador local."
+  remarks: "O <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A>propriedade deve ser definida antes de associar esta <xref:System.Diagnostics.PerformanceCounterCategory>instância com um objeto de desempenho no servidor.</xref:System.Diagnostics.PerformanceCounterCategory> </xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A> Caso contrário, é emitida uma exceção."
   example:
   - "The following code example accepts a <xref:System.Diagnostics.PerformanceCounterCategory> name and a computer name from the command line.  It creates a <xref:System.Diagnostics.PerformanceCounterCategory> using the constructor overload appropriate for the number of parameters provided, then displays its properties.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategory.OtherMembers#4](~/add/codesnippet/csharp/m-system.diagnostics.per_4_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.OtherMembers#4](~/add/codesnippet/visualbasic/m-system.diagnostics.per_4_1.vb)]"
   syntax:
@@ -82,7 +82,7 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Initializes a new instance of the <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> class, sets the <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> property to the specified value, and sets the <xref:System.Diagnostics.PerformanceCounterCategory.MachineName*> property to the local computer."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> classe, conjuntos a <> </> *> propriedade para o valor especificado e define o <> </> *> propriedade no computador local."
   remarks: ''
   example:
   - "The following code example accepts a <xref:System.Diagnostics.PerformanceCounterCategory> name and a computer name from the command line. It creates a <xref:System.Diagnostics.PerformanceCounterCategory> using the constructor overload that is appropriate for the number of parameters provided, then displays its properties.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategory.OtherMembers#4](~/add/codesnippet/csharp/m-system.diagnostics.per_11_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.OtherMembers#4](~/add/codesnippet/visualbasic/m-system.diagnostics.per_11_1.vb)]"
@@ -91,12 +91,12 @@ items:
     parameters:
     - id: categoryName
       type: System.String
-      description: "The name of the performance counter category, or performance object, with which to associate this <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> instance."
+      description: "O nome da categoria do contador de desempenho ou objeto de desempenho, com a qual associar este <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> instância."
   overload: System.Diagnostics.PerformanceCounterCategory.#ctor*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>categoryName</code> is an empty string (&quot;&quot;)."
+    description: "O <code> categoryName </code> é uma cadeia vazia (&quot;&quot;)."
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "The <code>categoryName</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
@@ -114,7 +114,7 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Initializes a new instance of the <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> class and sets the <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> and <xref:System.Diagnostics.PerformanceCounterCategory.MachineName*> properties to the specified values."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> classe e define o <> </> *> e <> </> *> propriedades aos valores especificados."
   remarks: ''
   example:
   - "The following code example accepts a <xref:System.Diagnostics.PerformanceCounterCategory> name and a computer name from the command line. It creates a <xref:System.Diagnostics.PerformanceCounterCategory> using the constructor overload that is appropriate for the number of parameters provided, then displays its properties.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategory.OtherMembers#4](~/add/codesnippet/csharp/75b9896e-a505-4b53-afe2-_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.OtherMembers#4](~/add/codesnippet/visualbasic/75b9896e-a505-4b53-afe2-_1.vb)]"
@@ -123,15 +123,15 @@ items:
     parameters:
     - id: categoryName
       type: System.String
-      description: "The name of the performance counter category, or performance object, with which to associate this <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> instance."
+      description: "O nome da categoria do contador de desempenho ou objeto de desempenho, com a qual associar este <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> instância."
     - id: machineName
       type: System.String
-      description: "The computer on which the performance counter category and its associated counters exist."
+      description: "O computador no qual a categoria de contador de desempenho e respetivos contadores associados."
   overload: System.Diagnostics.PerformanceCounterCategory.#ctor*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>categoryName</code> is an empty string (&quot;&quot;).       -or-       The <code>machineName</code> syntax is invalid."
+    description: "O <code> categoryName </code> é uma cadeia vazia (&quot;&quot;).       - ou - <code> machineName </code> sintaxe é inválida."
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "The <code>categoryName</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
@@ -149,7 +149,7 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Gets the category&quot;s help text."
+  summary: "Obtém o texto de ajuda de categoria."
   remarks: ''
   example:
   - "The following code example creates a <xref:System.Diagnostics.PerformanceCounterCategory> with the <xref:System.Diagnostics.PerformanceCounterCategory.%23ctor>. It prompts the user for the <xref:System.Diagnostics.PerformanceCounterCategory> and computer names, then sets the <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A> and <xref:System.Diagnostics.PerformanceCounterCategory.MachineName%2A> properties from the entered values. It then displays the values of the <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A>, <xref:System.Diagnostics.PerformanceCounterCategory.MachineName%2A>, and CategoryHelp properties, or it displays an error message if the <xref:System.Diagnostics.PerformanceCounterCategory> cannot be accessed.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategory.OtherMembers#8](~/add/codesnippet/csharp/p-system.diagnostics.per_5_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.OtherMembers#8](~/add/codesnippet/visualbasic/p-system.diagnostics.per_5_1.vb)]"
@@ -157,15 +157,15 @@ items:
     content: public string CategoryHelp { get; }
     return:
       type: System.String
-      description: "A description of the performance object that this category measures."
+      description: "Uma descrição do objeto de desempenho que mede esta categoria."
   overload: System.Diagnostics.PerformanceCounterCategory.CategoryHelp*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> property is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>. The category name must be set before getting the category help."
+    description: "O <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*>propriedade é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>.</xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> O nome da categoria deve ser definido antes de obter a ajuda de categoria."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.CategoryName
@@ -180,7 +180,7 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Gets or sets the name of the performance object that defines this category."
+  summary: "Obtém ou define o nome do objeto de desempenho que define esta categoria."
   remarks: ''
   example:
   - "The following code example creates a <xref:System.Diagnostics.PerformanceCounterCategory> with the <xref:System.Diagnostics.PerformanceCounterCategory.%23ctor>. It prompts the user for the <xref:System.Diagnostics.PerformanceCounterCategory> and computer names, then sets the CategoryName and <xref:System.Diagnostics.PerformanceCounterCategory.MachineName%2A> properties from the entered values. It then displays the values of the CategoryName, <xref:System.Diagnostics.PerformanceCounterCategory.MachineName%2A>, and <xref:System.Diagnostics.PerformanceCounterCategory.CategoryHelp%2A> properties, or it displays an error message if the <xref:System.Diagnostics.PerformanceCounterCategory> cannot be accessed.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategory.OtherMembers#8](~/add/codesnippet/csharp/p-system.diagnostics.per_3_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.OtherMembers#8](~/add/codesnippet/visualbasic/p-system.diagnostics.per_3_1.vb)]"
@@ -188,15 +188,15 @@ items:
     content: public string CategoryName { get; set; }
     return:
       type: System.String
-      description: "The name of the performance counter category, or performance object, with which to associate this <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> instance."
+      description: "O nome da categoria do contador de desempenho ou objeto de desempenho, com a qual associar este <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> instância."
   overload: System.Diagnostics.PerformanceCounterCategory.CategoryName*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The CategoryName is an empty string (&quot;&quot;)."
+    description: "O CategoryName for uma cadeia vazia (&quot;&quot;)."
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "The CategoryName is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "O CategoryName for <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.CategoryType
@@ -211,13 +211,13 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Gets the performance counter category type."
-  remarks: "The CategoryType property indicates whether the <xref:System.Diagnostics.PerformanceCounterCategory> object can have multiple instances. The possible values are <xref:System.Diagnostics.PerformanceCounterCategoryType>, <xref:System.Diagnostics.PerformanceCounterCategoryType>, or <xref:System.Diagnostics.PerformanceCounterCategoryType>.       There are two types of performance counter categories: single-instance and multi-instance. By default, a category is single-instance when it is created and becomes multi-instance when another instance is added. Categories are created when an application is set up, and instances are added at run time. In the .NET Framework versions 1.0 and 1.1, it is not necessary to know if a performance counter category is multi-instance or single-instance. In the [!INCLUDE[dnprdnext](~/add/includes/dnprdnext-md.md)], the <xref:System.Diagnostics.PerformanceCounterCategoryType> enumeration is used to indicate whether a performance counter can have multiple instances."
+  summary: "Obtém o tipo de categoria do contador de desempenho."
+  remarks: "A propriedade CategoryType indica se o <xref:System.Diagnostics.PerformanceCounterCategory>objecto pode ter várias instâncias.</xref:System.Diagnostics.PerformanceCounterCategory> Os valores possíveis são <xref:System.Diagnostics.PerformanceCounterCategoryType>, <xref:System.Diagnostics.PerformanceCounterCategoryType>, ou <xref:System.Diagnostics.PerformanceCounterCategoryType>.</xref:System.Diagnostics.PerformanceCounterCategoryType> </xref:System.Diagnostics.PerformanceCounterCategoryType> </xref:System.Diagnostics.PerformanceCounterCategoryType>       Existem dois tipos de categorias de contador de desempenho: instância única e várias instâncias. Por predefinição, uma categoria é instância única quando é criado e torna-se várias instâncias quando é adicionada a outra instância. Categorias são criadas quando uma aplicação está configurada, e são adicionadas instâncias no tempo de execução. Nas versões do .NET Framework 1.0 e 1.1, não é necessário saber se uma categoria de contador de desempenho é várias instâncias ou de instância única. No [!INCLUDE[dnprdnext](~/add/includes/dnprdnext-md.md)], a <xref:System.Diagnostics.PerformanceCounterCategoryType>enumeração é utilizada para indicar se um contador de desempenho pode ter várias instâncias.</xref:System.Diagnostics.PerformanceCounterCategoryType>"
   syntax:
     content: public System.Diagnostics.PerformanceCounterCategoryType CategoryType { get; }
     return:
       type: System.Diagnostics.PerformanceCounterCategoryType
-      description: "One of the <xref href=&quot;System.Diagnostics.PerformanceCounterCategoryType&quot;></xref> values."
+      description: "Um do <xref href=&quot;System.Diagnostics.PerformanceCounterCategoryType&quot;> </xref> valores."
   overload: System.Diagnostics.PerformanceCounterCategory.CategoryType*
   exceptions: []
   platform:
@@ -234,8 +234,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Determines whether the specified counter is registered to this category, which is indicated by the <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> and <xref:System.Diagnostics.PerformanceCounterCategory.MachineName*> properties."
-  remarks: "You must set the <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A> property before calling this method. Otherwise, an exception is thrown.       If you have not set the <xref:System.Diagnostics.PerformanceCounterCategory.MachineName%2A> property, this method uses the local computer (&quot;.&quot;).      > [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Determina se o contador especificado está registado para esta categoria, que é indicada pelo <> </> *> e <> </> *> propriedades."
+  remarks: "Tem de definir o <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A>propriedade antes de chamar este método.</xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A> Caso contrário, é emitida uma exceção.       Se não tiver definido a <xref:System.Diagnostics.PerformanceCounterCategory.MachineName%2A>propriedade, este método utiliza o computador local (&quot;.&quot;).</xref:System.Diagnostics.PerformanceCounterCategory.MachineName%2A>      > [!NOTE] > Ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example determines whether a <xref:System.Diagnostics.PerformanceCounter> exists. It gets a category name, counter name, and computer name from the command line, if they are given. It creates a <xref:System.Diagnostics.PerformanceCounterCategory> object using the appropriate <xref:System.Diagnostics.PerformanceCounterCategory.%23ctor%2A>. It then uses the CounterExists method to determine whether the specified <xref:System.Diagnostics.PerformanceCounter> exists, and informs the user.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategory.ExistMembers#4](~/add/codesnippet/csharp/m-system.diagnostics.per_6_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.ExistMembers#4](~/add/codesnippet/visualbasic/m-system.diagnostics.per_6_1.vb)]"
   syntax:
@@ -243,10 +243,10 @@ items:
     parameters:
     - id: counterName
       type: System.String
-      description: "The name of the performance counter to look for."
+      description: "O nome do contador de desempenho para procurar."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the counter is registered to the category that is specified by the <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> and <xref:System.Diagnostics.PerformanceCounterCategory.MachineName*> properties; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o contador é registado para a categoria que é especificada pelo <> </> *> e <> </> *> propriedades; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Diagnostics.PerformanceCounterCategory.CounterExists*
   exceptions:
   - type: System.ArgumentNullException
@@ -254,13 +254,13 @@ items:
     description: "The <code>counterName</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> property has not been set."
+    description: "O <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*>propriedade não foi definida.</xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*>"
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.CounterExists(System.String,System.String)
@@ -275,8 +275,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Determines whether the specified counter is registered to the specified category on the local computer."
-  remarks: "> [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Determina se o contador especificado está registado para a categoria especificada no computador local."
+  remarks: "> [!NOTE]> Para ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou de ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example determines whether a <xref:System.Diagnostics.PerformanceCounter> exists. It gets a category name, counter name, and computer name from the command line, if they are given. It uses the static overloads of the <xref:System.Diagnostics.PerformanceCounterCategory.CounterExists%2A> method to determine whether the specified <xref:System.Diagnostics.PerformanceCounter> name exists in the <xref:System.Diagnostics.PerformanceCounterCategory>. The overload is selected based on whether a computer name is provided.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategory.ExistMembers#8](~/add/codesnippet/csharp/ccefabf7-dd26-432c-91c0-_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.ExistMembers#8](~/add/codesnippet/visualbasic/ccefabf7-dd26-432c-91c0-_1.vb)]"
   syntax:
@@ -284,13 +284,13 @@ items:
     parameters:
     - id: counterName
       type: System.String
-      description: "The name of the performance counter to look for."
+      description: "O nome do contador de desempenho para procurar."
     - id: categoryName
       type: System.String
-      description: "The name of the performance counter category, or performance object, with which the specified performance counter is associated."
+      description: "O nome da categoria do contador de desempenho ou objeto de desempenho, a qual o contador de desempenho especificado está associado."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>, if the counter is registered to the specified category on the local computer; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>, se o contador é registado para a categoria especificada no computador local; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Diagnostics.PerformanceCounterCategory.CounterExists*
   exceptions:
   - type: System.ArgumentNullException
@@ -298,16 +298,16 @@ items:
     description: "The <code>categoryName</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       The <code>counterName</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>categoryName</code> is an empty string (&quot;&quot;)."
+    description: "O <code> categoryName </code> é uma cadeia vazia (&quot;&quot;)."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The category name does not exist."
+    description: "O nome da categoria não existe."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.CounterExists(System.String,System.String,System.String)
@@ -322,8 +322,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Determines whether the specified counter is registered to the specified category on a remote computer."
-  remarks: "> [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Determina se o contador especificado está registado para a categoria especificada num computador remoto."
+  remarks: "> [!NOTE]> Para ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou de ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example determines whether a <xref:System.Diagnostics.PerformanceCounter> exists. It gets a category name, counter name, and computer name from the command line, if they are given. It uses the static overloads of the <xref:System.Diagnostics.PerformanceCounterCategory.CounterExists%2A> method to determine whether the specified <xref:System.Diagnostics.PerformanceCounter> name exists in the <xref:System.Diagnostics.PerformanceCounterCategory>. The overload is selected based on whether a computer name is provided.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategory.ExistMembers#8](~/add/codesnippet/csharp/479fa6a9-538c-463f-94d2-_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.ExistMembers#8](~/add/codesnippet/visualbasic/479fa6a9-538c-463f-94d2-_1.vb)]"
   syntax:
@@ -331,16 +331,16 @@ items:
     parameters:
     - id: counterName
       type: System.String
-      description: "The name of the performance counter to look for."
+      description: "O nome do contador de desempenho para procurar."
     - id: categoryName
       type: System.String
-      description: "The name of the performance counter category, or performance object, with which the specified performance counter is associated."
+      description: "O nome da categoria do contador de desempenho ou objeto de desempenho, a qual o contador de desempenho especificado está associado."
     - id: machineName
       type: System.String
-      description: "The name of the computer on which the performance counter category and its associated counters exist."
+      description: "O nome do computador no qual existem a categoria de contador de desempenho e respetivos contadores associados."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>, if the counter is registered to the specified category on the specified computer; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>, se o contador é registado para a categoria especificada no computador especificado; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Diagnostics.PerformanceCounterCategory.CounterExists*
   exceptions:
   - type: System.ArgumentNullException
@@ -348,16 +348,16 @@ items:
     description: "The <code>categoryName</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       The <code>counterName</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>categoryName</code> is an empty string (&quot;&quot;).       -or-       The <code>machineName</code> is invalid."
+    description: "O <code> categoryName </code> é uma cadeia vazia (&quot;&quot;).       - ou - <code> machineName </code> é inválido."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The category name does not exist."
+    description: "O nome da categoria não existe."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.Create(System.String,System.String,System.Diagnostics.CounterCreationDataCollection)
@@ -372,8 +372,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Registers the custom performance counter category containing the specified counters on the local computer."
-  remarks: "> [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Regista a categoria de contador de desempenho personalizados que contém os contadores especificados no computador local."
+  remarks: "> [!NOTE]> Para ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou de ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example determines whether a <xref:System.Diagnostics.PerformanceCounterCategory> object named \"orders\" exists. If not, it creates the <xref:System.Diagnostics.PerformanceCounterCategory> object by using a <xref:System.Diagnostics.CounterCreationDataCollection> object that contains two performance counters.  \n  \n [!code-cpp[PerfCounter_ccd#1](~/add/codesnippet/cpp/9e4e5065-5efa-4558-a11f-_1.cpp)]\n [!code-vb[PerfCounter_ccd#1](~/add/codesnippet/visualbasic/9e4e5065-5efa-4558-a11f-_1.vb)]\n [!code-cs[PerfCounter_ccd#1](~/add/codesnippet/csharp/9e4e5065-5efa-4558-a11f-_1.cs)]"
   syntax:
@@ -381,16 +381,16 @@ items:
     parameters:
     - id: categoryName
       type: System.String
-      description: "The name of the custom performance counter category to create and register with the system."
+      description: "O nome da categoria de contador de desempenho personalizados para criar e registar com o sistema."
     - id: categoryHelp
       type: System.String
-      description: "A description of the custom category."
+      description: "Uma descrição da categoria personalizada."
     - id: counterData
       type: System.Diagnostics.CounterCreationDataCollection
-      description: "A <xref href=&quot;System.Diagnostics.CounterCreationDataCollection&quot;></xref> that specifies the counters to create as part of the new category."
+      description: "A <xref href=&quot;System.Diagnostics.CounterCreationDataCollection&quot;> </xref> que especifica os contadores para criar como parte da nova categoria."
     return:
       type: System.Diagnostics.PerformanceCounterCategory
-      description: "A <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> that is associated with the new custom category, or performance object."
+      description: "A <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> que está associado a nova categoria personalizada, ou o objeto de desempenho."
   overload: System.Diagnostics.PerformanceCounterCategory.Create*
   exceptions:
   - type: System.ArgumentException
@@ -401,13 +401,13 @@ items:
     description: "The <code>categoryName</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The category already exists on the local computer.       -or-       The layout of the <code>counterData</code> collection is incorrect for base counters. A counter of type <xref uid=&quot;langword_csharp_AverageCount64&quot; name=&quot;AverageCount64&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_AverageTimer32&quot; name=&quot;AverageTimer32&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimer&quot; name=&quot;CounterMultiTimer&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimerInverse&quot; name=&quot;CounterMultiTimerInverse&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimer100Ns&quot; name=&quot;CounterMultiTimer100Ns&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimer100NsInverse&quot; name=&quot;CounterMultiTimer100NsInverse&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_RawFraction&quot; name=&quot;RawFraction&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_SampleFraction&quot; name=&quot;SampleFraction&quot; href=&quot;&quot;></xref> or <xref uid=&quot;langword_csharp_SampleCounter&quot; name=&quot;SampleCounter&quot; href=&quot;&quot;></xref> has to be immediately followed by one of the base counter types (<xref uid=&quot;langword_csharp_AverageBase&quot; name=&quot;AverageBase&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_MultiBase&quot; name=&quot;MultiBase&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_RawBase&quot; name=&quot;RawBase&quot; href=&quot;&quot;></xref>, or <xref uid=&quot;langword_csharp_SampleBase&quot; name=&quot;SampleBase&quot; href=&quot;&quot;></xref>)."
+    description: "A categoria já existe no computador local.       - ou - o esquema do <code> counterData </code> coleção está incorreta para a base contadores. A counter of type <xref uid=&quot;langword_csharp_AverageCount64&quot; name=&quot;AverageCount64&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_AverageTimer32&quot; name=&quot;AverageTimer32&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimer&quot; name=&quot;CounterMultiTimer&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimerInverse&quot; name=&quot;CounterMultiTimerInverse&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimer100Ns&quot; name=&quot;CounterMultiTimer100Ns&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimer100NsInverse&quot; name=&quot;CounterMultiTimer100NsInverse&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_RawFraction&quot; name=&quot;RawFraction&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_SampleFraction&quot; name=&quot;SampleFraction&quot; href=&quot;&quot;></xref> or <xref uid=&quot;langword_csharp_SampleCounter&quot; name=&quot;SampleCounter&quot; href=&quot;&quot;></xref> has to be immediately followed by one of the base counter types (<xref uid=&quot;langword_csharp_AverageBase&quot; name=&quot;AverageBase&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_MultiBase&quot; name=&quot;MultiBase&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_RawBase&quot; name=&quot;RawBase&quot; href=&quot;&quot;></xref>, or <xref uid=&quot;langword_csharp_SampleBase&quot; name=&quot;SampleBase&quot; href=&quot;&quot;></xref>)."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.Create(System.String,System.String,System.Diagnostics.PerformanceCounterCategoryType,System.Diagnostics.CounterCreationDataCollection)
@@ -422,7 +422,7 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Registers the custom performance counter category containing the specified counters on the local computer."
+  summary: "Regista a categoria de contador de desempenho personalizados que contém os contadores especificados no computador local."
   remarks: "The `categoryType` parameter specifies whether the performance counter category is single-instance or multi-instance. By default, a category is single-instance when it is created and becomes multi-instance when another instance is added. Categories are created when an application is set up, and instances are added at run time. In the  .NET Framework versions 1.0 and 1.1, it is not necessary to know if a performance counter category is multi-instance or single-instance. In the [!INCLUDE[dnprdnext](~/add/includes/dnprdnext-md.md)], the <xref:System.Diagnostics.PerformanceCounterCategoryType> enumeration is used to indicate whether a performance counter can have multiple instances.  \n  \n Performance counter categories installed with the [!INCLUDE[dnprdnlong](~/add/includes/dnprdnlong-md.md)] use separate shared memory, with each performance counter category having its own memory.  You can specify the size of separate shared memory by creating a DWORD named FileMappingSize in the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\\\*\\<category name>*\\Performance. The FileMappingSize value is set to the shared memory size of the category. The default size is 131072 decimal. If the FileMappingSize value is not present, the `fileMappingSize` attribute value for the `performanceCounters` element specified in the Machine.config file is used, causing additional overhead for configuration file processing. You can realize a performance improvement for application startup by setting the file mapping size in the registry.  \n  \n> [!NOTE]\n>  It is strongly recommended that new performance counter categories be created during the installation of the application, not during the execution of the application. This allows time for the operating system to refresh its list of registered performance counter categories. If the list has not been refreshed, the attempt to use the category will fail.  \n  \n> [!NOTE]\n>  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.  \n>   \n>  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.  \n>   \n>  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
   example:
   - "The following code example shows the use of the Create method. The example shows how to create a custom, multi-instance performance counter category for the number of orders per second.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategoryType#2](~/add/codesnippet/csharp/38799c48-5863-4c7c-ac81-_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategoryType#2](~/add/codesnippet/visualbasic/38799c48-5863-4c7c-ac81-_1.vb)]"
@@ -431,19 +431,19 @@ items:
     parameters:
     - id: categoryName
       type: System.String
-      description: "The name of the custom performance counter category to create and register with the system."
+      description: "O nome da categoria de contador de desempenho personalizados para criar e registar com o sistema."
     - id: categoryHelp
       type: System.String
-      description: "A description of the custom category."
+      description: "Uma descrição da categoria personalizada."
     - id: categoryType
       type: System.Diagnostics.PerformanceCounterCategoryType
-      description: "One of the <xref href=&quot;System.Diagnostics.PerformanceCounterCategoryType&quot;></xref> values."
+      description: "Um do <xref href=&quot;System.Diagnostics.PerformanceCounterCategoryType&quot;> </xref> valores."
     - id: counterData
       type: System.Diagnostics.CounterCreationDataCollection
-      description: "A <xref href=&quot;System.Diagnostics.CounterCreationDataCollection&quot;></xref> that specifies the counters to create as part of the new category."
+      description: "A <xref href=&quot;System.Diagnostics.CounterCreationDataCollection&quot;> </xref> que especifica os contadores para criar como parte da nova categoria."
     return:
       type: System.Diagnostics.PerformanceCounterCategory
-      description: "A <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> that is associated with the new custom category, or performance object."
+      description: "A <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> que está associado a nova categoria personalizada, ou o objeto de desempenho."
   overload: System.Diagnostics.PerformanceCounterCategory.Create*
   exceptions:
   - type: System.ArgumentException
@@ -451,19 +451,19 @@ items:
     description: "A counter name that is specified within the <code>counterData</code> collection is <xref uid=\"langword_csharp_null\" name=\"null\" href=\"\"></xref> or an empty string (\"\").  \n  \n -or-  \n  \n A counter that is specified within the <code>counterData</code> collection already exists.  \n  \n -or-  \n  \n <code>counterName</code> has invalid syntax. It might contain backslash characters (\"\\\\\") or have length greater than 80 characters."
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>categoryName</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       <code>counterData</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>categoryName</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       <code>counterData</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: '<code>categoryType</code> value is outside of the range of the following values: <xref uid=&quot;langword_csharp_MultiInstance&quot; name=&quot;MultiInstance&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_SingleInstance&quot; name=&quot;SingleInstance&quot; href=&quot;&quot;></xref>, or <xref uid=&quot;langword_csharp_Unknown&quot; name=&quot;Unknown&quot; href=&quot;&quot;></xref>.'
+    description: '<code>categoryType</code>valor está fora do intervalo dos seguintes valores: <xref uid=&quot;langword_csharp_MultiInstance&quot; name=&quot;MultiInstance&quot; href=&quot;&quot;> </xref>, <xref uid=&quot;langword_csharp_SingleInstance&quot; name=&quot;SingleInstance&quot; href=&quot;&quot;> </xref>, ou <xref uid=&quot;langword_csharp_Unknown&quot; name=&quot;Unknown&quot; href=&quot;&quot;> </xref>.'
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The category already exists on the local computer.       -or-       The layout of the <code>counterData</code> collection is incorrect for base counters. A counter of type <xref uid=&quot;langword_csharp_AverageCount64&quot; name=&quot;AverageCount64&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_AverageTimer32&quot; name=&quot;AverageTimer32&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimer&quot; name=&quot;CounterMultiTimer&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimerInverse&quot; name=&quot;CounterMultiTimerInverse&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimer100Ns&quot; name=&quot;CounterMultiTimer100Ns&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimer100NsInverse&quot; name=&quot;CounterMultiTimer100NsInverse&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_RawFraction&quot; name=&quot;RawFraction&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_SampleFraction&quot; name=&quot;SampleFraction&quot; href=&quot;&quot;></xref>, or <xref uid=&quot;langword_csharp_SampleCounter&quot; name=&quot;SampleCounter&quot; href=&quot;&quot;></xref> must be immediately followed by one of the base counter types (<xref uid=&quot;langword_csharp_AverageBase&quot; name=&quot;AverageBase&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_MultiBase&quot; name=&quot;MultiBase&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_RawBase&quot; name=&quot;RawBase&quot; href=&quot;&quot;></xref>, or <xref uid=&quot;langword_csharp_SampleBase&quot; name=&quot;SampleBase&quot; href=&quot;&quot;></xref>)."
+    description: "A categoria já existe no computador local.       - ou - o esquema do <code> counterData </code> coleção está incorreta para a base contadores. A counter of type <xref uid=&quot;langword_csharp_AverageCount64&quot; name=&quot;AverageCount64&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_AverageTimer32&quot; name=&quot;AverageTimer32&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimer&quot; name=&quot;CounterMultiTimer&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimerInverse&quot; name=&quot;CounterMultiTimerInverse&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimer100Ns&quot; name=&quot;CounterMultiTimer100Ns&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_CounterMultiTimer100NsInverse&quot; name=&quot;CounterMultiTimer100NsInverse&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_RawFraction&quot; name=&quot;RawFraction&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_SampleFraction&quot; name=&quot;SampleFraction&quot; href=&quot;&quot;></xref>, or <xref uid=&quot;langword_csharp_SampleCounter&quot; name=&quot;SampleCounter&quot; href=&quot;&quot;></xref> must be immediately followed by one of the base counter types (<xref uid=&quot;langword_csharp_AverageBase&quot; name=&quot;AverageBase&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_MultiBase&quot; name=&quot;MultiBase&quot; href=&quot;&quot;></xref>, <xref uid=&quot;langword_csharp_RawBase&quot; name=&quot;RawBase&quot; href=&quot;&quot;></xref>, or <xref uid=&quot;langword_csharp_SampleBase&quot; name=&quot;SampleBase&quot; href=&quot;&quot;></xref>)."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.Create(System.String,System.String,System.String,System.String)
@@ -478,8 +478,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Registers a custom performance counter category containing a single counter of type <xref uid=&quot;langword_csharp_NumberOfItems32&quot; name=&quot;NumberOfItems32&quot; href=&quot;&quot;></xref> on the local computer."
-  remarks: "> [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Regista uma categoria de contador de desempenho personalizados que contém um único contador do tipo <xref uid=&quot;langword_csharp_NumberOfItems32&quot; name=&quot;NumberOfItems32&quot; href=&quot;&quot;> </xref> no computador local."
+  remarks: "> [!NOTE]> Para ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou de ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example creates a <xref:System.Diagnostics.PerformanceCounterCategory> and single <xref:System.Diagnostics.PerformanceCounter> with help text for each, using the Create method.  \n  \n [!code-vb[System.Diagnostics.PerformanceCounterCategory.OtherMembers#2](~/add/codesnippet/visualbasic/012c8ef3-108d-4e71-bb01-_1.vb)]\n [!code-cs[System.Diagnostics.PerformanceCounterCategory.OtherMembers#2](~/add/codesnippet/csharp/012c8ef3-108d-4e71-bb01-_1.cs)]"
   syntax:
@@ -487,19 +487,19 @@ items:
     parameters:
     - id: categoryName
       type: System.String
-      description: "The name of the custom performance counter category to create and register with the system."
+      description: "O nome da categoria de contador de desempenho personalizados para criar e registar com o sistema."
     - id: categoryHelp
       type: System.String
-      description: "A description of the custom category."
+      description: "Uma descrição da categoria personalizada."
     - id: counterName
       type: System.String
-      description: "The name of a new counter, of type <xref uid=&quot;langword_csharp_NumberOfItems32&quot; name=&quot;NumberOfItems32&quot; href=&quot;&quot;></xref>, to create as part of the new category."
+      description: "O nome de um novo contador, do tipo <xref uid=&quot;langword_csharp_NumberOfItems32&quot; name=&quot;NumberOfItems32&quot; href=&quot;&quot;> </xref>, para criar como parte da nova categoria."
     - id: counterHelp
       type: System.String
-      description: "A description of the counter that is associated with the new custom category."
+      description: "Uma descrição do contador que estão associado com a nova categoria personalizada."
     return:
       type: System.Diagnostics.PerformanceCounterCategory
-      description: "A <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> that is associated with the new system category, or performance object."
+      description: "A <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> que está associado a nova categoria de sistema ou o objeto de desempenho."
   overload: System.Diagnostics.PerformanceCounterCategory.Create*
   exceptions:
   - type: System.ArgumentException
@@ -507,16 +507,16 @@ items:
     description: "<code>counterName</code> is <xref uid=\"langword_csharp_null\" name=\"null\" href=\"\"></xref> or is an empty string (\"\").  \n  \n -or-  \n  \n The counter that is specified by <code>counterName</code> already exists.  \n  \n -or-  \n  \n <code>counterName</code> has invalid syntax. It might contain backslash characters (\"\\\\\") or have length greater than 80 characters."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The category already exists on the local computer."
+    description: "A categoria já existe no computador local."
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>categoryName</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       <code>counterHelp</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>categoryName</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       <code>counterHelp</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.Create(System.String,System.String,System.Diagnostics.PerformanceCounterCategoryType,System.String,System.String)
@@ -531,7 +531,7 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Registers the custom performance counter category containing a single counter of type <xref href=&quot;System.Diagnostics.PerformanceCounterType&quot;></xref> on the local computer."
+  summary: "Regista a categoria de contador de desempenho personalizados que contém um único contador do tipo <xref href=&quot;System.Diagnostics.PerformanceCounterType&quot;> </xref> no computador local."
   remarks: "The `categoryType` parameter specifies whether the performance counter category is single-instance or multi-instance. By default, a category is single-instance when it is created and becomes multi-instance when another instance is added. Categories are created when an application is set up, and instances are added at run time. In the .NET Framework versions 1.0 and 1.1, it is not necessary to know if a performance counter category is multi-instance or single-instance. In the [!INCLUDE[dnprdnext](~/add/includes/dnprdnext-md.md)], the <xref:System.Diagnostics.PerformanceCounterCategoryType> enumeration is used to indicate whether a performance counter can have multiple instances.  \n  \n Performance counter categories installed with the [!INCLUDE[dnprdnlong](~/add/includes/dnprdnlong-md.md)] use separate shared memory, with each performance counter category having its own memory. You can specify the size of separate shared memory by creating a DWORD named FileMappingSize in the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\\\*\\<category name>*\\Performance. The FileMappingSize value is set to the shared memory size of the category. The default size is 131072 decimal. If the FileMappingSize value is not present, the `fileMappingSize` attribute value for the `performanceCounters` element specified in the Machine.config file is used, causing additional overhead for configuration file processing. You can realize a performance improvement for application startup by setting the file mapping size in the registry.  \n  \n> [!NOTE]\n>  It is strongly recommended that new performance counter categories be created during the installation of the application, not during the execution of the application. This allows time for the operating system to refresh its list of registered performance counter categories. If the list has not been refreshed, the attempt to use the category will fail.  \n  \n> [!NOTE]\n>  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.  \n>   \n>  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.  \n>   \n>  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
   example:
   - "The following code example shows the use of the Create method. The example shows how to create a custom, single instance performance counter category.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategoryType#3](~/add/codesnippet/csharp/f3ced94f-b6d8-4841-851d-_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategoryType#3](~/add/codesnippet/visualbasic/f3ced94f-b6d8-4841-851d-_1.vb)]"
@@ -540,22 +540,22 @@ items:
     parameters:
     - id: categoryName
       type: System.String
-      description: "The name of the custom performance counter category to create and register with the system."
+      description: "O nome da categoria de contador de desempenho personalizados para criar e registar com o sistema."
     - id: categoryHelp
       type: System.String
-      description: "A description of the custom category."
+      description: "Uma descrição da categoria personalizada."
     - id: categoryType
       type: System.Diagnostics.PerformanceCounterCategoryType
-      description: "One of the <xref href=&quot;System.Diagnostics.PerformanceCounterCategoryType&quot;></xref> values specifying whether the category is <xref href=&quot;System.Diagnostics.PerformanceCounterCategoryType&quot;></xref>, <xref href=&quot;System.Diagnostics.PerformanceCounterCategoryType&quot;></xref>, or <xref href=&quot;System.Diagnostics.PerformanceCounterCategoryType&quot;></xref>."
+      description: "Um do <xref href=&quot;System.Diagnostics.PerformanceCounterCategoryType&quot;> </xref> valores especificar se a categoria é <xref href=&quot;System.Diagnostics.PerformanceCounterCategoryType&quot;> </xref>, <xref href=&quot;System.Diagnostics.PerformanceCounterCategoryType&quot;> </xref>, ou <xref href=&quot;System.Diagnostics.PerformanceCounterCategoryType&quot;> </xref>."
     - id: counterName
       type: System.String
-      description: "The name of a new counter to create as part of the new category."
+      description: "O nome de um novo contador de criar como parte da nova categoria."
     - id: counterHelp
       type: System.String
-      description: "A description of the counter that is associated with the new custom category."
+      description: "Uma descrição do contador que estão associado com a nova categoria personalizada."
     return:
       type: System.Diagnostics.PerformanceCounterCategory
-      description: "A <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> that is associated with the new system category, or performance object."
+      description: "A <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> que está associado a nova categoria de sistema ou o objeto de desempenho."
   overload: System.Diagnostics.PerformanceCounterCategory.Create*
   exceptions:
   - type: System.ArgumentException
@@ -563,16 +563,16 @@ items:
     description: "<code>counterName</code> is <xref uid=\"langword_csharp_null\" name=\"null\" href=\"\"></xref> or is an empty string (\"\").  \n  \n -or-  \n  \n The counter that is specified by <code>counterName</code> already exists.  \n  \n -or-  \n  \n <code>counterName</code> has invalid syntax. It might contain backslash characters (\"\\\\\") or have length greater than 80 characters."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The category already exists on the local computer."
+    description: "A categoria já existe no computador local."
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "<code>categoryName</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       <code>counterHelp</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+    description: "<code>categoryName</code>is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       <code>counterHelp</code> is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.Delete(System.String)
@@ -587,8 +587,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Removes the category and its associated counters from the local computer."
-  remarks: "You can delete only custom performance counter categories from the system. You cannot delete a counter from a category. To do so, delete the category and recreate the category with the counters you want to retain. To avoid an exception, confirm that the category exists before you attempt to delete it.      > [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Remove a categoria e respetivos contadores associados do computador local."
+  remarks: "Pode eliminar categorias de contador de desempenho personalizados só do sistema. Não é possível eliminar um contador de uma categoria. Para tal, elimine a categoria e recrie a categoria com os contadores que pretende manter. Para evitar uma exceção, confirme que a categoria existe antes de tentar eliminá-la.      > [!NOTE] > Ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example uses the Delete method to delete a <xref:System.Diagnostics.PerformanceCounterCategory> and the <xref:System.Diagnostics.PerformanceCounter> objects that it contains.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategory.OtherMembers#6](~/add/codesnippet/csharp/m-system.diagnostics.per_10_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.OtherMembers#6](~/add/codesnippet/visualbasic/m-system.diagnostics.per_10_1.vb)]"
   syntax:
@@ -596,7 +596,7 @@ items:
     parameters:
     - id: categoryName
       type: System.String
-      description: "The name of the custom performance counter category to delete."
+      description: "O nome da categoria do contador de desempenho personalizados para eliminar."
   overload: System.Diagnostics.PerformanceCounterCategory.Delete*
   exceptions:
   - type: System.ArgumentNullException
@@ -604,16 +604,16 @@ items:
     description: "The <code>categoryName</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>categoryName</code> parameter has invalid syntax. It might contain backslash characters (&quot;\\&quot;) or have length greater than 80 characters."
+    description: "O <code> categoryName </code> parâmetro tem uma sintaxe inválida. Poderá conter carateres de barra invertida (&quot;\\&quot;) ou tem mais de 80 carateres de comprimento."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The category cannot be deleted because it is not a custom category."
+    description: "Não é possível eliminar a categoria porque não é uma categoria personalizada."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.Exists(System.String)
@@ -628,8 +628,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Determines whether the category is registered on the local computer."
-  remarks: "Use of the Exists method can result in a noticeable performance penalty while all performance counters on the machine are checked for availability. If you are only writing to a performance counter, you can avoid the global search for performance counters by creating the performance counter when the application is installed and assuming the category exists when accessing the counter. There is no way to avoid the performance counter search when reading from performance counters.      > [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Determina se a categoria está registada no computador local."
+  remarks: "Utilização do método Exists pode resultar em penalidade um desempenho percetível enquanto todos os contadores de desempenho na máquina são verificados relativamente à disponibilidade. Se estiver apenas a escrever para um contador de desempenho, pode evitar a pesquisa para contadores de desempenho global ao criar o contador de desempenho quando a aplicação está instalada e a categoria do pressuposto de que existe ao aceder o contador. Não é possível para evitar a pesquisa de contador de desempenho durante a leitura dos contadores de desempenho.      > [!NOTE] > Ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example determines whether a <xref:System.Diagnostics.PerformanceCounterCategory> object named \"orders\" exists. If not, it creates the <xref:System.Diagnostics.PerformanceCounterCategory> object by using a <xref:System.Diagnostics.CounterCreationDataCollection> object that contains two performance counters.  \n  \n [!code-cpp[PerfCounter_ccd#1](~/add/codesnippet/cpp/m-system.diagnostics.per_3_1.cpp)]\n [!code-vb[PerfCounter_ccd#1](~/add/codesnippet/visualbasic/m-system.diagnostics.per_3_1.vb)]\n [!code-cs[PerfCounter_ccd#1](~/add/codesnippet/csharp/m-system.diagnostics.per_3_1.cs)]"
   syntax:
@@ -637,10 +637,10 @@ items:
     parameters:
     - id: categoryName
       type: System.String
-      description: "The name of the performance counter category to look for."
+      description: "O nome da categoria de contador de desempenho para procurar."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the category is registered; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a categoria estiver registada; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Diagnostics.PerformanceCounterCategory.Exists*
   exceptions:
   - type: System.ArgumentNullException
@@ -648,13 +648,13 @@ items:
     description: "The <code>categoryName</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>categoryName</code> parameter is an empty string (&quot;&quot;)."
+    description: "O <code> categoryName </code> parâmetro é uma cadeia vazia (&quot;&quot;)."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.Exists(System.String,System.String)
@@ -669,8 +669,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Determines whether the category is registered on the specified computer."
-  remarks: "Use of the Exists method can result in a noticeable performance penalty while all performance counters on the machine are checked for availability. If you are only writing to a performance counter, you can avoid the global search for performance counters by creating the performance counter when the application is installed and assuming the category exists when accessing the counter. There is no way to avoid the performance counter search when reading from performance counters.      > [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Determina se a categoria está registada no computador especificado."
+  remarks: "Utilização do método Exists pode resultar em penalidade um desempenho percetível enquanto todos os contadores de desempenho na máquina são verificados relativamente à disponibilidade. Se estiver apenas a escrever para um contador de desempenho, pode evitar a pesquisa para contadores de desempenho global ao criar o contador de desempenho quando a aplicação está instalada e a categoria do pressuposto de que existe ao aceder o contador. Não é possível para evitar a pesquisa de contador de desempenho durante a leitura dos contadores de desempenho.      > [!NOTE] > Ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following example determines whether a <xref:System.Diagnostics.PerformanceCounterCategory> object named `Orders` exists. If it does not exist, the example creates the <xref:System.Diagnostics.PerformanceCounterCategory> object by using a <xref:System.Diagnostics.CounterCreationDataCollection> object that contains two performance counters.  \n  \n [!code-cpp[PerfCounter_ccd#1](~/add/codesnippet/cpp/a840bf9c-a22d-45eb-89a3-_1.cpp)]\n [!code-vb[PerfCounter_ccd#1](~/add/codesnippet/visualbasic/a840bf9c-a22d-45eb-89a3-_1.vb)]\n [!code-cs[PerfCounter_ccd#1](~/add/codesnippet/csharp/a840bf9c-a22d-45eb-89a3-_1.cs)]"
   syntax:
@@ -678,13 +678,13 @@ items:
     parameters:
     - id: categoryName
       type: System.String
-      description: "The name of the performance counter category to look for."
+      description: "O nome da categoria de contador de desempenho para procurar."
     - id: machineName
       type: System.String
-      description: "The name of the computer to examine for the category."
+      description: "O nome do computador para examinar para a categoria."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the category is registered; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a categoria estiver registada; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Diagnostics.PerformanceCounterCategory.Exists*
   exceptions:
   - type: System.ArgumentNullException
@@ -692,16 +692,16 @@ items:
     description: "The <code>categoryName</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>categoryName</code> parameter is an empty string (&quot;&quot;).       -or-       The <code>machineName</code> parameter is invalid."
+    description: "O <code> categoryName </code> parâmetro é uma cadeia vazia (&quot;&quot;).       - ou - <code> machineName </code> parâmetro é inválido."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
-    description: "The network path cannot be found."
+    description: "Não é possível localizar o caminho de rede."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "The caller does not have the required permission.       -or-       Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "O chamador não tem a permissão necessária.       - ou - código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.GetCategories
@@ -716,8 +716,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Retrieves a list of the performance counter categories that are registered on the local computer."
-  remarks: "> [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Obtém uma lista das categorias de contador de desempenho que são registados no computador local."
+  remarks: "> [!NOTE]> Para ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou de ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example uses the <xref:System.Diagnostics.PerformanceCounterCategory.GetCategories%2A> method to return an array of <xref:System.Diagnostics.PerformanceCounterCategory> objects from the local computer or a specified computer. It converts the <xref:System.Diagnostics.PerformanceCounterCategory> array into an array of category names, which it sorts and displays for the user. The <xref:System.Diagnostics.PerformanceCounterCategory.GetCategories%2A> overload is selected based on whether a computer name was specified.  \n  \n [!code-vb[System.Diagnostics.PerformanceCounterCategory.GetMembers#2](~/add/codesnippet/visualbasic/m-system.diagnostics.per_5_1.vb)]\n [!code-cpp[System.Diagnostics.PerformanceCounterCategory.GetMembers#2](~/add/codesnippet/cpp/m-system.diagnostics.per_5_1.cpp)]\n [!code-cs[System.Diagnostics.PerformanceCounterCategory.GetMembers#2](~/add/codesnippet/csharp/m-system.diagnostics.per_5_1.cs)]"
   syntax:
@@ -725,15 +725,15 @@ items:
     parameters: []
     return:
       type: System.Diagnostics.PerformanceCounterCategory[]
-      description: "An array of <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> objects indicating the categories that are registered on the local computer."
+      description: "Uma matriz de <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> objetos que indica as categorias que estão registadas no computador local."
   overload: System.Diagnostics.PerformanceCounterCategory.GetCategories*
   exceptions:
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.GetCategories(System.String)
@@ -748,8 +748,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Retrieves a list of the performance counter categories that are registered on the specified computer."
-  remarks: "To retrieve the categories on the local computer, use another overload or pass &quot;.&quot; as the `machineName` parameter.      > [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Obtém uma lista das categorias de contador de desempenho que são registados no computador especificado."
+  remarks: "Para obter as categorias no computador local, utilizar outra sobrecarga ou transmita &quot;.&quot; como o `machineName` parâmetro.      > [!NOTE] > Ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example uses the <xref:System.Diagnostics.PerformanceCounterCategory.GetCategories%2A> method to return an array of <xref:System.Diagnostics.PerformanceCounterCategory> objects from the local computer or a specified computer. It converts the <xref:System.Diagnostics.PerformanceCounterCategory> array into an array of category names, which it sorts and displays for the user. The <xref:System.Diagnostics.PerformanceCounterCategory.GetCategories%2A> overload is selected based on whether a computer name was specified.  \n  \n [!code-vb[System.Diagnostics.PerformanceCounterCategory.GetMembers#2](~/add/codesnippet/visualbasic/m-system.diagnostics.per_7_1.vb)]\n [!code-cpp[System.Diagnostics.PerformanceCounterCategory.GetMembers#2](~/add/codesnippet/cpp/m-system.diagnostics.per_7_1.cpp)]\n [!code-cs[System.Diagnostics.PerformanceCounterCategory.GetMembers#2](~/add/codesnippet/csharp/m-system.diagnostics.per_7_1.cs)]"
   syntax:
@@ -757,21 +757,21 @@ items:
     parameters:
     - id: machineName
       type: System.String
-      description: "The computer to look on."
+      description: "O computador para ter um aspeto."
     return:
       type: System.Diagnostics.PerformanceCounterCategory[]
-      description: "An array of <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> objects indicating the categories that are registered on the specified computer."
+      description: "Uma matriz de <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> objetos que indica as categorias que estão registadas no computador especificado."
   overload: System.Diagnostics.PerformanceCounterCategory.GetCategories*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>machineName</code> parameter is invalid."
+    description: "O <code> machineName </code> parâmetro é inválido."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.GetCounters
@@ -786,8 +786,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Retrieves a list of the counters in a performance counter category that contains exactly one instance."
-  remarks: "For more information about performance object instances, see the <xref:System.Diagnostics.PerformanceCounter> class overview.      > [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Obtém uma lista dos contadores numa categoria de contador de desempenho que contenha exatamente uma instância."
+  remarks: "Para mais informações sobre instâncias de objetos de desempenho, consulte o <xref:System.Diagnostics.PerformanceCounter>Descrição geral de classe.</xref:System.Diagnostics.PerformanceCounter>      > [!NOTE] > Ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example gets a list of the <xref:System.Diagnostics.PerformanceCounter> objects in a <xref:System.Diagnostics.PerformanceCounterCategory>. It first creates a <xref:System.Diagnostics.PerformanceCounterCategory> with the appropriate constructor, based on whether a computer name was specified. It then uses the <xref:System.Diagnostics.PerformanceCounterCategory.GetCounters%2A> method to return an array of <xref:System.Diagnostics.PerformanceCounter> objects, selecting the <xref:System.Diagnostics.PerformanceCounterCategory.GetCounters%2A> overload based on whether an instance name was specified.  \n  \n This GetCounters overload fails unless it is used with a single-instance category.  \n  \n [!code-vb[System.Diagnostics.PerformanceCounterCategory.GetMembers#4](~/add/codesnippet/visualbasic/m-system.diagnostics.per_14_1.vb)]\n [!code-cpp[System.Diagnostics.PerformanceCounterCategory.GetMembers#4](~/add/codesnippet/cpp/m-system.diagnostics.per_14_1.cpp)]\n [!code-cs[System.Diagnostics.PerformanceCounterCategory.GetMembers#4](~/add/codesnippet/csharp/m-system.diagnostics.per_14_1.cs)]"
   syntax:
@@ -795,21 +795,21 @@ items:
     parameters: []
     return:
       type: System.Diagnostics.PerformanceCounter[]
-      description: "An array of <xref href=&quot;System.Diagnostics.PerformanceCounter&quot;></xref> objects indicating the counters that are associated with this single-instance performance counter category."
+      description: "Uma matriz de <xref href=&quot;System.Diagnostics.PerformanceCounter&quot;> </xref> objetos que indica que os contadores que estão associados esta categoria de contador de desempenho de instância única."
   overload: System.Diagnostics.PerformanceCounterCategory.GetCounters*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The category is not a single instance."
+    description: "A categoria não é uma única instância."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The category does not have an associated instance."
+    description: "A categoria não tem uma instância associada."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.GetCounters(System.String)
@@ -824,8 +824,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Retrieves a list of the counters in a performance counter category that contains one or more instances."
-  remarks: "To represent a single-instance category, pass an empty string (&quot;&quot;) for the `instanceName` parameter.       For more information about performance object instances, see the <xref:System.Diagnostics.PerformanceCounter> class overview.      > [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Obtém uma lista dos contadores uma categoria de contador de desempenho que contém uma ou mais instâncias."
+  remarks: "Para representar uma categoria de instância única, passar uma cadeia vazia (&quot;&quot;) para o `instanceName` parâmetro.       Para mais informações sobre instâncias de objetos de desempenho, consulte o <xref:System.Diagnostics.PerformanceCounter>Descrição geral de classe.</xref:System.Diagnostics.PerformanceCounter>      > [!NOTE] > Ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example gets a list of the <xref:System.Diagnostics.PerformanceCounter> objects in a <xref:System.Diagnostics.PerformanceCounterCategory>. It first creates a <xref:System.Diagnostics.PerformanceCounterCategory> with the appropriate constructor, based on whether a computer name was specified. It then uses the <xref:System.Diagnostics.PerformanceCounterCategory.GetCounters%2A> method to return an array of <xref:System.Diagnostics.PerformanceCounter> objects, selecting the <xref:System.Diagnostics.PerformanceCounterCategory.GetCounters%2A> overload based on whether an instance name was specified.  \n  \n This GetCounters overload fails unless it is used with a category that contains instances.  \n  \n [!code-vb[System.Diagnostics.PerformanceCounterCategory.GetMembers#4](~/add/codesnippet/visualbasic/m-system.diagnostics.per_8_1.vb)]\n [!code-cpp[System.Diagnostics.PerformanceCounterCategory.GetMembers#4](~/add/codesnippet/cpp/m-system.diagnostics.per_8_1.cpp)]\n [!code-cs[System.Diagnostics.PerformanceCounterCategory.GetMembers#4](~/add/codesnippet/csharp/m-system.diagnostics.per_8_1.cs)]"
   syntax:
@@ -833,10 +833,10 @@ items:
     parameters:
     - id: instanceName
       type: System.String
-      description: "The performance object instance for which to retrieve the list of associated counters."
+      description: "A instância de objeto de desempenho para o qual obter a lista de contadores associados."
     return:
       type: System.Diagnostics.PerformanceCounter[]
-      description: "An array of <xref href=&quot;System.Diagnostics.PerformanceCounter&quot;></xref> objects indicating the counters that are associated with the specified object instance of this performance counter category."
+      description: "Uma matriz de <xref href=&quot;System.Diagnostics.PerformanceCounter&quot;> </xref> objetos que indica que os contadores que estão associados a instância de objeto especificado desta categoria de contador de desempenho."
   overload: System.Diagnostics.PerformanceCounterCategory.GetCounters*
   exceptions:
   - type: System.ArgumentNullException
@@ -844,13 +844,13 @@ items:
     description: "The <code>instanceName</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> property for this <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> instance has not been set.       -or-       The category does not contain the instance that is specified by the <code>instanceName</code> parameter."
+    description: "O <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*>propriedade para este <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> instância não foi definida.</xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*>       - ou - a categoria não contém a instância que é especificada pelo <code> instanceName </code> parâmetro."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.GetInstanceNames
@@ -865,8 +865,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Retrieves the list of performance object instances that are associated with this category."
-  remarks: "> [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Obtém a lista de instâncias de objetos de desempenho que estão associados esta categoria."
+  remarks: "> [!NOTE]> Para ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou de ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example gets a list of the <xref:System.Diagnostics.PerformanceCounter> objects in a <xref:System.Diagnostics.PerformanceCounterCategory>. It first creates a <xref:System.Diagnostics.PerformanceCounterCategory> object, using the appropriate constructor based on whether a computer name was specified. It then uses GetInstanceNames to return the instance names as an array of <xref:System.String>, which it sorts and displays.  \n  \n [!code-cpp[System.Diagnostics.PerformanceCounterCategory.GetMembers#6](~/add/codesnippet/cpp/m-system.diagnostics.per_0_1.cpp)]\n [!code-cs[System.Diagnostics.PerformanceCounterCategory.GetMembers#6](~/add/codesnippet/csharp/m-system.diagnostics.per_0_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.GetMembers#6](~/add/codesnippet/visualbasic/m-system.diagnostics.per_0_1.vb)]"
   syntax:
@@ -874,18 +874,18 @@ items:
     parameters: []
     return:
       type: System.String[]
-      description: "An array of strings representing the performance object instance names that are associated with this category or, if the category contains only one performance object instance, a single-entry array that contains an empty string (&quot;&quot;)."
+      description: "Uma matriz de cadeias que representa os nomes de instância de objeto de desempenho que estão associados esta categoria ou, se a categoria contiver apenas uma instância de objeto de desempenho, uma entrada de única matriz que contém uma cadeia vazia (&quot;&quot;)."
   overload: System.Diagnostics.PerformanceCounterCategory.GetInstanceNames*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> property is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>. The property might not have been set.       -or-       The category does not have an associated instance."
+    description: "O <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*>propriedade é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>.</xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> A propriedade poderá não tenha sido definida.       - ou - a categoria não tem uma instância associada."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.InstanceExists(System.String)
@@ -900,8 +900,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Determines whether the specified performance object instance exists in the category that is identified by this <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;></xref> object&quot;s <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> property."
-  remarks: "This overload of InstanceExists is not `static`. It requires you to create a <xref:System.Diagnostics.PerformanceCounterCategory> object and to set the <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A> property.      > [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Determina se a instância de objeto de desempenho especificado existe na categoria que é identificada por este <xref href=&quot;System.Diagnostics.PerformanceCounterCategory&quot;> </xref> do objeto <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*>propriedade.</xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*>"
+  remarks: "Esta sobrecarga de InstanceExists não é `static`. Requer a criação de um <xref:System.Diagnostics.PerformanceCounterCategory>objeto e para definir o <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A>propriedade.</xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A> </xref:System.Diagnostics.PerformanceCounterCategory>      > [!NOTE] > Ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example determines whether a <xref:System.Diagnostics.PerformanceCounter> instance exists within a <xref:System.Diagnostics.PerformanceCounterCategory>. It first creates a <xref:System.Diagnostics.PerformanceCounterCategory> object, using the appropriate constructor based on whether a computer name was specified. It then uses InstanceExists to determine whether the specified instance exists, then informs the user. If no instance name is specified, the example uses the default single-instance name.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategory.ExistMembers#2](~/add/codesnippet/csharp/m-system.diagnostics.per_1_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.ExistMembers#2](~/add/codesnippet/visualbasic/m-system.diagnostics.per_1_1.vb)]"
   syntax:
@@ -909,24 +909,24 @@ items:
     parameters:
     - id: instanceName
       type: System.String
-      description: "The performance object instance in this performance counter category to search for."
+      description: "A instância de objeto de desempenho desta categoria de contador de desempenho para procurar."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the category contains the specified performance object instance; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a categoria contiver a instância de objeto de desempenho especificado; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Diagnostics.PerformanceCounterCategory.InstanceExists*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> property is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>. The property might not have been set."
+    description: "O <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*>propriedade é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>.</xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> A propriedade poderá não tenha sido definida."
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "The <code>instanceName</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.InstanceExists(System.String,System.String)
@@ -941,8 +941,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Determines whether a specified category on the local computer contains the specified performance object instance."
-  remarks: "It is not possible to determine whether a performance object instance exists on a computer without specifying a specific category to look in.      > [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Determina se uma categoria especificada no computador local contém a instância de objeto de desempenho especificado."
+  remarks: "Não é possível determinar se uma instância de objeto de desempenho existe num computador sem especificar uma categoria específica para procurar no.      > [!NOTE] > Ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example uses the static overloads of <xref:System.Diagnostics.PerformanceCounterCategory.InstanceExists%2A> to determine whether the given <xref:System.Diagnostics.PerformanceCounter> instance exists in the <xref:System.Diagnostics.PerformanceCounterCategory>. The overload is selected based on whether a computer name is specified. If no instance name is specified, the example uses the default single-instance name.  \n  \n [!code-vb[System.Diagnostics.PerformanceCounterCategory.ExistMembers#10](~/add/codesnippet/visualbasic/adb05d13-bcb8-4c81-ad06-_1.vb)]\n [!code-cs[System.Diagnostics.PerformanceCounterCategory.ExistMembers#10](~/add/codesnippet/csharp/adb05d13-bcb8-4c81-ad06-_1.cs)]"
   syntax:
@@ -950,13 +950,13 @@ items:
     parameters:
     - id: instanceName
       type: System.String
-      description: "The performance object instance to search for."
+      description: "A instância de objeto de desempenho para procurar."
     - id: categoryName
       type: System.String
-      description: "The performance counter category to search."
+      description: "A categoria de contador de desempenho para procurar."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the category contains the specified performance object instance; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a categoria contiver a instância de objeto de desempenho especificado; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Diagnostics.PerformanceCounterCategory.InstanceExists*
   exceptions:
   - type: System.ArgumentNullException
@@ -964,13 +964,13 @@ items:
     description: "The <code>instanceName</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       The <code>categoryName</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>categoryName</code> parameter is an empty string (&quot;&quot;)."
+    description: "O <code> categoryName </code> parâmetro é uma cadeia vazia (&quot;&quot;)."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.InstanceExists(System.String,System.String,System.String)
@@ -985,8 +985,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Determines whether a specified category on a specified computer contains the specified performance object instance."
-  remarks: "It is not possible to determine whether a performance object instance exists on a computer without specifying a specific category to look in.       You can use &quot;.&quot; to specify the local computer.      > [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Determina se uma categoria especificada num computador especificado contém a instância de objeto de desempenho especificado."
+  remarks: "Não é possível determinar se uma instância de objeto de desempenho existe num computador sem especificar uma categoria específica para procurar no.       Pode utilizar &quot;.&quot; para especificar o computador local.      > [!NOTE] > Ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example uses the static overloads of <xref:System.Diagnostics.PerformanceCounterCategory.InstanceExists%2A> to determine whether the given <xref:System.Diagnostics.PerformanceCounter> instance exists in the <xref:System.Diagnostics.PerformanceCounterCategory>. The overload is selected based on whether a computer name is specified. If no instance name is specified, the example uses the default single-instance name.  \n  \n [!code-vb[System.Diagnostics.PerformanceCounterCategory.ExistMembers#10](~/add/codesnippet/visualbasic/c05b631a-0e63-4d23-8d88-_1.vb)]\n [!code-cs[System.Diagnostics.PerformanceCounterCategory.ExistMembers#10](~/add/codesnippet/csharp/c05b631a-0e63-4d23-8d88-_1.cs)]"
   syntax:
@@ -994,16 +994,16 @@ items:
     parameters:
     - id: instanceName
       type: System.String
-      description: "The performance object instance to search for."
+      description: "A instância de objeto de desempenho para procurar."
     - id: categoryName
       type: System.String
-      description: "The performance counter category to search."
+      description: "A categoria de contador de desempenho para procurar."
     - id: machineName
       type: System.String
-      description: "The name of the computer on which to look for the category instance pair."
+      description: "O nome do computador no qual pretende procurar o par de instância de categoria."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the category contains the specified performance object instance; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se a categoria contiver a instância de objeto de desempenho especificado; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Diagnostics.PerformanceCounterCategory.InstanceExists*
   exceptions:
   - type: System.ArgumentNullException
@@ -1011,13 +1011,13 @@ items:
     description: "The <code>instanceName</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>.       -or-       The <code>categoryName</code> parameter is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The <code>categoryName</code> parameter is an empty string (&quot;&quot;).       -or-       The <code>machineName</code> parameter is invalid."
+    description: "O <code> categoryName </code> parâmetro é uma cadeia vazia (&quot;&quot;).       - ou - <code> machineName </code> parâmetro é inválido."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.MachineName
@@ -1032,7 +1032,7 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Gets or sets the name of the computer on which this category exists."
+  summary: "Obtém ou define o nome do computador no qual esta categoria existe."
   remarks: ''
   example:
   - "The following code example creates a <xref:System.Diagnostics.PerformanceCounterCategory> with the <xref:System.Diagnostics.PerformanceCounterCategory.%23ctor> constructor. It prompts the user for the <xref:System.Diagnostics.PerformanceCounterCategory> and the computer names, then sets the <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A> and MachineName properties from the entered values. It then displays the values of the <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A>, MachineName, and <xref:System.Diagnostics.PerformanceCounterCategory.CategoryHelp%2A> properties, or it displays an error message if the <xref:System.Diagnostics.PerformanceCounterCategory> cannot be accessed.  \n  \n [!code-cs[System.Diagnostics.PerformanceCounterCategory.OtherMembers#8](~/add/codesnippet/csharp/p-system.diagnostics.per_1_1.cs)]\n [!code-vb[System.Diagnostics.PerformanceCounterCategory.OtherMembers#8](~/add/codesnippet/visualbasic/p-system.diagnostics.per_1_1.vb)]"
@@ -1040,12 +1040,12 @@ items:
     content: public string MachineName { get; set; }
     return:
       type: System.String
-      description: "The name of the computer on which the performance counter category and its associated counters exist."
+      description: "O nome do computador no qual existem a categoria de contador de desempenho e respetivos contadores associados."
   overload: System.Diagnostics.PerformanceCounterCategory.MachineName*
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "The MachineName syntax is invalid."
+    description: "A sintaxe de MachineName é inválida."
   platform:
   - net462
 - uid: System.Diagnostics.PerformanceCounterCategory.ReadCategory
@@ -1060,8 +1060,8 @@ items:
   assemblies:
   - System
   namespace: System.Diagnostics
-  summary: "Reads all the counter and performance object instance data that is associated with this performance counter category."
-  remarks: "You must set the <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A> property before you call ReadCategory.       Reading the entire category at once can be as efficient as reading a single counter because of the way that the system provides the data.      > [!NOTE] >  To read performance counters in Windows Vista and later, Windows XP Professional x64 Edition, or Windows Server 2003, you must either be a member of the Performance Monitor Users group or have administrative privileges.   >    >  To avoid having to elevate your privileges to access performance counters in Windows Vista and later, add yourself to the Performance Monitor Users group.   >    >  In Windows Vista and later, User Account Control (UAC) determines the privileges of a user. If you are a member of the Built-in Administrators group, you are assigned two run-time access tokens: a standard user access token and an administrator access token. By default, you are in the standard user role. To execute the code that accesses performance counters, you must first elevate your privileges from standard user to administrator. You can do this when you start an application by right-clicking the application icon and indicating that you want to run as an administrator."
+  summary: "Lê todos os e o desempenho do contador de dados do objeto instância que está associados esta categoria de contador de desempenho."
+  remarks: "Tem de definir o <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A>propriedade antes de chamar ReadCategory.</xref:System.Diagnostics.PerformanceCounterCategory.CategoryName%2A>       Ler a categoria completa de uma só vez pode ser como eficiente como ler um único contador devido a forma que o sistema fornece os dados.      > [!NOTE] > Ler os contadores de desempenho no Windows Vista e posterior, Windows XP Professional x64 Edition ou Windows Server 2003, tem de ser um membro do grupo de utilizadores do Monitor de desempenho ou ter privilégios administrativos.   >> Para evitar a necessidade que elevar os seus privilégios para aceder aos contadores de desempenho no Windows Vista e posterior, tem de adicionar manualmente ao grupo de utilizadores do Monitor de desempenho.   >> No Windows Vista e posterior, o controlo de conta de utilizador (UAC) determina os privilégios de utilizador. Se for um membro do grupo Administradores incorporado, são atribuídos dois tokens de acesso de tempo de execução: um token de acesso de utilizador padrão e um token de acesso de administrador. Por predefinição, está na função de utilizador padrão. Para executar o código que acede ao contadores de desempenho, primeiro tem elevar os privilégios de utilizador padrão ao administrador. Pode fazê-lo quando iniciar uma aplicação ao clicar no ícone de aplicação e com a indicação de que pretende executar como administrador."
   example:
   - "The following code example creates a <xref:System.Diagnostics.PerformanceCounterCategory> for a specified <xref:System.Diagnostics.PerformanceCounterCategory> name. It then uses ReadCategory to return an <xref:System.Diagnostics.InstanceDataCollectionCollection> that contains instance data for all the instances of the <xref:System.Diagnostics.PerformanceCounter> objects within the <xref:System.Diagnostics.PerformanceCounterCategory>.  \n  \n [!code-cs[System.Diagnostics.InstanceData.CopyTo#6](~/add/codesnippet/csharp/m-system.diagnostics.per_9_1.cs)]\n [!code-vb[System.Diagnostics.InstanceData.CopyTo#6](~/add/codesnippet/visualbasic/m-system.diagnostics.per_9_1.vb)]"
   syntax:
@@ -1069,18 +1069,18 @@ items:
     parameters: []
     return:
       type: System.Diagnostics.InstanceDataCollectionCollection
-      description: "An <xref href=&quot;System.Diagnostics.InstanceDataCollectionCollection&quot;></xref> that contains the counter and performance object instance data for the category."
+      description: "Um <xref href=&quot;System.Diagnostics.InstanceDataCollectionCollection&quot;> </xref> que contém os dados de instância de objecto de contador e desempenho para a categoria."
   overload: System.Diagnostics.PerformanceCounterCategory.ReadCategory*
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: "The <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> property is <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>. The property might not have been set."
+    description: "O <xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*>propriedade é <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>.</xref:System.Diagnostics.PerformanceCounterCategory.CategoryName*> A propriedade poderá não tenha sido definida."
   - type: System.ComponentModel.Win32Exception
     commentId: T:System.ComponentModel.Win32Exception
-    description: "A call to an underlying system API failed."
+    description: "Falha de uma chamada para um sistema subjacente API."
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
-    description: "Code that is executing without administrative privileges attempted to read a performance counter."
+    description: "Código que está a executar sem privilégios administrativos tentou ler um contador de desempenho."
   platform:
   - net462
 references:

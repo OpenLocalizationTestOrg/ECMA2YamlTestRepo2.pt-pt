@@ -21,8 +21,8 @@ items:
   nameWithType: IUpdatable
   fullName: System.Data.Services.IUpdatable
   type: Interface
-  summary: "An interface used to insert or update a resource by the HTTP POST method."
-  remarks: "The IUpdatable interface is resource independent. The methods that return objects representing resources can return anything.       The returned object is an opaque object that represents the resource. To use the reference to read or update a value, the same opaque object is passed back to IUpdatable.       Implementation of IUpdatable must track the mapping between this opaque object to the object it represents. When the resource is serialized and a common language runtime (CLR) instance of the correct type is needed, the ResolveResource method on IUpdatable is called with the opaque object.       To serialize the object, call the <xref:System.Data.Services.IUpdatable.ResolveResource%2A> method on IUpdatable."
+  summary: "Uma interface utilizada para inserir ou atualizar um recurso pelo método de HTTP POST."
+  remarks: "A interface IUpdatable é independente do recurso. Os métodos que devolvam objetos que representa os recursos podem devolver nada.       O objeto devolvido é um objeto opaco que representa o recurso. Para utilizar a referência ao ler ou atualizar um valor, o mesmo objeto opaco é reenviado para IUpdatable.       Implementação de IUpdatable tem de controlar o mapeamento entre este objeto para o objeto representa opaco. Quando o recurso está a ser serializado e é necessária uma instância de runtime (CLR) idioma comuns do tipo correto, o método de ResolveResource no IUpdatable denomina-se com o objeto opaco.       Para serializar o objeto, chame o <xref:System.Data.Services.IUpdatable.ResolveResource%2A>método no IUpdatable.</xref:System.Data.Services.IUpdatable.ResolveResource%2A>"
   syntax:
     content: public interface IUpdatable
   implements: []
@@ -40,19 +40,19 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Adds the specified value to the collection."
+  summary: "Adiciona o valor especificado para a coleção."
   syntax:
     content: public void AddReferenceToCollection (object targetResource, string propertyName, object resourceToBeAdded);
     parameters:
     - id: targetResource
       type: System.Object
-      description: "Target object that defines the property."
+      description: "Objeto de destino que define a propriedade."
     - id: propertyName
       type: System.String
-      description: "The name of the collection property to which the resource should be added.."
+      description: "O nome da propriedade de coleção para que o recurso deve ser adicionado..."
     - id: resourceToBeAdded
       type: System.Object
-      description: "The opaque object representing the resource to be added."
+      description: "O objecto opaco que representa os recursos a adicionar."
   overload: System.Data.Services.IUpdatable.AddReferenceToCollection*
   exceptions: []
   platform:
@@ -69,7 +69,7 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Cancels a change to the data."
+  summary: "Cancela uma alteração aos dados."
   syntax:
     content: public void ClearChanges ();
     parameters: []
@@ -89,20 +89,20 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Creates the resource of the specified type and that belongs to the specified container."
-  remarks: "CreateResource is called to insert a new resource by the HTTP POST method. The first parameter points to the container that the resource belongs to and the second parameter is the namespace-qualified name of the resource type that needs to be created.       The second parameter is most useful when using inheritance. The return type need not be the actual CLR instance of the resource. It can be anything, for example, a cookie, that the implementation requires."
+  summary: "Cria o recurso especificado do tipo e a que pertence ao contentor especificado."
+  remarks: "CreateResource é chamado para inserir um novo recurso, o método POST de HTTP. Os pontos de parâmetro primeiro para o contentor que o recurso pertence e o segundo parâmetro é o nome qualificado de espaço de nomes do tipo de recurso que tem de ser criado.       O segundo parâmetro é mais útil quando utilizar a herança. O tipo de retorno não tem de ser a instância CLR real do recurso. Pode ser qualquer coisa, por exemplo, um cookie, que requer a implementação."
   syntax:
     content: public object CreateResource (string containerName, string fullTypeName);
     parameters:
     - id: containerName
       type: System.String
-      description: "The name of the entity set to which the resource belongs."
+      description: "O nome da entidade definido para que o recurso pertence."
     - id: fullTypeName
       type: System.String
-      description: "The full namespace-qualified type name of the resource."
+      description: "O nome de tipo completo qualificado de espaço de nomes do recurso."
     return:
       type: System.Object
-      description: "The object representing a resource of specified type and belonging to the specified container."
+      description: "O objecto que representa um recurso de tipo especificado e que pertencem ao contentor especificado."
   overload: System.Data.Services.IUpdatable.CreateResource*
   exceptions: []
   platform:
@@ -119,14 +119,14 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Deletes the specified resource."
-  remarks: "The `targetResource` is the opaque object returned by <xref:System.Data.Services.IUpdatable.GetResource%2A> or <xref:System.Data.Services.IUpdatable.CreateResource%2A>."
+  summary: "Elimina o recurso especificado."
+  remarks: "O `targetResource` é o objeto opaco devolvido pelo <xref:System.Data.Services.IUpdatable.GetResource%2A>ou <xref:System.Data.Services.IUpdatable.CreateResource%2A>.</xref:System.Data.Services.IUpdatable.CreateResource%2A> </xref:System.Data.Services.IUpdatable.GetResource%2A>"
   syntax:
     content: public void DeleteResource (object targetResource);
     parameters:
     - id: targetResource
       type: System.Object
-      description: "The resource to be deleted."
+      description: "O recurso a eliminar."
   overload: System.Data.Services.IUpdatable.DeleteResource*
   exceptions: []
   platform:
@@ -143,19 +143,19 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets the resource of the specified type identified by a query and type name."
+  summary: "Obtém o recurso do tipo especificado identificado por um consulta e nome de tipo."
   syntax:
     content: public object GetResource (System.Linq.IQueryable query, string fullTypeName);
     parameters:
     - id: query
       type: System.Linq.IQueryable
-      description: "Language integrated query (LINQ) pointing to a particular resource."
+      description: "Integrada consulta da linguagem (LINQ) que aponta para um recurso específico."
     - id: fullTypeName
       type: System.String
-      description: "The fully qualified type name of resource."
+      description: "O nome de tipo totalmente qualificado do recurso."
     return:
       type: System.Object
-      description: "An opaque object representing a resource of the specified type, referenced by the specified query."
+      description: "Um objeto opaco que representa um recurso do tipo especificado, referenciado pela consulta especificada."
   overload: System.Data.Services.IUpdatable.GetResource*
   exceptions: []
   platform:
@@ -172,20 +172,20 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Gets the value of the specified property on the target object."
-  remarks: "This method is called for scalar properties or complex properties. For a scalar property, the returned object should be the actual value."
+  summary: "Obtém o valor da propriedade especificado no objecto de destino."
+  remarks: "Este método é denominado para as propriedades escalares ou as propriedades complexas. Para uma propriedade escalar, o objeto devolvido deve ser o valor real."
   syntax:
     content: public object GetValue (object targetResource, string propertyName);
     parameters:
     - id: targetResource
       type: System.Object
-      description: "An opaque object that represents a resource."
+      description: "Um objecto opaco que representa um recurso."
     - id: propertyName
       type: System.String
-      description: "The name of the property whose value needs to be retrieved."
+      description: "O nome da propriedade cujo valor tem de ser obtido."
     return:
       type: System.Object
-      description: "The value of the object."
+      description: "O valor do objeto."
   overload: System.Data.Services.IUpdatable.GetValue*
   exceptions: []
   platform:
@@ -202,20 +202,20 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Removes the specified value from the collection."
-  remarks: "Removes the specified resource from the collection identified by a navigation property on the target object. This operation deletes the relationship between the two resource objects bound by the relationship."
+  summary: "Remove o valor especificado da coleção."
+  remarks: "Remove o recurso especificado da coleção identificada por uma propriedade de navegação do objeto de destino. Esta operação elimina a relação entre os objetos de dois recurso vinculado por relação."
   syntax:
     content: public void RemoveReferenceFromCollection (object targetResource, string propertyName, object resourceToBeRemoved);
     parameters:
     - id: targetResource
       type: System.Object
-      description: "The target object that defines the property."
+      description: "O objeto de destino que define a propriedade."
     - id: propertyName
       type: System.String
-      description: "The name of the property whose value needs to be updated."
+      description: "O nome da propriedade cujo valor tem de ser atualizado."
     - id: resourceToBeRemoved
       type: System.Object
-      description: "The property value that needs to be removed."
+      description: "O valor de propriedade tem de ser removido."
   overload: System.Data.Services.IUpdatable.RemoveReferenceFromCollection*
   exceptions: []
   platform:
@@ -232,16 +232,16 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Resets the resource identified by the parameter <code>resource </code>to its default value."
+  summary: "Repõe o recurso identificado pelo parâmetro <code> resource  </code>ao valor predefinido."
   syntax:
     content: public object ResetResource (object resource);
     parameters:
     - id: resource
       type: System.Object
-      description: "The resource to be updated."
+      description: "O recurso a ser atualizado."
     return:
       type: System.Object
-      description: "The resource with its value reset to the default value."
+      description: "O recurso com o respetivo valor repor o valor predefinido."
   overload: System.Data.Services.IUpdatable.ResetResource*
   exceptions: []
   platform:
@@ -258,17 +258,17 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Returns the instance of the resource represented by the specified resource object."
-  remarks: "This method is called to resolve the opaque object returned by the <xref:System.Data.Services.IUpdatable.CreateResource%2A> or <xref:System.Data.Services.IUpdatable.GetResource%2A> API into the CLR instance. This is normally called after <xref:System.Data.Services.IUpdatable.SaveChanges%2A> to serialize the resource for POST methods.       This method is also called if there are update interceptors invoked with the common language runtime (CLR) resource instances. It can be used if the provider supports optimistic concurrency and the resource type has concurrency tokens defined by <xref:System.Data.Services.ETagAttribute> in a CLR-based provider."
+  summary: "Devolve a instância do recurso representada pelo objeto recurso especificado."
+  remarks: "Este método é denominado resolver opaco objecto devolvido pelo <xref:System.Data.Services.IUpdatable.CreateResource%2A>ou <xref:System.Data.Services.IUpdatable.GetResource%2A>API para a instância do CLR.</xref:System.Data.Services.IUpdatable.GetResource%2A> </xref:System.Data.Services.IUpdatable.CreateResource%2A> Isto é normalmente denominado após <xref:System.Data.Services.IUpdatable.SaveChanges%2A>para serializar o recurso para métodos POST.</xref:System.Data.Services.IUpdatable.SaveChanges%2A>       Este método também é denominado se existirem intercetores de atualização invocados com instâncias de recursos de runtime (CLR) de idioma comum. Pode ser utilizado se o fornecedor suporta simultaneidade otimista e o tipo de recurso tem tokens de concorrência definidos pelo <xref:System.Data.Services.ETagAttribute>de um fornecedor de CLR.</xref:System.Data.Services.ETagAttribute>"
   syntax:
     content: public object ResolveResource (object resource);
     parameters:
     - id: resource
       type: System.Object
-      description: "The object representing the resource whose instance needs to be retrieved."
+      description: "O objecto que representa o recurso cuja instância tem de ser obtido."
     return:
       type: System.Object
-      description: "Returns the instance of the resource represented by the specified resource object."
+      description: "Devolve a instância do recurso representada pelo objeto recurso especificado."
   overload: System.Data.Services.IUpdatable.ResolveResource*
   exceptions: []
   platform:
@@ -285,8 +285,8 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Saves all the changes that have been made by using the <xref href=&quot;System.Data.Services.IUpdatable&quot;></xref> APIs."
-  remarks: "The <xref:System.Data.Services.IUpdatable> implementation must track all changes until SaveChanges is called and then save all changes when SaveChanges is called. The <xref:System.Data.Services.IUpdatable> implementation is expected to save all of the changes or to reject all of the changes together."
+  summary: "Guarda as alterações que foram efetuadas utilizando o <xref href=&quot;System.Data.Services.IUpdatable&quot;> </xref> APIs."
+  remarks: "O <xref:System.Data.Services.IUpdatable>implementação tem de controlar todas as alterações até SaveChanges é chamado e, em seguida, guarde todas as alterações quando é chamado SaveChanges.</xref:System.Data.Services.IUpdatable> O <xref:System.Data.Services.IUpdatable>implementação é esperada para guardar todas as alterações ou rejeitar todas as alterações em conjunto.</xref:System.Data.Services.IUpdatable>"
   syntax:
     content: public void SaveChanges ();
     parameters: []
@@ -306,19 +306,19 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Sets the value of the specified reference property on the target object."
+  summary: "Define o valor da propriedade de referência especificado no objecto de destino."
   syntax:
     content: public void SetReference (object targetResource, string propertyName, object propertyValue);
     parameters:
     - id: targetResource
       type: System.Object
-      description: "The target object that defines the property."
+      description: "O objeto de destino que define a propriedade."
     - id: propertyName
       type: System.String
-      description: "The name of the property whose value needs to be updated."
+      description: "O nome da propriedade cujo valor tem de ser atualizado."
     - id: propertyValue
       type: System.Object
-      description: "The property value to be updated."
+      description: "O valor da propriedade a ser atualizado."
   overload: System.Data.Services.IUpdatable.SetReference*
   exceptions: []
   platform:
@@ -335,19 +335,19 @@ items:
   assemblies:
   - System.Data.Services
   namespace: System.Data.Services
-  summary: "Sets the value of the property with the specified name on the target resource to the specified property value."
+  summary: "Define o valor da propriedade com o nome especificado no recurso de destino para o valor de propriedade especificado."
   syntax:
     content: public void SetValue (object targetResource, string propertyName, object propertyValue);
     parameters:
     - id: targetResource
       type: System.Object
-      description: "The target object that defines the property."
+      description: "O objeto de destino que define a propriedade."
     - id: propertyName
       type: System.String
-      description: "The name of the property whose value needs to be updated."
+      description: "O nome da propriedade cujo valor tem de ser atualizado."
     - id: propertyValue
       type: System.Object
-      description: "The property value for update."
+      description: "O valor da propriedade para a atualização."
   overload: System.Data.Services.IUpdatable.SetValue*
   exceptions: []
   platform:

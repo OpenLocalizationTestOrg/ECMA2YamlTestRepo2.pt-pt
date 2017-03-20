@@ -30,8 +30,8 @@ items:
   nameWithType: WebPartVerb
   fullName: System.Web.UI.WebControls.WebParts.WebPartVerb
   type: Class
-  summary: "Provides an interactive user interface (UI) element that enables users to perform actions on a Web Parts page."
-  remarks: "Web Parts verbs are interactive UI elements, typically represented by buttons or hyperlinks, that appear in pages that use Web Parts controls. Users click verbs to carry out common UI actions for Web Parts controls, such as closing a <xref:System.Web.UI.WebControls.WebParts.WebPart> control or closing the edit display mode (a special page view associated with the <xref:System.Web.UI.WebControls.WebParts.EditorZone> control). All standard verbs provided with the Web Parts control set are associated with either a Web Parts zone (<xref:System.Web.UI.WebControls.WebParts.WebPartZone>, <xref:System.Web.UI.WebControls.WebParts.EditorZone>, <xref:System.Web.UI.WebControls.WebParts.CatalogZone>, or <xref:System.Web.UI.WebControls.WebParts.ConnectionsZone>) or a Web Parts <xref:System.Web.UI.WebControls.WebParts.Part> control (<xref:System.Web.UI.WebControls.WebParts.WebPart>, <xref:System.Web.UI.WebControls.WebParts.GenericWebPart>, <xref:System.Web.UI.WebControls.WebParts.EditorPart>, or <xref:System.Web.UI.WebControls.WebParts.CatalogPart>).       When the standard verbs are associated with a zone, their actions apply at the zone level, and the verbs usually appear in the zone&quot;s header or footer area. The following table lists the common zone-level verbs and describes their actions.      |Zone-level verb|Action|   |----------------------|------------|   |Close verb|Used with zones that inherit from the <xref:System.Web.UI.WebControls.WebParts.ToolZone> class. Hides the UI for a zone and typically returns the page to its normal browse mode view.|   |Apply verb|Used with zones that inherit from the <xref:System.Web.UI.WebControls.WebParts.EditorZoneBase> class. Applies changes that a user has made.|   |OK verb|Used with zones that inherit from the <xref:System.Web.UI.WebControls.WebParts.EditorZoneBase> class. Has the combined effect of the apply and close verbs; it applies changes and hides the zone&quot;s UI.|   |Cancel verb|Used with zones that inherit from the <xref:System.Web.UI.WebControls.WebParts.ToolZone> class. Cancels any pending changes a user has made.|   |Add verb|Used with zones that inherit from the <xref:System.Web.UI.WebControls.WebParts.CatalogZoneBase> class. Adds a control that a user has selected from a catalog of controls to a specified <xref:System.Web.UI.WebControls.WebParts.WebPartZone> zone.|   |Configure verb|Used with zones that inherit from the <xref:System.Web.UI.WebControls.WebParts.ConnectionsZone> class. Opens a view to enable users to configure existing connections.|   |Disconnect verb|Used with zones that inherit from the <xref:System.Web.UI.WebControls.WebParts.ConnectionsZone> class. Terminates an existing connection between two controls.|       As for the standard verbs that are associated with <xref:System.Web.UI.WebControls.WebParts.Part> controls, their actions apply to the control itself (or to its child controls). The part control acts as a container for the verb and manages the rendering of the verb. Most standard verbs associated with part controls appear either directly in the title bar or in a drop-down verbs menu within the title bar. Whether these verbs appear directly in the header or in a verbs menu is determined by the <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.WebPartVerbRenderMode%2A> property; by default, the verbs appear in a verbs menu. The following table lists common verbs associated with the various <xref:System.Web.UI.WebControls.WebParts.Part> controls and describes their actions.      |Part control verb|Action|   |-----------------------|------------|   |Minimize verb|Appears in the verbs menu of each server control contained in a <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> zone. Reduces the control to a minimal representation, hiding everything in its UI except the restore verb.|   |Restore verb|Appears in the verbs menu of each server control contained in a <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> zone. Returns a minimized control to its normal size and view.|   |Close verb|Appears in the verbs menu of each server control contained in a <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> zone. Closes a control and adds it to the page catalog, which means the control is removed from the page but, if there is a properly designed catalog, users can reopen the closed control and return it to the page.|   |Connect verb|Appears in the verbs menu of a control contained in a <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> zone, if the page is in connect display mode and if the control can form connections. Opens a connection UI so that users can create a connection between controls.|   |Delete verb|Appears in the verbs menu of a control contained in a <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> zone, if the control was added to the page programmatically (rather than being declared in persistence format). Permanently deletes the control instance and any associated personalization data so that, unlike a closed control, the deleted instance can never be restored to the page.|   |Edit verb|Appears in the verbs menu of a control contained in a <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> zone, if the page is designed to permit editing of controls and if the page is in edit display mode. Selects the control for editing and opens the editing UI.|   |Export verb|Appears in the verbs menu of a control contained in a <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> zone, if the control and application are enabled for export. Opens a dialog box that enables users to export a description file that contains the serialized state of the control. For details, see the <xref:System.Web.UI.WebControls.WebParts.WebPart.ExportMode%2A> property.|   |Help verb|Appears in the verbs menu of a control contained in a <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> zone, if the control is designed to provide a Help file. Launches a page that provides help for the control.|       Along with the standard verbs that are provided with the Web Parts control set, you can also create custom verbs. A common scenario for creating custom verbs is to create verbs associated with <xref:System.Web.UI.WebControls.WebParts.Part> controls. When you create these verbs, by default they will appear on the verbs menu along with the standard verbs. The basic approach for creating such verbs is to inherit from the WebPartVerb class to create one or more custom verbs. Then create a control that inherits from the <xref:System.Web.UI.WebControls.WebParts.WebPart> base class and add the custom WebPartVerb objects to a <xref:System.Web.UI.WebControls.WebParts.WebPartVerbCollection> collection. This collection can then be added to the <xref:System.Web.UI.WebControls.WebParts.WebPart.Verbs%2A> collection of the control, which will cause the custom verbs to appear automatically on the control&quot;s verbs menu at run time. As with the standard verbs, you can access the custom verbs programmatically on a <xref:System.Web.UI.WebControls.WebParts.WebPart> control.       Web Parts applications can use server controls that do not inherit from the <xref:System.Web.UI.WebControls.WebParts.WebPart> class, such as custom controls, user controls, or ASP.NET controls. These server controls, if added to a <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> zone, are dynamically wrapped with a <xref:System.Web.UI.WebControls.WebParts.GenericWebPart> object at run time, which enables them to function as run-time <xref:System.Web.UI.WebControls.WebParts.WebPart> controls. To add custom verbs to a server control that does not inherit from the <xref:System.Web.UI.WebControls.WebParts.WebPart> class, the server control must implement the <xref:System.Web.UI.WebControls.WebParts.IWebActionable> interface and override its <xref:System.Web.UI.WebControls.WebParts.IWebActionable.Verbs%2A> property.       When you create a verb, you can create two types of associated event handlers that will run when a user clicks the verb: a server-side event handler (code that runs on the server), and a client-side event handler (code that runs in the client browser). Also, you can define custom states for verbs, which is a useful way to provide visual cues to users. For example, you could create a state indicating that a verb has been selected, and then provide appropriate changes in the UI to notify the user that the verb is already selected. Another useful behavior is the ability to disable verbs; by doing this, you can prevent users from clicking verbs if doing so would be harmful or ineffective based on the state of the application.       The WebPartVerb class does not expose any unique methods; its exposed methods are all overrides of base methods. It does however contain a number of properties for developers to be aware of. The <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Checked%2A> property indicates whether a verb is currently selected. The <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ClientClickHandler%2A> and <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ServerClickHandler%2A> properties refer to the respective handlers within the class (if any exist) for client and server click events. The <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Description%2A> property contains text that describes the purpose of a verb in a ToolTip when users position a mouse pointer over the verb in the UI. The <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Enabled%2A> property indicates the current status of a verb, which determines whether a user can click the verb and execute its action. The <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ID%2A> property provides a unique ID for the verb object. The <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ImageUrl%2A> property contains a URL to an image that can be used to represent a verb in the UI in place of the default rendering (typically a button or a hyperlink). The <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Text%2A> property contains the label text that appears directly on the verb in the UI. The overridden <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Visible%2A> property determines whether a verb is currently displayed in the UI. Verbs are often hidden or disabled at different times in a Web Parts application; for example, specialty verbs (such as the edit verb and the connect verb) are displayed only when the appropriate controls, settings, and display modes exist on the page to enable those verbs to take meaningful action.       Other key members for working with verbs include the <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.OnCreateVerbs%2A?displayProperty=fullName> method, which is an event handler that can be overridden for custom handling of the verb creation process, and the <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.CreateVerbs?displayProperty=fullName> event."
+  summary: "Fornece um elemento de interface (IU) do utilizador interativo que permite aos utilizadores efetuar ações numa página de peças Web."
+  remarks: "Verbos de peças Web são elementos de IU interativos, normalmente representados pelo botões ou hiperligações, que são apresentados nas páginas utilizam controlos de peças Web. Os utilizadores clicam verbos para realizar ações comuns de IU para controlos de peças Web, tais como fechar um <xref:System.Web.UI.WebControls.WebParts.WebPart>controlo ou se fechar o modo de visualização de edição (associado uma vista de página especial a <xref:System.Web.UI.WebControls.WebParts.EditorZone>controlo).</xref:System.Web.UI.WebControls.WebParts.EditorZone> </xref:System.Web.UI.WebControls.WebParts.WebPart> Todos os verbos padrão fornecidos com o conjunto de controlo de peças Web estão associados com uma zona de peças Web (<xref:System.Web.UI.WebControls.WebParts.WebPartZone>, <xref:System.Web.UI.WebControls.WebParts.EditorZone>, <xref:System.Web.UI.WebControls.WebParts.CatalogZone>, ou <xref:System.Web.UI.WebControls.WebParts.ConnectionsZone>) ou um peças Web <xref:System.Web.UI.WebControls.WebParts.Part>controlo (<xref:System.Web.UI.WebControls.WebParts.WebPart>, <xref:System.Web.UI.WebControls.WebParts.GenericWebPart>, <xref:System.Web.UI.WebControls.WebParts.EditorPart>, ou <xref:System.Web.UI.WebControls.WebParts.CatalogPart>).</xref:System.Web.UI.WebControls.WebParts.CatalogPart> </xref:System.Web.UI.WebControls.WebParts.EditorPart> </xref:System.Web.UI.WebControls.WebParts.GenericWebPart> </xref:System.Web.UI.WebControls.WebParts.WebPart> </xref:System.Web.UI.WebControls.WebParts.Part> </xref:System.Web.UI.WebControls.WebParts.ConnectionsZone> </xref:System.Web.UI.WebControls.WebParts.CatalogZone> </xref:System.Web.UI.WebControls.WebParts.EditorZone> </xref:System.Web.UI.WebControls.WebParts.WebPartZone>       Quando os verbos padrão estão associados uma zona, respetivas ações aplicam-se ao nível da zona e os verbos normalmente aparecem na área de cabeçalho ou rodapé da zona. A tabela seguinte lista os verbos de nível de zona comuns e descreve as respetivas ações.      | Nível de zona verbo | Ação |   |----------------------|------------|   | Verbo fechar | Utilizado com zonas herdarem da <xref:System.Web.UI.WebControls.WebParts.ToolZone>classe.</xref:System.Web.UI.WebControls.WebParts.ToolZone> Oculta a IU de uma zona e, normalmente, devolve a página para a vista de modo de procura normal. |   | Aplicar verbo | Utilizado com zonas herdarem da <xref:System.Web.UI.WebControls.WebParts.EditorZoneBase>classe.</xref:System.Web.UI.WebControls.WebParts.EditorZoneBase> Aplica as alterações que fez com um utilizador. |   | Verbo OK | Utilizado com zonas herdarem da <xref:System.Web.UI.WebControls.WebParts.EditorZoneBase>classe.</xref:System.Web.UI.WebControls.WebParts.EditorZoneBase> Tem o efeito combinado de aplicar e fechar verbos; aplica alterações e oculta IU a zona. |   | Cancelar verbo | Utilizado com zonas herdarem da <xref:System.Web.UI.WebControls.WebParts.ToolZone>classe.</xref:System.Web.UI.WebControls.WebParts.ToolZone> Cancela todas as alterações um utilizador efetuou pendentes. |   | Adicionar Verbo | Utilizado com zonas herdarem da <xref:System.Web.UI.WebControls.WebParts.CatalogZoneBase>classe.</xref:System.Web.UI.WebControls.WebParts.CatalogZoneBase> Adiciona um controlo que um utilizador tiver selecionado um catálogo de controlos a uma zona <xref:System.Web.UI.WebControls.WebParts.WebPartZone>especificada. |   | Configurar o verbo | Utilizado com zonas herdarem da <xref:System.Web.UI.WebControls.WebParts.ConnectionsZone>classe.</xref:System.Web.UI.WebControls.WebParts.ConnectionsZone> </xref:System.Web.UI.WebControls.WebParts.WebPartZone> Abre uma vista para permitir que os utilizadores configurar as ligações existentes. |   | Desligar verbo | Utilizado com zonas herdarem da <xref:System.Web.UI.WebControls.WebParts.ConnectionsZone>classe.</xref:System.Web.UI.WebControls.WebParts.ConnectionsZone> Termina uma ligação entre dois controlos. |       Para os verbos padrão que estão associados <xref:System.Web.UI.WebControls.WebParts.Part>controlos, as respetivas ações a aplicar ao controlo de si próprio (ou respectivos controlos subordinados).</xref:System.Web.UI.WebControls.WebParts.Part> O controlo de parte age como um contentor para o verbo e gere a composição do verbo. Verbos padrão mais associados com controlos de peça aparecem a diretamente na barra de título ou num menu pendente verbos da barra de títulos. Se estes verbos aparecem diretamente no cabeçalho ou no menu de verbos é determinado pelo <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.WebPartVerbRenderMode%2A>propriedade; por predefinição, os verbos apresentados num menu de verbos.</xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.WebPartVerbRenderMode%2A> A tabela seguinte lista os verbos comuns associados a vários <xref:System.Web.UI.WebControls.WebParts.Part>controla e descreve as respetivas ações.</xref:System.Web.UI.WebControls.WebParts.Part>      | Verbo de controlo de parte | Ação |   |-----------------------|------------|   | Minimizar verbo | É apresentada no menu de verbos de cada controlo de servidor contido num <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase>zona.</xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> Reduz o controlo para uma representação mínima, ocultar tudo na interface de utilizador, exceto o verbo de restauro. |   | Restaurar verbo | É apresentada no menu de verbos de cada controlo de servidor contido num <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase>zona.</xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> Devolve um controlo minimizado o tamanho normal e à vista. |   | Verbo fechar | É apresentada no menu de verbos de cada controlo de servidor contido num <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase>zona.</xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> Fecha um controlo e adiciona-o para o catálogo de página, o que significa que o controlo é removido da página, mas, se existir um catálogo corretamente concebido, os utilizadores podem reabra o controlo fechado e devolva-o para a página. |   | Ligar o verbo | É apresentada no menu de verbos de um controlo contido num <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase>zona, se a página está a ser ligar de modo de visualização e se o controlo possa constituir ligações.</xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> É aberta uma ligação de IU para que os utilizadores podem criar uma ligação entre controlos. |   | Eliminar verbo | É apresentada no menu de verbos de um controlo contido num <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase>zona, se o controlo foi adicionado à página através de programação (em vez de ser declarada no formato de persistência).</xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> Elimina permanentemente a instância de controlo e quaisquer dados de personalização associados, de modo a que, ao contrário de um controlo fechado, a instância eliminada nunca pode ser restaurada para a página. |   | Editar verbo | É apresentada no menu de verbos de um controlo contido num <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase>zona, se a página foi concebida para permitir a edição de controlos e se a página estiver em modo de apresentação de edição.</xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> Seleciona o controlo para edição e abre a IU de edição. |   | Exportar verbo | É apresentada no menu de verbos de um controlo contido num <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase>zona, se o controlo e a aplicação estiverem ativadas para exportação.</xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> Abre uma caixa de diálogo que permite aos utilizadores exportar um ficheiro de descrição que contém o estado serializado do controlo. Para obter mais informações, consulte a propriedade <xref:System.Web.UI.WebControls.WebParts.WebPart.ExportMode%2A>. |   | Ajudar verbo | É apresentada no menu de verbos de um controlo contido num <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase>zona, se o controlo foi concebido para fornecer um ficheiro de ajuda.</xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> </xref:System.Web.UI.WebControls.WebParts.WebPart.ExportMode%2A> Inicia uma página que fornece ajuda para o controlo. |       Juntamente com os verbos padrão que são fornecidos com as peças Web controlar conjunto, também pode criar verbos personalizados. Um cenário comum para criação personalizados verbos consiste em criar verbos associados <xref:System.Web.UI.WebControls.WebParts.Part>controlos.</xref:System.Web.UI.WebControls.WebParts.Part> Quando cria estes verbos, por predefinição serão apresentados no menu de verbos juntamente com os verbos padrão. A abordagem básica para criar esses verbos é herdar da classe de WebPartVerb para criar um ou mais verbos personalizados. Em seguida, crie um controlo que herda a <xref:System.Web.UI.WebControls.WebParts.WebPart>classe base e adicionar os objetos de WebPartVerb personalizados para um <xref:System.Web.UI.WebControls.WebParts.WebPartVerbCollection>coleção.</xref:System.Web.UI.WebControls.WebParts.WebPartVerbCollection> </xref:System.Web.UI.WebControls.WebParts.WebPart> Em seguida, pode ser adicionada esta coleção para o <xref:System.Web.UI.WebControls.WebParts.WebPart.Verbs%2A>coleção de controlo, o que fará com que os verbos personalizados sejam apresentados automaticamente no menu de verbos do controlo em tempo de execução.</xref:System.Web.UI.WebControls.WebParts.WebPart.Verbs%2A> Com os verbos padrão, pode aceder aos verbos personalizados através de programação num <xref:System.Web.UI.WebControls.WebParts.WebPart>controlo.</xref:System.Web.UI.WebControls.WebParts.WebPart>       Aplicações de peças Web podem utilizar os controlos de servidor que herda a partir de <xref:System.Web.UI.WebControls.WebParts.WebPart>classe, como controlos personalizados, controlos de utilizador ou controlos do ASP.NET.</xref:System.Web.UI.WebControls.WebParts.WebPart> Estes controlos de servidor, se adicionado a um <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase>zona, são dinamicamente moldada com um <xref:System.Web.UI.WebControls.WebParts.GenericWebPart>objeto em tempo de execução, permitindo-lhes para funcionar como tempo de execução <xref:System.Web.UI.WebControls.WebParts.WebPart>controlos.</xref:System.Web.UI.WebControls.WebParts.WebPart> </xref:System.Web.UI.WebControls.WebParts.GenericWebPart> </xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> Para adicionar verbos personalizados para um controlo de servidor que não herda a partir de <xref:System.Web.UI.WebControls.WebParts.WebPart>classe, o controlo de servidor tem de implementar o <xref:System.Web.UI.WebControls.WebParts.IWebActionable>interface e substituir a <xref:System.Web.UI.WebControls.WebParts.IWebActionable.Verbs%2A>propriedade.</xref:System.Web.UI.WebControls.WebParts.IWebActionable.Verbs%2A> </xref:System.Web.UI.WebControls.WebParts.IWebActionable> </xref:System.Web.UI.WebControls.WebParts.WebPart>       Quando cria um verbo, pode criar dois tipos de processadores do evento associado que serão executado quando um utilizador clica o verbo: um processador de eventos do lado do servidor (código que é executado no servidor) e um processador de eventos do lado do cliente (código que é executado no browser cliente). Além disso, pode definir os Estados personalizados para verbos, que é uma forma útil para fornecer ajudas visuais aos utilizadores. Por exemplo, foi possível criar um Estado que indica que foi selecionado um verbo e, em seguida, forneça as alterações adequadas na IU para notificar o utilizador que o verbo já está selecionado. Outro comportamento útil é a capacidade de desativar verbos; ao fazê-lo, pode impedir os utilizadores de clicar em verbos se fazê-lo, por isso, seria prejudicial ou ineficaz consoante o estado da aplicação.       A classe de WebPartVerb não expõe todos métodos exclusivos; os seus métodos expostos são todas as substituições dos métodos de base. No entanto, este contém um número de propriedades para os programadores a ter em consideração. O <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Checked%2A>propriedade indica se um verbo atualmente selecionado.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Checked%2A> O <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ClientClickHandler%2A>e <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ServerClickHandler%2A>Propriedades consulte os respetivos processadores da classe (se qualquer existir) para cliente e servidor, clique em eventos.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ServerClickHandler%2A> </xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ClientClickHandler%2A> O <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Description%2A>propriedade contém o texto que descreve a finalidade um verbo numa descrição quando os utilizadores posicionar um ponteiro do rato sobre o verbo na IU.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Description%2A> O <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Enabled%2A>propriedade indica o estado atual de um verbo, que determina se um utilizador pode clique o verbo e executar a ação.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Enabled%2A> O <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ID%2A>propriedade fornece um ID exclusivo para o objeto de verbo.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ID%2A> O <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ImageUrl%2A>propriedade contém um URL numa imagem que podem ser utilizados para representar um verbo na IU em vez da composição predefinida (normalmente, um botão ou uma hiperligação).</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ImageUrl%2A> O <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Text%2A>propriedade contém o texto da etiqueta que aparece diretamente no verbo na IU.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Text%2A> O substituída <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Visible%2A>propriedade determina se um verbo atualmente é apresentado na IU.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Visible%2A> Verbos são, muitas vezes, ocultos ou desativados em alturas diferentes numa aplicação de peças Web; Por exemplo, verbos specialty (como o verbo de edição e o verbo connect) são apresentados apenas quando os controlos adequados, definições e modos de visualização não existem na página para ativar os verbos ação significativo.       Outros membros de chaves para trabalhar com verbos incluem o <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.OnCreateVerbs%2A?displayProperty=fullName>método, o que é um processador de eventos que pode ser substituído para processamento de personalizado o verbo do processo de criação, e o <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.CreateVerbs?displayProperty=fullName>eventos.</xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.CreateVerbs?displayProperty=fullName> </xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.OnCreateVerbs%2A?displayProperty=fullName>"
   example:
   - "The following code example shows how to create a custom WebPartVerb object, and a custom zone that uses the <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.OnCreateVerbs%2A> method to add the verb to the verbs menu of each <xref:System.Web.UI.WebControls.WebParts.WebPart> control contained in the zone. There are four parts to the code example:  \n  \n-   A source file that contains a simple custom <xref:System.Web.UI.WebControls.WebParts.WebPart> control that displays some text.  \n  \n-   A source file that contains a custom WebPartVerb object, and a simple custom <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase> zone that overrides the <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.OnCreateVerbs%2A> method to add the custom verb to <xref:System.Web.UI.WebControls.WebParts.WebPart> controls in the zone.  \n  \n-   A Web page that contains the custom zone and the custom <xref:System.Web.UI.WebControls.WebParts.WebPart> control.  \n  \n-   An explanation of how the example works.  \n  \n The first part of the code example contains source code that creates a simple <xref:System.Web.UI.WebControls.WebParts.WebPart> control that displays some text. For the code example to run, you must compile this source code. You can compile it explicitly and put the resulting assembly in your Web site's Bin folder or the global assembly cache. Alternatively, you can put the source code in your site's App_Code folder, where it will be dynamically compiled at run time. This code example uses the dynamic compilation approach. For a walkthrough that demonstrates how to compile, see [Walkthrough: Developing and Using a Custom Web Server Control](~/add/includes/ajax-current-ext-md.md).  \n  \n [!code-cs[WebParts_WebPartVerb2#2](~/add/codesnippet/csharp/t-system.web.ui.webcontr_163_1.cs)]\n [!code-vb[WebParts_WebPartVerb2#2](~/add/codesnippet/visualbasic/t-system.web.ui.webcontr_163_1.vb)]  \n  \n The second part of the example contains source code to create the custom zone and the custom WebPartVerb object. Note that the zone overrides the <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.OnCreateVerbs%2A> method to add the custom verb to any <xref:System.Web.UI.WebControls.WebParts.WebPart> controls in the zone. The verb is added by default to the verbs menu of the controls. Note that, in the code for the custom verb, the constructor for the verb uses a server click handler, and that the method called creates a complete copy of any control that inherits directly from the <xref:System.Web.UI.WebControls.WebParts.WebPart> class, adding the newly created copy to the same zone. Like the first part of the code example, this source code must be compiled, and in this example the source file was placed in an App_Code subfolder to be dynamically compiled.  \n  \n [!code-cs[WebParts_WebPartVerb2#3](~/add/codesnippet/csharp/t-system.web.ui.webcontr_163_2.cs)]\n [!code-vb[WebParts_WebPartVerb2#3](~/add/codesnippet/visualbasic/t-system.web.ui.webcontr_163_2.vb)]  \n  \n The third part of the code example is the Web page that hosts the controls. Note that there is a `Register` directive near the top of the page to declare the namespace of the custom controls. No assembly is declared because this example uses dynamic compilation. The custom <xref:System.Web.UI.WebControls.WebParts.WebPart> control is declared within the custom zone. You could also declare other <xref:System.Web.UI.WebControls.WebParts.WebPart> controls in this zone, and the custom verb would be added to their verbs menus as well.  \n  \n [!code-cs[WebParts_WebPartVerb2#1](~/add/codesnippet/csharp/t-system.web.ui.webcontr_163_3.aspx)]\n [!code-vb[WebParts_WebPartVerb2#1](~/add/codesnippet/visualbasic/t-system.web.ui.webcontr_163_3.aspx)]  \n  \n Load the page in a browser, and click the verbs menu on the custom <xref:System.Web.UI.WebControls.WebParts.WebPart> control. The **Copy Web Part** verb should be visible. Click the verb, and note that a copy of the control is added to the zone."
   syntax:
@@ -58,17 +58,17 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Initializes a new instance of the <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;></xref> class and associates a client-side click event handler with the instance."
-  remarks: "This class constructor refers to a client-side event handler to call when the user clicks a verb in the user interface (UI)."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;> </xref> classe e associa um processador de eventos de clique do lado do cliente com a instância."
+  remarks: "Este construtor de classe refere-se a um processador de eventos do lado do cliente para chamar quando o utilizador clica um verbo na interface de utilizador (IU)."
   syntax:
     content: public WebPartVerb (string id, string clientClickHandler);
     parameters:
     - id: id
       type: System.String
-      description: "A <xref:System.String> that is the unique identifier for a verb."
+      description: "A <xref:System.String>que é o identificador único para um verbo.</xref:System.String>"
     - id: clientClickHandler
       type: System.String
-      description: "A <xref:System.String> that refers to the client-side handler for click events."
+      description: "A <xref:System.String>que refere-se o processador do lado do cliente para eventos de clique.</xref:System.String>"
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.#ctor*
   exceptions:
   - type: System.ArgumentNullException
@@ -88,17 +88,17 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Initializes a new instance of the <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;></xref> class and associates a server-side click event handler with the instance."
-  remarks: "This class constructor refers to a server-side click event handler to call when the user clicks a verb in the user interface (UI)."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;> </xref> classe e associa um processador de eventos de clique do lado do servidor com a instância."
+  remarks: "Este construtor de classe refere-se a um processador de eventos de clique do lado do servidor para chamar quando o utilizador clica um verbo na interface de utilizador (IU)."
   syntax:
     content: public WebPartVerb (string id, System.Web.UI.WebControls.WebParts.WebPartEventHandler serverClickHandler);
     parameters:
     - id: id
       type: System.String
-      description: "A <xref:System.String> that is the unique identifier for a verb."
+      description: "A <xref:System.String>que é o identificador único para um verbo.</xref:System.String>"
     - id: serverClickHandler
       type: System.Web.UI.WebControls.WebParts.WebPartEventHandler
-      description: "A <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartEventHandler&quot;></xref> that handles click events on the server."
+      description: "A <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartEventHandler&quot;> </xref> que identificadores clique eventos no servidor."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.#ctor*
   exceptions:
   - type: System.ArgumentNullException
@@ -118,20 +118,20 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Initializes a new instance of the <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;></xref> class and associates both client and server-side click event handlers with the instance."
-  remarks: "This class constructor refers to both client-side and server-side click event handlers to call when the user clicks a verb in the user interface (UI)."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;> </xref> classe e associa o cliente e do lado do servidor, clique em processadores de eventos com a instância."
+  remarks: "Este construtor de classe refere-se a ambos os processadores de eventos de clique do lado do cliente e do lado do servidor para chamar quando o utilizador clica um verbo na interface de utilizador (IU)."
   syntax:
     content: public WebPartVerb (string id, System.Web.UI.WebControls.WebParts.WebPartEventHandler serverClickHandler, string clientClickHandler);
     parameters:
     - id: id
       type: System.String
-      description: "A <xref:System.String> that is the unique identifier for a verb."
+      description: "A <xref:System.String>que é o identificador único para um verbo.</xref:System.String>"
     - id: serverClickHandler
       type: System.Web.UI.WebControls.WebParts.WebPartEventHandler
-      description: "A <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartEventHandler&quot;></xref> that handles click events on the server."
+      description: "A <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartEventHandler&quot;> </xref> que identificadores clique eventos no servidor."
     - id: clientClickHandler
       type: System.String
-      description: "A <xref:System.String> that refers to the client-side handler for click events."
+      description: "A <xref:System.String>que refere-se o processador do lado do cliente para eventos de clique.</xref:System.String>"
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.#ctor*
   exceptions:
   - type: System.ArgumentNullException
@@ -151,13 +151,13 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Gets or sets a value indicating that some state associated with a custom verb is currently active or selected."
-  remarks: "This property is not used with any of the standard verbs provided with the Web Parts control set. When it is used with custom verbs, and the property value is set to `true`, a selected check box appears next to the verb to indicate the active status of the verb.       The purpose of this property is to give developers a way of indicating that some custom state associated with a verb is currently active. For example, suppose a developer creates a custom verb that enlarges the text size (for accessibility purposes) of the body text on all <xref:System.Web.UI.WebControls.WebParts.WebPart> controls in a zone. If a user clicks the verb, this property value could be set to `true`, which would cause a selected check box to appear next to the **Increase Text Size** verb in the verbs menu, indicating to users that the state associated with the verb (enlarged text) is active.       This property cannot be set by themes or style sheet themes. For more information, see <xref:System.Web.UI.ThemeableAttribute> and [ASP.NET Themes and Skins](~/add/includes/ajax-current-ext-md.md)."
+  summary: "Obtém ou define um valor que indica que alguns Estado associado a um verbo personalizado está ativo ou selecionado."
+  remarks: "Esta propriedade não é utilizada com qualquer um dos verbos padrão fornecidos com o conjunto de controlo de peças Web. Quando é utilizado com verbos personalizados e o valor da propriedade está definido como `true`, aparece uma caixa de verificação selecionada junto o verbo para indicar o estado do verbo Active Directory.       O objetivo desta propriedade é dar aos programadores uma forma do que indica que alguns personalizado Estado associado a um verbo está atualmente ativo. Por exemplo, suponha que um programador cria um verbo personalizado que enlarges o tamanho do texto (para fins de acessibilidade) do texto corpo em todos os <xref:System.Web.UI.WebControls.WebParts.WebPart>controlos numa zona.</xref:System.Web.UI.WebControls.WebParts.WebPart> Se um utilizador clica o verbo, este valor da propriedade pode ser definido como `true`, que fará com que uma caixa de verificação selecionada junto a aparecer o **aumentar o tamanho do texto** verbo no menu de verbos, que indica aos utilizadores que o Estado associado o verbo (texto aumentado) está ativo.       Esta propriedade não pode ser definida por temas ou temas de folha de estilo. Para obter mais informações, consulte <xref:System.Web.UI.ThemeableAttribute>e [temas ASP.NET e das máscaras de](~/add/includes/ajax-current-ext-md.md).</xref:System.Web.UI.ThemeableAttribute>"
   syntax:
     content: public virtual bool Checked { get; set; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if a state associated with a custom verb is currently active; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>. The default is <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se um Estado associado um verbo personalizado está atualmente ativo; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>. A predefinição é <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.Checked*
   exceptions: []
   platform:
@@ -174,13 +174,13 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Gets the string containing the method name of the client-side event handler defined in the <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;></xref> constructor."
-  remarks: "Use this property to retrieve the name of the method that handles click events for the verb on the client."
+  summary: "Obtém a cadeia que contém o nome do método do processador de eventos do lado do cliente definido no <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;> </xref> construtor."
+  remarks: "Utilize esta propriedade para obter o nome do método que identificadores clique eventos para o verbo no cliente."
   syntax:
     content: public string ClientClickHandler { get; }
     return:
       type: System.String
-      description: "A string that contains the name of the method that handles client-side click events. The default is an empty string (&quot;&quot;)."
+      description: "Uma cadeia que contém o nome do método que processa o lado do cliente clique eventos. A predefinição é uma cadeia vazia (&quot;&quot;)."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.ClientClickHandler*
   exceptions: []
   platform:
@@ -197,15 +197,15 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Gets or sets a short description of the verb."
-  remarks: "Use this property to get or set a description of a verb that appears as a ToolTip when a user positions a mouse pointer over the verb."
+  summary: "Obtém ou define uma breve descrição do verbo."
+  remarks: "Utilize esta propriedade para obter ou definir uma descrição de um verbo, que é apresentado como descrição quando um utilizador positions um ponteiro do rato sobre o verbo."
   example:
   - "The following code example shows how to override the Description property in a derived class inheriting from <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>. This source code shows only the portion of the code for the custom zone and the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class that overrides the property. The rest of the code required to run the example can be found in the Example section of the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class overview.  \n  \n [!code-cs[WebParts_WebPartVerb2#3](~/add/codesnippet/csharp/p-system.web.ui.webcontr_1245_1.cs)]\n [!code-vb[WebParts_WebPartVerb2#3](~/add/codesnippet/visualbasic/p-system.web.ui.webcontr_1245_1.vb)]"
   syntax:
     content: public virtual string Description { get; set; }
     return:
       type: System.String
-      description: "A string containing a description of the <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;></xref>."
+      description: "Uma cadeia que contém uma descrição do <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;> </xref>."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.Description*
   exceptions: []
   platform:
@@ -222,15 +222,15 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Gets or sets a value that indicates whether a verb is enabled."
-  remarks: "Use this property to get or set a value indicating whether the verb is enabled. It is useful to be able to enable or disable verbs at given points in the page and control life cycle. For example, if a developer wants to prevent users from being able to close the <xref:System.Web.UI.WebControls.WebParts.WebPart> controls in a zone for any reason, the developer can set the Enabled property value on the <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.CloseVerb%2A> verb to `false`, and then users will be prevented from closing any controls within that zone. By default, disabled verbs are rendered in verbs menus with a visual cue such as a lighter text color.       This property cannot be set by themes or style sheet themes. For more information, see <xref:System.Web.UI.ThemeableAttribute> and [ASP.NET Themes and Skins](~/add/includes/ajax-current-ext-md.md)."
+  summary: "Obtém ou define um valor que indica se um verbo está ativado."
+  remarks: "Utilize esta propriedade para obter ou definir um valor que indica se o verbo está ativado. É útil poder ativar ou desativar verbos em pontos de fornecidos no ciclo de vida de página e o controlo. Por exemplo, se um programador de advogados pretende impedir que os utilizadores a capacidade para fechar o <xref:System.Web.UI.WebControls.WebParts.WebPart>controlos numa zona por qualquer motivo, o programador podem definir o valor da propriedade ativado no <xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.CloseVerb%2A>Verbo para `false`, e, em seguida, os utilizadores serão impedidos de quaisquer controlos que zona a fechar.</xref:System.Web.UI.WebControls.WebParts.WebPartZoneBase.CloseVerb%2A> </xref:System.Web.UI.WebControls.WebParts.WebPart> Por predefinição, desativados verbos são apresentados no menu de verbos com um visual rectângulos como uma cor do texto mais ligeira.       Esta propriedade não pode ser definida por temas ou temas de folha de estilo. Para obter mais informações, consulte <xref:System.Web.UI.ThemeableAttribute>e [temas ASP.NET e das máscaras de](~/add/includes/ajax-current-ext-md.md).</xref:System.Web.UI.ThemeableAttribute>"
   example:
   - "The following code example shows how to override the Enabled property in a derived class inheriting from <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>. This source code shows only the portion of the code for the custom zone and the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class that overrides the property. The rest of the code required to run the example can be found in the Example section of the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class overview.  \n  \n [!code-cs[WebParts_WebPartVerb2#3](~/add/codesnippet/csharp/p-system.web.ui.webcontr_306_1.cs)]\n [!code-vb[WebParts_WebPartVerb2#3](~/add/codesnippet/visualbasic/p-system.web.ui.webcontr_306_1.vb)]"
   syntax:
     content: public virtual bool Enabled { get; set; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the verb is enabled; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>. The default is <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o verbo está ativado; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>. A predefinição é <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;> </xref>."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.Enabled*
   exceptions: []
   platform:
@@ -247,13 +247,13 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Gets a string containing a unique ID for a verb."
-  remarks: "The value of the ID property must be specified as a parameter when calling any of the overloads of the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.%23ctor%2A> constructor for the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class."
+  summary: "Obtém uma cadeia contendo um ID exclusivo para um verbo."
+  remarks: "O valor da propriedade de ID tem de ser especificado como um parâmetro ao chamar qualquer uma das sobrecargas do <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.%23ctor%2A>construtor para a <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>classe.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb> </xref:System.Web.UI.WebControls.WebParts.WebPartVerb.%23ctor%2A>"
   syntax:
     content: public string ID { get; }
     return:
       type: System.String
-      description: "A string containing the ID for a <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;></xref>."
+      description: "Uma cadeia que contém o ID de um <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;> </xref>."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.ID*
   exceptions: []
   platform:
@@ -270,15 +270,15 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Gets or sets a string containing a URL to an image that represents a verb in the user interface (UI)."
-  remarks: "The ImageUrl property provides a way to use a customized visual representation for verbs as an alternative to the default rendering, which is typically a button or a hyperlink. If you assign a URL to the property, the image appears in verbs menus (next to the verb) or directly in forms (in place of a button or hyperlink that represents the verb)."
+  summary: "Obtém ou define uma cadeia contendo um URL numa imagem que representa um verbo na interface de utilizador (IU)."
+  remarks: "A propriedade ImageUrl fornece uma forma de utilizar uma representação visual personalizada para verbos como alternativa para a composição predefinida, que é normalmente um botão ou a uma hiperligação. Se atribuir um URL para a propriedade, a imagem é apresentada no menu de verbos (seguinte para o verbo) ou diretamente em formulários (em vez de um botão ou a hiperligação que representa o verbo)."
   example:
   - "The following code example shows how to override the ImageUrl property in a derived class inheriting from <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>. This source code shows only the portion of the code for the custom zone and the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class that overrides the property. The rest of the code required to run the example can be found in the Example section of the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class overview. Note that the sample code assigns a fictitious icon to the ImageUrl property; if you assign a real image or icon, it will appear next to the verb in the verbs menu.  \n  \n [!code-cs[WebParts_WebPartVerb2#3](~/add/codesnippet/csharp/p-system.web.ui.webcontr_1051_1.cs)]\n [!code-vb[WebParts_WebPartVerb2#3](~/add/codesnippet/visualbasic/p-system.web.ui.webcontr_1051_1.vb)]"
   syntax:
     content: public virtual string ImageUrl { get; set; }
     return:
       type: System.String
-      description: "A string that contains the URL to an image. The default is an empty string (&quot;&quot;)."
+      description: "Uma cadeia que contém o URL numa imagem. A predefinição é uma cadeia vazia (&quot;&quot;)."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.ImageUrl*
   exceptions: []
   platform:
@@ -295,12 +295,12 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Gets a value that indicates whether view state is currently being tracked for a verb."
+  summary: "Obtém um valor que indica se a vista de estado é atualmente a ser controlada por um verbo."
   syntax:
     content: protected virtual bool IsTrackingViewState { get; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if view state is being tracked; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o estado de visualização está a ser controlado; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.IsTrackingViewState*
   exceptions: []
   platform:
@@ -317,14 +317,14 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Restores view-state information from a previous page request that was saved by the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.SaveViewState*> method."
-  remarks: "This method is used primarily by the .NET Framework infrastructure and is not intended to be used directly from your code. However, control developers can override this method to specify how a custom server control restores its view state. For more information, see [ASP.NET State Management Overview](~/add/includes/ajax-current-ext-md.md).       This method determines whether there is any existing `savedState` from a previous page request, and if so, restores it. Included in the process of restoring view state is the verb&quot;s visibility, which is determined by the value of the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Visible%2A> property."
+  summary: "Restaura as informações de estado de visualização a partir de um pedido de página anterior, que foi guardado pelo <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.SaveViewState*>método.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.SaveViewState*>"
+  remarks: "Este método é utilizado principalmente pela infraestrutura do .NET Framework e não se destina a ser utilizado diretamente a partir do seu código. No entanto, os programadores do controlo podem substituir este método para especificar a forma como um controlo de servidor personalizado restaura o estado de visualização. Para obter mais informações, consulte [descrição geral da gestão de estado de ASP.NET](~/add/includes/ajax-current-ext-md.md).       Este método determina se existem quaisquer existente `savedState` num pedido de página anterior e se assim for, restaura-lo. Incluídos no processo de restauro de vista de estado é a visibilidade do verbo, que é determinada pelo valor o <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Visible%2A>propriedade.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.Visible%2A>"
   syntax:
     content: protected virtual void LoadViewState (object savedState);
     parameters:
     - id: savedState
       type: System.Object
-      description: "An <xref:System.Object> that contains the view state to be restored."
+      description: "Um <xref:System.Object>que contém o estado de visualização para serem restaurados.</xref:System.Object>"
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.LoadViewState*
   exceptions: []
   platform:
@@ -341,14 +341,14 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Saves a <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;></xref> object&quot;s view-state changes that occurred since the page was last posted back to the server."
-  remarks: "If there is any view-state data, this method calls the base method and saves the data."
+  summary: "Guarda um <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;> </xref> alterações de estado de visualização do objeto que ocorreu desde a última página publicados no servidor."
+  remarks: "Se não houver quaisquer dados de estado de visualização, este método chama o método base e guarda os dados."
   syntax:
     content: protected virtual object SaveViewState ();
     parameters: []
     return:
       type: System.Object
-      description: "An <xref:System.Object> that contains the state data to be saved."
+      description: "Um <xref:System.Object>que contém os dados de estado guardado.</xref:System.Object>"
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.SaveViewState*
   exceptions: []
   platform:
@@ -365,13 +365,13 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Gets a reference to the method that handles server-side click events for the verb."
-  remarks: "Use this property to get a reference to the method that handles the server-side click events for a verb."
+  summary: "Obtém uma referência para o método que processa o lado do servidor clique eventos para o verbo."
+  remarks: "Utilize esta propriedade para obter uma referência para o método que identificadores do lado do servidor clique eventos para um verbo."
   syntax:
     content: public System.Web.UI.WebControls.WebParts.WebPartEventHandler ServerClickHandler { get; }
     return:
       type: System.Web.UI.WebControls.WebParts.WebPartEventHandler
-      description: "A <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartEventHandler&quot;></xref> that handles server-side click events."
+      description: "A <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartEventHandler&quot;> </xref> que processa o lado do servidor clique em eventos."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.ServerClickHandler*
   exceptions: []
   platform:
@@ -389,13 +389,13 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Implements the &lt;xref:System.Web.UI.IStateManager.IsTrackingViewState%2A?displayProperty=fullName&gt; property by calling the <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;></xref> class&quot;s own <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.IsTrackingViewState*> property."
-  remarks: "This member is an explicit interface member implementation. It can be used only when the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> instance is cast to an <xref:System.Web.UI.IStateManager> interface. The method simply calls the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.IsTrackingViewState%2A> property on the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class."
+  summary: "Implementa o &lt;xref:System.Web.UI.IStateManager.IsTrackingViewState%2A?displayProperty=fullName&gt; propriedade ao chamar o <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;> </xref> dessa classe <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.IsTrackingViewState*>propriedade.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.IsTrackingViewState*>"
+  remarks: "Este membro é uma implementação de membro de interface explícita. Pode ser utilizado apenas quando o <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>instância é convertida para um <xref:System.Web.UI.IStateManager>interface.</xref:System.Web.UI.IStateManager> </xref:System.Web.UI.WebControls.WebParts.WebPartVerb> O método chama simplesmente a <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.IsTrackingViewState%2A>propriedade de <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>classe.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb> </xref:System.Web.UI.WebControls.WebParts.WebPartVerb.IsTrackingViewState%2A>"
   syntax:
     content: bool System.Web.UI.IStateManager.IsTrackingViewState { get; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if view state is being tracked for a verb; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o estado de visualização está a ser controlado por um verbo; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.System#Web#UI#IStateManager#IsTrackingViewState*
   exceptions: []
   platform:
@@ -413,14 +413,14 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Implements the &lt;xref:System.Web.UI.IStateManager.LoadViewState%2A?displayProperty=fullName&gt; method of the <xref href=&quot;System.Web.UI.IStateManager&quot;></xref> interface by calling the <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;></xref> class&quot;s own <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.LoadViewState*> method."
-  remarks: "This member is an explicit interface member implementation. It can be used only when the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> instance is cast to an <xref:System.Web.UI.IStateManager> interface. The method simply calls the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.LoadViewState%2A> method on the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class."
+  summary: "Implementa o &lt;xref:System.Web.UI.IStateManager.LoadViewState%2A?displayProperty=fullName&gt; método o <xref href=&quot;System.Web.UI.IStateManager&quot;> </xref> interface ao chamar o <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;> </xref> dessa classe <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.LoadViewState*>método.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.LoadViewState*>"
+  remarks: "Este membro é uma implementação de membro de interface explícita. Pode ser utilizado apenas quando o <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>instância é convertida para um <xref:System.Web.UI.IStateManager>interface.</xref:System.Web.UI.IStateManager> </xref:System.Web.UI.WebControls.WebParts.WebPartVerb> O método simplesmente chama o <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.LoadViewState%2A>método de <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>classe.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb> </xref:System.Web.UI.WebControls.WebParts.WebPartVerb.LoadViewState%2A>"
   syntax:
     content: void IStateManager.LoadViewState (object savedState);
     parameters:
     - id: savedState
       type: System.Object
-      description: "An <xref:System.Object> that contains the view state to be restored."
+      description: "Um <xref:System.Object>que contém o estado de visualização para serem restaurados.</xref:System.Object>"
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.System#Web#UI#IStateManager#LoadViewState*
   exceptions: []
   platform:
@@ -438,14 +438,14 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Implements the &lt;xref:System.Web.UI.IStateManager.SaveViewState%2A?displayProperty=fullName&gt; method by calling the <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;></xref> class&quot;s own <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.SaveViewState*> method."
-  remarks: "This member is an explicit interface member implementation. It can be used only when the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> instance is cast to an <xref:System.Web.UI.IStateManager> interface. The method simply calls the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.SaveViewState%2A> method on the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class."
+  summary: "Implementa o &lt;xref:System.Web.UI.IStateManager.SaveViewState%2A?displayProperty=fullName&gt; método ao chamar o <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;> </xref> dessa classe <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.SaveViewState*>método.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.SaveViewState*>"
+  remarks: "Este membro é uma implementação de membro de interface explícita. Pode ser utilizado apenas quando o <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>instância é convertida para um <xref:System.Web.UI.IStateManager>interface.</xref:System.Web.UI.IStateManager> </xref:System.Web.UI.WebControls.WebParts.WebPartVerb> O método simplesmente chama o <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.SaveViewState%2A>método de <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>classe.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb> </xref:System.Web.UI.WebControls.WebParts.WebPartVerb.SaveViewState%2A>"
   syntax:
     content: object IStateManager.SaveViewState ();
     parameters: []
     return:
       type: System.Object
-      description: "Returns an <xref:System.Object> containing the control&quot;s current view state. If no view state is associated with the control, this method returns <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;></xref>."
+      description: "Devolve um <xref:System.Object>que contém o atual estado de visualização do controlo.</xref:System.Object> Se nenhuma vista de estado está associada com o controlo, este método devolve <xref uid=&quot;langword_csharp_null&quot; name=&quot;null&quot; href=&quot;&quot;> </xref>."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.System#Web#UI#IStateManager#SaveViewState*
   exceptions: []
   platform:
@@ -463,8 +463,8 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Implements the &lt;xref:System.Web.UI.IStateManager.TrackViewState%2A?displayProperty=fullName&gt; method by calling the <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;></xref> class&quot;s own <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.TrackViewState*> method."
-  remarks: "This member is an explicit interface member implementation. It can be used only when the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> instance is cast to an <xref:System.Web.UI.IStateManager> interface. The method simply calls the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.TrackViewState%2A> method on the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class."
+  summary: "Implementa o &lt;xref:System.Web.UI.IStateManager.TrackViewState%2A?displayProperty=fullName&gt; método ao chamar o <xref href=&quot;System.Web.UI.WebControls.WebParts.WebPartVerb&quot;> </xref> dessa classe <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.TrackViewState*>método.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.TrackViewState*>"
+  remarks: "Este membro é uma implementação de membro de interface explícita. Pode ser utilizado apenas quando o <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>instância é convertida para um <xref:System.Web.UI.IStateManager>interface.</xref:System.Web.UI.IStateManager> </xref:System.Web.UI.WebControls.WebParts.WebPartVerb> O método simplesmente chama o <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.TrackViewState%2A>método de <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>classe.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb> </xref:System.Web.UI.WebControls.WebParts.WebPartVerb.TrackViewState%2A>"
   syntax:
     content: void IStateManager.TrackViewState ();
     parameters: []
@@ -484,15 +484,15 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Gets or sets the text label for a verb that is displayed in the user interface (UI)."
-  remarks: "This property sets the text of the label for a <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> object; it is what represents the verb to users in the UI.       If developers (optionally) assign a value to the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ImageUrl%2A> property, an image or icon represents the verb in the UI, and in certain cases (such as when the verb is normally rendered by a button or hyperlink) the image appears instead of the text label."
+  summary: "Obtém ou define a etiqueta de texto de um verbo, que é apresentado na interface de utilizador (IU)."
+  remarks: "Esta propriedade define o texto da etiqueta para um <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>objeto; é o que representa o verbo para utilizadores na IU.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb>       Se os programadores (opcionalmente) a atribuir um valor para o <xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ImageUrl%2A>propriedade, uma imagem ou o ícone representa o verbo na IU e, em certos casos (por exemplo, quando o verbo normalmente é composto por um botão ou a hiperligação) a imagem apresentada em vez da etiqueta de texto.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb.ImageUrl%2A>"
   example:
   - "The following code example shows how to override the Text property in a derived class inheriting from <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>. This source code shows only the portion of the code for the custom zone and the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class that overrides the property. The rest of the code required to run the example can be found in the Example section of the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> class overview.  \n  \n After you load the page in a browser, note that the value assigned to the Text property in the source code appears in the verbs menu of the <xref:System.Web.UI.WebControls.WebParts.WebPart> control.  \n  \n [!code-cs[WebParts_WebPartVerb2#3](~/add/codesnippet/csharp/p-system.web.ui.webcontr_576_1.cs)]\n [!code-vb[WebParts_WebPartVerb2#3](~/add/codesnippet/visualbasic/p-system.web.ui.webcontr_576_1.vb)]"
   syntax:
     content: public virtual string Text { get; set; }
     return:
       type: System.String
-      description: "A string containing the text label for a verb. The default is an empty string (&quot;&quot;)."
+      description: "Uma cadeia que contém a etiqueta de texto de um verbo. A predefinição é uma cadeia vazia (&quot;&quot;)."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.Text*
   exceptions: []
   platform:
@@ -509,8 +509,8 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Tracks view-state changes to a verb so the changes can be stored in the verb&quot;s <xref href=&quot;System.Web.UI.StateBag&quot;></xref> object."
-  remarks: "This method enables view state to be tracked for a <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>."
+  summary: "Regista alterações de estado de visualização para um verbo para que as alterações podem ser armazenadas no verbo <xref href=&quot;System.Web.UI.StateBag&quot;> </xref> objeto."
+  remarks: "Este método permite ver o estado ser monitorizados para uma <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb>"
   syntax:
     content: protected virtual void TrackViewState ();
     parameters: []
@@ -530,13 +530,13 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Gets a dictionary of state information that allows you to save and restore the view state of a server control across multiple requests for the same page."
-  remarks: "Because the <xref:System.Web.UI.WebControls.WebParts.WebPartVerb> object does not inherit from any class that tracks view state, and yet it has a number of properties that require view state to be tracked across multiple requests for the page, it implements its own property to maintain view state."
+  summary: "Obtém um dicionário de informações de estado que lhe permite guardar e restaurar o estado de visualização de um controlo de servidor em vários pedidos para a mesma página."
+  remarks: "Porque o <xref:System.Web.UI.WebControls.WebParts.WebPartVerb>objeto herda a partir de qualquer classe que controla Ver estado e ainda tem um número de propriedades que necessitam de estado de visualização para ser controlado em vários pedidos para a página, implementa a suas próprias propriedade para manter o estado de vista.</xref:System.Web.UI.WebControls.WebParts.WebPartVerb>"
   syntax:
     content: protected System.Web.UI.StateBag ViewState { get; }
     return:
       type: System.Web.UI.StateBag
-      description: "An instance of <xref href=&quot;System.Web.UI.StateBag&quot;></xref> that contains the server control&quot;s view-state information."
+      description: "Uma instância de <xref href=&quot;System.Web.UI.StateBag&quot;> </xref> que contém informações de estado de visualização do controlo de servidor."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.ViewState*
   exceptions: []
   platform:
@@ -553,13 +553,13 @@ items:
   assemblies:
   - System.Web
   namespace: System.Web.UI.WebControls.WebParts
-  summary: "Gets or sets a value that indicates whether a verb is visible to users."
-  remarks: "Verbs often need to be hidden or displayed depending on the content of a Web Parts application. For example, the minimize verb is hidden when a control is already minimized, and conversely, the restore verb is hidden when the control is in its normal, non-minimized state.       A verb whose Visible property is set to `false` is hidden from users, but is still rendered on a page, can still be accessed programmatically, and still fully participates in page and control life cycle events.       This property cannot be set by themes or style sheet themes. For more information, see <xref:System.Web.UI.ThemeableAttribute> and [ASP.NET Themes and Skins](~/add/includes/ajax-current-ext-md.md)."
+  summary: "Obtém ou define um valor que indica se um verbo está visível para os utilizadores."
+  remarks: "Verbos muitas vezes necessitam de ser oculto ou apresentado, consoante o conteúdo de uma aplicação de peças Web. Por exemplo, se o verbo minimizar encontra oculto quando um controlo já é minimizado e, por outro lado, se o verbo de restauro encontra oculto quando o controlo está no estado normal, não é minimizado.       Um verbo cuja propriedade Visible está definida como `false` é ocultada dos utilizadores, mas ainda está a ser composto numa página, ainda pode ser acedido através de programação e ainda completamente participa numa página e o controlo de eventos de ciclo de vida.       Esta propriedade não pode ser definida por temas ou temas de folha de estilo. Para obter mais informações, consulte <xref:System.Web.UI.ThemeableAttribute>e [temas ASP.NET e das máscaras de](~/add/includes/ajax-current-ext-md.md).</xref:System.Web.UI.ThemeableAttribute>"
   syntax:
     content: public virtual bool Visible { get; set; }
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if the verb is visible; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>. The default is <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se o verbo está visível; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>. A predefinição é <xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;> </xref>."
   overload: System.Web.UI.WebControls.WebParts.WebPartVerb.Visible*
   exceptions: []
   platform:

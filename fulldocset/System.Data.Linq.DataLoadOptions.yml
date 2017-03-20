@@ -14,8 +14,8 @@ items:
   nameWithType: DataLoadOptions
   fullName: System.Data.Linq.DataLoadOptions
   type: Class
-  summary: "Provides for immediate loading and filtering of related data."
-  remarks: "## General    When you query for an object, you actually retrieve only the object you requested. The *related* objects are not automatically fetched at the same time. (For more information, see [Querying Across Relationships](~/add/includes/ajax-current-ext-md.md).)       The DataLoadOptions class provides two methods to achieve immediate loading of specified related data. The <xref:System.Data.Linq.DataLoadOptions.LoadWith%2A> method allows for immediate loading of data related to the main target. The <xref:System.Data.Linq.DataLoadOptions.AssociateWith%2A> method allows for filtering related objects.      ## Rules    Note the following rules regarding DataLoadOptions usage:      -   Assigning a DataLoadOptions to a <xref:System.Data.Linq.DataContext> after the first query has been executed generates an exception.      -   Modifying a DataLoadOptions after it has been assigned to a <xref:System.Data.Linq.DataContext> generates an exception      ## Cycle Handling    <xref:System.Data.Linq.DataLoadOptions.LoadWith%2A> and <xref:System.Data.Linq.DataLoadOptions.AssociateWith%2A> directives must not create cycles. The following represent examples of such graphs:      -   Example 1: Self recursive          -   `dlo.LoadWith<Employee>(e => e.Reports);`      -   Example 2: Back-pointers          -   `dlo.LoadWith <Customer>(c => C.Orders);`          -   `dlo.LoadWith <Order>(o => o.Customer);`      -   Example 3: Longer cycles           Although this should not occur in a well-normalized model, it is possible.          -   `dlo.LoadWith <A>(a => a.Bs);`          -   `dlo.LoadWith <B>(b => b.Cs);`          -   `dlo.LoadWith <C>(c => c.As);`      -   Example 4: Self recursive subQueries          -   `dlo.AssociateWith<A>(a=>a.As.Where(a=>a.Id=33));`      -   Example 5: Longer recursive subqueries          -   `dlo.AssociateWith<A>(a=>a.Bs.Where(b=>b.Id==3));`          -   `dlo.AssociateWith<B>(b=>b.As.Where(a=>a.Id==3));`       The following are some general rules that help you understand what occurs in these scenarios.       **LoadWith** Each call to <xref:System.Data.Linq.DataLoadOptions.LoadWith%2A> checks whether cycles have been introduced into the graph. If there are, as in Examples 1, 2, and 3, an exception is thrown.       **AssociateWith** The engine at run time does not apply the existing SubQuery clauses to the relationship inside the expression.      -   In Example 4, the `Where` clause is executed against all `A`, not just the ones sub-filtered by the SubQuery expression itself (because that would be recursive)      -   In Example 5, the first `Where` clause is applied to all the `B`s, even though there are subqueries on `B`. The second `Where` clause is applied to all the `A`s even though there are subqueries on `A`."
+  summary: "Fornece para carregar e filtragem de dados relacionados de imediato."
+  remarks: "##Gerais quando consultar para um objeto, obter, na verdade, apenas o objeto solicitado. O *relacionados* objetos não são automaticamente obtidos ao mesmo tempo. (Para obter mais informações, consulte [consultar em relações](~/add/includes/ajax-current-ext-md.md).)       A classe de DataLoadOptions fornece dois métodos para alcançar imediato carregamento de dados relacionados especificados. O <xref:System.Data.Linq.DataLoadOptions.LoadWith%2A>método permite carregar imediata de dados relacionados com o destino principal.</xref:System.Data.Linq.DataLoadOptions.LoadWith%2A> O <xref:System.Data.Linq.DataLoadOptions.AssociateWith%2A>método permite a filtragem de objetos relacionados.</xref:System.Data.Linq.DataLoadOptions.AssociateWith%2A>      ## Regras, tenha em atenção as seguintes regras relativamente à utilização de DataLoadOptions:-atribuir um DataLoadOptions para um <xref:System.Data.Linq.DataContext>após a primeira consulta foi executada gera uma exceção.</xref:System.Data.Linq.DataContext>      -Modificar um DataLoadOptions depois foi atribuído a um <xref:System.Data.Linq.DataContext>gera uma exceção # # ciclo de processamento <xref:System.Data.Linq.DataLoadOptions.LoadWith%2A>e <xref:System.Data.Linq.DataLoadOptions.AssociateWith%2A>diretivas não tem de criar ciclos.</xref:System.Data.Linq.DataLoadOptions.AssociateWith%2A> </xref:System.Data.Linq.DataLoadOptions.LoadWith%2A> </xref:System.Data.Linq.DataContext> O seguinte representa os exemplos de tais gráficos:-exemplo 1: Self recursiva - `dlo.LoadWith<Employee>(e => e.Reports);` -exemplo 2: apontadores de Back - `dlo.LoadWith <Customer>(c => C.Orders);`           -    `dlo.LoadWith <Order>(o => o.Customer);` -exemplo 3: ciclos de tempo Embora isto não deve ocorrer num modelo normalizado bem, é possível.          - `dlo.LoadWith <A>(a => a.Bs);`           -    `dlo.LoadWith <B>(b => b.Cs);`           -    `dlo.LoadWith <C>(c => c.As);` -Exemplo 4: Self recursiva subconsultas - `dlo.AssociateWith<A>(a=>a.As.Where(a=>a.Id=33));` -exemplo 5: mais recursiva subconsultas - `dlo.AssociateWith<A>(a=>a.Bs.Where(b=>b.Id==3));`           -    `dlo.AssociateWith<B>(b=>b.As.Where(a=>a.Id==3));` seguem-se algumas regras gerais que o ajudam a compreender o que acontece nos seguintes cenários.       **LoadWith** cada chamada para <xref:System.Data.Linq.DataLoadOptions.LoadWith%2A>verifica se foram introduzidos ciclos no gráfico.</xref:System.Data.Linq.DataLoadOptions.LoadWith%2A> Se existirem, tal como nos exemplos 1, 2 e 3, é emitida uma exceção.       **AssociateWith** motor em tempo de execução não se aplica as cláusulas subconsulta existentes para a relação dentro da expressão.      -No exemplo 4, o `Where` cláusula é executada em relação a todos os `A`, não apenas aqueles subplano filtrados pela própria expressão no subconsulta (porque que seria recursiva) - exemplo 5, o primeiro `Where` cláusula é aplicada a todos os o `B`s, mesmo que não existem subconsultas no `B`. O segundo `Where` cláusula é aplicada a todos os o `A`s, mesmo apesar de existirem subconsultas no `A`."
   example:
   - When you retrieve `Customers` from the Northwind sample database, you can use DataLoadOptions to specify that `Orders` is also to be retrieved. You can even specify which subset of `Orders` to retrieve.
   syntax:
@@ -38,7 +38,7 @@ items:
   assemblies:
   - System.Data.Linq
   namespace: System.Data.Linq
-  summary: "Initializes a new instance of the <xref href=&quot;System.Data.Linq.DataLoadOptions&quot;></xref> class."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.Data.Linq.DataLoadOptions&quot;> </xref> classe."
   syntax:
     content: public DataLoadOptions ();
     parameters: []
@@ -58,8 +58,8 @@ items:
   assemblies:
   - System.Data.Linq
   namespace: System.Data.Linq
-  summary: "Filters the objects retrieved for a particular relationship."
-  remarks: "In the following example, the inner loop iterates only over those `Orders` that have not been shipped today."
+  summary: "Filtros obter os objetos para uma relação específica."
+  remarks: "No exemplo seguinte, o ciclo interno itera apenas aqueles `Orders` que não foram fornecidos hoje."
   example:
   - >-
     [!code-vb[System.Data.Linq.DataLoadOptions#1](~/add/codesnippet/visualbasic/snip/module1.vb#1)]
@@ -69,7 +69,7 @@ items:
     parameters:
     - id: expression
       type: System.Linq.Expressions.LambdaExpression
-      description: "Identifies the query to be used on a particular one-to-many field or property. Note the following:       If the expression does not start with a field or property that represents a one-to-many relationship, an exception is thrown.       If an operator other than a valid operator appears in the expression, an exception is thrown. Valid operators are as follows:       Where       OrderBy       ThenBy       OrderByDescending       ThenByDescending       Take"
+      description: "Identifica a consulta para ser utilizado num determinado um-para-muitos campo ou propriedade. Tenha em atenção o seguinte: se a expressão não começa com um campo ou propriedade que representa uma relação um-para-muitos, é emitida uma exceção.       Se aparecer um operador que não seja um operador válido na expressão, é emitida uma exceção. Os operadores válidos são os seguintes: onde OrderBy ThenBy OrderByDescending ThenByDescending demorar"
   overload: System.Data.Linq.DataLoadOptions.AssociateWith*
   exceptions: []
   platform:
@@ -91,7 +91,7 @@ items:
     parameters:
     - id: expression
       type: System.Linq.Expressions.Expression{System.Func{T,System.Object}}
-      description: "To be added."
+      description: "A adicionar."
   overload: System.Data.Linq.DataLoadOptions.AssociateWith<T>*
   exceptions: []
   platform:
@@ -108,8 +108,8 @@ items:
   assemblies:
   - System.Data.Linq
   namespace: System.Data.Linq
-  summary: "Retrieves specified data related to the main target by using a lambda expression."
-  remarks: "In the following example, all the `Orders` for all the `Customers` who are located in London are retrieved when the query is executed. As a result, successive access to the `Orders` property on a `Customer` object does not trigger a new database query."
+  summary: "Obtém especificado dados relacionados com o destino principal utilizando uma expressão lambda."
+  remarks: "No exemplo seguinte, todas as o `Orders` para todos os o `Customers` que estão localizados em Londres são obtidos quando a consulta é executada. Como resultado, acesso sucessivos para a `Orders` propriedade um `Customer` objeto não aciona uma nova consulta de base de dados."
   example:
   - >-
     [!code-vb[System.Data.Linq.DataLoadOptions#2](~/add/codesnippet/visualbasic/snip/module1.vb#2)]
@@ -119,7 +119,7 @@ items:
     parameters:
     - id: expression
       type: System.Linq.Expressions.LambdaExpression
-      description: "A lambda expression that identifies the related material."
+      description: "Uma expressão lambda que identifica o material relacionado."
   overload: System.Data.Linq.DataLoadOptions.LoadWith*
   exceptions: []
   platform:
@@ -141,7 +141,7 @@ items:
     parameters:
     - id: expression
       type: System.Linq.Expressions.Expression{System.Func{T,System.Object}}
-      description: "To be added."
+      description: "A adicionar."
   overload: System.Data.Linq.DataLoadOptions.LoadWith<T>*
   exceptions: []
   platform:

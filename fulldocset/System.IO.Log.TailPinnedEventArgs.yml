@@ -11,8 +11,8 @@ items:
   nameWithType: TailPinnedEventArgs
   fullName: System.IO.Log.TailPinnedEventArgs
   type: Class
-  summary: "Provides data for the <xref href=&quot;System.IO.Log.IRecordSequence.TailPinned&quot;></xref> event. This class cannot be inherited."
-  remarks: "The <xref:System.IO.Log.IRecordSequence.TailPinned> event can be fired when the record sequence has run out of space. When this event is fired, the tail of the sequence (that is, the base sequence number) is moved forward to free up space."
+  summary: "Disponibiliza dados para o <xref href=&quot;System.IO.Log.IRecordSequence.TailPinned&quot;> </xref> eventos. Esta classe não pode ser herdada."
+  remarks: "O <xref:System.IO.Log.IRecordSequence.TailPinned>evento pode ser desencadeado quando a sequência de registos ficou sem espaço.</xref:System.IO.Log.IRecordSequence.TailPinned> Quando este evento é desencadeado, seguimento da sequência (ou seja, o número de sequência base) é movido reencaminhar para libertar espaço."
   example:
   - "This example shows how to use the <xref:System.IO.Log.LogRecordSequence.TailPinned> event to free up space in a log sequence.  \n  \n```  \nrecordSequence.RetryAppend = true;  \nrecordSequence.TailPinned += new EventHandler<TailPinnedEventArgs>(HandleTailPinned);  \n  \nvoid HandleTailPinned(object sender, TailPinnedEventArgs tailPinnedEventArgs)  \n{  \n   // tailPinnedEventArgs.TargetSequenceNumber is the target   \n   // sequence number to free up space to.    \n   // However, this sequence number is not necessarily valid.  We have  \n   // to use this sequence number as a starting point for finding a  \n   // valid point within the log to advance toward. You need to  \n   // identify a record with a sequence number equal to, or greater  \n   // than TargetSequenceNumber; let's call this   \n   // realTargetSequenceNumber. Once found, move the base  \n  \n   recordSequence.AdvanceBaseSequenceNumber(realTargetSequenceNumber);  \n  \n}  \n```"
   syntax:
@@ -35,13 +35,13 @@ items:
   assemblies:
   - System.IO.Log
   namespace: System.IO.Log
-  summary: "Initializes a new instance of the <xref href=&quot;System.IO.Log.TailPinnedEventArgs&quot;></xref> class."
+  summary: "Inicializa uma nova instância do <xref href=&quot;System.IO.Log.TailPinnedEventArgs&quot;> </xref> classe."
   syntax:
     content: public TailPinnedEventArgs (System.IO.Log.SequenceNumber sequenceNumber);
     parameters:
     - id: sequenceNumber
       type: System.IO.Log.SequenceNumber
-      description: "The target sequence number."
+      description: "O número de sequência de destino."
   overload: System.IO.Log.TailPinnedEventArgs.#ctor*
   exceptions: []
   platform:
@@ -58,12 +58,12 @@ items:
   assemblies:
   - System.IO.Log
   namespace: System.IO.Log
-  summary: "Gets the sequence number that the tail should be moved past."
+  summary: "Obtém o número de sequência de seguimento deve ser movido anteriores."
   syntax:
     content: public System.IO.Log.SequenceNumber TargetSequenceNumber { get; }
     return:
       type: System.IO.Log.SequenceNumber
-      description: "The sequence number that the tail should be moved past."
+      description: "O número de sequência de seguimento deve ser movido anteriores."
   overload: System.IO.Log.TailPinnedEventArgs.TargetSequenceNumber*
   exceptions: []
   platform:

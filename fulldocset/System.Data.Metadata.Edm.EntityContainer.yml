@@ -18,8 +18,8 @@ items:
   nameWithType: EntityContainer
   fullName: System.Data.Metadata.Edm.EntityContainer
   type: Class
-  summary: "Represents an entity container in a conceptual model. An EntityContainer is a logical grouping of entity sets and association sets."
-  remarks: "On the conceptual level, the EntityContainer class represents a container that will be mapped to a database object in the storage metadata schema. In the storage level, the EntityContainer class represents a description of the table and/or key relationships that persist data for applications built on the model. For more information about the entity containers in a conceptual model, see [Entity Containers (EDM)](http://msdn.microsoft.com/en-us/9afa762f-59b8-4a70-b76d-89d90760144c)."
+  summary: "Representa um contentor de entidade de um modelo conceptual. Um EntityContainer é um agrupamento lógico de conjuntos de entidades e conjuntos de associação."
+  remarks: "Num nível conceptual, a classe de EntityContainer representa um contentor que será mapeado para um objeto de base de dados do esquema de metadados de armazenamento. No nível do armazenamento, a classe de EntityContainer representa uma descrição da tabela e/ou as relações de chave que manter os dados de aplicações incorporadas no modelo. Para obter mais informações sobre os contentores de entidade de um modelo conceptual, consulte [contentores de entidade (EDM)](http://msdn.microsoft.com/en-us/9afa762f-59b8-4a70-b76d-89d90760144c)."
   example:
   - "The following code sample demonstrates how to get a metadata workspace from the connection and then use that metadata workspace to retrieve information about the entity containers in the specified data model. Note that the metadata workspace is a runtime service component that provides support for retrieving metadata.  \n  \n The code sample uses a <xref:System.Data.Metadata.Edm.DataSpace> and a <xref:System.Data.Metadata.Edm.DataSpace> to specify the model. The <xref:System.Data.Metadata.Edm.DataSpace> represents the default name for the conceptual model. The <xref:System.Data.Metadata.Edm.DataSpace> represents the default name for the storage model.  \n  \n The `GetEntityContainers` method gets a collection of entity containers and then iterates through the collection to get each entity set and association set in the specified container. The code sample uses the AdventureWorks Model that is provided in the [Adventure Works Model (EDM)](http://msdn.microsoft.com/en-us/da87d29e-8c89-4310-bbac-5cbd062930a7)topic. For an example of the application config file, see [Adventure Works Object Model in Applications (EDM)](http://msdn.microsoft.com/en-us/84c01270-90ba-467b-ad24-df10c1ca8f45).  \n  \n```c#  \nusing System;  \nusing System.Data;  \nusing System.Data.EntityClient;  \nusing System.Data.Metadata.Edm;  \nusing System.Collections.ObjectModel;  \n  \nclass GetEntityContainerExample  \n{  \n  static void Main()  \n  {  \n    try  \n    {  \n       // Establish a connection to the underlying data provider by   \n       // using the connection string specified in the config file.  \n       using (EntityConnection connection =  \n          new EntityConnection(\"Name=AdventureWorksEntities\"))  \n       {  \n         // Open the connection.  \n         connection.Open();  \n  \n         // Access the metadata workspace.  \n         MetadataWorkspace workspace =   \n            connection.GetMetadataWorkspace();  \n  \n         // Get the entity containers in the conceptual model.  \n         GetEntityContainers(workspace, DataSpace.CSpace);  \n  \n         // Get the entity containers in the storage model.  \n             GetEntityContainers(workspace, DataSpace.SSpace);  \n       }  \n    }  \n    catch (MetadataException exceptionMetadata)  \n    {  \n      Console.WriteLine(\"MetadataException: {0}\",   \n                       exceptionMetadata.Message);  \n    }  \n    catch (System.Data.MappingException exceptionMapping)  \n    {  \n      Console.WriteLine(\"MappingException: {0}\",  \n                       exceptionMapping.Message);  \n    }  \n  }  \n  \n  public static void GetEntityContainers(  \n      MetadataWorkspace workspace, DataSpace model)  \n  {  \n    // Get a collection of the entity containers.  \n    ReadOnlyCollection<EntityContainer> containers =   \n         workspace.GetItems<EntityContainer>(model);  \n  \n    // Iterate through the collection to get each entity container.  \n    foreach (EntityContainer container in containers)  \n    {  \n       Console.WriteLine(\"EntityContainer Name: {0} \",   \n                        container.Name);  \n  \n       // EntitySetBase is a super type for   \n       // EntitySets and RelationshipSets.   \n       // Iterate through the collection to get each EntitySetBase.  \n       foreach (EntitySetBase baseSet in container.BaseEntitySets)  \n       {  \n          // Check if this instance is an EntitySet.  \n          if (baseSet is EntitySet)  \n          {  \n             Console.WriteLine(  \n                \"  EntitySet Name: {0} , EntityType Name: {1} \",  \n                baseSet.Name, baseSet.ElementType.FullName);  \n          }  \n  \n         // RelationshipSet is a super type for AssociationSet.  \n         // Check if this instance is an AssociationSet.  \n         if (baseSet is AssociationSet)  \n         {  \n            Console.WriteLine(  \n               \"  AssociationSet Name: {0} , \" +  \n               \"AssociationType Name: {1} \",  \n                baseSet.Name, baseSet.ElementType.FullName);  \n  \n            // Get the AssociationSet.  \n            AssociationSet associationSet =   \n                  baseSet as AssociationSet;  \n  \n            // Iterate through the collection to get   \n            // each AssociatedSetEnd.  \n            foreach (AssociationSetEnd end in   \n               associationSet.AssociationSetEnds)  \n            {  \n               Console.WriteLine(  \n                  \"   EntitySet Name: {0} , Name: {1} \",  \n                  end.EntitySet, end.Name);  \n            }  \n         }  \n      }  \n    }  \n  }  \n}  \n```  \n  \n```vb  \nImports System  \nImports System.Collections.ObjectModel  \nImports System.Data  \nImports System.Data.EntityClient  \nImports System.Data.Metadata.Edm  \n  \nClass GetEntityContainerExample  \n  Public Shared Sub Main()  \n    Try  \n      ' Establish a connection to the underlying data provider by   \n      ' using the connection string specified in the config file.  \n      Using connection As EntityConnection = _  \n        New EntityConnection(\"Name=AdventureWorksEntities\")  \n  \n        ' Open the conection.  \n        connection.Open()  \n  \n        ' Access the metadata workspace.  \n        Dim workspace As MetadataWorkspace = _  \n           connection.GetMetadataWorkspace  \n  \n        ' Get the entity containers in the conceptual model.  \n        GetEntityContainers(workspace, DataSpace.CSpace)  \n  \n        ' Get the entity containers in the storage model.  \n        GetEntityContainers(workspace, DataSpace.SSpace)  \n      End Using  \n    Catch exceptionMetadata As MetadataException  \n       Console.WriteLine(\"MetadataException: {0}\", _  \n          exceptionMetadata.Message)  \n    Catch exceptionMapping As MappingException  \n       Console.WriteLine(\"MappingException: {0}\", _  \n          exceptionMapping.Message)  \n     End Try  \n  End Sub  \n  \n  Public Shared Sub GetEntityContainers( _  \n    ByVal workspace As MetadataWorkspace, ByVal model As DataSpace)  \n  \n    ' Get a collection of the entity containers.  \n    Dim containers As ReadOnlyCollection(Of EntityContainer) = _  \n       workspace.GetItems(Of EntityContainer)(model)  \n  \n    ' Iterate through the collection to get each entity container.  \n    Dim container As EntityContainer  \n    For Each container In containers  \n      Console.WriteLine(\"EntityContainer Name: {0} \", container.Name)  \n  \n      ' EntitySetBase is a super type for   \n      ' EntitySets and RelationshipSets.   \n      ' Iterate through the collection to get each EntitySetBase.  \n      Dim baseSet As EntitySetBase  \n      For Each baseSet In container.BaseEntitySets  \n         ' Check if this instance is an EntitySet.  \n         If TypeOf baseSet Is EntitySet Then  \n           Console.WriteLine( _  \n              \"  EntitySet Name: {0} , EntityType Name: {1} \", _  \n              baseSet.Name, baseSet.ElementType.FullName)  \n          End If  \n  \n          ' RelationshipSet is a super type for AssociationSet.  \n          ' Check if this instance is an AssociationSet.  \n          If TypeOf baseSet Is AssociationSet Then  \n            Console.WriteLine( _  \n              \"  AssociationSet Name: {0} , \" + _  \n              \"AssociationType Name: {1} \", _  \n              baseSet.Name, baseSet.ElementType.FullName)  \n  \n            ' Get the AssociationSet.  \n            Dim associationSet As AssociationSet = _  \n               TryCast(baseSet, AssociationSet)  \n  \n            ' Iterate through the collection to get   \n            '  each AssociatedSetEnd.  \n            Dim endMember As AssociationSetEnd  \n            For Each endMember In associationSet.AssociationSetEnds  \n              Console.WriteLine( _  \n                 \"   EntitySet Name: {0} , Name: {1} \", _  \n                 endMember.EntitySet, endMember.Name)  \n            Next  \n          End If  \n      Next  \n    Next  \n  End Sub  \nEnd Class  \n```"
   syntax:
@@ -48,12 +48,12 @@ items:
   assemblies:
   - System.Data.Entity
   namespace: System.Data.Metadata.Edm
-  summary: "Gets a list of entity sets and association sets that this <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;></xref> includes."
+  summary: "Obtém uma lista de conjuntos de entidades e associação define que isto <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;> </xref> inclui."
   syntax:
     content: public System.Data.Metadata.Edm.ReadOnlyMetadataCollection<System.Data.Metadata.Edm.EntitySetBase> BaseEntitySets { get; }
     return:
       type: System.Data.Metadata.Edm.ReadOnlyMetadataCollection{System.Data.Metadata.Edm.EntitySetBase}
-      description: "A &lt;xref:System.Data.Metadata.Edm.ReadOnlyMetadataCollection%601&gt; object that contains a list of entity sets and association sets that this <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;></xref> includes."
+      description: "A &lt;xref:System.Data.Metadata.Edm.ReadOnlyMetadataCollection%601&gt; objeto que contém uma lista de conjuntos de entidades e associação define que isto <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;> </xref> inclui."
   overload: System.Data.Metadata.Edm.EntityContainer.BaseEntitySets*
   exceptions: []
   platform:
@@ -70,12 +70,12 @@ items:
   assemblies:
   - System.Data.Entity
   namespace: System.Data.Metadata.Edm
-  summary: "Gets the built-in type kind for this <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;></xref>."
+  summary: "Obtém o tipo de tipo incorporado para este <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;> </xref>."
   syntax:
     content: public override System.Data.Metadata.Edm.BuiltInTypeKind BuiltInTypeKind { get; }
     return:
       type: System.Data.Metadata.Edm.BuiltInTypeKind
-      description: "A <xref href=&quot;System.Data.Metadata.Edm.BuiltInTypeKind&quot;></xref> object that represents the built-in type kind for this <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;></xref>."
+      description: "A <xref href=&quot;System.Data.Metadata.Edm.BuiltInTypeKind&quot;> </xref> objeto que representa o tipo de tipo incorporado para este <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;> </xref>."
   overload: System.Data.Metadata.Edm.EntityContainer.BuiltInTypeKind*
   exceptions: []
   platform:
@@ -92,12 +92,12 @@ items:
   assemblies:
   - System.Data.Entity
   namespace: System.Data.Metadata.Edm
-  summary: "Specifies a collection of <xref href=&quot;System.Data.Metadata.Edm.EdmFunction&quot;></xref> elements. Each function contains the details of a stored procedure that exists in the database or equivalent `CommandText` that is mapped to an entity and its properties."
+  summary: "Especifica uma coleção de <xref href=&quot;System.Data.Metadata.Edm.EdmFunction&quot;> </xref> elementos. Cada função contém os detalhes de um procedimento armazenado que existe na base de dados ou equivalente `CommandText` que está mapeado para uma entidade e as respetivas propriedades."
   syntax:
     content: public System.Data.Metadata.Edm.ReadOnlyMetadataCollection<System.Data.Metadata.Edm.EdmFunction> FunctionImports { get; }
     return:
       type: System.Data.Metadata.Edm.ReadOnlyMetadataCollection{System.Data.Metadata.Edm.EdmFunction}
-      description: "A &lt;xref:System.Data.Metadata.Edm.ReadOnlyMetadataCollection%601&gt; that contains <xref href=&quot;System.Data.Metadata.Edm.EdmFunction&quot;></xref> elements."
+      description: "A &lt;xref:System.Data.Metadata.Edm.ReadOnlyMetadataCollection%601&gt; que contenha <xref href=&quot;System.Data.Metadata.Edm.EdmFunction&quot;> </xref> elementos."
   overload: System.Data.Metadata.Edm.EntityContainer.FunctionImports*
   exceptions: []
   platform:
@@ -114,19 +114,19 @@ items:
   assemblies:
   - System.Data.Entity
   namespace: System.Data.Metadata.Edm
-  summary: "Returns an <xref href=&quot;System.Data.Metadata.Edm.EntitySet&quot;></xref> object by using the specified name for the entity set."
+  summary: "Devolve um <xref href=&quot;System.Data.Metadata.Edm.EntitySet&quot;> </xref> objeto utilizando o nome especificado para o conjunto de entidades."
   syntax:
     content: public System.Data.Metadata.Edm.EntitySet GetEntitySetByName (string name, bool ignoreCase);
     parameters:
     - id: name
       type: System.String
-      description: "The name of the entity set that is searched for."
+      description: "O nome da entidade que está a definir procurado."
     - id: ignoreCase
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> to perform the case-insensitive search; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>para efetuar a pesquisa sensível; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
     return:
       type: System.Data.Metadata.Edm.EntitySet
-      description: "An <xref href=&quot;System.Data.Metadata.Edm.EntitySet&quot;></xref> object that represents the entity set that has the specified name."
+      description: "Um <xref href=&quot;System.Data.Metadata.Edm.EntitySet&quot;> </xref> objeto que representa o conjunto de entidades com o nome especificado."
   overload: System.Data.Metadata.Edm.EntityContainer.GetEntitySetByName*
   exceptions: []
   platform:
@@ -143,19 +143,19 @@ items:
   assemblies:
   - System.Data.Entity
   namespace: System.Data.Metadata.Edm
-  summary: "Returns a <xref href=&quot;System.Data.Metadata.Edm.RelationshipSet&quot;></xref> object by using the specified name for the relationship set."
+  summary: "Devolve um <xref href=&quot;System.Data.Metadata.Edm.RelationshipSet&quot;> </xref> objeto utilizando o nome especificado para o conjunto de relação."
   syntax:
     content: public System.Data.Metadata.Edm.RelationshipSet GetRelationshipSetByName (string name, bool ignoreCase);
     parameters:
     - id: name
       type: System.String
-      description: "The name of the relationship set that is searched for."
+      description: "O nome da relação que está a definir procurado."
     - id: ignoreCase
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> to perform the case-insensitive search; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>para efetuar a pesquisa sensível; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
     return:
       type: System.Data.Metadata.Edm.RelationshipSet
-      description: "An <xref href=&quot;System.Data.Metadata.Edm.RelationshipSet&quot;></xref> object that represents the relationship set that has the specified name."
+      description: "Um <xref href=&quot;System.Data.Metadata.Edm.RelationshipSet&quot;> </xref> objeto que representa o conjunto de relação com o nome especificado."
   overload: System.Data.Metadata.Edm.EntityContainer.GetRelationshipSetByName*
   exceptions: []
   platform:
@@ -172,12 +172,12 @@ items:
   assemblies:
   - System.Data.Entity
   namespace: System.Data.Metadata.Edm
-  summary: "Gets the name of this <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;></xref>."
+  summary: "Obtém o nome deste <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;> </xref>."
   syntax:
     content: public string Name { get; }
     return:
       type: System.String
-      description: "The name of this <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;></xref>."
+      description: "O nome deste <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;> </xref>."
   overload: System.Data.Metadata.Edm.EntityContainer.Name*
   exceptions: []
   platform:
@@ -194,13 +194,13 @@ items:
   assemblies:
   - System.Data.Entity
   namespace: System.Data.Metadata.Edm
-  summary: "Returns the name of this <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;></xref>."
+  summary: "Devolve o nome deste <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;> </xref>."
   syntax:
     content: public override string ToString ();
     parameters: []
     return:
       type: System.String
-      description: "The name of this <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;></xref>."
+      description: "O nome deste <xref href=&quot;System.Data.Metadata.Edm.EntityContainer&quot;> </xref>."
   overload: System.Data.Metadata.Edm.EntityContainer.ToString*
   exceptions: []
   platform:
@@ -217,22 +217,22 @@ items:
   assemblies:
   - System.Data.Entity
   namespace: System.Data.Metadata.Edm
-  summary: "Returns an <xref href=&quot;System.Data.Metadata.Edm.EntitySet&quot;></xref> object by using the specified name for the entity set."
+  summary: "Devolve um <xref href=&quot;System.Data.Metadata.Edm.EntitySet&quot;> </xref> objeto utilizando o nome especificado para o conjunto de entidades."
   syntax:
     content: public bool TryGetEntitySetByName (string name, bool ignoreCase, out System.Data.Metadata.Edm.EntitySet entitySet);
     parameters:
     - id: name
       type: System.String
-      description: "The name of the entity set that is searched for."
+      description: "O nome da entidade que está a definir procurado."
     - id: ignoreCase
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> to perform the case-insensitive search; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>para efetuar a pesquisa sensível; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
     - id: entitySet
       type: System.Data.Metadata.Edm.EntitySet
-      description: "When this method returns, contains an <xref href=&quot;System.Data.Metadata.Edm.EntitySet&quot;></xref> object. If there is no entity set, this output parameter contains null."
+      description: "Quando este método devolve, contém um <xref href=&quot;System.Data.Metadata.Edm.EntitySet&quot;> </xref> objeto. Se não houver nenhum conjunto de entidades, este parâmetro de saída contém um valor nulo."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if there is an entity set that matches the search criteria; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se existir um conjunto de entidades que corresponde aos critérios de pesquisa; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Data.Metadata.Edm.EntityContainer.TryGetEntitySetByName*
   exceptions: []
   platform:
@@ -249,22 +249,22 @@ items:
   assemblies:
   - System.Data.Entity
   namespace: System.Data.Metadata.Edm
-  summary: "Returns a <xref href=&quot;System.Data.Metadata.Edm.RelationshipSet&quot;></xref> object by using the specified name for the relationship set."
+  summary: "Devolve um <xref href=&quot;System.Data.Metadata.Edm.RelationshipSet&quot;> </xref> objeto utilizando o nome especificado para o conjunto de relação."
   syntax:
     content: public bool TryGetRelationshipSetByName (string name, bool ignoreCase, out System.Data.Metadata.Edm.RelationshipSet relationshipSet);
     parameters:
     - id: name
       type: System.String
-      description: "The name of the relationship set that is searched for."
+      description: "O nome da relação que está a definir procurado."
     - id: ignoreCase
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> to perform the case-insensitive search; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>para efetuar a pesquisa sensível; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
     - id: relationshipSet
       type: System.Data.Metadata.Edm.RelationshipSet
-      description: "When this method returns, contains a <xref href=&quot;System.Data.Metadata.Edm.RelationshipSet&quot;></xref> object."
+      description: "Quando este método devolve, contém um <xref href=&quot;System.Data.Metadata.Edm.RelationshipSet&quot;> </xref> objeto."
     return:
       type: System.Boolean
-      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref> if there is a relationship set that matches the search criteria; otherwise, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;></xref>."
+      description: "<xref uid=&quot;langword_csharp_true&quot; name=&quot;true&quot; href=&quot;&quot;></xref>Se existir um conjunto de relação que corresponde aos critérios de pesquisa; caso contrário, <xref uid=&quot;langword_csharp_false&quot; name=&quot;false&quot; href=&quot;&quot;> </xref>."
   overload: System.Data.Metadata.Edm.EntityContainer.TryGetRelationshipSetByName*
   exceptions: []
   platform:

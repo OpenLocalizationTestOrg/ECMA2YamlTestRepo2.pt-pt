@@ -15,8 +15,8 @@ items:
   nameWithType: InstrumentationManager
   fullName: System.Management.Instrumentation.InstrumentationManager
   type: Class
-  summary: "Provides methods that manage the lifetime and the model used for decoupled providers.       Note: the WMI .NET libraries are now considered in final state, and no further development, enhancements, or updates will be available for non-security related issues affecting these libraries. The [MI APIs](https://msdn.microsoft.com/en-us/library/jj152383%28v=vs.80%29.aspx) should be used for all new development."
-  remarks: "Decoupled providers are hosted by an application. Two methods can be used by the application to make instances of WMI classes available: publish/revoke or the callback method. The callback method uses the <xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A> and <xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A> methods.       In the publish/revoke model, the WMI infrastructure provides default behavior for many of the methods you have to write yourself in the callback method. These include the enumeration and bind methods. In this model, the application creates instances and publishes them. The application is responsible for ensuring that the key properties of the classes are respected. The application is also responsible for deleting instances.       In the callback model, the WMI infrastructure expects the application to have methods that handle enumeration, binding and any other methods required to implement the functionality of the provider. It calls into the application for this functionality and fails if it does not exist or is not implemented properly. The application registers the type of its WMI classes with the infrastructure by calling <xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A> and indicates that it no longer wants the WMI classes exposed by calling <xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A>."
+  summary: "Fornece métodos que gerem a duração e o modelo utilizado para desassociados fornecedores.       Nota: a bibliotecas WMI .NET agora é considerada no estado final e não mais de desenvolvimento, melhoramentos ou atualizações estarão disponíveis para problemas relacionados com segurança não afetar estas bibliotecas. O [APIs de MI](https://msdn.microsoft.com/en-us/library/jj152383%28v=vs.80%29.aspx) deve ser utilizada para todos os novo desenvolvimento."
+  remarks: "Fornecedores desassociados alojadas por uma aplicação. Dois métodos podem ser utilizados pela aplicação para disponibilizar as instâncias de WMI classes: publicar/revoke ou o método de chamada de retorno. O método de chamada de retorno utiliza o <xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A>e <xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A>métodos.</xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A> </xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A>       No modelo de publicar/revoke, a infraestrutura WMI fornece o comportamento predefinido para muitos dos métodos que tem de escrever pessoalmente o método de chamada de retorno. Estes incluem a enumeração e atribuição de métodos. Neste modelo, a aplicação cria instâncias e publica-los. A aplicação é responsável por assegurar que as propriedades de chave das classes são respeitadas. A aplicação também é responsável pela eliminação de instâncias.       No modelo de chamada de retorno, a infraestrutura WMI espera que a aplicação ter métodos enumeração, enlace com a quaisquer outros métodos necessários para implementar a funcionalidade do fornecedor. As chamadas para a aplicação para esta funcionalidade e falhar se não existe ou não está implementada corretamente. A aplicação regista o tipo das suas classes WMI com a infraestrutura chamando <xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A>e indica que já não pretende as classes WMI expostas ao chamar <xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A>.</xref:System.Management.Instrumentation.InstrumentationManager.UnregisterType%2A> </xref:System.Management.Instrumentation.InstrumentationManager.RegisterType%2A>"
   example:
   - "The following example demonstrates how to use the publish/revoke model. Two instances of the router class are created and published. They are later revoked.  \n  \n```  \npublic class Sample_InstanceProvider  \n{  \npublic int Main (string[] args)   \n{  \nRouter r_one = new Router ();  \nr_one.Name = \"one\";  \nInstrumentationManager.Publish(r_one);  \nRouter r_two = new Router ();  \nr_two.Name = \"two\";  \nInstrumentationManager.Publish(r_two);  \n// ....  \nInstrumentationManager.Revoke(r_one);  \nInstrumentationManager.Revoke(r_two);  \nreturn 0;  \n}  \n}  \n```  \n  \n In the next example, the callback method of registration is used to expose the RouterNew class.  \n  \n```  \npublic int MainNew(string[] args)   \n{  \n    InstrumentationManager.RegisterType(typeof(RouterNew));  \n    // ....  \n    InstrumentationManager.UnRegisterType(typeof(RouterNew));  \n    return 0;  \n}  \n```"
   syntax:
@@ -39,13 +39,13 @@ items:
   assemblies:
   - System.Management.Instrumentation
   namespace: System.Management.Instrumentation
-  summary: "Makes an instance of a provider available within the WMI infrastructure."
+  summary: "Disponibiliza uma instância de um fornecedor de dentro da infraestrutura de WMI."
   syntax:
     content: public static void Publish (object value);
     parameters:
     - id: value
       type: System.Object
-      description: "An instance of the class that implements the provider to publish."
+      description: "Uma instância da classe que implementa o fornecedor para publicar."
   overload: System.Management.Instrumentation.InstrumentationManager.Publish*
   exceptions: []
   platform:
@@ -62,13 +62,13 @@ items:
   assemblies:
   - System.Management.Instrumentation
   namespace: System.Management.Instrumentation
-  summary: "Registers an assembly with the WMI infrastructure."
+  summary: "Regista uma assemblagem com a infraestrutura WMI."
   syntax:
     content: public static void RegisterAssembly (System.Reflection.Assembly managementAssembly);
     parameters:
     - id: managementAssembly
       type: System.Reflection.Assembly
-      description: "The assembly to register."
+      description: "A assemblagem para registar."
   overload: System.Management.Instrumentation.InstrumentationManager.RegisterAssembly*
   exceptions: []
   platform:
@@ -85,7 +85,7 @@ items:
   assemblies:
   - System.Management.Instrumentation
   namespace: System.Management.Instrumentation
-  summary: "Registers a class with the WMI infrastructure."
+  summary: "Regista uma classe com a infraestrutura WMI."
   remarks: ''
   example:
   - "```  \nstatic int Main(string[] args)  \n{  \n   InstrumentationManager.RegisterType(typeof(MySampleProvider));  \n   return 0;  \n}  \n```"
@@ -94,7 +94,7 @@ items:
     parameters:
     - id: managementType
       type: System.Type
-      description: "The type of the class."
+      description: "O tipo de classe."
   overload: System.Management.Instrumentation.InstrumentationManager.RegisterType*
   exceptions: []
   platform:
@@ -111,13 +111,13 @@ items:
   assemblies:
   - System.Management.Instrumentation
   namespace: System.Management.Instrumentation
-  summary: "Takes an instance of a currently available provider and makes it unavailable within the WMI infrastructure."
+  summary: "Executa uma instância de um fornecedor disponível atualmente e torna disponível dentro da infraestrutura de WMI."
   syntax:
     content: public static void Revoke (object value);
     parameters:
     - id: value
       type: System.Object
-      description: "An instance of the class that implements the provider to revoke."
+      description: "Uma instância da classe que implementa o fornecedor de revogação."
   overload: System.Management.Instrumentation.InstrumentationManager.Revoke*
   exceptions: []
   platform:
@@ -134,13 +134,13 @@ items:
   assemblies:
   - System.Management.Instrumentation
   namespace: System.Management.Instrumentation
-  summary: "Unregisters an assembly currently registered with the WMI infrastructure."
+  summary: "Anula o registo de uma assemblagem atualmente registada com a infraestrutura WMI."
   syntax:
     content: public static void UnregisterAssembly (System.Reflection.Assembly managementAssembly);
     parameters:
     - id: managementAssembly
       type: System.Reflection.Assembly
-      description: "The registered assembly to unregister."
+      description: "A assemblagem registada para anular o registo."
   overload: System.Management.Instrumentation.InstrumentationManager.UnregisterAssembly*
   exceptions: []
   platform:
@@ -157,13 +157,13 @@ items:
   assemblies:
   - System.Management.Instrumentation
   namespace: System.Management.Instrumentation
-  summary: "Unregisters a class registered with the WMI infrastructure."
+  summary: "Anula o registo de uma classe registada com a infraestrutura WMI."
   syntax:
     content: public static void UnregisterType (Type managementType);
     parameters:
     - id: managementType
       type: System.Type
-      description: "The registered type to unregister."
+      description: "O tipo registado para anular o registo."
   overload: System.Management.Instrumentation.InstrumentationManager.UnregisterType*
   exceptions: []
   platform:
